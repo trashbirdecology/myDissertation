@@ -1,11 +1,8 @@
 # Quantitative indicators of abrupt ecological change {#indicators-chapter}   
 
-## Abstract 
-
-Here is a chapter abstract
-
-
 ## Introduction
+
+
 
 Regime shifts can be defined as changes in either the structure  or underlying functioning of a system. Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches, and many have been tested and verified in multiple systems. Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows. 
 

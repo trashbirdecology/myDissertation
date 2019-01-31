@@ -82,13 +82,16 @@ if(!require(dplyr))
     install.packages("dplyr", repos = "http://cran.rstudio.com")
 if(!require(ggplot2))
     install.packages("ggplot2", repos = "http://cran.rstudio.com")
-if(!require(ggplot2))
+if(!require(bookdown))
     install.packages("bookdown", repos = "http://cran.rstudio.com")
+if(!require(kableExtra))
+    install.packages("kableExtra", repos = "http://cran.rstudio.com")
 if(!require(thesisdown)){
   library(devtools)
   devtools::install_github("ismayc/thesisdown")
   }
 library(thesisdown)
+library(tidyverse)
 ```
 
 

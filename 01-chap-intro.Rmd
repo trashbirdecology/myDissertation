@@ -1,9 +1,10 @@
 # Introduction {#intro-chapter}
 
 ## Background  
+Abrupt changes in the environment 
 - On abrupt changes in the environment
 1. A few examples of abrupt changes that are highly referenced.   
-1. Whydoes it matter that we can detect??
+1. Why does it matter that we can detect??
 2. A few examples of the methds that have  been used ot identifythese shifts
   - histortically
   - real-time 
@@ -14,12 +15,76 @@
     - to interpret
   - theory - lackthereof
 4. Descrive the attempts to identify regime shifts
+  - the most solid theoretical concept in the field of regime shifts is the concept of *critical slowing down* 
 
+## Goal of the dissertation 
+1. The goal of the works described herein is to evaluate methods proposed as indicators fo regime shift in **ecological communities**.   
+1. Propose simple, alternative methods to multispecies 
+
+```{r tab:defs_tbl, eval = T, message=F, warning=F}
+# Create a table of definitions 
+  # A box would be nice - if I have the time
+
+library(kableExtra)
+
+defs_tbl <- rbind(
+        c("Regime shift", "Vaguely defined as the change in the structure or functioning of a system." , 'ref'), 
+        c("Regine","def", 'ref'), 
+        c("term","def", 'ref'), 
+        c("term","def", 'ref'), 
+        c("term","def", 'ref'), 
+        c("term","def", 'ref'), 
+        c("term","def", 'ref'), 
+        c("term","def", 'ref'), 
+        c("term","def", 'ref')
+        ) %>%
+  data.frame() %>% 
+  `colnames<-`( c("Regime shift", "Definitions", "Source"))
+
+
+knitr::kable(defs_tbl,# "latex",
+             caption = "Definitions of terms related to regime shifts appearing throughout this work. Terms are higlighted in bold in the following section only.") %>%
+  kableExtra::kable_styling(full_width = F) %>%
+  kableExtra::column_spec(1, bold = T, width = '20em', color = "black") %>% # adjsts column width to provide flexibility for text columns
+  kableExtra::column_spec(2, width = "67em") %>% 
+  kableExtra::column_spec(3, width = "10em", color = "grey") 
   
-## My thesis  
-My thesis is that regime detection metrics are not useful and are difficult to interpret and apply to multispecies systems. 
-1. Brandolini's principle
+kable(head(iris), format = "latex", caption = "Title of the table")
 
+kableExtra::kable(defs_tbl) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "30em", background = "yellow")
+?kableExtra::kable
+```
+Here is my reference to a table (\#tab:defs_tbl) 
+
+### On critical slowing down  
+ 
+ 
+**Critical slowing down** is the most solid theoretical concept in the study of **ecological regime shifts** and is a more precise variant of **Pimm's resilience** (c.f. **Hollings resilience**). The theory is such that the **recovery rate**, or the time it takes to return to a **stable** point, decreases as it nears its **tipping point**.
+
+
+
+"the recovery rate should decrease. It occurs because a system’s internal stabilizing forces become weaker near the point where they break and the system moves into a new regime. Thus critical slowing down is posited to exist at phase transitions, such as ecosystem collapse. A system is stable when it is in a deep basin of attraction corresponding to many strong negative feedback loops acting on it. In such a case small perturbations do not have long-term consequences. As a system degrades these negative feedback loops become broken and thus the steepness of the basin of attraction becomes lower.
+Its resilience becomes decreased bring the system close to a critical transition. This means that the same perturbation that may not flip the system will though likely take longer to dissipate. Thus it will take longer for the system to return to its point of equilibrium when close to a tipping point. The simplest way to measure the approach to a potential tipping point then would be to directly measure the recovery rate at which the system returns back to its initial equilibrium state following a perturbation. In cases where the system is close to a tipping point, the recovery rate should decrease – slow down. As such critical slowing down offers some potential to probe the dynamics of a system in order to assess its resilience and the risk of an upcoming regime shift. “We have all these complex systems like the brain, the climate, ecosystems, the financial market, that are really difficult to understand, and we will probably never fully understand them. So it’s really kind of a small miracle that across these very different systems, we could find these universal indicators of how close they are to a threshold” – Marten Scheffer""
+
+ "I think the most solid theoretical concept in this field is the "critical slowing down" which typically manifests itself as increased variance or autocorrelation at a critical transition. Much has been written about this, especially by Maarten Sceffer, Stephen Carpenter et al. (e.g. https://www.annualreviews.org/doi/abs/10.1146/annurev-ecolsys-112414-054242) Common to all methods derived from this theoretically sound concept, is that they need quite a lot of data - typically more than you would usually have in ecological time series, at least. "
+
+For multispecies data you will typically need to reduce dimensionality before you can proceed, for example by some sort of ordination. The vegan package for R is typically the starting point for this. I can help you a bit further on the way if you are not familiar with this if you want to, but then I would need to know a bit more about your data.
+
+
+### Types fo regime shifts
+There are different types fo regime shifts, and **why those differences matter**  
+
+  * only “regime shifts” that are also “critical transitions” should show “critical slowing down”  
+    - so that’s an important *technical distinction* if you’re trying to use *“early warning signals”*.   
+  * There are mutiple types og **critical transitions**  
+    - these results in very different changes in time series  
+    - in some contexts, this doesn't really matter  
+    
+## Brandolini's principle    
+    
 TWo major sources of problems?
 1. Defining a regime shift  
 2. Methods have not proven useful for application beyond single-species systems and systems about which causal drivers can just be monitored.
@@ -31,15 +96,7 @@ TWo major sources of problems?
     - Why are the applications to empirical data largely restricted to the research community?
     - Is this an artefact of how long it takes for applied ecologists and ecological management to adopt new data anlysis techniques?
 
-
-## Dissertation abstract (content summary)  
-This dissertation comprises __X__ sections:  
-  1. Review of the current methods used to identify abrupt changes in ecological systems
-      - Types of analyses
-          - Univariable vs. multivariable
-          - Picked up vs. not picked up (look at # papers using method in WOS, maybe...)  
-  1. A beginner's guide to Fisher Information (derivatives metric) {#distance}  
-  1. Distance method  
-  1. Fisher Information binning method and an application of it to spatiotemporal data
-  1. Conclusions
+## Importance of this thesis  
+- Identifying methods for multiple species data
+- Highlighting the methods that may or may not be useful to the causal quantitative ecologist
 
