@@ -21,29 +21,44 @@ Abrupt changes in the environment
 1. The goal of the works described herein is to evaluate methods proposed as indicators fo regime shift in **ecological communities**.   
 1. Propose simple, alternative methods to multispecies 
 
-```{r tab:defs_tbl, eval = T, message=F, warning=F}
+```{r tab:defs_tbl, echo = F, eval = F, message=F, warning=F}
 # Create a table of definitions 
   # A box would be nice - if I have the time
 
 library(kableExtra)
 
+Alternative stable states (equilibrium)
+	Thresholds exist
+	>1 'state'
+Periodic/cycles (i.e. unstable points or attractors)
+	e.g., Pred-prey cycles
+-Multiple stable states
+-	Stability
+- Perturbation-driven shift
+- State-and-transition  model (STM)
+	  distinct states are defined (a priori?)
+	  more deterministic than range cond. mod.
+- Range condition model
+- Nonlinear dynamics
+-	Stability
+  	Removing or damaging negative feedbacksmakes the ssytem move away from the stable equilibrium attractor
+
+
 defs_tbl <- rbind(
         c("Regime shift", "Vaguely defined as the change in the structure or functioning of a system." , 'ref'), 
-        c("Regine","def", 'ref'), 
+        c("Holling's resilience","def", '@holling_XXX_1973'), 
+        c("Pimm's resilience","Also known as engineering resilience", 'ref'), 
         c("term","def", 'ref'), 
         c("term","def", 'ref'), 
         c("term","def", 'ref'), 
-        c("term","def", 'ref'), 
-        c("term","def", 'ref'), 
-        c("term","def", 'ref'), 
-        c("term","def", 'ref')
+
         ) %>%
   data.frame() %>% 
   `colnames<-`( c("Regime shift", "Definitions", "Source"))
 
 
 knitr::kable(defs_tbl,# "latex",
-             caption = "Definitions of terms related to regime shifts appearing throughout this work. Terms are higlighted in bold in the following section only.") %>%
+caption = "Definitions of terms related to regime shifts appearing throughout this work. Terms are higlighted in bold in the following section only.") %>%
   kableExtra::kable_styling(full_width = F) %>%
   kableExtra::column_spec(1, bold = T, width = '20em', color = "black") %>% # adjsts column width to provide flexibility for text columns
   kableExtra::column_spec(2, width = "67em") %>% 
@@ -57,13 +72,11 @@ kableExtra::kable(defs_tbl) %>%
   column_spec(2, width = "30em", background = "yellow")
 ?kableExtra::kable
 ```
-Here is my reference to a table (\#tab:defs_tbl) 
+<!-- Here is my reference to a table (\#tab:defs_tbl)  -->
 
-### On critical slowing down  
- 
+### On critical slowing down    
  
 **Critical slowing down** is the most solid theoretical concept in the study of **ecological regime shifts** and is a more precise variant of **Pimm's resilience** (c.f. **Hollings resilience**). The theory is such that the **recovery rate**, or the time it takes to return to a **stable** point, decreases as it nears its **tipping point**.
-
 
 
 "the recovery rate should decrease. It occurs because a system’s internal stabilizing forces become weaker near the point where they break and the system moves into a new regime. Thus critical slowing down is posited to exist at phase transitions, such as ecosystem collapse. A system is stable when it is in a deep basin of attraction corresponding to many strong negative feedback loops acting on it. In such a case small perturbations do not have long-term consequences. As a system degrades these negative feedback loops become broken and thus the steepness of the basin of attraction becomes lower.
