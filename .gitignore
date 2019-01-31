@@ -24,3 +24,12 @@ _bookdown_files/thesis_files/figure-latex/pressure-1.pdf
 data/flights.csv
 myDissertation.log
 R.gitignore
+*.RData
+*.rdx
+*.rdb
+_bookdown_files/myDissertation_cache/latex/__packages
+_bookdown_files/myDissertation_files/figure-latex/2D-hist-1.pdf
+_bookdown_files/myDissertation_files/figure-latex/distSpeedAccel-1.pdf
+_bookdown_files/myDissertation_files/figure-latex/kTrajectories-1.pdf
+_bookdown_files/myDissertation_files/figure-latex/pp1Period-1.pdf
+*.log
