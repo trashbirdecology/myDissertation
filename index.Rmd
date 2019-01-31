@@ -43,8 +43,10 @@ acknowledgements: |
 dedication: |
   Something snarky to mike moulton -- maybe a limerick
 preface: |
-  This is an example of a thesis setup to use the reed thesis document class
-  (for LaTeX) and the R bookdown package, in general.
+  Supplemental published materials include:
+    [1] DOD White paper on Fisher Information (include reference and post onto Zenodo, if not available via DOD webpage)
+    [2] Packages
+    [3] IIASA report
 bibliography: bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
 csl: csl/apa.csl

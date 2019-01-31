@@ -100,3 +100,13 @@ TWo major sources of problems?
 - Identifying methods for multiple species data
 - Highlighting the methods that may or may not be useful to the causal quantitative ecologist
 
+
+## On the sheer number of RSDMs
+
+A systematic review of the literature in 2018 yielded  670 results
+  - scopus
+  - search key:( TITLE-ABS-KEY ( "regimeshift" )  AND  TITLE-ABS-KEY ( ecolog* ) )  AND  ( LIMIT-TO ( SUBJAREA ,  "AGRI" )  OR  LIMIT-TO ( SUBJAREA ,  "ENVI" ) ) 
+
+We widdled this down to  
+  - same set as above
+
