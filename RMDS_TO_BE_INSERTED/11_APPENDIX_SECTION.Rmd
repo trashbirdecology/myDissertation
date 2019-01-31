@@ -1,0 +1,10 @@
+---
+output:
+pdf_document: default
+fig_caption: yes
+---
+  
+# (APPENDIX) Appendix {-}   
+
+These are my appendices. 
+

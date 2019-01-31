@@ -1,0 +1,754 @@
+---
+title: "Predator Prey Example"
+author: "Jessica Burnett and Nathaniel Price"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    fig_caption: yes
+    fig_height: 4
+    fig_width: 6.5
+    number_sections: yes
+bibliography: FI_bib.bib
+---
+
+```{r setup, include=FALSE, echo = F}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(caTools)
+library(deSolve)
+library(gridExtra)
+library(kedd)
+library(ggthemes)
+library(segmented)
+
+theme_set(theme_bw())
+
+```
+
+# Two-Species Model System
+This example is based on the system described in Exploratory Data Analysis Using Fisher Information [@mayer_applications_2007; @frieden_exploratory_2007, pp. 229-231]. The two species Lotka-Volterra differential equations for the system are
+
+$$ \frac{dx_1}{dt} = g_1 x_1 \left( 1- \frac{x_1}{k}\right) - \frac{l_{12} x_1 x_2}{1 + \beta x_1} $$
+$$ \frac{dx_2}{dt} = \frac{g_{21} x_1 x_2}{1 + \beta x_1} - m_2 x_2 $$
+The model parameters are $g_1 = m_2 = 1$, $l_{12} = g_{12} = 0.01$, $k = 625$, and $\beta = 0.005$. The initial conditions for the system were not provided in the original reference [@mayer_applications_2007]. We found that $x_1 = 277.7815$ and $x_2 = 174.551$ provide reasonable results. The differential equations for the system are defined in R as shown below.
+
+```{r sysEqns}
+# Model parameters
+parameters <- c(
+  g1 = 1,
+  m2 = 1,
+  l12 = 0.01,
+  g21 = 0.01,
+  k = 625,
+  B = 0.005
+)
+
+# Initial conditions
+state <- c(
+  x1 = 277.7815, 
+  x2 = 174.551
+)
+
+# System differential equations (eq. 7.17 and 7.18)
+deq <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    dx1dt <- g1 * x1 * (1 - (x1 / k)) - (l12 * x1 * x2) / (1 + B * x1)
+    dx2dt <- (g21 * x1 * x2) / (1 + B * x1) - m2 * x2
+    list(c(dx1dt, dx2dt))
+  })
+}
+```
+We use the package deSolve to solve the system of differential equations. The original reference did not provide the time the system was observed [@mayer_applications_2007]. We found that a complete cycle of the system corresponds to approximately 11.145 time units. The system of differential equations is solved and the system trajectory is plotted below.
+
+```{r odeSolver}
+# Vector of times
+TT <-  11.145
+times <- seq(0, TT, by = TT/1e3)
+
+# Solve system differential equations
+out <- ode(
+  y = state,
+  times
+  = times,
+  func = deq,
+  parms = parameters,
+  rtol = 1e-10,
+  method = "ode45"
+)
+
+# Convert to data frame
+sysSol <- data_frame(t = out[,1], x1 = out[,2], x2 = out[,3]) 
+
+```
+
+```{r, echo=FALSE, fig.cap=paste("Phase space plot of system")}
+# Plot system trajectory
+ggplot(data = sysSol, aes(x = x1, y = x2)) +
+  geom_path() +
+  labs(x = "prey, x1", y = "predator, x2") +
+  coord_fixed()
+
+```
+
+
+```{r, echo=FALSE, fig.cap=paste("Change in predator and prey abundance over time")}
+
+# Plot abundance over time
+ggplot(data = sysSol %>%
+         rename(`prey, x1` = x1,
+                `predator, x2` = x2) %>% 
+         gather(key, value, -t) %>% 
+         mutate(key = factor(key, levels = c("prey, x1", "predator, x2"))), 
+       aes(x = t, y = value, color = key)) +
+  geom_line() +
+  labs(x = "time, t",
+       y = "abundance") +
+  theme(legend.title = element_blank())
+
+```
+
+# System State PDF & Dimensionality Reduction
+The state of the system at any point in time, $t$, is defined in two dimensions by the number of prey, $x_1$, and the number of predators $x_2$. Let $\mathbf{x} = \left[x_1, x_2\right]$ represent the state of the system. The probability of *observing the system in a particular state* can be approximated based on a 2-dimensional histogram as shown below. Note that the system does not change at a constant rate (i.e., does not travel the path at a constant speed) and is therefore more likely to be observed in some states than others.
+
+```{r 2d-hist, echo = FALSE, fig.cap = paste("Normalized histogram showing probability of observing particular system states")}
+# Plot probability of observing the system in a particular state
+ggplot(data = sysSol, aes(x = x1, y = x2)) +
+  geom_bin2d(aes(fill = ..density..), color = "black", drop = T, bins = 20) +
+  scale_fill_distiller(palette = "YlOrRd") +
+  labs(x = "prey, x1", y = "predator, x2", fill = "p(x)") +
+  coord_fixed()
+```
+
+
+```{r distance, echo = F, warnings = F, message = F}
+# Initial conditions including distance
+state_highO <- c(
+  x1 = 277.7815, 
+  x2 = 174.551,
+  dx1dt = -48.6,
+  dx2dt = 28.3,
+  d2x1dt2 = -23.3,
+  d2x2dt2 = -10.5,
+  s = 0
+)
+
+# Model parameters
+parameters_highO <- c(
+  g1 = 1,
+  m2 = 1,
+  l12 = 0.01,
+  g21 = 0.01,
+  k = 625,
+  B = 0.005
+)
+
+# System differential equations including higher order terms and distance
+deq_highO <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    
+  # 1st derivatives
+  dx1dt <-
+  g1 * x1 * (1 - (x1 / k)) - (l12 * x1 * x2) / (1 + B * x1)
+  
+  dx2dt <- (g21 * x1 * x2) / (1 + B * x1) - m2 * x2
+  
+  # 2nd derivatives
+  d2x1dt2 <-
+  (B * l12 * x1 * x2 * dx1dt) / (B * x1 + 1) ^ 2 - (g1 * x1 * dx1dt) / k - (l12 *
+  x1 * dx2dt) / (B * x1 + 1) - (l12 * x2 * dx1dt) / (B * x1 + 1) - g1 * (x1 /
+  k - 1) * dx1dt
+  
+  d2x2dt2 <-
+  (g21 * x1 * dx2dt) / (B * x1 + 1) - m2 * dx2dt + (g21 * x2 * dx1dt) / (B *
+  x1 + 1) - (B * g21 * x1 * x2 * dx1dt) / (B * x1 + 1) ^ 2
+  
+  # 3rd derivatives
+  d3x1dt3 <-
+  (2 * B * l12 * x2 * dx1dt ^ 2) / (B * x1 + 1) ^ 2 - (2 * g1 * dx1dt ^ 2) /
+  k - (l12 * x1 * d2x2dt2) / (B * x1 + 1) - (l12 * x2 * d2x1dt2) / (B * x1 + 1) - (2 *
+  l12 * dx1dt * dx2dt) / (B * x1 + 1) - (g1 * x1 * d2x1dt2) / k - g1 * (x1 /
+  k - 1) * d2x1dt2 + (B * l12 * x1 * x2 * d2x1dt2) / (B * x1 + 1) ^ 2 - (2 *
+  B ^ 2 * l12 * x1 * x2 * dx1dt ^ 2) / (B * x1 + 1) ^ 3 + (2 * B * l12 * x1 *
+  dx1dt * dx2dt) / (B * x1 + 1) ^ 2
+  
+  d3x2dt3 <-
+  (g21 * x1 * d2x2dt2) / (B * x1 + 1) - m2 * d2x2dt2 + (g21 * x2 * d2x1dt2) /
+  (B * x1 + 1) + (2 * g21 * dx1dt * dx2dt) / (B * x1 + 1) - (2 * B * g21 *
+  x2 * dx1dt ^ 2) / (B * x1 + 1) ^ 2 - (B * g21 * x1 * x2 * d2x1dt2) / (B *
+  x1 + 1) ^ 2 + (2 * B ^ 2 * g21 * x1 * x2 * dx1dt ^ 2) / (B * x1 + 1) ^ 3 - (2 *
+  B * g21 * x1 * dx1dt * dx2dt) / (B * x1 + 1) ^ 2
+  
+  # Derivative of distance (i.e., tangential velocity)
+  dsdt <- sqrt(dx1dt ^ 2 + dx2dt ^ 2)
+  
+  list(c(dx1dt, dx2dt, d2x1dt2, d2x2dt2, d3x1dt3, d3x2dt3, dsdt))
+  })
+}
+
+# Solve system differential equations (now with distance)
+out_highO <- ode(
+  y = state_highO,
+  times = times,
+  func = deq_highO,
+  parms = parameters_highO,
+  rtol = 1e-10,
+  method = "ode45"
+)
+
+# Convert to data frame
+sysSol_highO <-
+  data_frame(t = out_highO[, 1],
+             x1 = out_highO[, 2],
+             x2 = out_highO[, 3],
+             dx1dt = out_highO[,4],
+             dx2dt = out_highO[,5],
+             d2x1dt2 = out_highO[,6],
+             d2x2dt2 = out_highO[,7],
+             s = out_highO[, 8]) %>%  
+  # Calculate derivatives and pdf
+  mutate(dsdt = sqrt(dx1dt^2 + dx2dt^2),
+         d2sdt2 = (1/dsdt)*(dx1dt*d2x1dt2 + dx2dt*d2x2dt2),
+         p = (1/TT)*(1/dsdt))
+
+```
+
+```{r, echo=FALSE, fig.cap=paste("From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.")}
+
+# Plot distance traveled
+p1 <- ggplot(data = sysSol_highO, aes(x = t, y = s)) +
+  geom_line() +
+  labs(x = "time", y = "distance")
+
+# Plot velocity
+p2 <- ggplot(data = sysSol_highO, aes(x = t, y = dsdt)) +
+  geom_line() +
+  labs(x = "time", y = "speed")
+
+# Plot acceleration
+p3 <- ggplot(data = sysSol_highO, aes(x = t, y = d2sdt2)) +
+  geom_line() +
+  labs(x = "time", y = "acceleration")
+
+# Grid plot
+grid.arrange(p1, p2, p3, ncol=1)
+
+```
+
+```{r, echo=FALSE, fig.cap=paste("Comparison of normalized histogram of distance traveled (blue) to the derived probability density function (black)")}
+# Distance pdf
+ggplot(data = sysSol_highO) +
+  geom_histogram(aes(x = s, y = ..density..), fill = "blue", alpha = 0.5, bins = 100) +
+  geom_line(aes(x = s, y = p), size = 2) +
+  labs(x = "distance, s",
+       y = "probability density, p(s)")
+```
+
+# Fisher Information
+The pdf of distance, $p(s)$, was derived above. There are several equivalent equations for calculating shift-invariant FI. Some may offer numerical advantages over others. The general form is [@mayer_applications_2007, eq. 7.3b]
+
+$$ I = \int \frac{ds}{p(s)}\left[\frac{dp(s)}{ds}\right]^2 $$
+The amplitude form is [@mayer_applications_2007, eq. 7.3c]
+$$ I = 4 \int ds\left[\frac{dq(s)}{ds}\right]^2 $$
+
+A form specific to the pdf of distance traveled is derived as [@mayer_applications_2007, eq. 7.12]
+$$ I = \frac{1}{T} \int_0^T dt\left[\frac{s''^2}{s'^4}\right]^2 $$
+where integration is performed in the time domain. While all these formulations are equivalent, the last is most readily calculated when the differential equations for the system are known. Below all equations are shown to be equivalent. The FI for the distribution of distance is calculated to be approximately $5.4 \times 10^{-5}$ which is consistent with published results [@mayer_applications_2007, pp. 232].
+
+
+# Varying carrying capacity for the prey
+Here we replicate the results of varying the prey carrying capacity, $k$ [@mayer_applications_2007].
+
+```{r FI}
+# Equation 7.3b
+p <- sysSol_highO$p
+s <- sysSol_highO$s
+dp <- lead(p)-p
+ds <- lead(s)-s
+dpds <- dp/ds
+ind <- 1:(length(s)-1)
+FI_7.3b <- trapz(s[ind], (1/p[ind])*dpds[ind]^2)
+
+# Equation 7.3c
+q <- sqrt(sysSol_highO$p)
+s <- sysSol_highO$s
+dq <- lead(q)-q
+ds <- lead(s)-s
+dqds <- dq/ds
+ind <- 1:(length(s)-1)
+FI_7.3c <- 4*trapz(s[ind], dqds[ind]^2)
+
+# Equation 7.12
+t <- sysSol_highO$t
+dsdt <- sysSol_highO$dsdt
+d2sdt2 <- sysSol_highO$d2sdt2
+ind <- 1:(length(s)-1)
+FI_7.12 <- (1/TT)*trapz(t[ind], d2sdt2^2 / dsdt^4)
+
+# Results
+FI_7.3b
+FI_7.3c
+FI_7.12
+```
+```{r kStudy, echo = FALSE}
+
+# Carrying capacity
+k <- seq(625, 800, by = 25)
+
+# Initial conditions
+x1_ini <- c(277.7815,
+          314.6527,
+          303.6386,
+          175.4664,
+          50.72788,
+          135.6263,
+          571.6995,
+          166.9751)
+x2_ini <- c(174.551,
+          191.5272,
+          226.0233,
+          270.6772,
+          133.5784,
+          32.24493,
+          65.22751,
+          345.6978)
+
+# Loop over k's
+results_kstudy <- NULL
+FI_7.3b <- NULL
+for(i in 1:length(k)){
+  
+  # Update parameters
+  parameters["k"] <- k[i]
+  state["x1"] <- x1_ini[i]
+  state["x2"] <- x2_ini[i]
+  state["s"] = 0
+  
+  # System differential equations including higher order terms and distance
+  deq_kstudy <- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+      dx1dt <- g1 * x1 * (1 - (x1 / k)) - (l12 * x1 * x2) / (1 + B * x1)
+      
+      dx2dt <- (g21 * x1 * x2) / (1 + B * x1) - m2 * x2
+      
+      dsdt <- sqrt(dx1dt^2 + dx2dt^2)
+      
+      list(c(dx1dt, dx2dt, dsdt))
+    })
+  }
+  
+  # Vector of times
+  TT <-  13.1
+  times <- seq(0, TT, by = TT/1e3)
+  
+  # Solve system differential equations (now with distance)
+  out_kstudy <- ode(
+    y = state,
+    times = times,
+    func = deq_kstudy,
+    parms = parameters,
+    rtol = 1e-10,
+    method = "ode45"
+  )
+  
+  # Convert to data frame
+  sysSol_kstudy <-
+    data_frame(k = as.factor(k[i]),
+               t = out_kstudy[, 1],
+               x1 = out_kstudy[, 2],
+               x2 = out_kstudy[, 3],
+               s = out_kstudy[, 4])
+  
+  # Remove any overlap in trajectories
+  maxT <- (sysSol_kstudy %>% 
+             mutate(startDist = sqrt((x1-x1_ini[i])^2 + (x2-x2_ini[i])^2)) %>% 
+             filter(t > 10, t < 15) %>% 
+             filter(startDist == min(startDist)))$t
+
+  sysSol_kstudy <- sysSol_kstudy %>% 
+    filter(t <= maxT)
+  
+  sysSol_kstudy <- 
+    sysSol_kstudy %>% 
+    mutate(dsdt = (lead(s)-s)/(lead(t)-t),
+           p = (1/maxT)*(1/dsdt)) %>% 
+    filter(!is.na(dsdt))
+  
+  
+  # Fisher information
+  p <- sysSol_kstudy$p
+  s <- sysSol_kstudy$s
+  dp <- lead(p)-p
+  ds <- lead(s)-s
+  dpds <- dp/ds
+  ind <- 1:(length(s)-1)
+  FI_7.3b[i] <- trapz(s[ind], (1/p[ind])*dpds[ind]^2)
+  
+  # Bind results
+  results_kstudy <- rbind(results_kstudy, sysSol_kstudy)
+}
+```
+
+```{r, echo=FALSE, fig.cap=paste("Phase space plot of system trajectories for different values of k")}
+
+# Plot trajectories
+ggplot(data = results_kstudy, aes(x = x1, y = x2, color = k)) +
+  geom_path() +
+  labs(x = "prey, x1", y = "predator, x2") +
+  coord_fixed()
+
+```
+
+```{r, echo=FALSE, fig.cap=paste("Plot of speed for different values of k")}
+# Plot velocities
+ggplot(data = results_kstudy, aes(x = t, y = dsdt, color = k)) +
+  geom_line() +
+  facet_wrap(~k, scales = "fixed") +
+  labs(x = "time, t", y = "speed, dsdt")
+```
+
+```{r, echo=FALSE, fig.cap=paste("Plot distance pdf's for different values of k")}
+# Plot pdfs
+ggplot(data = results_kstudy, aes(x = s, y = p)) +
+  geom_histogram(aes(x = s, y = ..density..), fill = "blue", alpha = 0.5, bins = 100) +
+  geom_line(aes(x = s, y = p), size = 2) +
+  facet_wrap(~k, scales = "free") +
+  scale_color_brewer(palette = "Paired") +
+  labs(x = "distance, s",
+       y = "probability density, p(s)")
+```
+
+```{r, echo=FALSE, fig.cap=paste("Plot of Fisher information for different values of k")}
+# Plot FI
+ggplot(data = data_frame(k = k, FI = FI_7.3b),
+       aes(x = k, y = FI)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "prey carrying capacity, k", y = "Fisher Information, I")
+
+```
+
+# Regime shift - Habitat destruction
+Simulate a regime shift by abruptly decreasing the carrying capacity for the prey. The change in carrying capacity for the prey over time was modeled as
+
+$$ k(t) = k_{1} - 0.5(k_1-k_2)(\tanh(\alpha(t - t^*)) + 1) $$
+
+where $k_1$ is the initial carrying capacity, $k_2$ is the final carrying capacity, $t^*$ is the time of the regime shift, and $\alpha$ is a parameter that controls how abruptly the carrying capacity changes. The rate of change of the carrying capacity is given by
+
+$$k'(t) = 0.5\alpha(k_1 - k_2)(\tanh(\alpha(t - t^*))^2 - 1) $$
+
+```{r kFunction, echo = FALSE}
+kFun <- function(t, alpha = 1, k1 = 800, k2 = 625, tregime = 200){
+  k1 - 0.5*(k1-k2)*(tanh(alpha*(t - tregime)) + 1)
+}
+
+dkdtFun <- function(t, alpha = 1, k1 = 800, k2 = 625, tregime = 200){
+  0.5*alpha*(k1 - k2)*(tanh(alpha*(t - tregime))^2 - 1)
+}
+
+# Vector of times
+TT <-  600
+times <- seq(0, TT, by = TT / 1e3)
+
+alphaVec <- c(0.03, 0.05, 0.1, 1)
+kPlotData <- data_frame(t = rep(times, each = length(alphaVec)),
+                       alpha = rep(alphaVec, length(times))) %>% 
+  group_by(alpha) %>% 
+  mutate(k = kFun(t, alpha),
+         dkdt = dkdtFun(t, alpha)) %>% 
+  ungroup() %>% 
+  mutate(alpha = factor(alpha))
+```
+
+```{r, echo = FALSE, fig.cap="Change in carrying capacity of prey over time for different values of alpha"}
+
+ggplot(data = kPlotData, aes(x = t, y = k, color = alpha)) +
+  geom_line() +
+  ylim(0, NA) +
+  labs(x = "time, t",
+       y = "carrying capacity of prey, k")
+```
+
+```{r, echo = FALSE, fig.cap="Rate of change of carrying capacity of prey over time for different values of alpha"}
+ggplot(data = kPlotData, aes(x = t, y = dkdt, color = alpha)) +
+  geom_line() +
+  facet_wrap(~alpha, scales = "free_y") +
+  labs(x = "time, t",
+       y = "rate of change of carrying capacity, dk/dt")
+```
+
+```{r}
+
+# Time of regime shift
+tregime = 200
+
+# Carrying capacity for regime 1 and regime 2
+k1 <- 800
+k2 <- 625
+
+# Regime change rate
+alpha <- 0.05
+  
+# Vector of times
+TT <-  600
+times <- seq(0, TT, by = TT / 2e3)
+
+# Model parameters
+parameters <- c(
+  g1 = 1,
+  m2 = 1,
+  l12 = 0.01,
+  g21 = 0.01,
+  B = 0.005
+)
+
+# Initial conditions
+state <- c(
+  x1 = 61.9, 
+  x2 = 35.3,
+  s = 0,
+  k = k1
+)
+
+# System differential equations including carrying capacity
+deq_rs <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+  
+    # Predator and prey rates of change
+    dx1dt <- g1 * x1 * (1 - (x1 / k)) - (l12 * x1 * x2) / (1 + B * x1)
+    dx2dt <- (g21 * x1 * x2) / (1 + B * x1) - m2 * x2
+    
+    # Rate of change of distance
+    dsdt <- sqrt(dx1dt ^ 2 + dx2dt ^ 2)
+    
+    # Rate of change of carrying capacity
+    dkdt <- 0.5*alpha*(k1 - k2)*(tanh(alpha*(t - tregime))^2 - 1)
+  
+    list(c(dx1dt, dx2dt, dsdt, dkdt))
+  })
+}
+
+  
+# Solve system differential equations (now with carrying capacity)
+out_rs <- ode(
+  y = state,
+  times = times,
+  func = deq_rs,
+  parms = parameters,
+  rtol = 1e-10,
+  method = "ode45"
+)
+  
+# Convert to data frame
+sysSol <-
+  data_frame(
+  t = out_rs[, 1],
+  x1 = out_rs[, 2],
+  x2 = out_rs[, 3],
+  s = out_rs[, 4],
+  k = out_rs[, 5]
+) %>%
+  mutate(dsdt = (lead(s) - s) / (lead(t) - t),
+  p = (1 / maxT) * (1 / dsdt)) %>%
+  filter(!is.na(dsdt))
+
+```
+
+
+```{r}
+# Distance over which to move the window (in units time)
+winspaceFactor <- 1
+
+# Size of the window (in units time)
+# winsizeVector <- seq(13.1, 11.0, by = -0.25)
+winsizeVector <- c(13.061, 11.135)
+
+winResults <- NULL
+for(i in 1:length(winsizeVector)){
+  
+  # Define winsize
+  winsize <- winsizeVector[i]
+  
+  for(j in 1:length(winspaceFactor)) {
+    winspace <- winspaceFactor[j]*winsize
+    
+    # Start and stop points for windows
+    winStart <- seq(min(times), max(times) - winsize, by = winspace)
+    winStop <- winStart + winsize
+    
+    # Number of windows
+    nWin <- length(winStart)
+    
+    FI_7.3b <- numeric(length(nWin))
+    avgSpeed <- numeric(length(nWin))
+    
+    for (win in 1:nWin) {
+      df <-
+        sysSol %>%
+        filter(t > winStart[win],
+        t <= winStop[win]) %>%
+        mutate(TT = max(t) - min(t),
+        p = (1 / TT) * (1 / dsdt))
+        
+        # Fisher information
+        p <- df$p
+        s <- df$s
+        dp <- lead(p) - p
+        ds <- lead(s) - s
+        dpds <- dp / ds
+        ind <- 1:(length(s) - 1)
+        FI_7.3b[win] <- trapz(s[ind], (1 / p[ind]) * dpds[ind] ^ 2)
+        
+        # Average speed
+        avgSpeed[win] <- mean(df$dsdt)
+    }
+    
+    tempResults <- data_frame(winStop = winStop,
+    FI = FI_7.3b,
+    avgSpeed = avgSpeed) %>%
+    mutate(winsize = winsize,
+           winspace = winspace,
+           winspaceFactor = winspaceFactor[j])
+    
+    winResults <- rbind(winResults, tempResults)
+    
+  }
+                            
+}
+
+winResults <- 
+  winResults %>% 
+  mutate(winsize = factor(winsize),
+         winspace = factor(winspace))
+
+```
+
+```{r, echo=FALSE, fig.cap=paste("Phase space plot of system trajectory with regime shift. Approximate location of regime shift is indicated by red dot.")}
+
+ggplot(data = sysSol, 
+       aes(x = x1, y = x2)) +
+  geom_path() +
+  geom_point(color = "red",
+             size = 2,
+             data = sysSol %>%
+               mutate(z = abs(t - tregime)) %>% 
+               filter(z == min(z))) +
+  scale_color_brewer(palette = "Set1") +
+  labs(x = "prey, x1", y = "predator, x2") +
+  coord_fixed() +
+  theme(legend.title = element_blank())
+
+```
+
+```{r, echo=FALSE, fig.cap=paste("Predator prey abundance with regime shift")}
+ggplot(data = sysSol %>% 
+         gather(key, value, x1, x2), 
+       aes(x = t, y = value, color = key)) +
+  geom_line() +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t", 
+       y = "abundance") +
+  theme(legend.title = element_blank())
+
+# ggsave("plots/abundance_rs.png", width = 6.5)
+
+```
+
+```{r, echo=FALSE, fig.cap=paste("Carrying capacity with regime shift")}
+
+ggplot(data = sysSol, aes(x = t, y = k)) +
+  geom_line() +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t",
+       y = "carrying capacity, k") +
+  ylim(0, NA)
+
+# ggsave("plots/carrying_capacity_rs.png", width = 6.5)
+```
+
+```{r, echo=FALSE, fig.cap=paste("Distance traveled in phase space with regime shift")}
+
+ggplot(data = sysSol, aes(x = t, y = s)) +
+  geom_line() +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t",
+       y = "distance, s")
+
+# ggsave("plots/distance_rs.png", width = 6.5)
+```
+
+```{r, echo=FALSE, fig.cap=paste("Speed with regime shift")}
+
+ggplot(data = sysSol, aes(x = t, y = dsdt)) +
+  geom_line() +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t",
+       y = "speed, ds/dt") +
+  ylim(0, NA)
+
+# ggsave("plots/speed_rs.png", width = 6.5)
+```
+
+```{r, echo=FALSE, fig.cap=paste("Average speed over moving window with regime shift")}
+
+ggplot(data = winResults, 
+       aes(x = winStop, y = avgSpeed, color = winsize, group = winsize)) + 
+  geom_line() +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t",
+       y = "average speed (moving window)")
+
+# ggsave("plots/avg_speed_rs.png", width = 6.5)
+```
+
+```{r, echo=FALSE, fig.cap=paste("Fisher Information over moving window with regime shift")}
+
+ggplot(data = winResults, 
+       aes(x = winStop, y = FI, color = winsize, group = winsize)) +
+  geom_line() +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t",
+       y = "Fisher Information (moving window)")
+
+# ggsave("plots/FI_rs.png", width = 6.5)
+```
+
+```{r, echo=FALSE, fig.cap=paste("Piecewise linear fit to distance traveled")}
+
+guessBreak <- tregime
+lin.mod <- lm(s ~ t, data = sysSol)
+segmented.mod <- segmented(lin.mod, seg.Z = ~ t, psi = guessBreak)
+
+estBreak <- segmented.mod$psi[2]
+slope1 <- coefficients(segmented.mod)[["t"]]
+slope2 <- coefficients(segmented.mod)[["t"]] +
+              coefficients(segmented.mod)[["U1.t"]]
+
+ggplot(data = sysSol %>% 
+         mutate(pred = predict(segmented.mod))) +
+  geom_line(aes(x = t, y = s)) +
+  geom_line(aes(x = t, y = pred), color = "red") +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t",
+       y = "distance, s")
+```
+
+```{r, echo=FALSE, fig.cap=paste("Speed based on piecewise linear fit to distance traveled")}
+
+ggplot(data = sysSol, aes(x = t, y = dsdt)) +
+  geom_line() +
+  geom_line(data = sysSol %>%
+              filter(t <= estBreak) %>% 
+              mutate(dsdt = slope1), 
+            color = "red") +
+  geom_line(data = sysSol %>%
+              filter(t > estBreak) %>% 
+              mutate(dsdt = slope2), 
+            color = "red") +
+  geom_vline(xintercept = tregime, linetype = "dashed") +
+  labs(x = "time, t",
+       y = "speed, ds/dt")
+```
+
+# References

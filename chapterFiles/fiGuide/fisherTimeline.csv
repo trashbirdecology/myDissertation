@@ -1,0 +1,37 @@
+stable,year,author,terms,method,subject ,notes
+https://doi.org/10.1098/rsos.160582,2016,Ahmad et al,Fisher Information,binning,"data science, mining","Authors suggest FI is good for finding patterns in big data. However, doesnt data mining go against the rule that the chosen variables used in the FI calculation should represent the state of the system in question?"
+https://doi.org/10.1098/rsos.160920,2017,Ahmad et al,Fisher information,binning,transportation systems (social),Case study
+https://doi.org/10.1016/S0378-3812(01)00677-X,2002,Cabezas and Fath,Fisher Information measure,fisher information measure,complex/dynamical systems,"""Fisher information is the maximum amount of information available from a set of observations, in this case, states of the system"". They use Predator-Prey models to demonstrate ow the average Fisher  Information (over the entire cycle) decreases as the mortality rate for prey increases. This is because the pred prey system in phase space exhibits a larger and more elliptical path than does a 'more stable' and less variable system with a lower prey mortality parameter."
+https://doi.org/10.1016/S0022-5193(03)00067-5,2003,Fath et al. ,Fisher Information ,derivatives,ecology,Authors use a Food Web model to demonstrate how a complex system with 'minimal complexity' can be analysed with Fisher Information. Authors suggest this thoery requires the system to be periodic (or at least dynamically stable) and that the window size needs to match the period size.
+https://doi.org/10.1016/j.resconrec.2005.01.005,2005,Cabezas et al.,Fisher Information ,derivatives,ecology,
+https://doi.org/10.1016/j.jclepro.2003.09.011,2005,Cabezas et al.,Fisher Information ,derivatives,ecology,Very similar to other Cabezas 2005
+https://doi.org/10.1007/s10098-014-0889-2,2015,Doshi et al,FIsher information,derivatives,optimal control theory,An optimization problem.
+https://doi.org/10.1016/j.jenvman.2011.08.003,2012,Eason and Cabezas,Fisher information,binning,"social ,ecological",Includes a flowchart for applying the binning method
+https://doi.org/10.1007/s10098-013-0687-2,2014,Eason et al,Fisher Information,binning,ecological models and systems,
+https://doi.org/10.1016/j.ecolmodel.2003.12.045,2004,Fath and Cabezas,"Exergy, Fisher Information index",derivatives,ecology,Food web model.
+https://doi.org/10.1016/S0022-5193(03)00067-5,2003,Fath et al,Fisher Information,derivatives,biology,Lotka-Volterra and food web models. 
+https://doi.org/10.1111/j.1420-9101.2008.01647.x,2009,Frank,Fisher Information,derivatives,Evolution,"The author reviews Fisher Information as a tool in evolutionary biology,and relates FI to Shannon as the second derivative of FI (H|theta)"
+,1990,Freiden,Fisher disorder measure,disorder measure,physics,Isolated system defined by coordiante x has a PDF p(x). A functional of p(s) (called Fisher Information) is used to measure degree of disorder of the system due to the spread in p(x). FI can be minimized to attain an equilibrium solution p(x).
+9.78E+12,2004,Frieden,Fisher Information ,,science,A book on Fisher Information for unifying science
+https://doi.org/10.1007/s11625-013-0227-3,2014,Gonzalez-Mejia et al,Fisher information,derivatives,social,Case study
+https://doi.org/10.1016/B978-0-12-799968-5.00002-6,2015,Gonzalez-Mejia et al,Fisher Information,"binning, derivatives",multiple,Suggests interpolating data for caluclating the derivatives-based FI.
+https://doi.org/10.1007/s10098-011-0445-2,2012,Gonzalez-Mejia et al  ,Fisher information,derivatives,social,Case study
+https://doi.org/10.1007/s10098-011-0445-2,2012,Gonzalez-Mejia et al  ,Fisher information,derivatives,"environmental, ecological",The authors suggest that the FI deriviatives-based methods 'more rigorous than the binning method'. They provide information for expectations and evaluations of FI on various mathematical models.
+https://www.jstor.org/stable/26267924,2008,Karunanithi et al,Fisher information,binning,ecology,First paper describing the binning method.
+https://doi.org/10.1016/j.gloenvcha.2010.11.002,2011,Karunanithi et al,Fisher information,binning,political data,Estimating the degree of dynamic order inherent in the socio-political regime of various countries
+https://doi.org/10.1016/S1355-2198(02)00007-2,2002,Lavis and Streeater,Fisher Information ,,physics,Book review. Authors criticize B. Roy Freiden's Unifying Theory for Physics
+arXiv:1201.2291 ,2012,LOPEZ-Ruiz et al,Fisher information,fisher information measure,phsics,FIM has been used as a measure of uncertainty in quantum physics (authors list ~ 10 references as examples).
+https://doi.org/10.1016/j.ecolmodel.2005.11.011,2006,Mayer et al.,Fisher Information,derivatives,ecology," The authors use a 2-species LV model, then move to real-world systems that have exhibited ""regime shifts' (Saharan climate; CO2; Florida pollen)
+
+ "
+https://doi.org/10.1007/978-1-84628-777-0_7,2007,Mayer et al.,Fisher information,derivatives,"ecological, social, climatic systems","Applied the method to a 2-species LV model and to the North Pacific Ocean, and global climate (ice cores), and to sociopolitical data."
+https://doi.org/10.1016/j.energy.2004.02.008,2005,Pawlowski et al. ,Fisher Information Index (FII),derivatives,ecology,"Authors suggest FI should not be used solely, but rather as a supplement to other ecological indicators. "
+https://doi.org/10.1109/PESGM.2015.7286525,2015,Ren et al,Fisher information,binning,power systems,case study
+10.1021/ie901220w,2010,Rico-Ramierez et al,FIsher information,,engineering,FI as indicator of performance of an a system of equations.
+10.1021/es8000807,2008,Shastri et al.,Fisher Information ,,dynamic optimization,Optimization problems
+https://doi.org/10.1371/journal.pone.0108936,2014,Spanbauer et al,Fisher information,binning,paleoecological,
+https://doi.org/10.1111/ele.12709,2017,Sundstrom et al,Fisher information,binning,ecology,Application to spatial data
+https://doi.org/10.1016/j.physa.2008.02.064,2008,Telesca et al.,"Fisher information measure,Shannon entropy",,Physics,It's not clear how they calculated FIM.
+https://doi.org/10.1007/s10098-015-0932-y,2015,Vance et al,Fisher information,binning,"social, ecological, economic",Case study 
+https://doi.org//10.1016/j.heliyon.2017.e00465,2017,Vance et al,Fisher infomration,binning,social-ecological systems,Multiple-countries
+https://doi.org/10.1111/1365-2664.12597,2016,Eason et al. ,Fisher information,binning,ecology,Relevance to management and resilience

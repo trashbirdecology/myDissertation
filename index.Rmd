@@ -1,0 +1,101 @@
+---
+author: 'Jessica L. Burnett'
+date: '2019'
+institution: 'University of Nebraska-Lincoln'
+#division: 'College of Agricultural Sciences and Natural Resources'
+advisor: 'Craig R. Allen'
+altadvisor: 'Dirac Twidwell'
+department: 'School of Natural Resources'
+degree: 'Doctor of Philosophy'
+title: 'A dissertation'
+knit: "bookdown::render_book"
+site: bookdown::bookdown_site
+output: 
+ thesisdown::thesis_pdf: default
+  # thesisdown::thesis_gitbook: default
+#  thesisdown::thesis_word: default
+#  thesisdown::thesis_epub: default
+# If you are creating a PDF you'll need to write your preliminary content here or
+# use code similar to line 20 for the files.  If you are producing in a different
+# format than PDF, you can delete or ignore lines 20-31 in this YAML header.
+abstract: |
+  `r if(knitr:::is_latex_output()) paste(readLines("00-abstract.Rmd"), collapse = '\n  ')`
+# If you'd rather include the preliminary content in files instead of inline
+# like below, use a command like that for the abstract above.  Note that a tab is 
+# needed on the line after the |.
+acknowledgements: |
+  Graduate school itself isn't hard, but the journey is. I have a lot of people and institutions to thank for their  emotional, intellectual, financial, and other professional support. I wish to first highlight how **great it was to be a graduate student at this university and in the School of Natural Resources**. I have received tremendous support at all levels of the university. Although I am not a fan of Nebraska's climate, I highly recommend this school to prospective students. 
+  First, I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me with this amazing opportunity and for supporting my growth as an independent researcher. I thank my committee members, Craig Allen, David Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support and advisement, but especially for their comprehensive examination--I found this process transformative. I especially thank Dirac for his comprehensive exam questions--I never knew how much theory I didn't know until I studied your list...
+  **Financial support**. This research was funded by the U.S. Department of Defense’s Strategic Environmental Research and Development Program (project ID: RC-2510). The University of Nebraska-Lincoln (UNL) has been highy supportive in my doctoral studies and reserach. I am grateful for the generous of donors to the University of Nebraska Foundation, which provided me with two prestigious supplemental fellowships: Fling and Othmer. I also thank the Nelson Family (Nelson Memorial Fellowship) and the Institute of Agriculture and Natural Resources, who funded large portions of my academic and research-related travel. I thank the School of Natural Resources for their financial support in my conference travel. The U.S. National Academy of Sciences generously funded part of my travel to the International Institute for Applied Systems Analysis (IIASA). This financial support provided me not only with invaluabe opportunities to attend and present at national and international conferences and workshops, conduct research abroad, and network--this funding alleviated some financial pressures associated with graduate school which allowed a more refined focus on my research. The opportunities and experiences provided to me by these funding sources were amazing, thank you all.
+  **Emotional support**. I am one of the many graduate students afflicted with mental health "disorders" which negatively impact my quality of life, at times. I am first grafteful to one friend who unknowingly destigmatized mental health, without which I may not have sought treatment and diagnosis--thank you, Hannah. Since my diagnoses, I have tried to encourage this destigmatization among graduate students in our department. I thank felow students and faculty who have also been outspoken regarding related issues (Jamilynn Polletto and Drew Tyre). Finally, I thank Terry Thomas for her patience, support, and knowledge as my general practitioner and mental health advocate.   
+  I thank others for their various and probably unknowing contributions to my professional development: David Angeler, Christie Bahlai, Hannah Birge, Mary Bomberger Brown, John Carroll, Jenny Dauer, John DeLong, Tarsha Eason, Brian Fath, Ahjond Garmestani, Chris Lepczyk, Frank La Sorte, Chai Molina, Erica Stuber, Zac Warren, Lyndsie Wszola, Hao Ye, Peter Zebrowski. 
+  I would like to especially thank some of the amazing and brilliant **female scientists** in my life for their encouragement: Jane Anderson, Hannah Birge, Mary Bomberger Brown, Tori Donovan, Brittany Dueker, Allie Schiltmeyer, Katie Sieving, Erica Stuber, and Lyndsie Wszola. 
+  
+  1. **Federal employment**. One reason for coming to this program was specifically to study in a USGS Cooperative Research Unit, and to understand better life as a federal scientist. I thank Craig Allen and Kevin Pope for entertaining many hours of discussion (interrogation?) regarding federal employment. 
+  
+  1. **IIASA**. Studying at the International Institute for Applied Systems Analysis was an amazing opportunity. I thank Brian Fath and Elena Rovenskaya for their advisement, members of the Applied Systems Analysis research group for their feedback on my research, and to the postdocs and YSSPers. 
+  
+  HEB, TD, CPR, DF, CRA, BF, ER, CAL, MPM, KES, FL, MBB, 
+  
+  1. **Professional development**. AJT, KP, CRA, DT, MBB, JC, 
+  
+  To my partner of eight years--Schultzie--thank you for everything. Just kidding, thank you, Nat Price.
+dedication: |
+  Something snarky to mike moulton -- maybe a limerick
+preface: |
+  This is an example of a thesis setup to use the reed thesis document class
+  (for LaTeX) and the R bookdown package, in general.
+bibliography: bib/thesis.bib
+# Download your specific bibliography database file and refer to it in the line above.
+csl: csl/apa.csl
+# Download your specific csl file and refer to it in the line above.
+lot: true
+lof: true
+#space_between_paragraphs: true
+# Delete the # at the beginning of the previous line if you'd like
+# to have a blank new line between each paragraph
+#header-includes:
+#- \usepackage{tikz}
+---
+
+<!--
+Above is the YAML (YAML Ain't Markup Language) header that includes a lot of metadata used to produce the document.  Be careful with spacing in this header!
+
+If you'd prefer to not include a Dedication, for example, simply delete lines 17 and 18 above or add a # before them to comment them out.  If you have other LaTeX packages you would like to include, delete the # before header-includes and list the packages after hyphens on new lines.
+
+If you'd like to include a comment that won't be produced in your resulting file enclose it in a block like this.
+-->
+
+<!--
+If you receive a duplicate label error after knitting, make sure to delete the index.Rmd file and then knit again.
+-->
+
+
+```{r include_packages, include = FALSE}
+# This chunk ensures that the thesisdown package is
+# installed and loaded. This thesisdown package includes
+# the template files for the thesis and two functions
+# used for labeling and referencing
+if(!require(devtools))
+  install.packages("devtools", repos = "http://cran.rstudio.com")
+if(!require(dplyr))
+    install.packages("dplyr", repos = "http://cran.rstudio.com")
+if(!require(ggplot2))
+    install.packages("ggplot2", repos = "http://cran.rstudio.com")
+if(!require(ggplot2))
+    install.packages("bookdown", repos = "http://cran.rstudio.com")
+if(!require(thesisdown)){
+  library(devtools)
+  devtools::install_github("ismayc/thesisdown")
+  }
+library(thesisdown)
+```
+
+
+
+
+<!-- Do not remove the line with the  '.unnumbered' -->
+<!-- There is something buggy about it, when I remove it shit goes bananas.  -->
+<!-- Need to figure out how to fix because it inserts like two blank pages! -->
+
+#  {.unnumbered}

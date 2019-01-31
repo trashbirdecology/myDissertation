@@ -1,0 +1,46 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Reference equations {#eqns}      
+This section contains the code for generating equations referenced throughout the dissertation. 
+
+## Predator prey dynamical system
+
+
+<!-- \begin{equation}  -->
+<!--   dx_1 = g_{1}x_{1}(1-\frac{x_1}{k})- \frac{l_{12} x_{1} x_{2}}{1+\beta x_{1}} \\ -->
+<!--   dx_2 = \frac{g_{21}x_1 x_2}{1+\beta x_1} - m_2 x_2) \\ -->
+<!--   (\#eq:predprey) -->
+<!-- \end{equation}  -->
+
+
+## FI equations  
+
+<!-- This is the general form of FI (@fisher1922): -->
+<!-- \begin{equation}  -->
+<!--     I(\theta) = \int \frac{dy}{p(y|\theta)}\left[\frac{dp(y|\theta)}{d\theta}\right]^2 \\ -->
+<!--   (\#eq:fisher1922) -->
+<!-- \end{equation}  -->
+
+<!-- This is the adapted form of FI for system states $s$ (@mayer2007): -->
+<!-- \begin{equation}  -->
+<!--     I = \int \frac{ds}{p(s)}\left[\frac{dp(s)}{ds}\right]^2  \\ -->
+<!--     (\#eq:fiAdapted) -->
+<!-- \end{equation}  -->
+
+
+<!-- The amplitude form is (@mayer_applications_2007, eq. 7.3c)   -->
+<!-- \begin{equation}  -->
+<!--     I = 4 \int ds\left[\frac{dq(s)}{ds}\right]^2 \\ -->
+<!-- (\#eq:fi73c) -->
+<!-- \end{equation}  -->
+
+
+<!-- A form specific to the pdf of distance travelled is derived as [@mayer_applications_2007, eq. 7.12]   -->
+<!-- \begin{equation}    -->
+<!--     I = \frac{1}{T} \int_0^T dt\left[\frac{s''^2}{s'^4}\right]^2 \\   -->
+<!--   (\#eq:fi712)   -->
+<!-- \end{equation}  -->
+

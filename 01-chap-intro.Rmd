@@ -1,0 +1,45 @@
+# Introduction {#intro-chapter}
+
+## Background  
+- On abrupt changes in the environment
+1. A few examples of abrupt changes that are highly referenced.   
+1. Whydoes it matter that we can detect??
+2. A few examples of the methds that have  been used ot identifythese shifts
+  - histortically
+  - real-time 
+  - predictive
+3. PRoblems with the methods in 
+  - aplpication
+    - difficult to apply
+    - to interpret
+  - theory - lackthereof
+4. Descrive the attempts to identify regime shifts
+
+  
+## My thesis  
+My thesis is that regime detection metrics are not useful and are difficult to interpret and apply to multispecies systems. 
+1. Brandolini's principle
+
+TWo major sources of problems?
+1. Defining a regime shift  
+2. Methods have not proven useful for application beyond single-species systems and systems about which causal drivers can just be monitored.
+
+- Current state of regime shift theory
+- Why it is important to diagnose/detect abrupt changes at the system level
+- Current methods are not being employed by ecological management. 
+    - Why are applications largely restricted to theoretical research?
+    - Why are the applications to empirical data largely restricted to the research community?
+    - Is this an artefact of how long it takes for applied ecologists and ecological management to adopt new data anlysis techniques?
+
+
+## Dissertation abstract (content summary)  
+This dissertation comprises __X__ sections:  
+  1. Review of the current methods used to identify abrupt changes in ecological systems
+      - Types of analyses
+          - Univariable vs. multivariable
+          - Picked up vs. not picked up (look at # papers using method in WOS, maybe...)  
+  1. A beginner's guide to Fisher Information (derivatives metric) {#distance}  
+  1. Distance method  
+  1. Fisher Information binning method and an application of it to spatiotemporal data
+  1. Conclusions
+

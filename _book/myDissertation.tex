@@ -1,0 +1,559 @@
+% This is the Reed College LaTeX thesis template. Most of the work
+% for the document class was done by Sam Noble (SN), as well as this
+% template. Later comments etc. by Ben Salzberg (BTS). Additional
+% restructuring and APA support by Jess Youngberg (JY).
+% Your comments and suggestions are more than welcome; please email
+% them to cus@reed.edu
+%
+% See http://web.reed.edu/cis/help/latex.html for help. There are a
+% great bunch of help pages there, with notes on
+% getting started, bibtex, etc. Go there and read it if you're not
+% already familiar with LaTeX.
+%
+% Any line that starts with a percent symbol is a comment.
+% They won't show up in the document, and are useful for notes
+% to yourself and explaining commands.
+% Commenting also removes a line from the document;
+% very handy for troubleshooting problems. -BTS
+
+% As far as I know, this follows the requirements laid out in
+% the 2002-2003 Senior Handbook. Ask a librarian to check the
+% document before binding. -SN
+
+%%
+%% Preamble
+%%
+% \documentclass{<something>} must begin each LaTeX document
+\documentclass[12pt,twoside]{reedthesis}
+% Packages are extensions to the basic LaTeX functions. Whatever you
+% want to typeset, there is probably a package out there for it.
+% Chemistry (chemtex), screenplays, you name it.
+% Check out CTAN to see: http://www.ctan.org/
+%%
+\usepackage{graphicx,latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{longtable,booktabs,setspace}
+\usepackage{chemarr} %% Useful for one reaction arrow, useless if you're not a chem major
+\usepackage[hyphens]{url}
+% Added by CII
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{float}
+\floatplacement{figure}{H}
+% End of CII addition
+\usepackage{rotating}
+
+% Next line commented out by CII
+%%% \usepackage{natbib}
+% Comment out the natbib line above and uncomment the following two lines to use the new
+% biblatex-chicago style, for Chicago A. Also make some changes at the end where the
+% bibliography is included.
+%\usepackage{biblatex-chicago}
+%\bibliography{thesis}
+
+
+% Added by CII (Thanks, Hadley!)
+% Use ref for internal links
+\renewcommand{\hyperref}[2][???]{\autoref{#1}}
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+% End of CII addition
+
+% Added by CII
+\usepackage{caption}
+\captionsetup{width=5in}
+% End of CII addition
+
+% \usepackage{times} % other fonts are available like times, bookman, charter, palatino
+
+% Syntax highlighting #22
+
+% To pass between YAML and LaTeX the dollar signs are added by CII
+\title{A dissertation}
+\author{Jessica L. Burnett}
+% The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
+\date{2019}
+\division{}
+\advisor{Craig R. Allen}
+\institution{University of Nebraska-Lincoln}
+\degree{Doctor of Philosophy}
+%If you have two advisors for some reason, you can use the following
+% Uncommented out by CII
+\altadvisor{Dirac Twidwell}
+% End of CII addition
+
+%%% Remember to use the correct department!
+\department{School of Natural Resources}
+% if you're writing a thesis in an interdisciplinary major,
+% uncomment the line below and change the text as appropriate.
+% check the Senior Handbook if unsure.
+%\thedivisionof{The Established Interdisciplinary Committee for}
+% if you want the approval page to say "Approved for the Committee",
+% uncomment the next line
+%\approvedforthe{Committee}
+
+% Added by CII
+%%% Copied from knitr
+%% maxwidth is the original width if it's less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\renewcommand{\contentsname}{Table of Contents}
+% End of CII addition
+
+\setlength{\parskip}{0pt}
+
+% Added by CII
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\Acknowledgements{
+Graduate school itself isn't hard, but the journey is. I have a lot of
+people and institutions to thank for their emotional, intellectual,
+financial, and other professional support. I wish to first highlight how
+\textbf{great it was to be a graduate student at this university and in
+the School of Natural Resources}. I have received tremendous support at
+all levels of the university. Although I am not a fan of Nebraska's
+climate, I highly recommend this school to prospective students. First,
+I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me
+with this amazing opportunity and for supporting my growth as an
+independent researcher. I thank my committee members, Craig Allen, David
+Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support
+and advisement, but especially for their comprehensive examination--I
+found this process transformative. I especially thank Dirac for his
+comprehensive exam questions--I never knew how much theory I didn't know
+until I studied your list\ldots{} \textbf{Financial support}. This
+research was funded by the U.S. Department of Defense's Strategic
+Environmental Research and Development Program (project ID: RC-2510).
+The University of Nebraska-Lincoln (UNL) has been highy supportive in my
+doctoral studies and reserach. I am grateful for the generous of donors
+to the University of Nebraska Foundation, which provided me with two
+prestigious supplemental fellowships: Fling and Othmer. I also thank the
+Nelson Family (Nelson Memorial Fellowship) and the Institute of
+Agriculture and Natural Resources, who funded large portions of my
+academic and research-related travel. I thank the School of Natural
+Resources for their financial support in my conference travel. The U.S.
+National Academy of Sciences generously funded part of my travel to the
+International Institute for Applied Systems Analysis (IIASA). This
+financial support provided me not only with invaluabe opportunities to
+attend and present at national and international conferences and
+workshops, conduct research abroad, and network--this funding alleviated
+some financial pressures associated with graduate school which allowed a
+more refined focus on my research. The opportunities and experiences
+provided to me by these funding sources were amazing, thank you all.
+\textbf{Emotional support}. I am one of the many graduate students
+afflicted with mental health ``disorders'' which negatively impact my
+quality of life, at times. I am first grafteful to one friend who
+unknowingly destigmatized mental health, without which I may not have
+sought treatment and diagnosis--thank you, Hannah. Since my diagnoses, I
+have tried to encourage this destigmatization among graduate students in
+our department. I thank felow students and faculty who have also been
+outspoken regarding related issues (Jamilynn Polletto and Drew Tyre).
+Finally, I thank Terry Thomas for her patience, support, and knowledge
+as my general practitioner and mental health advocate.\\
+I thank others for their various and probably unknowing contributions to
+my professional development: David Angeler, Christie Bahlai, Hannah
+Birge, Mary Bomberger Brown, John Carroll, Jenny Dauer, John DeLong,
+Tarsha Eason, Brian Fath, Ahjond Garmestani, Chris Lepczyk, Frank La
+Sorte, Chai Molina, Erica Stuber, Zac Warren, Lyndsie Wszola, Hao Ye,
+Peter Zebrowski. I would like to especially thank some of the amazing
+and brilliant \textbf{female scientists} in my life for their
+encouragement: Jane Anderson, Hannah Birge, Mary Bomberger Brown, Tori
+Donovan, Brittany Dueker, Allie Schiltmeyer, Katie Sieving, Erica
+Stuber, and Lyndsie Wszola.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Federal employment}. One reason for coming to this program was
+  specifically to study in a USGS Cooperative Research Unit, and to
+  understand better life as a federal scientist. I thank Craig Allen and
+  Kevin Pope for entertaining many hours of discussion (interrogation?)
+  regarding federal employment.
+\item
+  \textbf{IIASA}. Studying at the International Institute for Applied
+  Systems Analysis was an amazing opportunity. I thank Brian Fath and
+  Elena Rovenskaya for their advisement, members of the Applied Systems
+  Analysis research group for their feedback on my research, and to the
+  postdocs and YSSPers.
+\end{enumerate}
+HEB, TD, CPR, DF, CRA, BF, ER, CAL, MPM, KES, FL, MBB,
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Professional development}. AJT, KP, CRA, DT, MBB, JC,
+\end{enumerate}
+To my partner of eight years--Schultzie--thank you for everything. Just
+kidding, thank you, Nat Price.
+}
+
+\Dedication{
+Something snarky to mike moulton -- maybe a limerick
+}
+
+\Preface{
+This is an example of a thesis setup to use the reed thesis document
+class (for LaTeX) and the R bookdown package, in general.
+}
+
+\Abstract{
+THis is my amazing abstract.
+}
+
+% End of CII addition
+%%
+%% End Preamble
+%%
+%
+\begin{document}
+
+% Everything below added by CII
+  \maketitle
+
+\frontmatter % this stuff will be roman-numbered
+\pagestyle{empty} % this removes page numbers from the frontmatter
+  \begin{acknowledgements}
+    Graduate school itself isn't hard, but the journey is. I have a lot of
+    people and institutions to thank for their emotional, intellectual,
+    financial, and other professional support. I wish to first highlight how
+    \textbf{great it was to be a graduate student at this university and in
+    the School of Natural Resources}. I have received tremendous support at
+    all levels of the university. Although I am not a fan of Nebraska's
+    climate, I highly recommend this school to prospective students. First,
+    I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me
+    with this amazing opportunity and for supporting my growth as an
+    independent researcher. I thank my committee members, Craig Allen, David
+    Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support
+    and advisement, but especially for their comprehensive examination--I
+    found this process transformative. I especially thank Dirac for his
+    comprehensive exam questions--I never knew how much theory I didn't know
+    until I studied your list\ldots{} \textbf{Financial support}. This
+    research was funded by the U.S. Department of Defense's Strategic
+    Environmental Research and Development Program (project ID: RC-2510).
+    The University of Nebraska-Lincoln (UNL) has been highy supportive in my
+    doctoral studies and reserach. I am grateful for the generous of donors
+    to the University of Nebraska Foundation, which provided me with two
+    prestigious supplemental fellowships: Fling and Othmer. I also thank the
+    Nelson Family (Nelson Memorial Fellowship) and the Institute of
+    Agriculture and Natural Resources, who funded large portions of my
+    academic and research-related travel. I thank the School of Natural
+    Resources for their financial support in my conference travel. The U.S.
+    National Academy of Sciences generously funded part of my travel to the
+    International Institute for Applied Systems Analysis (IIASA). This
+    financial support provided me not only with invaluabe opportunities to
+    attend and present at national and international conferences and
+    workshops, conduct research abroad, and network--this funding alleviated
+    some financial pressures associated with graduate school which allowed a
+    more refined focus on my research. The opportunities and experiences
+    provided to me by these funding sources were amazing, thank you all.
+    \textbf{Emotional support}. I am one of the many graduate students
+    afflicted with mental health ``disorders'' which negatively impact my
+    quality of life, at times. I am first grafteful to one friend who
+    unknowingly destigmatized mental health, without which I may not have
+    sought treatment and diagnosis--thank you, Hannah. Since my diagnoses, I
+    have tried to encourage this destigmatization among graduate students in
+    our department. I thank felow students and faculty who have also been
+    outspoken regarding related issues (Jamilynn Polletto and Drew Tyre).
+    Finally, I thank Terry Thomas for her patience, support, and knowledge
+    as my general practitioner and mental health advocate.\\
+    I thank others for their various and probably unknowing contributions to
+    my professional development: David Angeler, Christie Bahlai, Hannah
+    Birge, Mary Bomberger Brown, John Carroll, Jenny Dauer, John DeLong,
+    Tarsha Eason, Brian Fath, Ahjond Garmestani, Chris Lepczyk, Frank La
+    Sorte, Chai Molina, Erica Stuber, Zac Warren, Lyndsie Wszola, Hao Ye,
+    Peter Zebrowski. I would like to especially thank some of the amazing
+    and brilliant \textbf{female scientists} in my life for their
+    encouragement: Jane Anderson, Hannah Birge, Mary Bomberger Brown, Tori
+    Donovan, Brittany Dueker, Allie Schiltmeyer, Katie Sieving, Erica
+    Stuber, and Lyndsie Wszola.
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+    \item
+      \textbf{Federal employment}. One reason for coming to this program was
+      specifically to study in a USGS Cooperative Research Unit, and to
+      understand better life as a federal scientist. I thank Craig Allen and
+      Kevin Pope for entertaining many hours of discussion (interrogation?)
+      regarding federal employment.
+    \item
+      \textbf{IIASA}. Studying at the International Institute for Applied
+      Systems Analysis was an amazing opportunity. I thank Brian Fath and
+      Elena Rovenskaya for their advisement, members of the Applied Systems
+      Analysis research group for their feedback on my research, and to the
+      postdocs and YSSPers.
+    \end{enumerate}
+    HEB, TD, CPR, DF, CRA, BF, ER, CAL, MPM, KES, FL, MBB,
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+    \tightlist
+    \item
+      \textbf{Professional development}. AJT, KP, CRA, DT, MBB, JC,
+    \end{enumerate}
+    To my partner of eight years--Schultzie--thank you for everything. Just
+    kidding, thank you, Nat Price.
+  \end{acknowledgements}
+  \begin{preface}
+    This is an example of a thesis setup to use the reed thesis document
+    class (for LaTeX) and the R bookdown package, in general.
+  \end{preface}
+  \hypersetup{linkcolor=black}
+  \setcounter{tocdepth}{2}
+  \tableofcontents
+
+  \listoftables
+
+  \listoffigures
+  \begin{abstract}
+    THis is my amazing abstract.
+  \end{abstract}
+  \begin{dedication}
+    Something snarky to mike moulton -- maybe a limerick
+  \end{dedication}
+\mainmatter % here the regular arabic numbering starts
+\pagestyle{fancyplain} % turns page numbering back on
+
+\chapter{thesisdown::thesis\_word:
+default}\label{thesisdownthesis_word-default}
+
+Placeholder
+
+\chapter*{Preliminary Content}\label{preliminary-content}
+\addcontentsline{toc}{chapter}{Preliminary Content}
+
+Paste from index.rmd if knitting to git or html
+
+\section*{Acknowledgements}\label{acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+Paste from index.rmd if knitting to git or html
+
+\section*{Preface}\label{preface}
+\addcontentsline{toc}{section}{Preface}
+
+Paste from index.rmd if knitting to git or html
+
+\section*{Dedication}\label{dedication}
+\addcontentsline{toc}{section}{Dedication}
+
+Paste from index.rmd if knitting to git or html
+
+THis is my amazing abstract.
+
+\chapter{Introduction}\label{intro-chapter}
+
+\section{Background}\label{background}
+\begin{itemize}
+\tightlist
+\item
+  On abrupt changes in the environment
+\end{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A few examples of abrupt changes that are highly referenced.\\
+\item
+  Whydoes it matter that we can detect??
+\item
+  A few examples of the methds that have been used ot identifythese
+  shifts
+\end{enumerate}
+\begin{itemize}
+\tightlist
+\item
+  histortically
+\item
+  real-time
+\item
+  predictive
+\end{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  PRoblems with the methods in
+\end{enumerate}
+\begin{itemize}
+\tightlist
+\item
+  aplpication
+  \begin{itemize}
+  \tightlist
+  \item
+    difficult to apply
+  \item
+    to interpret
+  \end{itemize}
+\item
+  theory - lackthereof
+\end{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Descrive the attempts to identify regime shifts
+\end{enumerate}
+\section{My thesis}\label{my-thesis}
+
+My thesis is that regime detection metrics are not useful and are
+difficult to interpret and apply to multispecies systems. 1.
+Brandolini's principle
+
+TWo major sources of problems? 1. Defining a regime shift\\
+2. Methods have not proven useful for application beyond single-species
+systems and systems about which causal drivers can just be monitored.
+\begin{itemize}
+\tightlist
+\item
+  Current state of regime shift theory
+\item
+  Why it is important to diagnose/detect abrupt changes at the system
+  level
+\item
+  Current methods are not being employed by ecological management.
+  \begin{itemize}
+  \tightlist
+  \item
+    Why are applications largely restricted to theoretical research?
+  \item
+    Why are the applications to empirical data largely restricted to the
+    research community?
+  \item
+    Is this an artefact of how long it takes for applied ecologists and
+    ecological management to adopt new data anlysis techniques?
+  \end{itemize}
+\end{itemize}
+\section{Dissertation abstract (content
+summary)}\label{dissertation-abstract-content-summary}
+
+This dissertation comprises \textbf{X} sections:\\
+1. Review of the current methods used to identify abrupt changes in
+ecological systems - Types of analyses - Univariable vs.~multivariable -
+Picked up vs.~not picked up (look at \# papers using method in WOS,
+maybe\ldots{})\\
+1. A beginner's guide to Fisher Information (derivatives metric)
+\{\#distance\}\\
+1. Distance method\\
+1. Fisher Information binning method and an application of it to
+spatiotemporal data 1. Conclusions
+
+\chapter{Quantitative indicators of abrupt ecological
+change}\label{indicators-chapter}
+
+Placeholder
+
+\section{Abstract}\label{abstract}
+
+\section{Introduction}\label{introduction}
+
+\section{Methods}\label{methods}
+
+\subsection{Identifying papers/RSDMs in the
+literature}\label{identifying-papersrsdms-in-the-literature}
+
+\section{Results}\label{results}
+
+\subsection{Potential figures}\label{potential-figures}
+
+\subsection{Potential tables}\label{potential-tables}
+
+\section{Discussion}\label{discussion}
+
+\chapter{A guide to Fisher Information for Ecologists}\label{fiGuide}
+
+Placeholder
+
+\section{Abstract}\label{abstract-1}
+
+\section{Introduction}\label{introduction-1}
+
+\subsubsection{\texorpdfstring{\textbf{Step 3.} \(p(s)\) as a function
+of the rate of change of
+\(s\)}{Step 3. p(s) as a function of the rate of change of s}}\label{step-3.-ps-as-a-function-of-the-rate-of-change-of-s}
+
+\subsubsection{\texorpdfstring{\textbf{Step 4.} Calculate the
+derivatives-based Fisher
+Information}{Step 4. Calculate the derivatives-based Fisher Information}}\label{step-4.-calculate-the-derivatives-based-fisher-information}
+
+\section{Acknowledgements}\label{acknowledgements-1}
+
+\chapter{An application of the Fisher Information binning method to
+spatiotemporal avian community
+data}\label{an-application-of-the-fisher-information-binning-method-to-spatiotemporal-avian-community-data}
+
+Placeholder
+
+\section{Abstract}\label{abstract-2}
+
+\section{Introduction}\label{introduction-2}
+
+\section{Methods}\label{methods-1}
+
+\subsection{Data collection}\label{data-collection}
+
+\subsection{Study areas}\label{study-areas}
+
+\subsubsection{Military bases as study
+sites}\label{military-bases-as-study-sites}
+
+\subsubsection{Focal military bases}\label{focal-military-bases}
+
+\subsubsection{Delineating spatial transects for spatial
+analysis}\label{delineating-spatial-transects-for-spatial-analysis}
+
+\subsubsection{Delineating transects for spatial
+analysis}\label{delineating-transects-for-spatial-analysis}
+
+\subsubsection{Selecting routes for temporal
+analysis}\label{selecting-routes-for-temporal-analysis}
+
+\subsection{Calculating the Fisher Information binning
+measure}\label{calculating-the-fisher-information-binning-measure}
+
+\section{Results}\label{results-1}
+
+\subsection{Temporal data}\label{temporal-data}
+
+\subsection{Spatial data}\label{spatial-data}
+
+\subsection{Interpreting the Fisher Information binning
+measure}\label{interpreting-the-fisher-information-binning-measure}
+
+\section{Discussion}\label{discussion-1}
+
+\appendix
+
+\chapter{The First Appendix}\label{the-first-appendix}
+
+This first appendix includes all of the R chunks of code that were
+hidden throughout the document (using the \texttt{include\ =\ FALSE}
+chunk tag) to help with readibility and/or setup.
+
+\textbf{In the main Rmd file}
+
+\textbf{In Chapter \ref{ref-labels}:}
+
+\chapter{The Second Appendix, for
+Fun}\label{the-second-appendix-for-fun}
+
+\chapter*{References}\label{references}
+\addcontentsline{toc}{chapter}{References}
+
+Placeholder
+
+
+% Index?
+
+\end{document}

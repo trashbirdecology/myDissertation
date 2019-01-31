@@ -1,0 +1,17 @@
+# Preliminary Content {-}
+
+Paste from index.rmd if knitting to git or html
+
+## Acknowledgements {-}
+
+Paste from index.rmd if knitting to git or html
+
+## Preface {-}
+
+Paste from index.rmd if knitting to git or html
+
+## Dedication {-}
+
+Paste from index.rmd if knitting to git or html
+
+`r if(!knitr:::is_latex_output()) '## Abstract {-}'`
