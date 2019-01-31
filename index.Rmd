@@ -2,7 +2,6 @@
 author: 'Jessica L. Burnett'
 date: '2019'
 institution: 'University of Nebraska-Lincoln'
-#division: 'College of Agricultural Sciences and Natural Resources'
 advisor: 'Craig R. Allen'
 altadvisor: 'Dirac Twidwell'
 department: 'School of Natural Resources'
@@ -12,6 +11,8 @@ knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
  thesisdown::thesis_pdf: default
+    # includes:
+       # in_header: header.tex  
   # thesisdown::thesis_gitbook: default
 #  thesisdown::thesis_word: default
 #  thesisdown::thesis_epub: default
@@ -89,11 +90,16 @@ if(!require(bookdown))
 if(!require(kableExtra))
     install.packages("kableExtra", repos = "http://cran.rstudio.com")
 if(!require(thesisdown)){
-  library(devtools)
   devtools::install_github("ismayc/thesisdown")
   }
-library(thesisdown)
-library(tidyverse)
+if(!require(tidyverse)){
+  devtools::install.packages("tidyverse")
+  }
+
+  library(devtools)
+  library(tidyverse)
+  library(devtools)
+
 ```
 
 

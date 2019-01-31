@@ -1,10 +1,38 @@
 # Quantitative indicators of abrupt ecological change {#indicators-chapter}   
 
-## Introduction
+<!-- I might include this section as the introduction to multiple chapters, but for now I will just write it as a separate, brief section. -->
 
 
 
-Regime shifts can be defined as changes in either the structure  or underlying functioning of a system. Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches, and many have been tested and verified in multiple systems. Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows. 
+
+
+[@chuang_enhancing_2018 complexity]
+
+ewsystems are reduced when the uncertainties are high -- 
+
+. The ability When the stakes associated with some systems are high, the ability to  is desirable. 
+
+s, e.g. agricultural systems and extreme weather events, are high--human lives
+
+understThe stakes in some systems is high, especially when the system is nearing or has surpassed a state from which it is difficult to recover ( __tipping point__). Systems with tipping points exist in social, economic, and ecological systems worldwide and operate at multiple scales. __Early warning systems__, or indicators that a system is nearing a supposed tipping point, are prevalent in many fields 
+
+
+
+Climate change and globalization has been blamed triggering undesirable changes in agricultural systems and natural resource supplies (fish ref; ag ref), influenced the frequency and intensity of extreme weather events (ref), and [@dakos_slowing_2008]
+banking crisis [@davis_comparing_2008]
+
+Early warning systems are well-developed for systems explained by a single variable or when drivers of the shift are suspected. For example, 
+
+This is especially so for fisheries 
+
+[@gramlich_early_2010] - review of banking early warning systems
+
+
+Detection and prediction of undesirable changes is the focus of many systems (e.g., network security, economies and currencies, ) 
+Early-warnings of changes in systems is prevalent 
+__Regime shifts__ are defined as changes in either the structure  or underlying functioning of a system.
+
+Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches, and many have been tested and verified in multiple systems. Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows. 
 
 Ecological and social-ecolgical systems havemany unpredictable and variably interacting components. Systems analyses, including Dynamic Bayesian Networks, network models, and food webs are designed to handle these complexities, yet obtaining enough information to feed these models seems less feasible in ecosystem research and management. A survey of the methods available for detecting ecological regime shifts in high dimensional data is timely. Recent reviews of regime shift indicators (Andersen et al, the others) are outdated, are not comprehensive (include only a subset of the available RSDMs), and do not provide recommendations for which events, systems, or data characterstics are appropriate for these methods. 
 
@@ -17,16 +45,16 @@ This paper aims to identify, describe, and critique quantitative RSDMs that have
 
 ### Identifying papers/RSDMs in the literature
 1. We conducted a systematic review using the software Publish or Perish to identify unique statistical and numerical methods that have been used to identify ecological regime shifts. We used the following databases to identify scholarly works that introduce and/or explain methods for identfying regime shifts:  
-    i. **Database searches*  
+    i. __Database searches*  
           a. Boolean (+ = asterisk in the database search)  
                 i. WOS:   
-                ii. SCOPUS:  ( TITLE-ABS-KEY ( ( approach  OR  analysis  OR  metric  OR  method^ )  AND  ( detect^  OR  predict^ ) )  AND  TITLE-ABS-KEY ( {regime shift}  OR  {regime change}  OR  {abrupt change} ) ) **1,473** (where ^== ** in Scopus) 
-    ii. **Opportunistic papers**  
+                ii. SCOPUS:  ( TITLE-ABS-KEY ( ( approach  OR  analysis  OR  metric  OR  method^ )  AND  ( detect^  OR  predict^ ) )  AND  TITLE-ABS-KEY ( {regime shift}  OR  {regime change}  OR  {abrupt change} ) ) __1,473__ (where ^== __ in Scopus) 
+    ii. __Opportunistic papers__  
           a. We used expert opinion (authors JLB, etc.) to identify any missing RSDMs that were not detected in our formal database searches. (i am making this next part up--need to double check once i have results)-->These papers are are typically found in the grey literature, or are published in journals not obvious to the general ecologist (e.g., name an obscure journal here).  
           b. Justification for our database searches containing some of these methods which are known/obvious to the author(s).  
 
 2. Procedures for filtering the papers.     
-    i. We removed duplicate titles (from the merging of Scopus and WOS), which resulted in **___** unique scholarly works.    
+    i. We removed duplicate titles (from the merging of Scopus and WOS), which resulted in _______ unique scholarly works.    
     i. We read the abstracts of each paper to determine the following:    
           a. Was this a new method being proposed or used? (if yes, proceed to ii.))    
           b. Was this just a case study or another application of a previously published method? (if yes, note the method(s) used and identify original method(s) source)      
@@ -53,7 +81,7 @@ This paper aims to identify, describe, and critique quantitative RSDMs that have
 
 ## Results
 
-We identified **___** number of quantiattive anlaytical approaches to identifying regime shifts and abrupt changes in data. 
+We identified _______ number of quantiattive anlaytical approaches to identifying regime shifts and abrupt changes in data. 
 
 ### Potential figures
 
@@ -63,16 +91,18 @@ We identified **___** number of quantiattive anlaytical approaches to identifyin
 
 ### Potential tables
 
-```{r  echo=FALSE, message=FALSE, warnings=FALSE, label = "characteristicsResults"}
-colNames <- t(c('Authors', "Year of Publication", "Dimensionality of data", "Longitudinality of data", "Method applied"))
+<!-- \newpage -->
+<!-- \blandscape -->
+<!-- ```{r  echo=FALSE, message=FALSE, warnings=FALSE, label = "characteristicsResults"} -->
+<!-- colNames <- t(c('Authors', "Year of Publication", "Dimensionality of data", "Longitudinality of data", "Method applied")) -->
 
-knitr::kable(
-  colNames, longtable = TRUE, booktabs = TRUE,
-  caption = 'Data structure and analytical procedures characteristics fo the selected studies.'
-)
+<!-- knitr::kable( -->
+<!--   colNames, longtable = TRUE, booktabs = TRUE, -->
+<!--   caption = 'Data structure and analytical procedures characteristics fo the selected studies.' -->
+<!-- ) -->
 
-```
-
+<!-- ``` -->
+<!-- \elandscape -->
 
 ## Discussion 
 

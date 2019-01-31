@@ -1,125 +1,25 @@
 # Introduction {#intro-chapter}
 
-## Background  
-Abrupt changes in the environment 
-- On abrupt changes in the environment
-1. A few examples of abrupt changes that are highly referenced.   
-1. Why does it matter that we can detect??
-2. A few examples of the methds that have  been used ot identifythese shifts
-  - histortically
-  - real-time 
-  - predictive
-3. PRoblems with the methods in 
-  - aplpication
-    - difficult to apply
-    - to interpret
-  - theory - lackthereof
-4. Descrive the attempts to identify regime shifts
-  - the most solid theoretical concept in the field of regime shifts is the concept of *critical slowing down* 
+Anthropogenic activity in the last few decades has drastically influenced the interations within and among Earth systems worldwide. The complexity of and drivers of changes in coupled human-natural systems is consequently altered, further limiting our ability to detect and predict change and impacts of change [@liu_complexity_2007; @scheffer_critical_2009]. 
 
-## Goal of the dissertation 
-1. The goal of the works described herein is to evaluate methods proposed as indicators fo regime shift in **ecological communities**.   
-1. Propose simple, alternative methods to multispecies 
+Early warning systems are developed to detect and predict abrupt changes in disparate systems, e.g. cyber security [@], infrastructure [@], banking crises [@davis_comparing_2008], and agricultural systems [@]. The need to develop and improve early warning systems for natural and coupled human-natural systems is exacerbated by the consequences of climate change and globalization, especially when the human-related stakes are high. 
 
-```{r tab:defs_tbl, echo = F, eval = F, message=F, warning=F}
-# Create a table of definitions 
-  # A box would be nice - if I have the time
+### Practicality of early warning systems
 
-library(kableExtra)
+Forecasting change is arguably the holy grail of ecology. The ability to forecast change, paired with an understanding of system interactions, provides opportunity to prevent or mitigate systemic change. Despite the plethora of regime shift theory and proposed early warning systems in the ecological literatures, early warning systems are currently of limited practical utility. I explain this paradox as a function of early warning systems having the following qualit(ies):
+  1. system or context specific; not generalizable   
+  1. require a large number of observations  
+  1. difficult implementation  
+  1. difficult interpretation  
+  1. require an understanding of the drivers of change  
+  1. perform poorly under uncertainty  
+  1. give no uncertaintiy around estimates  
+  1. ignore observation error  
+Research in these areas will improve existing and inform future early warning systems, such that they are useful to practitioners and other end-users. In this dissertation I tackle __THE ABOCE NUMBERS LIST HERE__.
 
-Alternative stable states (equilibrium)
-	Thresholds exist
-	>1 'state'
-Periodic/cycles (i.e. unstable points or attractors)
-	e.g., Pred-prey cycles
--Multiple stable states
--	Stability
-- Perturbation-driven shift
-- State-and-transition  model (STM)
-	  distinct states are defined (a priori?)
-	  more deterministic than range cond. mod.
-- Range condition model
-- Nonlinear dynamics
--	Stability
-  	Removing or damaging negative feedbacksmakes the ssytem move away from the stable equilibrium attractor
+### Dissertation aims  
 
-
-defs_tbl <- rbind(
-        c("Regime shift", "Vaguely defined as the change in the structure or functioning of a system." , 'ref'), 
-        c("Holling's resilience","def", '@holling_XXX_1973'), 
-        c("Pimm's resilience","Also known as engineering resilience", 'ref'), 
-        c("term","def", 'ref'), 
-        c("term","def", 'ref'), 
-        c("term","def", 'ref'), 
-
-        ) %>%
-  data.frame() %>% 
-  `colnames<-`( c("Regime shift", "Definitions", "Source"))
-
-
-knitr::kable(defs_tbl,# "latex",
-caption = "Definitions of terms related to regime shifts appearing throughout this work. Terms are higlighted in bold in the following section only.") %>%
-  kableExtra::kable_styling(full_width = F) %>%
-  kableExtra::column_spec(1, bold = T, width = '20em', color = "black") %>% # adjsts column width to provide flexibility for text columns
-  kableExtra::column_spec(2, width = "67em") %>% 
-  kableExtra::column_spec(3, width = "10em", color = "grey") 
-  
-kable(head(iris), format = "latex", caption = "Title of the table")
-
-kableExtra::kable(defs_tbl) %>%
-  kable_styling(full_width = F) %>%
-  column_spec(1, bold = T, border_right = T) %>%
-  column_spec(2, width = "30em", background = "yellow")
-?kableExtra::kable
-```
-<!-- Here is my reference to a table (\#tab:defs_tbl)  -->
-
-### On critical slowing down    
- 
-**Critical slowing down** is the most solid theoretical concept in the study of **ecological regime shifts** and is a more precise variant of **Pimm's resilience** (c.f. **Hollings resilience**). The theory is such that the **recovery rate**, or the time it takes to return to a **stable** point, decreases as it nears its **tipping point**.
-
-
-"the recovery rate should decrease. It occurs because a system’s internal stabilizing forces become weaker near the point where they break and the system moves into a new regime. Thus critical slowing down is posited to exist at phase transitions, such as ecosystem collapse. A system is stable when it is in a deep basin of attraction corresponding to many strong negative feedback loops acting on it. In such a case small perturbations do not have long-term consequences. As a system degrades these negative feedback loops become broken and thus the steepness of the basin of attraction becomes lower.
-Its resilience becomes decreased bring the system close to a critical transition. This means that the same perturbation that may not flip the system will though likely take longer to dissipate. Thus it will take longer for the system to return to its point of equilibrium when close to a tipping point. The simplest way to measure the approach to a potential tipping point then would be to directly measure the recovery rate at which the system returns back to its initial equilibrium state following a perturbation. In cases where the system is close to a tipping point, the recovery rate should decrease – slow down. As such critical slowing down offers some potential to probe the dynamics of a system in order to assess its resilience and the risk of an upcoming regime shift. “We have all these complex systems like the brain, the climate, ecosystems, the financial market, that are really difficult to understand, and we will probably never fully understand them. So it’s really kind of a small miracle that across these very different systems, we could find these universal indicators of how close they are to a threshold” – Marten Scheffer""
-
- "I think the most solid theoretical concept in this field is the "critical slowing down" which typically manifests itself as increased variance or autocorrelation at a critical transition. Much has been written about this, especially by Maarten Sceffer, Stephen Carpenter et al. (e.g. https://www.annualreviews.org/doi/abs/10.1146/annurev-ecolsys-112414-054242) Common to all methods derived from this theoretically sound concept, is that they need quite a lot of data - typically more than you would usually have in ecological time series, at least. "
-
-For multispecies data you will typically need to reduce dimensionality before you can proceed, for example by some sort of ordination. The vegan package for R is typically the starting point for this. I can help you a bit further on the way if you are not familiar with this if you want to, but then I would need to know a bit more about your data.
-
-
-### Types fo regime shifts
-There are different types fo regime shifts, and **why those differences matter**  
-
-  * only “regime shifts” that are also “critical transitions” should show “critical slowing down”  
-    - so that’s an important *technical distinction* if you’re trying to use *“early warning signals”*.   
-  * There are mutiple types og **critical transitions**  
-    - these results in very different changes in time series  
-    - in some contexts, this doesn't really matter  
-    
-## Brandolini's principle    
-    
-TWo major sources of problems?
-1. Defining a regime shift  
-2. Methods have not proven useful for application beyond single-species systems and systems about which causal drivers can just be monitored.
-
-- Current state of regime shift theory
-- Why it is important to diagnose/detect abrupt changes at the system level
-- Current methods are not being employed by ecological management. 
-    - Why are applications largely restricted to theoretical research?
-    - Why are the applications to empirical data largely restricted to the research community?
-    - Is this an artefact of how long it takes for applied ecologists and ecological management to adopt new data anlysis techniques?
-
-## Importance of this thesis  
-- Identifying methods for multiple species data
-- Highlighting the methods that may or may not be useful to the causal quantitative ecologist
-
-
-## On the sheer number of RSDMs
-
-A systematic review of the literature in 2018 yielded  670 results
-  - scopus
-  - search key:( TITLE-ABS-KEY ( "regimeshift" )  AND  TITLE-ABS-KEY ( ecolog* ) )  AND  ( LIMIT-TO ( SUBJAREA ,  "AGRI" )  OR  LIMIT-TO ( SUBJAREA ,  "ENVI" ) ) 
-
-We widdled this down to  
-  - same set as above
+The overarching aim of this work is to advance our understanding of the utility and limitation of using early warning systems (or regime detection metrics). Specifically, I examine those systems/models designed to detect abrupt change in ecological communities. This work is of value to both practitioners and theoreticians: 
+  - Chapters are written as separate, publishable manuscripts (*sans* literature cited) geared towards the theoretical and applied ecologist   
+  - Case studies, statistical software, and data are provided as reproducible examples of select methodologies. 
 
