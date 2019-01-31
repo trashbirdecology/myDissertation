@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  30 JAN 2019 19:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  30 JAN 2019 19:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -567,35 +567,44 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
-) (./myDissertation.aux)
+)
+Package color Info: Redefining color shadecolor on input line 79.
+(./myDissertation.aux
+
+LaTeX Warning: Label `eq:fiDerivs' multiply defined.
+
+
+LaTeX Warning: Label `eq:fiAdapted' multiply defined.
+
+)
 \openout1 = `myDissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 219.
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 219.
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 219.
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 219.
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 219.
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 219.
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 219.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 219.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 259.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 259.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 219.
-LaTeX Font Info:    ... okay on input line 219.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 219.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 259.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \microtypecontext on input line 219.
+LaTeX Info: Redefining \microtypecontext on input line 259.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -637,7 +646,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box37
-Package hyperref Info: Link coloring OFF on input line 219.
+Package hyperref Info: Link coloring OFF on input line 259.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -645,52 +654,52 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count134
 )
-LaTeX Info: Redefining \ref on input line 219.
-LaTeX Info: Redefining \pageref on input line 219.
-LaTeX Info: Redefining \nameref on input line 219.
+LaTeX Info: Redefining \ref on input line 259.
+LaTeX Info: Redefining \pageref on input line 259.
+LaTeX Info: Redefining \nameref on input line 259.
 (./myDissertation.out) (./myDissertation.out)
 \@outlinefile=\write4
 \openout4 = `myDissertation.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 223.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 263.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 223.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 263.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 223
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 263
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 223
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 263
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 223.
+(Font)              <12> on input line 263.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 223.
+(Font)              <8> on input line 263.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 223.
-LaTeX Font Info:    Try loading font information for U+lasy on input line 223.
+(Font)              <6> on input line 263.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 263.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 223.
+LaTeX Font Info:    Try loading font information for U+msa on input line 263.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 223.
+LaTeX Font Info:    Try loading font information for U+msb on input line 263.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -742,43 +751,41 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] [13] [14
 
 
-]
-Chapter 1.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
+]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.330 \chapter
+l.368 \chapter
               *{Preliminary Content}\label{preliminary-content} [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.330 \chapter
+l.368 \chapter
               *{Preliminary Content}\label{preliminary-content} [2
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.352 \chapter
+l.390 \chapter
               {Introduction}\label{intro-chapter} [3]pdfTeX warning (ext4): des
 tination with the same identifier (name{page.4}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.352 \chapter
+l.390 \chapter
               {Introduction}\label{intro-chapter} [4
 
 ]
-Chapter 2.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 358.
+Chapter 1.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 396.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 364--366
+Underfull \hbox (badness 10000) in paragraph at lines 402--404
 
  []
 
@@ -790,79 +797,366 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-Chapter 3.
+Chapter 2.
 [7
 
-] [8
+]
+Underfull \hbox (badness 10000) in paragraph at lines 576--583
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--596
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 601--604
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 604--608
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 608--610
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 618--620
+
+ []
+
+
+Overfull \hbox (84.58112pt too wide) in alignment at lines 686--691
+ [] [] [] [] [] 
+ []
+
+[9] [10]
+Chapter 3.
+[11
 
 ]
-Chapter 4.
-[9] [10
+Underfull \hbox (badness 10000) in paragraph at lines 804--806
 
-]
-Chapter 5.
+ []
+
+
+Package hyperref Warning: Suppressing empty link on input line 807.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 806--809
+
+ []
+
+
+LaTeX Warning: Command \textrightarrow invalid in math mode on input line 825.
+
+
+LaTeX Warning: Command \textrightarrow invalid in math mode on input line 825.
+
+
+LaTeX Warning: Command \textrightarrow invalid in math mode on input line 827.
+
+
+LaTeX Warning: Command \textrightarrow invalid in math mode on input line 827.
+
+[12] [13]
+<myDissertation_files/figure-latex/pp1Period-1.pdf, id=460, 463.7325pt x 272.01
+625pt>
+File: myDissertation_files/figure-latex/pp1Period-1.pdf Graphic file (type pdf)
+
+<use myDissertation_files/figure-latex/pp1Period-1.pdf>
+Package pdftex.def Info: myDissertation_files/figure-latex/pp1Period-1.pdf  use
+d on input line 913.
+(pdftex.def)             Requested size: 463.73135pt x 272.01558pt.
+
+Overfull \hbox (30.11136pt too wide) in paragraph at lines 913--916
+ [][] 
+ []
+
+[14 <./myDissertation_files/figure-latex/pp1Period-1.pdf>]
+
+LaTeX Warning: Reference `fig:2d-hist' on page 15 undefined on input line 947.
+
+<myDissertation_files/figure-latex/2D-hist-1.pdf, id=476, 457.71pt x 233.87375p
+t>
+File: myDissertation_files/figure-latex/2D-hist-1.pdf Graphic file (type pdf)
+<use myDissertation_files/figure-latex/2D-hist-1.pdf>
+Package pdftex.def Info: myDissertation_files/figure-latex/2D-hist-1.pdf  used 
+on input line 950.
+(pdftex.def)             Requested size: 457.7089pt x 233.87315pt.
+
+Overfull \hbox (24.0889pt too wide) in paragraph at lines 950--954
+ [][] 
+ []
+
+<./chapterFiles/fiGuide/figures/stringFig.png, id=478, 963.6pt x 542.025pt>
+File: ./chapterFiles/fiGuide/figures/stringFig.png Graphic file (type png)
+<use ./chapterFiles/fiGuide/figures/stringFig.png>
+Package pdftex.def Info: ./chapterFiles/fiGuide/figures/stringFig.png  used on 
+input line 969.
+(pdftex.def)             Requested size: 433.62pt x 243.90898pt.
+[15 <./myDissertation_files/figure-latex/2D-hist-1.pdf>]
+<myDissertation_files/figure-latex/distSpeedAccel-1.pdf, id=496, 459.7175pt x 3
+13.17pt>
+File: myDissertation_files/figure-latex/distSpeedAccel-1.pdf Graphic file (type
+ pdf)
+<use myDissertation_files/figure-latex/distSpeedAccel-1.pdf>
+Package pdftex.def Info: myDissertation_files/figure-latex/distSpeedAccel-1.pdf
+  used on input line 1002.
+(pdftex.def)             Requested size: 459.71637pt x 313.16922pt.
+
+Overfull \hbox (26.09637pt too wide) in paragraph at lines 1002--1005
+ [][] 
+ []
+
+[16 <./chapterFiles/fiGuide/figures/stringFig.png>] [17 <./myDissertation_files
+/figure-latex/distSpeedAccel-1.pdf>]
+
+LaTeX Warning: Reference `predprey' on page 18 undefined on input line 1080.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1086--1102
+
+ []
+
+[18]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 1107
+.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+<./chapterFiles/fiGuide/figures/kByTime.png, id=534, 469.755pt x 325.215pt>
+File: ./chapterFiles/fiGuide/figures/kByTime.png Graphic file (type png)
+<use ./chapterFiles/fiGuide/figures/kByTime.png>
+Package pdftex.def Info: ./chapterFiles/fiGuide/figures/kByTime.png  used on in
+put line 1117.
+(pdftex.def)             Requested size: 433.62pt x 300.19887pt.
+<myDissertation_files/figure-latex/kTrajectories-1.pdf, id=535, 457.71pt x 228.
+855pt>
+File: myDissertation_files/figure-latex/kTrajectories-1.pdf Graphic file (type 
+pdf)
+<use myDissertation_files/figure-latex/kTrajectories-1.pdf>
+Package pdftex.def Info: myDissertation_files/figure-latex/kTrajectories-1.pdf 
+ used on input line 1121.
+(pdftex.def)             Requested size: 457.7089pt x 228.85443pt.
+
+Overfull \hbox (24.0889pt too wide) in paragraph at lines 1121--1123
+ [][] 
+ []
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[11]
+[19]
+
+LaTeX Warning: Reference `fig:distOverTime' on page 20 undefined on input line 
+1132.
+
+<./chapterFiles/fiGuide/figures/dsdtOverTime.png, id=546, 469.755pt x 325.215pt
+>
+File: ./chapterFiles/fiGuide/figures/dsdtOverTime.png Graphic file (type png)
+<use ./chapterFiles/fiGuide/figures/dsdtOverTime.png>
+Package pdftex.def Info: ./chapterFiles/fiGuide/figures/dsdtOverTime.png  used 
+on input line 1137.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (36.13387pt too wide) in paragraph at lines 1137--1140
+ [][] 
+ []
+
+[20 <./chapterFiles/fiGuide/figures/kByTime.png
+
+pdfTeX warning: pdflatex (file ./chapterFiles/fiGuide/figures/kByTime.png): lar
+ge interlaced PNG might cause out of memory (use non-interlaced PNG to fix this
+)
+> <./myDissertation_files/figure-latex/kTrajectories-1.pdf>]
+
+LaTeX Warning: Reference `fig:fiOVerTime' on page 21 undefined on input line 11
+50.
+
+<./chapterFiles/fiGuide/figures/fiOverTime.png, id=560, 469.755pt x 325.215pt>
+File: ./chapterFiles/fiGuide/figures/fiOverTime.png Graphic file (type png)
+<use ./chapterFiles/fiGuide/figures/fiOverTime.png>
+Package pdftex.def Info: ./chapterFiles/fiGuide/figures/fiOverTime.png  used on
+ input line 1153.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (36.13387pt too wide) in paragraph at lines 1153--1157
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[21 <./chapterFiles/fiGuide/figures/dsdtOverTime.png
+
+pdfTeX warning: pdflatex (file ./chapterFiles/fiGuide/figures/dsdtOverTime.png)
+: large interlaced PNG might cause out of memory (use non-interlaced PNG to fix
+ this)
+>]
+
+LaTeX Warning: Reference `fig:fiOVerTime' on page 22 undefined on input line 11
+68.
+
+
+LaTeX Warning: Reference `distOverTime' on page 22 undefined on input line 1174
+.
+
+
+LaTeX Warning: Reference `dsdtOverTime' on page 22 undefined on input line 1174
+.
+
+[22 <./chapterFiles/fiGuide/figures/fiOverTime.png
+
+pdfTeX warning: pdflatex (file ./chapterFiles/fiGuide/figures/fiOverTime.png): 
+large interlaced PNG might cause out of memory (use non-interlaced PNG to fix t
+his)
+>] [23] [24
+
+]
+Chapter 4.
+
+Underfull \vbox (badness 2644) has occurred while \output is active []
+
+[25]
+
+LaTeX Warning: Reference `derivatives' on page 26 undefined on input line 1316.
+
+
 
 Package Fancyhdr Warning: \headheight is too small (14.49998pt): 
  Make it at least 27.11652pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12]
+[26] [27]
+<chapterFiles/binningChap/figures/bbsPoints.png, id=594, 794.97pt x 614.295pt>
+File: chapterFiles/binningChap/figures/bbsPoints.png Graphic file (type png)
+<use chapterFiles/binningChap/figures/bbsPoints.png>
+Package pdftex.def Info: chapterFiles/binningChap/figures/bbsPoints.png  used o
+n input line 1416.
+(pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
+
+Overfull \hbox (361.34807pt too wide) in paragraph at lines 1416--1417
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[28]
+Overfull \vbox (2.86348pt too high) has occurred while \output is active []
+
+[29 <./chapterFiles/binningChap/figures/bbsPoints.png>]
+<chapterFiles/binningChap/figures/nsRouteMap.png, id=608, 794.97pt x 614.295pt>
+
+File: chapterFiles/binningChap/figures/nsRouteMap.png Graphic file (type png)
+<use chapterFiles/binningChap/figures/nsRouteMap.png>
+Package pdftex.def Info: chapterFiles/binningChap/figures/nsRouteMap.png  used 
+on input line 1441.
+(pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
+
+Overfull \hbox (361.34807pt too wide) in paragraph at lines 1441--1442
+ [][] 
+ []
+
+<chapterFiles/binningChap/figures/ewRouteMap.png, id=609, 794.97pt x 614.295pt>
+
+File: chapterFiles/binningChap/figures/ewRouteMap.png Graphic file (type png)
+<use chapterFiles/binningChap/figures/ewRouteMap.png>
+Package pdftex.def Info: chapterFiles/binningChap/figures/ewRouteMap.png  used 
+on input line 1447.
+(pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
+
+Overfull \hbox (361.34807pt too wide) in paragraph at lines 1447--1448
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[30]
+Overfull \vbox (17.36348pt too high) has occurred while \output is active []
+
+[31 <./chapterFiles/binningChap/figures/nsRouteMap.png>]
+Overfull \vbox (31.86348pt too high) has occurred while \output is active []
+
+[32 <./chapterFiles/binningChap/figures/ewRouteMap.png>] [33] [34] [35] [36]
 Appendix A.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 541.
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1646.
 
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
+LaTeX Warning: Reference `ref-labels' on page 37 undefined on input line 1661.
 
-LaTeX Warning: Reference `ref-labels' on page 13 undefined on input line 546.
+[37
 
-[13
-
-] [14
+] [38
 
 ]
 Appendix B.
-[15] [16
+[39] [40
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 559.
-[17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 559.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[41
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[42]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1826.
+[43]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1826.
 (./myDissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 559.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 559.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1826.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1826.
+
 Package rerunfilecheck Info: File `myDissertation.out' has not changed.
-(rerunfilecheck)             Checksum: E60E3F160830B63C5FB434BA49EF82CB;2536.
+(rerunfilecheck)             Checksum: D902C12622F98ED1D98E73811545969E;2931.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 559.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1826.
  ) 
 Here is how much of TeX's memory you used:
- 10646 strings out of 492649
- 164811 string characters out of 6129622
- 293226 words of memory out of 5000000
- 14169 multiletter control sequences out of 15000+600000
- 47989 words of font info for 78 fonts, out of 8000000 for 9000
+ 11011 strings out of 492649
+ 171366 string characters out of 6129622
+ 299551 words of memory out of 5000000
+ 14307 multiletter control sequences out of 15000+600000
+ 57015 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,45p,358b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,12n,49p,447b,580s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
-texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018/t
-exmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dist/
-fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/p
-ublic/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/l
-mmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb><
-/usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/local
-/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on myDissertation.pdf (35 pages, 136598 bytes).
+texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/20
+18/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2018/texmf-d
+ist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dist/fonts/
+enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/l
+m-ts1.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx12.pfb>
+</usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/loca
+l/texlive/2018/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/
+2018/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2018/texmf-
+dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/
+type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
+/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmro12
+.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr
+/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texl
+ive/2018/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2018/te
+xmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2018/texmf-dist/f
+onts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
+/public/lm/lmtti10.pfb>
+Output written on myDissertation.pdf (61 pages, 774754 bytes).
 PDF statistics:
- 410 PDF objects out of 1000 (max. 8388607)
- 364 compressed objects within 4 object streams
- 91 named destinations out of 1000 (max. 500000)
- 8489 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 843 PDF objects out of 1000 (max. 8388607)
+ 735 compressed objects within 8 object streams
+ 218 named destinations out of 1000 (max. 500000)
+ 10640 words of extra memory for PDF output out of 12000 (max. 10000000)
 
