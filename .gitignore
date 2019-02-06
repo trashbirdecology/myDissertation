@@ -7,10 +7,11 @@
 
 # remove builds
 _book/
-_bookdown_files/
-*.pdf
+_bookdown_files/*.pdf
 chapterFiles/appendix_predPreyExample/plots/.png
 chapterFiles/appendix_paleoExample/plots/*.png
+*.pdf
+*.md
   
 
 # remove log files
