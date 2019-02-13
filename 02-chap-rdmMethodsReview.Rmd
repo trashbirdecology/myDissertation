@@ -3,7 +3,9 @@
 ## Introduction
 There is a disparity among the number of methods proposed for detecting ecological regime shifts and those used by practitioners. Despite the availability of qunatitative methods and other models for detecting abrupt shifts in numerical observations in other fields, new methods are continuously introduced into the ecological literature, often independent of methods already well-developed in other fields [@ref(andersen_xxx_YYYY)]. Insert and example of a method that could be used in ecology but is alrewady well-developed in another field. Perhaps exacerbating the lack of application of existing methods is the paucity of studies applying these methods to empirical systems data. 
 
-In this chapter, I synthesis the regime shift literature as it relates to quantitative methods for identifying regime shifts (regime detection methods, RDMs) and provide the following:
+In this chapter I briefly review the regime shift literature as it relates to quantitative methods proposed as "regime detection methods" (RDMs). This chapter is meant to serve as a preface to the data Chapters (#fiGuide)
+
+
   1. Existing RDMs    
     - in ecological journals  
     - whether they were introduced using empirical data  
