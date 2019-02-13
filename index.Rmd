@@ -75,12 +75,10 @@ If you receive a duplicate label error after knitting, make sure to delete the i
 
 
 ```{r include_packages, include = FALSE}
-# This chunk ensures that the thesisdown package is
-# installed and loaded. This thesisdown package includes
-# the template files for the thesis and two functions
-# used for labeling and referencing
 if(!require(devtools))
   install.packages("devtools", repos = "http://cran.rstudio.com")
+if(!require(here))
+  install.packages("here", repos = "http://cran.rstudio.com")
 if(!require(dplyr))
     install.packages("dplyr", repos = "http://cran.rstudio.com")
 if(!require(ggplot2))
@@ -98,8 +96,6 @@ if(!require(tidyverse)){
 
   library(devtools)
   library(tidyverse)
-  library(devtools)
-
 ```
 
 
