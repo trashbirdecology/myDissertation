@@ -12,6 +12,7 @@ library(here)
 
 # Define figure out directory ---------------------------------------------
 figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
+animDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/animations")
 
 
 # Create directories ------------------------------------------------------
@@ -45,7 +46,6 @@ dir.create(paste0(resultsDir, "/distances"))
 
 
 # Get the BBS data --------------------------------------------------------
-
 
 
 # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
@@ -82,7 +82,7 @@ if (downloadBBSData == TRUE) {
     # e. Clear object from memory
     rm(bbsData)
   } # end section I. loop
-} else
+}else
   (message(
     paste0(
       "NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",
@@ -101,7 +101,7 @@ cs <-
   c(0.5, 0.5)  # default is cell size 0.5 deg lat x 0.5 deg long
 
 # Create the grid
-routes_gridList <- createSamplingGrid(cs = cs, country = "USA")
+routes_gridList <- createSamplingGrid(cs = cs)
 
 # Define the components of the sampling grid as individual objects
 routes_grid <- routes_gridList$routes_grid 
@@ -130,8 +130,10 @@ for (i in 1:length(featherNames)) {
 # Get state layer
 library(maps)
 us_states <- map_data("state")
+
 # get military bases
-milBases <- getMilBases()
+milBases <- bbsRDM::getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
+                                shpfile = "MIRTA_Points")
 
 # Get a df of just the BBS route locations
 routePts <- routes_grid %>%
@@ -141,7 +143,6 @@ routePts <- routes_grid %>%
 # Source the plotting script ----------------------------------------------
 
 ## This saves various plots to file in figDir
-
 
 # Subset the data by AOU codes --------------------------------------------
 feathers <-
@@ -227,8 +228,6 @@ years.use  <-
 #       dplyr::rename(variable = aou,
 #                     value = stoptotal)
 # 
-# 
-# 
 #     if (nrow(birdData) == 0){
 #       next
 #     }
@@ -257,7 +256,7 @@ results_ews <-
   # assign the end of the window as the cellID
   mutate(cellID = cellID_max)
 
-## FYI: varibles will liekly be missing (NA) for metricTypes FI and VI, because these are calculated across ALL variables at a time...
+## FYI: varibles will likely be missing (NA) for metricTypes FI and VI, because these are calculated across ALL variables at a time...
 
 # b. Import distance results
 results_dist <-
@@ -311,22 +310,32 @@ sortVar.lab <-
          "longitude")
 
 milBases
+
+
 # Plot indiviudal transects -----------------------------------------------
 # Specify the dirId (the transect id for whatever direction is specified above)
 for(i in 1:length(unique(plotResults$dirID))){
   for(j in 1:length(unique(plotResults$direction))){
     
 dirID.ind <- 13
-pl1 <- sort.year.line(plotResults,
+pl1[i] <- sort.year.line(plotResults,
                  metric.ind,
                  year.ind,
                  dirID.ind,
                  scale = T,
-                 center = T) +
-        # geom_vline(aes(xintercept = -96.8), color = "grey", linetype = 2)
+                 center = T) 
+
+pl1[i]+
+  # Here comes the gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear')
+
+# +
+#         geom_vline(aes(xintercept = -96.8), color = "grey", linetype = 2)
+
 pl1_fn <- paste0(figDir, "/transect_", dirID.ind,"_", direction,".png")
 ggsave(filename = pl1_fn, plot = last_plot())
-
    }
  }
 
