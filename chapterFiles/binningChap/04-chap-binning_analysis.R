@@ -1,10 +1,7 @@
 ## Analysis for chapter on binning
-# Libraries, steup --------------------------------------------------------
-## Run in index.RMD
+# This should be run only if you need to re-calculate metrics, or get new metrics. 
 
 # Define figure out directory ---------------------------------------------
-figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
-animDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/animations")
 
 # Create directories ------------------------------------------------------
 # a. Create a directory to store and/or load the BBS data as feathers
@@ -30,6 +27,13 @@ dir.create(paste0(resultsDir, "/ews"))
 
 # d. Create directory for storing distance travelled results
 dir.create(paste0(resultsDir, "/distances"))
+
+
+
+# e. Create dir to store rObjects
+rObjs <- paste0(here::here(),
+                "/chapterFiles/binningChap/rObjs")
+dir.create(rObjs)
 
 
 # Get the BBS data --------------------------------------------------------
@@ -84,8 +88,9 @@ if (downloadBBSData == TRUE) {
 cs <-
   c(0.5, 0.5)  # default is cell size 0.5 deg lat x 0.5 deg long
 
-# Create the grid
+# Create and save the sampling grid. 
 routes_gridList <- createSamplingGrid(cs = cs)
+saveRDS(routes_gridList, file = paste0(rObjs, "/samplingGrid.RDS"))
 
 # Define the components of the sampling grid as individual objects
 routes_grid <- routes_gridList$routes_grid 
@@ -111,8 +116,7 @@ for (i in 1:length(featherNames)) {
   
 }
 
-# Get state layer
-library(maps)
+# Get USA states layer
 us_states <- map_data("state")
 
 # get military bases
@@ -124,19 +128,16 @@ routePts <- routes_grid %>%
   distinct(lat, long)
 
 
-# Source the plotting script ----------------------------------------------
-
-## This saves various plots to file in figDir
-
 # Subset the data by AOU codes --------------------------------------------
 feathers <-
   subsetByAOU(myData = feathers, subset.by = 'remove.shoreWaderFowl')
 
+
+# BEGIN USER-DEFINED PARAMTERS *** --------------------------------------------
 # Define metric calculation parameters ------------------------------------
 
 # First, define the parameters required to calcualte the metrics.
 # Which metrics do you want to calculate?
-
 metrics.to.calc <- c("distances", "ews")
 
 # If calculating "EWSs, you can calculate select metrics.
@@ -180,147 +181,54 @@ T = 10
 years.use  <-
   years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort()
 
-# CALCULATE METRICS! # UNSILENCE TO RUN! -------------------------------------------------------
-# for (j in 1:length(dir.use)) {
-#   # For east-west analysis
-#   if (direction == "East-West"){
-#     birdsData <- feathers %>%
-#       filter(rowID == dir.use[j]) %>%
-#       mutate(direction = direction,
-#              dirID = dir.use[j])
-#   }
-#   # For south-north analysis
-#   if (direction == "South-North"){
-#     birdsData <- feathers %>%
-#       filter(colID == dir.use[j]) %>%
-#       mutate(direction = direction,
-#              dirID = dir.use[j])
-#   }
-#
-#
-#
-#   if (nrow(birdsData) < min.samp.sites) {
-#     next(print(paste0("Not enough data to analyze. Skipping j-loop ", dir.use[j])))
-#   }
-#
-#
-# 
-#   for (i in 1:length(years.use)){
-#     # a. Subset the data according to year, colID, rowID, state, country, etc.x
-#     birdData <- birdsData %>%
-#       filter(year == years.use[i]) %>%
-#       dplyr::rename(variable = aou,
-#                     value = stoptotal)
-# 
-#     if (nrow(birdData) == 0){
-#       next
-#     }
-# 
-#     # b. Munge the data further
-#     birdData <- mungeSubsetData(birdData)
-# 
-# 
-#     ## This function analyzes the data and writes results to file (in subdirectory 'myResults') as .feather files.
-#     # browser()
-#     calculateMetrics(dataIn = birdData, metrics.to.calc, direction = direction,  yearInd = years.use[i])
-# 
-#     print(paste0("End i-loop (years) ", i, " of ",  length(years.use)))
-# 
-#   } # end i-loop
-# 
-#   print(paste0("End j-loop (transects) ", j, " of ",  length(dir.use)))
-# } # end j-loop
+# END   USER-DEFINED PARAMETERS *** ---------------------------------------------------
+# CALCULATE THE METRICS  -------------------------------------------------------
+for (j in 1:length(dir.use)) {
+  # For east-west analysis
+  if (direction == "East-West"){
+    birdsData <- feathers %>%
+      filter(rowID == dir.use[j]) %>%
+      mutate(direction = direction,
+             dirID = dir.use[j])
+  }
+  # For south-north analysis
+  if (direction == "South-North"){
+    birdsData <- feathers %>%
+      filter(colID == dir.use[j]) %>%
+      mutate(direction = direction,
+             dirID = dir.use[j])
+  }
 
 
-# Import the calculated metrics ------------------------------------------------------------
-results_ews <-
-  importResults(resultsDir = resultsDir,
-                myPattern = '/ews',
-                subset.by = direction) %>%
-  # assign the end of the window as the cellID
-  mutate(cellID = cellID_max)
 
-## FYI: varibles will likely be missing (NA) for metricTypes FI and VI, because these are calculated across ALL variables at a time...
-
-# b. Import distance results
-results_dist <-
-  importResults(resultsDir = resultsDir,
-                myPattern = '/distances',
-                subset.by = direction)
+  if (nrow(birdsData) < min.samp.sites) {
+    next(print(paste0("Not enough data to analyze. Skipping j-loop ", dir.use[j])))
+  }
 
 
-# Join Results with Grid --------------------------------------------------
+  for (i in 1:length(years.use)){
+    # a. Subset the data according to year, colID, rowID, state, country, etc.x
+    birdData <- birdsData %>%
+      filter(year == years.use[i]) %>%
+      dplyr::rename(variable = aou,
+                    value = stoptotal)
 
-## Get the spatial sampling grid coordinates
-coords_grd <-
-  cbind(routes_gridList$sp_grd@data,
-        coordinates(routes_gridList$sp_grd)) %>%
-  rename(lat = s2,
-         long = s1,
-         cellID  = id)
+    if (nrow(birdData) == 0){
+      next
+    }
 
-## Join coords_grd with results
-# note: a full join will likely produce many cells with NO results data..
-# but NO lat or long should == NA!
-results_dist <-
-  full_join(coords_grd,
-            results_dist) %>%
-  na.omit(metricType)
-
-results_ews <-
-  full_join(coords_grd,
-            results_ews) %>%
-  na.omit(metricType) %>%
-  dplyr::select(-cellID_min, -cellID_max,-winStart  ,-winStop)
-
-## Set coordinate system and projection for both data sets! (the same)
-coordinates(results_dist) <-
-  coordinates(results_ews) <- c("long", "lat")
-sp::proj4string(results_dist) <- sp::proj4string(results_ews) <-
-  sp::CRS("+proj=longlat +datum=WGS84")
+    # b. Munge the data further
+    birdData <- mungeSubsetData(birdData)
 
 
-# Plotting paramters ------------------------------------------------------
+    ## This function analyzes the data and writes results to file (in subdirectory 'myResults') as .feather files.
+    # browser()
+    calculateMetrics(dataIn = birdData, metrics.to.calc, direction = direction,  yearInd = years.use[i])
 
-plotResults <- results_dist
+    print(paste0("End i-loop (years) ", i, " of ",  length(years.use)))
 
-metric.ind <- "s"
-        # c('dsdt',"s") # the metrics to print
-year.ind <- unique(plotResults@data$year) %>% sort()
+  } # end i-loop
 
-sortVar.lab <-
-  ifelse(unique(plotResults@data$direction) == "South-North",
-         "latitude",
-         "longitude")
-
-milBases
-
-
-# Plot indiviudal transects -----------------------------------------------
-# Specify the dirId (the transect id for whatever direction is specified above)
-for(i in 1:length(unique(plotResults$dirID))){
-  for(j in 1:length(unique(plotResults$direction))){
-    
-dirID.ind <- 13
-pl1[i] <- sort.year.line(plotResults,
-                 metric.ind,
-                 year.ind,
-                 dirID.ind,
-                 scale = T,
-                 center = T) 
-
-pl1[i]+
-  # Here comes the gganimate specific bits
-  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
-  transition_time(year) +
-  ease_aes('linear')
-
-# +
-#         geom_vline(aes(xintercept = -96.8), color = "grey", linetype = 2)
-
-pl1_fn <- paste0(figDir, "/transect_", dirID.ind,"_", direction,".png")
-ggsave(filename = pl1_fn, plot = last_plot())
-   }
- }
-
-# END RUN -----------------------------------------------------------------
+  print(paste0("End j-loop (transects) ", j, " of ",  length(dir.use)))
+} # end j-loop
+print("END CALCULATIONS SECTION")

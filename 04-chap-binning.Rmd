@@ -1,10 +1,7 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-```{r include=FALSE}
-source('/chapterFiles/binningChap/04-chap-binning_analysis.R')
+```{r include=FALSE, cache=T}
+## Only run this if you need to calculate more metrics, or fix them.
+# source('/chapterFiles/binningChap/04-chap-binning_analysis.R')
+
 ```
 
 # An application of the Fisher Information binning method to spatiotemporal avian community data   

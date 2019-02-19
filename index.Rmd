@@ -81,13 +81,14 @@ If you receive a duplicate label error after knitting, make sure to delete the i
 ```{r include_packages, include = FALSE, message=F}
 list.of.packages <- c("ggplot2", "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
-                      "feather")
+                      "feather", "maps", 
+                      "inlabru")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages) >0 ){ install.packages(new.packages, dependencies = T)}
 
 ## Re-install often as these packages are in  development.
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
-devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
+devtools::install_github("trashbirdecology/regimedetectionmeasures", force = TRUE)
+devtools::install_github("trashbirdecology/bbsRDM", force = TRUE)
 
 # Load packages
 lapply(list.of.packages[!list.of.packages %in%  loadedNamespaces() ], library, character.only = TRUE)
