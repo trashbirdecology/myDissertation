@@ -1,8 +1,6 @@
 
 # Helper functions --------------------------------------------------------
 
-
-
 # USA map base plot
 usPlot <- ggplot()  +
   geom_polygon(

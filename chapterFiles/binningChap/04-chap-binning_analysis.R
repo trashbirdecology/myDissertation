@@ -1,22 +1,12 @@
 ## Analysis for chapter on binning
 # Libraries, steup --------------------------------------------------------
-## Re-install often as this package is under major development.
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = F)
-
-library(regimeDetectionMeasures)
-library(sp)
-library(raster)
-library(feather)
-library(bbsRDM)
-library(here)
+## Run in index.RMD
 
 # Define figure out directory ---------------------------------------------
 figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
 animDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/animations")
 
-
 # Create directories ------------------------------------------------------
-
 # a. Create a directory to store and/or load the BBS data as feathers
 bbsDir <- paste0(here::here(),
                  "/chapterFiles/binningChap/bbs_raw_data")
@@ -26,10 +16,7 @@ dir.create(bbsDir) # if already
 # If the bbs data already exists inside bbsDir, then we will create a logical to NOT download it (see below)
 if (length(list.files(bbsDir, pattern = "*.feather")) > 0) {
   downloadBBSData = FALSE
-} else
-  (
-    downloadBBSData = TRUE
-  )
+}else(downloadBBSData = TRUE)
 
 # If this returns a warning, proceed with caution as directory already exists, and results WILL be OVERRIDDEN.
 
@@ -46,10 +33,8 @@ dir.create(paste0(resultsDir, "/distances"))
 
 
 # Get the BBS data --------------------------------------------------------
-
-
 # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
-regions <- GetRegions()
+regions <- bbsRDM::GetRegions()
 
 # b. Create a series or one filenames for states, regions
 regionFileName <- regions$zipFileName %>% na.omit()
@@ -82,8 +67,7 @@ if (downloadBBSData == TRUE) {
     # e. Clear object from memory
     rm(bbsData)
   } # end section I. loop
-}else
-  (message(
+}else(message(
     paste0(
       "NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",
       bbsDir
@@ -132,10 +116,10 @@ library(maps)
 us_states <- map_data("state")
 
 # get military bases
-milBases <- bbsRDM::getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
+milBases <- getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
                                 shpfile = "MIRTA_Points")
 
-# Get a df of just the BBS route locations
+# Get a df of just   the BBS route locations
 routePts <- routes_grid %>%
   distinct(lat, long)
 
