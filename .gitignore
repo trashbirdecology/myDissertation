@@ -26,10 +26,8 @@ chapterFiles/appendix_paleoExample/plots/*.png
 *.rdb
 
 
-# ignore temp files
+# ignore  files
 *.feather
-*.png
-*.png
 chapterFiles/binningChap/bbs_raw_data/README.txt/README.txt
 chapterFiles/rsdmReview/gScholar_20190204.csv
 *.CPG
@@ -43,3 +41,4 @@ chapterFiles/rsdmReview/gScholar_20190204.csv
 
 # Do not remove images called in dissertation from file.
 !chapterFiles/binningChap/figures/figsCalledInDiss
+chapterFiles/binningChap/figures/*.png
