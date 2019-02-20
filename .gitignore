@@ -28,8 +28,6 @@ myDissertation.log
 
 # remove temp data
 
-
-
 *.feather
 *.png
 *.png
@@ -43,3 +41,6 @@ chapterFiles/rsdmReview/gScholar_20190204.csv
 *.shp
 *.xml
 *.shx
+
+# Do not remove images called in dissertation from file.
+!chapterFiles/binningChap/figures/figsCalledInDiss
