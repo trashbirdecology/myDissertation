@@ -106,6 +106,7 @@ ggplot(data = sysSol, aes(x = x1, y = x2)) +
   coord_fixed()
 ```
 
+
 ###Concepts behind the calculations  
 Although the numerical steps for calculating the derivatives-based FI are relatively straightforward, the concepts required to interpret the measure in the context of multiple variables is more complex. Here, we thoroughly discuss the concepts and assumptions behind FI calculation. Below, steps do not represent steps within the calculation, they represent the major concepts required 
 

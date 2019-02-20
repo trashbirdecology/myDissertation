@@ -47,3 +47,12 @@ chapterFiles/binningChap/figures/*.png
 
 # Keep the rendered .pdf copy
 !_book
+myDissertation_cache/latex/tab
+myDissertation_cache/latex/__packages
+myDissertation.out
+myDissertation.aux
+myDissertation.lof
+myDissertation.lot
+myDissertation.tex
+myDissertation.toc
+myDissertation.Rmd
