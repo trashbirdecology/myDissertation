@@ -15,10 +15,10 @@ chapterFiles/appendix_paleoExample/plots/*.png
   
 
 # remove log files
-myDissertation.log
 *.log
 
-
+# ignore generated html files,
+    *.html
 
 # remove rdata
 *.RData
@@ -26,8 +26,7 @@ myDissertation.log
 *.rdb
 
 
-# remove temp data
-
+# ignore temp files
 *.feather
 *.png
 *.png
