@@ -28,7 +28,7 @@ chapterFiles/appendix_paleoExample/plots/*.png
 
 # ignore  files
 *.feather
-chapterFiles/binningChap/bbs_raw_data/*
+chapterFiles/binningChap/bbs_raw_data
 chapterFiles/rsdmReview/gScholar_20190204.csv
 *.CPG
 *.dbf
