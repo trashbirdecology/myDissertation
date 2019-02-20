@@ -41,4 +41,6 @@ chapterFiles/rsdmReview/gScholar_20190204.csv
 
 # Do not remove images called in dissertation from file.
 !chapterFiles/binningChap/figures/figsCalledInDiss
+
+# But remove pngs created that aren't called in diss
 chapterFiles/binningChap/figures/*.png
