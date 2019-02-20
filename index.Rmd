@@ -72,13 +72,15 @@ If you'd like to include a comment that won't be produced in your resulting file
 <!--
 If you receive a duplicate label error after knitting, make sure to delete the index.Rmd file and then knit again.
 -->
-```{r chunkOpts}
+```{r chunkOpts, include = T, echo=F, warning=F, message=F}
 # Chunk defaults
+knitr::opts_chunk$set(cache = T, message = F, warning=F, include =T, echo=F, 
+                      fig.width=7, fig.height=7, fig.align='center', out.width = 7) 
 
 ```
 
 
-```{r include_packages, include = FALSE, message=F}
+```{r include_packages}
 list.of.packages <- c("ggplot2", "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
@@ -87,8 +89,8 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
 if(length(new.packages) >0 ){ install.packages(new.packages, dependencies = T)}
 
 ## Re-install often as these packages are in  development.
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = TRUE)
-devtools::install_github("trashbirdecology/bbsRDM", force = TRUE)
+devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
+devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
 
 # Load packages
 lapply(list.of.packages[!list.of.packages %in%  loadedNamespaces() ], library, character.only = TRUE)

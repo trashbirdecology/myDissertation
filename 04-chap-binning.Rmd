@@ -1,7 +1,8 @@
-```{r include=FALSE, cache=T}
+```{r include=T, cache=T}
 ## Only run this if you need to calculate more metrics, or fix them.
 # source('/chapterFiles/binningChap/04-chap-binning_analysis.R')
-
+figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
+figDissDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/figsCalledInDiss")
 ```
 
 # An application of the Fisher Information binning method to spatiotemporal avian community data   
@@ -20,7 +21,11 @@ In this chapter I present an application of the Fisher Information measure using
 ### Data: North American Breeding Bird Survey  
 I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information binning method. Although Fisher Information can be calculated using any number of variables, the binning method (see \@ref(derivatives)) requires many data points and a large number of observations at each sampling site or period of time. I therefore chose to using breeding bird abundances from a long-standing avian community survey, the North American Breeding Bird Survey (NABBS) (@pardieck_bbs_2017). 
 
-The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data. 
+The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data. 
+
+```{r bbsPoints,  fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
+knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png")) 
+```
 
 Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880). 
 
@@ -34,14 +39,18 @@ The Mission of the US Department of Defense is to provide military forces to det
 
 Much like other actively managed landscapes, miltiary bases are typically surrounded by non- or improperly-managed lands. Natural resource managers of military bases face environmental pressures within and surrounding their properties, yet their primary objectives are very different. Natural resource managers of military bases, whose primary objective is to maintain military readiness, are especially concerned with if and how broad-scale external forcings might influence their lands. Prominent concerns include invasive species, wildlife disease, and federally protected species (personal communication with Department of Defense natural resource managers at Eglin Air Force and Fort Riley military bases). For these reasons, natural resource managers attempt to create buffers along their perimeters (e.g., live fire/ammunitions suppression, wide fire breaks). Identifying the proximity of military bases to historic and modern ecological shifts may provide insight into the effectiveness of their natural resource management efforts.
 
+```{r milBases, echo = FALSE, fig.align='center', fig.cap = 'Locations of U.S. military bases in our study area.'}
+knitr::include_graphics( paste0(figDissDir, "/milBases.png"))
+```
+
 
 #### Focal military bases
 The NABBS routes chosen for analyses in this Chapter lie within or near two two US Department of Defense properties: Fort Riley military base (located at approximately 39.110474 ??, -96.809677 ??; Kansas, USA) and Eglin Air Force base (located at approximately 30.459588 ??, -86.548459 ??; Florida USA). These military bases were used for research conducted under the a grant funded by the Department of Defense's Strategic Environmental Research and Development Program (SERDP; RSCON-15-01:RC 3150).
 
-Eglin Air Force and Fort Riley military bases serve as ideal reference sites for this study. The natural resource management teams are active on each base and have been for at least two decades and each uses wildfire as a management technique. Fort Riley military base is especially relevant to regime shift detection method exploratory analysis. Woody encroachment of the Central Great Plains over the last century has triggered shifts in dominant vegetative cover and diversity (Ratajczak et al. 2012) in the area surrounding Fort Riley military base (e.g., Van Auken 2009). This phenomena should present itself as a regime boundary should Fisher Information be a robust regime shift detection method. Eglin Air Force base is embedded within a heavily developed matrix, and consequently has experienced less pronounced effects at broad spatial extent and over longer periods. Therefore, the ecological communities (and the data) surrounding Eglin Air Force base may exhibit a greater amount of noise, making the effect size of a regime shift and consequently the effect size smaller and more difficult to detect. For these reasons, Eglin Air Force and Fort Riley military bases are ideal locations for an exploratory analysis of the Fisher Information binning method as a regime shift detection method.
+Eglin Air Force and Fort Riley military bases (\@ref(fig:basesOfInterestMap)) serve as ideal reference sites for this study. The natural resource management teams are active on each base and have been for at least two decades and each uses wildfire as a management technique. Fort Riley military base is especially relevant to regime shift detection method exploratory analysis. Woody encroachment of the Central Great Plains over the last century has triggered shifts in dominant vegetative cover and diversity (Ratajczak et al. 2012) in the area surrounding Fort Riley military base (e.g., Van Auken 2009). This phenomena should present itself as a regime boundary should Fisher Information be a robust regime shift detection method. Eglin Air Force base is embedded within a heavily developed matrix, and consequently has experienced less pronounced effects at broad spatial extent and over longer periods. Therefore, the ecological communities (and the data) surrounding Eglin Air Force base may exhibit a greater amount of noise, making the effect size of a regime shift and consequently the effect size smaller and more difficult to detect. For these reasons, Eglin Air Force and Fort Riley military bases are ideal locations for an exploratory analysis of the Fisher Information binning method as a regime shift detection method.
+```{r basesOfInterestMap, echo = FALSE, fig.align='center', fig.cap = 'Locations of focal U.S. military bases, Eglin Air Force Base (AFB) and Fort Riley Military Base.'}
+# knitr::include_graphics(figDissDir, "/basesOfInterestMap.png")
 
-```{r bbsPoints, echo = FALSE, fig.align='center', fig.cap = 'Transect sampling design of East-West-running transects used to identify spatial regime boundaries.'}
-knitr::include_graphics("chapterFiles/binningChap/figures/bbsPoints.png") 
 ```
 
 #### Spatial sampling grid 
@@ -50,16 +59,10 @@ To our knowledge, @sundstrom_detecting_2017 is the only study to use the Fisher 
 I constructed a gridded system across much of the continental United States and Canada to ameliorate potential effects of site selection bias. This method allows one to overlay regime detection metric results over various vegetation characteristic maps (e.g., ecoregions), rather than fit the sampling scheme to an ecoregion. The former also allows for comparison of results across time, and is especially useful when vegetation zones, or ecoregions, shift over time. 
 
 The gridded system comprises North-South and East-West running transects transects running in either North-South or East-West directions. Here, I examine in detail only a single North-South and a single East-West transect, such that they contain the Eglin Air force and Fort Riley military bases, respectively.
-
-```{r nsRouteMap, echo = FALSE, fig.align='center', fig.cap = 'A single, North-South transect of Breeding Bird Survey Routes used to calculate the Fisher Information binning measure and univariate early-warning indicators. '}
-
-# knitr::include_graphics("chapterFiles/binningChap/figures/nsRouteMap.png") 
-
-```
-
 ```{r ewRouteMap, echo = FALSE, fig.align='center', fig.cap = 'A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information binning measure. Military base locations can be used to visually estimate the proximity [of Department of Defense properties] to potential regime boundaries.'}
 
-# knitr::include_graphics("chapterFiles/binningChap/figures/ewRouteMap.png") 
+knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_row18.png"))
+
 ```
 
 #### Selecting routes for temporal analysis  
@@ -111,7 +114,7 @@ Here I define a potential regime change as a point in time or space that exhibit
 
 Interpreting the Fisher Information binning measure is currently a qualitative effort. I interpret an increase in I as increasing system order (Mantua 2004), and periods of relatively high values of I as the system occurring in a single state, or fluctuating around a single attractor. A rapid change in I indicates the system is no longer orderly and may be undergoing a reorganization phase (Holling 1992). Whether Fisher Information can identify a switch among basins of attraction within a single, stable state (or around a single attractor) remains unknown, as does the number of states which a system can occupy.
 
-When a system occurs within any number of states equally, i.e., p(s) is equal for each state, both the derivative, ($\frac{dq(s)}{ds}$, and $I$ are zero. As ($\frac{dq(s)}{ds}$  approaches ???, we infer the system is approaching a stable state, and as (dq(s))???ds approaches zero the system is showing no preference for a single stable state and is on an unpredictable trajectory. \@ref(eq:fiAmplitude)  bounds the potential values of Fisher Information at $[0, 8]$, whereas \@ref(eq:fiGeneral1922), \@ref(eq:fiAdapted), and \@ref(eq:derivativesFI) have are positively unbounded $[0, ##INFINITY)$. If the Fisher Information is assumed to represent the probability of the system being observed in some state, s, then the absolute value of the Fisher Information binning measure is relative within a single datum (system). Thus, trends in Fisher Information should be interpreted relatively, but not absolutely.
+When a system occurs within any number of states equally, i.e., p(s) is equal for each state, both the derivative, ($\frac{dq(s)}{ds}$, and $I$ are zero. As ($\frac{dq(s)}{ds}$  approaches ???, we infer the system is approaching a stable state, and as (dq(s))???ds approaches zero the system is showing no preference for a single stable state and is on an unpredictable trajectory. \@ref(eq:fiAmplitude)  bounds the potential values of Fisher Information at $[0, 8]$, whereas \@ref(eq:fiGeneral1922), \@ref(eq:fiAdapted), and \@ref(eq:derivativesFI) have are positively unbounded $[0, \infty)$. If the Fisher Information is assumed to represent the probability of the system being observed in some state, s, then the absolute value of the Fisher Information binning measure is relative within a single datum (system). Thus, trends in Fisher Information should be interpreted relatively, but not absolutely.
 
 
 ## Discussion  

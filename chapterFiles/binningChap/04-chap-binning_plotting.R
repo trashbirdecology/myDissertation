@@ -1,3 +1,8 @@
+
+# GGPLOT custom defs ------------------------------------------------------
+theme1 <-theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+      panel.background = element_blank(), axis.line = element_line(colour = "black"))
+
 # Helper Functions --------------------------------------------------------
 
 remove_outliers <- function(x, na.rm = TRUE, ...) {
@@ -10,12 +15,40 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
   return(y)
 }
 
+# Create function to identify closest military base to those of interst to me.
+closestSite <- function(mbs, site, ndeg = 5, by = 0.1){
+  y = 1:999
+  ndeg = ndeg + by
+  
+  for(i in 1:1000){
+    
+    ndeg = ndeg - by
+    if(ndeg < 0){break("could not find a single closest site. try new deg and/or by values.")}
+    
+    y = mbs %>% filter(mbs$lat <  site$lat+ ndeg & 
+                         mbs$lat > site$lat - ndeg   & 
+                         mbs$long  > site$long - ndeg & 
+                         mbs$long < site$long + ndeg)
+    
+    if(length(y)==1){break}
+  }
+  
+  print(paste0("Closest base is within ", paste(ndeg), " degrees lat and long of your site."))
+  
+  return(y)
+  
+}
+
 # Directories: define -----------------------------------------------------
 if (!exists("resultsDir")) {
   resultsDir <- paste0(here::here(),
                        "/chapterFiles/binningChap/myResults")
 }
+
 figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
+
+figDissDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/figsCalledInDiss")
+
 animDir <-
   paste0(here::here(),
          "/chapterFiles/binningChap/figures/animations")
@@ -40,7 +73,7 @@ results_dist <-
                 subset.by = direction)
 
 
-# Spatial sampling grid - munging with results --------------------------------------------------
+# Import spatial sampling grid + join with results --------------------------------------------------
 
 #Import the sampling grid
 sampGrid <- readRDS(paste0(rObjs, "/samplingGrid.RDS"))
@@ -51,6 +84,7 @@ sampGridCoords <-
   rename(lat = s2,
          long = s1,
          cellID  = id)
+
 
 ## Join coords_grd with results
 # note: a full join will likely produce many cells with NO results data..
@@ -67,11 +101,12 @@ results_ews <-
   dplyr::select(-cellID_min,-cellID_max, -winStart  , -winStop)
 
 ## Set coordinate system and projection for both data sets! (the same)
-coordinates(results_dist) <-
-  coordinates(results_ews) <- c("long", "lat")
+coordinates(results_dist) <-  coordinates(results_ews) <- c("long", "lat")
 sp::proj4string(results_dist) <- sp::proj4string(results_ews) <-
   sp::CRS("+proj=longlat +datum=WGS84")
 
+# spTransform(results_dist) <- spTransform(results_ews) <-
+#   sp::CRS("+proj=longlat +datum=WGS84")
 
 
 # User-defined plotting parameters ------------------------------------------------------
@@ -103,8 +138,6 @@ if (to.plot == "ews") {
 
 
 # BASEMAP: US STATES  --------------------------------------------------------
-library(maps)
-
 us_states <- map_data("state")
 
 usBaseMap <-  ggplot() +
@@ -112,48 +145,81 @@ usBaseMap <-  ggplot() +
     data = us_states,
     aes(x = long, y = lat, group = group),
     colour = "black",
-    fill = "white",
-    alpha = 0
-  )
+    fill = "grey")+
+    theme1+
+  coord_fixed(1.3)
+
+# usBaseMap
+
+# BASEMAP: US STATES  + BBS ROUTES --------------------------------------------------------
+routesMap <- usBaseMap +
+  geom_point(data = sampGrid$routes_grid,
+             aes(x=long, y = lat), color = "black", size = .75)+
+  theme_bw()+
+  theme1
+# routesMap
+
+ggsave(filename = paste0(figDissDir, "/bbsRoutesUsed.png"), plot = routesMap)
+
+# BASEMAP: GRID SAMPLING DESIGN -------------------------------------------
+
+# I would really like to get a fig of sampling grid with outlines of e.g., one row. But I cannot find a way to integrate with ggplot, so I will resort to plotting single dirIDs on the route map.
+# spplot(sampGrid$sp_grd)
+if(direction == "East-West"){
+routesMapRowEx <- usBaseMap +
+  geom_point(data = sampGrid$routes_grid %>% filter(rowID == 18),
+             aes(x=long, y = lat), color = "red", size = 1)+
+  theme_bw()+
+  theme1
+ggsave(filename = paste0(figDissDir, "/transectSamplingEx_row18.png"), plot = routesMapRowEx)
+
+}
+
 
 # BASEMAP: MILITARY BASES -------------------------------------------------
 milBases <- getMilBases()
 
-
-milBases.df <- milBases %>% 
+# Download the military base points shapefiles only if its not in mem (takes a minute or so)
+if(!exists(milBases)){milBases.df <- milBases %>% 
   as.data.frame() %>% 
   rename(lat = coords.x2, long = coords.x1)
-
-
-usBaseMap +
-  geom_point(data = milBases.df, aes(x = long, y = lat, color = ))
-
-
-riley <- data.frame(long= -96.788448, lat = 39.199983)
-eglin <- data.frame(long= -86.554, lat = 30.458)
-
-closestSite <- function(mbs, site, coords, ndeg = 5, by = 1e-2){
-  y = NULL
-  while(length(y != 1) & ndeg > 0){
-  ndeg = ndeg - by  
-      y = mbs %>% filter(mbs$lat <  site$lat+ ndeg & 
-                   mbs$lat > site$lat - ndeg   & 
-                   mbs$long  > site$long - ndeg & 
-                   mbs$long < site$long + ndeg
-      )
-  print(paste0("too many sites within ", ndeg, " degrees"))
-  }
-  
-  y
-  
 }
+milBasesMap <- usBaseMap +
+  geom_point(data = milBases.df, aes(x = long, y = lat), color = "red", size = 0.75)+
+  xlim(c(min(sampGrid$routes_grid$long), max(sampGrid$routes_grid$long)))+
+  ylim(c(min(sampGrid$routes_grid$lat), max(sampGrid$routes_grid$lat)))+
   
-mbs = milBases.df; site = riley
-closestMB(x = milBases.df$lat, your.number = riley$lat, coords = milBases.df)
-closestMB(x = milBases.df$long, your.number = riley$long, coords = milBases.df)
-closestMB(x = milBases.df$lat, your.number = riley$lat, coords = milBases.df)
+ggsave(filename = paste0(figDissDir, "/milBases.png"), plot = milBasesMap)
 
-                      
+milBasesRoutesMap <- routesMap +
+  geom_point(data = milBases.df, aes(x = long, y = lat), color = "red", size = 0.75)+
+  xlim(c(min(sampGrid$routes_grid$long), max(sampGrid$routes_grid$long)))+
+  ylim(c(min(sampGrid$routes_grid$lat), max(sampGrid$routes_grid$lat)))
+
+ggsave(filename = paste0(figDissDir, "/milBasesAndRoutes.png"), plot = milBasesRoutesMap)
+
+
+  
+# define approx. loc. of bases of interest. 
+rileyApprox <- data.frame(long= -96.788448, lat = 39.199983, base = "riley")
+eglinApprox <- data.frame(long= -86.554, lat = 30.458, base = "riley")
+rm(rileyApprox); rm(eglinApprox)
+
+
+# hopefully correct locations for bases.
+basesOfInterest <- rbind(
+  closestSite(milBases.df, rileyApprox, ndeg = 3, by = 0.1) %>% mutate(name = "Fort Riley"),
+  closestSite(milBases.df, eglinApprox, ndeg = 3, by = 0.1) %>%  mutate(name = "Eglin AFB")
+)
+
+
+basesOfIntMap <- usBaseMap + 
+  geom_point(data = basesOfInterest, aes(x = long, y = lat), color = "darkred", shape=18 , size = 4)+
+  geom_text(data = basesOfInterest, aes(x =long, y = lat, label = name), nudge_x = 0, nudge_y = 2, color = "darkred", size = 5)
+
+ggsave(filename = paste0(figDissDir, "/basesOfInterestMap.png"), plot = basesOfIntMap)
+
+               
 # BEGIN NON-SPATIAL PLOTTING ----------------------------------------------
 
 # Plot indiviudal transects -----------------------------------------------
@@ -256,9 +322,7 @@ for (j in 1:length(unique(plotResults$direction))) {
       
       ggsave(
         filename = fn,
-        plot = p,
-        height = 8,
-        width = 11
+        plot = p
       )
       
     }
@@ -266,6 +330,7 @@ for (j in 1:length(unique(plotResults$direction))) {
 
 
 ## plot around Fort Riley on USA map, each metric
+for(i in 1:nrow(basesOfInterest)){
 for (j in 1:length(unique(plotResults$direction))) {
   for (k in 1:length(unique(metric.ind))) {
     for (l in 1:length(unique(plotResults$year))) {
@@ -273,26 +338,22 @@ for (j in 1:length(unique(plotResults$direction))) {
       metric =    unique(metric.ind)[k]
       year = unique(plotResults$year)[l]
       
+      base = basesOfInterest[i,]
+      
       temp <- plotResults %>%
         as.data.frame() %>%
         filter(metricType == metric)
       
       
-      
       p <-
         ggplot(aes(x = long, y = lat, fill = metricValue), data = temp) + geom_tile() +
-        geom_polygon(
-          data = us_states,
-          aes(x = long, y = lat, group = group),
-          colour = "black",
-          fill = "white",
-          alpha = 0
-        ) +
-        coord_equal() +
+       coord_equal() +
         facet_wrap( ~ year, ncol = 1) +
         guides(fill = guide_legend(title = paste(metric))) +
         theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm")) +
-        xlim(c(-125 ,-65))
+          xlim(c(base$long- 4, base$long + 4))+
+          ylim(c(base$lat- 4, base$lat + 4))+
+        title(paste0("Military base: ", base$COMPONENT, " ", base$name))
       
       
       if (metric.ind[k] == "dsdt") {
@@ -317,12 +378,12 @@ for (j in 1:length(unique(plotResults$direction))) {
       }
       
       
-      
       fn <-
         paste0(
           figDir,
-          "/usaAllTsects_",
-          plotResults$year[l],
+          "/base_",
+          base$name,
+          "_",
           direction,
           "_metric_",
           metric,
@@ -331,15 +392,12 @@ for (j in 1:length(unique(plotResults$direction))) {
       
       ggsave(
         filename = fn,
-        plot = p,
-        height = 8,
-        width = 11
-      )
+        plot = p)
       
     }
   }
 }
-
+}
 
 
 # END SPATIAL-PLOTTING ----------------------------------------------------
@@ -347,67 +405,15 @@ for (j in 1:length(unique(plotResults$direction))) {
 
 
 
-# END RUN -----------------------------------------------------------------
+# END RUN -- NEED TO EDIT THESE!-----------------------------------------------------------------
 
 
 
 
 
 
-# Plot the BBS routes, mil bases ------------------------------------------
 
-plot_routes <- usplot +
-  xlim(min(routePts$long) - 2, max(routePts$long)) +
-  ylim(min(routePts$lat), max(routePts$lat) + 2) +
-  geom_point(
-    data = routePts,
-    aes(x = long, y = lat, color = "bbsRoutes"),
-    size = .4,
-    show.legend = TRUE
-  ) +
-  xlab ("longitude") + ylab("latitude") +
-  theme(legend.position = "bottom") +
-  # theme(legend.position= c(-75,35))+
-  scale_colour_manual(name = "",
-                      values = c(bbsRoutes = "black"))#, myline2="red"))
-plot_routes # plot of all bbs routes, simple map
-plot_routes_filename <- paste0(figDir, "/plot_routes.png")
-
-plot_routes_milbases <- plot_routes +
-  geom_point(
-    data = coordinates(milBases) %>% as.data.frame(),
-    aes(
-      x = milBases@coords[, 1],
-      y = milBases@coords[, 2],
-      color = "milBase"
-    ),
-    size = .8,
-    show.legend = TRUE
-  ) +
-  xlab ("longitude") + ylab("latitude") +
-  theme(legend.position = "bottom") +
-  scale_colour_manual(name = "",
-                      values = c(bbsRoutes = "black", milBase  = "red")) +
-  xlim(-125, -69)
-
-plot_routes_milbases
-plot_routes_milbases_filename <-
-  paste0(figDir, "/plot_routes_milbases.png")
-
-## Save the figures to file
-ggsave(filename = plot_routes_filename,
-       plot_routes,
-       width = 12,
-       height = 9)
-ggsave(
-  filename = plot_routes_milbases_filename,
-  plot_routes_milbases,
-  width = 12,
-  height = 9
-)
-
-
-# Plot example transect COL ----------------------------------------------
+# # Plot example transect COL ----------------------------------------------
 
 tmp <- routes_grid %>%
   distinct(lat, long, .keep_all = T) %>%
@@ -433,9 +439,7 @@ plot_tsect # plot of all bbs routes, simple map
 plot_filename <- paste0(figDir, "/plot_tsect_colEx.png")
 ## Save the figures to file
 ggsave(filename = plot_filename,
-       plot_tsect,
-       width = 12,
-       height = 9)
+       plot_tsect)
 
 
 # Plot transect example with military bases -------------------------------
@@ -463,9 +467,7 @@ plot_filename <- paste0(figDir, "/plot_tsect_colEx_mb.png")
 
 ## Save the figures to file
 ggsave(filename = plot_filename,
-       plot_tsect_mb,
-       width = 12,
-       height = 9)
+       plot_tsect_mb)
 
 
 # Plot example transect ROW ----------------------------------------------
@@ -500,6 +502,4 @@ plot_tsect_filename <- paste0(figDir, "/plot_tsect_rowEx.png")
 
 ## Save the figures to file
 ggsave(filename = plot_tsect_filename,
-       plot_tsect,
-       width = 12,
-       height = 9)
+       plot_tsect)
