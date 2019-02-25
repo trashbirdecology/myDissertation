@@ -4,12 +4,41 @@ output:
   html_document: default
 ---
 ```{r include=FALSE}
-source('/chapterFiles/binningChap/04-chap-binning_analysis.R')
+source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial.R')
 ```
 
 # An application of the Fisher Information binning method to spatiotemporal avian community data   
 ## Introduction    
-Numerous quantitative methods are proposed for identifying abrupt changes in ecological systems. Despite advances in the detecting regime changes in atmospheric, oceanic, and aquatic systems,  it still poses difficult to identify abrupt changes in complex terrestrial ecological systems (Scheffer et al. 2009). Few studies have rigorously tested the quantitative regime shift detection methods using observational data from real, ecological systems (@bestelmeyer_analysis_2011). Many of the advances in ecological regime shift detection theory have been made in the aquatic sciences (freshwater and marine, but especially freshwater lakes; see Carpenter et al. 2011, Batt et al. 2013). However, many of the methods (e.g., critical slowing down, variance, autoregression) which appear to be useful in aquatic systems do not readily translate to larger, more complex, terrestrial systems. Additional quantitative methods have been proposed in the ecological literature for handling observations from more complex systems (see \@ref(review)). Applications of these quantitative methods to real systems data, coupled with expert knowledge, are required to advance regime change theory. 
+
+Numerous quantitative methods are proposed for identifying abrupt changes, or regime shifts, in ecological systems (@andersen_ecological_2009, @roberts2018early). Despite the rapid rate at which these new methods enter the relevant literature, methods for detecting regime shifts remain largely in the theoretical domain. However, significant work has been done on systems exhibiting saddle-node bifurcations (or systems which have some 'tipping point'), where numerous methods for detecting "early-warning signals" (e.g., flickering, rising variance) have been tested in theoretical and empirical data (see @dakos_methods_2012 for an overview of these methods). 
+
+It is time to move these methods into a more operational, rather than theoretical, space. Testing these suggested RSDMs on empirical data is vital to this goal. 
+
+We 
+
+
+
+Although early-warning signals have proven useful in some systems (@carpenter2011early), most methods are applicable so sytems First, sudden shifts in dynamics may
+occur in the absence of underlying parameter
+changes (i.e., in the absence of the tipping point).
+
+
+Fisher Information was introduced as a potential method for 
+
+
+cases where systems lose their periodicity 
+@hastings2018transient
+
+Perhaps the easiest case is a
+situation where the population density shows a
+clear disappearance of periodic cycles of voles,
+lemmings, and grouse in Europe (59) (Fig. 1A), or
+the slow steady population decline in extinction
+debt phenomena (60).
+
+Few studies have rigorously tested the quantitative regime shift detection methods using observational data from real, ecological systems (@bestelmeyer_analysis_2011). Many of the advances in ecological regime shift detection theory have been made in the aquatic sciences (freshwater and marine, but especially freshwater lakes; see Carpenter et al. 2011, Batt et al. 2013). However, many of the methods (e.g., critical slowing down, variance, autoregression) which appear to be useful in aquatic systems do not readily translate to higher dimensional data. Fisher Information was introduced as a method for 
+
+Applications of these quantitative methods to real systems data, coupled with expert knowledge, are required to advance regime change theory. 
 
 Leading indicators of regime shifts using univariate data are well-tested on both theoretical and empirical data (e.g. Burthe et al., 2015). Commonly used indicators applied to time-series data include an index of variance, moments around the grand mean (skewness and kurtosis), and critical slowing down (Brock and Carpenter 2006). Although univariate indicators may provide insight into relatively simple systems, like small lakes and isolated wetlands (carpenter references), their reliability as indicators for complex systems is less certain. Leading indicators can be a reliable warning of impending shift (\@carpenterBrock2006), however, may prove most useful in systems of which we have mapped the suspected drivers and response mechanisms (Scheffer et al. 2009). Some methods have beeen adapted for spatially explicit data (Butitta et al 2017; Kefi et al. 2014). Some methods have been applied to early-warning indicators in whole systems (Carpenter et al. 2011), however, it is uncommon to have enough information to build reliable networks or food webs. Consequently, reliably measuring the ecological system at hand is often realistically (and financially) not possible.  
 

@@ -1,4 +1,5 @@
-## Analysis for chapter on binning
+## Analysis for chapter on using Fisher Information to identify spatial regimes
+
 # Libraries, steup --------------------------------------------------------
 ## Re-install often as this package is under major development.
 devtools::install_github("trashbirdecology/regimedetectionmeasures", force = F)
@@ -11,15 +12,15 @@ library(bbsRDM)
 library(here)
 
 # Define figure out directory ---------------------------------------------
-figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
-animDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/animations")
+figDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures")
+animDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures/animations")
 
 
 # Create directories ------------------------------------------------------
 
 # a. Create a directory to store and/or load the BBS data as feathers
 bbsDir <- paste0(here::here(),
-                 "/chapterFiles/binningChap/bbs_raw_data")
+                 "/chapterFiles/fisherSpatial/bbs_raw_data")
 dir.create(bbsDir) # if already
 
 
@@ -35,7 +36,7 @@ if (length(list.files(bbsDir, pattern = "*.feather")) > 0) {
 
 # b. Create a directory to store and/or load the BBS data as feathers
 resultsDir <- paste0(here::here(),
-                     "/chapterFiles/binningChap/myResults")
+                     "/chapterFiles/fisherSpatial/myResults")
 dir.create(paste0(resultsDir))
 
 # c. Create directory for storing early warning signal results

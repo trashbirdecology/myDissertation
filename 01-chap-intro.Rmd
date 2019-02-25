@@ -1,5 +1,7 @@
 # Introduction {#intro-chapter}
 
+** IF A REGIME SHIFT OCCURS AND NO ONE DETECTS IT -- IS IT A REGIME SHIFT? **
+
 Anthropogenic activity in the last few decades has drastically influenced the interations within and among Earth systems worldwide. The complexity of and drivers of changes in coupled human-natural systems is consequently altered, further limiting our ability to detect and predict change and impacts of change [@liu_complexity_2007; @scheffer_critical_2009]. 
 
 Early warning systems are developed to detect and predict abrupt changes in disparate systems, e.g. cyber security [@], infrastructure [@], banking crises [@davis_comparing_2008], and agricultural systems [@]. The need to develop and improve early warning systems for natural and coupled human-natural systems is exacerbated by the consequences of climate change and globalization, especially when the human-related stakes are high. 
@@ -7,7 +9,8 @@ Early warning systems are developed to detect and predict abrupt changes in disp
 ### Practicality of early warning systems
 
 Forecasting change is arguably the holy grail of ecology. The ability to forecast change, paired with an understanding of system interactions, provides opportunity to prevent or mitigate systemic change. Despite the plethora of regime shift theory and proposed early warning systems in the ecological literatures, early warning systems are currently of limited practical utility. I explain this paradox as a function of early warning systems having the following qualit(ies):
-  1. system or context specific; not generalizable   
+
+  1. system or context specific; not generalizable  (plus, deterministic functions are often not available for ecological systems) 
   1. require a large number of observations  
   1. difficult implementation  
   1. difficult interpretation  
@@ -15,7 +18,10 @@ Forecasting change is arguably the holy grail of ecology. The ability to forecas
   1. perform poorly under uncertainty  
   1. give no uncertaintiy around estimates  
   1. ignore observation error  
-Research in these areas will improve existing and inform future early warning systems, such that they are useful to practitioners and other end-users. In this dissertation I tackle __THE ABOCE NUMBERS LIST HERE__.
+Research in these areas will improve existing and inform future early warning systems, such that they are useful to practitioners and other end-users. In this dissertation I tackle __THE ABOVE NUMBERS LIST HERE__.
+
+
+
 
 ### Dissertation aims  
 
