@@ -1,0 +1,166 @@
+<<<<<<< HEAD:04-chap-fisherSpatial.Rmd
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r include=FALSE}
+source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial.R')
+=======
+```{r include=T, cache=T}
+## Only run this if you need to calculate more metrics, or fix them.
+# source('/chapterFiles/binningChap/04-chap-binning_analysis.R')
+figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
+figDissDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/figsCalledInDiss")
+>>>>>>> 69efe78d309af914c60c0660767c3bc43f749492:04-chap-binning.Rmd
+```
+
+# An application of the Fisher Information binning method to spatiotemporal avian community data   
+## Introduction    
+
+Numerous quantitative methods are proposed for identifying abrupt changes, or regime shifts, in ecological systems (@andersen_ecological_2009, @roberts2018early). Despite the rapid rate at which these new methods enter the relevant literature, methods for detecting regime shifts remain largely in the theoretical domain. However, significant work has been done on systems exhibiting saddle-node bifurcations (or systems which have some 'tipping point'), where numerous methods for detecting "early-warning signals" (e.g., flickering, rising variance) have been tested in theoretical and empirical data (see @dakos_methods_2012 for an overview of these methods). 
+
+It is time to move these methods into a more operational, rather than theoretical, space. Testing these suggested RSDMs on empirical data is vital to this goal. 
+
+We 
+
+
+
+Although early-warning signals have proven useful in some systems (@carpenter2011early), most methods are applicable so sytems First, sudden shifts in dynamics may
+occur in the absence of underlying parameter
+changes (i.e., in the absence of the tipping point).
+
+
+Fisher Information was introduced as a potential method for 
+
+
+cases where systems lose their periodicity 
+@hastings2018transient
+
+Perhaps the easiest case is a
+situation where the population density shows a
+clear disappearance of periodic cycles of voles,
+lemmings, and grouse in Europe (59) (Fig. 1A), or
+the slow steady population decline in extinction
+debt phenomena (60).
+
+Few studies have rigorously tested the quantitative regime shift detection methods using observational data from real, ecological systems (@bestelmeyer_analysis_2011). Many of the advances in ecological regime shift detection theory have been made in the aquatic sciences (freshwater and marine, but especially freshwater lakes; see Carpenter et al. 2011, Batt et al. 2013). However, many of the methods (e.g., critical slowing down, variance, autoregression) which appear to be useful in aquatic systems do not readily translate to higher dimensional data. Fisher Information was introduced as a method for 
+
+Applications of these quantitative methods to real systems data, coupled with expert knowledge, are required to advance regime change theory. 
+
+Leading indicators of regime shifts using univariate data are well-tested on both theoretical and empirical data (e.g. Burthe et al., 2015). Commonly used indicators applied to time-series data include an index of variance, moments around the grand mean (skewness and kurtosis), and critical slowing down (Brock and Carpenter 2006). Although univariate indicators may provide insight into relatively simple systems, like small lakes and isolated wetlands (carpenter references), their reliability as indicators for complex systems is less certain. Leading indicators can be a reliable warning of impending shift (\@carpenterBrock2006), however, may prove most useful in systems of which we have mapped the suspected drivers and response mechanisms (Scheffer et al. 2009). Some methods have beeen adapted for spatially explicit data (Butitta et al 2017; Kefi et al. 2014). Some methods have been applied to early-warning indicators in whole systems (Carpenter et al. 2011), however, it is uncommon to have enough information to build reliable networks or food webs. Consequently, reliably measuring the ecological system at hand is often realistically (and financially) not possible.  
+
+Contrary to univariate indicators of regime change, the Fisher Information measure is proposed as a method for identifying changes in a multivariate data set (Fisher 1922, Cabezas and Fath 2002, Karunanithi et al. 2008, Eason and Cabezas 2012, Eason et al. 2014, Ahmad et al. 2016). See Chapter \@ref(#derivatives) for a detailed explanation of the concept of Fisher Information. It is suggested that Fisher Information captures the ecological complexity of a system if given a set of observations which encompass the ecological drivers which dictate the state of the system. A relatively rapid change in the amount of Fisher Information is interpreted as a change in system configuration or orderliness (e.g., see Karunanithi et al. 2008). Fisher Information is rooted in statistics and in the physical sciences-it has only recently been applied to complex ecological and social-ecological systems (Frieden 1998; Fath et al.; Palowski et al). Despite its established use in identifying the degree of predictability of closed systems in physics, Fisher Information's utility in rigorously and universally assessing the state of complex ecological systems is not known. 
+
+In this chapter I present an application of the Fisher Information measure using what I call the 'binning' Fisher Information method (first proposed in {@karunanithi_detection_2008}; hereafter, binning method) to a broad-scale and long-running abundance time series in North America. I present both spatial and temporal applications of the Fisher Information measure to community data to provide an applied and baseline understanding of how the Fisher Information binning measure appears on these data. This chapter also serves as an exploratory study of the Fisher Information binning measure for identifying regime boundaries and change in both space and time.  		
+
+
+## Methods  
+
+### Data: North American Breeding Bird Survey  
+I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information binning method. Although Fisher Information can be calculated using any number of variables, the binning method (see \@ref(derivatives)) requires many data points and a large number of observations at each sampling site or period of time. I therefore chose to using breeding bird abundances from a long-standing avian community survey, the North American Breeding Bird Survey (NABBS) (@pardieck_bbs_2017). 
+
+The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data. 
+
+```{r bbsPoints,  fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
+knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png")) 
+```
+
+Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880). 
+
+### Study areas  
+Although the NABBS conducts surveys throughout much of North America, I limited analyses to the continental United States and parts of southern Canada. NABBS coverage of the boreal forests of Canada are sparse in space, and many routes in Mexico have fewer than 25 years of observations. I identified two strip-transects across large swaths of the continental United States-one running in a South-North direction, the other running East-West-and two individual NABBS sites (routes) to conduct spatial and temporal regime shift analyses, respectively. The South-North and East-West transects are hereafter referred to as spatial transects, and the NABBS sampling sites are referred to as routes (see section 'Building spatial transects', below).
+
+#### Military bases as study sites
+The Mission of the US Department of Defense is to provide military forces to deter war and protect the security of the country, and a primary objective of individual military bases is to maintain military readiness. To maintain readiness, military bases strictly monitor and manage their natural resources. Military bases vary in size and nature, and are heterogeneously distributed across the continental United States (See \@ref(fig:ewRouteMap)). The spread of these bases, coupled with the top-down management of base-level natural resources presumably influences the inherent difficulties associated with collaborative management within and across military bases and other natural resource management groups (e.g., state management agencies, non-profit environmental groups.
+
+Much like other actively managed landscapes, miltiary bases are typically surrounded by non- or improperly-managed lands. Natural resource managers of military bases face environmental pressures within and surrounding their properties, yet their primary objectives are very different. Natural resource managers of military bases, whose primary objective is to maintain military readiness, are especially concerned with if and how broad-scale external forcings might influence their lands. Prominent concerns include invasive species, wildlife disease, and federally protected species (personal communication with Department of Defense natural resource managers at Eglin Air Force and Fort Riley military bases). For these reasons, natural resource managers attempt to create buffers along their perimeters (e.g., live fire/ammunitions suppression, wide fire breaks). Identifying the proximity of military bases to historic and modern ecological shifts may provide insight into the effectiveness of their natural resource management efforts.
+
+```{r milBases, echo = FALSE, fig.align='center', fig.cap = 'Locations of U.S. military bases in our study area.'}
+knitr::include_graphics( paste0(figDissDir, "/milBases.png"))
+```
+
+
+#### Focal military bases
+The NABBS routes chosen for analyses in this Chapter lie within or near two two US Department of Defense properties: Fort Riley military base (located at approximately 39.110474 ??, -96.809677 ??; Kansas, USA) and Eglin Air Force base (located at approximately 30.459588 ??, -86.548459 ??; Florida USA). These military bases were used for research conducted under the a grant funded by the Department of Defense's Strategic Environmental Research and Development Program (SERDP; RSCON-15-01:RC 3150).
+
+Eglin Air Force and Fort Riley military bases (\@ref(fig:basesOfInterestMap)) serve as ideal reference sites for this study. The natural resource management teams are active on each base and have been for at least two decades and each uses wildfire as a management technique. Fort Riley military base is especially relevant to regime shift detection method exploratory analysis. Woody encroachment of the Central Great Plains over the last century has triggered shifts in dominant vegetative cover and diversity (Ratajczak et al. 2012) in the area surrounding Fort Riley military base (e.g., Van Auken 2009). This phenomena should present itself as a regime boundary should Fisher Information be a robust regime shift detection method. Eglin Air Force base is embedded within a heavily developed matrix, and consequently has experienced less pronounced effects at broad spatial extent and over longer periods. Therefore, the ecological communities (and the data) surrounding Eglin Air Force base may exhibit a greater amount of noise, making the effect size of a regime shift and consequently the effect size smaller and more difficult to detect. For these reasons, Eglin Air Force and Fort Riley military bases are ideal locations for an exploratory analysis of the Fisher Information binning method as a regime shift detection method.
+```{r basesOfInterestMap, echo = FALSE, fig.align='center', fig.cap = 'Locations of focal U.S. military bases, Eglin Air Force Base (AFB) and Fort Riley Military Base.'}
+# knitr::include_graphics(figDissDir, "/basesOfInterestMap.png")
+
+```
+
+#### Spatial sampling grid 
+To our knowledge, @sundstrom_detecting_2017 is the only study to use the Fisher Information binning method on spatially-referenced data. The authors of this study hand-picked NABBS routes to be included in their samples such that their metrics should detect 'regime changes' when adjacent sampling points represented different ecoregions. The authors also suggest each ecoregion is similarly represented, having a similar number of NABBS routes within each ecoregion in the analysis. Their method of handpicking routes resulted in a transect which was neither North-South nor East-West running (see @sundstrom_detecting_2017), but rather zigzagged across a midwestern region.  
+
+I constructed a gridded system across much of the continental United States and Canada to ameliorate potential effects of site selection bias. This method allows one to overlay regime detection metric results over various vegetation characteristic maps (e.g., ecoregions), rather than fit the sampling scheme to an ecoregion. The former also allows for comparison of results across time, and is especially useful when vegetation zones, or ecoregions, shift over time. 
+
+The gridded system comprises North-South and East-West running transects transects running in either North-South or East-West directions. Here, I examine in detail only a single North-South and a single East-West transect, such that they contain the Eglin Air force and Fort Riley military bases, respectively.
+```{r ewRouteMap, echo = FALSE, fig.align='center', fig.cap = 'A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information binning measure. Military base locations can be used to visually estimate the proximity [of Department of Defense properties] to potential regime boundaries.'}
+
+knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_row18.png"))
+
+```
+
+#### Selecting routes for temporal analysis  
+
+Temporal analysis consisted of time series of annually collected data at the level of an individual NABBS route. I analyzed two NABBS routes near the Eglin Air Force base-one to the East and one to the West. 
+
+### Calculating the Fisher Information binning measure  
+Fisher Information, $I(\theta)$, was developed in 1922 by Ronald Fisher as a measure of the amount of information that an observable variable, X, reveals about an unknown parameter, $\theta$. Fisher Information is a measure of indeterminacy (Fisher 1922) and is defined as,
+\begin{equation} 
+I(\theta) = \int \frac{dy}{p(y|\theta)}\left[\frac{dp(y|\theta)}{d\theta}\right]^2
+(\#eq:fiGeneral1922)
+\end{equation}
+where $p(y|\theta)$ is the probability density of obtaining the data in presence of ??. The Fisher Information measure (FIM) is used to calculate the covariance matrix associated with the likelihood, $p(y|\theta)$. Fisher Information is described as Extreme Physical Information (EPI; Frieden and Soffer 1995, Kibble 1999, Frieden et al. 2002), a measure that has been used to track the complexity of systems in many scientific disciplines including, physics, cancer research, electrical engineering, and, recently, complex systems theory and ecology
+
+Fisher Information as gathered from observational data provides insight as to the dynamic order of a system, where an orderly system is one with constant (i.e., unchanging) observation points, and one whose nature is highly predictable. A disorderly system is just the opposite, where each next data point is statistically unpredictable. In ecological systems, patterns are assumed to be a realization of ecosystem order; therefore, we should expect orderliness in a system with relatively stable processes and feedbacks. Orderliness, however, does not necessarily infer long-term predictability. \@ref(eq:fiGeneral1922) is next adapted to estimate the dynamic order of an entire system, $s$, as
+\begin{equation} 
+I = \int \frac{ds}{p(s)}\left[\frac{dp(s)}{ds}\right]^2
+(\#eq:fiAdapted)
+\end{equation}
+
+where $p(s)$ is the probability density for $s$. Here, a relatively high Fisher Information value ($I$) infers higher dynamic order, whereas a lower value (approaching zero) infers less orderliness. To limit the potential values of I in real data, we can calculate the amount of Fisher Information by re-expressing it in terms of a probability amplitude function $q(s)$ (Fath et al. 2003, Mayer et al. 2007, eq. 7.3): 
+
+\begin{equation}
+I = 4 \int ds\left[\frac{dq(s)}{ds}\right]^2
+(\#eq:fiAmplitude)
+\end{equation}
+
+A form specific to the pdf of distance travelled is derived as [@mayer_applications_2007, eq. 7.12](see \@derivatives for more information on \@ref(eq:derivativesFI)):
+
+\begin{equation} 
+(\#eq:derivativesFI)
+I = \frac{1}{T} \int_0^T dt\left[\frac{s''^2}{s'^4}\right]^2
+\end{equation}, 
+where T is the number of equally spaced time points over which we integrate. 
+
+These two variants of Fisher Information, \@ref(eq:fiAmplitude) and  \@ref(eq:derivativesFI), have been used to estimate the dynamic order of complex systems (Cabezas and Fath 2002, Karunanithi et al. 2008). Numerical calculation of I using the binning method (\@ref(eq:fiAmplitude) and \@ref(eq:derivativesFI)) incorporates a binning procedure for the probability of the system, $p(s)$, as being in one of an unidentified number of states ($s$).
+
+I carefully considered prior to analyzing data using the Fisher Infomration binning method \@ref(eq:fiAmplitude)). The binning procedure allows for a single point in time or space to be categorized into more than one state, which violating the properties of alternative stable states theory. The size of states (see Eason and Cabezas 2012) measure is required to construct p(s). In the case of high dimensional data, a univariate binning procedure of p(s) is not intuitive (i.e., reducing a multivariable system to a single probability distribution rather than constructing a multivariate probability distribution). Importantly, when using community or abundance data, rare or highly abundant species can influence the size of states criterion, thus influencing the assignment of each point into states. Finally,  \@ref(eq:fiAmplitude) assumes equal spacing (in space or time) between sampling points. Each of these violations can be avoided by using \@ref(eq:derivativesFI); Cabezas and Fath 2002, Fath et al. 2003) to calculate the Fisher Information measure (see \@derivatives for discussion on this topic). The derivatives method (\@ref(eq:derivativesFI)) estimates the trajectory of the system's state by calculating the integral of the ratio of the system's acceleration and speed in state space (Fath et al. 2003).
+
+## Results  
+
+### Temporal data  
+
+### Spatial data  
+
+
+### Interpreting the Fisher Information binning measure  
+Here I define a potential regime change as a point in time or space that exhibits a relatively large change in the Fisher Information value and which has a non-zero first derivative. Regime shifts are identified as data changing from one state to another, thus, rapid shifts in the value of I should indicate the points, in time or space, at which the system undergoes reorganization. Spatial and temporal Fisher Information calculation does not vary, but interpretation of either differ in that a spatial analysis will identify a spatial regime boundary (Sundstrom et al. 2017) in space within a single year (or a single aggregation of years). Analysis of temporal data will identify a point(s) in time at which a system in a specific location undergoes a regime shift. I follow the methods outlined in the relevant literature for interpreting the Fisher Information binning measure (e.g., Karunanithi et al. 2008, Eason and Cabezas 2012, Sundstrom et al. 2017). 
+
+Interpreting the Fisher Information binning measure is currently a qualitative effort. I interpret an increase in I as increasing system order (Mantua 2004), and periods of relatively high values of I as the system occurring in a single state, or fluctuating around a single attractor. A rapid change in I indicates the system is no longer orderly and may be undergoing a reorganization phase (Holling 1992). Whether Fisher Information can identify a switch among basins of attraction within a single, stable state (or around a single attractor) remains unknown, as does the number of states which a system can occupy.
+
+When a system occurs within any number of states equally, i.e., p(s) is equal for each state, both the derivative, ($\frac{dq(s)}{ds}$, and $I$ are zero. As ($\frac{dq(s)}{ds}$  approaches ???, we infer the system is approaching a stable state, and as (dq(s))???ds approaches zero the system is showing no preference for a single stable state and is on an unpredictable trajectory. \@ref(eq:fiAmplitude)  bounds the potential values of Fisher Information at $[0, 8]$, whereas \@ref(eq:fiGeneral1922), \@ref(eq:fiAdapted), and \@ref(eq:derivativesFI) have are positively unbounded $[0, \infty)$. If the Fisher Information is assumed to represent the probability of the system being observed in some state, s, then the absolute value of the Fisher Information binning measure is relative within a single datum (system). Thus, trends in Fisher Information should be interpreted relatively, but not absolutely.
+
+
+## Discussion  
+Current methods for identifying ecological regime changes in noisy, complex data are imperfect and require strict assumptions and detailed knowledge of the system. The Fisher Information binning measure was introduced to avoid some analytical issues related to complex and noisy data in the analaysis of ecological data (Karunanithi et al. 2008). This study found that the Fisher Information binning measure and other analytical techniques have a long way to go prior to being ready for ubiquitous application. 
+It is vital for the user to understand the assumptions of estimating dynamic order and identifying regime changes in ecological systems using Fisher Information as the feasibility of calculating I using noisy data is still being explored (Sundstrom et al. 2017). There are three primary assumptions required when using Fisher Information to estimate relative orderliness within ecological data (Mayer et al. 2007):  
+1. the order or state(s) ($s$) of the system is observable, 
+1. any observable change in the information observed in the data represents reality and the variables used in the analyses will not produce false negatives, and 
+1. changes in $I$ presumed to be regime shifts do not represent the peaks of cyclic (periodic) patterns.
+
+The first assumption is one of philosophical debate and is thus not controllable. To attempt to control for false negatives, the user should take caution in her choice of input variables. In the the case of a very large, multivariate dataset, relativization and/or variable reduction measures may be useful (Rodionov 2005). To account for cyclic behavior in the data, we can take measures to ensure our integration periods capture at one full cycle of the system (Mayer et al. 2007). Increasing the integration period may also alleviate some issues of noisiness. 
+
+Although the current calculation of Fisher Information for complex systems is a relatively straightforward process and is mathematically grounded, care should be taken when applying to ecological data due to its often sparse and noisy nature. Further, the boundaries of interpretation of $I$ for identifying ecological regime shifts are still under exploration.
