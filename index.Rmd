@@ -72,33 +72,33 @@ If you'd like to include a comment that won't be produced in your resulting file
 <!--
 If you receive a duplicate label error after knitting, make sure to delete the index.Rmd file and then knit again.
 -->
+```{r chunkOpts, include = T, echo=F, warning=F, message=F}
+# Chunk defaults
+knitr::opts_chunk$set(cache = T, message = F, warning=F, include =T, echo=F, 
+                      fig.width=7, fig.height=7,
+                      fig.align='center',
+                      out.width = "90%")
 
-
-```{r include_packages, include = FALSE}
-if(!require(devtools))
-  install.packages("devtools", repos = "http://cran.rstudio.com")
-if(!require(here))
-  install.packages("here", repos = "http://cran.rstudio.com")
-if(!require(dplyr))
-    install.packages("dplyr", repos = "http://cran.rstudio.com")
-if(!require(ggplot2))
-    install.packages("ggplot2", repos = "http://cran.rstudio.com")
-if(!require(bookdown))
-    install.packages("bookdown", repos = "http://cran.rstudio.com")
-if(!require(kableExtra))
-    install.packages("kableExtra", repos = "http://cran.rstudio.com")
-if(!require(thesisdown)){
-  devtools::install_github("ismayc/thesisdown")
-  }
-if(!require(tidyverse)){
-  devtools::install.packages("tidyverse")
-  }
-
-  library(devtools)
-  library(tidyverse)
 ```
 
 
+```{r include_packages}
+list.of.packages <- c("ggplot2", "devtools", "here", "dplyr", 
+                      "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
+                      "feather", "maps", 
+                      "inlabru")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages) >0 ){ install.packages(new.packages, dependencies = T)}
+
+## Re-install often as these packages are in  development.
+devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
+devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
+
+# Load packages
+lapply(list.of.packages[!list.of.packages %in%  loadedNamespaces() ], library, character.only = TRUE)
+library(regimeDetectionMeasures) 
+library(bbsRDM)
+```
 
 
 <!-- Do not remove the line with the  '.unnumbered' -->

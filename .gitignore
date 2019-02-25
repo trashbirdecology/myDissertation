@@ -6,8 +6,8 @@
 
 
 # remove builds
-_book/
-_bookdown_files/*.pdf
+!_book/
+_bookdown_files/
 chapterFiles/appendix_predPreyExample/plots/.png
 chapterFiles/appendix_paleoExample/plots/*.png
 *.pdf
@@ -15,10 +15,10 @@ chapterFiles/appendix_paleoExample/plots/*.png
   
 
 # remove log files
-myDissertation.log
 *.log
 
-
+# ignore generated html files,
+    *.html
 
 # remove rdata
 *.RData
@@ -26,14 +26,9 @@ myDissertation.log
 *.rdb
 
 
-# remove temp data
-
-
-
+# ignore  files
 *.feather
-*.png
-*.png
-chapterFiles/binningChap/bbs_raw_data/README.txt/README.txt
+chapterFiles/binningChap/bbs_raw_data
 chapterFiles/rsdmReview/gScholar_20190204.csv
 *.CPG
 *.dbf
@@ -43,3 +38,21 @@ chapterFiles/rsdmReview/gScholar_20190204.csv
 *.shp
 *.xml
 *.shx
+
+# Do not remove images called in dissertation from file.
+!chapterFiles/binningChap/figures/figsCalledInDiss
+
+# But remove pngs created that aren't called in diss
+chapterFiles/binningChap/figures/*.png
+
+# Keep the rendered .pdf copy
+!_book
+myDissertation_cache/latex/tab
+myDissertation_cache/latex/__packages
+myDissertation.out
+myDissertation.aux
+myDissertation.lof
+myDissertation.lot
+myDissertation.tex
+myDissertation.toc
+myDissertation.Rmd

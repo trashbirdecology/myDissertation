@@ -106,14 +106,13 @@ ggplot(data = sysSol, aes(x = x1, y = x2)) +
   coord_fixed()
 ```
 
+
 ###Concepts behind the calculations  
 Although the numerical steps for calculating the derivatives-based FI are relatively straightforward, the concepts required to interpret the measure in the context of multiple variables is more complex. Here, we thoroughly discuss the concepts and assumptions behind FI calculation. Below, steps do not represent steps within the calculation, they represent the major concepts required 
 
 ####**Step 1. Probability of observing the system in a particular state, $p(x)$**   
 Fisher Information (FI) is defined with respect to a probability distribution. In the derivatives-based method, FI is calculated for a probability of observing a system (as defined by one or more state variables) in a particular state, $p(x)$, over some period of time, ($0 to t_{end}$). In other words $p(x)$ is the probability that, at a specific point in time ($t_{obs}^*$) we will observe the system in a particular state, $x^*$. The time at which we observe the system is a random variable, $t_{obs}  ~ Uniform(0,t_{end})$. To be clear, the study system is assumed to be deterministic and we assume no observation error, however, the observed state of the system, $x(T_{obs})$, is a random variable because it is a function of the random observation time,  $x^*= x(t_{obs}^*)$. The state of the model system, x, is defined in two dimensions by the number of predators and the number of prey \@ref(eq:predprey) and is easily visualized \@ref(fig:pp1Period).Therefore, the probability of observing a particular state is a two-dimensional joint distribution  \@ref(fig:2d-hist). 
- 
-
-```{r 2D-hist, echo=FALSE, fig.cap="A 2-dimensional histogram of the probability of observing a system in a particular state, $p(x)$, of the 2-species Lotka-Volterra predator prey system over a single period (~11.145 time units).", warning=TRUE, warning=F, cache = T}
+```{r 2D-hist, echo=FALSE, fig.cap="A 2-dimensional histogram of the probability of observing a system in a particular state, $p(x)$, of the 2-species Lotka-Volterra predator prey system over a single period (~11.145 time units).", warning=TRUE, warning=F, cache = T, out.width="85%"}
 # Plot probability of observing the system in a particular state
 ggplot(data = sysSol, aes(x = x1, y = x2)) +
   geom_bin2d(aes(fill = ..density..), color = "black", drop = T, bins = 20) +
@@ -121,9 +120,7 @@ ggplot(data = sysSol, aes(x = x1, y = x2)) +
   labs(x = "prey, x1", y = "predator, x2", fill = "p(x)") +
   coord_fixed()
 ```
-
 A single state of the model system is defined by the number of predators and prey at a given point in time such that for any given point in time $x(t)=[x_1 (t),x_2 (t)]$. At some random time between 0 and $t_{end}$ [$T_{obs}  ~ Uniform(0,t_{end})$] we can count the number of predators and the number of prey to determine the state of the model system. We must assume the system is deterministic and there is no observation error. We can then calculate the probability of observing a particular predator and prey abundance combination, $p(x)$. Under these assumptions, the only possible states of the system are defined by the system’s observed trajectory, the model parameters, and the initial conditions. Therefore, the support of the probability distribution \@ref(fig:2D-hist) is the trajectory of the system. 
-
 ```{r stringFig, echo=F, warning = F, out.width='100%', fig.cap = paste("A single cycle of a hypothetical two-species system over time period $t = 0$ to $t = T$. $s^*$ is the state of the system at some point in time. The dotted line represents the distance travelled by the system in phase space over its trajectory during time $(0, T)$.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/stringFig.png')
 ```
@@ -407,6 +404,7 @@ for(i in 1:length(k)){
   results_kstudy <- rbind(results_kstudy, sysSol_kstudy)
 }
 ```
+
 ```{r kByTime, echo=F, warning = F, out.width='100%', fig.cap = paste("Carrying capacity over time with a regime shift occuring around time 200."), cache = T}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/kByTime.png')
 ```
@@ -419,17 +417,17 @@ ggplot(data = results_kstudy, aes(x = x1, y = x2, color = k)) +
   coord_fixed()
 ```
 
-
 We assumed an initial carrying capacity of 800 and a final carrying capacity of 625 which corresponds to the range of carrying capacities explored by Mayer et al. (2007). We simulated a time series of 600 time units with a regime change after 200 time units. We used an alpha value of 0.05. The time series for carrying capacity is shown in \@ref(fig:kByTime) and the system trajectory in phase space is shown in \@ref(fig:kTrajectories). The distance travelled in phase space (i.e., cumulative change in state) is shown in \@ref(fig:distOverTime) and the speed of the system (i.e., rate of change) is shown in \@ref(fig:dsdtOverTime). 
 ```{r dsdtOverTime, echo=FALSE,echo = F, warning=F, message = F, fig.cap=paste("Speed of the system (rate of change) in phase space. Dashed vertical line at time 200 indicates location of regime shift."), out.width = "85%"}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/dsdtOverTime.png')
 ```
+
 We calculated FI for the distribution of distance travelled over a series of non-overlapping time windows. Multiple sources suggest the length of the time window should be equal to one system period such that FI is constant for a periodic system [@mayer_applications_2007; @cabezas_towards_2002]. However, the system period is different before, during, and after the regime shift. Therefore, we performed two separate calculations of FI using window sizes corresponding to the initial and final period of the system ($13.061$ and $11.135$, respectively).  The change in FI over time is shown in \@ref(fig:fiOVerTime). 
 ```{r fiOverTime, echo = F, warning=F, message = F, fig.cap=paste("Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift."), out.width = "85%"}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/fiOverTime.png')
 ```
 
-##Conclusions  
+## Conclusions    
 We simulated a regime shift caused by a change in carrying capacity ($K$) within a simulated, two-species Lotka-Volterra system. We applied the Fisher Information (FI) method for regime shift detection to the simulated time series data. The predator-prey system was modeled as deterministic and the time series data was free from measurement and observation error. Despite this, the estimated FI had high variation over time, and results were dependent on the size of the time window used (winsize) in the calculation \@ref(fig:fiOVerTime). The FI method for regime shift detection is based on the cumulative change in the state of the system (i.e., distance traveled in phase space) and the rate of change of the system (i.e., speed tangential to trajectory in phase space). The distance travelled metric, $s$, and its speed, $dsdt$, appear better visual indicators of the regime shift than FI [\@ref(distOverTime); \@ref(dsdtOverTime)].
 
 In our explanation of the FI concept and calculation, we emphasize the distinction between the *state of the system* and the *distance traveled in phase space*. There are several reasons worth emphasizing this. First, there may not always be a one-to-one relationship between the probability of observing a system in a particular state and the probability of observing a system at a particular distance along the trajectory. In these situations the interpretation of FI may be less clear than if a one-to-one relationship existed. Second, this distinction facilitates the separation of the dimensionality reduction step (calculating distance traveled in phase space, $s$) from the subsequent steps related specifically to FI. Third, the distinction suggests that the **value of FI as a regime shift detection method is related to the rate of change of the system** (i.e., velocity and acceleration tangential to system trajectory in phase space). In particular, the distribution for which FI is calculated is simply the distribution of the distance traveled in phase space, when time is assumed to be uniformly distributed over a given interval. 
