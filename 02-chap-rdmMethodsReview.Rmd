@@ -1,10 +1,15 @@
-# A review of quantitative methods for identifying ecological regime shifts in ecological communities {#chapter-rdmMethodsReview}   
+# A brief overview of methods for identifying ecological regime shifts in ecological communities {#chapter-rdmMethodsReview}   
 
 ## Introduction
-There is a disparity among the number of methods proposed for detecting ecological regime shifts and those used by practitioners. Despite the availability of qunatitative methods and other models for detecting abrupt shifts in numerical observations in other fields, new methods are continuously introduced into the ecological literature, often independent of methods already well-developed in other fields [@ref(andersen_xxx_YYYY)]. Insert and example of a method that could be used in ecology but is alrewady well-developed in another field. Perhaps exacerbating the lack of application of existing methods is the paucity of studies applying these methods to empirical systems data. 
 
-In this chapter I briefly review the regime shift literature as it relates to quantitative methods proposed as "regime detection methods" (RDMs). This chapter is meant to serve as a preface to the data Chapters (#fiGuide)
+Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide some other benefit to societies. The past few decades have seen a rapid increase in studies of regime shifts
 
+There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and those evaluated on empirical data. Despite the large number of existing methods and models, new methods continue to permeate the literature (@andersen_ecological_2009). 
+
+
+Few reviews of these methods exist (@andersen_ecological_2009, @rodionov_brief_2005, @perretti2012regime)
+
+In this chapter I review briefly the methods proposed as regime shift detection methods (RDMs)
 
   1. Existing RDMs    
     - in ecological journals  
@@ -14,10 +19,6 @@ In this chapter I briefly review the regime shift literature as it relates to qu
   
 It is my hope that this chapter will stimulate discussion of the utility of existing methods, and whether efforts may be most usefully funneled into developing new methods, refining existing methods, or borrowing existing methods from other fields. 
     
-## Existing RDMs in ecological literature
-
-I reviewed the ecological literature for RDMs using Web of Science (Web of Knowledge).
-
 
 ### Methods
 Web of Science Search:
@@ -126,7 +127,6 @@ We removed articles containing
 
 ## RDMs not yet explored for ecological data
 
-
 Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows. 
 
 Ecological and social-ecolgical systems have many unpredictable and variably interacting components. Quantitative models and methods are available for analyzing complex systems, but often require more data than is typically available in ecological reserach and management. Hence, tracking the changes in ecological systems is rarely done so using multiple variables. 
@@ -138,26 +138,43 @@ Some RSDMs are proposed for and are subsequently applied to data having specific
 This paper compiles a plethorra of quantitative methods proposed as regime detection methods for ecological data. We discuss the relevant characteristics of the data/information that are required for each method, and how these characterstics may help or hinder the ecologists' interpretation of the analytical results. We pay special attention to the RSDMs that are most appropriate for  analysis of high dimensional and noisy ecological data. 
 
 
-## Methods
+
+## Discussion 
+
+1. Major findings of the review. 
+1. What major assumptions are we currently making about the data and the system that we need to know more about moving forward? i.e., where are the gaps in knowledge?
+1. How has or how can we take advantage of unstructured or semi-structured data to ID regime shifts?
+1. How can or should we adapt our monitoring schemes to better suit these (or at least the seemingly helpful) analyses?
+1. What about identifying the drivers behind the shifts? 
+1. Which methods posit they can identify the, or potential, drivers of the state changes? Which have shown it?
+
+Potential text: 
+1. Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation. 
+
+1. Because ecological and social systems are tightly coupled, we have used indicators in the environment and in wildlife communities to identify change and potential changes that may impact our social communities. 
+
+1. Many regime shift analytical papers suggest that, using multiple quantitative methods to provide for evidence for a regiem shift in a specific data set is necessary  (@lindegren_early_2012, @easonYYYY). Although this proposition is valid, comparing results within a single system using multiple methods has often yielded varying results. Managing systems using quantitative methods that yield different results may yield improper management techniques and objectives. 
+
+## TEXT NOT USED:
 ### Identifying papers/RSDMs in the literature
 I used the following databases to identify scholarly works that introduce and/or explain methods for identfying regime shifts:
 1. Web of Science
-    i. __Database searches*  
-          a. Boolean (+ = asterisk in the database search)  
-                i. WOS:   
-                ii. SCOPUS:  ( TITLE-ABS-KEY ( ( approach  OR  analysis  OR  metric  OR  method^ )  AND  ( detect^  OR  predict^ ) )  AND  TITLE-ABS-KEY ( {regime shift}  OR  {regime change}  OR  {abrupt change} ) ) __1,473__ (where ^== __ in Scopus) 
-    ii. __Opportunistic papers__  
-          a. We used expert opinion (authors JLB, etc.) to identify any missing RSDMs that were not detected in our formal database searches. (i am making this next part up--need to double check once i have results)-->These papers are are typically found in the grey literature, or are published in journals not obvious to the general ecologist (e.g., name an obscure journal here).  
-          b. Justification for our database searches containing some of these methods which are known/obvious to the author(s).  
+    i. __Database searches*
+          a. Boolean (+ = asterisk in the database search)
+                i. WOS:
+                ii. SCOPUS:  ( TITLE-ABS-KEY ( ( approach  OR  analysis  OR  metric  OR  method^ )  AND  ( detect^  OR  predict^ ) )  AND  TITLE-ABS-KEY ( {regime shift}  OR  {regime change}  OR  {abrupt change} ) ) __1,473__ (where ^== __ in Scopus)
+    ii. __Opportunistic papers__
+          a. We used expert opinion (authors JLB, etc.) to identify any missing RSDMs that were not detected in our formal database searches. (i am making this next part up--need to double check once i have results)-->These papers are are typically found in the grey literature, or are published in journals not obvious to the general ecologist (e.g., name an obscure journal here).
+          b. Justification for our database searches containing some of these methods which are known/obvious to the author(s).
 
-2. Procedures for filtering the papers.     
-    i. We removed duplicate titles (from the merging of Scopus and WOS), which resulted in _______ unique scholarly works.    
-    i. We read the abstracts of each paper to determine the following:    
-          a. Was this a new method being proposed or used? (if yes, proceed to ii.))    
-          b. Was this just a case study or another application of a previously published method? (if yes, note the method(s) used and identify original method(s) source)      
-          c. If this paper was an application of a method, we noted the method, and identified the orignal source for the method (if possible)  
-    ii. Identify characteristics of the method  
-        c. It is model-based?  
+2. Procedures for filtering the papers.
+    i. We removed duplicate titles (from the merging of Scopus and WOS), which resulted in _______ unique scholarly works.
+    i. We read the abstracts of each paper to determine the following:
+          a. Was this a new method being proposed or used? (if yes, proceed to ii.))
+          b. Was this just a case study or another application of a previously published method? (if yes, note the method(s) used and identify original method(s) source)
+          c. If this paper was an application of a method, we noted the method, and identified the orignal source for the method (if possible)
+    ii. Identify characteristics of the method
+        c. It is model-based?
         a. Does it require a mathematical model?
         b. Does it require *a priori* knowledge of the regime shift
         d. Does it forecast or provide predicitons?
@@ -169,14 +186,14 @@ I used the following databases to identify scholarly works that introduce and/or
     iv. Identify the characteristics of the data USED to demonstrate the method
         a. Spatial resolution and extent
         b. Temporal resolution and extent
-        c. Number of state variables 
-        d. System type 
+        c. Number of state variables
+        d. System type
           i. Whole-system vs. selected variables?
           ii. Experimental system or observational/passive
 3. Note the number of times the paper has been cited
-  
 
-## Results
+
+### Results
 
 We identified _______ number of quantiattive anlaytical approaches to identifying regime shifts and abrupt changes in data. 
 
@@ -200,20 +217,3 @@ We identified _______ number of quantiattive anlaytical approaches to identifyin
 
 <!-- ``` -->
 <!-- \elandscape -->
-
-## Discussion 
-
-1. Major findings of the review. 
-1. What major assumptions are we currently making about the data and the system that we need to know more about moving forward? i.e., where are the gaps in knowledge?
-1. How has or how can we take advantage of unstructured or semi-structured data to ID regime shifts?
-1. How can or should we adapt our monitoring schemes to better suit these (or at least the seemingly helpful) analyses?
-1. What about identifying the drivers behind the shifts? 
-1. Which methods posit they can identify the, or potential, drivers of the state changes? Which have shown it?
-
-Potential text: 
-1. Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation. 
-
-1. Because ecological and social systems are tightly coupled, we have used indicators in the environment and in wildlife communities to identify change and potential changes that may impact our social communities. 
-
-1. Many regime shift analytical papers suggest that, using multiple quantitative methods to provide for evidence for a regiem shift in a specific data set is necessary or is acceptable. Although this proposition is valid, comparing results within a single system using multiple methods has often yielded varying results. Managing systems using quantitative methods that yield different results may yield improper management techniques and objectives. 
-

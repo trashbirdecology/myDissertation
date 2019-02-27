@@ -1,4 +1,6 @@
- Ecosystems are complex and we will never fully understand them... "So it’s really kind of a small miracle that across these very different systems, we could find these universal indicators of how close they are to a threshold" - Scheffer
+## Some notes on RSDMs not yet in text. 
+
+Ecosystems are complex and we will never fully understand them... "So it’s really kind of a small miracle that across these very different systems, we could find these universal indicators of how close they are to a threshold" - Scheffer
 
 As the scale of the system increases, so does the ability to cahracterise a system in a relevant manner, and also the ability to detect meaningful change int eh ssytem becomes muddier. It is not surprising, therefore, that RSDMs have been relatively well-developed and tested in climatic and marine systems. It is with these data that parametric and non-parametric tests which detect changes in the mean of a system have been most commonly applied. 
 
@@ -12,8 +14,6 @@ All of these methods are assuming that a system is ergodic -- this si especiall 
 Critical transitions are more concrete than a regime shift -- so it is no surprise that these methods are more explored than for "regime shifts". 
 
 Tipping points are points at which a system responds in a big way to a small chagne, adn much of the theoryand methods are well-developed in this space (e.g. coral reefs @hughes_living_2013,  forests @scheffer2005synergy, insect outbreaks @ludwig1978qualitative, and society @scheffer2003slow). While these RSDMs are  useful for manipulable systems, they are less so for systems of larger scale or extent (e.g. bird communities) and especially for regime shifts occuring due to some uncontrollable circumstance (e.g., climate).
-
-
 
 Changes in hte underlying structure or functioning of natural systems due to exogeneous forcings is of interest to climatologists, and terrestrial and aquatic ecologists alike. BEing able to identify and predict these shifts is particularly useful for systems which are actively managed, or are systems that are used by or are beneficial to humans. Being able to predict these shifts in time for management action, or response, is key.
 
@@ -44,7 +44,16 @@ These methods do not fit the data to a model, but rather observe changes in vari
 - Critical slowing down (CSD) is among the most well-developed theories in natural systems regime shifts, borrowed from dynamical systems theory. It states that, as a system nears a phase transition (or tipping point) it's return or recoery rate should decreased. CSD, however, is difficult to detect in ecosytems which do not exhibit stationary behavior prior to the shift, and/or about which we have little baseline knowledge (with which to compare the system in question). 
 
 
-
 Autocorrelation and spectral properties:
 critical slowing down (return rate): change in the correlation structuer of the TS, which results in an increase in short-term memory of a system before the transition.
 ways to measure AC:
+
+
+## Literature Search -- 
+1. TS=(("regime shift" or "regime change" or "change point" or "threshold" or "abrupt shift" or "abrupt change") AND ("new method" or "new approach" or "novel method" or "novel approach" or "novel framework" or "new framework" or "novel analysis" or "new analysis") AND ecolog*). Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years
+  * hits: 70
+1. TS=(("regime shift" or "regime change" or "change point" or "threshold" or "abrupt shift" or "abrupt change") AND (new or novel) AND (method or approach or framework)) AND SO=(ECOLOGICAL APPLICATIONS or METHODS IN ECOLOGY AND EVOLUTION or SCIENCE or ECOLOGY or TRENDS IN ECOLOGY EVOLUTION or ANNUAL REVIEW OF ECOLOGY EVOLUTION AND SYSTEMATICS or GLOBAL ECOLOGY AND BIOGEOGRAPHY or ECOLOGY LETTERS OR NATURE). 
+  * hits: 59
+1. TI=(("regime shift" or "regime change" or "change point" or "threshold" or "abrupt shift" or "abrupt change") AND (new or novel) AND (method or approach or framework)). Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years
+  * hits: 299
+  
