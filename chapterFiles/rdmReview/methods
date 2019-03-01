@@ -48,6 +48,8 @@ Autocorrelation and spectral properties:
 critical slowing down (return rate): change in the correlation structuer of the TS, which results in an increase in short-term memory of a system before the transition.
 ways to measure AC:
 
+Methods for distinguishing noise form signal were borrowed from information theories, and are well-developed for climatological and oceanographic data. However, there is still debate about white vs red noise. Further, methods in these fields are well-developed for *periodic* or cyclic systems*, or systems with a single, known state attractor. WHen the system does not oscillate around some grand mean system state, the definition and conseuqently the methods for detecting regime changes of the entire system are muddied. 
+
 
 ## Literature Search -- 
 1. TS=(("regime shift" or "regime change" or "change point" or "threshold" or "abrupt shift" or "abrupt change") AND ("new method" or "new approach" or "novel method" or "novel approach" or "novel framework" or "new framework" or "novel analysis" or "new analysis") AND ecolog*). Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years

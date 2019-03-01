@@ -1,45 +1,45 @@
 # A brief overview of methods for identifying ecological regime shifts in ecological communities {#chapter-rdmMethodsReview}   
-
 ## Introduction
 
-Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide some other benefit to societies. The past few decades have seen a rapid increase in studies of regime shifts
+Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist (@rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early), the most comprehensive presentation of available methods is outdated (@rodionov_brief_2005). 
 
-There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and those evaluated on empirical data. Despite the large number of existing methods and models, new methods continue to permeate the literature (@andersen_ecological_2009). 
+This chapter is meant to serve as an update to @rodionov_brief_2005. I briefly overview methods proposed as regime shift detection methods (RSDMs) with a focus on new methods proposed to analyze *ecological* data. 
 
 
-Few reviews of these methods exist (@andersen_ecological_2009, @rodionov_brief_2005, @perretti2012regime)
+## Identifying methods
 
-In this chapter I review briefly the methods proposed as regime shift detection methods (RDMs)
+Methods proposed as RSDMs are not easily identified using systematic literature review techniques for a few reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields. For example, the terms, *regime shifts, regime changes and tipping points* are variably used in studies of ecological systems, whereas *change point* is often used in oceanography and climatology and *structural change* is largely used in econometrics. Although the definition of a regime shift and change point are different (the former describing a change in system structure and the latter the point at which a variable of interest changes), the methods used to identify these changes are shared. 
 
-  1. Existing RDMs    
-    - in ecological journals  
-    - whether they were introduced using empirical data  
-  1. RDMs existing in other literatures that aren't in ecological literature  
-  1. Provide a list of reviews related to RDMs in ecology  
-  
-It is my hope that this chapter will stimulate discussion of the utility of existing methods, and whether efforts may be most usefully funneled into developing new methods, refining existing methods, or borrowing existing methods from other fields. 
-    
+Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publications that focus primarily on quantitative methodologies (e.g., *Ecological Modelling*, *Methods in Ecology and Evolution*) or in general ecology journals (e.g., *Ecology*). Instead, they are often published in journals with audiences that may not necessarily overlap with typical searches of the ecological litearture (e.g., *Entropy*, *Progress in Oceanography*). 
 
-### Methods
-Web of Science Search:
-#### Boolean search
-- Topic (TS)=("regime shift" or "regime change" or "abrupt shift" or "abrupt change" or "threshold" or "break point" or "change point" or "change-point" or "tipping point" or "structural change" or "observational inhomogeneity") AND method AND (ecology or ecological or environment or environmental)))  
-- Document types = Article   
-- Refined by: WEB OF SCIENCE CATEGORIES: ( ENVIRONMENTAL SCIENCES OR ECOLOGY ) AND WEB OF SCIENCE CATEGORIES: ( ENVIRONMENTAL SCIENCES OR ECOLOGY )  
-- Timespan: All years. Indexes: SCI-EXPANDED, SSCI, A&HCI, CPCI-S, CPCI-SSH, BKCI-S, BKCI-SSH, ESCI, CCR-EXPANDED, IC.  
-##### Notes on the boolean search in WOS
-- Including the term threshold in TS search greatly widened the breadth of our results, yielding thousands of results. Many articles of which were in engineering, biomedical sciences, etc. (irrelevant).
-- Adding the work "shift or change" into the title helped a lot.
+<!-- In addition to using expert experience, I used the snowball method to identify articles introducing new RSDMs.  -->
+
+I used two methods to identify articles proposing 'new' RSDMs:
+1. Systematic literature review
+1. Prior knowledge and old review papers
+
+### Systematic literature review using Web of Science
+
+I conducted a systematic literature review using Web of Science/Web of Knowledge. I usd the following boolean: 
+> (TS=("regime shift" OR "regime change" OR "abrupt shift" OR "abrupt change" OR "break point" OR "change point" OR "change-point" OR "tipping point" OR "structural change" OR "observational inhomogeneity") AND TS=("new method" OR "new approach" OR "novel method" OR "novel approach" OR "we introduce" OR "I introduce") AND WC=(Agronomy OR Fisheries OR Ecology OR "Biodiversity Conservation" OR "Environmental Sciences" OR Biology OR "Meteorology & Atmospheric Sciences" OR Oceanography OR "Geosciences, Multidisciplinary")) AND DOCUMENT TYPES: (Article) 
+
+Including the term *threshold* increased the search yield approximately ten-fold, but the articles were irrelevant to my search. Therefore, I omitted this term from my boolean.
+
+### Systematic literature review using Google Scholar
+> ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
+
 
 #### Removing/retaining papers from search
 ```{r filterMethodsResults, echo=F, eval=T, cache = T, message=F, warning=F}
 # Load and munge lit review data
 ## Read in the bib results from WOS search
-bib <-
+bib.orig <-
   readr::read_csv(paste0(
     here::here(),
     "/chapterFiles/rdmReview/wosresults_20190205_newMethods.csv"
-  ))
+  )) %>% 
+  mutate(TI = tolower(TI)) %>% 
+  mutate(SO = toupper(SO))
 
 ## Filter results: Keep papers with to 'regime shifts' (and synonyms) in abstract or title
 topicFilter <-
@@ -54,12 +54,15 @@ c(
 "observational inhomogeneity",
 "structural",
 "tipping point",
-"boundary"
+"boundary",
+"early-warning",
+"early warning"
 ),
 collapse = '|'
-)
+) %>% 
+  tolower()
 
-bib <- bib %>% dplyr::filter(grepl(topicFilter, TI) |
+bib <- bib.orig %>% dplyr::filter(grepl(topicFilter, TI) |
 grepl(topicFilter, AB))
 
 ## Filter results 2: Keep only those with reference to a method or framework in abstract or title
@@ -67,9 +70,9 @@ topicFilter2 <- paste(c("method", "framework"), collapse = '|')
 bib <- bib %>% dplyr::filter(grepl(topicFilter2, TI) |
                                grepl(topicFilter2, AB))
 
-## Filter results 3: Keep only relevant publications (SO)
-topicFilter3 <- paste(c("ecology", "ecography", "environ"), collapse = '|') %>% toupper()
-bib <- bib %>% dplyr::filter(grepl(topicFilter3, SO))
+# ## Filter results 3: Keep only relevant publications (SO)
+# topicFilter3 <- paste(c("ecology", "ecography", "environ"), collapse = '|') %>% toupper()
+# bib <- bib %>% dplyr::filter(grepl(topicFilter3, SO))
 
 ## Download top 50 ecology journals (SJR)
 tempFolder <- tempdir()
@@ -77,44 +80,44 @@ download.file("https://www.scimagojr.com/journalrank.php?category=2303&type=j&ou
               destfile = paste0(tempFolder,"/", "mySJRdata.csv"))#, method = "curl")
 list.files(tempFolder)
 
-topJrnls <-  read.csv(paste0(tempFolder, "/mySJRdata.csv"), header = T, sep=";") %>% dplyr::filter(SJR.Quartile == "Q1"|
-                                   SJR.Quartile == "Q2"                                                                  ) %>%
-  dplyr::select(Rank, Title) %>% 
+topJrnls <-  read.csv(paste0(tempFolder, "/mySJRdata.csv"), header = T, sep=";") %>% 
+  dplyr::select(Rank, Title, SJR.Quartile) %>% 
   rename(SO = Title) %>% 
   mutate(SO = toupper(SO)) %>% 
-  mutate(SO = str_replace(SO, " AND ", " & "))
+  mutate(SO = str_replace(SO, " AND ", " & ")) %>% 
+  dplyr::filter(SJR.Quartile == "Q1"|
+                                   SJR.Quartile == "Q2") 
 
-## Filter bib by the 1st Quartile of SJR-ranked ecology journals (currently based on year 2017)
-bib.keep <- bib %>% dplyr::filter(SO %in% topJrnls$SO)
+# Define other relevant jouranls not in top journals..
+methJrnls <- c("METHODS IN ECOLOGY AND EVOLUTION", "ECOLOGICAL MODELLING")
+
+## Filter bib by the 1st Quartile of SJR-ranked ecology journals (currently based on year 2017) + METHODS + ECOMOD
+bib.keep <- bib %>% dplyr::filter(SO %in% topJrnls$SO | SO %in% methJrnls)%>% 
+  mutate(SO = as.factor(SO)) %>%  as_tibble()
 ```
 
-```{r plotLitReview, echo=F, eval=T, cache = T, message=F, warning=F}
+```{r methJrnlsFigs, echo=F, eval=T, cache = T, message=F, warning=F, out.width = "45%", fig.cap="Distribution of articles related to ecological regime shift methodologies and frameworks published in the first and second quartiles of SJR *ecology* journals and in *Methods in Ecology and Ecolution* and *Ecological Modelling*."}
 # Visualize results
-
-## Plot the # of papers over time
-bib.keep <- bib.keep %>% dplyr::select(AU, TI, PY, SO) %>% as_tibble() %>% 
-  mutate(SO = as.factor(SO)) 
-
 ## Number of articles annually
-ggplot(bib.keep %>% 
-  group_by(SO) %>% 
-  mutate(N = n())) + 
-  geom_point(aes(x = PY, y = N, color = SO)) +
-  ylab('number of articles')+xlab('publication title')+
-  theme_bw()  
+ptemp1 = ggplot(bib.keep %>%
+         group_by(PY) %>%
+         summarise(N = n())) +
+  geom_bar(aes(x = PY, y = N), stat = 'identity') +
+  ylab('number of articles') + xlab('publication year') +
+  theme_bw() + theme(axis.text.x = element_text(angle = 35, hjust = 1, size = 6))
 
-## Distribution across journals over all years
-ggplot(bib.keep %>%
+# Distribution across journals over all years
+ptemp2 = ggplot(bib.keep %>%
          group_by(SO, PY) %>%
          mutate(N = n()) %>% ungroup() %>%
          distinct(SO, N) %>%
          # filter(N > 1) %>%
          arrange(N)) +
   geom_bar(aes(x = SO, y = N), stat = 'identity') +
-  ylab('number of articles \n (1900 to 2018)') + xlab('publication title') +
-  theme_bw() + theme(axis.text.x = element_text(angle = 35, hjust = 1, size = 6))
+  ylab(paste0("articles published ", min(bib.keep$PY)," to ", max(bib.keep$PY), "   " )) + xlab('publication title') +
+  theme_bw() + theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6))
 
-
+grid.arrange(ptemp1, ptemp2, ncol=2)
 ```
 
 ### WOS Search results

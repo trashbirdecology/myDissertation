@@ -1,6 +1,7 @@
+require(tidyverse)
 library(revtools)
+rdm.dir <- paste0(here::here(), "/chapterfiles/rdmReview")
 
-revChapDir <- paste0(here::here(), "/chapterfiles/rdmReview")
 myFile <- paste0(revChapDir, "/regimeshift_20190225.bib")
 
 bib <- read_bibliography(myFile)

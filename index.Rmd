@@ -86,7 +86,7 @@ knitr::opts_chunk$set(cache = T, message = F, warning=F, include =T, echo=F,
 list.of.packages <- c("ggplot2", "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
-                      "inlabru")
+                      "inlabru", "gridExtra")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages) >0 ){ install.packages(new.packages, dependencies = T)}
 

@@ -21,8 +21,6 @@ Forecasting change is arguably the holy grail of ecology. The ability to forecas
 Research in these areas will improve existing and inform future early warning systems, such that they are useful to practitioners and other end-users. In this dissertation I tackle __THE ABOVE NUMBERS LIST HERE__.
 
 
-
-
 ### Dissertation aims  
 
 The overarching aim of this work is to advance our understanding of the utility and limitation of using early warning systems (or regime detection metrics). Specifically, I examine those systems/models designed to detect abrupt change in ecological communities. This work is of value to both practitioners and theoreticians: 
