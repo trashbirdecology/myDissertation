@@ -1,4 +1,4 @@
-# An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial}
+# An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial-chapter}
 
 ```{r include=T, cache=T}
 ## Only run this if you need to calculate more metrics, or fix them.
