@@ -1,6 +1,5 @@
 # A guide to Fisher Information for Ecologists  {#fiGuide}    
 
-
 ```{r  include=FALSE, echo = F, warning=F, message = F, cache = T}
 # knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)

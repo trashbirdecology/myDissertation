@@ -1,28 +1,25 @@
-<<<<<<< HEAD:04-chap-fisherSpatial.Rmd
----
-output:
-  pdf_document: default
-  html_document: default
----
+# An application of the Fisher Information binning method to spatiotemporal avian community data   {#fisherSpatial}
 ```{r include=FALSE}
 source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial.R')
-=======
+```
+
 ```{r include=T, cache=T}
 ## Only run this if you need to calculate more metrics, or fix them.
 # source('/chapterFiles/binningChap/04-chap-binning_analysis.R')
 figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
 figDissDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/figsCalledInDiss")
->>>>>>> 69efe78d309af914c60c0660767c3bc43f749492:04-chap-binning.Rmd
 ```
 
-# An application of the Fisher Information binning method to spatiotemporal avian community data   
 ## Introduction    
+
+Objective of this chapter: Calculate FI for spatial transects. Idnetify whether it can be a leading indicator. Why or why not?
+
+
+
 
 Numerous quantitative methods are proposed for identifying abrupt changes, or regime shifts, in ecological systems (@andersen_ecological_2009, @roberts2018early). Despite the rapid rate at which these new methods enter the relevant literature, methods for detecting regime shifts remain largely in the theoretical domain. However, significant work has been done on systems exhibiting saddle-node bifurcations (or systems which have some 'tipping point'), where numerous methods for detecting "early-warning signals" (e.g., flickering, rising variance) have been tested in theoretical and empirical data (see @dakos_methods_2012 for an overview of these methods). 
 
-It is time to move these methods into a more operational, rather than theoretical, space. Testing these suggested RSDMs on empirical data is vital to this goal. 
-
-We 
+Getting baseline measures for 
 
 
 

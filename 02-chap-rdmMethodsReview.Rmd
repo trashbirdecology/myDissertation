@@ -1,4 +1,5 @@
-# A brief overview of methods for identifying ecological regime shifts in ecological communities {#chapter-rdmMethodsReview}   
+# A brief overview of methods for identifying ecological regime shifts in ecological communities {#rsdmReview}   
+
 ## Introduction
 
 Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist (@rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early), the most comprehensive presentation of available methods is outdated (@rodionov_brief_2005). 
