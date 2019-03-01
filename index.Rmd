@@ -13,12 +13,12 @@ output:
  thesisdown::thesis_pdf: default
     # includes:
        # in_header: header.tex  
-  # thesisdown::thesis_gitbook: default
-#  thesisdown::thesis_word: default
-#  thesisdown::thesis_epub: default
+#   thesisdown::thesis_gitbook: default
+#   thesisdown::thesis_word: default
+#   thesisdown::thesis_epub: default
 # If you are creating a PDF you'll need to write your preliminary content here or
 # use code similar to line 20 for the files.  If you are producing in a different
-# format than PDF, you can delete or ignore lines 20-31 in this YAML header.
+# format than PDF, you can delete or ignore the lines below.
 abstract: |
   `r if(knitr:::is_latex_output()) paste(readLines("00-abstract.Rmd"), collapse = '\n  ')`
 # If you'd rather include the preliminary content in files instead of inline
@@ -54,36 +54,25 @@ csl: csl/apa.csl
 # Download your specific csl file and refer to it in the line above.
 lot: true
 lof: true
-#space_between_paragraphs: true
+# space_between_paragraphs: true
 # Delete the # at the beginning of the previous line if you'd like
 # to have a blank new line between each paragraph
 #header-includes:
 #- \usepackage{tikz}
 ---
 
-<!--
-Above is the YAML (YAML Ain't Markup Language) header that includes a lot of metadata used to produce the document.  Be careful with spacing in this header!
-
-If you'd prefer to not include a Dedication, for example, simply delete lines 17 and 18 above or add a # before them to comment them out.  If you have other LaTeX packages you would like to include, delete the # before header-includes and list the packages after hyphens on new lines.
-
-If you'd like to include a comment that won't be produced in your resulting file enclose it in a block like this.
--->
-
-<!--
-If you receive a duplicate label error after knitting, make sure to delete the index.Rmd file and then knit again.
--->
-```{r chunkOpts, include = T, echo=F, warning=F, message=F}
+```{r chunkOpts, include = FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
 # Chunk defaults
-knitr::opts_chunk$set(cache = T, message = F, warning=F, include =T, echo=F, 
-                      fig.width=7, fig.height=7,
+knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, include = TRUE, echo=FALSE, tidy=TRUE, 
+                      # fig.width=7, fig.height=7,
                       fig.align='center',
                       out.width = "90%")
-
 ```
 
 
-```{r include_packages}
-list.of.packages <- c("ggplot2", "devtools", "here", "dplyr", 
+```{r include_packages, include = FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
+list.of.packages <- c("ggplot2", "ggthemes", "gapminder",
+                      "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
                       "inlabru", "gridExtra")

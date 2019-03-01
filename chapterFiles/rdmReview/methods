@@ -59,3 +59,18 @@ Methods for distinguishing noise form signal were borrowed from information theo
 1. TI=(("regime shift" or "regime change" or "change point" or "threshold" or "abrupt shift" or "abrupt change") AND (new or novel) AND (method or approach or framework)). Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years
   * hits: 299
   
+  
+  ## some unused notes
+Numerous quantitative methods are proposed for identifying abrupt changes, or regime shifts, in ecological systems (@andersen_ecological_2009, @roberts2018early). Despite the rapid rate at which these new methods enter the relevant literature, methods for detecting regime shifts remain largely in the theoretical domain. However, significant work has been done on systems exhibiting saddle-node bifurcations (or systems which have some 'tipping point'), where numerous methods for detecting "early-warning signals" (e.g., flickering, rising variance) have been tested in theoretical and empirical data (see @dakos_methods_2012 for an overview of these methods). 
+
+
+Although early-warning signals have proven useful in some systems (@carpenter2011early), most methods are applicable so sytems First, sudden shifts in dynamics may
+occur in the absence of underlying parameter
+changes (i.e., in the absence of the tipping point).
+
+
+
+cases where systems lose their periodicity 
+@hastings2018transient
+
+  
