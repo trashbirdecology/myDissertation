@@ -1,5 +1,5 @@
 # Individual transects over space (x) by time (anim) -----------------------------------------------
-anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.ind, site.temp = NULL, fn.ind = NULL ){
+anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.ind, site.temp = NULL, fn.ind = NULL, get.anim = TRUE, get.static = TRUE ){
     
     # Create temp df for anim plot
     temp <- data %>% as_tibble() %>%
@@ -12,6 +12,19 @@ anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.
     # Number of frames
     # n.frames = length(unique(temp$year)) * 2 - 1
     n.frames = 100    
+    
+    
+## make a filename index to use in the static and animation plots
+    fn <- paste0(
+        direction.ind, 
+        "_transect",
+        dirID.ind, 
+        "_", fn.ind)
+
+# Remove objs from file to be save
+    if(exists("p.static"))rm(p.static)
+    if(exists("p.anim"))rm(p.anim)
+    
 {mbLoc <- NULL
         if(tolower(site.temp) == "riley" &
            direction == "South-North"){  mbLoc <-
@@ -69,7 +82,7 @@ anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.
             linetype = 2
         )
     
-    
+if(get.anim){    
     # Create the animation of metricValue over time
     p.anim <- p +
         transition_states(year) + #, transition_length=1, state_length= 1) +
@@ -77,43 +90,66 @@ anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.
         shadow_trail(color = "grey")
         
     
-    fn <- paste0(
-        direction.ind, 
-        "_transect",
-        dirID.ind, 
-        "_", fn.ind)
     
     anim_save(filename = paste0(fn, ".gif"),
               path = animDir,
               animation = p.anim)
 
-    
-    # Saves last frame to file as .png
-        # cant get it to work with `plot` for some reason it reners the entire animation when saving, but not when previewing in console....
-        # plot(p.anim, frame = 95, nframes = 100)
+    }
     
     
+# Get the static (last plot of the animation)    
     #Colour Palette
     maxYear = max(temp$year)
     minYear = min(temp$year)
     otherYears = setdiff(unique(temp$year), c(maxYear, minYear))
     
-    temp2 <- temp %>% 
-        mutate(year.col = ifelse(year == max(year), 3, ifelse(year == min(year), 2, 1)))
     
+    temp2 <- temp %>% 
+        mutate(year.col = as.factor(ifelse(year == max(year), 3, ifelse(year == min(year), 1, 2))))
+    
+    
+    cols <- c("1" = "black", "2"= "grey10", "3"="red")
+    
+ if(get.static==TRUE){  
     p.static <- ggplot(temp2, aes(long, metricValue)) +
         geom_line(alpha = 0.7,
                   show.legend = FALSE,
-                  size = 1.25,
-                  aes(group=year, color = year.col))+
-        theme(legend.position = "bottom") + facet_wrap(~ metricType, scales = "free_y", ncol = 1) +
+                  size = 1,
+                  aes(group=year, color = factor(year.col)))+
+        facet_wrap(~ metricType, scales = "free_y", ncol = 1) +
+        theme(strip.text.x = element_text(size = 12))+
         ggthemes::theme_tufte()+
-    scale_colour_gradientn(colours=c("grey", "black"))
+        xlab("Longitude")+ylab("Metric value")+
+        ggtitle(paste0(unique(temp2$direction), " transect ", unique(temp2$dirID))) +
+        scale_color_manual(values = colors)
+   
+    # Add vline
+    # Add a Vertical Line for military base of interest  location if applicable
+    if (!is.null(mbLoc) &
+        direction == "East-West")
+        p.static <-
+        p.static + geom_vline(
+            aes(xintercept = mbLoc),
+            color = "red",
+            alpha = 0.56,
+            linetype = 2
+        )
+    if (!is.null(mbLoc) & direction == "South-North")
+        p.static <- p.static +
+        geom_vline(
+            aes(xintercept = mbLoc),
+            color = "red",
+            alpha = 0.56,
+            linetype = 2
+        )
     
-    ggsave( p.static, filename = paste0(figDissDir,"/lastFrameAnim_", fn, ".png"))
     
+    ggsave(p.static, filename = paste0(figDissDir,"/lastFrameAnim_", fn, ".png"))
     
-    return(p.anim)    
+    }
+
+if(get.anim) return(p.anim)    
 
     }
 
