@@ -1,38 +1,22 @@
-# An application of the Fisher Information binning method to spatiotemporal avian community data   {#fisherSpatial}
-```{r include=FALSE}
-source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial.R')
-```
+# An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial}
 
 ```{r include=T, cache=T}
 ## Only run this if you need to calculate more metrics, or fix them.
-# source('/chapterFiles/binningChap/04-chap-binning_analysis.R')
-figDir <- paste0(here::here(), "/chapterFiles/binningChap/figures")
-figDissDir <- paste0(here::here(), "/chapterFiles/binningChap/figures/figsCalledInDiss")
+# source('/chapterFiles/fisherSpatial/04-chap-binning_analysis.R')
+figDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures")
+figDissDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures/figsCalledInDiss")
 ```
 
 ## Introduction    
 
 Objective of this chapter: Calculate FI for spatial transects. Idnetify whether it can be a leading indicator. Why or why not?
+Objectives of this chapter include:
+1. Calculate Fisher Information across space
+1. Identify the utility of Fisher Information for spatial data
+1. Identify ecological regime changes using Fisher Information
 
+To achieve these aims, I wrote software to calculate Fisher Information using Equation \@ref(eq:fiDerivs), as it is simple to calculate, and requires fewer parameters to be chosen *a priori* by the analyst. 
 
-
-
-Numerous quantitative methods are proposed for identifying abrupt changes, or regime shifts, in ecological systems (@andersen_ecological_2009, @roberts2018early). Despite the rapid rate at which these new methods enter the relevant literature, methods for detecting regime shifts remain largely in the theoretical domain. However, significant work has been done on systems exhibiting saddle-node bifurcations (or systems which have some 'tipping point'), where numerous methods for detecting "early-warning signals" (e.g., flickering, rising variance) have been tested in theoretical and empirical data (see @dakos_methods_2012 for an overview of these methods). 
-
-Getting baseline measures for 
-
-
-
-Although early-warning signals have proven useful in some systems (@carpenter2011early), most methods are applicable so sytems First, sudden shifts in dynamics may
-occur in the absence of underlying parameter
-changes (i.e., in the absence of the tipping point).
-
-
-Fisher Information was introduced as a potential method for 
-
-
-cases where systems lose their periodicity 
-@hastings2018transient
 
 Perhaps the easiest case is a
 situation where the population density shows a
@@ -55,7 +39,7 @@ In this chapter I present an application of the Fisher Information measure using
 ## Methods  
 
 ### Data: North American Breeding Bird Survey  
-I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information binning method. Although Fisher Information can be calculated using any number of variables, the binning method (see \@ref(derivatives)) requires many data points and a large number of observations at each sampling site or period of time. I therefore chose to using breeding bird abundances from a long-standing avian community survey, the North American Breeding Bird Survey (NABBS) (@pardieck_bbs_2017). 
+I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information binning method. Although Fisher Information can be calculated using any number of variables, the binning method (see \@ref(derivatives)) requires many data points and a large number of observations at each sampling site or period of time. I therefore chose to using breeding bird abundances from a long-standing avian community survey, the North American Breeding Bird Survey (NABBS). 
 
 The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data. 
 

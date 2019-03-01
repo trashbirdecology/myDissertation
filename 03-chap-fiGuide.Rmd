@@ -12,6 +12,7 @@ library(segmented)
 theme_set(theme_bw())
 ```
 <!-- ## Specify the model and parameters   -->
+
 ```{r startParms,  echo=F, message=F, warning = F, cache = T}
 # Model parameters
 parameters <- c(
@@ -60,9 +61,11 @@ sysSol <- tibble(t = out[,1], x1 = out[,2], x2 = out[,3])
 ```
 
 ## Abstract    
+
 Ecological regime shifts are increasingly prevalent in the Anthropocene. The number of methods proposed to detect these shifts are on the rise yet few are capable detecting regime shifts without a priori knowledge of the shift or are capable of handling high-dimensional and noisy data. A variation of Fisher Information (FI) in a dataset was proposed as a method for detecting changes in the orderliness of ecological systems. Although FI has been described in multiple research articles, previous presentations do not highlight a key component of FI that may make the metric easier to understand by practitioners. We use a two-species predator prey model to describe the concepts required to calculate FI. We hope this work will serve as a useful explanation of the FI metric for those seeking to understand it in the ecological systems and regime shifts. 
 
 ## Introduction  
+
 Changes in the feedback(s) governing ecosystem processes can trigger unexpected and sometimes undesirable responses in environmental conditions [@scheffer_catastrophic_2001; @walther_ecological_2002]. Ecologists often refer to such changes as regime shifts—but this term  is used interchangeably in the literature with state change, state transition, or alternative state [@andersen_ecological_2009]. Climate change and globalization are triggering novel and unexpected changes in ecosystems, and the rapidity with which these changes occur make predictive modeling difficult. Although detecting regime shifts becomes more difficult as we increase the extent and complexity of the system in question , advances in the collection and analysis of ecological data may improve our ability to detect impending regime shifts in time for intervention [@jorgensen_towards_2004].
 
 Although multiple quantitative approaches are proposed as regime shift detection methods ,few are consistently applied to terrestrial ecological data. We classify a regime shift detection methods (DMs) broadly as either model-based or model-free [@boettiger_quantifying_2012; @hastings_regime_2010; @dakos_methods_2012].  Model-based methods incorporate mathematical (mechanistic) representations of the system [@hefley2013statistical] and carry strict assumptions, which are often violated by real systems [@abadi2010assessment]. In addition to assumption violations nullifying parts of the model, model misspecification may yield spurious results [@perretti_model-free_2013.
@@ -80,13 +83,16 @@ In contrast, imagine a population varying around a carrying capacity following a
 
 Although the concept of FI is firmly grounded in physics [@frieden_physics_1998], the concepts behind its application to ecological systems remain elusive to the average ecologist. We aim to elucidate the statistical concept of FI and the steps required to calculate it as a measure of ‘ecosystem order’ and as a regime shift detection method [@cabezas_towards_2002; @fath_regime_2003]. We believe a concise and accessible synthesis of the topic, along with reproducible code, will aid the ecologists’ understanding of this metric and will advance our understanding of its usefulness as an indicator of ecological regime shifts. We reproduce the analyses presented in [@fath_regime_2003] and @mayer_applications_2007 to fully explain these concept of and steps for calculating this form of Fisher Information. We hope this work will serve as a useful explanation of the FI metric for those seeking to understand it in the ecological regime shift context and will stimulate research using this and other multivariate, model-free, and composite measures to understand ecological regime shifts.
 
-###On Fisher Information
+### On Fisher Information
+
 Two methods exist for calculating Fisher Information (FI) as applied to ecological systems data, which we refer to as the ‘derivatives-based’ method, first appearing in @cabezas_towards_2002, and the ‘binning’ method, first appearing in @karunanithi_detection_2008. The binning method was proposed as an alternative to the derivatives-based method for handling noisy and sparse data, and requires additional calculations and system-specific decisions, and for these reasons we focus solely on the derivatives-based method. The general form of FI can be found in [@fath_regime_2003] and [@mayer_applications_2007], and although others can be found, we refer the reader to @cabezas_towards_2002 for a complete derivation of FI, and to \@ref(#fiBiblio) for applications of Fisher Information in other fields. 
 
-###Notation    
+### Notation    
+
 A capital letter (e.g., $A$) denotes a random variable; an asterisk superscript ($^*$) indicate a particular realization; *bold notation* indicates that the state of the system is defined in more than one dimension.
 
-###Steps for calculating Fisher Information (FI) 
+### Steps for calculating Fisher Information (FI) 
+
 To calculate FI for a system with more than one state variable, we first estimate the probability of observing the system $p(x)$ in a given state, $x$, over time period $T$. The probability density function, $p(x)$, is then directly used to calculate the derivatives-based FI. We use bold notation to indicate that the state of the system is defined in more than one dimension (e.g., the state of a predator prey system is defined in two dimensions by the number of predators and number of prey). Here, we describe these steps and present the numerical calculation of FI using a two-species predator-prey model [@fath_regime_2003; mayer_applications_2007], hereafter referred to as the ‘model system’:
 
 \begin{equation} 
@@ -106,10 +112,12 @@ ggplot(data = sysSol, aes(x = x1, y = x2)) +
 ```
 
 
-###Concepts behind the calculations  
+### Concepts behind the calculations  
+
 Although the numerical steps for calculating the derivatives-based FI are relatively straightforward, the concepts required to interpret the measure in the context of multiple variables is more complex. Here, we thoroughly discuss the concepts and assumptions behind FI calculation. Below, steps do not represent steps within the calculation, they represent the major concepts required 
 
-####**Step 1. Probability of observing the system in a particular state, $p(x)$**   
+#### **Step 1. Probability of observing the system in a particular state, $p(x)$**   
+
 Fisher Information (FI) is defined with respect to a probability distribution. In the derivatives-based method, FI is calculated for a probability of observing a system (as defined by one or more state variables) in a particular state, $p(x)$, over some period of time, ($0 to t_{end}$). In other words $p(x)$ is the probability that, at a specific point in time ($t_{obs}^*$) we will observe the system in a particular state, $x^*$. The time at which we observe the system is a random variable, $t_{obs}  ~ Uniform(0,t_{end})$. To be clear, the study system is assumed to be deterministic and we assume no observation error, however, the observed state of the system, $x(T_{obs})$, is a random variable because it is a function of the random observation time,  $x^*= x(t_{obs}^*)$. The state of the model system, x, is defined in two dimensions by the number of predators and the number of prey \@ref(eq:predprey) and is easily visualized \@ref(fig:pp1Period).Therefore, the probability of observing a particular state is a two-dimensional joint distribution  \@ref(fig:2d-hist). 
 ```{r 2D-hist, echo=FALSE, fig.cap="A 2-dimensional histogram of the probability of observing a system in a particular state, $p(x)$, of the 2-species Lotka-Volterra predator prey system over a single period (~11.145 time units).", warning=TRUE, warning=F, cache = T, out.width="85%"}
 # Plot probability of observing the system in a particular state
@@ -124,7 +132,8 @@ A single state of the model system is defined by the number of predators and pre
 knitr::include_graphics('./chapterFiles/fiGuide/figures/stringFig.png')
 ```
 
-####**Step 2.** Distance traveled by the system, $s$ 
+#### **Step 2.** Distance traveled by the system, $s$ 
+
 Distance traveled by the system, s. We can now move from an n-dimensional representation of the probability distribution to a one-dimensional representation. To better understand this, imagine placing a string over the path of the entire trajectory from $0 to t_{end}$   \@ref(fig:stringFig). If we know the number of predators and prey at a particular point in time $(t_{obs}^*)$ then we can mark that location on the string (see asterisk in  \@ref(fig:stringFig). Next, imagine picking up the string and laying the string flat along a ruler. The length, s, of the entire string measures the total distance traveled by the system in phase space. The mark we made on the string (denoted $*$) lies at a distance $s^*$ between 0 and $s$. We call this length the distance traveled by the system, $s^*$. In this context, $s^*$ in phase space represents a measure of cumulative change in state. We note that the distance traveled in phase space increases monotonically with time. If the system never revisits the same state (i.e., the trajectory never overlaps or intersects itself), then every unique system state (i.e., point on the trajectory) is mapped to a unique value of distance traveled. Therefore, $p(x)$ (n-dimensional) is equivalent to the probability that the system is at distance s, i.e.,  $p(x)=p(s)$, (where $p(s)$ is one dimensional; @cabezas_simulated_2005). However, if the system revisits previous states, then a unique system state may be mapped to different values of distance traveled and the relationship between $p(x)$ and $p(s)$ is not one-to-one. We calculated the distance traveled s of the model system over a single cycle (11.145 time units;  \@ref(fig:distSpeedAccel). 
 
 ```{r solve-ODE, echo = F, warning = F, message = F, cache = T}
@@ -241,12 +250,14 @@ grid.arrange(p1, p2, p3, ncol=1)
 
 ```
 
-#### **Step 3.** $p(s)$ as a function of the rate of change of $s$  
+#### **Step 3.** $p(s)$ as a function of the rate of change of $s$   
+
 In previous presentations of FI, the relationship between the state of the system (n-dimensional) and the distance traveled (1-dimensional) was not always emphasized [@cabezas_towards_2002]. Here we use x to denote the state of the system and s to denote the distance traveled to emphasize this distinction. If a system travels at a constant speed over the entire time period, then the system is equally likely to be in any state along the trajectory ($s$ is linear and $p(s)$ is uniform). Referring to our model system, if the number of predators and prey are linearly related, then the speed of the system is constant. For non-linear systems, the distribution above the string will not be uniform  \@ref(fig:stringFig). Rather, it will change depending on the amount of time the system spends in each state. It follows that $p(s)$ is proportional to the inverse of the rate of change of distance traveled (i.e., the speed along the path in phase space).
 
 We will now demonstrate this using our model system as an example. Suppose the abundances of the predator and their prey in our model system predictably operate at carrying capacity. Over a relatively short period of time the prey abundance quickly declines after a severe weather event (a pulse disturbance; (Bender et al. 1984), but quickly recovers. Intuitively, the absolute rate of change at time points near the disturbance will be larger than during time periods long before or long after the disturbance. It is therefore more likely that the system will be (observed) in a state where prey and predators are operating approximately at carrying capacity than in a state with relatively low prey abundance. Mathematically, the time, $t*$, at which we calculate the abundances of prey and predators is a uniform random variable, and the distance traveled by the system, $s^*$, is a function of time, is differentiable, and monotonically increases. Therefore, the probability density function of the distance traveled $p(s)=\frac{1}{T}\frac{1}{s'}$, where $s'= \frac{ds}{dt}$ is the speed of the system (the speed tangential to the trajectory; the first derivative of the distance traveled; instantaneous rate of change of $s$). We calculated the speed (the first derivative;  \@ref(fig:distSpeedAccel) and acceleration (the second derivative;  \@ref(fig:distSpeedAccel) of the distance traveled s by the model system over a single cycle using function ode in package deSolve (Soetaert et al. 2010) in Program R (R Core Team 2016).  
 
-#### **Step 4.** Calculate the derivatives-based Fisher Information 
+#### **Step 4.** Calculate the derivatives-based Fisher Information  
+
 Now that we understand how to calculate both the distance traveled, $s$, and its probability density, $p(s)$, calculating the derivatives-based FI is straightforward and computationally inexpensive \@ref(eq:fiDerivs). There are several comparable equations for calculating the shift-invariant FI, and some may offer numerical advantages over others. Equation \@ref(eq:fiAdapted) is the general form and Equation \@ref(eq:fi73c) is the amplitude form for FI (in @mayer_applications_2007, respectively). Although these formulations are equivalent, \@ref(eq:fi73c) is most readily calculated when the differential equations for the system are known, obviating any advantage of a model-free metric. 
 
 \begin{equation}   
@@ -266,7 +277,8 @@ Now that we understand how to calculate both the distance traveled, $s$, and its
 
 This article is interested in the Fisher Information calculated for a distribution of distance traveled, $s$, by the entire system. We calculated the Fisher Information value using Equation \@ref(eq:fiDerivs) over a single period of the model system (\@ref(predprey)). We calculated Fisher Information to be $5.3$ x $10^{-5}$ which is consistent with the results of Mayer et al. (2007).	
 
-##Case Study    
+## Case Study    
+
 Mayer et al. (2007) calculated FI for a predator-prey system for several discrete values of carrying capacity of prey. The results of this study showed that FI was different for systems with different carrying capacities. However, this study did not address the central question of how FI changes during a regime shift.  As an extension of the original study, we simulate a regime shift by modeling a situation where carrying capacity is abruptly decreased. To simulate an abrupt change in carrying capacity, we assume carrying capacity is described by Eq. 6 where $k1$ is the initial carrying capacity, $k2$ is the final carrying capacity, $t*$ is the time of the regime shift, and alpha is a parameter that controls how quickly the regime shift occurs. The hyperbolic tangent function simulates a smooth, continuous change in carrying capacity while still allowing for the change to occur suddenly. To incorporate the change in carrying capacity into the system differential equations we define the rate of change of carrying capacity as given by \@ref(eq:mayerCase).  
 \begin{equation}  
   k(t) = k_1  - 0.5(k_1-k_2)(\tanh(\alpha (t-t^*))+1)	  \\
@@ -422,11 +434,13 @@ knitr::include_graphics('./chapterFiles/fiGuide/figures/dsdtOverTime.png')
 ```
 
 We calculated FI for the distribution of distance travelled over a series of non-overlapping time windows. Multiple sources suggest the length of the time window should be equal to one system period such that FI is constant for a periodic system [@mayer_applications_2007; @cabezas_towards_2002]. However, the system period is different before, during, and after the regime shift. Therefore, we performed two separate calculations of FI using window sizes corresponding to the initial and final period of the system ($13.061$ and $11.135$, respectively).  The change in FI over time is shown in \@ref(fig:fiOVerTime). 
+
 ```{r fiOverTime, echo = F, warning=F, message = F, fig.cap=paste("Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift."), out.width = "85%"}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/fiOverTime.png')
 ```
 
-## Conclusions    
+## Conclusions     
+
 We simulated a regime shift caused by a change in carrying capacity ($K$) within a simulated, two-species Lotka-Volterra system. We applied the Fisher Information (FI) method for regime shift detection to the simulated time series data. The predator-prey system was modeled as deterministic and the time series data was free from measurement and observation error. Despite this, the estimated FI had high variation over time, and results were dependent on the size of the time window used (winsize) in the calculation \@ref(fig:fiOVerTime). The FI method for regime shift detection is based on the cumulative change in the state of the system (i.e., distance traveled in phase space) and the rate of change of the system (i.e., speed tangential to trajectory in phase space). The distance travelled metric, $s$, and its speed, $dsdt$, appear better visual indicators of the regime shift than FI [\@ref(distOverTime); \@ref(dsdtOverTime)].
 
 In our explanation of the FI concept and calculation, we emphasize the distinction between the *state of the system* and the *distance traveled in phase space*. There are several reasons worth emphasizing this. First, there may not always be a one-to-one relationship between the probability of observing a system in a particular state and the probability of observing a system at a particular distance along the trajectory. In these situations the interpretation of FI may be less clear than if a one-to-one relationship existed. Second, this distinction facilitates the separation of the dimensionality reduction step (calculating distance traveled in phase space, $s$) from the subsequent steps related specifically to FI. Third, the distinction suggests that the **value of FI as a regime shift detection method is related to the rate of change of the system** (i.e., velocity and acceleration tangential to system trajectory in phase space). In particular, the distribution for which FI is calculated is simply the distribution of the distance traveled in phase space, when time is assumed to be uniformly distributed over a given interval. 
@@ -438,7 +452,8 @@ One remaining issue that is prevalent across ecological field studies is the ass
 The utility of Fisher Information in ecological studies is also stunted by its interpretability. This metric is unitless, making its values relative only within-sample (e.g., within a single time series). Further, interpreting the results within-sample is currently a qualitative effort [@mantua_methods_2004; @fath_regime_2003]. When the FI of a system is increasing, the system is said to be moving toward a more orderly state, and most presentations of FI posit sharp changes in FI, regardless of the directionality of the change, may indicate a regime shift [@cabezas_towards_2002; @karunanithi_detection_2008; @spanbauer_prolonged_2014]. Due to the qualitative nature of these interpretations of Fisher Information, intimate knowledge of the system in question and the potential driver(s) of the observed regime shift are required to confirm presence of a shift. 
 
 
-## Acknowledgements  
+## Acknowledgements   
+
 We thank T. Eason, H. Cabezas and B. Roy Frieden for early discussions regarding Fisher Information. This work was funded by the U.S. Department of Defense’s Strategic Environmental Research and Development Program (project ID: RC-2510). 
 
 

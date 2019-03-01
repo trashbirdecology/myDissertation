@@ -97,7 +97,7 @@ bib.keep <- bib %>% dplyr::filter(SO %in% topJrnls$SO | SO %in% methJrnls)%>%
   mutate(SO = as.factor(SO)) %>%  as_tibble()
 ```
 
-```{r methJrnlsFigs, echo=F, eval=T, cache = T, message=F, warning=F, out.width = "45%", fig.cap="Distribution of articles related to ecological regime shift methodologies and frameworks published in the first and second quartiles of SJR *ecology* journals and in *Methods in Ecology and Ecolution* and *Ecological Modelling*."}
+```{r methJrnlsFigs, echo=F, eval=T, cache = T, message=F, warning=F, fig.cap="Distribution of articles related to ecological regime shift methodologies and frameworks published in the first and second quartiles of SJR *ecology* journals and in *Methods in Ecology and Ecolution* and *Ecological Modelling*."}
 # Visualize results
 ## Number of articles annually
 ptemp1 = ggplot(bib.keep %>%
@@ -118,7 +118,7 @@ ptemp2 = ggplot(bib.keep %>%
   ylab(paste0("articles published ", min(bib.keep$PY)," to ", max(bib.keep$PY), "   " )) + xlab('publication title') +
   theme_bw() + theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6))
 
-grid.arrange(ptemp1, ptemp2, ncol=2)
+grid.arrange(ptemp1, ptemp2, ncol=1)
 ```
 
 ### WOS Search results
@@ -157,7 +157,7 @@ Potential text:
 
 1. Because ecological and social systems are tightly coupled, we have used indicators in the environment and in wildlife communities to identify change and potential changes that may impact our social communities. 
 
-1. Many regime shift analytical papers suggest that, using multiple quantitative methods to provide for evidence for a regiem shift in a specific data set is necessary  (@lindegren_early_2012, @easonYYYY). Although this proposition is valid, comparing results within a single system using multiple methods has often yielded varying results. Managing systems using quantitative methods that yield different results may yield improper management techniques and objectives. 
+1. Many regime shift analytical papers suggest that, using multiple quantitative methods to provide for evidence for a regiem shift in a specific data set is necessary  (@lindegren_early_2012, easonYYYY). Although this proposition is valid, comparing results within a single system using multiple methods has often yielded varying results. Managing systems using quantitative methods that yield different results may yield improper management techniques and objectives. 
 
 ## TEXT NOT USED:
 ### Identifying papers/RSDMs in the literature
@@ -207,17 +207,3 @@ We identified _______ number of quantiattive anlaytical approaches to identifyin
 1. X = year Y = # pubs for new RSDM appropriate for multidimensional systems
 
 
-### Potential tables
-
-<!-- \newpage -->
-<!-- \blandscape -->
-<!-- ```{r  echo=FALSE, message=FALSE, warnings=FALSE, label = "characteristicsResults"} -->
-<!-- colNames <- t(c('Authors', "Year of Publication", "Dimensionality of data", "Longitudinality of data", "Method applied")) -->
-
-<!-- knitr::kable( -->
-<!--   colNames, longtable = TRUE, booktabs = TRUE, -->
-<!--   caption = 'Data structure and analytical procedures characteristics fo the selected studies.' -->
-<!-- ) -->
-
-<!-- ``` -->
-<!-- \elandscape -->
