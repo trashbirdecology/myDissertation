@@ -52,9 +52,15 @@ kableExtra::kable(defs_tbl) %>%
   column_spec(2, width = "30em", background = "yellow")
 ?kableExtra::kable
 ```
-<!-- Here is my reference to a table (\#tab:defs_tbl)  -->
 
-### On critical slowing down    
+
+## On the evidence for ecol regime shifts
+@capon2015regime found evidence for regime shifts in nature are limited mostly to freshwater shallow lakes. 
+@mac2014scrutiny Authors conducted lit review to search for papers that suggest there was a regime shift, but found that few papers actually found evidence for a *stark* change. Suggest that identifying stark changes is hindered by a few things: 1) terminology, 2) calims based on two obvservations (B and A), 3) what is the frequency of the change, 4) are the changes actually linked to variation in drivers?
+
+In agreemen wiht @mac2014scrutiny, I suggest that stability does not 
+
+## On critical slowing down    
  
 **Critical slowing down** is the most solid theoretical concept in the study of **ecological regime shifts** and is a more precise variant of **Pimm's resilience** (c.f. **Hollings resilience**). The theory is such that the **recovery rate**, or the time it takes to return to a **stable** point, decreases as it nears its **tipping point**.
 
@@ -65,7 +71,7 @@ Its resilience becomes decreased bring the system close to a critical transition
 For multispecies data you will typically need to reduce dimensionality before you can proceed, for example by some sort of ordination. The vegan package for R is typically the starting point for this. I can help you a bit further on the way if you are not familiar with this if you want to, but then I would need to know a bit more about your data.
 
 
-### Types fo regime shifts
+## Types fo regime shifts
 There are different types fo regime shifts, and **why those differences matter**  
 
   * only “regime shifts” that are also “critical transitions” should show “critical slowing down”  
@@ -74,7 +80,7 @@ There are different types fo regime shifts, and **why those differences matter**
     - these results in very different changes in time series  
     - in some contexts, this doesn't really matter  
     
-### Brandolini's principle    
+## Brandolini's principle    
     
 - Current state of regime shift theory
 - Why it is important to diagnose/detect abrupt changes at the system level
@@ -87,12 +93,3 @@ There are different types fo regime shifts, and **why those differences matter**
 - Identifying methods for multiple species data
 - Highlighting the methods that may or may not be useful to the causal quantitative ecologist
 
-
-## On the sheer number of RSDMs
-
-A systematic review of the literature in 2018 yielded  670 results
-  - scopus
-  - search key:( TITLE-ABS-KEY ( "regimeshift" )  AND  TITLE-ABS-KEY ( ecolog* ) )  AND  ( LIMIT-TO ( SUBJAREA ,  "AGRI" )  OR  LIMIT-TO ( SUBJAREA ,  "ENVI" ) ) 
-
-I widdled this down to  
-  - same set as above
