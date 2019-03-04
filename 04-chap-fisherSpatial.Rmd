@@ -147,3 +147,11 @@ The first assumption is one of philosophical debate and is thus not controllable
 Although the current calculation of Fisher Information for complex systems is a relatively straightforward process and is mathematically grounded, care should be taken when applying to ecological data due to its often sparse and noisy nature. Further, the boundaries of interpretation of $I$ for identifying ecological regime shifts are still under exploration.
 
 Is it possible to identify regiem changes with as many as 25 points across space, for large regions? The lack of patterns identified using Fisher Information may also be duet o the fact that (1) tehse data were designed to identify species trends, not cahnges in communities across space, (2) even wiht !~30 poiunts across space, is this sufficeint # of observations to identify regime changes in space? If this were time, would 30 years, e.g., be enough to observe cahgnes induced by slow drivers? No.
+
+Using these methods, e.g., Fisher Ifnormation, to identify rapid shfits in bird communities is not sufficient to suggest a regime shift. In accordance with @mac2014scrutiny, sufficient evidence of a regiem shift must also include statistical evidence of pressure-changes that influenced the observed "regime change". 
+
+Even if statistical methods/RDMs suggest that regime shifts have occurredc across large spatial extents, such as our East-West transect of avian communities, there is no way to test using a BACI, since the environmental conditions presumably driving observed changes at large spatial scales are NOT limited only to our transect.  
+
+I think that, due to the short time period of our study (~30 years), we can not suggest regime shifts have occurred, since anthropogenic influences on environmental conditions have yet to or have only recently begun. This study can help to provide baseline measures for what RDM measures look like across space, for our community,  but cannot make inference beyond this. 
+
+While the birds in our communities may be self-sustaining, if the habitat or charactersitics providing opportunity adn resources to these birds are relics, then the birds will appear as non-self-sustaining. 

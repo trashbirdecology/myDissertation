@@ -5,7 +5,7 @@ Long-lasting changes in the underlying structure or functioning of natural syste
 
 There is currently not a single, current resource to which ecologists can refer for quantitative RDMs. Past reviews (@rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime) of RDMs vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. Rather than discussing in detail each method, I follow the style of @rodionov_beief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods. 
 
-## Literature reivew: methods 
+## Methods 
 
 Methods proposed as RSDMs are not easily identified using systematic literature review techniques for a few reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields. For example, the terms, *regime shifts, regime changes and tipping points* are variably used in studies of ecological systems, whereas *change point* is often used in oceanography and climatology and *structural change* is largely used in econometrics. Although the definition of a regime shift and change point are different (the former describing a change in system structure and the latter the point at which a variable of interest changes), the methods used to identify these changes are shared. 
 
@@ -16,47 +16,57 @@ I took three approaches to identify 'new' RDMs:
 1. snowball method based on past RDM reviews, and
 1. systematic literature review
 
+I used the Thomson-ISI Web of Science (WoS) database to identify papers published prior to March 2019 that introduced new RDMs. The complete boolean was: 
+> (TS=("regime shift*" OR "regime change" OR "abrupt shift*" OR "abrupt change" OR "break point" OR "change point" OR "change-point" OR "tipping point" OR "structural change" OR "observational inhomogeneity" OR "abrupt" OR "alter* state" OR "sudden" OR "stark" OR "threshold") AND TS=("new method" OR "new approach" OR "novel method" OR "novel approach" OR "we introduce" OR "I introduce") AND WC=(Fisheries OR Ecology OR "Biodiversity Conservation" OR "Environmental Sciences" OR Biology)) AND DOCUMENT TYPES: (Article)
+Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years
 
-### Systematic literature review using Web of Science
+where '*' indicates a wildcard. Other methods/papers that I was aware of were added if they did not appear in the search.  I then excluded papers based on abstracts-- if a paper did not indicate a new method, nor was the method(s) being used not familiar to me, I removed the paper from consideration. 
 
-To identify potential methods of which I was not previously aware, I conducted a systematic literature review using the database Web of Science. I used the following boolean to identify original methodological papers
 
-> TS=("regime shift" OR "regime change" OR "abrupt shift" OR "abrupt change" OR "break point" OR "change point" OR "change-point" OR "tipping point" OR "structural change" OR "observational inhomogeneity") AND TS=("new method" OR "new approach" OR "novel method" OR "novel approach" OR "we introduce" OR "I introduce") AND WC=(Agronomy OR Fisheries OR Ecology OR "Biodiversity Conservation" OR "Environmental Sciences" OR Biology OR "Meteorology & Atmospheric Sciences" OR Oceanography OR "Geosciences, Multidisciplinary")) AND DOCUMENT TYPES: (Article) 
+<!-- Including the term *threshold* increased the search yield approximately ten-fold, but yielded aticles irrelevant to my purpose.  Therefore, I omitted this term from the boolean.  -->
 
-Including the term *threshold* increased the search yield approximately ten-fold, but yielded aticles irrelevant to my purpose.  Therefore, I omitted this term from the boolean. 
-
-### Systematic literature review using Google Scholar
-
-There was a high disparity among the number of methods of which I was previously aware and those identified in a review of Web of Science. Therefore, I conducted a similar search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with notoriously broad scope of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I skimmed the titles and authors of these results for the first 25 pages only. It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. 
-
+There was a high disparity among the number of methods of which I was previously aware and those identified in a review of Web of Science. Therefore, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I skimmed the titles and authors of these results for the first 25 (N = 250 articles) pages only of search returns. It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
 > ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
 
-```{r rdmReviewFlow, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. Note: only the first ten pages of Google Scholar results were exmamined."}
 
-DiagrammeR::grViz("digraph {
-
-graph [layout = dot, rankdir = TB]
-
-# define the global styles of the nodes. We can override these in box if we wish
-node [shape = rectangle, style = filled, fillcolor = White]
-
-data1 [label = 'Google Scholar\n (n = )', shape = folder, fillcolor = Linen]
-data2 [label = 'Web of Science\n (n = )', shape = folder, fillcolor = Linen]
-data3 [label = 'Other \n (n = )', shape = folder, fillcolor = Linen]
-dups [label = 'Remove Duplicates \n (n = )']
-
-filter [label =  'Filter Results\n (n = )']
-results [label= 'Final Methods \n (n = )']
-
-# edge definitions with the node IDs
-{data1 data2 ,data3} -> dups -> filter  -> results
-}")
-
+```{r bibAnalysis}
+source(paste0(here::here(), "/chapterFiles/rdmReview/bibliographyAnalysis.R"))
 ```
+
 
 ## Results
 
-We identified XXX unique, regime detection methods in the ecological and relevant literature using Google Scholar, Web of Science, and prior knowledge ('other'; see \@ref(fig:rdmReviewFlow)). XXX% of the methods were already identified in previous review papers, XXX% were identified during the systematic review, and XXX% were only identified based on prior knowledge of the author. 
+The Web of Science search yielded `r nrow(bib)` unique articles, to which I added an additional `r n.gs` and `r n.prior`. 
+
+A shortlist of 50 papers (i.e., 37%) comprised those that met our evaluative criteria (Table 3)
+
+\@ref(fig:rdmReviewFlow)
+
+
+
+```{r rdmReviewFlow, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. Note: only the first ten pages of Google Scholar results were exmamined."}
+DiagrammeR::grViz(
+  "digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  # define the global styles of the nodes. We can override these in box if we wish
+  node [shape = rectangle, style = filled, fillcolor = White]
+  data1 [label = 'Web of Science\n (n = )', shape = folder, fillcolor = Linen]
+  data2 [label = 'Google Scholar\n (n = )', shape = folder, fillcolor = Linen]
+  data3 [label = 'Other \n (n = )', shape = folder, fillcolor = Linen]
+  dups [label = 'Remove Duplicates \n (n = )']
+  
+  filter [label =  'Filter Results\n (n = )']
+  results [label= 'Final Methods \n (n = )']
+  
+  # edge definitions with the node IDs
+  {data1, data2, data3} -> dups -> filter  -> results
+  }"
+  )
+
+```
+
+We identified XXX unique, regime detection methods in the ecological and relevant literature using Google Scholar, Web of Science, and prior knowledge ('other'; see ). XXX% of the methods were already identified in previous review papers, XXX% were identified during the systematic review, and XXX% were only identified based on prior knowledge of the author. 
 
 
 ### Filtering results

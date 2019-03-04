@@ -60,6 +60,24 @@ kableExtra::kable(defs_tbl) %>%
 
 In agreemen wiht @mac2014scrutiny, I suggest that stability does not 
 
+## On alternative stable staets
+"Inconsistent terminology and vague links...to theory" (@capon...) are hindering advancement of regime shift detection mehtods and theory 
+
+@petraitis2004detection suggest that a good test of showing whether a system has alternative state sis 
+> "good test of the theory would simply require showing that a given habitat would support two or more different assemblages of species and that these assemblages were stable"
+
+also from @petraitis2004detection "proof of an alternative community required showing by
+experiment that the same site could be occupied by different self-replacing communities (this is by peterson1984 in response to connell and sousa)
+
+lotka1956elements on eof hte first to suggest multipel states of a natural system
+
+"Both Lotka and Lewontin note that constancy does not imply stability and that stability is a
+dynamical property" - from @petraitis2004detection
+
+
+
+
+
 ## On critical slowing down    
  
 **Critical slowing down** is the most solid theoretical concept in the study of **ecological regime shifts** and is a more precise variant of **Pimm's resilience** (c.f. **Hollings resilience**). The theory is such that the **recovery rate**, or the time it takes to return to a **stable** point, decreases as it nears its **tipping point**.
@@ -93,3 +111,65 @@ There are different types fo regime shifts, and **why those differences matter**
 - Identifying methods for multiple species data
 - Highlighting the methods that may or may not be useful to the causal quantitative ecologist
 
+
+
+## Other shit unclassfied
+## Some notes on RSDMs not yet in text. 
+
+Ecosystems are complex and we will never fully understand them... "So it’s really kind of a small miracle that across these very different systems, we could find these universal indicators of how close they are to a threshold" - Scheffer
+
+As the scale of the system increases, so does the ability to cahracterise a system in a relevant manner, and also the ability to detect meaningful change int eh ssytem becomes muddier. It is not surprising, therefore, that RSDMs have been relatively well-developed and tested in climatic and marine systems. It is with these data that parametric and non-parametric tests which detect changes in the mean of a system have been most commonly applied. 
+
+If we know or suspect a shift exists, then it is advantageous to know to what disturbances or interventions the system responds/shifts, and at what rate it will cahnge (rapid, slow) (@contamin_indicators_2009).
+
+how to handle systems that are non-stationary
+how to handle systems taht are not ergodic?
+how do we determine ergodicity of ecosystems? especially when baseline or comparable sites are unavailble. 
+If these RSDMs cannot even reliabily and consistently detect RSs, then how are we goign to detect them in time for mangaement/intervention?
+All of these methods are assuming that a system is ergodic -- this si especiall yimportnt when examinig systems at scales that are smaller thatn teh underlying process - the system may not look ergodic.
+Critical transitions are more concrete than a regime shift -- so it is no surprise that these methods are more explored than for "regime shifts". 
+
+Tipping points are points at which a system responds in a big way to a small chagne, adn much of the theoryand methods are well-developed in this space (e.g. coral reefs @hughes_living_2013,  forests @scheffer2005synergy, insect outbreaks @ludwig1978qualitative, and society @scheffer2003slow). While these RSDMs are  useful for manipulable systems, they are less so for systems of larger scale or extent (e.g. bird communities) and especially for regime shifts occuring due to some uncontrollable circumstance (e.g., climate).
+
+Changes in hte underlying structure or functioning of natural systems due to exogeneous forcings is of interest to climatologists, and terrestrial and aquatic ecologists alike. BEing able to identify and predict these shifts is particularly useful for systems which are actively managed, or are systems that are used by or are beneficial to humans. Being able to predict these shifts in time for management action, or response, is key.
+
+Papers that are critical of RSDMs and RSD include @perretti2012regime, @andersen_ecological_2009, @contamin2009indicators, @perretti2012regime and @contamin2009indicators concluded that some early-warning indicators (skewness, kurtosis, AR1, spectral ratio) perform poorly in the presence noise, but are unaffected by autocorrelation of the noise.  Although most tests of variance as an indicator have fared well (@carpenter_early_2011, @brock_variance_2006), the amount of noise significantly reduces its ability to detect regime shifts (@perretti2012regime).
+
+
+A goal in ecological RSDM is to move from objective to subjective identification of regime shifts. Probabilistic approaches to RSD are desireable, however, the inherent subjective nature of a regime shift will always make the approach subjective (since the user has to define the system boundaries and what variables can be used to indicate the shift...).
+
+Many papers (e.g. Sundstrom 2017, EasonXX, WAng et al) suggest using multiple indicators when attempting to detect regime shifts, such that inference amogng each is similar. 
+
+
+
+## This section contains notes on model-based and metric-based methods for detecting regime shifts
+
+## Types of regime dtection methods
+There are two types: model-based and metric-based. Most methods (model- and metric based) try to identifyi regime chagnes by identifying points int eh TS where memory and variability change, and try to fit to a model of critical transitions (e.g., saddle-node, ...).
+
+
+### Model-based
+These methods (see Table XXX) fit the observed time series to a model. 
+
+### Metric-based
+These methods do not fit the data to a model, but rather observe changes in various statistical properties of the time series. Model-free metrics are free from highly-parameterized models, allowing for idetifying RS in less-understood systems, or in systems in which reliable mathematical models do not exist. 
+- Critical slowing down (CSD) is among the most well-developed theories in natural systems regime shifts, borrowed from dynamical systems theory. It states that, as a system nears a phase transition (or tipping point) it's return or recoery rate should decreased. CSD, however, is difficult to detect in ecosytems which do not exhibit stationary behavior prior to the shift, and/or about which we have little baseline knowledge (with which to compare the system in question). 
+
+
+Autocorrelation and spectral properties:
+critical slowing down (return rate): change in the correlation structuer of the TS, which results in an increase in short-term memory of a system before the transition.
+ways to measure AC:
+
+Methods for distinguishing noise form signal were borrowed from information theories, and are well-developed for climatological and oceanographic data. However, there is still debate about white vs red noise. Further, methods in these fields are well-developed for *periodic* or cyclic systems*, or systems with a single, known state attractor. WHen the system does not oscillate around some grand mean system state, the definition and conseuqently the methods for detecting regime changes of the entire system are muddied. 
+
+Numerous quantitative methods are proposed for identifying abrupt changes, or regime shifts, in ecological systems (@andersen_ecological_2009, @roberts2018early). Despite the rapid rate at which these new methods enter the relevant literature, methods for detecting regime shifts remain largely in the theoretical domain. However, significant work has been done on systems exhibiting saddle-node bifurcations (or systems which have some 'tipping point'), where numerous methods for detecting "early-warning signals" (e.g., flickering, rising variance) have been tested in theoretical and empirical data (see @dakos_methods_2012 for an overview of these methods). 
+
+
+Although early-warning signals have proven useful in some systems (@carpenter2011early), most methods are applicable so sytems First, sudden shifts in dynamics may
+occur in the absence of underlying parameter
+changes (i.e., in the absence of the tipping point).
+
+cases where systems lose their periodicity 
+@hastings2018transient
+
+  
