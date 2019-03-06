@@ -3,36 +3,28 @@
 
 Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early, @dakos2015resilience), the most comprehensive presentation of available methods is outdated (@rodionov_brief_2005). See also @kefi2014early for a review and applications of some spatial indicators.
 
-There is currently not a single and current resource to which ecologists can refer for quantitative RDMs. Past reviews (@rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime) of RDMs vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. Rather than discussing in detail each method, I follow the style of @rodionov_beief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods. 
+There is currently not a single and current resource to which ecologists can refer for quantitative RDMs. Past reviews (@rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime) of RDMs vary in both the number and detail of the methods presented.This chapter is meant to serve as an addendum, of sorts, to the aforementioned review articles. Rather than discussing in detail each method, I follow the style of @rodionov_beief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods.
+
 
 ## Methods 
 
-Methods proposed as RSDMs are not easily identified using systematic literature review techniques for a few reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields. For example, the terms, *regime shifts, regime changes and tipping points* are variably used in studies of ecological systems, whereas *change point* is often used in oceanography and climatology and *structural change* is largely used in econometrics. Although the definition of a regime shift and change point are different (the former describing a change in system structure and the latter the point at which a variable of interest changes), the methods used to identify these changes are shared. 
+Methods proposed as RSDMs are not easily identified using systematic literature review techniques for a few reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields. For example, the terms, *regime shifts, regime changes and tipping points* are variably used in studies of ecological systems, whereas *inhomogeneities* is common in meterology and climatology and *structural change* is largely confined to econometrics. Although the definition of, e.g., a regime shift and a structural change vary across and within fields of study, some methods are shared.
 
-Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publications that focus primarily on quantitative methodologies (e.g., *Ecological Modelling*, *Methods in Ecology and Evolution*) or in general ecology journals (e.g., *Ecology*). Instead, they are often published in journals with audiences that may not necessarily overlap with typical searches of the ecological litearture (e.g., *Entropy*, *Progress in Oceanography*). It is worth noting that literatrue review, although designed to identify all possible RDMs, does not fully overlap with the methods identified using the first two. 
+Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publications that focus primarily on quantitative methodologies (e.g., *Ecological Modelling*, *Methods in Ecology and Evolution*) or in general ecology journals (e.g., *Ecology*). Instead, they are often published in journals with audiences that may not necessarily overlap with typical searches of the ecological litearture (e.g., *Entropy*, *Progress in Oceanography*). 
 
-I took three approaches to identify 'new' RDMs:
-1. prior knowledge,
-1. snowball method based on past RDM reviews, and
-1. systematic literature review
+I conducted a systematic literature review to identify original papers introducing quantiative regime detection metrics (RDMs). Although the literature review boolean (see below) was designed to detect as many methodological papers as possible, many methods were not found using this method. Therefore, I filled the gaps using prior knowledge. Finally, I gathered additional methods using the snowball method from previous reiews of RDMs (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early, @dakos2015resilience). 
 
-I used the Thomson-ISI Web of Science (WoS) database to identify papers published prior to March 2019 that introduced new RDMs. The complete boolean was: 
+*Web of Science.* I used the Thomson-ISI Web of Science (WoS) database to identify papers published prior to March 2019 that introduced new RDMs. The complete boolean was: 
 > (TS=("regime shift*" OR "regime change" OR "abrupt shift*" OR "abrupt change" OR "break point" OR "change point" OR "change-point" OR "tipping point" OR "structural change" OR "observational inhomogeneity" OR "abrupt" OR "alter* state" OR "sudden" OR "stark" OR "threshold") AND TS=("new method" OR "new approach" OR "novel method" OR "novel approach" OR "we introduce" OR "I introduce") AND WC=(Fisheries OR Ecology OR "Biodiversity Conservation" OR "Environmental Sciences" OR Biology)) AND DOCUMENT TYPES: (Article)
-Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years
+Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years  
 
-where '*' indicates a wildcard. Other methods/papers that I was aware of were added if they did not appear in the search.  I then excluded papers based on abstracts-- if a paper did not indicate a new method, nor was the method(s) being used not familiar to me, I removed the paper from consideration. 
+where '*' indicates a wildcard. Next, I read the titles abstracts to retain only articles positing a 'new' RDM. If it was not clear whether a new method was being introduced, I further read the article to determine whether it should be included. 
 
-
-<!-- Including the term *threshold* increased the search yield approximately ten-fold, but yielded aticles irrelevant to my purpose.  Therefore, I omitted this term from the boolean.  -->
-
-There was a high disparity among the number of methods of which I was previously aware and those identified in a review of Web of Science. Therefore, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I skimmed the titles and authors of these results for the first 25 (N = 250 articles) pages only of search returns. It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
-> ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
-
+*Prior knowledge and snowball method.* Next, I gathered methodological papers not identified using the WoS review criteria based both on prior knowledge previous RDM review articles @scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early, @dakos2015resilience.
 
 ```{r bibAnalysis}
 source(paste0(here::here(), "/chapterFiles/rdmReview/bibliographyAnalysis.R"))
 ```
-
 
 ## Results
 
@@ -65,6 +57,11 @@ DiagrammeR::grViz(
   )
 
 ```
+
+
+
+There was a high disparity among the number of methods of which I was previously aware and those identified in a review of Web of Science. Therefore, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I skimmed the titles and authors of these results for the first 25 (N = 250 articles) pages only of search returns. It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
+> ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
 
 We identified XXX unique, regime detection methods in the ecological and relevant literature using Google Scholar, Web of Science, and prior knowledge ('other'; see ). XXX% of the methods were already identified in previous review papers, XXX% were identified during the systematic review, and XXX% were only identified based on prior knowledge of the author. 
 
@@ -175,6 +172,11 @@ We removed articles containing
 1. What about identifying the drivers behind the shifts? 
 1. Which methods posit they can identify the, or potential, drivers of the state changes? Which have shown it?
 
+## On the lack of surveying other fields
+
+As is apparent in the number of methods identified in this chapter, plenty of methods are proposed as RDMs for ecological data. We restricted our literature review to the ecological litearture. Consequently, we do not present the dozens of methods available in other literatures (e.g. in climatology, meterology, economtry, and theoretical statistics). We suggest future applications of change-point methods review these literatures, especially as it pertains to methodological advancements and critique, so as to avoid overlap in efforts. 
+
+
 Potential text: 
 1. Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation. 
 
@@ -183,6 +185,9 @@ Potential text:
 1. Many regime shift analytical papers suggest that, using multiple quantitative methods to provide for evidence for a regiem shift in a specific data set is necessary  (@lindegren_early_2012, easonYYYY). Although this proposition is valid, comparing results within a single system using multiple methods has often yielded varying results. Managing systems using quantitative methods that yield different results may yield improper management techniques and objectives. 
 
 ### RDMs outside ecology and related fields
+
+Change-point detection is a huge field, especially in information and control theory (@aminikhanghahi2017survey). 
+
 Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows. 
 
 Ecological and social-ecolgical systems have many unpredictable and variably interacting components. Quantitative models and methods are available for analyzing complex systems, but often require more data than is typically available in ecological reserach and management. Hence, tracking the changes in ecological systems is rarely done so using multiple variables. 
@@ -191,7 +196,7 @@ A survey of the methods available for detecting ecological regime shifts in high
 
 Some RSDMs are proposed for and are subsequently applied to data having specific characteristics, while others are proposed to be useful in multiple systems and on data of varying characterstics (e.g., Karunithi et al; Mayer 2007; Eason). This review provides a summary of the available methods and evaluates the appropriateness of these methods to data of varying character, quality, and quantity.
 
-This paper compiles a plethorra of quantitative methods proposed as regime detection methods for ecological data. We discuss the relevant characteristics of the data/information that are required for each method, and how these characterstics may help or hinder the ecologists' interpretation of the analytical results. We pay special attention to the RSDMs that are most appropriate for  analysis of high dimensional and noisy ecological data. 
+In this chapter I presented a comprehensive overview of quantitative methods proposed as regime detection methods for ecological data. I discuss the relevant characteristics of the data/information that are required for each method, and how these characterstics may help or hinder the ecologists' interpretation of the analytical results. We pay special attention to the RSDMs that are most appropriate for  analysis of high dimensional and noisy ecological data. 
 
 
 

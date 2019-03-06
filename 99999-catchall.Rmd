@@ -11,8 +11,16 @@ Creating tractible models or representations of ecological systems requires meth
 - What alternative hypotheses are credible, given what is already known about the system? 
 - What assumptions can safely be made about the data? For the questions, hypotheses, and data in hand, what methods are acceptably reliable?
 
+## on improving RDMs
+We need the rdms to be able to tell us (1) binary, is there a change point, (2) precision of location of change point, and (3) forecasting next change points
+
+for most ecological systems, there is not sufficient data to use supervised methods (i.e,. we don't usually have enough data for a treaining and testing dataset split), so unsupervised methods are currently ideal -- efforts focused here will be useful in coming years. Additiaonlly, **unsuprvised** methods do not require us to label the data (i.e., no a priori).
 
 
+
+## on fisher info
+eason2014managing -- "characterziews the behavior of dynamical systems" .This paper compares traditional EWis with FI, sugesting that 
+> "Although thresholds and regime shifts appear to be quite closely related concepts, these phenomena are quite distinct. In particular, thresholds are defined as a point where small changes in underlying system variables produce large scale system wide responses and result in sudden and dramatic changes in key properties and system quality (Groffman et al. 2006). On the contrary, regime shifts do not require abrupt tipping points but can be the result of long periods of system reorganization. However, while thresholds do not automatically imply regime shifts, threshold approaches may provide insight into pertinent trends in key variables that coincide with a regime shift."
 
 ## Table of definitions found throughout the dissertation
 ```{r tab:defs_tbl, echo = F, eval = F, message=F, warning=F}
