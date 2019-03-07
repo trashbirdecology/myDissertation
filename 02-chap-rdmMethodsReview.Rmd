@@ -17,14 +17,20 @@ I conducted a systematic literature review to identify original papers introduci
 ### Identifying candidate articles
 
 *Web of Science.* I used the Thomson-ISI Web of Science (WoS) database to identify papers published prior to March 2019 that introduced new RDMs. The complete boolean was: 
+
 > (TS=("regime shift*" OR "regime change" OR "abrupt shift*" OR "abrupt change" OR "break point" OR "change point" OR "change-point" OR "tipping point" OR "structural change" OR "observational inhomogeneity" OR "abrupt" OR "alter* state" OR "sudden" OR "stark" OR "threshold") AND TS=("new method" OR "new approach" OR "novel method" OR "novel approach" OR "we introduce" OR "I introduce") AND WC=(Fisheries OR Ecology OR "Biodiversity Conservation" OR "Environmental Sciences" OR Biology)) AND DOCUMENT TYPES: (Article)
 Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years  
 
+
 where '*' indicates a wildcard. Next, I read the titles abstracts to retain only articles positing a 'new' RDM. If it was not clear whether a new method was being introduced, I further read the article to determine whether it should be included. 
 
-*Prior knowledge and snowball method.* Next, I gathered methodological papers not identified using the WoS review criteria based both on prior knowledge previous RDM review articles @scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @roberts2018early, @dakos2015resilience.
+#### Prior knowledge and snowball method
 
-*Google Scholar*. There was a high disparity among the number of methods of which I was previously aware and those identified in an initial Web of Science review. In an attempt to collect as many new methods as possible, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I arbitrarily skimmed the titles of the first 25 pages of the Google Scholar results (25 pages = 250 articles). It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
+Next, I gathered methodological papers not identified using the WoS review criteria based both on prior knowledge previous RDM review articles @scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @roberts2018early, @dakos2015resilience.
+
+#### Google Scholar
+There was a high disparity among the number of methods of which I was previously aware and those identified in an initial Web of Science review. In an attempt to collect as many new methods as possible, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I arbitrarily skimmed the titles of the first 25 pages of the Google Scholar results (25 pages = 250 articles). It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
+
 > ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
 
 ### Filtering criteria
@@ -32,7 +38,7 @@ where '*' indicates a wildcard. Next, I read the titles abstracts to retain only
 In addition to using the abovementioned search booleans, I also excluded the following types of articles: those which proposed a combination of previously-used methods (e.g., PCA combined with other techniques, see @kong2017hydrological, @seddon2014quantitative, @vasilakopoulos2017resilience) as a 'novel' method; those making relatively minor methodological updates/additions to existing methods (@zhou2008one; but see @nicholls2011biological for an addition of variable optimization to the method in @nichols_detection_2011 that was not included in our final results); and articles proposing new methodologies in mathematical journals (@byrski2016double, @salehpour2011line) that have yet to be associated with or tested using ecological or relevant data.
 
 
-```{r bibAnalysis, eval=T}
+```{r bibAnalysis, echo=F, eval = T}
 # This chunk is the initial analysis of the bibliography results, and turned the search results into csvs for simple reviewing. 
 ## This script also saves some objects to refer to later in figures in this chapter. 
 source(paste0(here::here(), "/chapterFiles/rdmReview/bibliographyAnalysis.R"))
@@ -41,11 +47,11 @@ source(paste0(here::here(), "/chapterFiles/rdmReview/bibliographyAnalysis.R"))
 n.wos.start <- bib.wos %>% nrow()
 n.gs.start <- 250
 # The following objects were saved usign the above mentioned script. 
-n.wos.keep # 3
-n.gs.keep # 3
-n.prior.keep # 11
-total.keep.papers # 60
-total.keep.methods  # 47
+# n.wos.keep # 3
+# n.gs.keep # 3
+# n.prior.keep # 11
+# total.keep.papers # 60
+# total.keep.methods  # 47
 
 require(kableExtra)
 require(DiagrammeR)
@@ -54,10 +60,10 @@ require(DiagrammeR)
 ## Results
 
 The Web of Science search yielded `r n.wos.start` unique articles, of which `r n.wos.keep` were retained after filtering (Fig. \@ref(fig:rdmReviewFlow)). Of the `r n.gs.start` articles scanned in Google Scholar, `r n.gs.keep` were retained. Using my prior knowledge of the relevant litearture and referring to methods presented in prior reviews (e.g., @rodionov_brief_2005), I added an additional `r total.keep.methods - n.gs.keep - n.wos.keep` methods. Using these processes, I identified `r total.keep.methods` unique RDMs proposed and/or applied to ecological data (Figs. \@ref(fig:rdmReviewFlow), \@ref(fig:jrnlDistFig), \@ref(fig:jrnlYearFig)). 
+
 ```{r rdmReviewFlow, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. **Other papers include prior knowledge and methods found in previous reviews that were not identified using Google Scholar or Web of Science."}
 
 webshot::install_phantomjs()
-
 DiagrammeR::grViz(
   "digraph {
   graph [layout = dot, rankdir = TB]
@@ -83,7 +89,7 @@ DiagrammeR::grViz(
 
 ```
 
-```{r jrnlDistFig, echo=F, eval=T, cache = T, message=F, warning=F, fig.cap="Distribution of identified methods across publications. Note: books, reports, and articles without original reference coded as 'Other'"}
+```{r jrnlDistFig, fig.cap="Distribution of identified methods across publications. Note: books, reports, and articles without original reference coded as 'Other'"}
 # Visualize results
 jrnlTemp <- finalMetricsList %>% 
   mutate(journal = ifelse(label =="rodionov_sequential_2005", "Other", journal), 
@@ -102,7 +108,7 @@ ggplot2::ggplot(jrnlTemp) +
   theme(axis.text.y = element_text( hjust = 1, size = 8))
 ```
 
-```{r jrnlYearFig, echo=F, eval=T, cache = T, message=F, warning=F, fig.cap= "Number of methods publisheed over time."}
+```{r jrnlYearFig,  fig.cap= "Number of methods publisheed over time."}
 yearTemp <- finalMetricsList %>% 
   group_by(year) %>% 
   summarise(n = n()) 
@@ -115,15 +121,15 @@ ggplot(yearTemp ) +
 ```
 
 
-```{r methodsMetricsListTab, echo=F, eval=T, cache=T}
-# long_dt <- metricsList.table[1:10,] %>%
-#   mutate(label2 = paste0("XX",label)) %>% 
-#   dplyr::select(method, type1,label2 )
-#  
-# 
-# kableExtra::kable(long_dt, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>%
-# # add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
-# kable_styling(latex_options = c("repeat_header"))
+```{r methodsMetricsListTab}
+long_dt <- metricsList.table[1:10,] %>%
+  mutate(label2 = paste0("@",label)) %>%
+  dplyr::select(method, type1,label2 )
+
+
+kableExtra::kable(long_dt, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>%
+# add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 
@@ -160,7 +166,7 @@ In this chapter I presented a comprehensive overview of quantitative methods pro
 
 ```{r nextStepsTab}
 text_tbl <- data.frame(
-  Items = c("Item 1", "Item 2", "Item 3"),
+  Items = c("1", "Item 2", "Item 3"),
   Features = c(
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. ",
     "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ", 
@@ -168,16 +174,12 @@ text_tbl <- data.frame(
   )
 )
 
-kable(text_tbl) %>%
+kable(text_tbl, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>%
   kable_styling(full_width = F) %>%
-  column_spec(1, bold = T, border_right = T) %>%
-  column_spec(2, width = "30em", background = "yellow")
-
+  column_spec(1, bold = T, border_right = T) %>% 
+  column_spec(2, bold = F, width = "30em")
 ```
 
-```
-This text is displayed verbatim / preformatted
-```
 1. Major findings of the review. 
 1. What major assumptions are we currently making about the data and the system that we need to know more about moving forward? i.e., where are the gaps in knowledge?
 1. How has or how can we take advantage of unstructured or semi-structured data to ID regime shifts?

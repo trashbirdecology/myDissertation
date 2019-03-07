@@ -55,22 +55,24 @@ lof: true
 
 ```{r chunkOpts, include = FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
 # Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, include = TRUE, echo=FALSE, tidy=TRUE, 
+knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
+                      error=FALSE, strip.white = TRUE,
+                      tidy=TRUE,
                       # fig.width=7, fig.height=7,
                       fig.align='center',
                       out.width = "90%")
 ```
 
 
-```{r include_packages, include = FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
+```{r include_packages}
 list.of.packages <- c("ggplot2", "ggthemes", "gapminder",
                       "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
                       "inlabru", 
                       "gridExtra", 
-                      "webshot", # a bug with diagrammer
                       "DiagrammeR",
+                      "webshot", # a bug with diagrammer
                       "revtools" # import tidy bibtex
                       )
 
