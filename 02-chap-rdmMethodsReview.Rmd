@@ -1,9 +1,9 @@
 # A brief overview of ecological regime detection methods methods {#rdmReview-chapter}     
 ## Introduction
 
-Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early, @dakos2015resilience), the most comprehensive presentation of available methods is outdated (@rodionov_brief_2005). See also @kefi2014early for a review and applications of some spatial indicators.
+Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011), the most comprehensive presentation of available methods is outdated (@rodionov_brief_2005). See also @kefi2014early for a review and applications of some spatial indicators.
 
-There is currently not a single and current resource to which ecologists can refer for quantitative RDMs. Past reviews (@rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime) of RDMs vary in both the number and detail of the methods presented.This chapter is meant to serve as an addendum, of sorts, to the aforementioned review articles. Rather than discussing in detail each method, I follow the style of @rodionov_beief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods.
+There is currently not a single and current resource to which the practical ecologist can refer for identifying potential RDMs. Previous reviews of this literature vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. I follow the style of @rodionov_beief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods. 
 
 
 ## Methods 
@@ -12,7 +12,9 @@ Methods proposed as RSDMs are not easily identified using systematic literature 
 
 Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publications that focus primarily on quantitative methodologies (e.g., *Ecological Modelling*, *Methods in Ecology and Evolution*) or in general ecology journals (e.g., *Ecology*). Instead, they are often published in journals with audiences that may not necessarily overlap with typical searches of the ecological litearture (e.g., *Entropy*, *Progress in Oceanography*). 
 
-I conducted a systematic literature review to identify original papers introducing quantiative regime detection metrics (RDMs). Although the literature review boolean (see below) was designed to detect as many methodological papers as possible, many methods were not found using this method. Therefore, I filled the gaps using prior knowledge. Finally, I gathered additional methods using the snowball method from previous reiews of RDMs (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early, @dakos2015resilience). 
+I conducted a systematic literature review to identify original papers introducing quantiative regime detection metrics (RDMs). Although the literature review boolean (see below) was designed to detect as many methodological papers as possible, many methods were not found using this method. Therefore, I filled the gaps using prior knowledge. Finally, I gathered additional methods using the snowball method from previous reiews of RDMs (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @roberts2018early, @dakos2015resilience). 
+
+### Identifying candidate articles
 
 *Web of Science.* I used the Thomson-ISI Web of Science (WoS) database to identify papers published prior to March 2019 that introduced new RDMs. The complete boolean was: 
 > (TS=("regime shift*" OR "regime change" OR "abrupt shift*" OR "abrupt change" OR "break point" OR "change point" OR "change-point" OR "tipping point" OR "structural change" OR "observational inhomogeneity" OR "abrupt" OR "alter* state" OR "sudden" OR "stark" OR "threshold") AND TS=("new method" OR "new approach" OR "novel method" OR "novel approach" OR "we introduce" OR "I introduce") AND WC=(Fisheries OR Ecology OR "Biodiversity Conservation" OR "Environmental Sciences" OR Biology)) AND DOCUMENT TYPES: (Article)
@@ -20,165 +22,120 @@ Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years
 
 where '*' indicates a wildcard. Next, I read the titles abstracts to retain only articles positing a 'new' RDM. If it was not clear whether a new method was being introduced, I further read the article to determine whether it should be included. 
 
-*Prior knowledge and snowball method.* Next, I gathered methodological papers not identified using the WoS review criteria based both on prior knowledge previous RDM review articles @scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @perretti2012regime, @roberts2018early, @dakos2015resilience.
+*Prior knowledge and snowball method.* Next, I gathered methodological papers not identified using the WoS review criteria based both on prior knowledge previous RDM review articles @scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009, @roberts2018early, @dakos2015resilience.
 
-```{r bibAnalysis}
+*Google Scholar*. There was a high disparity among the number of methods of which I was previously aware and those identified in an initial Web of Science review. In an attempt to collect as many new methods as possible, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I arbitrarily skimmed the titles of the first 25 pages of the Google Scholar results (25 pages = 250 articles). It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
+> ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
+
+### Filtering criteria
+
+In addition to using the abovementioned search booleans, I also excluded the following types of articles: those which proposed a combination of previously-used methods (e.g., PCA combined with other techniques, see @kong2017hydrological, @seddon2014quantitative, @vasilakopoulos2017resilience) as a 'novel' method; those making relatively minor methodological updates/additions to existing methods (@zhou2008one; but see @nicholls2011biological for an addition of variable optimization to the method in @nichols_detection_2011 that was not included in our final results); and articles proposing new methodologies in mathematical journals (@byrski2016double, @salehpour2011line) that have yet to be associated with or tested using ecological or relevant data.
+
+
+```{r bibAnalysis, eval=T}
+# This chunk is the initial analysis of the bibliography results, and turned the search results into csvs for simple reviewing. 
+## This script also saves some objects to refer to later in figures in this chapter. 
 source(paste0(here::here(), "/chapterFiles/rdmReview/bibliographyAnalysis.R"))
+
+# These values shoudl be  used to manually fill the grViz diagram!
+n.wos.start <- bib.wos %>% nrow()
+n.gs.start <- 250
+# The following objects were saved usign the above mentioned script. 
+n.wos.keep # 3
+n.gs.keep # 3
+n.prior.keep # 11
+total.keep.papers # 60
+total.keep.methods  # 47
+
+require(kableExtra)
+require(DiagrammeR)
 ```
 
 ## Results
 
-The Web of Science search yielded `r nrow(bib)` unique articles, to which I added an additional `r n.gs` and `r n.prior`. 
+The Web of Science search yielded `r n.wos.start` unique articles, of which `r n.wos.keep` were retained after filtering (Fig. \@ref(fig:rdmReviewFlow)). Of the `r n.gs.start` articles scanned in Google Scholar, `r n.gs.keep` were retained. Using my prior knowledge of the relevant litearture and referring to methods presented in prior reviews (e.g., @rodionov_brief_2005), I added an additional `r total.keep.methods - n.gs.keep - n.wos.keep` methods. Using these processes, I identified `r total.keep.methods` unique RDMs proposed and/or applied to ecological data (Figs. \@ref(fig:rdmReviewFlow), \@ref(fig:jrnlDistFig), \@ref(fig:jrnlYearFig)). 
+```{r rdmReviewFlow, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. **Other papers include prior knowledge and methods found in previous reviews that were not identified using Google Scholar or Web of Science."}
 
-A shortlist of 50 papers (i.e., 37%) comprised those that met our evaluative criteria (Table 3)
+webshot::install_phantomjs()
 
-\@ref(fig:rdmReviewFlow)
-
-
-
-```{r rdmReviewFlow, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. Note: only the first ten pages of Google Scholar results were exmamined."}
 DiagrammeR::grViz(
   "digraph {
   graph [layout = dot, rankdir = TB]
-  
+
   # define the global styles of the nodes. We can override these in box if we wish
   node [shape = rectangle, style = filled, fillcolor = White]
-  data1 [label = 'Web of Science\n (n = )', shape = folder, fillcolor = Linen]
-  data2 [label = 'Google Scholar\n (n = )', shape = folder, fillcolor = Linen]
-  data3 [label = 'Other \n (n = )', shape = folder, fillcolor = Linen]
-  dups [label = 'Remove Duplicates \n (n = )']
-  
-  filter [label =  'Filter Results\n (n = )']
-  results [label= 'Final Methods \n (n = )']
-  
+  data1 [label = 'Web of Science\n (n = 80)', shape = folder, fillcolor = Linen]
+  data2 [label = 'Google Scholar*\n (n = 250)', shape = folder, fillcolor = Linen]
+  data3 [label = 'Other** \n (n = 55)', shape = folder, fillcolor = Linen]
+
+  filter [label = 'Filter', shape = plaintext]
+
+  filter1 [label =  'Web of Science \n (n = 3)']
+  filter2 [label =  'Google Scholar\n (n = 3)']
+  results [label= 'Final \n (n = 47 methods)']
+
   # edge definitions with the node IDs
-  {data1, data2, data3} -> dups -> filter  -> results
-  }"
+  {data1, data2} -> filter -> {filter1, filter2}
+{filter1, filter2, data3} -> results  
+}"
   )
 
+
 ```
 
-
-
-There was a high disparity among the number of methods of which I was previously aware and those identified in a review of Web of Science. Therefore, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I skimmed the titles and authors of these results for the first 25 (N = 250 articles) pages only of search returns. It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
-> ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
-
-We identified XXX unique, regime detection methods in the ecological and relevant literature using Google Scholar, Web of Science, and prior knowledge ('other'; see ). XXX% of the methods were already identified in previous review papers, XXX% were identified during the systematic review, and XXX% were only identified based on prior knowledge of the author. 
-
-
-### Filtering results
-
-```{r filterMethodsResults, echo=F, eval=T, cache = T, message=F, warning=F}
-# Load and munge lit review data
-## Read in the bib results from WOS search
-bib.orig <-
-  readr::read_csv(paste0(
-    here::here(),
-    "/chapterFiles/rdmReview/wosresults_20190205_newMethods.csv"
-  )) %>% 
-  mutate(TI = tolower(TI)) %>% 
-  mutate(SO = toupper(SO))
-
-## Filter results: Keep papers with to 'regime shifts' (and synonyms) in abstract or title
-topicFilter <-
-remove.list <-
-paste(
-c(
-"regime shift",
-"regime change",
-"abrupt shift",
-"abrupt change",
-"threshold",
-"observational inhomogeneity",
-"structural",
-"tipping point",
-"boundary",
-"early-warning",
-"early warning"
-),
-collapse = '|'
-) %>% 
-  tolower()
-
-bib <- bib.orig %>% dplyr::filter(grepl(topicFilter, TI) |
-grepl(topicFilter, AB))
-
-## Filter results 2: Keep only those with reference to a method or framework in abstract or title
-topicFilter2 <- paste(c("method", "framework"), collapse = '|')
-bib <- bib %>% dplyr::filter(grepl(topicFilter2, TI) |
-                               grepl(topicFilter2, AB))
-
-# ## Filter results 3: Keep only relevant publications (SO)
-# topicFilter3 <- paste(c("ecology", "ecography", "environ"), collapse = '|') %>% toupper()
-# bib <- bib %>% dplyr::filter(grepl(topicFilter3, SO))
-
-## Download top 50 ecology journals (SJR)
-tempFolder <- tempdir()
-download.file("https://www.scimagojr.com/journalrank.php?category=2303&type=j&out=xls", 
-              destfile = paste0(tempFolder,"/", "mySJRdata.csv"))#, method = "curl")
-list.files(tempFolder)
-
-topJrnls <-  read.csv(paste0(tempFolder, "/mySJRdata.csv"), header = T, sep=";") %>% 
-  dplyr::select(Rank, Title, SJR.Quartile) %>% 
-  rename(SO = Title) %>% 
-  mutate(SO = toupper(SO)) %>% 
-  mutate(SO = str_replace(SO, " AND ", " & ")) %>% 
-  dplyr::filter(SJR.Quartile == "Q1"|
-                                   SJR.Quartile == "Q2") 
-
-# Define other relevant jouranls not in top journals..
-methJrnls <- c("METHODS IN ECOLOGY AND EVOLUTION", "ECOLOGICAL MODELLING")
-
-## Filter bib by the 1st Quartile of SJR-ranked ecology journals (currently based on year 2017) + METHODS + ECOMOD
-bib.keep <- bib %>% dplyr::filter(SO %in% topJrnls$SO | SO %in% methJrnls)%>% 
-  mutate(SO = as.factor(SO)) %>%  as_tibble()
-```
-
-```{r methJrnlsFigs, echo=F, eval=T, cache = T, message=F, warning=F, fig.cap="Distribution of articles related to ecological regime shift methodologies and frameworks published in the first and second quartiles of SJR *ecology* journals and in *Methods in Ecology and Ecolution* and *Ecological Modelling*."}
+```{r jrnlDistFig, echo=F, eval=T, cache = T, message=F, warning=F, fig.cap="Distribution of identified methods across publications. Note: books, reports, and articles without original reference coded as 'Other'"}
 # Visualize results
-## Number of articles annually
-ptemp1 = ggplot(bib.keep %>%
-         group_by(PY) %>%
-         summarise(N = n())) +
-  geom_bar(aes(x = PY, y = N), stat = 'identity') +
-  ylab('number of articles') + xlab('publication year') +
-  theme_bw() + theme(axis.text.x = element_text(angle = 35, hjust = 1, size = 6))
+jrnlTemp <- finalMetricsList %>% 
+  mutate(journal = ifelse(label =="rodionov_sequential_2005", "Other", journal), 
+         journal = ifelse(label =="tong1990nonlinear", "Other", journal), 
+         journal = ifelse(journal =="International Journal of Climatology: A Journal of the Royal Meteorological Society", "International Journal of Climatology", journal), 
+         journal = ifelse(journal %in% c(NA, "NA"), "Other", journal)) %>% 
+  mutate(journal = toupper(journal)) %>% 
+  group_by(journal) %>% 
+  summarise(n = n()) 
 
-# Distribution across journals over all years
-ptemp2 = ggplot(bib.keep %>%
-         group_by(SO, PY) %>%
-         mutate(N = n()) %>% ungroup() %>%
-         distinct(SO, N) %>%
-         # filter(N > 1) %>%
-         arrange(N)) +
-  geom_bar(aes(x = SO, y = N), stat = 'identity') +
-  ylab(paste0("articles published ", min(bib.keep$PY)," to ", max(bib.keep$PY), "   " )) + xlab('publication title') +
-  theme_bw() + theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6))
-
-grid.arrange(ptemp1, ptemp2, ncol=2)#, nrow=2)
+ggplot2::ggplot(jrnlTemp) +
+  geom_bar(aes(x = journal, y =n), stat = 'identity') +
+  ylab('number of articles') + xlab("") +
+  coord_flip()+
+  theme_bw() + 
+  theme(axis.text.y = element_text( hjust = 1, size = 8))
 ```
 
-### WOS Search results
-The initial search prior to filtering by abstract yielded (see wosResults_20190205.xls) __1209__ articles.
+```{r jrnlYearFig, echo=F, eval=T, cache = T, message=F, warning=F, fig.cap= "Number of methods publisheed over time."}
+yearTemp <- finalMetricsList %>% 
+  group_by(year) %>% 
+  summarise(n = n()) 
 
-We removed articles containing 
+ggplot(yearTemp ) +
+  geom_bar(aes(x = year, y =n), stat = 'identity') +
+  ylab("articles published ") + xlab('publication year') +
+  theme_bw() + theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 12))
+
+```
+
+
+```{r methodsMetricsListTab, echo=F, eval=T, cache=T}
+long_dt <- metricsList.table[1:10,] %>%
+  mutate(label2 = paste0("@",label)) %>% 
+  dplyr::select(method, type1,label2 )
+ 
+
+kableExtra::kable(long_dt, "latex", longtable = T, booktabs = T, caption = "Longtable") %>%
+add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
+kable_styling(latex_options = c("repeat_header"))
+```
+
 
 ## Discussion 
 
-! Most methods have not been tested/applied to non-stylized (empirical) data!
+In this chapter I highlighted the plethora of regime detection metrics (RDMs) proposed in the literature for analyzing ecological data. Although multiple reviews of RDMs exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of RDMs. For example,  @roberts2018early summarizes methods capable of handling multiple (c.f. a single) variable, and @dakos2015resilience review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate, but rather highlight, the diversity of methods proposed to ecological detect regime shifts, *sensu lato*. This chapter provides a much-needed update to collection provided by @rodionov_brief_2005. 
 
+A survey of applications of these methods to empirical data may prove useful in highlighting the needs of future research and methodological improvements. Many of the methods presented in Table \@ref(methodsMetricsListTab) have either not been applied to empirical data at all, or were tested only once (in the article introducing the method). Although the more mainstream early-warning indicators (e.g., variance, autoregressive model coefficients) and other mainstream methods have been applied to numerous datasets, they have not been rigorously tested on noisy, high dimensional, empirical data. Further, the methods which are not mainstream but have been applied to one of these data types have not any statistical indicators associated with confirming the existence and location of the regime shift. 
 
-1. Major findings of the review. 
-1. What major assumptions are we currently making about the data and the system that we need to know more about moving forward? i.e., where are the gaps in knowledge?
-1. How has or how can we take advantage of unstructured or semi-structured data to ID regime shifts?
-1. How can or should we adapt our monitoring schemes to better suit these (or at least the seemingly helpful) analyses?
-1. What about identifying the drivers behind the shifts? 
-1. Which methods posit they can identify the, or potential, drivers of the state changes? Which have shown it?
+As shown this chapter, identifying RDMs using traditional literature review techniques may prove difficult. Many of the methods identified in my review were not identified using Web of Science or Google Scholar--rather, I was either previously aware of most of the methods, and many others were highlighted in previous RDM reviews (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011). To facilitate this process, an online, comprehensive database may prove useful to the practical ecologist. 
 
-## On the lack of surveying other fields
-
-As is apparent in the number of methods identified in this chapter, plenty of methods are proposed as RDMs for ecological data. We restricted our literature review to the ecological litearture. Consequently, we do not present the dozens of methods available in other literatures (e.g. in climatology, meterology, economtry, and theoretical statistics). We suggest future applications of change-point methods review these literatures, especially as it pertains to methodological advancements and critique, so as to avoid overlap in efforts. 
-
+I purposefully did not survey the climatological and econometric literatures, which are replete with additional change-point analyses. I suspect most of the methods in Table \@ref(methodsMetricsListTab) were used to analyze climate and economy time series prior to application to ecological data. A database or online resource comprising a comprehensive survey of these and other methods in the relevant literatures may prove useful to the practical ecologist. Further, disemminating various criteria and characteristics relevant  ecological data analysis by way of interactive toosl, e.g. issue trees, may better the utility of this database and the methods themselves. 
 
 Potential text: 
 1. Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation. 
@@ -201,20 +158,35 @@ Some RSDMs are proposed for and are subsequently applied to data having specific
 
 In this chapter I presented a comprehensive overview of quantitative methods proposed as regime detection methods for ecological data. I discuss the relevant characteristics of the data/information that are required for each method, and how these characterstics may help or hinder the ecologists' interpretation of the analytical results. We pay special attention to the RSDMs that are most appropriate for  analysis of high dimensional and noisy ecological data. 
 
+```{r nextStepsTab}
+text_tbl <- data.frame(
+  Items = c("Item 1", "Item 2", "Item 3"),
+  Features = c(
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula tempor ex. Morbi malesuada sagittis turpis, at venenatis nisl luctus a. ",
+    "In eu urna at magna luctus rhoncus quis in nisl. Fusce in velit varius, posuere risus et, cursus augue. Duis eleifend aliquam ante, a aliquet ex tincidunt in. ", 
+    "Vivamus venenatis egestas eros ut tempus. Vivamus id est nisi. Aliquam molestie erat et sollicitudin venenatis. In ac lacus at velit scelerisque mattis. "
+  )
+)
+
+kable(text_tbl) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(2, width = "30em", background = "yellow")
+
+```
+
+```
+This text is displayed verbatim / preformatted
+```
+1. Major findings of the review. 
+1. What major assumptions are we currently making about the data and the system that we need to know more about moving forward? i.e., where are the gaps in knowledge?
+1. How has or how can we take advantage of unstructured or semi-structured data to ID regime shifts?
+1. How can or should we adapt our monitoring schemes to better suit these (or at least the seemingly helpful) analyses?
+1. What about identifying the drivers behind the shifts? 
+1. Which methods posit they can identify the, or potential, drivers of the state changes? Which have shown it?
 
 
-
-## TEXT NOT USED:
-### Identifying papers/RSDMs in the literature
-I used the following databases to identify scholarly works that introduce and/or explain methods for identfying regime shifts:
-1. Web of Science
-    i. __Database searches*
-          a. Boolean (+ = asterisk in the database search)
-                i. WOS:
-                ii. SCOPUS:  ( TITLE-ABS-KEY ( ( approach  OR  analysis  OR  metric  OR  method^ )  AND  ( detect^  OR  predict^ ) )  AND  TITLE-ABS-KEY ( {regime shift}  OR  {regime change}  OR  {abrupt change} ) ) __1,473__ (where ^== __ in Scopus)
-    ii. __Opportunistic papers__
-          a. We used expert opinion (authors JLB, etc.) to identify any missing RSDMs that were not detected in our formal database searches. (i am making this next part up--need to double check once i have results)-->These papers are are typically found in the grey literature, or are published in journals not obvious to the general ecologist (e.g., name an obscure journal here).
-          b. Justification for our database searches containing some of these methods which are known/obvious to the author(s).
+## Appendix
 
 2. Procedures for filtering the papers.
     i. We removed duplicate titles (from the merging of Scopus and WOS), which resulted in _______ unique scholarly works.
@@ -242,11 +214,11 @@ I used the following databases to identify scholarly works that introduce and/or
 3. Note the number of times the paper has been cited
 
 
-### Results
+## Results
 
 We identified _______ number of quantiattive anlaytical approaches to identifying regime shifts and abrupt changes in data. 
 
-### Potential figures
+## Potential figures
 
 1. X = year Y = number of publications for *new* RSDMs in the ecol/env literature
 1. X = year Y = # pubs for new RSDM appropriate for multidimensional systems

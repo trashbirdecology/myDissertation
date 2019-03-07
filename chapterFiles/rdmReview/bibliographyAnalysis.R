@@ -1,55 +1,56 @@
+
 require(tidyverse)
-library(revtools)
+require(revtools)
+
 rdm.dir <- paste0(here::here(), "/chapterfiles/rdmReview")
 
 # Get ecology and ecol methods journals ------------------------------------
+if(!exists("myJrnls")){
 tempFolder <- tempdir()
 
-download.file("https://www.scimagojr.com/journalrank.php?category=2303&type=j&out=xls", 
+download.file("https://www.scimagojr.com/journalrank.php?category=2303&type=j&out=xls",
               destfile = paste0(tempFolder,"/", "mySJRdata.csv"))#, method = "curl")
 list.files(tempFolder)
 
-ecolJrnls <-  read.csv(paste0(tempFolder, "/mySJRdata.csv"), header = T, sep=";") %>% 
-  dplyr::select(Rank, Title, SJR.Quartile) %>% 
-  rename(SO = Title) %>% 
-  mutate(SO = toupper(SO)) %>% 
-  mutate(SO = str_replace(SO, " AND ", " & ")) 
+ecolJrnls <-  read.csv(paste0(tempFolder, "/mySJRdata.csv"), header = T, sep=";") %>%
+  dplyr::select(Rank, Title, SJR.Quartile) %>%
+  rename(SO = Title) %>%
+  mutate(SO = toupper(SO)) %>%
+  mutate(SO = str_replace(SO, " AND ", " & "))
 
 # Define other relevant jouranls not in top journals..
 methJrnls <- c("METHODS IN ECOLOGY AND EVOLUTION", "ECOLOGICAL MODELLING")
 
 # List of jornals to use to filter the WOS search
-myJrnls <- c(ecolJrnls$SO, methJrnls)
+myJrnls <- c(ecolJrnls$SO, methJrnls)}
 
 # Create some helper funs -------------------------------------------------
-dfIn = bib.prior
-colName="abstract"
 # Create a function for filtering variables
 bibFilter.col <- function(dfIn, colName, f){
   dfOut <- dfIn %>%
-    mutate(new = tolower(!! rlang::sym(colName))) %>% 
-    filter(str_detect(new, paste(f))) %>% 
-    select(-!! sym(colName)) %>% 
+    mutate(new = tolower(!! rlang::sym(colName))) %>%
+    filter(str_detect(new, paste(f))) %>%
+    dplyr::select(-!! sym(colName)) %>%
     rename(!! sym(colName) := new)
 }
 
 bibFilter.jrnl <- function(dfIn, jrnls){
-  dfOut <- dfIn %>% 
-    mutate(journal = str_replace(journal, "\\&", "&")) %>% 
+  dfOut <- dfIn %>%
+    mutate(journal = str_replace(journal, "\\&", "&")) %>%
     filter(journal %in% jrnls) }
 
 # Create some filters -----------------------------------------------------
-
-change.filter <- paste("regime", "shift", "regime shift", "regime change", "method", "new", "novel", 
-            "abrupt", "stability", "transition", "threshold", "tipping point", "change point", "change-point", 
+change.filter <- paste("regime", "shift", "regime shift", "regime change", "method", "new", "novel",
+            "abrupt", "stability", "transition", "threshold", "tipping point", "change point", "change-point",
             sep = "|"
 )
 
-method.filter <- paste("new method", "novel method", "new approach", "novel approach", "new numerical", "novel numerical", 
-                       "new quantitative", "novel quantitative", "i introduce", "we introduce", 
+method.filter <- paste("new method", "novel method", "new approach", "novel approach", "new numerical", "novel numerical",
+                       "new quantitative", "novel quantitative", "i introduce", "we introduce",
                        sep = "|")
 
 # Load bibliogrpahies  ---------------------------------------------------------------
+
 # Load the WOS search results bib file
 fn <- paste0(rdm.dir, "/reviewResults/wosRdmReview_20190304.bib")
 bib.wos <- read_bibliography(fn) %>% 
@@ -58,7 +59,7 @@ bib.wos <- read_bibliography(fn) %>%
   bibFilter.jrnl(myJrnls) %>% 
   bibFilter.col(colName = "abstract", f = paste(change.filter, method.filter, sep="|"))
 # save a file which I can filter through 
-write_csv(bib.wos, paste0(rdm.dir, "/reviewResults/", "wosRdmReview_20190304_toFilter.csv")) # save to file as .csv so I can filter titles, abstracts.
+# write_csv(bib.wos, paste0(rdm.dir, "/reviewResults/", "wosRdmReview_20190304_toFilter.csv")) # save to file as .csv so I can filter titles, abstracts.
 
 
 # Load the prior bib file
@@ -75,8 +76,9 @@ bib.prior <- read_bibliography(fn) %>%
 keep <- setdiff(bib.prior$doi, bib.wos$doi)
 bib.prior <- bib.prior %>% filter(doi %in% keep)
 
-# save a file which I can filter through 
-write_csv(bib.prior, paste0(rdm.dir, "/reviewResults/", "priorRdmReview_20190304_toFilter.csv")) # save to file as .csv so I can filter titles, abstracts.
+# save a file which I can filter through
+# write_csv(bib.prior, paste0(rdm.dir, "/reviewResults/", "priorRdmReview_20190304_toFilter.csv")) # save to file as .csv so I can filter titles, abstracts.
+
 
 # Load the GoogleScholar bib file
 fn <- paste0(rdm.dir, "/reviewResults/googleScholarRdmReview_20190304.bib")
@@ -88,12 +90,22 @@ wos.fil <- read_bibliography(paste0(rdm.dir, "/reviewResults/", "wosRdmReview_20
 
 
 # Some dissertation text -------------------------------------------------------
-
 # Final number of methods papers used for each category. Thesea re called in the dissertation so do not remove!
-n.wos <- nrow(bib.gs)
-n.google <- nrow(bib.gs)
-n.prior <- nrow(bib.prior)
+n.wos.keep <- wos.fil %>% filter(keep_yn=="y") %>% nrow()
+n.prior.keep <- prior.fil %>% filter(keep_yn=="y") %>% nrow()
+n.gs.keep <- nrow(bib.gs)
+
+# Load the final metrics list. 
+metricsList <-  read_csv(paste0(rdm.dir, "/methodsMetricsList", ".csv")) %>% as_tibble()
+total.keep.papers <-nrow(metricsList %>% distinct())
+total.keep.methods <-nrow(metricsList %>% distinct(label))
+
+# Which were unique papers I got from GS
+# unique(prior.fil %>% filter(keep_yn=="y")) %>% dplyr::select(label)
+# bib.gs$label
 
 
+# Import final metrics lists -----------------------------------------------
+finalMetricsList <- read_bibliography(paste0(rdm.dir, "/", "methodsMetricsList.bib")) %>% as_tibble() 
 
-
+metricsList.table <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_tibble()
