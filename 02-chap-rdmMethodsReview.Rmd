@@ -3,7 +3,7 @@
 
 Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist (@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011), the most comprehensive presentation of available methods is outdated (@rodionov_brief_2005). See also @kefi2014early for a review and applications of some spatial indicators.
 
-There is currently not a single and current resource to which the practical ecologist can refer for identifying potential RDMs. Previous reviews of this literature vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. I follow the style of @rodionov_beief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods. 
+There is currently not a single and current resource to which the practical ecologist can refer for identifying potential RDMs. Previous reviews of this literature vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. I follow the style of @rodionov_brief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods. 
 
 
 ## Methods 
@@ -116,14 +116,14 @@ ggplot(yearTemp ) +
 
 
 ```{r methodsMetricsListTab, echo=F, eval=T, cache=T}
-long_dt <- metricsList.table[1:10,] %>%
-  mutate(label2 = paste0("@",label)) %>% 
-  dplyr::select(method, type1,label2 )
- 
-
-kableExtra::kable(long_dt, "latex", longtable = T, booktabs = T, caption = "Longtable") %>%
-add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
-kable_styling(latex_options = c("repeat_header"))
+# long_dt <- metricsList.table[1:10,] %>%
+#   mutate(label2 = paste0("XX",label)) %>% 
+#   dplyr::select(method, type1,label2 )
+#  
+# 
+# kableExtra::kable(long_dt, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>%
+# # add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
+# kable_styling(latex_options = c("repeat_header"))
 ```
 
 

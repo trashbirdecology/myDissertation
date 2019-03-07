@@ -16,12 +16,6 @@ output:
 #   thesisdown::thesis_gitbook: default
 #   thesisdown::thesis_word: default
 #   thesisdown::thesis_epub: default
-# If you are creating a PDF you'll need to write your preliminary content here or
-# use code similar to line 20 for the files.  If you are producing in a different
-# format than PDF, you can delete or ignore the lines below.
-# If you'd rather include the preliminary content in files instead of inline
-# like below, use a command like that for the abstract above.  Note that a tab is 
-# needed on the line after the |.
 acknowledgements: |
   Graduate school itself isn't hard, but the journey is. I have a lot of people and institutions to thank for their  emotional, intellectual, financial, and other professional support. First, I highlight how **great it was to be a graduate student at this university and in the School of Natural Resources**. I have received tremendous support at all levels of the university. Although I am not a fan of Nebraska's climate, I highly recommend this school to prospective students. 
   First, I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me with this amazing opportunity and for supporting my growth as an independent researcher. I thank my committee members, Craig Allen, David Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support and advisement, but especially for their comprehensive examination--I found this process transformative. I especially thank Dirac for his comprehensive exam questions--I never knew how much theory I didn't know until I studied your list...
@@ -75,6 +69,8 @@ list.of.packages <- c("ggplot2", "ggthemes", "gapminder",
                       "feather", "maps", 
                       "inlabru", 
                       "gridExtra", 
+                      "webshot", # a bug with diagrammer
+                      "DiagrammeR",
                       "revtools" # import tidy bibtex
                       )
 
