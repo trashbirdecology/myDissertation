@@ -1,4 +1,4 @@
-# Catch-all, unused, to be removed from pdf {.unnumbered}
+# Catch-all, unused, to be removed from pdf {-.unnumbered}
 ## On the complexity of nature
 Natural systems are far too complex and chaotic to model wholly, therefore, synthetic models and qantiattive analyses for tracking ecisystems are required to gain further understanding and forecasting (@hastings1993chaos). Improving the tractibility of models of ecological systems requires an understanding that ecological phenomena are non-linear, and that incorporating or accounting for chaotic (stochastic) dynamics is required. 
 
@@ -97,9 +97,6 @@ lotka1956elements on eof hte first to suggest multipel states of a natural syste
 dynamical property" - from @petraitis2004detection
 
 
-
-
-
 ## On critical slowing down    
  
 **Critical slowing down** is the most solid theoretical concept in the study of **ecological regime shifts** and is a more precise variant of **Pimm's resilience** (c.f. **Hollings resilience**). The theory is such that the **recovery rate**, or the time it takes to return to a **stable** point, decreases as it nears its **tipping point**.
@@ -169,7 +166,6 @@ Many papers (e.g. Sundstrom 2017, EasonXX, WAng et al) suggest using multiple in
 ## Types of regime dtection methods
 There are two types: model-based and metric-based. Most methods (model- and metric based) try to identifyi regime chagnes by identifying points int eh TS where memory and variability change, and try to fit to a model of critical transitions (e.g., saddle-node, ...).
 
-
 ### Model-based
 These methods (see Table XXX) fit the observed time series to a model. 
 
@@ -195,3 +191,24 @@ cases where systems lose their periodicity
 @hastings2018transient
 
   
+  
+  
+  
+## Some text from the review chapter -
+Potential text: 
+1. Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation. 
+
+1. Because ecological and social systems are tightly coupled, we have used indicators in the environment and in wildlife communities to identify change and potential changes that may impact our social communities. 
+
+1. Many regime shift analytical papers suggest that, using multiple quantitative methods to provide for evidence for a regime shift in a specific data set is necessary  [@lindegren_early_2012]. Although this proposition is valid, comparing results within a single system using multiple methods has often yielded varying results. Managing systems using quantitative methods that yield different results may yield improper management techniques and objectives. 
+
+
+Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows. 
+
+Ecological and social-ecolgical systems have many unpredictable and variably interacting components. Quantitative models and methods are available for analyzing complex systems, but often require more data than is typically available in ecological reserach and management. Hence, tracking the changes in ecological systems is rarely done so using multiple variables. 
+
+A survey of the methods available for detecting ecological regime shifts in high dimensional data is timely. Although multiple reviews of regime shift indicators exist, Recent reviews of regime shift indicators (Andersen et al, the others) are outdated, are not comprehensive (include only a subset of the available RSDMs), and do not provide recommendations for which events, systems, or data characterstics are appropriate for these methods. 
+
+Some RSDMs are proposed for and are subsequently applied to data having specific characteristics, while others are proposed to be useful in multiple systems and on data of varying characterstics (e.g., Karunithi et al; Mayer 2007; Eason). This review provides a summary of the available methods and evaluates the appropriateness of these methods to data of varying character, quality, and quantity.
+
+In this chapter I presented a comprehensive overview of quantitative methods proposed as regime detection methods for ecological data. I discuss the relevant characteristics of the data/information that are required for each method, and how these characterstics may help or hinder the ecologists' interpretation of the analytical results. We pay special attention to the RSDMs that are most appropriate for  analysis of high dimensional and noisy ecological data. 

@@ -2,10 +2,15 @@
 
 _This chapter is intended for submission to the publication *Methods in Ecology and Evolution* ^[Co-authors include: N.B. Price, A.J. Tyre, C.R. Allen, T. Eason, D.G. Angeler, and D. Twidwell]._
 
-```{r}
+```{r, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
+# Chunk defaults
+knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
+                      error=FALSE,
+                      # fig.width=7, fig.height=7,
+                      fig.align='center',
+                      out.width = "100%")
 theme_set(theme_bw())
 ```
-<!-- ## Specify the model and parameters   -->
 
 ```{r startParms}
 # Model parameters
@@ -276,7 +281,6 @@ Now that we understand how to calculate both the distance traveled, $s$, and its
 This article is interested in the Fisher Information calculated for a distribution of distance traveled, $s$, by the entire system. We calculated the Fisher Information value using Equation \@ref(eq:fiDerivs) over a single period of the model system (\@ref(predprey)). We calculated Fisher Information to be $5.3$ x $10^{-5}$ which is consistent with the results of Mayer et al. (2007).	
 
 ## Case Study    
-
 Mayer et al. (2007) calculated FI for a predator-prey system for several discrete values of carrying capacity of prey. The results of this study showed that FI was different for systems with different carrying capacities. However, this study did not address the central question of how FI changes during a regime shift.  As an extension of the original study, we simulate a regime shift by modeling a situation where carrying capacity is abruptly decreased. To simulate an abrupt change in carrying capacity, we assume carrying capacity is described by Eq. 6 where $k1$ is the initial carrying capacity, $k2$ is the final carrying capacity, $t*$ is the time of the regime shift, and alpha is a parameter that controls how quickly the regime shift occurs. The hyperbolic tangent function simulates a smooth, continuous change in carrying capacity while still allowing for the change to occur suddenly. To incorporate the change in carrying capacity into the system differential equations we define the rate of change of carrying capacity as given by \@ref(eq:mayerCase).  
 \begin{equation}  
   k(t) = k_1  - 0.5(k_1-k_2)(\tanh(\alpha (t-t^*))+1)	  \\
@@ -311,11 +315,10 @@ ind <- 1:(length(s)-1)
 FI_7.12 <- (1/TT)*trapz(t[ind], d2sdt2^2 / dsdt^4)
 
 # Results
-FI_7.3b
-FI_7.3c
-FI_7.12
+# FI_7.3b
+# FI_7.3c
+# FI_7.12
 ```
-
 ```{r kSim}
 
 # Carrying capacity
@@ -415,9 +418,11 @@ for(i in 1:length(k)){
 }
 ```
 
+
 ```{r kByTime, fig.cap = paste("Carrying capacity over time with a regime shift occuring around time 200.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/kByTime.png')
 ```
+
 
 ```{r kTrajectories, fig.cap=paste("Phase space plot of system trajectories for different values of k")}
 # Plot trajectories
@@ -428,6 +433,7 @@ ggplot(data = results_kstudy, aes(x = x1, y = x2, color = k)) +
 ```
 
 We assumed an initial carrying capacity of 800 and a final carrying capacity of 625 which corresponds to the range of carrying capacities explored by Mayer et al. (2007). We simulated a time series of 600 time units with a regime change after 200 time units. We used an alpha value of 0.05. The time series for carrying capacity is shown in \@ref(fig:kByTime) and the system trajectory in phase space is shown in \@ref(fig:kTrajectories). The distance travelled in phase space (i.e., cumulative change in state) is shown in \@ref(fig:distOverTime) and the speed of the system (i.e., rate of change) is shown in \@ref(fig:dsdtOverTime). 
+
 ```{r dsdtOverTime, fig.cap=paste("Speed of the system (rate of change) in phase space. Dashed vertical line at time 200 indicates location of regime shift.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/dsdtOverTime.png')
 ```

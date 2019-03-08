@@ -1,17 +1,17 @@
-# Preliminary Content {-}
+<!-- # Preliminary Content {-} -->
 
-Paste from index.rmd if knitting to git or html
+<!-- Paste from index.rmd if knitting to git or html -->
 
-## Acknowledgements {-}
+<!-- ## Acknowledgements {-} -->
 
-Paste from index.rmd if knitting to git or html
+<!-- Paste from index.rmd if knitting to git or html -->
 
-## Preface {-}
+<!-- ## Preface {-} -->
 
-Paste from index.rmd if knitting to git or html
+<!-- Paste from index.rmd if knitting to git or html -->
 
-## Dedication {-}
+<!-- ## Dedication {-} -->
 
-Paste from index.rmd if knitting to git or html
+<!-- Paste from index.rmd if knitting to git or html -->
 
-`r if(!knitr:::is_latex_output()) '## Abstract {-}'`
+<!-- `r if(!knitr:::is_latex_output()) '## Abstract {-}'` -->

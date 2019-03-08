@@ -1,6 +1,17 @@
 # An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial-chapter}
 
-```{r include=T, cache=T}
+
+```{r, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
+# Chunk defaults
+knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
+                      error=FALSE,
+                      # fig.width=7, fig.height=7,
+                      fig.align='center',
+                      out.width = "100%")
+```
+
+
+```{r}
 ## Only run this if you need to calculate more metrics, or fix them.
 # source('/chapterFiles/fisherSpatial/04-chap-binning_analysis.R')
 figDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures")
@@ -125,7 +136,6 @@ I carefully considered prior to analyzing data using the Fisher Infomration binn
 ### Temporal data  
 
 ### Spatial data  
-
 
 ### Interpreting the Fisher Information binning measure  
 Here I define a potential regime change as a point in time or space that exhibits a relatively large change in the Fisher Information value and which has a non-zero first derivative. Regime shifts are identified as data changing from one state to another, thus, rapid shifts in the value of I should indicate the points, in time or space, at which the system undergoes reorganization. Spatial and temporal Fisher Information calculation does not vary, but interpretation of either differ in that a spatial analysis will identify a spatial regime boundary (Sundstrom et al. 2017) in space within a single year (or a single aggregation of years). Analysis of temporal data will identify a point(s) in time at which a system in a specific location undergoes a regime shift. I follow the methods outlined in the relevant literature for interpreting the Fisher Information binning measure (e.g., Karunanithi et al. 2008, Eason and Cabezas 2012, Sundstrom et al. 2017). 
