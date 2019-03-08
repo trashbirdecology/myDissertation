@@ -53,24 +53,21 @@ lof: true
 #- \usepackage{tikz}
 ---
 
-```{r chunkOpts, include = FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
+```{r, include = FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
 # Chunk defaults
 knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
-                      error=FALSE, strip.white = TRUE,
-                      tidy=TRUE,
+                      error=FALSE,
                       # fig.width=7, fig.height=7,
                       fig.align='center',
-                      out.width = "90%")
-```
+                      out.width = "100%")
 
-
-```{r include_packages}
 list.of.packages <- c("ggplot2", "ggthemes", "gapminder",
                       "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
                       "inlabru", 
                       "gridExtra", 
+                      "kedd", "caTools", "deSolve","segmented", # chapter 3
                       "DiagrammeR",
                       "webshot", # a bug with diagrammer
                       "revtools" # import tidy bibtex
