@@ -30,12 +30,13 @@ deq <- function(t, state, parameters) {
 ```
 
 ```{r odeSolve}
+require(deSolve)
 # Vector of times
 TT <-  11.145
 times <- seq(0, TT, by = TT/1e3)
 
 # Solve system differential equations
-out <- deSolve::ode(
+out <- ode(
   y = state,
   times
   = times,
