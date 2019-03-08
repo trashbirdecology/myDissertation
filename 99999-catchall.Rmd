@@ -22,60 +22,6 @@ for most ecological systems, there is not sufficient data to use supervised meth
 eason2014managing -- "characterziews the behavior of dynamical systems" .This paper compares traditional EWis with FI, sugesting that 
 > "Although thresholds and regime shifts appear to be quite closely related concepts, these phenomena are quite distinct. In particular, thresholds are defined as a point where small changes in underlying system variables produce large scale system wide responses and result in sudden and dramatic changes in key properties and system quality (Groffman et al. 2006). On the contrary, regime shifts do not require abrupt tipping points but can be the result of long periods of system reorganization. However, while thresholds do not automatically imply regime shifts, threshold approaches may provide insight into pertinent trends in key variables that coincide with a regime shift."
 
-## Table of definitions found throughout the dissertation
-```{r tab:defs_tbl, echo = F, eval = F, message=F, warning=F}
-# Create a table of definitions 
-  # A box would be nice - if I have the time
-
-library(kableExtra)
-
-Alternative stable states (equilibrium)
-	Thresholds exist
-	>1 'state'
-Periodic/cycles (i.e. unstable points or attractors)
-	e.g., Pred-prey cycles
--Multiple stable states
--	Stability
-- Perturbation-driven shift
-- State-and-transition  model (STM)
-	  distinct states are defined (a priori?)
-	  more deterministic than range cond. mod.
-- Range condition model
-- Nonlinear dynamics
--	Stability
-  	Removing or damaging negative feedbacksmakes the ssytem move away from the stable equilibrium attractor
-
-
-defs_tbl <- rbind(
-        c("Regime shift", "Vaguely defined as the change in the structure or functioning of a system." , 'ref'), 
-        c("Holling's resilience","def", '@holling_XXX_1973'), 
-        c("Pimm's resilience","Also known as engineering resilience", 'ref'), 
-        c("term","def", 'ref'), 
-        c("term","def", 'ref'), 
-        c("term","def", 'ref'), 
-
-        ) %>%
-  data.frame() %>% 
-  `colnames<-`( c("Regime shift", "Definitions", "Source"))
-
-
-knitr::kable(defs_tbl,# "latex",
-caption = "Definitions of terms related to regime shifts appearing throughout this work. Terms are higlighted in bold in the following section only.") %>%
-  kableExtra::kable_styling(full_width = F) %>%
-  kableExtra::column_spec(1, bold = T, width = '20em', color = "black") %>% # adjsts column width to provide flexibility for text columns
-  kableExtra::column_spec(2, width = "67em") %>% 
-  kableExtra::column_spec(3, width = "10em", color = "grey") 
-  
-kable(head(iris), format = "latex", caption = "Title of the table")
-
-kableExtra::kable(defs_tbl) %>%
-  kable_styling(full_width = F) %>%
-  column_spec(1, bold = T, border_right = T) %>%
-  column_spec(2, width = "30em", background = "yellow")
-?kableExtra::kable
-```
-
-
 ## On the evidence for ecol regime shifts
 @capon2015regime found evidence for regime shifts in nature are limited mostly to freshwater shallow lakes. 
 @mac2014scrutiny Authors conducted lit review to search for papers that suggest there was a regime shift, but found that few papers actually found evidence for a *stark* change. Suggest that identifying stark changes is hindered by a few things: 1) terminology, 2) calims based on two obvservations (B and A), 3) what is the frequency of the change, 4) are the changes actually linked to variation in drivers?

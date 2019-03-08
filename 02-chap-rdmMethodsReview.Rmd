@@ -1,14 +1,4 @@
 # A brief overview of ecological regime detection methods methods {#rdmReview-chapter}     
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
-# Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
-                      error=FALSE,
-                      # fig.width=7, fig.height=7,
-                      fig.align='center',
-                      out.width = "100%")
-require(kableExtra)
-```
-
 ## Introduction
 
 Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist [@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011], the most comprehensive presentation of available methods is outdated [@rodionov_brief_2005]. See also @kefi2014early for a review and applications of some spatial indicators.
@@ -149,8 +139,8 @@ A survey of applications of these methods to empirical data may prove useful in 
 
 As shown this chapter, identifying RDMs using traditional literature review techniques may prove difficult. Many of the methods identified in my review were not identified using Web of Science or Google Scholar--rather, I was either previously aware of most of the methods, and many others were highlighted in previous RDM reviews [@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011]. To facilitate this process, an online, comprehensive database may prove useful to the practical ecologist. 
 
-Change-point detection is a huge field, especially in information and control theory [@aminikhanghahi2017survey]. I purposefully did not survey this, the climatological, and the econometric literatures, which are replete with additional change-point analyses. I suspect most of the methods in Table \@ref(methodsMetricsListTab) were used to analyze climate and economy time series prior to application to ecological data. A database or online resource comprising a comprehensive survey of these and other methods in the relevant literatures may prove useful to the practical ecologist. Further, disemminating various criteria and characteristics relevant  ecological data analysis by way of interactive toosl, e.g. issue trees, may better the utility of this database and the methods themselves. 
-
+### Next steps
+Change-point detection is a huge field, especially in information and control theory [@aminikhanghahi2017survey]. I purposefully did not survey this, the climatological, and the econometric literatures, which are replete with additional change-point analyses. I suspect most of the methods in Table \@ref(methodsMetricsListTab) were used to analyze climate and economy time series prior to application to ecological data. A database or online resource comprising a comprehensive survey of these and other methods in the relevant literatures may prove useful to the practical ecologist. Further, disemminating various criteria and characteristics relevant  ecological data analysis by way of interactive toosl, e.g. issue trees, may better the utility of this database and the methods themselves. I pose a series of questions that may prove useful to the practical ecologist should a database like this be created in Table \@ref(nextStepsTab).
 
 ```{r nextStepsTab}
 Questions.stat <- c(
@@ -166,7 +156,8 @@ Questions.stat <- c(
   "Does it have forecasting potential?",
   "Can the method handle uneven sampling?",
   "What are the minimum data requirements (resolution, extent, number of observations)?",
-  "How does the method handle missing data (e.g., new invasions)?")
+  "How does the method handle missing data (e.g., new invasions)?", 
+  "Does the method assume Eulerian or Lagrangian processes?")
 
 Questions.ecol <- c(
   "Has the method been tested on empirical data? If so, to what rigor?",
@@ -182,41 +173,13 @@ Questions.ecol <- c(
   "In which discipline(s) beyond ecology has the method been tested?"
   )
 
-Questions = tibble(Type = c(rep("Methodological", length(Questions.stat)), rep("Ecological", length(Questions.ecol))), 
+Questions = tibble(Type = c("Methodological", rep("", length(Questions.stat)-1),"Ecological"  , rep("", length(Questions.ecol)-1)), 
                        Questions = c(Questions.stat, Questions.ecol))
-require(kableExtra)
-kableExtra::kable(Questions, "latex", longtable = T, booktabs = T,   caption = "Potential questions for a comprehensive review of the **ecological** regime detection metrics literature.") %>%
+
+kable(Questions, "latex", longtable = T, booktabs = T,   caption = "Potential questions for a comprehensive review of the **ecological** regime detection metrics literature.") %>%
  kable_styling(full_width = F) %>%
  column_spec(1, bold = T, border_right = T) %>%
- collapse_rows(columns = 1, valign = "top") %>% 
- column_spec(2, bold = F, width = "30em") 
-
+  # CANNOT figure out how to use COLLAPSE AND column_spec width at the same time........
+ # collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+ column_spec(2, bold = F, width = "30em")
 ```
-
-
-2. Procedures for filtering the papers.
-    i. We removed duplicate titles (from the merging of Scopus and WOS), which resulted in _______ unique scholarly works.
-    <!-- i. We read the abstracts of each paper to determine the following: -->
-    <!--       a. Was this a new method being proposed or used? (if yes, proceed to ii.)) -->
-    <!--       b. Was this just a case study or another application of a previously published method? (if yes, note the method(s) used and identify original method(s) source) -->
-    <!--       c. If this paper was an application of a method, we noted the method, and identified the orignal source for the method (if possible) -->
-    <!-- ii. Identify characteristics of the method -->
-    <!--     c. It is model-based? -->
-    <!--     a. Does it require a mathematical model? -->
-    <!--     b. Does it require *a priori* knowledge of the regime shift -->
-        <!-- d. Does it forecast or provide predicitons? -->
-        <!-- e. Assumptions required (e.g., discontinuity, step functions, normality of response vars) -->
-    <!-- iii. Identify requirements for the data input -->
-        <!-- a. Require equal spacing b/w observations? -->
-        <!-- b. Minimum # data points required to use? -->
-        <!-- c. Minimum # of state variables required? -->
-    <!-- iv. Identify the characteristics of the data USED to demonstrate the method -->
-    <!--     a. Spatial resolution and extent -->
-    <!--     b. Temporal resolution and extent -->
-    <!--     c. Number of state variables -->
-<!--         d. System type -->
-<!--           i. Whole-system vs. selected variables? -->
-<!--           ii. Experimental system or observational/passive -->
-<!-- 3. Note the number of times the paper has been cited -->
-
-

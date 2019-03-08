@@ -59,11 +59,18 @@ knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, e
                       error=FALSE,
                       # fig.width=7, fig.height=7,
                       fig.align='center',
-                      out.width = "100%")
+                      out.width = "85%")
 ```
 
 
-```{r include_packages, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE}
+```{r include_packages}
+
+## Default repo
+local({r <- getOption("repos")
+       r["CRAN"] <- "https://cloud.r-project.org" 
+       options(repos=r)
+})
+
 list.of.packages <- c("ggplot2", "ggthemes", "gapminder",
                       "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
@@ -88,7 +95,7 @@ devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
 lapply(list.of.packages[!list.of.packages %in%  loadedNamespaces() ], library, character.only = TRUE)
 library(regimeDetectionMeasures) 
 library(bbsRDM)
-library(kableExtra)
+# loaded_packages() %>% arrange(package)
 ```
 
 
