@@ -1,4 +1,12 @@
-# A brief overview of ecological regime detection methods methods {#rdmReview-chapter}     
+# A brief overview of ecological regime detection methods methods {#rdmReview-chapter}    
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=F}
+# Chunk defaults
+knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
+                      error=FALSE,
+                      # fig.width=7, fig.height=7,
+                      fig.align='center',
+                      out.width = "85%")
+```
 ## Introduction
 
 Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist [@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011], the most comprehensive presentation of available methods is outdated [@rodionov_brief_2005]. See also @kefi2014early for a review and applications of some spatial indicators.
