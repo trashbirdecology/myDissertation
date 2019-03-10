@@ -9,7 +9,7 @@ knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, e
 ```
 ## Introduction
 
-Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist [@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011], the most comprehensive presentation of available methods is outdated [@rodionov_brief_2005]. See also @kefi2014early for a review and applications of some spatial indicators.
+Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist [@scheffer2015generic, @rodionov_brief_2005, @andersen_ecological_2009,  @roberts2018early, @dakos2015resilience, @nichols_detection_2011], the most comprehensive presentation of available methods is outdated [@rodionov_brief_2005]. See also @kefi2014early and @yin2017methods for review and list, respectively of RDMs intended for spatially-explicit data.
 
 There is currently not a single, current resource to which the practical ecologist can refer when identifying or researching  potential RDMs. Previous reviews of this literature vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. I follow the style of @rodionov_brief_2005 in that I present a brief overview of RDMs and point the reader to original sources for detailed descriptions of the methods. 
 
@@ -24,11 +24,9 @@ I conducted a systematic literature review to identify original papers introduci
 ### Identifying candidate articles
 
 #### Web of Science
-I used the Thomson-ISI Web of Science (WoS) database to identify papers published prior to March 2019 that introduced new RDMs. The complete boolean was: 
+I used the Thomson-ISI Web of Science (WoS) database to identify papers published prior to March 2019 which introduced new RDMs. The complete boolean was: 
 
-> (TS=("regime shift*" OR "regime change" OR "abrupt shift*" OR "abrupt change" OR "break point" OR "change point" OR "change-point" OR "tipping point" OR "structural change" OR "observational inhomogeneity" OR "abrupt" OR "alter* state" OR "sudden" OR "stark" OR "threshold") AND TS=("new method" OR "new approach" OR "novel method" OR "novel approach" OR "we introduce" OR "I introduce") AND WC=(Fisheries OR Ecology OR "Biodiversity Conservation" OR "Environmental Sciences" OR Biology)) AND DOCUMENT TYPES: (Article)
-Indexes=SCI-EXPANDED, CPCI-S, BKCI-S, ESCI Timespan=All years  
-
+> TS=(('regime shift' OR 'regime shifts' OR 'regime change' OR 'regime changes' OR 'catastrophic change' OR 'catastrophic shift' OR 'catastrophic changes' OR 'catastrophic shifts' OR 'sudden change' OR 'sudden changes' OR 'abrupt shift' OR 'abrupt shifts OR 'abrupt change' OR 'abrupt changes' OR bistab* OR threshol* OR hystere* OR 'phase shift' OR 'phase shifts' OR 'phase change' OR 'phase changes' OR 'step change' OR 'step changes' OR 'stepped change' OR 'stepped changes' OR 'tipping point' OR 'tipping points' OR 'stable states' OR 'stable state' OR 'state change' OR 'state changes' OR 'stark shift' OR 'stark change' OR 'stark shifts' OR 'stark changes' 'structural change' OR 'structural changes' OR 'change-point' OR 'change point' OR 'change-points' OR 'change point' OR 'break point' OR 'break points' OR 'observational inhomogeneity' OR 'observational inhomogeneities') AND ('new method' OR 'new approach' OR 'novel method' OR 'novel approach')) AND WC=(Ecology OR 'Biodiversity Conservation')
 
 where '*' indicates a wildcard. Next, I read the titles abstracts to retain only articles positing a 'new' RDM. If it was not clear whether a new method was being introduced, I further read the article to determine whether it should be included. 
 
@@ -39,12 +37,11 @@ Next, I gathered methodological papers not identified using the WoS review crite
 #### Google Scholar
 There was a high disparity among the number of methods of which I was previously aware and those identified in an initial Web of Science review. In an attempt to collect as many new methods as possible, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I arbitrarily skimmed the titles of the first 25 pages of the Google Scholar results (25 pages = 250 articles). It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
 
-> ("regime shift" OR "regime change" OR "tipping point") AND ("new method" OR "new approach" OR "novel method" OR "novel approach")
+> ('regime shift' OR 'regime change' OR 'tipping point') AND ('new method' OR 'new approach' OR 'novel method' OR 'novel approach')
 
 ### Filtering criteria
 
 In addition to using the abovementioned search booleans, I also excluded the following types of articles: those which proposed a combination of previously-used methods (e.g., PCA combined with other techniques, see @kong2017hydrological, @seddon2014quantitative, @vasilakopoulos2017resilience) as a 'novel' method; those making relatively minor methodological updates/additions to existing methods [@zhou2008one; but see @nicholls2011biological for an addition of variable optimization to the method in @nichols_detection_2011 that was not included in the results]; and articles proposing new methodologies in mathematical journals [@byrski2016double, @salehpour2011line] that have yet to be associated with or tested using ecological or relevant data.
-
 
 ```{r bibAnalysis, echo=F}
 # This chunk is the initial analysis of the bibliography results, and turned the search results into csvs for simple reviewing. 
@@ -64,6 +61,9 @@ n.gs.start <- 250
 
 ## Results
 
+A boolean not including the restriction to Ecology and Conservation Biology yielded over 20,000 results. To make the results manageable I restricted the search to the aforementioned fields. This search yielded 2,776 articles. 
+
+
 ```{r rdmReviewFlow, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. **Other papers include prior knowledge and methods found in previous reviews that were not identified using Google Scholar or Web of Science."}
 
 webshot::install_phantomjs()
@@ -73,7 +73,8 @@ DiagrammeR::grViz(
 
   # define the global styles of the nodes. We can override these in box if we wish
   node [shape = rectangle, style = filled, fillcolor = White]
-  data1 [label = 'Web of Science\n (n = 80)', shape = folder, fillcolor = Linen]
+  data0 [label = 'Web of Science \n initial search \n (n = 2776)', shape = folder, fillcolor = Linen]
+  data1 [label = 'Web of Science \n filtered by title \n (n = XXX)', shape = folder, fillcolor = Linen]
   data2 [label = 'Google Scholar*\n (n = 250)', shape = folder, fillcolor = Linen]
   data3 [label = 'Other** \n (n = 55)', shape = folder, fillcolor = Linen]
 
