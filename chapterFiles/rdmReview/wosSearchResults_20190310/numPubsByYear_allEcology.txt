@@ -1,4 +1,4 @@
-﻿Publication Years	records	% of 571169
+year	records	% of 571169
 2019	3119	0.546
 2018	25848	4.525
 2017	25454	4.456

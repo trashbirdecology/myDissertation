@@ -1,4 +1,4 @@
-
+#################### PART I ####################
 # SETUP -------------------------------------------------------------------
 
 require(tidyverse)
@@ -75,6 +75,11 @@ wos.filtered.change <- full_join(wos.filtered.change.ti, wos.filtered.change.abs
 # Keep the intersection of these
 wos.filtered <- full_join(wos.filtered.change, wos.filtered.meth)
 
+# Create this for use in plots later on 
+wos.filtered.regime.ti <- myFilterFun(words = regime.filter, df = wos.results, columnName = "title")
+wos.filtered.regime <- full_join(wos.filtered.regime.ti, wos.filtered.regime.abs)
+
+
 # Read in methods of which I was already aware ----------------------------
 prior.fil <- read_bibliography(paste0(rdm.dir, "/reviewResults/", "priorRdmReview_20190304_filtered.csv")) %>% as_tibble() %>% 
   # remove http:// and https:// from DOI
@@ -99,6 +104,63 @@ write_csv(wos.withoutPrior,
           path = paste0(temp.dir, "wos_withoutPrior.csv"))
 
 
+
+# Import WOS ecology journals over time -----------------------------------
+
+wos.all.ecol <- read_delim(paste0(rdm.dir,'/wosSearchResults_20190310/numPubsByYear_allEcology.txt'), 
+           delim = "\t") %>% dplyr::select(year, records) %>% 
+  rename(nEcol.pubs  = records) %>% 
+  mutate(year = as.integer(year)) %>% 
+  filter(year >= min(wos.filtered.regime$year) & year < max(wos.filtered.regime$year))
+
+# Join # ecology articles to wos.filtered.regime for visualization purpoises (below)
+wos.regime.plotData <- wos.filtered.regime %>% 
+  group_by(year) %>% 
+  mutate(nRegime.pubs  = n()) %>% 
+  ungroup() %>% 
+  mutate(year = as.integer(year))
+
+#################### PART II - PLOTS ################
+theme_set(theme_bw())
+# set a figure path for saving permanent figures
+fig.path <- paste0(rdm.dir, "/figures/figsCalledInDiss/")
+
+# Visualize regime.filter publications (orig data from boolean on WoS) --------
+p1 <-ggplot(wos.regime.plotData) +
+  geom_bar(aes(x = year), stat="count")+
+  xlab("year")+ylab("# regime shift \nrelevant publications")+
+  title("# publications including terms in 'regime.filter'")
+ggsave(p1, path = fig.path, filename = "wosRegimePubsByYear.png" )
+
+p2  <- ggplot(wos.regime.plotData %>% 
+               distinct(year, .keep_all=T)) +
+    geom_bar(aes(x = year, y = nRegime.pubs, color = "Regime shift"), stat= "identity" )+ 
+  geom_line(wos.all.ecol, mapping = aes(x = year, y = nEcol.pubs/1e3, color = "All ecology"), size = 1.3)+
+  scale_y_continuous(sec.axis = sec_axis(~.*1000, name = "# all ecology publications\n (line)")) + 
+  scale_colour_manual(values = c("red", "black" )) +
+  labs(y = "# regime shift \n relevant publications ",
+              x = "year",
+              colour = "Publication type")+ 
+  theme(legend.position = c(1998,60000), axis.title.y = element_text(size = 10))
+ggsave(p2, path = fig.path, filename = "wosRegimePubsByYear_withNumEcolPubs.png" )
+
+
+p3 <- ggplot(wos.regime.plotData %>%
+              group_by(journal) %>% 
+              summarise(nJrnl = n()) %>% 
+               filter(nJrnl >= 10, 
+                      journal != "NA") %>% 
+               arrange(nJrnl)) +
+  geom_bar(aes(x =  journal, y = nJrnl), stat= "identity")+
+  ylab('number of articles') + xlab("") +
+  coord_flip()+
+  theme_bw() + 
+  theme(axis.text.y = element_text( hjust = 1, size = 4))+
+  theme(axis.title.x = element_text(size = 8))
+p3
+ggsave(p3, path = fig.path, filename = "wosRegimePubsByJrnl_min10Pubs.png" )
+
 # Read in the final list of results from WOS search.  ---------------------
 
-read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_20190310_withoutPrior_filteredByHand.csv"))
+x=read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_20190310_withoutPrior_filteredByHand.csv"))
+
