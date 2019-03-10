@@ -6,10 +6,10 @@ output:
 # A brief overview of ecological regime detection methods methods {#rdmReview-chapter}    
 ```{r ch2setup, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=F}
 # Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE,
-                  fig.align='center',
-                  out.width = "85%")
-require(kableExtra, quietly = T) 
+# knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE,
+#                   fig.align='center',
+#                   out.width = "85%")
+# require(kableExtra, quietly = T) 
 
 # i should not have to do anything in this chunk but for  some reason doesn't work it if i do not...
 ```
@@ -61,10 +61,12 @@ There was a high disparity among the number of methods of which I was previously
 
 In addition to using the abovementioned search booleans, I excluded the following types of articles: those which proposed a combination of previously-used methods (e.g., PCA combined with other techniques, see @kong2017hydrological, @seddon2014quantitative, @vasilakopoulos2017resilience) as a 'novel' method; those making relatively minor methodological updates/additions to existing methods [@zhou2008one; but see @nicholls2011biological for an addition of variable optimization to the method in @nichols_detection_2011 that was not included in the results]; and articles proposing new methodologies in mathematical journals [@byrski2016double, @salehpour2011line] that have yet to be associated with or tested  ecological data, or suggested to be useful for empirical data.
 
-```{r bibAnalysis, echo=F}
+```{r bibAnalysis}
 # This chunk is the initial analysis of the bibliography results, and turned the search results into csvs for simple reviewing. 
-## This script also saves some objects to refer to later in figures in this chapter. 
-source(paste0(here::here(), "/chapterFiles/rdmReview/bibliographyAnalysis.R"))
+## This script also saves some objects to refer to later in figures in this chapter
+
+source("./chapterFiles/rdmReview/bibliographyAnalysis.R")
+
 ```
 
 ## Results

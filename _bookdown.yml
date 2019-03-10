@@ -1,6 +1,6 @@
-book_filename: "myDissertation"
+book_filename: "_myDissertation"
 chapter_name: "Chapter "
 download: [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]]
 delete_merged_file: true
-clean: ["R-packages.bib"]#, "myDissertation.tex", "myDissertation.rmd", "myDissertation.log"]
+clean: ["R-packages.bib", "myDissertation.rmd"]#, "myDissertation.log"]
 new_session: no

@@ -26,12 +26,18 @@ acknowledgements: |
     To my brilliant partner of eight years--Schultzie--thank you for everything. Just kidding, thank you, Nat Price, you are amazing.
 dedication: | 
   To the end-users and researchers frustrated with jargon and lack of practical utility of ecological models and metrics. And to Mike Moulton, without whose support and encouragement many years ago two advanced degrees would likely not have been possible. 
-bibliography: [bib/thesis.bib, chapterFiles/rdmReview/methodsMetricsList.bib]
+bibliography: ["bib/thesis.bib", "chapterFiles/rdmReview/methodsMetricsList.bib"]
 csl: csl/apa.csl
 lot: true
 lof: true
 space_between_paragraphs: false
 ---
+```{r chnkOpts, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+# Chunk defaults
+knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+                      out.width = "85%", include = FALSE)
+```
+
 ```{r include_packages, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 ## Default repo
 local({r <- getOption("repos")
@@ -67,12 +73,7 @@ library(regimeDetectionMeasures)
 library(bbsRDM)
 ```
 
-```{r chnkOpts, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
-# Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE,
-                      fig.align='center',
-                      out.width = "85%")
-```
+
 # Abstract {.unnumbered}
 
 <!-- Do not remove the line with the  '.unnumbered' -->
