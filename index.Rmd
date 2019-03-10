@@ -26,33 +26,22 @@ acknowledgements: |
     To my brilliant partner of eight years--Schultzie--thank you for everything. Just kidding, thank you, Nat Price, you are amazing.
 dedication: | 
   To the end-users and researchers frustrated with jargon and lack of practical utility of ecological models and metrics. And to Mike Moulton, without whose support and encouragement many years ago two advanced degrees would likely not have been possible. 
-preface: |   
-  >*If a regime shift occurs and no one detects it--is it a regime shift at all?*
-bibliography: bib/thesis.bib
+bibliography: [bib/thesis.bib, chapterFiles/rdmReview/methodsMetricsList.bib]
 csl: csl/apa.csl
 lot: true
 lof: true
 space_between_paragraphs: false
 ---
-
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=F}
-# Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
-                      error=FALSE,
-                      # fig.width=7, fig.height=7,
-                      fig.align='center',
-                      out.width = "85%")
-```
-
-
-```{r include_packages, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=F}
+```{r include_packages, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 ## Default repo
 local({r <- getOption("repos")
        r["CRAN"] <- "https://cloud.r-project.org" 
        options(repos=r)
 })
 
-list.of.packages <- c("ggplot2", "ggthemes", "gapminder",
+list.of.packages <- c(
+  "rmarkdown", 
+  "ggplot2", "ggthemes", "gapminder",
                       "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
@@ -76,9 +65,15 @@ devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
 lapply(list.of.packages[!list.of.packages %in%  loadedNamespaces() ], require, character.only = TRUE)
 library(regimeDetectionMeasures) 
 library(bbsRDM)
-# loaded_packages() %>% arrange(package)
 ```
 
+```{r chnkOpts, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+# Chunk defaults
+knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE,
+                      fig.align='center',
+                      out.width = "85%")
+```
+# Abstract {.unnumbered}
 
 <!-- Do not remove the line with the  '.unnumbered' -->
 <!-- There is something buggy about it, when I remove it shit goes bananas.  -->

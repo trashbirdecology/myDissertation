@@ -3,6 +3,7 @@
 
 require(tidyverse)
 require(revtools)
+require(dplyr)
 
 rdm.dir <- paste0(here::here(), "/chapterfiles/rdmReview")
 
@@ -39,6 +40,7 @@ change.filter <- paste0('\\b',
                           "stark changes", 
                           "tipping points", "change points", "change-points"), 
                        '\\b') %>% sort()
+
 method.filter <- paste0('\\b',
   c("new method", "novel method", "new approach",
     "new practical method", "new simple method", "new multivariate method", 
@@ -125,48 +127,20 @@ theme_set(theme_bw())
 fig.path <- paste0(rdm.dir, "/figures/figsCalledInDiss/")
 
 # Visualize regime.filter publications (orig data from boolean on WoS) --------
-p1 <-ggplot(wos.regime.plotData) +
-  geom_bar(aes(x = year), stat="count")+
-  xlab("year")+ylab("# regime shift \nrelevant publications")+
-  title("# publications including terms in 'regime.filter'")
-ggsave(p1, path = fig.path, filename = "wosRegimePubsByYear.png" )
-
-p2  <- ggplot(wos.regime.plotData %>% 
-               distinct(year, .keep_all=T)) +
-    geom_bar(aes(x = year, y = nRegime.pubs, color = "Regime shift"), stat= "identity" )+ 
-  geom_line(wos.all.ecol, mapping = aes(x = year, y = nEcol.pubs/1e3, color = "All ecology"), size = 1.3)+
-  scale_y_continuous(sec.axis = sec_axis(~.*1000, name = "# all ecology publications\n (line)")) + 
-  scale_colour_manual(values = c("red", "black" )) +
-  labs(y = "# regime shift \n relevant publications ",
-              x = "year",
-              colour = "Publication type")+ 
-  theme(legend.position = c(1998,60000), axis.title.y = element_text(size = 10))
-ggsave(p2, path = fig.path, filename = "wosRegimePubsByYear_withNumEcolPubs.png" )
-
-
-p3 <- ggplot(wos.regime.plotData %>%
-              group_by(journal) %>% 
-              summarise(nJrnl = n()) %>% 
-               filter(nJrnl >= 10, 
-                      journal != "NA") %>% 
-               arrange(nJrnl)) +
-  geom_bar(aes(x =  journal, y = nJrnl), stat= "identity")+
-  ylab('number of articles') + xlab("") +
-  coord_flip()+
-  theme_bw() + 
-  theme(axis.text.y = element_text( hjust = 1, size = 4))+
-  theme(axis.title.x = element_text(size = 8))
-p3
-ggsave(p3, path = fig.path, filename = "wosRegimePubsByJrnl_min10Pubs.png" )
 
 # Read in the final list of results from WOS search.  ---------------------
 
 wos.filteredByHand <- read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_20190310_withoutPrior_filteredByHand.csv")) 
 
-# Get the total number of papers used
-length(prior.dois)+length(wos.filteredByHand)
-setdiff(wos.filteredByHand$doi, prior.dois)
+# # Get the total number of papers used
+# length(prior.dois)+length(wos.filteredByHand)
+# setdiff(wos.filteredByHand$doi, prior.dois)
+
 
 # Read in the final table of methods --------------------------------------
-metricsList.table <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_tibble()
+finalMetricsList <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_tibble()
+
+# Read in the .bib associated with the final metricsMethodList ------------
+finalMetricsList.bib <- read_bibliography(paste0(rdm.dir, "/", "methodsMetricsList.bib")) %>% as_tibble() 
+
 
