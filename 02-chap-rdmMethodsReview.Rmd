@@ -47,16 +47,6 @@ In addition to using the abovementioned search booleans, I also excluded the fol
 # This chunk is the initial analysis of the bibliography results, and turned the search results into csvs for simple reviewing. 
 ## This script also saves some objects to refer to later in figures in this chapter. 
 source(paste0(here::here(), "/chapterFiles/rdmReview/bibliographyAnalysis.R"))
-
-# These values shoudl be  used to manually fill the grViz diagram!
-n.wos.start <- bib.wos %>% nrow()
-n.gs.start <- 250
-# The following objects were saved usign the above mentioned script. 
-# n.wos.keep # 3
-# n.gs.keep # 3
-# n.prior.keep # 11
-# total.keep.papers # 60
-# total.keep.methods  # 47
 ```
 
 ## Results
@@ -74,24 +64,24 @@ DiagrammeR::grViz(
   # define the global styles of the nodes. We can override these in box if we wish
   node [shape = rectangle, style = filled, fillcolor = White]
   data0 [label = 'Web of Science \n initial search \n (n = 2776)', shape = folder, fillcolor = Linen]
-  data1 [label = 'Web of Science \n filtered by title \n (n = XXX)', shape = folder, fillcolor = Linen]
-  data2 [label = 'Google Scholar*\n (n = 250)', shape = folder, fillcolor = Linen]
-  data3 [label = 'Other** \n (n = 55)', shape = folder, fillcolor = Linen]
+  data1 [label = 'Filtering \n by title & abstract \n (n = 202)', ]
+  data2 [label = 'Filter by \n prior knowledge \n (n = 93)']
+  data3 [label = 'Filtered by hand \n (n = 2)']
 
-  filter [label = 'Filter', shape = plaintext]
+  data4 [label = 'Prior knowledge \nof  methods \n (n = 71)', shape = folder, fillcolor = Linen]
+  
+  results [label = 'Final list of \n methods \n (n = 73)', shape = folder, fillcolor = Grey]
 
-  filter1 [label =  'Web of Science \n (n = 3)']
-  filter2 [label =  'Google Scholar\n (n = 3)']
-  results [label= 'Final \n (n = 47 methods)']
+# edge definitions with the node IDs
+data0 -> data1 ->data2 ->data3 ->results
+data4 ->results
 
-  # edge definitions with the node IDs
-  {data1, data2} -> filter -> {filter1, filter2}
-{filter1, filter2, data3} -> results  
+
 }"
   )
 ```
 
-The Web of Science search yielded `r n.wos.start` unique articles, of which `r n.wos.keep` were retained after filtering (Fig. \@ref(fig:rdmReviewFlow)). Of the `r n.gs.start` articles scanned in Google Scholar, `r n.gs.keep` were retained. Using my prior knowledge of the relevant litearture and referring to methods presented in prior reviews [e.g., @rodionov_brief_2005], I added an additional `r total.keep.methods - n.gs.keep - n.wos.keep` methods. Using these processes, I identified `r total.keep.methods` unique RDMs proposed and/or applied to ecological data (Figs. \@ref(fig:rdmReviewFlow), \@ref(fig:jrnlDistFig), \@ref(fig:jrnlYearFig)). 
+The Web of Science search yielded `r nrow(wos.results)` unique articles, of which `r nrow(wos.filteredByHand)` were retained after filtering (Fig. \@ref(fig:rdmReviewFlow)). Of the `r 250` articles scanned in Google Scholar, 3 were retained. Using my prior knowledge of the relevant litearture and referring to methods presented in prior reviews [e.g., @rodionov_brief_2005], I identified `r nrow(metricsList.table)` unique RDMs (Figs. \@ref(fig:rdmReviewFlow), \@ref(fig:jrnlDistFig), \@ref(fig:jrnlYearFig)). 
 
 ```{r jrnlDistFig, fig.cap="Distribution of identified methods across publications. Note: books, reports, and articles without original reference coded as 'Other'"}
 # Visualize results
@@ -133,7 +123,7 @@ long_dt <- metricsList.table[1:10,] %>%
   dplyr::select(method, type1,label2 )
 require(kableExtra)
 
-kable(long_dt, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>%
+kableExtra::kable(long_dt, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>%
 # add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
   kable_styling(latex_options = c("repeat_header"))
 ```

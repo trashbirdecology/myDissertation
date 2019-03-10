@@ -106,7 +106,6 @@ write_csv(wos.withoutPrior,
 
 
 # Import WOS ecology journals over time -----------------------------------
-
 wos.all.ecol <- read_delim(paste0(rdm.dir,'/wosSearchResults_20190310/numPubsByYear_allEcology.txt'), 
            delim = "\t") %>% dplyr::select(year, records) %>% 
   rename(nEcol.pubs  = records) %>% 
@@ -162,5 +161,12 @@ ggsave(p3, path = fig.path, filename = "wosRegimePubsByJrnl_min10Pubs.png" )
 
 # Read in the final list of results from WOS search.  ---------------------
 
-x=read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_20190310_withoutPrior_filteredByHand.csv"))
+wos.filteredByHand <- read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_20190310_withoutPrior_filteredByHand.csv")) 
+
+# Get the total number of papers used
+length(prior.dois)+length(wos.filteredByHand)
+setdiff(wos.filteredByHand$doi, prior.dois)
+
+# Read in the final table of methods --------------------------------------
+metricsList.table <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_tibble()
 
