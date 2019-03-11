@@ -30,6 +30,8 @@
 % Chemistry (chemtex), screenplays, you name it.
 % Check out CTAN to see: http://www.ctan.org/
 %%
+
+\usepackage{setspace}
 \usepackage{graphicx,latexsym}
 \usepackage{amsmath}
 \usepackage{amssymb,amsthm}
@@ -76,7 +78,7 @@ $endif$
 % To pass between YAML and LaTeX the dollar signs are added by CII
 \title{$title$}
 \author{$author$}
-% The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
+% The month and year that you submit your FINAL draft TO THE LIBRARY
 \date{$date$}
 \division{$division$}
 \advisor{$advisor$}
@@ -202,11 +204,10 @@ $endif$
 
 \mainmatter % here the regular arabic numbering starts
 \pagestyle{fancyplain} % turns page numbering back on
+\doublespacing{} % Trying to set spacing between lines in body
 
 $body$
 
-
-% Index?
 
 \end{document}
 
