@@ -1,3 +1,52 @@
+# Custom GGPLOT theme  ------------------------------------------------------
+theme.margin <- theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+# Helper Functions -random --------------------------------------------------------
+remove_outliers <- function(x, na.rm = TRUE, ...) {
+  qnt <- stats::quantile(x, probs = c(.25, .75), na.rm = na.rm, ...)
+  H <- 1.5 * IQR(x, na.rm = na.rm)
+  y <- x
+  y[x < (qnt[1] - H)] <- NA
+  y[x > (qnt[2] + H)] <- NA
+  y <- na.omit(y)
+  return(y)
+}
+
+# Create function to identify closest military base to those of interst to me.
+closestSite <- function(mbs, site, ndeg = 5, by = 0.1) {
+  y = 1:999
+  ndeg = ndeg + by
+  
+  for (i in 1:1000) {
+    ndeg = ndeg - by
+    if (ndeg < 0) {
+      break("could not find a single closest site. try new deg and/or by values.")
+    }
+    
+    y = mbs %>% filter(
+      mbs$lat <  site$lat  + ndeg &
+        mbs$lat > site$lat - ndeg   &
+        mbs$long  > site$long - ndeg &
+        mbs$long < site$long + ndeg
+    )
+    
+    if (length(y) == 1) {
+      break
+    }
+  }
+  
+  print(paste0(
+    "Closest base is within ",
+    paste(ndeg),
+    " degrees lat and long of your site."
+  ))
+  
+  return(y)
+  
+}
+
+
+
+######################## ANIMATION PLOTS ########################
 # Individual transects over space (x) by time (anim) -----------------------------------------------
 anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.ind, site.temp = NULL, fn.ind = NULL, get.anim = TRUE, get.static = TRUE ){
     

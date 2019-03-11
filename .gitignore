@@ -12,15 +12,17 @@
 _bookdown_files/
 chapterFiles/appendix_predPreyExample/plots/.png
 chapterFiles/appendix_paleoExample/plots/*.png
+chapterFiles/appendix_paleoExample/plots/*.png
 *.pdf
 *.md
-  
-
+# Ignore all pngs except those called in dissertation (hopefully)
+*.png 
+!figsCalledInDiss/*.png 
 # remove log files
 *.log
 
 # ignore generated html files,
-    *.html
+*.html
 
 # remove rdata
 *.RData
@@ -40,6 +42,7 @@ chapterFiles/rsdmReview/gScholar_20190204.csv
 *.shp
 *.xml
 *.shx
+*.DS_Store
 
 # Do not remove images called in dissertation from file.
 !chapterFiles/binningChap/figures/figsCalledInDiss
@@ -58,6 +61,3 @@ myDissertation.lot
 myDissertation.tex
 myDissertation.toc
 myDissertation.Rmd
-chapterFiles/.DS_Store
-chapterFiles/.DS_Store
-chapterFiles/.DS_Store

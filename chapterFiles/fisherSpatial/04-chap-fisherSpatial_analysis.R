@@ -22,7 +22,7 @@ animDir <- "./chapterFiles/fisherSpatial/figures/animations"
 
 # Create directories ------------------------------------------------------
 # a. Create a directory to store and/or load the BBS data as feathers
-bbsDir <- "./chapterFiles/fisherSpatial/bbs_raw_data"
+bbsDir <- "./chapterFiles/fisherSpatial/bbs_raw_data/"
 dir.create(bbsDir) # if already
 
 
@@ -146,7 +146,7 @@ feathers <-
   subsetByAOU(myData = feathers, subset.by = 'remove.shoreWaderFowl')
 
 
-# BEGIN USER-DEFINED PARAMTERS ****************************************----
+########################### BEGIN USER-DEFINED PARAMTERS###########################
 # Define metric calculation parameters ------------------------------------
 
 # First, define the parameters required to calcualte the metrics.
@@ -159,7 +159,7 @@ to.calc = c("EWS", "FI", "VI")
 
 # Choose spatial or temporal analysis
 direction <-
-  "South-North" # choose one of : 'South-North', 'East-West', or 'temporal'
+  "East-West" # choose one of : 'South-North', 'East-West', or 'temporal'
 
 # Choose the fill value for species present in the entire time series (or sampling transect) but not present on that year. Using "NA" assumes the species with missing data *was not and could not have been present*. Using zero assumes the species could have been present but was not.
 fill = 0
@@ -168,16 +168,13 @@ fill = 0
 min.samp.sites = 8
 
 # Minimum number of sites (if spatial) or years (if temporal) required to be within a single window
-min.window.dat = 3
+min.window.dat = 5
 
 # Which Equation of Fisher Information to use (default = 7.12)
 fi.equation = "7.12"
 
 # By what % of the entire data should the window move?
 winMove = 0.25
-
-# direction = "East-West"
-direction = "South-North"
 
 # Define some filtering and labeling parameters based on direction of spatial analysis (if applicable)
 if (direction == "South-North") {
@@ -195,7 +192,9 @@ T = 10
 years.use  <-
   years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort()
 
-# ***** END USER-DEFINED PARAMETERS ****************************************----
+################## END USER-DEFINED PARAMETERS ###########################
+
+########################### CONDUCT ANALYSIS OF RDMs ########################### 
 # CALCULATE THE METRICS  -------------------------------------------------------
 for (j in 1:length(dir.use)) {
   # For east-west analysis
@@ -213,12 +212,9 @@ for (j in 1:length(dir.use)) {
              dirID = dir.use[j])
   }
 
-
-
   if (nrow(birdsData) < min.samp.sites) {
     next(print(paste0("Not enough data to analyze. Skipping j-loop ", dir.use[j])))
   }
-
 
   for (i in 1:length(years.use)){
     # a. Subset the data according to year, colID, rowID, state, country, etc.x
@@ -246,3 +242,5 @@ for (j in 1:length(dir.use)) {
   print(paste0("End j-loop (transects) ", j, " of ",  length(dir.use)))
 } # end j-loop
 
+
+########################### END ANALYSIS OF RDMs ###########################

@@ -1,41 +1,24 @@
-# SOURCE BASEMAPS AND DATA ------------------------------------------------
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_functions.R" )
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_base.R" )
+## This script is sources from fisherSpatial_analysis.R
 
-# User-defined plotting parameters ------------------------------------------------------
-
-## FOR DISTANCES
-to.plot <- "distances"
-metric.ind <- c("dsdt", "s") # the metrics to print
-
-# Plotting paramters ------------------------------------------------------
-# Define the plotting data based on to.plot arg
-if (to.plot == "distances") {
-  plotResults = results_dist
-}
-if (to.plot == "ews") {
-  plotResults = results_ews
-}
-
-year.ind <- unique(plotResults@data$year) %>% sort()
+# Define some parameters --------------------------------------------------
+year.ind <- unique(results@data$year) %>% sort()
 
 sortVar.lab <-
-  ifelse(unique(plotResults@data$direction) == "South-North",
+  ifelse(unique(results@data$direction) == "South-North",
          "latitude",
          "longitude")
 
 ##################### BEGIN NON-SPATIAL PLOTTING #####################
-# Plot indiviudal transects -----------------------------------------------
-for (i in 1:length(unique(plotResults$dirID))) {
-  for (j in 1:length(unique(plotResults$direction))) {
+# Plot indiviudal transects with a single metric per figure -----------------------------------------------
+for (i in 1:length(unique(results$dirID))) {
+  for (j in 1:length(unique(results$direction))) {
     for (k in 1:length(unique(metric.ind))) {
-      dirID.ind = unique(plotResults$dirID)[i]
-      direction = unique(plotResults$direction)[j]
+      dirID.ind = unique(results$dirID)[i]
+      direction = unique(results$direction)[j]
       metric =    unique(metric.ind)[k]
-      
-      
+    
       p <- sort.year.line(
-        plotResults,
+        results,
         metric.ind = metric,
         year.ind =  year.ind,
         dirID.ind = dirID.ind,
@@ -44,16 +27,11 @@ for (i in 1:length(unique(plotResults$dirID))) {
         direction = direction
       ) +
         theme(plot.title = element_text(size=8))+
-  # below: was tring to keep only the first and last year to avoid a huge legend with no luck
-                # scale_fill_manual(breaks=c(min(as.integer(as.character(unique(plotResults$year)))), 
-        #                            max(as.integer(as.character(unique(plotResults$year)))))
-        #                   )
         theme(legend.position = "none")+
         scale_color_grey()
-                           
-    p
-    
-      fn <- paste0(figDir,
+                     
+
+      my.fn <- paste0(figDir,
                    "/transect_",
                    dirID.ind,
                    "_",
@@ -62,28 +40,25 @@ for (i in 1:length(unique(plotResults$dirID))) {
                    metric,
                    ".png")
       
-      ggsave(filename = fn, plot = p)
+      ggsave(filename = my.fn, plot = p)
       
     }
   }
 }
-
-
-##################### END NON-SPATIAL PLOTTING #####################
 
 ##################### BEGIN SPATIAL PLOTTING #####################
 ###############################################################
 ## I AM HAVING ISSUES PLOTTING SPATIAL DATA RIGHT NOW..#######
 ###############################################################
 ## plot all transects on USA map, each metric for a single year
-for(i in 1:length(unique(plotResults$year))){
-for (j in 1:length(unique(plotResults$direction))) {
+for(i in 1:length(unique(results$year))){
+for (j in 1:length(unique(results$direction))) {
   for (k in 1:length(unique(metric.ind))) {
-    direction = unique(plotResults$direction)[j]
+    direction = unique(results$direction)[j]
     metric =    unique(metric.ind)[k]
-   year = unique(plotResults$year[i]) 
+   year = unique(results$year[i]) 
     
-    temp <- plotResults %>%
+    temp <- results %>%
       as.data.frame() %>%
       filter(metricType == metric) %>% 
       filter(year == year)
@@ -130,7 +105,7 @@ for (j in 1:length(unique(plotResults$direction))) {
     
     
     
-    fn <-
+    my.fn <-
       paste0(
         figDir,
         "/usaAllTsects_",
@@ -141,7 +116,7 @@ for (j in 1:length(unique(plotResults$direction))) {
       )
     
     ggsave(
-      filename = fn,
+      filename = my.fn,
       plot = p
     )
     
@@ -151,16 +126,16 @@ for (j in 1:length(unique(plotResults$direction))) {
 
 ## plot around Fort Riley on USA map, each metric
 for(i in 1:nrow(basesOfInterest)){
-  for (j in 1:length(unique(plotResults$direction))) {
+  for (j in 1:length(unique(results$direction))) {
     for (k in 1:length(unique(metric.ind))) {
-      for (l in 1:length(unique(plotResults$year))) {
-        direction = unique(plotResults$direction)[j]
+      for (l in 1:length(unique(results$year))) {
+        direction = unique(results$direction)[j]
         metric =    unique(metric.ind)[k]
-        year = unique(plotResults$year)[l]
+        year = unique(results$year)[l]
         
         base = basesOfInterest[i,]
         
-        temp <- plotResults %>%
+        temp <- results %>%
           as.data.frame() %>%
           filter(metricType == metric)
         
@@ -201,7 +176,7 @@ for(i in 1:nrow(basesOfInterest)){
         }
         
         
-        fn <-
+        my.fn <-
           paste0(
             figDir,
             "/base_",
@@ -214,7 +189,7 @@ for(i in 1:nrow(basesOfInterest)){
           )
         
         ggsave(
-          filename = fn,
+          filename = my.fn,
           plot = p)
         
       }
