@@ -13,8 +13,8 @@ library(bbsRDM)
 library(here)
 
 # Define figure out directory ---------------------------------------------
-figDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures")
-animDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures/animations")
+figDir <- "./chapterFiles/fisherSpatial/figures"
+animDir <- "./chapterFiles/fisherSpatial/figures/animations"
 
 ## Analysis for chapter on binning
 # This should be run only if you need to re-calculate metrics, or get new metrics. 
@@ -23,8 +23,7 @@ animDir <- paste0(here::here(), "/chapterFiles/fisherSpatial/figures/animations"
 
 # Create directories ------------------------------------------------------
 # a. Create a directory to store and/or load the BBS data as feathers
-bbsDir <- paste0(here::here(),
-                 "/chapterFiles/fisherSpatial/bbs_raw_data")
+bbsDir <- "./chapterFiles/fisherSpatial/bbs_raw_data"
 dir.create(bbsDir) # if already
 
 
@@ -36,8 +35,7 @@ if (length(list.files(bbsDir, pattern = "*.feather")) > 0) {
 # If this returns a warning, proceed with caution as directory already exists, and results WILL be OVERRIDDEN.
 
 # b. Create a directory to store and/or load the BBS data as feathers
-resultsDir <- paste0(here::here(),
-                     "/chapterFiles/fisherSpatial/myResults")
+resultsDir <- "./chapterFiles/fisherSpatial/myResults"
 dir.create(paste0(resultsDir))
 
 # c. Create directory for storing early warning signal results
@@ -48,8 +46,7 @@ dir.create(paste0(resultsDir, "/distances"))
 
 
 # e. Create dir to store rObjects
-rObjs <- paste0(here::here(),
-                "/chapterFiles/fisherSpatial/rObjs")
+rObjs <- "./chapterFiles/fisherSpatial/rObjs"
 dir.create(rObjs)
 
 

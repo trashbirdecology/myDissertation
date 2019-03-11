@@ -50,27 +50,18 @@ closestSite <- function(mbs, site, ndeg = 5, by = 0.1) {
 }
 
 # Directories: define -----------------------------------------------------
-if (!exists("resultsDir")) {
-  resultsDir <- paste0(here::here(),
-                       "/chapterFiles/fisherSpatial/myResults")
-}
+if (!exists("resultsDir")) {"./chapterFiles/fisherSpatial/myResults"}
 
-figDir <-
-  paste0(here::here(), "/chapterFiles/fisherSpatial/figures")
+figDir <- "./chapterFiles/fisherSpatial/figures"
 dir.create(figDir)
 
-figDissDir <-
-  paste0(here::here(),
-         "/chapterFiles/fisherSpatial/figures/figsCalledInDiss")
+figDissDir <-"./chapterFiles/fisherSpatial/figures/figsCalledInDiss"
 dir.create(figDissDir)
 
 
-rObjs <- paste0(here::here(),
-                "/chapterFiles/fisherSpatial/rObjs")
+rObjs <-"./chapterFiles/fisherSpatial/rObjs"
 
-animDir <-
-  paste0(here::here(),
-         "/chapterFiles/fisherSpatial/figures/animations")
+animDir <-"./chapterFiles/fisherSpatial/figures/animations"
 dir.create(animDir)
 
 # direction = "South-North"

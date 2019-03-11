@@ -1,4 +1,4 @@
-# Introduction {#intro-chapter}
+# Introduction {#intro}
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=F}
 # Chunk defaults
 knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 

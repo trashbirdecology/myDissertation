@@ -5,7 +5,7 @@ require(tidyverse)
 require(revtools)
 require(dplyr)
 
-rdm.dir <- paste0(here::here(), "/chapterfiles/rdmReview")
+rdm.dir <- "./chapterfiles/rdmReview"
 
 # Create some helper funs -------------------------------------------------
 # Create a function for filtering variables by abstrac,t title, etc. 
@@ -54,10 +54,9 @@ temp.dir <-paste0(rdm.dir, "/wosSearchResults_20190310/")
 files <- dir(path = temp.dir, pattern = "*.bib")
 files <- paste0(temp.dir, files)
 wos.results <- files %>%
-  map(revtools::read_bibliography) %>% 
+  purrr::map(revtools::read_bibliography) %>% 
   bind_rows() %>% 
-  distinct(label, .keep_all=T) # not sure why but it is duplicating rows, distinct solves this.
-
+    dplyr::distinct(label, .keep_all=T) # not sure why but it is duplicating rows, distinct solves this.
 
 # Filter the wos lit review results since there are wayyy too many! -------
 # Filter for new methods

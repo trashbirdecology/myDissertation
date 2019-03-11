@@ -1,7 +1,10 @@
 base
+rmarkdown
 ggplot2
 ggthemes
 gapminder
+devtools
+usethis
 here
 dplyr
 tidyverse
@@ -11,6 +14,7 @@ readr
 purrr
 stringr
 forcats
+bookdown
 kableExtra
 gganimate
 sp
@@ -30,6 +34,5 @@ zoo
 xts
 PerformanceAnalytics
 regimeDetectionMeasures
-devtools
-usethis
 bbsRDM
+knitr

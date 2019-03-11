@@ -1,5 +1,5 @@
 # SOURCE BASEMAPS AND DATA ------------------------------------------------
-source(paste0(here(), "/chapterFiles/binningChap/04-chap-binning_plotting_base.R" ))
+source("./chapterFiles/binningChap/04-chap-binning_plotting_base.R" )
 
 # User-defined plotting parameters ------------------------------------------------------
 

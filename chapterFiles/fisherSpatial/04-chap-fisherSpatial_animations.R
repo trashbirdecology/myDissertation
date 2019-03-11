@@ -10,7 +10,7 @@
 
 # Source function(s) ------------------------------------------------------
 
-source(paste0(here::here(), "/chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_functions.R"))
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_functions.R")
 
 
 
