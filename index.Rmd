@@ -69,7 +69,7 @@ library(bbsRDM)
 ```{r chunkOptsInd, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # Chunk defaults
 require(knitr)
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+knitr::opts_chunk$set(results = "hide", cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
                       out.width = "85%")
 ```
 

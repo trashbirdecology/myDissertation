@@ -69,7 +69,7 @@ library(bbsRDM)
 ```{r chunkOptsInd, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # Chunk defaults
 require(knitr)
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+knitr::opts_chunk$set(results = "hide", cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
                       out.width = "85%")
 ```
 
@@ -108,14 +108,6 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 <!--chapter:end:00-abstract.Rmd-->
 
 # Introduction {#intro}
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=F}
-# Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
-                      error=FALSE,
-                      # fig.width=7, fig.height=7,
-                      fig.align='center',
-                      out.width = "85%")
-```
 
 
 Anthropogenic activity in the last few decades will continue to influence the interations within and among ecological systems worldwide. The complexity of and drivers of changes in coupled human-natural systems is consequently altered, further limiting our ability to detect and predict change and impacts of change [@liu_complexity_2007; @scheffer_critical_2009]. Early warning systems are developed to detect,  and in some cases predict, abrupt changes in disparate systems [e.g. cyber security [@], infrastructure [@], banking crises [@davis_comparing_2008], and agricultural systems]. The need to develop and improve early warning systems for natural and coupled human-natural systems is exacerbated by the consequences of climate change and globalization, especially when the human-related stakes are high. 
@@ -165,7 +157,7 @@ kableExtra::column_spec(1, bold = T)
 
 # A brief overview of ecological regime detection methods methods {#rdmReview}    
 
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results='hide'}
 # Chunk defaults
 require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
@@ -418,7 +410,8 @@ kable(Questions, "latex", longtable = T, booktabs = T,   caption = "Potential qu
 # A guide to Fisher Information for Ecologists  {#fiGuide}    
 
 _This chapter is intended for submission to the publication *Methods in Ecology and Evolution* ^[Co-authors include: N.B. Price, A.J. Tyre, C.R. Allen, T. Eason, D.G. Angeler, and D. Twidwell]._
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results='hide'}
 # Chunk defaults
 require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
@@ -877,7 +870,7 @@ I thank T. Eason, H. Cabezas and B. Roy Frieden for early discussions regarding 
 
 # An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial}
 
-```{r , cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results='hide'}
 # Chunk defaults
 require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
@@ -1011,7 +1004,7 @@ Applications of these quantitative methods to real systems data, coupled with ex
 
 # Distance travelled {#distance-chapter}
 
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results='hide'}
 # Chunk defaults
 require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',

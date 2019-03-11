@@ -1,12 +1,4 @@
 # Introduction {#intro}
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=F}
-# Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, 
-                      error=FALSE,
-                      # fig.width=7, fig.height=7,
-                      fig.align='center',
-                      out.width = "85%")
-```
 
 
 Anthropogenic activity in the last few decades will continue to influence the interations within and among ecological systems worldwide. The complexity of and drivers of changes in coupled human-natural systems is consequently altered, further limiting our ability to detect and predict change and impacts of change [@liu_complexity_2007; @scheffer_critical_2009]. Early warning systems are developed to detect,  and in some cases predict, abrupt changes in disparate systems [e.g. cyber security [@], infrastructure [@], banking crises [@davis_comparing_2008], and agricultural systems]. The need to develop and improve early warning systems for natural and coupled human-natural systems is exacerbated by the consequences of climate change and globalization, especially when the human-related stakes are high. 
