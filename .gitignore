@@ -50,8 +50,9 @@ chapterFiles/rsdmReview/gScholar_20190204.csv
 !/figsCalledInDiss
 
 # But remove pngs created that aren't called in diss
-chapterFiles/binningChap/figures/*.png
-
+chapterFiles/**/figures/*.png
+chapterFiles/***/figures/*.png
+/figures/*.png
 
 # Keep the rendered .pdf copy
 !_book
