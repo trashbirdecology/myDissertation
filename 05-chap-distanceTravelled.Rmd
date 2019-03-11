@@ -1,13 +1,13 @@
 # Distance travelled {#distance-chapter}
 
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results='hide'}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 # Chunk defaults
 require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
                       out.width = "85%")
 ```
 
-# Introduction
+## Introduction
 
 Defining a regime shift 
 
@@ -20,8 +20,8 @@ There are different types fo regime shifts, and **why those differences matter**
     - in some contexts, this doesn't really matter  
     
 
-# Methodology
+## Methodology
 
-# Case study
+## Case study
 
-# Discussion
+## Discussion

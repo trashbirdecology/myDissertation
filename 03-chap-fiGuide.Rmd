@@ -2,7 +2,7 @@
 
 _This chapter is intended for submission to the publication *Methods in Ecology and Evolution* ^[Co-authors include: N.B. Price, A.J. Tyre, C.R. Allen, T. Eason, D.G. Angeler, and D. Twidwell]._
 
-```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results='hide'}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 # Chunk defaults
 require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
