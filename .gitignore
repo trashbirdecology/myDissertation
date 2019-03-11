@@ -10,6 +10,7 @@
 # remove builds
 !_book/
 _bookdown_files/
+!myDissertation/chapterFiles/fiGuide/figures/
 chapterFiles/appendix_predPreyExample/plots/.png
 chapterFiles/appendix_paleoExample/plots/*.png
 chapterFiles/appendix_paleoExample/plots/*.png
@@ -50,6 +51,7 @@ chapterFiles/rsdmReview/gScholar_20190204.csv
 
 # But remove pngs created that aren't called in diss
 chapterFiles/binningChap/figures/*.png
+
 
 # Keep the rendered .pdf copy
 !_book
