@@ -21,10 +21,9 @@ anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.
         dirID.ind, 
         "_", fn.ind)
 
-# Remove objs from file to be save
-    if(exists("p.static"))rm(p.static)
-    if(exists("p.anim"))rm(p.anim)
-    
+# Remove objs from file to be safe
+   suppressWarnings(if(exists("p.static"))rm(p.static))
+suppressWarnings(if(exists("p.anim"))rm(p.anim))  
 {mbLoc <- NULL
         if(tolower(site.temp) == "riley" &
            direction == "South-North"){  mbLoc <-
@@ -41,7 +40,7 @@ anim.SingleTsectOverTime <- function(data, metricType.ind, direction.ind, dirID.
                basesOfInterest %>% filter(name == "Eglin AFB") %>% dplyr::select(long) %>% as.numeric()}
     }
     
-    # Make the base plot
+    # Make the base plot (which will consist of multiple years of data, so hsould look funky)
     {
         if (direction == "East-West")
             p <-
@@ -90,7 +89,6 @@ if(get.anim){
         shadow_trail(color = "grey")
         
     
-    
     anim_save(filename = paste0(fn, ".gif"),
               path = animDir,
               animation = p.anim)
@@ -108,7 +106,6 @@ if(get.anim){
     temp2 <- temp %>% 
         mutate(year.col = as.factor(ifelse(year == max(year), 3, ifelse(year == min(year), 1, 2))))
     
-    
     cols <- c("1" = "black", "2"= "grey10", "3"="red")
     
  if(get.static==TRUE){  
@@ -116,18 +113,20 @@ if(get.anim){
         geom_line(alpha = 0.7,
                   show.legend = FALSE,
                   size = 1,
-                  aes(group=year, color = factor(year.col)))+
+                  aes(group=year, color = year.col))+
         facet_wrap(~ metricType, scales = "free_y", ncol = 1) +
-        theme(strip.text.x = element_text(size = 12))+
-        ggthemes::theme_tufte()+
+      theme(strip.text.x = element_text(size = 12)) +
+      theme(title = element_text(size = 12)) +
+      ggthemes::theme_tufte()+
         xlab("Longitude")+ylab("Metric value")+
         ggtitle(paste0(unique(temp2$direction), " transect ", unique(temp2$dirID))) +
-        scale_color_manual(values = colors)
-   
+      scale_color_grey()
+    
     # Add vline
     # Add a Vertical Line for military base of interest  location if applicable
     if (!is.null(mbLoc) &
-        direction == "East-West")
+        direction == "East-West" & mbLoc < max(temp2$long)
+        )
         p.static <-
         p.static + geom_vline(
             aes(xintercept = mbLoc),
@@ -135,7 +134,7 @@ if(get.anim){
             alpha = 0.56,
             linetype = 2
         )
-    if (!is.null(mbLoc) & direction == "South-North")
+    if (!is.null(mbLoc) & direction == "South-North" & mbLoc >min(temp2$lat))
         p.static <- p.static +
         geom_vline(
             aes(xintercept = mbLoc),
@@ -144,14 +143,13 @@ if(get.anim){
             linetype = 2
         )
     
-    
-    ggsave(p.static, filename = paste0(figDissDir,"/lastFrameAnim_", fn, ".png"))
-    
+    if(exists("p.static")){ggsave(p.static, filename = paste0(figDissDir,"/lastFrameAnim_", fn, ".png"))}else(return())
     }
 
-if(get.anim) return(p.anim)    
+if(get.anim)return(p.anim)    
 
     }
 
 
 # Multiple transects over space (x) by time (anim) -----------------------------------------------
+
