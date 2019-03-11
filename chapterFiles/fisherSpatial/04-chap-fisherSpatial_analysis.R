@@ -1,9 +1,8 @@
-# <<<<<<< HEAD:chapterFiles/fisherSpatial/04-chap-fisherSpatial.R
 ## Analysis for chapter on using Fisher Information to identify spatial regimes
 
 # Libraries, steup --------------------------------------------------------
 ## Re-install often as this package is under major development.
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = TRUE)
+devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
 
 library(regimeDetectionMeasures)
 library(sp)

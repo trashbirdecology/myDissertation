@@ -9,10 +9,7 @@
 
 
 # Source function(s) ------------------------------------------------------
-
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_functions.R")
-
-
+# source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_functions.R")
 
 # Individual transects over space (x) by time (anim) ---------------------------------
 

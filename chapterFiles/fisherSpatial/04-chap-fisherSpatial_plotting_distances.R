@@ -1,21 +1,14 @@
 # SOURCE BASEMAPS AND DATA ------------------------------------------------
-source("./chapterFiles/binningChap/04-chap-binning_plotting_base.R" )
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_functions.R" )
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_base.R" )
 
 # User-defined plotting parameters ------------------------------------------------------
 
 ## FOR DISTANCES
 to.plot <- "distances"
-metric.ind <- c('dsdt', "s") # the metrics to print
-
+metric.ind <- c("dsdt", "s") # the metrics to print
 
 # Plotting paramters ------------------------------------------------------
-year.ind <- unique(plotResults@data$year) %>% sort()
-
-sortVar.lab <-
-  ifelse(unique(plotResults@data$direction) == "South-North",
-         "latitude",
-         "longitude")
-
 # Define the plotting data based on to.plot arg
 if (to.plot == "distances") {
   plotResults = results_dist
@@ -24,9 +17,14 @@ if (to.plot == "ews") {
   plotResults = results_ews
 }
 
+year.ind <- unique(plotResults@data$year) %>% sort()
 
-# BEGIN NON-SPATIAL PLOTTING ----------------------------------------------
+sortVar.lab <-
+  ifelse(unique(plotResults@data$direction) == "South-North",
+         "latitude",
+         "longitude")
 
+##################### BEGIN NON-SPATIAL PLOTTING #####################
 # Plot indiviudal transects -----------------------------------------------
 for (i in 1:length(unique(plotResults$dirID))) {
   for (j in 1:length(unique(plotResults$direction))) {
@@ -44,8 +42,17 @@ for (i in 1:length(unique(plotResults$dirID))) {
         scale = T,
         center = T,
         direction = direction
-      )
-      
+      ) +
+        theme(plot.title = element_text(size=8))+
+  # below: was tring to keep only the first and last year to avoid a huge legend with no luck
+                # scale_fill_manual(breaks=c(min(as.integer(as.character(unique(plotResults$year)))), 
+        #                            max(as.integer(as.character(unique(plotResults$year)))))
+        #                   )
+        theme(legend.position = "none")+
+        scale_color_grey()
+                           
+    p
+    
       fn <- paste0(figDir,
                    "/transect_",
                    dirID.ind,
@@ -62,20 +69,25 @@ for (i in 1:length(unique(plotResults$dirID))) {
 }
 
 
-# END NON-SPATIAL PLOTTING ------------------------------------------------
+##################### END NON-SPATIAL PLOTTING #####################
 
-# Plot one metric across multiple years facet on US map -------------------
-# BEGIN SPATIAL PLOTTING --------------------------------------------------
-
-## plot all transects on USA map, each metric
+##################### BEGIN SPATIAL PLOTTING #####################
+###############################################################
+## I AM HAVING ISSUES PLOTTING SPATIAL DATA RIGHT NOW..#######
+###############################################################
+## plot all transects on USA map, each metric for a single year
+for(i in 1:length(unique(plotResults$year))){
 for (j in 1:length(unique(plotResults$direction))) {
   for (k in 1:length(unique(metric.ind))) {
     direction = unique(plotResults$direction)[j]
     metric =    unique(metric.ind)[k]
+   year = unique(plotResults$year[i]) 
     
     temp <- plotResults %>%
       as.data.frame() %>%
-      filter(metricType == metric)
+      filter(metricType == metric) %>% 
+      filter(year == year)
+
     
     p <-
       ggplot(aes(x = long, y = lat, fill = metricValue), data = temp) + geom_tile() +
@@ -92,7 +104,7 @@ for (j in 1:length(unique(plotResults$direction))) {
       theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm")) +
       xlim(c(-125 ,-65))
     
-    
+
     if (metric.ind[k] == "dsdt") {
       outlierLimits <- remove_outliers(temp$metricValue)
       
@@ -134,7 +146,7 @@ for (j in 1:length(unique(plotResults$direction))) {
     )
     
   }
-}
+}}
 
 
 ## plot around Fort Riley on USA map, each metric
@@ -210,8 +222,6 @@ for(i in 1:nrow(basesOfInterest)){
   }
 }
 
-
-# END SPATIAL-PLOTTING ----------------------------------------------------
-
+###################### END SPATIAL-PLOTTING #####################
 
 

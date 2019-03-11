@@ -7,9 +7,13 @@ knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, war
                       out.width = "85%")
 ```
 
-```{r}
+```{r fiSpatAnalysis}
 ## Only run this if you need to calculate more metrics, or fix them.
-# source('/chapterFiles/fisherSpatial/04-chap-binning_analysis.R')
+# source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')
+
+```
+
+```{r dirsfiSpat}
 figDir <- "./chapterFiles/fisherSpatial/figures"
 figDissDir <- "./chapterFiles/fisherSpatial/figures/figsCalledInDiss"
 ```
@@ -51,15 +55,11 @@ knitr::include_graphics(paste0(figDissDir, "/basesOfInterestMap.png"))
 #### Spatial sampling grid  
 To my knowledge, @sundstrom_detecting_2017 is the only study to use the Fisher Information binning method on spatially-referenced data. The authors of this study hand-picked NABBS routes to be included in their samples such that their metrics should detect 'regime changes' when adjacent sampling points represented different ecoregions (broad-scale vegetation classification system). The authors also suggest each ecoregion is similarly represented, having a similar number of NABBS routes within each ecoregion in the analysis. However, this method of handpicking routes resulted in a transect which was neither North-South nor East-West running (see @sundstrom_detecting_2017), but rather zigzagged across a midwestern region.   
 
-I constructed a gridded system across much of the continental United States and Canada to ameliorate potential effects of site selection bias. This method allows one to overlay regime detection metric results over various vegetation characteristic maps (e.g., ecoregions), rather than fit the sampling scheme to an ecoregion. The former also allows for comparison of results across time, and is especially useful when vegetation zones, or ecoregions, shift over time. 
-
-The gridded system comprises North-South and East-West running transects transects running in either North-South or East-West directions. Here, I examine in detail only a single North-South and a single East-West transect, such that they contain the Eglin Air force and Fort Riley military bases, respectively.
+I constructed a gridded system across much of the continental United States and Canada to ameliorate potential effects of site selection bias. This method allows one to overlay regime detection metric results over various vegetation characteristic maps (e.g., ecoregions), rather than fit the sampling scheme to an ecoregion. The former also allows for comparison of results across time, and is especially useful when vegetation zones, or ecoregions, shift over time.  The gridded system comprises North-South and East-West running transects transects running in either North-South or East-West directions. Here, I examine in detail only a single North-South and a single East-West transect, such that they contain the Eglin Air force and Fort Riley military bases, respectively.
 ```{r ewRouteMap, echo = FALSE, fig.align='center', fig.cap = 'A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information binning measure. Military base locations can be used to visually estimate the proximity [of Department of Defense properties] to potential regime boundaries.'}
 knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_row18.png"))
 ```
 
-#### Selecting routes for temporal analysis  
-Temporal analysis consisted of time series of annually collected data at the level of an individual NABBS route. I analyzed two NABBS routes near the Eglin Air Force base-one to the East and one to the West. 
 
 ### Calculating regime detection measures  
 Fisher Information, $I(\theta)$, was developed in 1922 by Ronald Fisher as a measure of the amount of information that an observable variable, X, reveals about an unknown parameter, $\theta$. Fisher Information is a measure of indeterminacy (Fisher 1922) and is defined as,

@@ -1,9 +1,7 @@
 ## This script creates some basemaps, and defines directories for plotting and a couple of helper functions.
 
 # GGPLOT custom defs ------------------------------------------------------
-
 theme.margin <- theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
-
 # Helper Functions --------------------------------------------------------
 
 remove_outliers <- function(x, na.rm = TRUE, ...) {
@@ -64,12 +62,15 @@ rObjs <-"./chapterFiles/fisherSpatial/rObjs"
 animDir <-"./chapterFiles/fisherSpatial/figures/animations"
 dir.create(animDir)
 
+
+resultsDir <- "./chapterFiles/fisherSpatial/myResults"
+
 # direction = "South-North"
 direction = "East-West"
 
 # Import the calculated metrics (results) ------------------------------------------------------------
 results_ews <-
-  importResults(resultsDir = resultsDir,
+  bbsRDM::importResults(resultsDir = resultsDir,
                 myPattern = 'ews',
                 subset.by = direction) %>%
   # assign the end of the window as the cellID
@@ -79,7 +80,7 @@ results_ews <-
 
 # b. Import distance results
 results_dist <-
-  importResults(resultsDir = resultsDir,
+  bbsRDM::importResults(resultsDir = resultsDir,
                 myPattern = 'distances',
                 subset.by = direction)
 
@@ -234,8 +235,7 @@ basesOfIntMap <- usBaseMap +
   theme.margin
 
 
-
-
+# Make a list of the available objects for printing to console, just as a remidner!
 baseObjects <- rbind(
   "usBaseMap: ggObj, states outlined",
   "routesMap: ggObj, usBaseMap + black pts for routes",
