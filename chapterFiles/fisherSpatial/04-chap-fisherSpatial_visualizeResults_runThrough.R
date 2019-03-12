@@ -3,13 +3,14 @@
 ## Within this section (I.) you will define various parameters for calculating metrics and visualizing results.
 
 # In which direction to visualize metrics?
-# direction = "South-North"
-direction = "East-West"
+direction = "South-North"
+# direction = "East-West"
 
 # Which indices do we want to plot righ tnow?
 # choose one of "distances", "ews"
 to.plot <- 
-  "ews"
+  "distances"
+  # "ews"
 
 # Which metrics to calculate
 if(to.plot == "distances") metric.ind <- c("dsdt", "s") # the metrics to print
@@ -27,6 +28,7 @@ source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
  ## this file will create quite a few base maps which are used in later plotting AND are called in the dissertation as examples of the sampling design.
 if(!exists("usBaseMap")) source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_baseMaps.R")
   ## using the if statement avoids us sourcing this if it has already been done
+  ## this takes ~45s
 
 # c. Import the results
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R")
@@ -35,4 +37,4 @@ source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
 
 # e. Plot the early-warning signals 
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_ews.R")

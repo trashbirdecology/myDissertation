@@ -14,32 +14,42 @@ for (i in 1:length(unique(results$dirID))) {
   for (j in 1:length(unique(results$direction))) {
     for (k in 1:length(unique(metric.ind))) {
       dirID.ind = unique(results$dirID)[i]
-      direction = unique(results$direction)[j]
+      direction.ind = unique(results$direction)[j]
       metric =    unique(metric.ind)[k]
-    
       
-      p <- sort.year.line(
-        results,
-        metric.ind = metric,
-        year.ind =  year.ind,
-        dirID.ind = dirID.ind,
-        scale = T,
-        center = T,
-        direction = direction # make sure we only have one direction of data!
-      ) +
-        theme(plot.title = element_text(size=8))+
-        theme(legend.position = "none")+
-        scale_color_grey()
-                     
+      if(metric == "FI") metric = c('FI', 'FI_Eqn7.12', 'FI_Eqn7.2c')
+      
+      plot.dat <- results %>% as_tibble() %>% 
+        filter(dirID == dirID.ind, 
+               direction == direction.ind,
+               year %in% year.ind, 
+               metricType %in% metric)
+      
+      if(nrow(plot.dat) <3 )next("not enough data to plot, skipping dir ID ", dirID, " metric ", metric)
+      
+      if(sortVar.lab == "latitude") plot.dat$sortVar = plot.dat$lat
+      if(sortVar.lab == "longitude") plot.dat$sortVar = plot.dat$long
+      # Only works if more than one year of data...
 
+      p <-
+        ggplot(data = plot.dat, aes(x = sortVar, y = metricValue , color = year)) +
+            geom_line( size = 1.25)+
+        scale_color_grey()+
+        # theme_few()+
+        xlab(sortVar.lab)+
+        ylab(metric)+
+        envalysis::theme_publish()+
+        geom_rug(na.rm = TRUE, sides = "b")
+      p
+      
       my.fn <- paste0(figDir,
-                   "/transect_",
-                   dirID.ind,
-                   "_",
-                   direction,
-                   "_metric_",
-                   metric,
-                   ".png")
+                      "/transect_",
+                      dirID.ind,
+                      "_",
+                      direction,
+                      "_metric_",
+                      unique(plot.dat$metricType),
+                      ".png")
       
       ggsave(filename = my.fn, plot = p)
       
@@ -53,72 +63,79 @@ for (i in 1:length(unique(results$dirID))) {
 ###############################################################
 ## plot all transects on USA map, each metric for a single year
 for(i in 1:length(unique(results$year))){
-for (j in 1:length(unique(results$direction))) {
-  for (k in 1:length(unique(metric.ind))) {
-    direction = unique(results$direction)[j]
-    metric =    unique(metric.ind)[k]
-   year = unique(results$year[i]) 
-    
-    temp <- results %>%
-      as.data.frame() %>%
-      filter(metricType == metric) %>% 
-      filter(year == year)
+  for (j in 1:length(unique(results$direction))) {
+    for (k in 1:length(unique(metric.ind))) {
+      direction = unique(results$direction)[j]
+      metric =    unique(metric.ind)[k]
+      year = unique(results$year[i]) 
       
-    p <-
-      ggplot(aes(x = long, y = lat, fill = metricValue), data = temp) + geom_tile() +
-      geom_polygon(
-        data = us_states,
-        aes(x = long, y = lat, group = group),
-        colour = "black",
-        fill = "white",
-        alpha = 0
-      ) +
-      coord_equal() +
-      facet_wrap( ~ year, ncol = 2) +
-      guides(fill = guide_legend(title = paste(metric))) +
-      xlim(c(-125 ,-65))+
-      ggthemes::theme_map()+
-      theme(legend.position = "none")+
-      theme(strip.background = element_blank(), 
-            strip.text = element_text(size=10))+
-      theme.margin
-   
-    
-    if (metric.ind[k] == "dsdt") {
-      outlierLimits <- remove_outliers(temp$metricValue)
+      if(metric == "FI") metric = c('FI', 'FI_Eqn7.12', 'FI_Eqn7.2c')
       
-      ## Remove outliers for plotting purposes
-      p <- p +
-        scale_fill_gradient2(
-          low = "red",
-          midpoint = 0,
-          high = "red",
-          na.value = "transparent",
-          limits = c(min(outlierLimits), max(outlierLimits)))
-    }
-    
-    if (metric.ind[k] == "s") {
-      p <-  p +
-        scale_fill_gradient2(rainbow(2))
-    }
-    
-    my.fn <-
-      paste0(
-        figDir,
-        "/usaAllTsects_",
-        direction,
-        "_metric_",
-        metric,
-        ".png"
+      temp <- results %>%
+        as.data.frame() %>%
+        filter(metricType == metric) %>% 
+        filter(year == year)
+      
+      p <-
+        ggplot(aes(x = long, y = lat, fill = metricValue), data = temp) + geom_tile() +
+        geom_polygon(
+          data = us_states,
+          aes(x = long, y = lat, group = group),
+          colour = "black",
+          fill = "white",
+          alpha = 0
+        ) +
+        coord_equal() +
+        facet_wrap( ~ year, ncol = 2) +
+        guides(fill = guide_legend(title = paste(metric))) +
+        xlim(c(-125 ,-65))+
+        # envalysis::theme_publish()+
+        ggthemes::theme_map()+
+        # theme(legend.position = "none")+
+        theme(strip.background = element_blank(), 
+              strip.text = element_text(size=10))+
+        theme.margin
+      
+      
+      # 
+      # if (metric.ind[k] == "dsdt") {
+      #   outlierLimits <- remove_outliers(temp$metricValue)
+      #   
+      #   ## Remove outliers for plotting purposes
+      #   p <- p +
+      #     scale_fill_gradient2(
+      #       low = "red",
+      #       midpoint = 0,
+      #       high = "red",
+      #       na.value = "transparent",
+      #       limits = c(min(outlierLimits), max(outlierLimits)))
+      # }
+      
+      if (
+          metric.ind[k] == "FI" |
+          metric.ind[k] == "VI"
+      ) {
+        p <-  p +
+          scale_fill_gradient2(rainbow(2))
+      }
+      
+      my.fn <-
+        paste0(
+          figDir,
+          "/usaAllTsects_",
+          direction,
+          "_metric_",
+          metric,
+          ".png"
+        )
+      
+      ggsave(
+        filename = my.fn,
+        plot = p
       )
-    
-    ggsave(
-      filename = my.fn,
-      plot = p
-    )
-    
-  }
-}}
+      
+    }
+  }}
 
 
 ## plot around Fort Riley on USA map, each metric

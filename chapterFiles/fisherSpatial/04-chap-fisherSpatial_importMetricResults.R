@@ -13,13 +13,13 @@ if (to.plot == "ews") {
   
   # join with spatial grid
   results <- full_join(sampGridCoords,
-                       results_ews) %>%
+                       results) %>%
     na.omit(metricType) %>%
     dplyr::select(-cellID_min, -cellID_max, -winStart  , -winStop)
-  ## PLEASE NOTE:
-  ### a full join of the sampling grid and the results for EWS will likely produce many cells with NO results data..
-  ### however, NO lat or long should == NA!
-  
+      ## PLEASE NOTE:
+      ### a full join of the sampling grid and the results for EWS will likely produce many cells with NO results data..
+      ### however, NO lat or long should == NA!
+      
 }
 # b. Import distance results
 if (to.plot == "distances") {
@@ -34,6 +34,8 @@ if (to.plot == "distances") {
                        results) %>%
     na.omit(metricType)
 }
+
+
 ## Set coordinate system and projection for both data sets! (the same)
 coordinates(results) <- c("long", "lat")
 sp::proj4string(results) <- sp::CRS("+proj=longlat +datum=WGS84")

@@ -46,7 +46,9 @@ myPackages <- c(
   "rmarkdown", 
   "ggplot2", "ggthemes", "gapminder",
                       "devtools", "here", "dplyr", 
-                      "tidyverse", "bookdown", "kableExtra", "gganimate", "sp", "raster", 
+                      "tidyverse", "bookdown", 
+  "envalysis", # publish theme plots
+  "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
                       "inlabru", 
                       "gridExtra", 
@@ -55,7 +57,16 @@ myPackages <- c(
                       "webshot", # a bug with diagrammer requires me to use this when printing to .pdf
                       "revtools" # import tidy bibtex
                       )
-instlLoadPkgs(myPackages)
+
+ipak <- function(pkg){
+    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+    if (length(new.pkg)) 
+        install.packages(new.pkg, dependencies = TRUE)
+    sapply(pkg, library, character.only = TRUE)
+}
+
+suppressMessages(ipak(myPackages))
+
 
 ## Re-install often as these packages are in  development.
 devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
