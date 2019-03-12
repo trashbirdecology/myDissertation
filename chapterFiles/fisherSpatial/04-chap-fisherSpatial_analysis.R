@@ -10,6 +10,7 @@ library(raster)
 library(feather)
 library(bbsRDM)
 library(here)
+library(tidyverse)
 
 # Define figure out directory ---------------------------------------------
 figDir <- "./chapterFiles/fisherSpatial/figures"
@@ -48,7 +49,6 @@ dir.create(paste0(resultsDir, "/distances"))
 rObjs <- "./chapterFiles/fisherSpatial/rObjs"
 dir.create(rObjs)
 
-
 # Get the BBS data --------------------------------------------------------
 # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
 regions <- bbsRDM::GetRegions()
@@ -84,16 +84,14 @@ if (downloadBBSData == TRUE) {
     # e. Clear object from memory
     rm(bbsData)
   } # end section I. loop
-}else(message(
+}else(
     paste0(
-      "NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",
-      bbsDir
+      "NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ", bbsDir
     )
-  )) # end if-else to download the data
+  ) # end if-else to download the data
 
 
 # Sampling grid, route points, mil bases, plots ---------------------------
-
 # Build sampling grid
 # Define the grid's cell size (lat, long; unit:degrees)
 ## 1 deg latitude ~= 69 miles
@@ -102,7 +100,7 @@ cs <-
   c(0.5, 0.5)  # default is cell size 0.5 deg lat x 0.5 deg long
 
 # Create and save the sampling grid. 
-routes_gridList <- createSamplingGrid(cs = cs)
+routes_gridList <- bbsRDM::createSamplingGrid(cs = cs)
 saveRDS(routes_gridList, file = paste0(rObjs, "/samplingGrid.RDS"))
 
 # Define the components of the sampling grid as individual objects
@@ -115,7 +113,7 @@ featherNames <- list.files(bbsDir, pattern = ".feather")
 featherNames <- str_c("/", featherNames) #add separator
 for (i in 1:length(featherNames)) {
   feather <- NULL
-  feather <- loadBirdFeathers(newDir  = bbsDir,
+  feather <- bbsRDM::loadBirdFeathers(newDir  = bbsDir,
                               filename = featherNames[i])
   
   feather <- feather %>%
@@ -133,7 +131,7 @@ for (i in 1:length(featherNames)) {
 us_states <- map_data("state")
 
 # get military bases
-milBases <- getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
+milBases <- bbsRDM::getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
                                 shpfile = "MIRTA_Points")
 
 # Get a df of just   the BBS route locations
@@ -143,15 +141,14 @@ routePts <- routes_grid %>%
 
 # Subset the data by AOU codes --------------------------------------------
 feathers <-
-  subsetByAOU(myData = feathers, subset.by = 'remove.shoreWaderFowl')
-
+  bbsRDM::subsetByAOU(myData = feathers, subset.by = 'remove.shoreWaderFowl')
 
 ########################### BEGIN USER-DEFINED PARAMTERS###########################
 # Define metric calculation parameters ------------------------------------
 
 # First, define the parameters required to calcualte the metrics.
 # Which metrics do you want to calculate?
-metrics.to.calc <- c("distances", "ews")
+metrics.to.calc <- c("distances", "ews") # these are currently the only options, so it will calculate both sets
 
 # If calculating "EWSs, you can calculate select metrics.
 ## Default = all early-warning signals, FI, and VI
@@ -188,9 +185,9 @@ if (direction == "East-West") {
 years.use = unique(feathers$year)
 
 # Keep only the years which are divisible by T
-T = 10
+t.years = 10
 years.use  <-
-  years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort()
+  years.use[which(years.use %% t.years == 0 & years.use > 1975)] %>% sort()
 
 ################## END USER-DEFINED PARAMETERS ###########################
 

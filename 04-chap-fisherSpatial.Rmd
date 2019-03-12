@@ -9,8 +9,8 @@ knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, war
 
 ```{r fiSpatAnalysis}
 ## Only run this if you need to calculate more metrics, or fix them.
-# source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')
-
+# you need to go into this (line 158) and specify parameters for calculating metrics.
+# ('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')
 ```
 
 ```{r dirsfiSpat}
