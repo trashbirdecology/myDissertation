@@ -7,7 +7,7 @@ if (to.plot == "ews") {
   results <-
     bbsRDM::importResults(resultsDir = resultsDir,
                           myPattern = 'ews',
-                          subset.by = direction) %>%
+                          subset.by = as.character(direction)) %>%
     # assign the end of the window as the cellID
     mutate(cellID = cellID_max)
   
@@ -21,24 +21,23 @@ if (to.plot == "ews") {
   ### however, NO lat or long should == NA!
   
 }
-
 # b. Import distance results
 if (to.plot == "distances") {
   print("importing distances")
   results <-
     bbsRDM::importResults(resultsDir = resultsDir,
                           myPattern = 'distances',
-                          subset.by = direction)
+                          subset.by = as.character(direction))
   
   # join with spatial grid
   results <- full_join(sampGridCoords,
                        results) %>%
     na.omit(metricType)
 }
-
 ## Set coordinate system and projection for both data sets! (the same)
 coordinates(results) <- c("long", "lat")
 sp::proj4string(results) <- sp::CRS("+proj=longlat +datum=WGS84")
+################## END RUN       ##################
 
 
 

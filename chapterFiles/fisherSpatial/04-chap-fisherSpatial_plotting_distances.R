@@ -17,6 +17,7 @@ for (i in 1:length(unique(results$dirID))) {
       direction = unique(results$direction)[j]
       metric =    unique(metric.ind)[k]
     
+      
       p <- sort.year.line(
         results,
         metric.ind = metric,
@@ -62,8 +63,7 @@ for (j in 1:length(unique(results$direction))) {
       as.data.frame() %>%
       filter(metricType == metric) %>% 
       filter(year == year)
-
-    
+      
     p <-
       ggplot(aes(x = long, y = lat, fill = metricValue), data = temp) + geom_tile() +
       geom_polygon(
@@ -74,12 +74,16 @@ for (j in 1:length(unique(results$direction))) {
         alpha = 0
       ) +
       coord_equal() +
-      facet_wrap( ~ year, ncol = 1) +
+      facet_wrap( ~ year, ncol = 2) +
       guides(fill = guide_legend(title = paste(metric))) +
-      theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm")) +
-      xlim(c(-125 ,-65))
+      xlim(c(-125 ,-65))+
+      ggthemes::theme_map()+
+      theme(legend.position = "none")+
+      theme(strip.background = element_blank(), 
+            strip.text = element_text(size=10))+
+      theme.margin
+   
     
-
     if (metric.ind[k] == "dsdt") {
       outlierLimits <- remove_outliers(temp$metricValue)
       
@@ -90,20 +94,16 @@ for (j in 1:length(unique(results$direction))) {
           midpoint = 0,
           high = "red",
           na.value = "transparent",
-          limits = c(min(outlierLimits), max(outlierLimits))+
-            theme.margin
-        )
-      
-      
+          limits = c(min(outlierLimits), max(outlierLimits)))
     }
     
-    if (metric.ind[k] == "s") {
-      p <-        p +
-        scale_fill_gradient2(rainbow(2))+
-        theme.margin
+    if (metric.ind[k] == "s" |
+        metric.ind[k] == "FI" |
+        metric.ind[k] == "VI"
+        ) {
+      p <-  p +
+        scale_fill_gradient2(rainbow(2))
     }
-    
-    
     
     my.fn <-
       paste0(
@@ -143,14 +143,18 @@ for(i in 1:nrow(basesOfInterest)){
         p <-
           ggplot(aes(x = long, y = lat, fill = metricValue), data = temp) + geom_tile() +
           coord_equal() +
-          facet_wrap( ~ year, ncol = 1) +
+          facet_wrap( ~ year, ncol = 2) +
           guides(fill = guide_legend(title = paste(metric))) +
-          theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm")) +
           xlim(c(base$long- 4, base$long + 4))+
-          ylim(c(base$lat- 4, base$lat + 4))+
+          ylim(c(base$lat- 6, base$lat + 6))+
           title(paste0("Military base: ", base$COMPONENT, " ", base$name))+
+          # ggthemes::theme_map()+
+          theme(legend.position = "none")+
+          theme(strip.background = element_blank(), 
+                strip.text = element_text(size=10))+
           theme.margin
         
+        p
         
         if (metric.ind[k] == "dsdt") {
           outlierLimits <- remove_outliers(temp$metricValue)
@@ -163,16 +167,12 @@ for(i in 1:nrow(basesOfInterest)){
               high = "red",
               na.value = "transparent",
               limits = c(min(outlierLimits), max(outlierLimits))
-            )+
-            theme.margin
-          
-          
+            ) 
         }
         
         if (metric.ind[k] == "s") {
           p <-        p +
-            scale_fill_gradient2(rainbow(2))+
-            theme.margin
+            scale_fill_gradient2(rainbow(2))
         }
         
         
@@ -198,5 +198,3 @@ for(i in 1:nrow(basesOfInterest)){
 }
 
 ###################### END SPATIAL-PLOTTING #####################
-
-

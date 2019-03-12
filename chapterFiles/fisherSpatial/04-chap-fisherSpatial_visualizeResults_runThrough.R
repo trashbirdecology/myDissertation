@@ -9,7 +9,7 @@ direction = "East-West"
 # Which indices do we want to plot righ tnow?
 # choose one of "distances", "ews"
 to.plot <- 
-  "distances"
+  "ews"
 
 # Which metrics to calculate
 if(to.plot == "distances") metric.ind <- c("dsdt", "s") # the metrics to print
@@ -31,5 +31,8 @@ if(!exists("usBaseMap")) source("./chapterFiles/fisherSpatial/04-chap-fisherSpat
 # c. Import the results
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R")
 
-# d. Plot the distances
-# source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
+# d. Plot the metrics (this will work )
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
+
+# e. Plot the early-warning signals 
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
