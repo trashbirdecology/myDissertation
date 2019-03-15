@@ -30,7 +30,7 @@ Although it is suggested that statistical and pragmatic models and methods are a
 ## Methods  
 ### Data: North American Breeding Bird Survey  
 I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \@ref(derivatives)). The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data.  Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880). 
-```{r bbsPoints, fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
+```{r bbsPoints,out.width="80%",  fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
 knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png"))
 ```
 
@@ -61,7 +61,7 @@ knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_row18.png"))
 ```
 
 
-### Calculating regime detection measures  
+### Fisher Information (FI)
 Fisher Information, $I(\theta)$, was developed in 1922 by Ronald Fisher as a measure of the amount of information that an observable variable, X, reveals about an unknown parameter, $\theta$. Fisher Information is a measure of indeterminacy (Fisher 1922) and is defined as,
 \begin{equation} 
 I(\theta) = \int \frac{dy}{p(y|\theta)}\left[\frac{dp(y|\theta)}{d\theta}\right]^2
@@ -88,6 +88,21 @@ I = \frac{1}{T} \int_0^T dt\left[\frac{s''^2}{s'^4}\right]^2
 where T is the number of equally spaced time points over which the data are integrated. Numerical calculation of $I$ using the binning method (Eq. \@ref(eq:fiAmplitude) and \@ref(eq:derivativesFI)) each incorporate a moving-window procedure for calculating the probability of the system, $p(s)$, as being in one of an unidentified number of states ($s$). Although previously applied to spatially-explicit terrestrial community data,the binning method (Eq. \@ref(derivatives)) requires multiple parameters to be defined *a priori*, which have been shown to influence inference based on the metric. I therefore calculated FI using the derivatives equation (Eq. \@ref(fiDerivs)).
 
 The binning procedure allows for a single point in time or space to be categorized into more than one state, which violating the properties of alternative stable states theory. The size of states (see Eason and Cabezas 2012) measure is required to construct p(s). In the case of high dimensional data, a univariate binning procedure of p(s) is not intuitive (i.e., reducing a multivariable system to a single probability distribution rather than constructing a multivariate probability distribution). Importantly, when using community or abundance data, rare or highly abundant species can influence the size of states criterion, thus influencing the assignment of each point into states. Finally, Eq. \@ref(eq:fiAmplitude) assumes equal spacing (in space or time) between sampling points. Each of these violations can be avoided by using Eq. \@ref(eq:derivativesFI); Cabezas and Fath 2002, Fath et al. 2003) to calculate the Fisher Information measure (see Chapter \@derivatives for discussion on this topic). The derivatives method (Eq. \@ref(eq:derivativesFI)) estimates the trajectory of the system's state by calculating the integral of the ratio of the system's acceleration and speed in state space [@fath_regime_2003].
+
+I calculated FI using Equation \@ref(eq:derivativesFI) for every South-North and East-West transect (see Figs. \@ref(fig:bbsPoints), \@ref(fig:ewRouteMap)) for every year between 1975 and 2018. 
+
+### Statistical signficance of Fisher Information
+
+Although Fisher Information (FI) has been applied to multiple empirical datasets, inference from this metric still requires visual interpretation. Rapid changes in either direction of Fisher Information is suggested to be indicative of an impending regime shift [@mayer_fisher_2006, @eason_evaluating_  2012]. It follows that if some set of N points are close in space and are undergoing similar changes and are *not* separated a some boundary, which should ostensibly be identified in the FI metric, then these N points should exhibit similar (rapid or otherwise) changes in their FI values. 
+```{r adjacentTsectEx, echo = FALSE, fig.align='center', fig.cap = 'A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information binning measure. Military base locations can be used to visually estimate the proximity [of Department of Defense properties] to potential regime boundaries.'}
+knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_2rows.png"))
+```
+
+I calculated the pairwise correlations of entire spatial transects (two at a time; see Fig. \@ref(fig:adjacentTsectEx)) at each year to determine the efficacy of using Fisher Information as an indicator of spatial boundary change.  
+
+```{r calcFiCorrelations}
+source("XXX.R")
+```
 
 ## Results  
 

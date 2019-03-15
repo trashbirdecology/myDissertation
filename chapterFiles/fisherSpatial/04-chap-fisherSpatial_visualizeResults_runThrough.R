@@ -3,18 +3,18 @@
 ## Within this section (I.) you will define various parameters for calculating metrics and visualizing results.
 
 # In which direction to visualize metrics?
-direction = "South-North"
-# direction = "East-West"
+# direction = "South-North"
+direction = "East-West"
 
 # Which indices do we want to plot righ tnow?
 # choose one of "distances", "ews"
 to.plot <- 
-  "distances"
-  # "ews"
+  # "distances"
+  "ews"
 
 # Which metrics to calculate
 if(to.plot == "distances") metric.ind <- c("dsdt", "s") # the metrics to print
-if(to.plot == "ews") metric.ind <- c("FI", "VI") # the metrics to print
+if(to.plot == "ews") metric.ind <- c("FI")#, "VI") # the metrics to print
 
 # This is the row and column # that will be printed as "examples" of my transect grid sampling design. 
 rowEx.ind <- 21 # Feel free to change this.
@@ -34,7 +34,7 @@ if(!exists("usBaseMap")) source("./chapterFiles/fisherSpatial/04-chap-fisherSpat
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R")
 
 # d. Plot the metrics (this will work )
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
+# results <- source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
 
 # e. Plot the early-warning signals 
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_ews.R")

@@ -32,7 +32,7 @@ lof: true
 space_between_paragraphs: false
 ---
 
-```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results ='hide'}
 instlLoadPkgs <- function(packages) {
   k <- packages[!(packages %in% installed.packages()[])];
   if(length(k))
@@ -65,7 +65,7 @@ ipak <- function(pkg){
     sapply(pkg, library, character.only = TRUE)
 }
 
-suppressMessages(ipak(myPackages))
+suppressWarnings(suppressMessages(ipak(myPackages)))
 
 
 ## Re-install often as these packages are in  development.

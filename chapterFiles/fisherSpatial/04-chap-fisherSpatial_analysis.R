@@ -97,11 +97,12 @@ if (downloadBBSData == TRUE) {
 ## 1 deg latitude ~= 69 miles
 ## 1 deg longitude ~= 55 miles
 cs <-
-  c(0.5, 0.5)  # default is cell size 0.5 deg lat x 0.5 deg long
+  c(1, 1)  # default is cell size 0.5 deg lat x 0.5 deg long
 
 # Create and save the sampling grid. 
 routes_gridList <- bbsRDM::createSamplingGrid(cs = cs)
 saveRDS(routes_gridList, file = paste0(rObjs, "/samplingGrid.RDS"))
+
 
 # Define the components of the sampling grid as individual objects
 routes_grid <- routes_gridList$routes_grid 
@@ -134,7 +135,7 @@ us_states <- map_data("state")
 milBases <- bbsRDM::getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
                                 shpfile = "MIRTA_Points")
 
-# Get a df of just   the BBS route locations
+# Get a df of just the BBS route locations
 routePts <- routes_grid %>%
   distinct(lat, long)
 
@@ -148,11 +149,13 @@ feathers <-
 
 # First, define the parameters required to calcualte the metrics.
 # Which metrics do you want to calculate?
-metrics.to.calc <- c("distances", "ews") # these are currently the only options, so it will calculate both sets
+metrics.to.calc <- c( "ews") # ,"distances")
+
+# these are currently the only options, so it will calculate both sets
 
 # If calculating "EWSs, you can calculate select metrics.
 ## Default = all early-warning signals, FI, and VI
-to.calc = c("EWS", "FI", "VI")
+to.calc = "FI"#  c("EWS", "FI", "VI")
 
 # Choose spatial or temporal analysis
 direction <-
@@ -162,16 +165,16 @@ direction <-
 fill = 0
 
 # Minimum number of sites (if spatial) or years (if temporal)  required to be in the entire sample (trnasect or time series)
-min.samp.sites = 8
+min.samp.sites = 5
 
 # Minimum number of sites (if spatial) or years (if temporal) required to be within a single window
-min.window.dat = 5
+min.window.dat = 3
 
 # Which Equation of Fisher Information to use (default = 7.12)
 fi.equation = "7.12"
 
 # By what % of the entire data should the window move?
-winMove = 0.25
+winMove = 0.20
 
 # Define some filtering and labeling parameters based on direction of spatial analysis (if applicable)
 if (direction == "South-North") {
@@ -185,7 +188,7 @@ if (direction == "East-West") {
 years.use = unique(feathers$year)
 
 # Keep only the years which are divisible by T
-t.years = 10
+t.years = 1
 years.use  <-
   years.use[which(years.use %% t.years == 0 & years.use > 1975)] %>% sort()
 
@@ -193,7 +196,9 @@ years.use  <-
 
 ########################### CONDUCT ANALYSIS OF RDMs ########################### 
 # CALCULATE THE METRICS  -------------------------------------------------------
-for (j in 1:length(dir.use)) {
+for (j in 1:length(dir.use
+                   
+                   )) {
   # For east-west analysis
   if (direction == "East-West"){
     birdsData <- feathers %>%
