@@ -5,9 +5,10 @@ if (to.plot == "ews") {
   print("importing EWSs (e.g., FI, VI, CV)")
   ## FYI: varibles will likely be missing (NA) for metricTypes FI and VI, because these are calculated across ALL variables at a time...
   results <-
-    bbsRDM::importResults(resultsDir = resultsDir,
-                          myPattern = 'ews',
-                          subset.by = as.character(direction)) %>%
+    importResults(resultsDir = resultsDir,
+                          myPattern = "ews",
+                          subset.by = as.character(direction), 
+                          metrics.keep = metrics.keep.ind) %>%
     # assign the end of the window as the cellID
     mutate(cellID = cellID_max)
   
@@ -19,13 +20,13 @@ if (to.plot == "ews") {
       ## PLEASE NOTE:
       ### a full join of the sampling grid and the results for EWS will likely produce many cells with NO results data..
       ### however, NO lat or long should == NA!
-      
 }
+
 # b. Import distance results
 if (to.plot == "distances") {
   print("importing distances")
   results <-
-    bbsRDM::importResults(resultsDir = resultsDir,
+    importResults(resultsDir = resultsDir,
                           myPattern = 'distances',
                           subset.by = as.character(direction))
   
@@ -34,7 +35,6 @@ if (to.plot == "distances") {
                        results) %>%
     na.omit(metricType)
 }
-
 
 ## Set coordinate system and projection for both data sets! (the same)
 coordinates(results) <- c("long", "lat")

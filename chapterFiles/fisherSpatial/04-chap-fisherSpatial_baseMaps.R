@@ -30,20 +30,42 @@ sampGridCoords <-
 ################## CREATE BASE MAPS ##################
 # This section will create numerous base maps off of which we will build results visualizations.
 
+canada <- c(
+  "Yukon",  
+  "British Columbia", "BC",  
+  "Northwest Territories", "NW",  
+  "Alberta", "AB",  
+  "Nunavut", "NU",  
+  "Saskatchewan", "SK",  
+  "Manitoba", "MB", 
+  "Ontario", "ON",  
+  "Quebec", "QC",  
+  "Prince Edward Island", "PE",  
+  "New Brunswick", "NB", 
+  "Newfoundland and Labrador", "NL", 
+  "Nova Scotia", "NS" 
+)
+
 # Get the us state map data frim ggplot
 us_states <- ggplot2::map_data("state")
+ca_states <- ggplot2::map_data("world", "Canada") 
+ca_us_states <- map_data("world", c("usa", "Canada")) %>% 
+  filter(long < -55, lat > 22.5)
+
+
 
 # BASEMAP: US STATES  -------------------------------- 
-
 usBaseMap <-  ggplot() +
   geom_polygon(
-    data = us_states,
+    data = ca_us_states,
     aes(x = long, y = lat, group = group),
     colour = "black",
     fill = "grey80"
   ) +
   coord_fixed(1.3) +
-  ggthemes::theme_map()
+  ggthemes::theme_map()+
+  coord_map(xlim = c(-135, -60),ylim = c(25, 60))
+
 
 # BASEMAP: US STATES  + BBS ROUTES --------------------------------------------------------
 routesMap <- usBaseMap +
@@ -51,7 +73,7 @@ routesMap <- usBaseMap +
     data = sampGrid$routes_grid,
     aes(x = long, y = lat),
     color = "black",
-    size = .75)
+    size = .75) 
 
 # BASEMAP: GRID SAMPLING DESIGN -------------------------------------------
 
@@ -67,13 +89,11 @@ routesMapRowEx <- usBaseMap +
 
 routesMapRowEx2 <- routesMapRowEx +
 geom_point(
-  data = sampGrid$routes_grid %>% filter(rowID == rowEx.ind+2),
+  data = sampGrid$routes_grid %>% filter(rowID == rowEx.ind+1),
 aes(x = long, y = lat),
 color = "black",
 size = 1
 )
-
-
 
 # BASEMAP: MILITARY BASES -------------------------------------------------
 milBases <- getMilBases()
@@ -84,30 +104,13 @@ milBasesMap <- usBaseMap +
   geom_point(data = milBases.df,
              aes(x = long, y = lat),
              color = "red",
-             size = 0.75) +
-  xlim(c(
-    min(sampGrid$routes_grid$long),
-    max(sampGrid$routes_grid$long)
-  )) +
-  ylim(c(
-    min(sampGrid$routes_grid$lat),
-    max(sampGrid$routes_grid$lat)
-  ))
-
+             size = 0.75)
 
 milBasesRoutesMap <- routesMap +
   geom_point(data = milBases.df,
              aes(x = long, y = lat),
              color = "red",
-             size = 1) +
-  xlim(c(
-    min(sampGrid$routes_grid$long),
-    max(sampGrid$routes_grid$long)
-  )) +
-  ylim(c(
-    min(sampGrid$routes_grid$lat),
-    max(sampGrid$routes_grid$lat)
-  ))
+             size = 1) 
 
 # define approx. loc. of bases of interest.
 rileyApprox <-
@@ -145,6 +148,21 @@ basesOfIntMap <- usBaseMap +
     size = 5
   ) +
   theme.margin
+
+
+# Ecoregions --------------------------------------------------------------
+
+eco_poly <- getEcoregions()
+
+# get ecoregion for sp_grd
+temp = over(sp_grd, eco_poly) # get which fall into which 
+t<- merge(temp, sp_grd)
+
+
+
+
+# Save basemaps -----------------------------------------------------------
+
 
 
 # Save the basemaps to file

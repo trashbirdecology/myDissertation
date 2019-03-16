@@ -1,5 +1,7 @@
 # Custom GGPLOT theme  ------------------------------------------------------
 theme.margin <- theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
+
+
 # Helper Functions -random --------------------------------------------------------
 remove_outliers <- function(x, na.rm = TRUE, ...) {
   qnt <- stats::quantile(x, probs = c(.25, .75), na.rm = na.rm, ...)
@@ -44,6 +46,24 @@ closestSite <- function(mbs, site, ndeg = 5, by = 0.1) {
   
 }
 
+
+
+
+# Get ECOREGION maps ------------------------------------------------------
+
+getEcoregions <- function(shp.url = 
+                           "ftp://newftp.epa.gov/EPADataCommons/ORD/Ecoregions/cec_na/na_cec_eco_l1.zip", shpfile = "NA_CEC_Eco_Level1", wgs84=TRUE){
+  if(exists('ecoregions')) return(ecoregions)
+temp = tempfile()
+download.file(shp.url, temp)
+exdir = tempdir()
+unzip(temp, exdir = exdir)
+ecoregions = rgdal::readOGR(exdir, shpfile)[1]
+if(wgs84 == TRUE) P4S.latlon <- CRS("+proj=longlat +datum=WGS84")
+
+ecoregions <- spTransform(ecoregions, P4S.latlon)
+
+                          return(ecoregions)}
 
 
 ######################## ANIMATION PLOTS ########################

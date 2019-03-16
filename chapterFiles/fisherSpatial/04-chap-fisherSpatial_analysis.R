@@ -2,7 +2,7 @@
 
 # Libraries, steup --------------------------------------------------------
 ## Re-install often as this package is under major development.
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
+devtools::install_github("trashbirdecology/regimedetectionmeasures", force = TRUE)
 
 library(regimeDetectionMeasures)
 library(sp)
@@ -97,11 +97,17 @@ if (downloadBBSData == TRUE) {
 ## 1 deg latitude ~= 69 miles
 ## 1 deg longitude ~= 55 miles
 cs <-
-  c(1, 1)  # default is cell size 0.5 deg lat x 0.5 deg long
+  c(0.75, 0.75)  # default is cell size 0.5 deg lat x 0.5 deg long
 
 # Create and save the sampling grid. 
-routes_gridList <- bbsRDM::createSamplingGrid(cs = cs)
+routes_gridList <- createSamplingGrid(cs = cs)
 saveRDS(routes_gridList, file = paste0(rObjs, "/samplingGrid.RDS"))
+
+
+# Create a map for sampling grid
+sp_poly <-  as(sp_grd, "SpatialPolygonsDataFrame") 
+sampGrid_basemap<- ggplot(sp_poly)+
+  geom_polygon(aes(x = long, y=lat))
 
 
 # Define the components of the sampling grid as individual objects
@@ -129,11 +135,11 @@ for (i in 1:length(featherNames)) {
 }
 
 # Get USA states layer
-us_states <- map_data("state")
-
-# get military bases
-milBases <- bbsRDM::getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
-                                shpfile = "MIRTA_Points")
+# us_states <- map_data("state")
+# 
+# # get military bases
+# milBases <- bbsRDM::getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
+#                                 shpfile = "MIRTA_Points")
 
 # Get a df of just the BBS route locations
 routePts <- routes_grid %>%
@@ -143,6 +149,8 @@ routePts <- routes_grid %>%
 # Subset the data by AOU codes --------------------------------------------
 feathers <-
   bbsRDM::subsetByAOU(myData = feathers, subset.by = 'remove.shoreWaderFowl')
+
+
 
 ########################### BEGIN USER-DEFINED PARAMTERS###########################
 # Define metric calculation parameters ------------------------------------
@@ -165,7 +173,7 @@ direction <-
 fill = 0
 
 # Minimum number of sites (if spatial) or years (if temporal)  required to be in the entire sample (trnasect or time series)
-min.samp.sites = 5
+min.samp.sites = 8
 
 # Minimum number of sites (if spatial) or years (if temporal) required to be within a single window
 min.window.dat = 3
@@ -173,8 +181,8 @@ min.window.dat = 3
 # Which Equation of Fisher Information to use (default = 7.12)
 fi.equation = "7.12"
 
-# By what % of the entire data should the window move?
-winMove = 0.20
+# How much of the time series to include in each window??
+winMove = 0.25
 
 # Define some filtering and labeling parameters based on direction of spatial analysis (if applicable)
 if (direction == "South-North") {
@@ -188,7 +196,7 @@ if (direction == "East-West") {
 years.use = unique(feathers$year)
 
 # Keep only the years which are divisible by T
-t.years = 1
+t.years = 10
 years.use  <-
   years.use[which(years.use %% t.years == 0 & years.use > 1975)] %>% sort()
 
@@ -196,9 +204,7 @@ years.use  <-
 
 ########################### CONDUCT ANALYSIS OF RDMs ########################### 
 # CALCULATE THE METRICS  -------------------------------------------------------
-for (j in 1:length(dir.use
-                   
-                   )) {
+for (j in 1:length(dir.use)) {
   # For east-west analysis
   if (direction == "East-West"){
     birdsData <- feathers %>%
@@ -214,7 +220,7 @@ for (j in 1:length(dir.use
              dirID = dir.use[j])
   }
 
-  if (nrow(birdsData) < min.samp.sites) {
+  if (nrow(birdsData %>% distinct(year, dirID)) < min.samp.sites) {
     next(print(paste0("Not enough data to analyze. Skipping j-loop ", dir.use[j])))
   }
 
@@ -235,9 +241,9 @@ for (j in 1:length(dir.use
 
     ## This function analyzes the data and writes results to file (in subdirectory 'myResults') as .feather files.
     # browser()
-    calculateMetrics(dataIn = birdData, metrics.to.calc, direction = direction,  yearInd = years.use[i])
+    calculateMetrics(dataIn = birdData, metrics.to.calc, direction = direction,  yearInd = years.use[i], to.calc = to.calc)
 
-    print(paste0("End i-loop (years) ", i, " of ",  length(years.use)))
+    # print(paste0("End i-loop (years) ", i, " of ",  length(years.use)))
 
   } # end i-loop
 
