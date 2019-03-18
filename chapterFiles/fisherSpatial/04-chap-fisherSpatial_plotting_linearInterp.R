@@ -1,21 +1,76 @@
 # Source the FUNCTION to run linear interpolation and calculate correlations among interpolated FI results
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_linearInterpolateCorrelations.R")
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_linearInterpolateCorrelation.R")
 
 cor.interp.results <- interpAndCor(results, metricType.ind = "FI_Eqn7.12")
 
-
 # Plot select transect-pairs ----------------------------------------------
+yr.temp <- unique(cor.interp.results$year)[which(unique(cor.interp.results$year)%%10==0)] 
+cor.lab <- cor.interp.results %>% filter(year %in% yr.temp) %>%  group_by(tsect.pair, cor.interp, year) %>% 
+  summarise(newX = min(newX), newY = max(newY))
 
-ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
-  geom_line()
+cor.p1 <-
+  ggplot(data = cor.interp.results %>% filter(year %in% yr.temp), 
+       aes(x = newX, y = newY, color = as.factor(dirID)))+
+  geom_line()+
+  facet_grid(year~tsect.pair, scales = "free_y")+
+  theme_bw()+ scale_color_grey()+
+  theme.margin+
+  theme(legend.position = "none") +
+  theme(strip.background = element_blank(), strip.placement = "inside")+
+geom_text(inherit.aes = FALSE,
+  data    = cor.lab,
+  mapping = aes(x = -Inf, y = Inf, 
+                label = paste0("r^2 ==",cor.interp)), parse = TRUE,
+  hjust   = -.1,
+  vjust   = 1.5, 
+  size = 2)+
+  xlab("longitude")+ylab("FI (interpolated)")
+
+
+ggsave(filename = paste0(
+    figDissDir,
+    "/interpolated_FI_corplotSelectTransects_",
+    unique(cor.interp.results$direction),
+    ".png"
+  ),
+  plot = cor.p1)
+
+cor.p1.log<-
+  ggplot(data = cor.interp.results %>% filter(year %in% yr.temp), 
+         aes(x = newX, y = log(newY+1), color = as.factor(dirID)))+
+  geom_line()+
+  facet_grid(year~tsect.pair, scales = "free_y")+
+  theme_bw()+ scale_color_grey()+
+  theme.margin+
+  theme(legend.position = "none") +
+  theme(strip.background = element_blank(), strip.placement = "inside")+
+  geom_text(inherit.aes = FALSE,
+            data    = cor.lab,
+            mapping = aes(x = -Inf, y = Inf, 
+                          label = paste0("r^2 ==",cor.interp)), parse = TRUE,
+            hjust   = -.1,
+            vjust   = 1.5, 
+            size = 2)+
+  xlab("longitude")+ylab("log FI (interpolated)")
+
+ggsave(filename = paste0(
+  figDissDir,
+  "/interpolated_FI_corplotSelectTransects_",
+  unique(cor.interp.results$direction),
+  "_log.png"
+),
+plot = cor.p1.log)
+
+
+
 
 # # Plot interpolated results -----------------------------------------------
 # # Keep only a few years
 # my.years  <-
-#   unique(results.interp$year)[which(unique(results.interp$year) %% 10 == 0)]
+#   unique(cor.interp.results$year)[which(unique(cor.interp.results$year) %% 10 == 0)]
 # 
 # interp.line <- ggplot(
-#   results.interp %>%
+#   cor.interp.results %>%
 #     filter(year %in% my.years),
 #   aes(
 #     x = newX,
@@ -30,11 +85,11 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 #   theme.margin +
 #   theme(legend.position = "bottom") +
 #   xlab(paste(ifelse(
-#     unique(results.interp$direction) == 'East-West',
+#     unique(cor.interp.results$direction) == 'East-West',
 #     'longitude',
 #     'latitude'
 #   ))) +
-#   # ylab(paste(unique(results.interp$metricType)))
+#   # ylab(paste(unique(cor.interp.results$metricType)))
 #   ylab("FI") +
 #   guides(color = guide_legend(title = "transect")) +
 #   facet_wrap(~ year, scales = "free_y")
@@ -42,7 +97,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # ggsave(filename = paste0(
 #   figDir,
 #   "/interpolated_FI",
-#   unique(results.interp$direction),
+#   unique(cor.interp.results$direction),
 #   ".png"
 # ),
 # plot = interp.line)
@@ -51,7 +106,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # ##
 # interp.line2 <-
 #   ggplot(
-#   results.interp %>%
+#   cor.interp.results %>%
 #     filter(year %in% my.years),
 #   aes(
 #     x = newX,
@@ -66,11 +121,11 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 #   theme.margin +
 #   theme(legend.position = "bottom") +
 #   xlab(paste(ifelse(
-#     unique(results.interp$direction) == 'East-West',
+#     unique(cor.interp.results$direction) == 'East-West',
 #     'longitude',
 #     'latitude'
 #   ))) +
-#   # ylab(paste(unique(results.interp$metricType)))
+#   # ylab(paste(unique(cor.interp.results$metricType)))
 #   ylab("FI") +
 #   guides(color = guide_legend(title = "year")) +
 #   facet_wrap(~ dirID, scales = "free_y")
@@ -78,7 +133,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # ggsave(filename = paste0(
 #   figDir,
 #   "/interpolated_FI2",
-#   unique(results.interp$direction),
+#   unique(cor.interp.results$direction),
 #   ".png"
 # ),
 # plot = interp.line2)
@@ -95,7 +150,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # ggsave(filename = paste0(
 #   figDir,
 #   "/interpolated_FI_corplot1_",
-#   unique(results.interp$direction),
+#   unique(cor.interp.results$direction),
 #   ".png"
 # ),
 # plot = cor.plot1)
@@ -112,7 +167,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # ggsave(filename = paste0(
 #   figDir,
 #   "/interpolated_FI_corplot2_",
-#   unique(results.interp$direction),
+#   unique(cor.interp.results$direction),
 #   ".png"
 # ),
 # plot = cor.plot2)
@@ -131,7 +186,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # ggsave(filename = paste0(
 #   figDir,
 #   "/interpolated_FI_corplot3_",
-#   unique(results.interp$direction),
+#   unique(cor.interp.results$direction),
 #   ".png"
 # ),
 # plot = cor.plot3)
@@ -140,7 +195,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # 
 # # Single-pair plots -------------------------------------------------------
 # year.temp = 2010
-# temp1 =   results.interp %>%
+# temp1 =   cor.interp.results %>%
 #   filter(
 #     year %in% year.temp,
 #          dirID %in% c(15, 16))
@@ -157,7 +212,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 #   theme_bw() +
 #   annotate("text", x = lab.x, y = lab.y, label = paste0("R = ", round(temp2$cor.interp, 3)), hjust=0)+
 #   xlab(paste(ifelse(
-#     unique(results.interp$direction) == 'East-West',
+#     unique(cor.interp.results$direction) == 'East-West',
 #     'longitude',
 #     'latitude'
 #   ))) +
@@ -170,7 +225,7 @@ ggplot(data = cor.interp.results, aes(x = newX, y = newY))+
 # ggsave(filename = paste0(
 #   figDir,
 #   "/interpolated_FI_withCor_pairplot_year", year.temp,"_",
-#   unique(results.interp$direction),
+#   unique(cor.interp.results$direction),
 #   ".png"
 # ),
 # plot = corpair.fi.p1)

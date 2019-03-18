@@ -30,11 +30,11 @@ if(!exists("usBaseMap")) source("./chapterFiles/fisherSpatial/04-chap-fisherSpat
   ## using the if statement avoids us sourcing this if it has already been done
   ## this takes ~45s
 
-# c. Import the results
+# c. Import the results (this takes a while!!!!!)
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R")
 
-# d. Plot the Fisher Information using linear interoplation
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_fisherLinInterp.R")
+# d. Plot the Fisher Information using linear interoplation and calculate the correlations
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_linearInterp.R")
 
 # e. Plot the early-warning signals 
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_ews.R")
