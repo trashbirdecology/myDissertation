@@ -73,6 +73,12 @@ color = "black",
 size = 1
 )
 
+allRoutesUsed <- usBaseMap +
+  geom_point(data = sampGrid$routes_grid %>% filter(rowID %in% 11:15),
+    aes(x = long, y = lat, color = as.factor(rowID)), size = 1)+
+  scale_color_viridis_d()+
+  theme(legend.position = "none")+
+  theme.margin
 
 
 # BASEMAP: MILITARY BASES -------------------------------------------------
@@ -152,8 +158,9 @@ ggsave(filename = paste0(figDissDir, "/milBases.png"), plot = milBasesMap)
 ggsave(filename = paste0(figDissDir, "/milBasesAndRoutes.png"), plot = milBasesRoutesMap)
 ggsave(filename = paste0(figDissDir, "/basesOfInterestMap.png"), plot = basesOfIntMap)
 ggsave(filename = paste0(figDissDir, "/bbsRoutesUsed.png"), plot = routesMap)
-ggsave(filename = paste0(figDissDir, "/transectSamplingEx_row_", rowEx.ind  ,".png"), plot = routesMapRowEx)
+ggsave(filename = paste0(figDissDir, "/transectSamplingEx_1row", ".png"), plot = routesMapRowEx)
 ggsave(filename = paste0(figDissDir, "/transectSamplingEx_2rows"  ,".png"), plot = routesMapRowEx2)
+ggsave(filename = paste0(figDissDir, "/transectSamplingAllRoutesUsed"  ,".png"), plot = allRoutesUsed)
 
 # Make a list of the available objects for printing to console, just as a remidner!
 baseObjects <- rbind(

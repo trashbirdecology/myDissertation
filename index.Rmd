@@ -67,7 +67,6 @@ ipak <- function(pkg){
 
 suppressWarnings(suppressMessages(ipak(myPackages)))
 
-
 ## Re-install often as these packages are in  development.
 devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
 devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)

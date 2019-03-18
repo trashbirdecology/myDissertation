@@ -15,9 +15,10 @@ for (i in 1:length(unique(results$dirID))) {
     for (k in 1:length(unique(metric.ind))) {
       dirID.ind = unique(results$dirID)[i]
       direction.ind = unique(results$direction)[j]
-      metric =    unique(metric.ind)[k]
+      metric =  unique(metric.ind)[k]
       
-      if(metric == "FI") metric = c('FI', 'FI_Eqn7.12', 'FI_Eqn7.2c')
+
+      if("FI" %in% metric) metric = c(metric, 'FI', 'FI_Eqn7.12', 'FI_Eqn7.2c')
       
       plot.dat <- results %>% as_tibble() %>% 
         filter(dirID == dirID.ind, 
@@ -25,7 +26,7 @@ for (i in 1:length(unique(results$dirID))) {
                year %in% year.ind, 
                metricType %in% metric)
       
-      if(nrow(plot.dat) <3 )next("not enough data to plot, skipping dir ID ", dirID, " metric ", metric)
+      if(nrow(plot.dat) < 3 ) next("not enough data to plot, skipping dir ID ", dirID, " metric ", metric)
       
       if(sortVar.lab == "latitude") plot.dat$sortVar = plot.dat$lat
       if(sortVar.lab == "longitude") plot.dat$sortVar = plot.dat$long
@@ -39,8 +40,9 @@ for (i in 1:length(unique(results$dirID))) {
         xlab(sortVar.lab)+
         ylab(metric)+
         envalysis::theme_publish()+
-        geom_rug(na.rm = TRUE, sides = "b")
-      p
+        geom_rug(na.rm = TRUE, sides = "b")+
+        theme(legend.position = "none")
+      # p
       
       my.fn <- paste0(figDir,
                       "/transect_",
@@ -91,7 +93,7 @@ for(i in 1:length(unique(results$year))){
         xlim(c(-125 ,-65))+
         # envalysis::theme_publish()+
         ggthemes::theme_map()+
-        # theme(legend.position = "none")+
+        theme(legend.position = "none")+
         theme(strip.background = element_blank(), 
               strip.text = element_text(size=10))+
         theme.margin

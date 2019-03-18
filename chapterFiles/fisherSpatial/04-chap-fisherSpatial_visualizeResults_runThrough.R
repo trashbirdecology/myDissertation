@@ -17,7 +17,7 @@ if(to.plot == "distances") metric.ind <- c("dsdt", "s") # the metrics to print
 if(to.plot == "ews") metric.ind <- c("FI")#, "VI") # the metrics to print
 
 # This is the row and column # that will be printed as "examples" of my transect grid sampling design. 
-rowEx.ind <- 21 # Feel free to change this.
+rowEx.ind <- 15 # Feel free to change this.
 
 ########################## END USER DEFS - DO NOT EDIT BELOW HERE ############
 ########################## II. SOURCE FILES ##########################
@@ -33,8 +33,8 @@ if(!exists("usBaseMap")) source("./chapterFiles/fisherSpatial/04-chap-fisherSpat
 # c. Import the results
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R")
 
-# d. Plot the metrics (this will work )
-# results <- source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
+# d. Plot the Fisher Information using linear interoplation
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_fisherLinInterp.R")
 
 # e. Plot the early-warning signals 
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_ews.R")
