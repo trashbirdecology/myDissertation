@@ -1,4 +1,128 @@
 ---
+author: 'Jessica L. Burnett'
+date: '2019'
+institution: 'University of Nebraska-Lincoln'
+advisor: 'Craig R. Allen'
+altadvisor: 'Dirac Twidwell'
+department: 'School of Natural Resources'
+degree: 'Doctor of Philosophy'
+title: 'Regime Detection Measures for the Practical Ecologist'
+knit: "bookdown::render_book"
+site: bookdown::bookdown_site
+output: 
+ thesisdown::thesis_pdf: default
+    # includes:
+       # in_header: xxxx.tex  
+# thesisdown::thesis_gitbook: default
+# thesisdown::thesis_word: default
+# thesisdown::thesis_epub: default
+acknowledgements: |
+  Graduate school itself isn't hard, but the journey is. I have a lot of people and institutions to thank for their emotional, intellectual, financial, and other support. I wish to first highlight how **great it was to be a graduate student at this university and in the School of Natural Resources**. UNL has provided tremendous support at all levels of the university. Although I am not a fan of Nebraska's climate, I highly recommend this school to prospective students. 
+  I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me with this amazing opportunity and for supporting my growth as an independent researcherm and my committee members, Craig Allen, David Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support and advisement, but especially for their comprehensive examination--I found this process transformative, albeit very stress inducing. I also wish to thank Dirac for his comprehensive exam questions--I never knew how much I didn't know until I studied your recommendations. I also thank Craig for supporting my efforts to study and conduct research outside of our immediate geographical settings.  Studying at the International Institute for Applied Systems Analysis was an amazing opportunity! I thank Brian Fath and Elena Rovenskaya for their advisement, members of the Applied Systems Analysis research group for their feedback on my research, and to the postdocs and YSSPers. 
+  I would like to especially thank some of the amazing and brilliant **female scientists** in my life for their encouragement: Jane Anderson, Karen Bailey, Hannah Birge, Mary Bomberger Brown, Tori Donovan, Brittany Dueker, Allie Schiltmeyer, Katie Sieving, Erica Stuber,  Becky Wilcox, Carissa Wonkka, and Lyndsie Wszola. I thank these women and others for their contributions to my professional development: David Angeler, Christie Bahlai, Mary Bomberger Brown, John Carroll, Jenny Dauer, John DeLong, Tarsha Eason, Brian Fath, Ahjond Garmestani, Chris Lepczyk, Frank La Sorte, Chai Molina, Zac Warren, Hao Ye and  Peter Zebrowski. I owe thanks to Craig Allen and Kevin Pope for entertaining my many hours of discussion (interrogation?) regarding federal employment. I also thank fellow graduate students whom I hope I have forged strong and lasting connections: Hannah Birge, Tori Donovan, Caleb Roberts, Allie Schiltmeyer, and Lyndsie Wszola
+  I am one of the many graduate students afflicted with mental health "disorders". I am first grafteful to one friend (H) who unknowingly destigmatized mental health in my mind and wihtout whom I may not have sought treatment. I applaud students and faculty who have been outspoken regarding mental health related issues, and I am indebtted to my general practitioner and mental health advocate, Terry Thomas M.A., M.S.N., A.P.R.N.   
+  *Financial support*. This research was funded by the U.S. Department of Defense’s Strategic Environmental Research and Development Program (project ID: RC-2510). The University of Nebraska-Lincoln (UNL) has been highy supportive in my doctoral studies and reserach. I am grateful for the generous of donors to the University of Nebraska Foundation, which provided me with two prestigious supplemental fellowships: Fling and Othmer. I also thank the Nelson Family (Nelson Memorial Fellowship) and the Institute of Agriculture and Natural Resources, who funded large portions of my academic and research-related travel. I thank the School of Natural Resources for their financial support in my conference travel. The U.S. National Academy of Sciences generously funded part of my travel to the International Institute for Applied Systems Analysis (IIASA). This financial support provided me not only with invaluabe opportunities to attend and present at national and international conferences and workshops, conduct research abroad, and network--this funding alleviated some financial pressures associated with graduate school which allowed a more refined focus on my dissertation research. The opportunities and experiences provided to me by each funding source were amazing, thank you.
+    Finally, to my partner of eight years--Schultzie--thank you for everything. Just kidding, thank you, Nat Price, you are amazing.
+dedication: | 
+  To the end-users and researchers frustrated with jargon and lack of practical utility of ecological models and metrics. And to Mike Moulton, without whose support and encouragement many years ago two advanced degrees would likely not have been possible. 
+bibliography: ["bib/thesis.bib"]
+csl: csl/apa.csl
+lot: true
+lof: true
+space_between_paragraphs: false
+---
+
+# thesisdown::thesis_gitbook: default
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+<!-- # Preliminary Content {-} -->
+
+<!-- Paste from index.rmd if knitting to git or html -->
+
+<!-- ## Acknowledgements {-} -->
+
+<!-- Paste from index.rmd if knitting to git or html -->
+
+<!-- ## Preface {-} -->
+
+<!-- Paste from index.rmd if knitting to git or html -->
+
+<!-- ## Dedication {-} -->
+
+<!-- Paste from index.rmd if knitting to git or html -->
+
+<!-- `r if(!knitr:::is_latex_output()) '## Abstract {-}'` -->
+
+<!--chapter:end:00--prelim.Rmd-->
+
+Identifying abrupt changes in the structure and functioning of systems, or system regime shifts, in ecological and social-ecological systems leads to an understanding of relative and absolute system resilience. Resilience is an emergent phenomenon of complex social-ecological systems, and is the ability of a system to absorb disturbance without reorganizing into a new state, or regime. Resilience science provides a framework and methodology for quantitatively assessing the capacity of a system to maintain its current trajectory (or to stay within a certain, and often desirable regime). If and when a system’s resilience is exceeded, it crosses a threshold and enters into an alternate regime (or undergoes a regime shift).   
+I will use Fisher Information to detect regime shifts in time and space using avian community data obtained from the North American Breeding Bird Survey within the area east of the Rockies and west of the Mississippi River. Fisher Information is a technique that captures the dynamic of a system, and this metric will be calculated about a suite of bird species abundances aggregated to the route level for all possible time periods. Transmutation (aggregation error) about inclusion or exclusion of certain bird species, functional groups, and guilds will be analyzed. Efforts have been made to develop early warning indicators of regime shifts in ecosystems, however, for most ecosystems there is great uncertainty in predicting the risk of a regime shift, regarding both when and how long it will take to happen and if it can be recognized early enough to be avoided when desired. We will complement the use of Fisher Information with multiple discontinuity analyses about body mass distributions at the route-level to achieve the aim of identifying individual species that best serve as early-warning indicators of regime shifts. For those species found on the edges of body mass aggregations, we test the hypothesis that the background variance in their abundances (on Breeding Bird Survey routes) will increase more than those not observed at the edge of discontinuity aggregations. Identification of early-warning indicators of regime shifts in ecological systems allows management efforts to focus on a single or a small number of species that inform us about ecosystem resilience and trajectory.   
+These methods transcend the primary objective of the Breeding Bird Survey (to monitor population trends) and use this expansive dataset in such a way that information about ecosystem order, trajectory, and resilience emerge. Here, we utilize an expansive dataset (the Breeding Bird Survey) to make broad-scale estimations and predictions about ecosystem resilience, regime status and trajectory, and ecosystem sustainability. Identification of regime shifts and early-warning indicator species may afford us the ability to predict system regime shifts in time. 
+
+<!--chapter:end:00-abstract.Rmd-->
+
+
+# Introduction {#intro}
+
+Placeholder
+
+
+### Dissertation structure
+## Glossary
+
+<!--chapter:end:01-chap-intro.Rmd-->
+
+
+# A brief overview of ecological regime detection methods methods {#rdmReview}    
+
+Placeholder
+
+
+## Introduction
+## Methods 
+### Identifying candidate articles
+#### Web of Science
+#### Prior knowledge and snowball method
+#### Google Scholar
+### Additional filtering
+## Results
+### Web of Science
+### Google Scholar and prior knowledge
+### List of new methods
+## Discussion 
+### Barriers to identifying new RDMs 
+### Conclusions
+
+<!--chapter:end:02-chap-rdmMethodsReview.Rmd-->
+
+
+# A guide to Fisher Information for Ecologists  {#fiGuide}    
+
+Placeholder
+
+
+## Abstract    
+## Introduction  
+### On Fisher Information
+### Notation    
+### Steps for calculating Fisher Information (FI) 
+### Concepts behind the calculations  
+#### **Step 1. Probability of observing the system in a particular state, $p(x)$**   
+#### **Step 2.** Distance traveled by the system, $s$ 
+#### **Step 3.** $p(s)$ as a function of the rate of change of $s$   
+#### **Step 4.** Calculate the derivatives-based Fisher Information  
+## Case Study    
+## Conclusions     
+## Acknowledgements   
+
+<!--chapter:end:03-chap-fiGuide.Rmd-->
+
+---
 output:
   pdf_document: default
   html_document: default
@@ -158,3 +282,84 @@ Several questions remain regarding the efficacy of Fisher Information as a regim
 1. Sensitivity of Fisher Information to data quality and quantity [this is explored in Chapter \@ref(resampling)].
 1. What, if any, advantages does FI have over other density estimation techniques?  
 1. Does FI provide signals in addition to or different than geophysical and vegetative (e.g. LIDAR) observations (data)? 
+
+<!--chapter:end:04-chap-fisherSpatial.Rmd-->
+
+# Distance travelled {#distanceTravelled}
+
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
+# Chunk defaults
+require(knitr)
+knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+                      out.width = "85%")
+```
+
+## Introduction
+
+Defining a regime shift 
+
+There are different types fo regime shifts, and **why those differences matter**  
+
+  * only ???regime shifts??? that are also ???critical transitions??? should show ???critical slowing down???  
+    - so that???s an important *technical distinction* if you???re trying to use *???early warning signals???*.   
+  * There are mutiple types og **critical transitions**  
+    - these results in very different changes in time series  
+    - in some contexts, this doesn't really matter  
+    
+
+## Methodology
+
+## Case study
+
+## Discussion
+
+<!--chapter:end:05-chap-distanceTravelled.Rmd-->
+
+
+# Appendix A  {-#rRDM} 
+
+Placeholder
+
+
+
+<!--chapter:end:90-appendices.Rmd-->
+
+
+# Catch-all, unused, to be removed from pdf {-.unnumbered}
+
+Placeholder
+
+
+## Random
+## On the complexity of nature
+## On analysing ecol time series data 
+## on improving RDMs
+## on fisher info
+## On the evidence for ecol regime shifts
+## On alternative stable staets
+## On critical slowing down    
+## Brandolini's principle    
+## Importance of this thesis  
+## Some notes on RSDMs not yet in text. 
+## This section contains notes on model-based and metric-based methods for detecting regime shifts
+## Types of regime dtection methods
+### Model-based
+### Metric-based
+## Some text from the review chapter -
+## FISHER BININNGIN SHIT
+## Unused text
+### Issues with usign the BBS data
+### How are RDMs useful to ecological management?
+## For resampling chapter
+
+<!--chapter:end:99-catchall.Rmd-->
+
+
+# References {-}
+
+Placeholder
+
+
+
+<!--chapter:end:999-references.Rmd-->
+
