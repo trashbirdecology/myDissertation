@@ -1,5 +1,4 @@
 # Distance travelled {#distanceTravelled}
-
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 # Chunk defaults
 require(knitr)

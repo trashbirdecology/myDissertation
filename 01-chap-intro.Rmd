@@ -5,34 +5,29 @@ Anthropogenic activity in the last few decades will continue to influence the in
 Forecasting undesirable change is, arguably, the holy grail of ecology. Paired with an understanding of system interactions, a forecast isideal if it provides information with sufficient time to prevent or mitigate unwanted systemic change. Early warning systems (or early warning signals, or early warning indicators) have been developed and tested for some ecological systems data (especially marine fisheries time series and for nutrient loading in shallow lakes). Despite the quantitative methods proposed as early warning systems for ecological data (hereafter referred to as regime detection measures, RDMs), most are currently of limited practical utility. This paradox may be a consequence of existing ecological early warning systems (or other quantitative methods for identifying systemic change)  having one or more of the following characteristics:
 
   1. not generalizable across systems or system types (especially when it requires a model or a determinsitic function to describe the system) 
-  1. require a large number of observations  
-  1. difficult to implement   
-  1. difficult or to interpret   
-  1. requires an understanding of the drivers of change  
+  1. require a large number of observations
+  1. difficult to implement
+  1. difficult or to interpret 
+  1. requires an understanding of the drivers of change
   1. performs poorly under uncertainty
-  1. give no uncertaintiy around estimates (tying into interpretation issues)  
+  1. give no uncertaintiy around estimates (tying into interpretation issues)
   1. cannot handle noisy data
-  1. ignores or does not sufficiently account for observation error  
+  1. ignores or does not sufficiently account for observation error
   1. no baseline with which to compare results
   1. no application/testing on empirical systems data
   1. systems are subjectively bounded (i.e., components are chosen)
   1. being overshadowed by semantics
   1. are based on two observations (e.g., before-and-after)
   1. cannot link the shift to potential drivers (i.e. the method reduces the dimensionality such that it is unitless and/or loses all relevant information)
-  1. 
 
 Research focusing on the above areas as they relate to RDMs will contribute to the advancement and improvement of existing early warning systems, and will, hopefully, highlight methods which are useful and which are not to practitioners and decision makers. 
-
 
 The overarching aim of this dissertation is to advance our understanding of the utility and limitations of select early warning systems. Specifically, I focus on RDMs capable of analyzing multi-varaible data, including temporally- and spatially-explicit. Although the most widely-applied RDMs proposed in the ecological literature are those deveoped for and tested on single-variable time series (e.g., temperature or fisheries stock time series), the utility of these methods in multi-variable systems (data) is limited. Regime detection metrics for tracking and identifying changes in multivariable systems data are of greater use than single-variable RDMs in systems within which a change manifests dynamically and across multiple variables (e.g., species). Multivariable RDMs may also prove advantageous when the drivers of systemic change are unknown. Further, ecological systems are noisy, and ecological systems data are messy. 
 
 Although it's taken us many decades to produce realiable weather forecasts 5 days out (and climate is a low-number system..), ecologists produce regime detection methods with the promise of predicting high-dimensional ecosystem change in advance. Many of these RDMs are not models, like the weather forecasting models which have taken years to refine. 
 
-
-
 ### Dissertation structure
-
-The chapters hereain are written as separate, publishable manuscripts. Where applicable, co-authors are listed in the front matter of the chapter. The dissertation comprises an introduction to the dissertation (Chapter \@ref(intro-chapter)}), a brief overview of early warning systems (or regime detection measures) for ecological systems data (Chapter \@ref(rdmReview-chapter)), a detailed guide to Fisher Information as a RDM written for ecologists (Chapter \@ref(fiGuide-chapter)), an application of Fisher Information to spatially-explicit data (Chapter \@ref(fisherSpatial-chapter)),  introduction of 'new' RDM, Distance Travelled (Chapter \@ref(distTravelled-chapter)), a study of data quality and data loss on select RDMs including Distance Travelled and Fisher Information (Chapter \@ref(sims-chapter)), and conclusions (Chapter \@ref(conclusions-chapter)). 
+The chapters hereain are written as separate, publishable manuscripts. Where applicable, co-authors are listed in the front matter of the chapter. The dissertation comprises an introduction to the dissertation (Chapter \@ref(intro)}), a brief overview of early warning systems (or regime detection measures) for ecological systems data (Chapter \@ref(rdmReview)), a detailed guide to Fisher Information as a RDM written for ecologists (Chapter \@ref(fiGuide)), an application of Fisher Information to spatially-explicit data (Chapter \@ref(fisherSpatial)),  introduction of 'new' RDM, Distance Travelled (Chapter \@ref(distanceTravelled)), a study of data quality and data loss on select RDMs including Distance Travelled and Fisher Information (Chapter \@ref(resampling)), and conclusions (Chapter \@ref(conclusions)). 
 
 ## Glossary
 Research surrounding regime shifts, threshold identification, change-point detection, bifurcation theory, etc. is muddled with jargon. Here, I provide a glossary (Table \@ref(glossary)) for terms and concepts that may either be unfamiliar to the practical ecologist, or may have multiple meanings among and within ecological researchers and practitioners. 
@@ -40,15 +35,9 @@ Research surrounding regime shifts, threshold identification, change-point detec
 ```{r glossary, echo = F, eval = F, message=F, warning=F}
 # Create a table of definitions 
 require(kableExtra)
-
-glossary <- read.csv(paste0(here::here(), 
-                            "/chapterFiles/glossary.csv"))
-
+glossary <- read.csv("./chapterFiles/glossary.csv")
 kable(glossary, "latex", caption = "A table of definitions for terms, theories, and phrases often appearing in ecological regime shift literature.") %>% 
-kable_styling(full_width = F) %>%
-kableExtra::column_spec(1, bold = T)
+kable_styling(full_width = F) 
+# %>%
+# kableExtra::column_spec(1, bold = T)
 ```
-
-
-
-
