@@ -52,7 +52,7 @@ random_subset <- function(data, method, prob = runif(1)) {
   
   return(result)
 }
-window_analysis <- function(data, winSize, winSpace) {
+window_analysis <- function(data, winSize, winSpace, fi.method = "7.12") {
   # Start and stop points for windows
   winStart <-
     round(seq(min(data$time),
@@ -79,7 +79,7 @@ window_analysis <- function(data, winSize, winSpace) {
     }
     
     # Calculate FI
-    FI[i] <- calculate_FI(winData)
+    FI[i] <- calculate_FI(winData, method = fi.method )
     
     # Calculate variance index
     VI[i] <- calculate_VI(winData)
@@ -107,7 +107,7 @@ window_analysis_EWS <- function(subData, winSize, winSpace) {
   
   # Number of windows
   nWin <- length(winStart)
-
+  
   EWS <- list()
   
   for (i in 1:nWin) {
@@ -136,22 +136,22 @@ window_analysis_EWS <- function(subData, winSize, winSpace) {
   
 }
 calculate_VI <- function(winData) {
-  spp.keep <- 
-    winData %>% 
-    dplyr::select(variable, value) %>%
-    group_by(variable) %>% 
-    summarise(value = sum(value)) %>% 
-    filter(value > 0) %>% 
-    dplyr::select(variable) 
-    
-    ts <-
+  spp.keep <-
     winData %>%
-      dplyr::select(variable, value, time) %>%
-      filter(variable %in% spp.keep$variable) %>%
-      spread(variable, value) %>% 
-      select(-time) %>% 
-      as.matrix()
-    
+    dplyr::select(variable, value) %>%
+    group_by(variable) %>%
+    summarise(value = sum(value)) %>%
+    filter(value > 0) %>%
+    dplyr::select(variable)
+  
+  ts <-
+    winData %>%
+    dplyr::select(variable, value, time) %>%
+    filter(variable %in% spp.keep$variable) %>%
+    spread(variable, value) %>%
+    select(-time) %>%
+    as.matrix()
+  
   eigCov <- eigen(cov(ts))
   VI <- max(eigCov$values)
   
@@ -159,13 +159,12 @@ calculate_VI <- function(winData) {
   
   
 }
-
-calculate_FI <- function(myDat, method = "7.3b") {
+calculate_FI <- function(myDat, method = "7.12") {
   # Calculate distribution of distance travelled
   data <-
     myDat %>%
-    na.omit(dsdt) %>% 
-    distinct(time, s, dsdt, d2sdt2) %>% 
+    na.omit(dsdt) %>%
+    distinct(time, s, dsdt, d2sdt2) %>%
     mutate(TT = max(time) - min(time),
            p = (1 / TT) * (1 / dsdt))
   
@@ -212,21 +211,20 @@ calculate_FI <- function(myDat, method = "7.3b") {
   
 }
 calculate_EWS <- function(winData, winStartInd, winStopInd) {
- 
-  spp.keep <- 
-    winData %>% 
+  spp.keep <-
+    winData %>%
     dplyr::select(variable, value) %>%
-    group_by(variable) %>% 
-    summarise(value = sum(value)) %>% 
-    filter(value > 0) %>% 
-    dplyr::select(variable) 
+    group_by(variable) %>%
+    summarise(value = sum(value)) %>%
+    filter(value > 0) %>%
+    dplyr::select(variable)
   
   ts <-
     winData %>%
     dplyr::select(variable, value, time) %>%
     filter(variable %in% spp.keep$variable)
   
-
+  
   ews <- ts %>%
     filter(variable %in% spp.keep$variable) %>%
     group_by(variable) %>%
@@ -246,7 +244,7 @@ calculate_EWS <- function(winData, winStartInd, winStopInd) {
     ) %>%
     ungroup() %>%
     select(-time, -value) %>%
-    distinct(variable, .keep_all=T) %>%
+    distinct(variable, .keep_all = T) %>%
     na.omit(mean) %>%
     mutate(winStart = winStartInd,
            winStop = winStopInd)
@@ -259,13 +257,13 @@ getmode <- function(v) {
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }
 getSpanbauerData <- function() {
-# Load data
-data = read_csv(
-  url(
-    "http://journals.plos.org/plosone/article/file?type=supplementary&id=info:doi/10.1371/journal.pone.0108936.s001"
+  # Load data
+  data = read_csv(
+    url(
+      "http://journals.plos.org/plosone/article/file?type=supplementary&id=info:doi/10.1371/journal.pone.0108936.s001"
+    )
   )
-)
-
+  
   
   # Convert data to long format
   myDf.long <-
@@ -303,11 +301,109 @@ data = read_csv(
   # myMat <- myDf.long %>%
   #   dplyr::select(site, time, variable, value) %>%
   #   spread(-time, -site)
-  # 
-  # 
+  #
+  #
   # myMat.long <- myMat %>%
   #   gather(variable, value, -time, -site)
   
   
   return(myDf.long)
 }
+
+resamplingAnalysis <-
+  function(prop,
+           myMethods,
+           nDraws,
+           winMove,
+           ews = FALSE,
+           fivi = TRUE, fi.method ="7.12") {
+    #Create an empty dataset
+    subsetData <- NULL
+    
+    # Loop over proportion(s), method(s), and draws
+    for (h in seq_along(prop)) {
+      for (i in 1:length(myMethods)) {
+        for (j in 1:nDraws) {
+          # Subset the data
+          temp <- random_subset(myDf.long, myMethods[i], prop[h]) %>%
+            mutate(nDraw = j,
+                   winMove = winMove)
+          
+          # Calculate distance travelled
+          if (exists("results"))
+            rm(results)
+          results <- temp %>%
+            # Distance between species
+            arrange(variable, method, prob, nDraw, time) %>%
+            group_by(variable, method, prob, nDraw) %>%
+            mutate(dx = value - lag(value)) %>%
+            ungroup() %>%
+            na.omit(dx) %>%
+            # Sum of distances (across species at each time)
+            group_by(method, prob, nDraw, time, winMove) %>%
+            summarize(ds = sqrt(sum(dx ^ 2))) %>%
+            filter(ds != 0) %>%
+            ungroup() %>%
+            # Calculate cumulative ds and derivatives
+            group_by(method, prob, nDraw) %>%
+            mutate(s = cumsum(ds),
+                   dsdt = ((s - lag(s)) / (time - lag(time))),
+                   d2sdt2 = ((dsdt - lag(dsdt)) / (time - lag(time)))) %>%
+            ungroup() %>%
+            # Drop NA's
+            na.omit(p)
+          
+          # Save the distance results to file
+          if (exists("fn"))
+            rm(fn)
+          fn <-
+            paste0(distDir,
+                   'distResults_',
+                   prop[h],
+                   "_",
+                   myMethods[i],
+                   "_draw",
+                   j)
+          write_feather(x = results, path = fn)
+          
+          # Calculate EWSs
+          temp <- full_join(results, temp) %>%
+            arrange(time)
+          
+          if (nrow(temp) <= 5) {
+            warning("Five or less observations in data subset--not calculating EWS")
+            next
+          }
+          
+          
+          # Calculate EWS
+          # Window size
+          time <- temp$time
+          timeSpan <- range(time)
+          TT <- timeSpan[2] - timeSpan[1]
+          winSize <- winMove * TT
+          # Window spacing
+          winSpace <- max(lead(time) - time, na.rm = T)
+          
+          # calculate Fisher Information and Variance Index within the window
+          require(caTools)
+          if (fivi) {
+            winResults_fivi <-
+              window_analysis(temp, winSize, winSpace)
+          } else
+            (winResults_fivi = NULL)
+          if(ews)  {winResults_ews <- window_analysis_EWS(temp, winSize, winSpace)}else(winResults_fivi = NULL)
+          
+          results <- full_join(winResults_fivi, winResults_ews)
+          
+          # Save the EWS results to file
+          if(exists("fn")) rm(fn)
+          fn <- paste0(ewsDir, 'ewsResults_', prop[h],"_", myMethods[i], "_draw" , j)
+          write_feather(x=results,path=fn)
+          
+          
+        } # end nDraws loop (j)
+      } # end myMethods loop
+    } #end prop loop
+    
+  }
