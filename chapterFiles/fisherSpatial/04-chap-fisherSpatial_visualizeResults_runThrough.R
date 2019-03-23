@@ -17,10 +17,13 @@ if(to.plot == "distances") metric.ind <- c("dsdt", "s") # the metrics to print
 if(to.plot == "ews") metric.ind <- c("FI")#, "VI") # the metrics to print
 
 # This is the row and column # that will be printed as "examples" of my transect grid sampling design. 
+<<<<<<< HEAD
 rowEx.ind <- 11 # Feel free to change this.
 
 # This will let us only import a signle metric rather tahn all of them, if we want 
 metrics.keep.ind <- "FI"
+
+rowEx.ind <- 15 # Feel free to change this.
 
 
 ########################## END USER DEFS - DO NOT EDIT BELOW HERE ############
@@ -35,7 +38,6 @@ if(!exists("usBaseMap")) source("./chapterFiles/fisherSpatial/04-chap-fisherSpat
   ## this takes ~45s
 
 
-
 # c. Import the results
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R")
 
@@ -44,6 +46,12 @@ ecoregions <- getEcoregions()
 
 # e. Plot the metrics
 # results <- source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_distances.R")
+
+# c. Import the results (this takes a while!!!!!)
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_importMetricResults.R")
+
+# d. Plot the Fisher Information using linear interoplation and calculate the correlations
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_linearInterp.R")
 
 # e. Plot the early-warning signals 
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_ews.R")

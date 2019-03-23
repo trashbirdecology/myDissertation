@@ -15,9 +15,10 @@ for (i in 1:length(unique(results$dirID))) {
     for (k in 1:length(unique(metric.ind))) {
       dirID.ind = unique(results$dirID)[i]
       direction.ind = unique(results$direction)[j]
-      metric =    unique(metric.ind)[k]
+      metric =  unique(metric.ind)[k]
       
-      if(metric == "FI") metric = c('FI', 'FI_Eqn7.12', 'FI_Eqn7.2c')
+
+      if("FI" %in% metric) metric = c(metric, 'FI', 'FI_Eqn7.12', 'FI_Eqn7.2c')
       
       plot.dat <- results %>% as_tibble() %>% 
         filter(dirID == dirID.ind, 
@@ -25,7 +26,7 @@ for (i in 1:length(unique(results$dirID))) {
                year %in% year.ind, 
                metricType %in% metric)
       
-      if(nrow(plot.dat) <3 )next("not enough data to plot, skipping dir ID ", dirID, " metric ", metric)
+      if(nrow(plot.dat) < 3 ) next("not enough data to plot, skipping dir ID ", dirID, " metric ", metric)
       
       if(sortVar.lab == "latitude") plot.dat$sortVar = plot.dat$lat
       if(sortVar.lab == "longitude") plot.dat$sortVar = plot.dat$long
@@ -33,16 +34,17 @@ for (i in 1:length(unique(results$dirID))) {
 
       p <-
         ggplot(data = plot.dat, aes(x = sortVar, y = metricValue , color = year)) +
-            geom_line( size = 1.25)+
-        scale_color_grey()+
+            geom_line( size = 0.8)+
+        scale_color_grey(breaks = c(1980, 1990, 2000, 2010))+
         # theme_few()+
         xlab(sortVar.lab)+
         ylab(metric)+
         envalysis::theme_publish()+
+        # theme(legend.position = "none")+
         geom_rug(na.rm = TRUE, sides = "b")
       p
       
-      my.fn <- paste0(figDir,
+      my.fn <- paste0(figDissDir,
                       "/transect_",
                       dirID.ind,
                       "_",
@@ -62,19 +64,20 @@ for (i in 1:length(unique(results$dirID))) {
 ## I AM HAVING ISSUES PLOTTING SPATIAL DATA RIGHT NOW..#######
 ###############################################################
 ## plot all transects on USA map, each metric for a single year
-for(i in 1:length(unique(results$year))){
   for (j in 1:length(unique(results$direction))) {
     for (k in 1:length(unique(metric.ind))) {
       direction = unique(results$direction)[j]
       metric =    unique(metric.ind)[k]
-      year = unique(results$year[i]) 
+      yr.temp <- unique(results$year) %>% as.character() %>% as.integer()
+      yr.temp <- unique(yr.temp)[which(unique(yr.temp)%%10==0)] 
+      
       
       if(metric == "FI") metric = c('FI', 'FI_Eqn7.12', 'FI_Eqn7.2c')
       
       temp <- results %>%
         as.data.frame() %>%
-        filter(metricType == metric) %>% 
-        filter(year == year)
+        filter(metricType %in% metric) %>% 
+        filter(year %in% yr.temp)
       
       p <-
         ggplot(aes(x = long, y = lat, fill = metricValue), data = temp) + geom_tile() +
@@ -88,36 +91,31 @@ for(i in 1:length(unique(results$year))){
         coord_equal() +
         facet_wrap( ~ year, ncol = 2) +
         guides(fill = guide_legend(title = paste(metric))) +
-        xlim(c(-125 ,-65))+
+        # xlim(c(-125 ,-65))+
         # envalysis::theme_publish()+
         ggthemes::theme_map()+
-        # theme(legend.position = "none")+
+        theme(legend.position = "bottom")+
         theme(strip.background = element_blank(), 
               strip.text = element_text(size=10))+
-        theme.margin
+        theme.margin +
+        scale_fill_gradient(low="blue", high="red", breaks = c(min(temp$metricValue), max(temp$metricValue)), 
+                             labels=(c("min.", "max")))
       
       
-      # 
-      # if (metric.ind[k] == "dsdt") {
-      #   outlierLimits <- remove_outliers(temp$metricValue)
-      #   
-      #   ## Remove outliers for plotting purposes
-      #   p <- p +
-      #     scale_fill_gradient2(
-      #       low = "red",
-      #       midpoint = 0,
-      #       high = "red",
-      #       na.value = "transparent",
-      #       limits = c(min(outlierLimits), max(outlierLimits)))
-      # }
-      
-      if (
-          metric.ind[k] == "FI" |
-          metric.ind[k] == "VI"
-      ) {
-        p <-  p +
-          scale_fill_gradient2(rainbow(2))
+      if (metric.ind[k] == "dsdt") {
+        outlierLimits <- remove_outliers(temp$metricValue)
+
+        ## Remove outliers for plotting purposes
+        p <- p +
+          scale_fill_gradient2(
+            low = "red",
+            midpoint = 0,
+            high = "red",
+            na.value = "transparent",
+            limits = c(min(outlierLimits), max(outlierLimits)))
       }
+      
+      
       
       my.fn <-
         paste0(
@@ -125,7 +123,7 @@ for(i in 1:length(unique(results$year))){
           "/usaAllTsects_",
           direction,
           "_metric_",
-          metric,
+          metric[1],
           ".png"
         )
       
@@ -135,7 +133,7 @@ for(i in 1:length(unique(results$year))){
       )
       
     }
-  }}
+  }
 
 
 ## plot around Fort Riley on USA map, each metric
@@ -146,12 +144,14 @@ for(i in 1:nrow(basesOfInterest)){
         direction = unique(results$direction)[j]
         metric =    unique(metric.ind)[k]
         year = unique(results$year)[l]
+      
+        
         
         base = basesOfInterest[i,]
         
         temp <- results %>%
           as.data.frame() %>%
-          filter(metricType == metric)
+          filter(metricType %in% metric)
         
         
         p <-
@@ -198,7 +198,7 @@ for(i in 1:nrow(basesOfInterest)){
             "_",
             direction,
             "_metric_",
-            metric,
+            metric[1],
             ".png"
           )
         
