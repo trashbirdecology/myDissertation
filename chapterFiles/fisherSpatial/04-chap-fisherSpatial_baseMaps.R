@@ -16,7 +16,7 @@ rObjs <-
 animDir <- "./chapterFiles/fisherSpatial/figures/animations"
 dir.create(animDir)
 
-
+rowEx.ind <- 12
 ######################## IMPORT SAMPLING GRID #######################
 sampGrid <- readRDS(paste0(rObjs, "/samplingGrid.RDS"))
 
@@ -84,7 +84,7 @@ routesMapRowEx <- usBaseMap +
     data = sampGrid$routes_grid %>% filter(rowID == rowEx.ind),
     aes(x = long, y = lat),
     color = "red",
-    size = 1
+    size = .8
   )
 
 routesMapRowEx2 <- routesMapRowEx +
@@ -92,11 +92,24 @@ geom_point(
   data = sampGrid$routes_grid %>% filter(rowID == rowEx.ind+1),
 aes(x = long, y = lat),
 color = "black",
+<<<<<<< HEAD
 size = 1
 )
+=======
+size = .8
+) 
+
+allRoutesUsed <- usBaseMap +
+  geom_point(data = sampGrid$routes_grid %>% filter(rowID %in% 11:15),
+    aes(x = long, y = lat, color = as.factor(rowID)), size = .8)+
+  scale_color_viridis_d()+
+  theme(legend.position = "none")+
+  theme.margin
+
+>>>>>>> e88bac2f7af412626561c55dc28db7973137a8e7
 
 # BASEMAP: MILITARY BASES -------------------------------------------------
-milBases <- getMilBases()
+milBases <- bbsRDM::getMilBases()
 milBases.df <- milBases %>% as.data.frame() %>%
   rename(lat = coords.x2, long = coords.x1)
 
@@ -124,8 +137,9 @@ eglinApprox <-
 
 # hopefully correct locations for bases.
 basesOfInterest <- rbind(
-  closestSite(milBases.df, rileyApprox, ndeg = 3, by = 0.1) %>% mutate(name = "Fort Riley"),
-  closestSite(milBases.df, eglinApprox, ndeg = 3, by = 0.1) %>%  mutate(name = "Eglin AFB")
+  closestSite(milBases.df, rileyApprox, ndeg = 3, by = 0.1) %>% mutate(name = "Fort Riley")
+  # ,
+  # closestSite(milBases.df, eglinApprox, ndeg = 3, by = 0.1) %>%  mutate(name = "Eglin AFB")
 )
 
 rm(rileyApprox)
@@ -170,18 +184,19 @@ ggsave(filename = paste0(figDissDir, "/milBases.png"), plot = milBasesMap)
 ggsave(filename = paste0(figDissDir, "/milBasesAndRoutes.png"), plot = milBasesRoutesMap)
 ggsave(filename = paste0(figDissDir, "/basesOfInterestMap.png"), plot = basesOfIntMap)
 ggsave(filename = paste0(figDissDir, "/bbsRoutesUsed.png"), plot = routesMap)
-ggsave(filename = paste0(figDissDir, "/transectSamplingEx_row_", rowEx.ind  ,".png"), plot = routesMapRowEx)
+ggsave(filename = paste0(figDissDir, "/transectSamplingEx_1row", ".png"), plot = routesMapRowEx)
 ggsave(filename = paste0(figDissDir, "/transectSamplingEx_2rows"  ,".png"), plot = routesMapRowEx2)
+ggsave(filename = paste0(figDissDir, "/transectSamplingAllRoutesUsed"  ,".png"), plot = allRoutesUsed)
 
-# Make a list of the available objects for printing to console, just as a remidner!
-baseObjects <- rbind(
-  "usBaseMap: ggObj, states outlined",
-  "routesMap: ggObj, usBaseMap + black pts for routes",
-  "routesMapRowEx: ggObj, East-West running transect in red pts over usBaseMap",
-  "milBasesMap:  ggObj, all mil bases in red over usBaseMap",
-  "basesOfIntMap:  ggObj, Eglin and Riley in large font",
-  "basesOfInterest: data.frame; lat long bases of interest"
-)
+# # Make a list of the available objects for printing to console, just as a remidner!
+# baseObjects <- rbind(
+#   "usBaseMap: ggObj, states outlined",
+#   "routesMap: ggObj, usBaseMap + black pts for routes",
+#   "routesMapRowEx: ggObj, East-West running transect in red pts over usBaseMap",
+#   "milBasesMap:  ggObj, all mil bases in red over usBaseMap",
+#   "basesOfIntMap:  ggObj, Eglin and Riley in large font",
+#   "basesOfInterest: data.frame; lat long bases of interest"
+# )
 
 
 ################## END RUN ################## 

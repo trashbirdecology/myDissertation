@@ -14,7 +14,7 @@ bibliography: FI_bib.bib
 ---
 
 ```{r setup, include=FALSE, echo = F}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(caTools)
 library(deSolve)
