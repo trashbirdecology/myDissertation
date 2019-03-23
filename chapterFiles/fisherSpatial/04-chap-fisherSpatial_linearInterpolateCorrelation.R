@@ -11,6 +11,7 @@ xout <- seq(min(temp$long), max(temp$long), length.out = 50)
 results.interp <-
   temp %>%
   group_by(year, dirID, direction, metricType) %>%
+  filter(n() > 1) %>% 
   nest()  %>%
   mutate(newX = purrr::map(data, ~ approx(.$long, .$metricValue, xout = xout)$x, rule = 1),
          newY = purrr::map(data, ~ approx(.$long, .$metricValue, xout = xout)$y, rule = 1)) %>%
@@ -35,8 +36,7 @@ for(j in seq_along(year.ID)) {
     # Second transect interpolated results
     df2 =  results.interp %>% filter(year == year.ID[j], dirID %in% temp.ID[(i + 1)]) 
     
-    cor.interp = cor(df1$newY, df2$newY, "complete.obs") %>% as.numeric() %>% round(3)
-    
+    if(nrow(df1)!=0 & nrow(df2)!=0){ cor.interp = cor(df1$newY, df2$newY, "complete.obs") %>% as.numeric() %>% round(3)}else(cor.interp = NULL)
     cor.interp = rbind(df1 %>% mutate(cor.interp = cor.interp), 
           df2 %>% mutate(cor.interp = cor.interp)) %>% 
       mutate(tsect.pair = paste0(temp.ID[i], ":" , temp.ID[i + 1]))

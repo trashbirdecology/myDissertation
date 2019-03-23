@@ -97,15 +97,14 @@ if (downloadBBSData == TRUE) {
 ## 1 deg latitude ~= 69 miles
 ## 1 deg longitude ~= 55 miles
 cs <-
-  c(0.75, 0.75)  # default is cell size 0.5 deg lat x 0.5 deg long
+  c(1, 1)  # default is cell size 0.5 deg lat x 0.5 deg long
 
 # Create and save the sampling grid. 
 routes_gridList <- createSamplingGrid(cs = cs)
 saveRDS(routes_gridList, file = paste0(rObjs, "/samplingGrid.RDS"))
 
-
 # Create a map for sampling grid
-sp_poly <-  as(sp_grd, "SpatialPolygonsDataFrame") 
+sp_poly <-  as(routes_gridList$sp_grd, "SpatialPolygonsDataFrame") 
 sampGrid_basemap<- ggplot(sp_poly)+
   geom_polygon(aes(x = long, y=lat))
 
@@ -134,14 +133,6 @@ for (i in 1:length(featherNames)) {
   
 }
 
-# Get USA states layer
-# us_states <- map_data("state")
-# 
-# # get military bases
-# milBases <- bbsRDM::getMilBases(shploc = "http://www.acq.osd.mil/eie/Downloads/DISDI/installations_ranges.zip", 
-#                                 shpfile = "MIRTA_Points")
-
-# Get a df of just the BBS route locations
 routePts <- routes_grid %>%
   distinct(lat, long)
 
@@ -149,7 +140,6 @@ routePts <- routes_grid %>%
 # Subset the data by AOU codes --------------------------------------------
 feathers <-
   bbsRDM::subsetByAOU(myData = feathers, subset.by = 'remove.shoreWaderFowl')
-
 
 
 ########################### BEGIN USER-DEFINED PARAMTERS###########################

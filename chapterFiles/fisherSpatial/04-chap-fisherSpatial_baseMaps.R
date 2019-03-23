@@ -2,10 +2,8 @@
 # source helper functions
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
 
-
-## Which rows did I use in analysis?
-rows.use.ind <- 14:18
-rowEx.ind <- 15
+  # rwos used in analysos/ see 04-chap-fisherSpatial_analysis.R
+rowEx.ind <- round(median(dir.use), 0)
 
 ######################## DEFINE & CREATE DIRECTORIES ########################
 resultsDir <- "./chapterFiles/fisherSpatial/myResults"
@@ -101,7 +99,7 @@ color = "black",
 size = .8) 
 
 
-rtesUsed <- sampGrid$routes_grid %>% filter(rowID %in% rows.use.ind)
+rtesUsed <- sampGrid$routes_grid %>% filter(rowID %in% dir.use)
 allRoutesUsed <- usBaseMap +
   geom_point(data = rtesUsed,
     aes(x = long, y = lat, color = as.factor(rowID)), size = .8)+
@@ -171,6 +169,7 @@ basesOfIntMap <- usBaseMap +
 if(!exists("eco_poly_join")) {
   # Which epa level to use. arg is used to download data AND to make basemap plot.
   level = 2
+  # download the ecoregions shapefile
   eco_poly <- getEcoregions(level = level)
   # add to data a new column termed "id" composed of the rownames of data
   eco_poly@data$id = rownames(eco_poly@data)
@@ -215,8 +214,6 @@ ggsave(filename = paste0(figDissDir, "/transectSamplingEx_2rows"  ,".png"), plot
 ggsave(filename = paste0(figDissDir, "/transectSamplingAllRoutesUsed"  ,".png"), plot = allRoutesUsed)
 ggsave(filename = paste0(figDissDir, "/eco_poly_basemap", ".png"), plot = eco_poly_basemap)
 ggsave(filename = paste0(figDissDir, "/allRoutesUsed_ecoregions", ".png"), plot = allRoutesUsed_ecoregions)
-
-
 
 
 
