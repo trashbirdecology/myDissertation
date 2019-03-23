@@ -118,20 +118,20 @@ knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_2rows.png"))
 ## Results  
 ### Fisher Information across spatial transects
 
-Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of 'spatial regimes' (Fig. \@ref(fig:fi1Tsect)). Of the three spatial transects analyzed in this chapter (Fig. \@ref(fig:ewRoutesUsedHere)), Fig.\@ref(fig:fi1Tsect) is representative of lack of pattern observed in teh Fisher Information values aross transects. I identified no clear pattern within or among spatial transects across space or time (Fig.\@ref(fig:usaFI)). Log-transforming the Fisher Information metric suppresses some of the extreme values, but still does not clearly identify sharp changes in the Fisher Information values. 
+Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of 'spatial regimes' (Fig. \@ref(fig:fi1Tsect)). Of the three spatial transects analyzed in this chapter (Fig. \@ref(fig:ewRoutesUsedHere)), Fig.\@ref(fig:fi1Tsect) is representative of lack of pattern observed in teh Fisher Information values aross transects. I identified no clear pattern within or among spatial transects. Log-transforming the Fisher Information metric suppresses some of the extreme values, but still does not clearly identify sharp changes in the Fisher Information values. 
 ```{r fi1Tsect, echo = FALSE, out.width="95%", fig.cap="Fisher Information calculated for a single transect (number 15) over time."}
 knitr::include_graphics(paste0(figDissDir,  "/transect_12_East-West_metric_FI_Eqn7_12.png"))
 ```
 
-```{r usaFI, echo = FALSE, out.width="95%", fig.cap="Fisher Information (top; log-scale bottom) of 5 East-West spatial transects over time. Adjacent changes of blue to red or vice-versa indicate regime shifts"}
-knitr::include_graphics(paste0(figDissDir,  "/usaAllTsects_East-West_metric_FI.png"))
-knitr::include_graphics(paste0(figDissDir, "/usaAllTsects_East-West_metric_logScaleFI.png"))
+```{r usaFI, echo = FALSE, out.width="95%", fig.cap="Fisher Information of 5 East-West spatial transects over time. Adjacent changes of blue to red or vice-versa indicate regime shifts"}
+# knitr::include_graphics(paste0(figDissDir,  "/usaAllTsects_East-West_metric_FI.png"))
+# knitr::include_graphics(paste0(figDissDir, "/usaAllTsects_East-West_metric_logScaleFI.png"))
 ```
 
 ### Spatial correlation of Fisher Information
-In addition to failing to identfiy clear geological boundaries across large swaths of our study area (Fig.\@ref(fig:usaFI)), I also did not identify spatial correlation of Fisher Information among adjacent spatial transects (Fig. \@ref(fig:corPlotTsectsInterp)). For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Fig. \@ref(fig:corPlotTsectsInterp)), we should expect high and positive correlation values, and these values shoudl stay consistent across time *unless* the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Fig. \@ref(ewRoutesUsedHere)), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Fig. \@ref(ewRoutes_ecoRegions)). 
+In addition to failing to identfiy clear geological boundaries across large swaths of our study area, I also did not identify spatial correlation of Fisher Information among adjacent spatial transects (Fig. \@ref(fig:corPlotTsectsInterp)). For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Fig. \@ref(fig:corPlotTsectsInterp)), we should expect high and positive correlation values, and these values shoudl stay consistent across time *unless* the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Fig. \@ref(ewRoutesUsedHere)), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Fig. \@ref(ewRoutes_ecoRegions)). 
 
-```{r ewRoutes_ecoRegions,echo = FALSE,  out.width="95%", fig.cap="Routes used in this anlaysis laid against EPA Ecoregion Level 2 maps. Note spatial transects overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these sharp boundaries."}
+```{r ewRoutes_ecoRegions, eval=TRUE, echo = FALSE,  out.width="95%", fig.cap="Routes used in this anlaysis laid against EPA Ecoregion Level 2 maps. Note spatial transects overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these sharp boundaries."}
 knitr::include_graphics(paste0(figDissDir,  "/allRoutesUsed_ecoregions.png"))
 ```
 
