@@ -120,7 +120,7 @@ knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_2rows.png"))
 
 Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of 'spatial regimes' (Fig. \@ref(fig:fi1Tsect)). Of the three spatial transects analyzed in this chapter (Fig. \@ref(fig:ewRoutesUsedHere)), Fig.\@ref(fig:fi1Tsect) is representative of lack of pattern observed in teh Fisher Information values aross transects. I identified no clear pattern within or among spatial transects across space or time (Fig.\@ref(fig:usaFI)). Log-transforming the Fisher Information metric suppresses some of the extreme values, but still does not clearly identify sharp changes in the Fisher Information values. 
 ```{r fi1Tsect, echo = FALSE, out.width="95%", fig.cap="Fisher Information calculated for a single transect (number 15) over time."}
-knitr::include_graphics(paste0(figDissDir,  "/transect_12_East-West_metric_FI_Eqn7.12.png"))
+knitr::include_graphics(paste0(figDissDir,  "/transect_12_East-West_metric_FI_Eqn7_12.png"))
 ```
 
 ```{r usaFI, echo = FALSE, out.width="95%", fig.cap="Fisher Information (top; log-scale bottom) of 5 East-West spatial transects over time. Adjacent changes of blue to red or vice-versa indicate regime shifts"}
