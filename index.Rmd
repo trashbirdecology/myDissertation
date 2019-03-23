@@ -47,10 +47,10 @@ myPackages <- c(
   "ggplot2", "ggthemes", "gapminder",
                       "devtools", "here", "dplyr", 
                       "tidyverse", "bookdown", 
-  "envalysis", # publish theme plots
+  # "envalysis", # publish theme plots
   "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
-                      "inlabru", 
+                      # "inlabru", # not sure why i was using this...
                       "gridExtra", 
                       "kedd", "caTools", "deSolve","segmented", # for chapter 3
                       "DiagrammeR", # for chapter 2 (flow chart figure (grViz))
@@ -66,7 +66,6 @@ ipak <- function(pkg){
 }
 
 suppressWarnings(suppressMessages(ipak(myPackages)))
-
 
 ## Re-install often as these packages are in  development.
 devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
