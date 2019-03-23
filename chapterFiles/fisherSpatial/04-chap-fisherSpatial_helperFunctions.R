@@ -50,10 +50,21 @@ closestSite <- function(mbs, site, ndeg = 5, by = 0.1) {
 
 
 # Get ECOREGION maps ------------------------------------------------------
+getEcoregions <- function(wgs84=TRUE, level = 2){
+  # if(exists('ecoregions')) return(ecoregions)
+  if(level == 1) {
+    shp.url = "ftp://newftp.epa.gov/EPADataCommons/ORD/Ecoregions/cec_na/na_cec_eco_l1.zip"
+    shpfile = "NA_CEC_Eco_Level1"
+  }
+  if(level == 2) {
+    shp.url = "ftp://newftp.epa.gov/EPADataCommons/ORD/Ecoregions/cec_na/na_cec_eco_l2.zip"
+    shpfile = "NA_CEC_Eco_Level2"
+  }
+  if(level == 3) {
+    shp.url = "ftp://newftp.epa.gov/EPADataCommons/ORD/Ecoregions/cec_na/NA_CEC_Eco_Level3.zip"
+      shpfile = "NA_CEC_Eco_Level3"
+  }
 
-getEcoregions <- function(shp.url = 
-                           "ftp://newftp.epa.gov/EPADataCommons/ORD/Ecoregions/cec_na/na_cec_eco_l1.zip", shpfile = "NA_CEC_Eco_Level1", wgs84=TRUE){
-  if(exists('ecoregions')) return(ecoregions)
 temp = tempfile()
 download.file(shp.url, temp)
 exdir = tempdir()

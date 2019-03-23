@@ -2,6 +2,11 @@
 # source helper functions
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
 
+
+## Which rows did I use in analysis?
+rows.use.ind <- 14:18
+rowEx.ind <- 15
+
 ######################## DEFINE & CREATE DIRECTORIES ########################
 resultsDir <- "./chapterFiles/fisherSpatial/myResults"
 dir.create(resultsDir)
@@ -18,7 +23,6 @@ rObjs <-
 animDir <- "./chapterFiles/fisherSpatial/figures/animations"
 dir.create(animDir)
 
-rowEx.ind <- 12
 ######################## IMPORT SAMPLING GRID #######################
 sampGrid <- readRDS(paste0(rObjs, "/samplingGrid.RDS"))
 
@@ -96,8 +100,10 @@ aes(x = long, y = lat),
 color = "black",
 size = .8) 
 
+
+rtesUsed <- sampGrid$routes_grid %>% filter(rowID %in% rows.use.ind)
 allRoutesUsed <- usBaseMap +
-  geom_point(data = sampGrid$routes_grid %>% filter(rowID %in% 11:15),
+  geom_point(data = rtesUsed,
     aes(x = long, y = lat, color = as.factor(rowID)), size = .8)+
   scale_color_viridis_d()+
   theme(legend.position = "none")+
@@ -105,7 +111,7 @@ allRoutesUsed <- usBaseMap +
 
 
 # BASEMAP: MILITARY BASES -------------------------------------------------
-milBases <- getMilBases()
+if(!exists("milBases")) milBases <- getMilBases()
 milBases.df <- milBases %>% as.data.frame() %>%
   rename(lat = coords.x2, long = coords.x1)
 
@@ -138,6 +144,7 @@ basesOfInterest <- rbind(
   # closestSite(milBases.df, eglinApprox, ndeg = 3, by = 0.1) %>%  mutate(name = "Eglin AFB")
 )
 
+
 rm(rileyApprox)
 rm(eglinApprox)
 
@@ -161,21 +168,44 @@ basesOfIntMap <- usBaseMap +
 
 
 # Ecoregions --------------------------------------------------------------
+if(!exists("eco_poly_join")) {
+  # Which epa level to use. arg is used to download data AND to make basemap plot.
+  level = 2
+  eco_poly <- getEcoregions(level = level)
+  # add to data a new column termed "id" composed of the rownames of data
+  eco_poly@data$id = rownames(eco_poly@data)
+  # create a data.frame from our spatial object
+  eco_poly.points <- fortify(eco_poly, region = "id")
+  # merge the "fortified" data with the data from our spatial object
+  eco_poly.df <- merge(eco_poly.points, eco_poly@data, by = "id") %>%
+    # rename the level depending on ecoregion # to "level" for plottin gpurpsoes. 
+    rename(level = paste0("NA_L",level, "CODE"))
+  
+  rm(eco_poly, eco_poly.points)
 
-eco_poly <- getEcoregions()
-
-# get ecoregion for sp_grd
-temp = over(sp_grd, eco_poly) # get which fall into which 
-t<- merge(temp, sp_grd)
-
-
-
-
-# Save basemaps -----------------------------------------------------------
-
+eco_poly_basemap <- ggplot() +
+  geom_polygon(data = eco_poly.df, aes(x=long, y=lat, group = group,
+                                       fill = level, alpha = .4))  +
+  geom_path(color = "white") +
+  scale_fill_viridis_d()+
+  coord_equal() +
+  theme_map()+
+  theme(legend.position = "none", title = element_blank(),
+        axis.text = element_blank())
 
 
-# Save the basemaps to file
+}
+
+allRoutesUsed_ecoregions <- eco_poly_basemap +
+  theme.margin+
+  geom_point(data = rtesUsed,
+             aes(x = long, y = lat, color = as.factor(rowID)), size = .5)+
+  scale_color_viridis_d()+
+  theme(legend.position = "none")
+
+
+
+# Save basemaps to file -----------------------------------------------------------
 ggsave(filename = paste0(figDissDir, "/milBases.png"), plot = milBasesMap)
 ggsave(filename = paste0(figDissDir, "/milBasesAndRoutes.png"), plot = milBasesRoutesMap)
 ggsave(filename = paste0(figDissDir, "/basesOfInterestMap.png"), plot = basesOfIntMap)
@@ -183,6 +213,14 @@ ggsave(filename = paste0(figDissDir, "/bbsRoutesUsed.png"), plot = routesMap)
 ggsave(filename = paste0(figDissDir, "/transectSamplingEx_1row", ".png"), plot = routesMapRowEx)
 ggsave(filename = paste0(figDissDir, "/transectSamplingEx_2rows"  ,".png"), plot = routesMapRowEx2)
 ggsave(filename = paste0(figDissDir, "/transectSamplingAllRoutesUsed"  ,".png"), plot = allRoutesUsed)
+ggsave(filename = paste0(figDissDir, "/eco_poly_basemap", ".png"), plot = eco_poly_basemap)
+ggsave(filename = paste0(figDissDir, "/allRoutesUsed_ecoregions", ".png"), plot = allRoutesUsed_ecoregions)
+
+
+
+
+
+# Make a list of availble plots -------------------------------------------
 
 # # Make a list of the available objects for printing to console, just as a remidner!
 # baseObjects <- rbind(
