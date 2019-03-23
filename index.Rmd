@@ -42,11 +42,11 @@ instlLoadPkgs <- function(packages) {
   {library(package_name,character.only=TRUE, quietly = TRUE);}
 }
 
-myPackages <- c(
+myPackages <- c( "tidyverse", 
   "rmarkdown", 
   "ggplot2", "ggthemes", "gapminder",
                       "devtools", "here", "dplyr", 
-                      "tidyverse", "bookdown", 
+                     "bookdown", 
   # "envalysis", # publish theme plots
   "kableExtra", "gganimate", "sp", "raster", 
                       "feather", "maps", 
@@ -65,11 +65,14 @@ ipak <- function(pkg){
     sapply(pkg, library, character.only = TRUE)
 }
 
+# Detach all packages just in case...
+if(!is.null(sessionInfo()$otherPkgs)) lapply(paste('package:',names(sessionInfo()$otherPkgs),sep=""),detach,character.only=TRUE,unload=TRUE)
+
 suppressWarnings(suppressMessages(ipak(myPackages)))
 
 ## Re-install often as these packages are in  development.
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
 devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
+devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)  
 
 # Load packages
 library(regimeDetectionMeasures) 

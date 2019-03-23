@@ -1,4 +1,6 @@
 # This script creates some basemaps, and defines directories for plotting and a couple of helper functions.
+# source helper functions
+source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
 
 ######################## DEFINE & CREATE DIRECTORIES ########################
 resultsDir <- "./chapterFiles/fisherSpatial/myResults"
@@ -92,12 +94,7 @@ geom_point(
   data = sampGrid$routes_grid %>% filter(rowID == rowEx.ind+1),
 aes(x = long, y = lat),
 color = "black",
-<<<<<<< HEAD
-size = 1
-)
-=======
-size = .8
-) 
+size = .8) 
 
 allRoutesUsed <- usBaseMap +
   geom_point(data = sampGrid$routes_grid %>% filter(rowID %in% 11:15),
@@ -106,10 +103,9 @@ allRoutesUsed <- usBaseMap +
   theme(legend.position = "none")+
   theme.margin
 
->>>>>>> e88bac2f7af412626561c55dc28db7973137a8e7
 
 # BASEMAP: MILITARY BASES -------------------------------------------------
-milBases <- bbsRDM::getMilBases()
+milBases <- getMilBases()
 milBases.df <- milBases %>% as.data.frame() %>%
   rename(lat = coords.x2, long = coords.x1)
 
