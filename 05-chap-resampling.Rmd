@@ -1,0 +1,75 @@
+# Data Quality Impacts on Regime Detection Measures  {#resampling}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
+# Chunk defaults
+require(knitr)
+knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+                      out.width = "85%")
+```
+
+## Introduction 
+Ecological systems have many unpredictable and variably interacting components (Jørgensen et al. 2011). Methods for analyzing these complex systems, e.g. Dynamic Bayesian Networks, network models, and food webs are designed to handle these complexities, yet require data- and knowledge-intensive models. Although ecological data collection and data management techniques are improving (La Sorte et al. 2018), the aforementioned approaches to modeling and understanding complex system are often infeasible in ecosystem research and management (Clements et al. 2015). 
+
+A growing concern with anthropogenic impacts on the environment has increased the demand for mathematical and statistical techniques that capture these dynamics. These often undesirable changes in the structure or functioning of ecological systems are often referred to as “regime shifts”, “regime changes”, “state change”, “abrupt change”, etc. (Andersen et al. 2009) . A yet-unattained goal of ecological research and management is to reach a point where these methods can predict impending regime shifts in real-time and with high confidence. Ideally, ecological regime shift detection methods (hereafter, RDMs) would require little knowledge of the intrinsic drivers of the system, and the users of the method would not be required to know if and where a regime shift occurred in the data. 
+
+Despite the suite of RDMs in the environmental and ecological research literatures, they are not used in ecological management. We can describe the current state of RDMs as being either system–specific (i.e., the method is not widely applicable or generalizable across systems) or not. Methods of the latter type are convenient in that they can be applied across various system and data types, but the results of these analyses require some degree of subjective interpretation (Clements and Ozgul 2018; c.f. Batt et al. 2013). Efforts to develop and/or improve RDMs that can handle these biases will aid the advance of RDMs research and application. 
+
+Current efforts to improve RDMs may be stunted by the lack of application beyond simple and/or theoretical (toy) systems data. Like most statistical and mathematical approaches, the evolution of many RDMs begins with application to theoretical data, followed by application to empirical data. Current applications of RDMs to empirical, ecological data are largely limited to data describing populations (e.g., Anderson and Piatt 1999, Alheit et al. 2005, deYoung et al. 2008), climatic, marine (e.g., Lipizer et al. n.d., Nicholls 2011),  and Paleolithic regime shifts (Spanbauer et al. 2014, Yang et al. 2017, Kong et al. 2017),  with few applications terrestrial data (c.f. Bahlai et al. 2015, Sundstrom et al. 2017). Although testing the performance and inference boundaries of theoretical and simple systems is important, they are of little use to ecosystem managers if they are not proven to be easily and reliably applicable to their system. Additionally, RDMs should be capable of handling diverse and often noisy field data.  
+
+Ecological systems data is not only expensive and is difficult to capture, but is also notoriously imperfect—that is, process and observation error are common in these data. The resulting variability in data quality and quantity limits the numerical tools available for detecting ecological regime shifts (Thrush et al. 2009). Some methods, new and old, are proposed in the literature as RDMs which are capable of handling data limitation and quality issues inherent in ecological data and require few subjective decisions for choosing state variables and interpreting results. For example, variable reduction techniques, e.g. principal components analysis (Rodionov 2005, Andersen et al. 2009, Reid et al. 2016) and clustering algorithms (Weijerman et al. 2005, Weissmann and Shnerb 2016), an index of variance (Brock and Carpenter 2006) and Fisher Information (Cabezas and Fath 2002, Fath and Cabezas 2004, Karunanithi et al. 2008) were introduced as methods which collapse the system into a single indicator of ecological regime shifts. 
+
+The transferability of RDMs to practitioners can only be facilitated by identifying intuitive metrics and testing the capacity of RDMs to handle high dimensional, empirical data. Here, we present a method for tracking the trajectory of an n-dimensional system using a single metric and its derivative. Here, I describe provide a description of this metric and apply it to empirical systems data. I then compare the results of this new metric to two other multivariate, model-free metrics: the Variance Index [@brock_carpenter_2005] and Fisher Information [@cabezas__2002; \@ref(fiGuide)]. Finally, we explore how decisions made during the data collection and data analysis phases impact these metrics.
+
+## Methods
+### Study system and data  
+I used paleodiatom time series from a freshwater system in North America which exhibited a rapid shift in community dynamics. These data were  collected using a sediment coring method [see @spanbauer_detecting_2014]. Community profiles at various depths within sediment cores are analyzed to obtain relative abundances. Relative abundances at various depths within the sediment core are then related to time (years before present) using carbon dating techniques. These data can be obtained from the publisher’s website. 
+
+### Distance travelled metric
+In Chapter \@ref(velocity), I described a 'new' method, __system velocity__, as a potential dimension reduction and regime shift detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see \@ref(fiGuide)]. First introduced in by @cabezas_2002_XXX as one of many steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described below.
+
+#### Step 1: 
+First, we calculate the change in each state variable, $x_i$, between two adjacent points in time, $t_0$ and $t_1$, such that one difference, $x_{it_1} - x_{it_0}$, is assigned to the latter time point, $t_1$. We next square this difference: $(x_{it_1} - x_{it_0})^2$. As will soon be apparent, observations do not need to be observed evenly spaced across time, however, all state variables should be observed at the same point in time. We then square the difference for each state variable,  $(x_{it_1} - x_{it_0})^2$, and get the sum of squares of all variables for the adjacent time points using Pythagoras' theorem, $a^2 + b^2 = c^2$, to linearly approximate the system's collective change from time $t_0$ to $t_1$:
+\begin{equation}
+$\Delta s = \sqrt{\sum(x_{it_1} - x_{it_0})^2}$
+  (\#eq:ds)
+\end{equation}
+
+To account for unequal time elapsed between observations (i.e., irregular sampling), we must next correct for change in time. Since $\Delta s$ is now the total change in the system between two time points, we can simply correct for variability in change in time, $\Delta t$, by dividing $\Delta s$ by $\Delta t$. I refer to this new measure as **system velocity**:
+
+\begin{equation}
+$\frac{\Delta s}{\Delta t} = \frac{\sqrt{\sum(x_{i(t_1)} - x_{i(t_0)})^2}}{t_1 - t_0}$
+  (\#eq:dsdt)
+\end{equation}
+
+System velocity, $\frac{\Delta s}{\Delta t}$, reduces the *n*-dimensional system to a single dimension, taking on the unit of the original data. For example, $x_i$ are species abundances, then the unit is species abundance. Importantly, this should be taken into consideration. 
+
+\begin{equation}
+$\frac{\Delta s}{\Delta t} = \frac{\sqrt{\sum(x_{i(t_1)} - x_{i(t_0)})^2}}{t_1 - t_0}$
+  (\#eq:dsdt)
+\end{equation}
+
+
+
+$\Delta s$, as the **distance travelled** by the entire system between two points in time. Using this calculation, we have so far reduced the $n$-dimensional system to a single, positive, and unitless measurement, $s$, at each time point (except the first, unless we are backwards-differencing). It is worth emphasizing that $\Delta s$ strictly increases over time. That is, $∀ s_{t+1} $
+
+$\Delta s$ and $\Delta t$ where $s = \sum{\Detlta s}$ and $t = \sum{\delta t}$ and $\Delta s / \delta t$ 
+
+Because $s$ will always be positive and 
+
+Finally, we can calculate the **distance travelled**, ($s$), as collectively by all state variables such that
+\begin{equation}
+$ s_{t+1} = \sqrt{\sum(x_{i(t+1)} - x_{i(t)})^2}$
+  (\#eq:distEq)
+\end{equation}
+
+
+Finally, the distance traveled at a given point in time, s(t) is calculated as the cumulative sum of d from time t=0 (or first time point) to t=T (Table 1, Step 4).
+
+The resulting value, $s$, is a unitless, 
+
+## Results
+
+
+## Discussion 
+
+## Ackowledgements
+This study was conceptualized at the International Institute for Applied Systems Analysis (IIASA) as part of the Young Scholars Summer Program in 2018. I thank my IIASA supervisors, Drs. Brian Fath and Elena Rovenskaya, for advisement on study design and for comments on earlier versions of this chapter. 

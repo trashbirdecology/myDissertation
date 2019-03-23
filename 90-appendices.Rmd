@@ -7,7 +7,6 @@
 This appendix contains the vignette associated with the R Package, `rRDM`. Development source code for this package is available on GitHub as a compressed file, https://github.com/TrashBirdEcology/rRDM/archive/master.zip  or https://github.com/TrashBirdEcology/rRDM.
 
 
-
 <!-- # Appendix B   {-#appPaleo}  -->
 
 <!-- This appendix provides documentation and R code association with the paleodiatom community example.  -->
