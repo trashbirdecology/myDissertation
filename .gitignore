@@ -74,3 +74,5 @@ chapterFiles/fisherSpatial/bbs_raw_data/codes/README.txt
 _book/_myDissertation.tex
 _myDissertation.Rmd
 _myDissertation.tex
+_myDissertation_cache/latex/__packages
+_cache/__packages
