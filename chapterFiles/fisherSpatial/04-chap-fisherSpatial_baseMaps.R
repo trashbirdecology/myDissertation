@@ -75,7 +75,7 @@ usBaseMap <-  ggplot() +
 routesMap <- usBaseMap +
   geom_point(
     data = sampGrid$routes_grid,
-    aes(x = long, y = lat),
+    aes(x = long, y = lat, group = rowID),
     color = "black",
     size = .75) 
 

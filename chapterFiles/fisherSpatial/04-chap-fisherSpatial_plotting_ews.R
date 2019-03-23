@@ -119,7 +119,7 @@ for (i in 1:length(unique(results$dirID))) {
       
       my.fn <-
         paste0(
-          figDir,
+          figDissDir,
           "/usaAllTsects_",
           direction,
           "_metric_",
@@ -192,7 +192,7 @@ for(i in 1:nrow(basesOfInterest)){
         
         my.fn <-
           paste0(
-            figDir,
+            figDissDir,
             "/base_",
             base$name,
             "_",
