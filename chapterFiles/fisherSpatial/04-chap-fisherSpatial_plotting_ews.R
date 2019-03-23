@@ -44,7 +44,7 @@ for (i in 1:length(unique(results$dirID))) {
         geom_rug(na.rm = TRUE, sides = "b")
       p
       
-      my.fn <- paste0(figDissDir,
+      my.fn <- paste0(figDir,
                       "/transect_",
                       dirID.ind,
                       "_",

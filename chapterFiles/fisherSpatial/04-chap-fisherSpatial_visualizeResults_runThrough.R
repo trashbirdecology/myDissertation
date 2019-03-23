@@ -47,3 +47,13 @@ source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_linearInterp
 
 # e. Plot the early-warning signals 
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_plotting_ews.R")
+
+# f. Make an animation of FI 
+# anim.SingleTsectOverTime(data = results, 
+#                          metricType.ind = c("FI_Eqn7.12"), 
+#                          direction.ind = "East-West", 
+#                          dirID.ind = 13, 
+#                          site.temp = "riley", 
+#                          fn.ind = "fisher",
+#                          get.anim = TRUE, 
+#                          get.static = TRUE)

@@ -6,7 +6,15 @@ temp <- results %>%
   as_tibble() %>%
   filter(metricType == metricType.ind)
 
-xout <- seq(min(temp$long), max(temp$long), length.out = 50)
+tempLatLong <- temp %>% group_by(dirID) %>% 
+  summarise(minLat =  min(lat), # get the max of the minimum latitudes for each route so as to not extrapolate
+            maxLat = max(lat), 
+            minLong = min(long), 
+            maxLong = max(long)
+          ) 
+
+
+xout <- seq(max(tempLatLong$minLong), min(tempLatLong$maxLong), length.out = 50)
 
 results.interp <-
   temp %>%

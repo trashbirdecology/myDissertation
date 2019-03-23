@@ -93,33 +93,60 @@ ggsave(filename = paste0(
 plot = cor.p3)
 
 
-# plot a single transect Fi value over space ------------------------------
-temp <-sampGrid$routes_grid %>% as.data.frame() %>% filter(rowID == 12) %>% summarise(mean(lat)) %>% as.numeric()
-tempDat <- cor.interp.results %>% filter(tsect.pair =="11:12")
+# plot a single transect Fi value over space @ year 2010 (expensive!) ------------------------------
+temp <-sampGrid$routes_grid %>% as.data.frame() %>% filter(rowID %in% dir.use) %>%  group_by(rowID) %>% summarise(lat = mean(lat)) %>% rename(dirID = rowID)
+tempDat <- cor.interp.results %>% filter(tsect.pair %in% paste0(dir.use, ":", lead(dir.use)), year == 2010) %>% 
+  group_by(year, dirID) %>% 
+    mutate(newY = base::scale(newY)) %>% 
+  mutate(lat = if_else(dirID == 11, temp$lat[1], if_else(dirID == 12, temp$lat[2], temp$lat[3])))
 
 cor.p4 <- eco_poly_basemap +
-  coord_map(xlim = c(min(tempDat$newX - .5), max(tempDat$newX +5)),
-            ylim = c(temp-2, temp +2))+
-  geom_point(data=tempDat, aes(x=newX, y=temp, color = newY))+
-  scale_color_viridis_c()
+  coord_map(xlim = c(min(tempDat$newX - 2), max(tempDat$newX + 2)),
+            ylim = c(min(temp$lat)-7, max(temp$lat) + 7))+
+  geom_point(data=tempDat, aes(x=newX, y= lat , size = newY, group = dirID)) 
 
-cor.p4
+
+bbox <- data.frame(x1 = -106,x2 =-102 ,y1 = 39.5,y2 = 43.5)
+cor.p4.5 <- cor.p4 +
+  geom_rect(data = bbox, mapping=aes(xmin=x1, xmax=x2, ymin=y1, ymax=y2), fill=NA, color="red", alpha=0.5)
+
+## Zoom in to rockies
+cor.p5 <- eco_poly_basemap +
+  coord_map(xlim = c(bbox$x1, bbox$x2), ylim=c(bbox$y1, bbox$y2))+
+  geom_point(data=tempDat, aes(x=newX, y= lat ,  size = newY))
 
 ggsave(filename = paste0(
   figDissDir,
-  "/interp_FI_singlePair_corPlot_",
+  "/scaledFiInterpolated_year2010_zoom_",
   unique(cor.interp.results$direction),
   ".png"
 ),
-plot = cor.p3)
+plot = gridExtra::grid.arrange(cor.p4.5,cor.p5, ncol=1))
+
+
+# plot a single transect Fi value over space @ year 2000 (expensive!) ------------------------------
+temp <-sampGrid$routes_grid %>% as.data.frame() %>% filter(rowID %in% dir.use) %>%  group_by(rowID) %>% summarise(lat = mean(lat)) %>% rename(dirID = rowID)
+tempDat <- cor.interp.results %>% filter(tsect.pair %in% paste0(dir.use, ":", lead(dir.use)), year == 2000) %>% 
+  group_by(year, dirID) %>% 
+  mutate(newY = base::scale(newY)) %>% 
+  mutate(lat = if_else(dirID == 11, temp$lat[1], if_else(dirID == 12, temp$lat[2], temp$lat[3])))
+
+cor.p4 <- eco_poly_basemap +
+  coord_map(xlim = c(min(tempDat$newX - 2), max(tempDat$newX + 2)),
+            ylim = c(min(temp$lat)-7, max(temp$lat) + 7))+
+  geom_point(data=tempDat, aes(x=newX, y= lat , size = newY, group = dirID)) 
 
 ggsave(filename = paste0(
   figDissDir,
-  "/interp_FI_singlePair_corPlot_",
+  "/scaledFiInterpolated_year2000_",
   unique(cor.interp.results$direction),
   ".png"
 ),
-plot = cor.p3)
+plot = cor.p4)
+
+# END RUN -----------------------------------------------------------------
 
 
-  
+
+
+

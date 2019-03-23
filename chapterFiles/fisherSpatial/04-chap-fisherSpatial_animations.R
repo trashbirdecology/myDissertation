@@ -25,7 +25,7 @@ anim.SingleTsectOverTime(data = results_dist,
                          get.static = TRUE)
 
 # Fisher Information 
-anim.SingleTsectOverTime(data = results_ews, 
+anim.SingleTsectOverTime(data = results, 
                          metricType.ind = c("FI_Eqn7.12"), 
                          direction.ind = "East-West", 
                          dirID.ind = 13, 
