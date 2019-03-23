@@ -76,3 +76,6 @@ _myDissertation.Rmd
 _myDissertation.tex
 _myDissertation_cache/latex/__packages
 _cache/__packages
+_myDissertation.lof
+_myDissertation.lot
+_myDissertation.toc
