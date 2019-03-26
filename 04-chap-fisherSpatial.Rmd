@@ -103,7 +103,7 @@ Increases in FI is proposed as an indicator of system orderliness, where periods
 
 
 #### Interpolating results across spatial transects
-Because the BBS routes are not regularly spaced, pairwise correlations of adjacent transects are not possible without either binning the Fisher Information calculations using a moving-window analysis, or interpolating the results to regularly-spaced positions in space. To avoid potential biases associated with the former option, I linearally interpolated Fisher Information within each spatial transect (Fig. \@ref(fig:ewRoutesUsedHere)) at 50 points along the longitudinal axis. The 50 longitudinal points at which I interpolated were the same across each spatial transect. I used the function `stats::approx()` to linearly approximate the Fisher Information. I did not interpolate values beyond the longitudinal range of the original data (using argument `rule=1` in package `approx`). 
+Because the BBS routes are not regularly spaced, pairwise correlations of adjacent transects are not possible without either binning the Fisher Information calculations using a moving-window analysis, or interpolating the results to regularly-spaced positions in space. To avoid potential biases associated with the former option, I linearally interpolated Fisher Information within each spatial transect (Fig. \@ref(fig:ewRoutesUsedHere)) at 50 points along the longitudinal axis. The 50 longitudinal points at which I interpolated were the same across each spatial transect. I used the function *stats::approx()* to linearly approximate the Fisher Information. I did not interpolate values beyond the longitudinal range of the original data (using argument *rule=1* in package *approx*). 
 
 
 ```{r oneTsectEx, echo = FALSE, fig.align='center', out.width="95%", fig.cap = 'An example of two adjacent spatial transects within my sampling grid. After Fisher Ifnomration was calculated within a single transect, correlations were then calculated to determine the relationship among transect-pairs.'}
@@ -111,8 +111,8 @@ knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_1row.png"))
 ```
 
 #### Spatial correlation of  Fisher Information 
-If Fisher Information captures and reduces information regarding abrupt changes in community structure across the landscape, then the values of FI should be spatially autocorrelated. That is, the correlation of FI values should increase as the distance between points decreases. Fisher Information values calculated using Eq. \@ref(eq:derivativesFI) are **not** relatively comparable outside of our spatial transects, because the possible values are unbounded (can take on any value between $-\infty$ and $%\infty$. However, because FI is directly comparabe **within** each spatial transect (e.g., \@ref(fig:oneTsectEx)), we can use use pairwise correlations among two transects (e.g., \@ref(fig:oneTsectEx)) to determine whether values of FI are consistent across space. I calculate the pairwise correlation (Pearson's) among each pair of adjacent spatial transects (e.g., Fig. \@ref(fig:adjacentTsectEx)) using the function `stats::cor()`. I removed a pair of points if at least one point was missing an estimate for Fisher Information. This occurred when the original longitudinal range of one transect exceeded its pair's range, since I did not interpolate beyond the original longitudinal range.
-```{r adjacentTsectEx, echo = FALSE, fig.align='center', out.width="95%", fig.cap = 'An example of two adjacent spatial transects (12, 13) within my sampling grid. After Fisher Ifnomration was calculated within a single transect, correlations were then calculated to determine the relationship among transect-pairs.'}
+If Fisher Information captures and reduces information regarding abrupt changes in community structure across the landscape, then the values of FI should be spatially autocorrelated. That is, the correlation of FI values should increase as the distance between points decreases. Fisher Information values calculated using Eq. \@ref(eq:derivativesFI) are **not** relatively comparable outside of our spatial transects, because the possible values are unbounded (can take on any value between $-\infty$ and $%\infty$. However, because FI is directly comparabe **within** each spatial transect (e.g., \@ref(fig:oneTsectEx)), we can use use pairwise correlations among two transects (e.g., \@ref(fig:oneTsectEx)) to determine whether values of FI are consistent across space. I calculate the pairwise correlation (Pearson's) among each pair of adjacent spatial transects (e.g., Fig. \@ref(fig:adjacentTsectEx)) using the function *stats::cor()*. I removed a pair of points if at least one point was missing an estimate for Fisher Information. This occurred when the original longitudinal range of one transect exceeded its pair's range, since I did not interpolate beyond the original longitudinal range.
+```{r adjacentTsectEx, echo = FALSE, fig.align='center', out.width="95%", fig.cap = "An example of two adjacent spatial transects (12, 13) within my sampling grid. After Fisher Ifnomration was calculated within a single transect, correlations were then calculated to determine the relationship among transect-pairs."}
 knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_2rows.png"))
 ```
 ## Results  
@@ -123,9 +123,9 @@ Interpreting the Fisher Information is currently a qualitative effort. As sugges
 knitr::include_graphics(paste0(figDissDir,  "/transect_12_East-West_metric_FI_Eqn7_12.png"))
 ```
 
-```{r usaFI, echo = FALSE, out.width="95%", fig.cap="Fisher Information of 5 East-West spatial transects over time. Adjacent changes of blue to red or vice-versa indicate regime shifts"}
-# knitr::include_graphics(paste0(figDissDir,  "/usaAllTsects_East-West_metric_FI.png"))
-# knitr::include_graphics(paste0(figDissDir, "/usaAllTsects_East-West_metric_logScaleFI.png"))
+```{r usaFI, eval=FALSE, echo = FALSE, out.width="95%", fig.cap="Fisher Information of 5 East-West spatial transects over time. Adjacent changes of blue to red or vice-versa indicate regime shifts"}
+knitr::include_graphics(paste0(figDissDir,  "/usaAllTsects_East-West_metric_FI.png"))
+knitr::include_graphics(paste0(figDissDir, "/usaAllTsects_East-West_metric_logScaleFI.png"))
 ```
 
 ### Spatial correlation of Fisher Information

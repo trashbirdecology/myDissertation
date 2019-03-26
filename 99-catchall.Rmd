@@ -2,6 +2,7 @@
 <!-- ## Random -->
 <!-- To be useful to practitioners it may be necessary to move beyond heuristic methods, to methods which supply statistical signifiances or probabilites. -->
 
+
 <!-- Although critiques of some RDMs exist, the rate at which they are rigorously tested do not exceed the proliferation of new methods in the literature. For any method to gain credible traction as a pragmatic tool in ecology, studies shouldl address the concerns of these critiques. These can be addressed using, e.g., bootstrapping, simulations.  -->
 
 <!-- The number of methods is overwhelming, and although there are quite a few reviews and critiques of RDMs in ecological, they are primarily limited to methods which are (relatively) widely cited or are authored by those wiht high H-indices. As a consequence, case studies of regime shifts often use methods which have been cited multiple times (e.g., variance index). Further, some fo these methods are fairly elegant adn require some level of knowledge to use correctly-- however, are being blindly applied to data.  -->

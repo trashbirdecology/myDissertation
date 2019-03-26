@@ -23,7 +23,6 @@ The transferability of RDMs to practitioners can only be facilitated by identify
 ### Study system and data  
 I used paleodiatom time series from a freshwater system in North America which exhibited a rapid shift in community dynamics. These data were  collected using a sediment coring method [see @spanbauer_detecting_2014]. Community profiles at various depths within sediment cores are analyzed to obtain relative abundances. Relative abundances at various depths within the sediment core are then related to time (years before present) using carbon dating techniques. These data can be obtained from the publisher’s website. 
 
-### Distance travelled metric
 In Chapter \@ref(velocity), I described a 'new' method, __system velocity__, as a potential dimension reduction and regime shift detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see \@ref(fiGuide)]. First introduced in by @cabezas_2002_XXX as one of many steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described below.
 
 #### Step 1: 
@@ -33,21 +32,17 @@ $\Delta s = \sqrt{\sum(x_{it_1} - x_{it_0})^2}$
   (\#eq:ds)
 \end{equation}
 
-To account for unequal time elapsed between observations (i.e., irregular sampling), we must next correct for change in time. Since $\Delta s$ is now the total change in the system between two time points, we can simply correct for variability in change in time, $\Delta t$, by dividing $\Delta s$ by $\Delta t$. I refer to this new measure as **system velocity**:
-
+To account for unequal time elapsed between observations (i.e., irregular sampling), we must next correct for change in time. Since $\Delta s$ is now the total change in the system between two time points, we can simply correct for uneven sampling between observations between time points by dividing the change in $s$, $\Delta s$, by the change in time $\Delta t$. I refer to this new measure as **system velocity**:
 \begin{equation}
 $\frac{\Delta s}{\Delta t} = \frac{\sqrt{\sum(x_{i(t_1)} - x_{i(t_0)})^2}}{t_1 - t_0}$
   (\#eq:dsdt)
 \end{equation}
-
 System velocity, $\frac{\Delta s}{\Delta t}$, reduces the *n*-dimensional system to a single dimension, taking on the unit of the original data. For example, $x_i$ are species abundances, then the unit is species abundance. Importantly, this should be taken into consideration. 
 
 \begin{equation}
 $\frac{\Delta s}{\Delta t} = \frac{\sqrt{\sum(x_{i(t_1)} - x_{i(t_0)})^2}}{t_1 - t_0}$
   (\#eq:dsdt)
 \end{equation}
-
-
 
 $\Delta s$, as the **distance travelled** by the entire system between two points in time. Using this calculation, we have so far reduced the $n$-dimensional system to a single, positive, and unitless measurement, $s$, at each time point (except the first, unless we are backwards-differencing). It is worth emphasizing that $\Delta s$ strictly increases over time. That is, $∀ s_{t+1} $
 

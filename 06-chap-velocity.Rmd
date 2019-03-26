@@ -1,0 +1,264 @@
+# Velocity ($v$): rate-of-change of system trajectory as a dimension reduction technique and potential indicator of abrupt change {#velocity}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+# Chunk defaults
+set.seed(123)
+library(knitr)
+knitr::opts_chunk$set(cache = TRUE,  message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+                      out.width = "85%")
+```
+```{r, message=FALSE}
+library(magrittr)
+library(tidyverse)
+## Define a plotting function for plotting simulated and dist results
+sPlot <- function(df, dist, div = 10){
+  if("sortVar" %in% names(dist))dist <- dist %>% rename(t = sortVar)
+  ggplot()+
+  geom_line(data = df, aes(t, value, linetype=variable), color='black')+
+  geom_line(data = dist, aes(x = t, y = s/div), color = "red", size =1)+
+  scale_y_continuous(sec.axis = sec_axis(~.*div, name = "s"))+
+    theme_bw()+
+  theme(legend.position = "bottom")}
+
+dsdtPlot <- function(df, dist, div = 10){
+  if("sortVar" %in% names(dist))dist <- dist %>% rename(t = sortVar)
+ggplot()+
+  geom_line(data = df, aes(t, value, linetype=variable), color='black')+
+  geom_line(data = dist, aes(x = t, y = dsdt/div), color = "red", size =1)+
+  scale_y_continuous(sec.axis = sec_axis(~.*div, name = "v"))+ 
+  theme_bw()+
+  theme(legend.position = "bottom")}
+```
+
+## Introduction
+Dimension reduction techniques  and RDms blablbah
+In this Chapter I describe the steps for calculating a 'new' metric, __system velocity__, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see \@ref(fiGuide)], first introduced in @fath_regime_2003. Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time. 
+
+## Methodology
+### Toy data  
+Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$.
+```{r sysEx, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
+x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
+x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
+t = 1:length(x_1)
+df.wide = data.frame(t, x_1, x_2) 
+df  = data.frame(t, x_1, x_2) %>% 
+  tidyr::gather(key = "variable", value = "value", -t) 
+
+dist <- regimeDetectionMeasures::calculate_distanceTravelled(df %>% mutate(cellID = 1) %>% rename(sortVar = t)) %>% rename(t = sortVar) %>% 
+  dplyr::select(-cellID)
+
+# join results with the orig data
+df.wide <- left_join(df.wide, dist) %>% 
+  # add column for change in variable
+  mutate(dx_1 = x_1-lag(x_1),
+           dx_2 = x_2-lag(x_2), 
+         dt = t - lag(t)) %>%
+  dplyr::select(t, x_1, x_2, dx_1, dx_2, dt, everything(), -d2sdt2)
+ 
+# change names of df.wide for table in latex
+colnames(df.wide) <- c("t", 
+                       "$x_1$",
+                       "$x_2$", 
+                       "$\\Delta x_1$",
+                        "$\\Delta x_2$",
+                        "$\\Delta t$",
+                        "$\\sqrt(\\sum_{i=1}^N(\\Delta x_i^2)) $",
+                        "$s$",
+                        "$v$")
+                       # "$s = \\sum_{t=1}^j(\\sqrt(\\sum_{i=1}^N(\\Delta x_i^2))) $",
+                       # "$ velocity = \\frac{\\Delta s_{j,j+1}}{\\Delta t}$")
+(p.sysEx <- ggplot()+
+  geom_line(data = df, aes(t, value, linetype=variable), color='black')+
+  theme(legend.position='bottom'))+
+  theme_bw()
+```
+
+### Steps for calculating system velocity, $v$
+First, we calculate the change in each state variable, $x_i$, between two adjacent points in time, $t_j$ and $t_{j+1}$, such that the difference, $x_{t_{j+1}} - x_{t_j}$ is assigned to the latter time point, $t_{j+1}$. For example, in our toy data, we use observations at time points $t = 1$ & $t=2$ (Fig. \@ref(fig:sysEx2)). In this example, the change in values for state variable $x_1$ from time point 1 to 2, is:
+
+\begin{equation}
+\begin{array}{rcr}
+\Delta x_1 = x_{1_{t=2}} - x_{1_{t=1}} \\
+\Delta x_2 = x_{2_{t=2}} - x_{1_{t=1}}
+  \end{array}
+(\#eq:diffX)
+\end{equation}
+
+```{r sysEx2, fig.cap="Data used to calculate velocity at the first two time points, $t_1$ and $t_2$."}
+p.sysEx +
+  geom_point(data =df, aes(x = t, y = value, shape = variable, color=variable), size=4)+
+  xlim(c(1,2))+ylim(c(20,30))+
+  scale_color_manual(values=c("red","black"))+
+  theme(legend.position = 'bottom')+
+  theme_bw()
+```
+
+After calculating the differences for each state variable, we will next calculate the total change in the system over the time elapsed, following Pythagora's theorem, 
+
+\begin{equation}
+ X_1^2 + X_2^2 = s^2 
+  (\#eq:pythagorean)
+\end{equation}
+
+where $s$ represents the total change in the system, and $X_1$ and $X_2$ represent the changes in all state variables ($x_{i_{t=2}} - x_{i_{t=1}}$). We achieve this by first squaring the differences obtained in Eq. \@ref(eq:diffX):
+
+\begin{equation}
+\begin{array}{rcr}
+(x_{1_{t=2}} - x_{1_{t=1}})^2  \\
+(x_{2_{t=2}} - x_{2_{t=1}})^2 
+\end{array}
+  (\#eq:diffXsq)
+\end{equation}
+
+Next, we isolate $s$ in Eq. \@ref(eq:pythagorean), capturing the total change in all state variables into a single measure by taking the 2<sup>nd</sup> root of the squared sums of all $x$:
+\begin{equation}
+\begin{array}{rcr}
+\sum_{i=1}^{N} \Delta {x_i} = \sum_{i=1}^{N}(x_{t_{i+1}} - x_{t_i})^2 \\ 
+\ = \Delta s \\ 
+\ = \sqrt([x_{1_{t=2}} - x_{1_{t=1}}]^2 + [x_{2_{t=2}} - x_{2_{t=1}}]^2)
+\end{array}
+(\#eq:diffXsq2)
+\end{equation}
+
+We now have a single measure, $\Delta s$ (Eq. \@ref(eq:diffXsq2)), for each pair of time points in our $N$-dimensional system. It is obvious that $\Delta s$ will always be a positive value, since we took the 2<sup>nd</sup> root of a squared value. Although discussed in a later section, it is important to note that this value is not unitless--that is, our example system takes on the units of our state variables, $x_1$ and $x_2$. Because we are interested in identifying abrupt changes in the entire system, we calculate the cumulative sum of $\Delta s$ at every time point, such that:
+
+\begin{equation}
+s = \sum_{t=1}^T \Delta s
+(\#eq:s)
+\end{equation}
+
+Finally, we calculate the **system velocity**, $v$ (or $\frac {\Delta s}{\Delta t}$), by first calculating the change in $s$ (Eq. \@ref(eq:s)), and then divide  by the total time elapsed between consecutive sampling points:
+
+\begin{equation}
+ v = \frac {s_{t+1}-s_{t}}{\Delta t} 
+(\#eq:velocity)
+\end{equation}
+
+```{r velocSysEx1, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\\bar{x}_pre=25$, $\\bar{x}_post=10$) and sharp change in variance for both state variables, $\\sigma =5$."}
+x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
+x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
+t = 1:length(x_1)
+df.wide = data.frame(t, x_1, x_2) 
+df  = data.frame(t, x_1, x_2) %>% 
+  tidyr::gather(key = "variable", value = "value", -t) 
+
+dist <- df %>% 
+  mutate(cellID = 1) %>% 
+  rename(sortVar = t) %>% 
+  regimeDetectionMeasures::calculate_distanceTravelled()
+dsdtPlot(dist=dist, df=df, div = 1)+
+  ggtitle(
+  expression(paste("changing means, constant variance"))
+)
+```
+
+The steps for calculating velocity [Eq. \@ref(eq:velocity)] are demonstrated using the first five time points of our toy system (Fig. \@ref(fig:sysEx)) in Table \@ref(tab:distTab).
+
+```{r distTab}
+library(kableExtra)
+options(knitr.kable.NA = '')
+kable(df.wide[1:5,],digits=3, "latex", align="c", booktabs=TRUE, escape = F, 
+            caption = 'Steps outlined for calculating system velocity, $v$, using the 2-variable toy data as an example.')
+# %>% 
+  # column_spec(1:9, width = "2cm")
+```
+
+### Velocity performance under various conditions in the two-variable toy system
+```{r simV}
+# The following sections require a simulated dataset to be presnt in the results file. If it does not exist, this code chunk will run the (expensive!) simulations in the source code!
+files <- list.files("./chapterFiles/velocity/simResults", pattern= "mean_x1")
+if(is.null(files)){
+  source("./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R")
+}
+dist.sim <- do.call("rbind", lapply(paste0("./chapterFiles/velocity/simResults/",files),
+		feather::read_feather))
+```
+```{r simVplot1, eval=FALSE, fig.cap = "Velocity ($v$$) generally increases as the total change in the mean value of $\\bar{x}_{1_{t=50}}$ increases. This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\\sigma = 5$, $\\bar{x}_1 = 25 when t<50,  $\\bar{x}_2 = 50 when t >= 50$, $\\bar{x}_1 = 25 when t <50$."}
+ggplot(data = dist.sim %>% filter(sim.num==666, t==51), 
+       aes(x = as.integer(mean.sim), y = dsdt))+
+  geom_line()+
+  theme_bw()+
+  ylab(expression(paste("velocity, ",italic("v"), " at ", italic("t = 51"))))+
+  xlab(expression(paste("total change in ", bar("x")[1], " at ", italic("t = 50"))))
+```
+To determine whether the rapid shift in $v$ observed in the toy system is sensitve to the total change in $\bar{x}_{1_{pre}}$ and  $\bar{x}_{1_{post}}$ (Fig. \@ref(fig:velocSysEx1)), I simulated $10,000$ iterations of the toy system across a range of $\bar{x}_{1_{post}}$ (from $\bar{x}_1 = 15$ to $\bar{x}_1 = 100$, at intervals of $5$). As expected, the magnitude of $v$ increased linearly as the total difference between $\bar{x}_{1_{pre}} and \bar{x}_{1_{post}}$ increase (\@ref(fig:simVplot2))
+```{r simVplot2, fig.cap = "Change in velocity ($v$$) as the total change in the mean value of $\\bar{x}_{2_{t=50}}$ over 1,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\\sigma = 5$, $\\bar{x}_2 = 25 when t<50,  and changes in variable mean values, $\\bar{x}_2 = 50 when t >= 50$, $\\bar{x}_1 = 25 when t <50$."}
+dist.sim.reduced <- dist.sim %>% filter(t==51) %>% 
+         group_by(mean.sim) %>% 
+         mutate(dsdt.sim.mean  = mean(dsdt), 
+                sd.sim    = sd(dsdt), 
+                lower     = dsdt.sim.mean - 1.96*sd.sim, 
+                upper     = dsdt.sim.mean + 1.96*sd.sim
+                ) %>% 
+         distinct(mean.sim, sd.sim, lower, upper, dsdt.sim.mean) %>% 
+  ungroup() %>% 
+  mutate(mean.sim = as.integer(mean.sim))
+
+ggplot(data = dist.sim.reduced)+
+ geom_ribbon(aes(x = mean.sim, ymin = lower , ymax = upper), fill = "grey70") +
+    geom_line(aes(x = mean.sim,  y = dsdt.sim.mean))+
+    theme_bw()+
+  ylab(expression(paste("velocity, ",italic("v"), " at ", italic("t = 51"))))+
+  xlab(expression(paste("total change in ", bar("x")[1], " between ", italic("t = 50"), " and ", italic("t = 51"))))+
+  ggtitle(expression(paste("Mean ",  italic("v")," (± 2 SD) over ", 1e4, " iterations")))
+```
+
+
+```{r velocSysEx2, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Change in means ($\\bar{x}_{1_{pre}}=25$, $\\bar{x}_{1_{post}}=100$, $\\bar{x}_{2_{pre}}=50$, $\\bar{x}_{2_{post}}=10$) and an increase in variance ($\\sigma_{1_{pre}}=2$, $\\sigma_{1_{post}}=10$, $\\sigma_{2_{pre}}=5$,  $\\sigma_{2_{post}}=10$)."}
+x_1 = c(rnorm(mean = 25, sd = 2, n=50), rnorm(mean =100, sd = 10, n=50))
+x_2 = c(rnorm(mean = 50, sd = 5, n=50), rnorm(mean =10, sd = 10, n=50))
+t = 1:length(x_1)
+df  = data.frame(t, x_1, x_2) %>% 
+  tidyr::gather(key = "variable", value = "value", -t) 
+dist <- df %>% 
+  mutate(cellID = 1) %>% 
+  rename(sortVar = t) %>% 
+  regimeDetectionMeasures::calculate_distanceTravelled()
+dsdtPlot(dist=dist, df=df, div = 1)+
+  ggtitle(
+  expression(paste("change in mean & variance (x"[1], ", x"[2], ")"))
+)
+```
+ 
+```{r velocSysEx3, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\\bar{x}_1=25$, $\\bar{x}_2=50$) and sharp change in variance for one state variable $\\sigma_{1_{pre}} = 2$, $\\sigma_{1_{post}} = 12$, $\\sigma_{2_{pre,post}} = 5$"}
+x_1 = c(rnorm(mean = 25, sd = 2, n=50), rnorm(mean =25, sd = 12, n=50))
+x_2 = c(rnorm(mean = 50, sd = 5, n=50), rnorm(mean =50, sd = 5, n=50))
+t = 1:length(x_1)
+df  = data.frame(t, x_1, x_2) %>% 
+  tidyr::gather(key = "variable", value = "value", -t) 
+dist <- df %>% 
+  mutate(cellID = 1) %>% 
+  rename(sortVar = t) %>% 
+  regimeDetectionMeasures::calculate_distanceTravelled()
+dsdtPlot(dist=dist, df=df, div = 1)+
+  ggtitle(
+  expression(paste("constant mean, variance increase (x"[1], ")"))
+)
+```
+
+```{r velocSysEx4, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Variance equal to mean ($\\bar{x_i}=\\sigma x_i$), where means ($\\bar{x}_{1_{pre}}=25$, $\\bar{x}_{1_{post}}=50$, $\\bar{x}_{2_{pre}}=15$, $\\bar{x}_{2_{post}}=150$)."}
+x_1 = c(rnorm(mean = 25, sd = 25, n=50), rnorm(mean =50, sd = 50, n=50))
+x_2 = c(rnorm(mean = 15, sd = 15, n=50), rnorm(mean =150, sd = 150, n=50))
+t = 1:length(x_1)
+df  = data.frame(t, x_1, x_2) %>% 
+  tidyr::gather(key = "variable", value = "value", -t) 
+dist <- df %>% 
+  mutate(cellID = 1) %>% 
+  rename(sortVar = t) %>% 
+  regimeDetectionMeasures::calculate_distanceTravelled()
+dsdtPlot(dist=dist, df=df, div = 1)+
+  ggtitle(
+  expression(paste("changing means, variance = mean"))
+)
+```
+
+
+## Discussion
+
+In this chapter, I described the steps for calculating a novel regime detection metric, system velocity ($v$). System velocity was first described in @fath_regime_2003 as a single step for caclulating a more complicated regime detection metric, Fisher Information (see also Chapter \@ref(fiGuide)). System velocity is arguably simple to calculate, as shown in this chapter, captures the total change in system variables under a variety of mean and variance conditions. The metric does not, however, perform well when (Fig. \@ref(sysExN)).
+
+
+Variance is a commonly-used indicator of ecological regime shifts, however, fails to perform when the number of variables is  >> a few. System velocity, $v$, may be useful in situations where the number of state variables is much greater than a few. 
+
+
+

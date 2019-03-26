@@ -449,27 +449,32 @@ Survey}\label{data-north-american-breeding-bird-survey}
 
 \subsubsection{Spatial sampling grid}\label{spatial-sampling-grid}
 
-\subsection{Fisher Information (FI)}\label{fisher-information-fi}
+\subsection{Calculating Fisher Information
+(FI)}\label{calculating-fisher-information-fi}
 
-\subsubsection{Interpreting FI}\label{interpreting-fi}
+\subsection{Interpreting and comparing Fisher Information across spatial
+transects}\label{interpreting-and-comparing-fisher-information-across-spatial-transects}
 
-\subsection{Efficacy of Fisher Information as a spatial
-RDM}\label{efficacy-of-fisher-information-as-a-spatial-rdm}
+\subsubsection{Interpreting FI values}\label{interpreting-fi-values}
 
-\subsubsection{Linear interpolation of Fisher
-Information}\label{linear-interpolation-of-fisher-information}
+\subsubsection{Interpolating results across spatial
+transects}\label{interpolating-results-across-spatial-transects}
 
-\subsubsection{Correlation of Fisher Information among adjacent spatial
-tranects}\label{correlation-of-fisher-information-among-adjacent-spatial-tranects}
+\subsubsection{Spatial correlation of Fisher
+Information}\label{spatial-correlation-of-fisher-information}
 
 \section{Results}\label{results-1}
 
-\subsection{Fisher Information}\label{fisher-information}
+\subsection{Fisher Information across spatial
+transects}\label{fisher-information-across-spatial-transects}
 
-\subsection{Efficacy of Fisher Information as a spatial
-RDM}\label{efficacy-of-fisher-information-as-a-spatial-rdm-1}
+\subsection{Spatial correlation of Fisher
+Information}\label{spatial-correlation-of-fisher-information-1}
 
 \section{Discussion}\label{discussion-1}
+
+\subsection{Efficacy of Fisher Information as a spatial
+RDM}\label{efficacy-of-fisher-information-as-a-spatial-rdm}
 
 \chapter{Data Quality Impacts on Regime Detection
 Measures}\label{resampling}
@@ -482,7 +487,7 @@ Placeholder
 
 \subsection{Study system and data}\label{study-system-and-data}
 
-\subsection{Distance travelled metric}\label{distance-travelled-metric}
+\subsubsection{Step 1:}\label{step-1}
 
 \section{Results}\label{results-2}
 
@@ -490,27 +495,185 @@ Placeholder
 
 \section{Ackowledgements}\label{ackowledgements}
 
-\chapter{System velocity: rate-of-change of a system's trajectory in
-phase space as an indicator of abrupt change in high-dimensional
-data}\label{velocity}
+\chapter{\texorpdfstring{Velocity (\(v\)): rate-of-change of system
+trajectory as a dimension reduction technique and potential indicator of
+abrupt
+change}{Velocity (v): rate-of-change of system trajectory as a dimension reduction technique and potential indicator of abrupt change}}\label{velocity}
 
 \section{Introduction}\label{introduction-4}
 
-\appendix
+Dimension reduction techniques and RDms blablbah In this Chapter I
+describe the steps for calculating a `new' metric, \textbf{system
+velocity}, for reducing the dimensionality and identifying abrupt shifts
+in high dimensional data. Although this is the first instance of this
+calculation to, alone, be suggested as a regime detection metric, it has
+been used as part of a larger series of calculations of the Fisher
+Information metric {[}see \ref{fiGuide}{]}, first introduced in Fath,
+Cabezas, \& Pawlowski (2003). Below, I describe the steps for
+calculating system velocity, simply defined as the cumulative sum of the
+squared change in all state variables over a period of time.
+
+\section{Example system}\label{example-system}
+
+Consider a system (Fig. \ref{fig:sysEx}) with \(N\) state variables
+(\(x_i\)), with observations taken at time points, \(t\). System
+velocity is calculated as the cumulative sum over time period \(t_0\) to
+\(t_j\), as the total change in all state variables, \{\(x_1 ...x_N\)\},
+between two adjacent time points, e.g., \(t_j\) and \(t_{j+1}\), denoted
+\(t_{j,j+1}\). I use a simple, two-variable system to demonstrate the
+calculation of each step below. The system comprises variables \(x_1\)
+and \(x_2\), with observations occurring at each time point
+\(t = {1,2,3,...100}\).
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx-1} 
+
+}
+
+\caption{The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$, and constant variance.}\label{fig:sysEx}
+\end{figure}
+\section{\texorpdfstring{Steps for calculating system velocity,
+\(v\)}{Steps for calculating system velocity, v}}\label{steps-for-calculating-system-velocity-v}
+
+First, we calculate the change in each state variable, \(x_i\), between
+two adjacent points in time, \(t_j\) and \(t_{j+1}\), such that the
+difference, \(x_{t_{j+1}} - x_{t_j}\) is assigned to the latter time
+point, \(t_{j+1}\). For example, in our toy data, we use observations at
+time points \(t = 1\) \& \(t=2\) (Fig. \ref{fig:sysEx2}). In this
+example, the change in values for state variable \(x_1\) from time point
+1 to 2, is:
+\begin{equation}
+\begin{array}{rcr}
+\Delta x_1 = x_{1_{t=2}} - x_{1_{t=1}} \\
+\Delta x_2 = x_{2_{t=2}} - x_{1_{t=1}}
+  \end{array}
+\label{eq:diffX}
+\end{equation}
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx2-1} 
+
+}
+
+\caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
+\end{figure}
+After calculating the differences for each state variable, we will next
+calculate the total change in the system over the time elapsed,
+following Pythagora's theorem,
+\begin{equation}
+ X_1^2 + X_2^2 = s^2 
+  \label{eq:pythagorean}
+\end{equation}
+where \(s\) represents the total change in the system, and \(X_1\) and
+\(X_2\) represent the changes in all state variables
+(\(x_{i_{t=2}} - x_{i_{t=1}}\)). We achieve this by first squaring the
+differences obtained in Eq. \eqref{eq:diffX}:
+\begin{equation}
+\begin{array}{rcr}
+(x_{1_{t=2}} - x_{1_{t=1}})^2  \\
+(x_{2_{t=2}} - x_{2_{t=1}})^2 
+\end{array}
+  \label{eq:diffXsq}
+\end{equation}
+Next, we isolate \(s\) in Eq. \eqref{eq:pythagorean}, capturing the total
+change in all state variables into a single measure by taking the 2nd
+root of the squared sums of all \(x\):
+\begin{equation}
+\begin{array}{rcr}
+\sum_{i=1}^{N} \Delta {x_i} = \sum_{i=1}^{N}(x_{t_{i+1}} - x_{t_i})^2 \\ 
+\ = \Delta s \\ 
+\ = \sqrt([x_{1_{t=2}} - x_{1_{t=1}}]^2 + [x_{2_{t=2}} - x_{2_{t=1}}]^2)
+\end{array}
+\label{eq:diffXsq2}
+\end{equation}
+We now have a single measure, \(\Delta s\) (Eq. \eqref{eq:diffXsq2}), for
+each pair of time points in our \(N\)-dimensional system. It is obvious
+that \(\Delta s\) will always be a positive value, since we took the 2nd
+root of a squared value. Although discussed in a later section, it is
+important to note that this value is not unitless--that is, our example
+system takes on the units of our state variables, \(x_1\) and \(x_2\).
+Because we are interested in identifying abrupt changes in the entire
+system, we calculate the cumulative sum of \(\Delta s\) at every time
+point, such that:
+\begin{equation}
+s = \sum_{t=1}^T \Delta s
+\label{eq:s}
+\end{equation}
+Finally, we calculate the \textbf{system velocity}, \(v\) (or
+\(\frac {\Delta s}{\Delta t}\)), by first calculating the change in
+\(s\) (Eq. \eqref{eq:s}), and then divide by the total time elapsed
+between consecutive sampling points:
+\begin{equation}
+ v = \frac {s_{t+1}-s_{t}}{\Delta t} 
+\label{eq:velocity}
+\end{equation}
+The steps for calculating velocity {[}Eq. \eqref{eq:velocity}{]} are
+demonstrated using the first five time points of our toy system (Fig.
+\ref{fig:sysEx}) in Table \ref{tab:distTab}.
+\begin{table}[t]
+
+\caption{\label{tab:distTab}Steps outlined for calculating system velocity, $v$, using the 2-variable toy data as an example.}
+\centering
+\begin{tabular}{ccccccccc}
+\toprule
+t & $x_1$ & $x_2$ & $\Delta x_1$ & $\Delta x_2$ & $\Delta t$ & $\sqrt(\sum_{i=1}^N(\Delta x_i^2)) $ & $s$ & $v$\\
+\midrule
+1 & 22.198 & 21.448 &  &  &  &  &  & \\
+2 & 23.849 & 26.284 & 1.651 & 4.836 & 1 & 5.111 & 5.111 & \\
+3 & 32.794 & 23.767 & 8.944 & -2.518 & 1 & 9.292 & 14.403 & 9.292\\
+4 & 25.353 & 23.262 & -7.441 & -0.504 & 1 & 7.458 & 21.861 & 7.458\\
+5 & 25.646 & 20.242 & 0.294 & -3.020 & 1 & 3.035 & 24.895 & 3.035\\
+\bottomrule
+\end{tabular}
+\end{table}
+\section{Velocity as an indicator of abrupt changes in means and
+variance}\label{velocity-as-an-indicator-of-abrupt-changes-in-means-and-variance}
+
+Variance is a commonly-used indicator of ecological regime shifts,
+however, fails to perform when the number of variables is
+\textgreater{}\textgreater{} a few.
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx2-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx3-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx4-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Variance equal to mean ($\bar{x_i}=\sigma x_i$), where means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=50$, $\bar{x}_{2_{pre}}=15$, $\bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
+\end{figure}
+\section{Discussion}\label{discussion-3}
 
 \chapter*{Appendix A}\label{rRDM}
 \addcontentsline{toc}{chapter}{Appendix A}
 
-This appendix contains the vignette associated with the R Package,
-\texttt{rRDM}. Development source code for this package is available on
-GitHub as a compressed file,
-\url{https://github.com/TrashBirdEcology/rRDM/archive/master.zip} or
-\url{https://github.com/TrashBirdEcology/rRDM}.
+Placeholder
 
 \chapter*{References}\label{references}
 \addcontentsline{toc}{chapter}{References}
 
 Placeholder
+
+\hypertarget{refs}{}
+\hypertarget{ref-fath_regime_2003}{}
+Fath, B. D., Cabezas, H., \& Pawlowski, C. W. (2003). Regime changes in
+ecological systems: An information theory approach. \emph{Journal of
+Theoretical Biology}, \emph{222}(4), 517--530.
+\url{http://doi.org/10.1016/S0022-5193(03)00067-5}
 
 
 \end{document}
