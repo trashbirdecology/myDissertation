@@ -18,7 +18,6 @@ chapterFiles/appendix_paleoExample/plots/*.png
 *.pdf
 *.md
 # Ignore all pngs except those called in dissertation (hopefully)
-*.png 
 !figsCalledInDiss/*.png 
 # remove log files
 *.log
