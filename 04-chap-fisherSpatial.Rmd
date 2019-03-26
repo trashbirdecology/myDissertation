@@ -1,0 +1,183 @@
+# An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
+# Chunk defaults
+require(knitr)
+knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center', fig.pos = 'h',
+                      out.width = "95%")
+```
+
+```{r fiSpatAnalysis}
+## Only run this if you need to calculate more metrics, or fix them.
+# you need to go into this (line 158) and specify parameters for calculating metrics.
+# ('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')
+```
+
+```{r dirsfiSpat}
+figDir <- "./chapterFiles/fisherSpatial/figures"
+figDissDir <- "./chapterFiles/fisherSpatial/figures/figsCalledInDiss"
+```
+## Introduction    
+Ecosystems are open, dynamical systems which arguably cannot be fully represented by deterministic models. Despite the complexity of most ecological systems, some patterns have emerged in certain statistical mechanics of ecological observations. An uptick in recent years ofstudies of **regime shifts**^[see \@ref(glossary) for a definition] in ecology [\@ref(wosRegimePubsByYear)] has spurred an increase in the number of 'new' methods for detecting ecological regime shifts [\@ref(rdmReview)], some of which are proposed as indicators of 'spatial' regime shifts [@butitta_spatial_2017, @kefi2014early, @sundstrom2017detecting, @guttal2009spatial, @brock_variance_2006]. 
+
+As defined in \@ref(Glossary), a regime shift is largely considered an abrupt and persistent change in a system's structure or functioning. Following this definition and without any associated **pressures** \@ref(Glossary), it is not yet clear whether identifying a 'spatial regime' using a snapshot of a system (a single or short period of time relative to the time scale of the pressure) is pragmatic. One spatial regime detection measure (hereafter, SRDM) is variance [@brock_variance_2006], despite its controversial applicability to temporal data [@burthe2015early, @dutta2018robustness, @perretti2012regime, @sommer2017generic, @bestelmeyer_analysis_2011]. 
+
+Defining the spatial regime shift is important since observations of non-random spatial processes (e.g., land cover), could manifest as either rapid shift (e.g. an ecotone) or a gradual change (slow mixing along a gradient). Consequently, and because most RDMs signal abrupt change, only the former may be identified as "regime shifts" using SRDMs. For the concept of spatial regimes to be ecologically useful, potential pressures must be associated with system structure over space *and* time. Additionally and perhaps more importantly, the processes driving the observed information (drivers, pressures ) should be such that a statistically identified regime shift will roughly correspond with the time scale on which the pressure(s) operate. 
+
+Although it is suggested that statistical and pragmatic models and methods are advanced more rapidly by bottom-up approaches, i.e. case studies [see @deangelis2017spatially], to my knowledge no studies have yet to test the rigor of SRDMs using spatially-explicit empirical data. The objective of this chapter is to determine the utility of Fisher Information (Eq. \@ref(eq:fiDerivs)) as a spatial regime detection measure. This chapter is also supported by original software developed for implementation in Program R, which is publicly available [\@ref(burnett2019regime)].
+
+## Data and Methods  
+### Data: North American Breeding Bird Survey  
+I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \@ref(derivatives)). The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data.  Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880). 
+```{r bbsPoints,echo = FALSE,   out.width="85%", fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
+knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png"))
+```
+
+### Study area
+Although the NABBS conducts surveys throughout much of North America, I limited analyses to the continental United States and parts of southern Canada. NABBS coverage of the boreal forests of Canada are sparse in space, and many routes in Mexico have fewer than 25 years of observations. 
+```{r ewRouteMap, echo = FALSE,  out.width="85%", fig.cap = 'A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information.'}
+knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_1row.png"))
+```
+#### Focal military base
+The Mission of the US Department of Defense is to provide military forces to deter war and protect the security of the country, and a primary objective of individual military bases is to maintain military readiness. To maintain readiness, military bases strictly monitor and manage their natural resources. Military bases vary in size and nature, and are heterogeneously distributed across the continental United States (See Fig. \@ref(fig:ewRouteMap)). The spread of these bases (Fig. \@ref(fig:milBases)), coupled with the top-down management of base-level natural resources presumably influences the inherent difficulties associated with collaborative management within and across military bases and other natural resource management groups (e.g., state management agencies, non-profit environmental groups.
+
+Much like other actively managed landscapes, miltiary bases are typically surrounded by non- or improperly-managed lands. Natural resource managers of military bases face environmental pressures within and surrounding their properties, yet their primary objectives are very different. Natural resource managers of military bases, whose primary objective is to maintain military readiness, are especially concerned with if and how broad-scale external forcings might influence their lands. Prominent concerns include invasive species, wildlife disease, and federally protected species (personal communication with Department of Defense natural resource managers at Eglin Air Force and Fort Riley military bases). For these reasons, natural resource managers attempt to create buffers along their perimeters (e.g., live fire/ammunitions suppression, wide fire breaks). Identifying the proximity of military bases to historic and modern ecological shifts may provide insight into the effectiveness of their natural resource management efforts.
+```{r milBases, echo = FALSE, fig.align='center',  out.width="85%", fig.cap = 'Locations of U.S. military bases in our study area.'}
+knitr::include_graphics( paste0(figDissDir, "/milBases.png"))
+```
+
+The NABBS routes chosen for analyses in this Chapter lie within or near Fort Riley military base (located at approximately $39.110474^{\circ}$, $-96.809677^{\circ}$; Kansas, USA). Fort Riley (\@ref(fig:basesOfInterestMap)) is a useful reference site for this study.  Woody encroachment of the Central Great Plains over the last century has triggered shifts in dominant vegetative cover and diversity (Ratajczak et al. 2012) in the area surrounding Fort Riley military base (e.g., Van Auken 2009). This phenomena should present itself as a regime boundary should Fisher Information be a robust regime shift detection method. 
+<!-- The natural resource management teams are active on each base and have been for at least two decades and each uses wildfire as a management technique. Fort Riley military base is especially relevant to regime shift detection method exploratory analysis. -->
+<!-- Eglin Air Force base is embedded within a heavily developed matrix, and consequently has experienced less pronounced effects at broad spatial extent and over longer periods. Therefore, the ecological communities (and the data) surrounding Eglin Air Force base may exhibit a greater amount of noise, making the effect size of a regime shift and consequently the effect size smaller and more difficult to detect. For these reasons, Eglin Air Force and Fort Riley military bases are ideal locations for an exploratory analysis of the Fisher Information as an SRDM.  -->
+```{r basesOfInterestMap, echo = FALSE, fig.align='center',  out.width="85%", fig.cap = 'Locations of focal U.S. military bases, Eglin Air Force Base (AFB) and Fort Riley Military Base.'}
+knitr::include_graphics(paste0(figDissDir, "/basesOfInterestMap.png"))
+```
+
+#### Spatial sampling grid  
+To my knowledge, @sundstrom_detecting_2017 is the only study to use the Fisher Information on spatially-referenced data. The authors of this study hand-picked NABBS routes to be included in their samples such that their metrics should detect 'regime changes' when adjacent sampling points represented different ecoregions (broad-scale vegetation classification system). The authors also suggest each ecoregion is similarly represented, having a similar number of NABBS routes within each ecoregion in the analysis. However, this method of handpicking routes resulted in a transect which was neither North-South nor East-West running (see @sundstrom_detecting_2017), but rather zigzagged across a midwestern region.   
+
+```{r ewRoutesUsedHere, echo = FALSE,   out.width="85%", fig.cap = 'The three East-West running transects used to visualize results in this chapter.'}
+knitr::include_graphics(paste0(figDissDir, "/transectSamplingALlRoutesUsed.png"))
+```
+
+I constructed a gridded system across the continental United States and parts of Canada. The gridded system comprises East-West running transects transects running in either North-South or East-West directions.  This method ameliorates some sampling bias, as I have arbitrarily defined sampling transects, rather than hand-picking sites to include in the analysis. Additionally, this approach allows for raster stacking, or layering data layers (e.g., vegetation, LIDAR, weather) on top of the sampling grid and results, allowing one to identify potential relationships with large-scale drivers. This method also provides a simple vector for visualizing changes in the Fisher Information over space-time, using animations and still figures. For brevity, I present visual results of only three, spatially-adjacent, East-West running transects (Fig. \@ref(fig:ewRoutesUsedHere)) at multiple time periods. 
+
+### Calculating Fisher Information (FI) 
+Fisher Information, $I(\theta)$, was developed in 1922 by Ronald Fisher as a measure of the amount of information that an observable variable, X, reveals about an unknown parameter, $\theta$. Fisher Information is a measure of indeterminacy (Fisher 1922) and is defined as,
+\begin{equation} 
+  I(\theta) = \int \frac{dy}{p(y|\theta)}\left[\frac{dp(y|\theta)}{d\theta}\right]^2
+  (\#eq:fiGeneral1922)
+\end{equation}
+where $p(y|\theta)$ is the probability density of obtaining the data in presence of $\theta$. The Fisher Information measure (FIM) is used to calculate the covariance matrix associated with the likelihood, $p(y|\theta)$. Fisher Information is described as Extreme Physical Information (EPI; Frieden and Soffer 1995, Kibble 1999, Frieden et al. 2002), a measure that has been used to track the complexity of systems in many scientific disciplines including, physics, cancer research, electrical engineering, and, recently, complex systems theory and ecology
+
+Fisher Information as gathered from observational data provides insight as to the dynamic order of a system, where an orderly system is one with constant (i.e., unchanging) observation points, and one whose nature is highly predictable. A disorderly system is just the opposite, where each next data point is statistically unpredictable. In ecological systems, patterns are assumed to be a realization of ecosystem order; therefore, oneshould expect orderliness in a system with relatively stable processes and feedbacks. Orderliness, however, does not necessarily infer long-term predictability. \@ref(eq:fiGeneral1922) is next adapted to estimate the dynamic order of an entire system, $s$, as
+\begin{equation} 
+  I = \int \frac{ds}{p(s)}\left[\frac{dp(s)}{ds}\right]^2
+\end{equation}
+
+where $p(s)$ is the probability density for $s$. Here, a relatively high Fisher Information value ($I$) infers higher dynamic order, whereas a lower value (approaching zero) infers less orderliness. To limit the potential values of $I$ in real data, we can calculate the amount of Fisher Information by re-expressing it in terms of a probability amplitude function $q(s)$ (Fath et al. 2003, Mayer et al. 2007, eq. 7.3): 
+
+\begin{equation}
+  I = 4 \int ds\left[\frac{dq(s)}{ds}\right]^2
+  (\#eq:fiAmp)
+\end{equation}
+
+A form specific to the pdf of distance travelled by the entire system, which I call the 'derivatives' method, is defined as [@mayer_applications_2007, eq. 7.12]:
+\begin{equation}
+  I = \frac{1}{T} \int_0^T dt\left[\frac{s''^2}{s'^4}\right]^2
+  (\#eq:fiDerivs)
+\end{equation}
+where T is the number of equally spaced time points over which the data are integrated. Numerical calculation of $I$ using the binning method (Eq. \@ref(eq:fiAmp) and \@ref(eq:derivativesFI)) each incorporate a moving-window procedure for calculating the probability of the system, $p(s)$, as being in one of an unidentified number of states ($s$). Although previously applied to spatially-explicit terrestrial community data,the binning method (Eq. \@ref(derivatives)) requires multiple parameters to be defined *a priori*, which have been shown to influence inference based on the metric. I therefore calculated FI using the derivatives equation (Eq. \@ref(fiDerivs)).
+
+The binning procedure allows for a single point in time or space to be categorized into more than one state, which violating the properties of alternative stable states theory. The size of states (see Eason and Cabezas 2012) measure is required to construct p(s). In the case of high dimensional data, a univariate binning procedure of p(s) is not intuitive (i.e., reducing a multivariable system to a single probability distribution rather than constructing a multivariate probability distribution). Importantly, when using community or abundance data, rare or highly abundant species can influence the size of states criterion, thus influencing the assignment of each point into states. Finally, Eq. \@ref(eq:fiAmp) assumes equal spacing (in space or time) between sampling points. Each of these violations can be avoided by using Eq. \@ref(eq:fiDerivs); Cabezas and Fath 2002, Fath et al. 2003) to calculate the Fisher Information measure. The derivatives method (Eq. \@ref(eq:fiDerivs)) estimates the trajectory of the system's state by calculating the integral of the ratio of the system's acceleration and speed in state space [@fath_regime_2003]. I calculated Fisher Information using Equation \@ref(eq:fiDerivs) for all East-West transect (see Fig. \@ref(fig:ewRoutesUsed)) for years 1980, 1990, 2000, and 2010.  
+
+### Interpreting and comparing Fisher Information across spatial transects
+#### Interpreting FI values 
+Here I define a potential regime change as a point(s) having a non-zero derivative, and at which  relatively large changes (sharp increase or decrease) in the Fisher Information measure occur. Regime shifts are identified as data changing from one state to another, thus, rapid shifts in the value of FI should indicate the points, in time or space, at which the system undergoes reorganization. Spatial and temporal Fisher Information calculation does not vary, but interpretation of either differ in that a spatial analysis will identify a spatial regime boundary [@sundstrom_detecting_2017] in space within a single time period, whereas analysis of temporal data will identify a point(s) in time at which a system in a specific location undergoes a regime shift. I follow the methods outlined in the relevant literature for interpreting the Fisher Information [e.g., @karunanithi_detection_2008, @eason_evaluating_2012].
+
+Increases in FI is proposed as an indicator of system orderliness, where periods of relatively high values of FI indicate the system is in an "orderly" state, or is fluctuating around a single attractor. A rapid change in FI is supposed to indicated the system is no longer orderly and may be undergoing a reorganization phase. Whether Fisher Information can identify a switch among basins of attraction within a single, stable state (or around a single attractor) remains unknown, as does the number of states which a system can occupy. When a system occurs within any number of states equally, i.e., p(s) is equal for each state, both the derivative, ($\frac{dq(s)}{ds}$, and $I$ are zero. As $(\frac{dq(s)}{ds} \rightarrow \infty)$, we infer the system is approaching a stable state, and as $\frac{dq(s)}{ds} \rightarrow 0$  the system is showing no preference for a single stable state and is on an unpredictable trajectory. \@ref(eq:fiAmp)  bounds the potential values of Fisher Information at $[0, 8]$, whereas \@ref(eq:fiGeneral1922), \@ref(eq:fi73c), and \@ref(eq:derivativesFI) have are positively unbounded $[0, \infty)$. If the Fisher Information is assumed to represent the probability of the system being observed in some state, $s$, then the absolute value of the Fisher Information index is relative within a single datum (here, transect). It follows that Fisher Information should be interpreted relatively, but not absolutely.
+
+
+#### Interpolating results across spatial transects
+Because the BBS routes are not regularly spaced, pairwise correlations of adjacent transects are not possible without either binning the Fisher Information calculations using a moving-window analysis, or interpolating the results to regularly-spaced positions in space. To avoid potential biases associated with the former option, I linearally interpolated Fisher Information within each spatial transect (Fig. \@ref(fig:ewRoutesUsedHere)) at 50 points along the longitudinal axis. The 50 longitudinal points at which I interpolated were the same across each spatial transect. I used the function *stats::approx()* to linearly approximate the Fisher Information. I did not interpolate values beyond the longitudinal range of the original data (using argument *rule=1* in package *approx*). 
+
+
+```{r oneTsectEx, echo = FALSE,   out.width="85%", fig.cap = 'An example of two adjacent spatial transects within my sampling grid.'}
+knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_1row.png"))
+```
+
+#### Spatial correlation of  Fisher Information 
+If Fisher Information captures and reduces information regarding abrupt changes in community structure across the landscape, then the values of FI should be spatially autocorrelated. That is, the correlation of FI values should increase as the distance between points decreases. Fisher Information values calculated using Eq. \@ref(eq:derivativesFI) are **not** relatively comparable outside of our spatial transects, because the possible values are unbounded (can take on any value between $-\infty$ and $%\infty$. However, because FI is directly comparabe **within** each spatial transect (e.g., \@ref(fig:oneTsectEx)), we can use use pairwise correlations among two transects (e.g., \@ref(fig:oneTsectEx)) to determine whether values of FI are consistent across space. I calculate the pairwise correlation (Pearson's) among each pair of adjacent spatial transects (e.g., Fig. \@ref(fig:adjacentTsectEx)) using the function *stats::cor()*. I removed a pair of points if at least one point was missing an estimate for Fisher Information. This occurred when the original longitudinal range of one transect exceeded its pair's range, since I did not interpolate beyond the original longitudinal range.
+```{r adjacentTsectEx, echo = FALSE,   out.width="85%", fig.cap = "An example of two adjacent spatial transects (12, 13) within my sampling grid."}
+knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_2rows.png"))
+```
+## Results  
+### Fisher Information across spatial transects
+Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of 'spatial regimes' (Fig. \@ref(fig:fi1Tsect)). Of the three spatial transects analyzed in this chapter (Fig. \@ref(fig:ewRoutesUsedHere)), Fig.\@ref(fig:fi1Tsect) is representative of lack of pattern observed in teh Fisher Information values aross transects. I identified no clear pattern within or among spatial transects. Log-transforming the Fisher Information metric suppresses some of the extreme values, but still does not clearly identify sharp changes in the Fisher Information values. 
+```{r fi1Tsect, echo = FALSE,  out.width="85%", fig.cap="Fisher Information calculated for a single transect over time."}
+knitr::include_graphics(paste0(figDissDir,  "/transect_12_East-West_metric_FI_Eqn7_12.png"))
+```
+
+```{r usaFI, eval=FALSE, echo = FALSE,  out.width="85%", fig.cap="Fisher Information of 5 East-West spatial transects over time."}
+knitr::include_graphics(paste0(figDissDir,  "/usaAllTsects_East-West_metric_FI.png"))
+knitr::include_graphics(paste0(figDissDir, "/usaAllTsects_East-West_metric_logScaleFI.png"))
+```
+
+### Spatial correlation of Fisher Information
+In addition to failing to identfiy clear geological boundaries across large swaths of our study area, (Fig \@ref(fig:usaFI)) I also did not identify spatial correlation of Fisher Information among adjacent spatial transects (Fig. \@ref(fig:corPlotTsectsInterp))^[Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.]. For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Fig. \@ref(fig:corPlotTsectsInterp)), we should expect high and positive correlation values, and these values shoudl stay consistent across time *unless* the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Fig. \@ref(ewRoutesUsedHere)), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Fig. \@ref(ewRoutes_ecoRegions)). Note spatial transects in Fig. \@ref(fig:ewRoutes_ecoRegions) overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these points (boundaries).
+
+```{r ewRoutes_ecoRegions, eval=TRUE, out.width="75%", echo = FALSE,  fig.cap=""}
+# Routes used in this chapter analysis. 
+# for some reason, when i include a caption on this chunk it fucking fails, saying the caption is beyond float, despite the length of hte caption,...
+knitr::include_graphics(paste0(figDissDir,  "/allRoutesUsed_ecoregions.png"))
+```
+
+```{r corPlotTsectsInterp,echo = FALSE,   out.width="85%", fig.cap="Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time. "}
+knitr::include_graphics(paste0(figDissDir,  "/interpolated_FI_corplotSelectTransects_East-West.png"))
+```
+
+```{r corPlotTsectsInterpLog, eval=FALSE,echo = FALSE,  out.width="85%", fig.cap="Pairwise relationships of Fisher Information (interpolated values on the log-scale) of spatially adjacent transects over time."}
+knitr::include_graphics(paste0(figDissDir,  "/interpolated_FI_corplotSelectTransects_East-West_log.png"))
+```
+
+```{r fiSinglePair, echo = FALSE,  out.width="85%", fig.cap="Fisher Information of two transect pairs over time. "}
+knitr::include_graphics(paste0(figDissDir,  "/interp_FI_singlePair_corPlot_East-West.png"))
+```
+
+```{r fiEcoregion, echo = FALSE,  out.width="85%", fig.cap="No patterns of abrupt change detected in Fisher Information along three transects in year 2010"}
+knitr::include_graphics(paste0(figDissDir,  "/scaledFiInterpolated_year2010_zoom_East-West.png"))
+```
+
+Upon initial investigation, there are no obvious signs of broad-scale patterns in FI across space (Fig. \@ref(fig:fiEcoregion))^[ Size indicates value of Fisher Information (values are scaled and centered within transects). Red box (in top panel) indicates extent of bottom panel.]. If Fisher Information is an indicator of spatial regime boundaries, we should expect to see large changes in its value (in either direction) near the edges of functional spatial boundaries (e.g., at the boundaries of ecoregions). No clear regime changes appeared in areas where we might expect rapid changes (e.g., along the 105th meridian West, where a sharp change in altitude occurs).
+
+Numerical investigation of the spatial correlation among adjacent transects also yielded no clear patterns. I did not identify any obvious correlation with changes in FI values and functional potential (using Omernick Ecoregion Level 2; see Fig. \@ref(fig:fiEcoregion)). Rather than abrupt changes in Fisher Information I found graduaal changes (e.g., see results for years 2000 and 2010 in Figs. \@ref(fig:fiEcoregion00),\@ref(fig:fiEcoregion)).
+
+```{r fiEcoregion00, echo = FALSE,  out.width="85%", fig.cap="Fisher Information (scaled and centered; point size positively correlated with value) against ecoregion boundaries (EPA Level 2)."}
+knitr::include_graphics(paste0(figDissDir,  "/scaledFiInterpolated_year2000_East-West.png"))
+```
+
+
+## Discussion  
+The Fisher Information measure was introduced as a method to avoid some analytical issues related to complex and noisy ecological data [@karunanithi_detection_2008], and has also been suggested as an indicator of *spatial* regimes [@sundstrom_detecting_2017]. I found no evidence suggesting Fisher Information [Eq. \@ref(eq:derivativesFI)] can identify 'spatial regimes'. Further, the absence of autocorrelation among spatially adjacent transects suggests Fisher Information may not be a realiable indicator of changes in bird community structure. 
+
+Although the Fisher Information equation [Eq. \@ref(eq:derivativesFI)] used in this study is a relatively straightforward and fairly inexpensive computational  calculation, extreme care should be taken when applying this index to ecological data. Fisher Information is capable of handling an infinite number of inputs (variables), and given sufficiently low window size paramters, can technically calculate an index value for only two observations. It is important that the user understands the assumptions of identifying 'regime shifts; using Fisher Information, since the efficacy of this method has not been yet subjected to rigorous tests (but see \@ref(resampling)). There are three primary assumptions required when using Fisher Information to estimate relative orderliness within ecological data [@mayer_applications_2007]:   
+1. the order or state(s) ($s$) of the system is observable, 
+1. any observable change in the information observed in the data represents reality and the variables used in the analyses will not produce false negatives, and 
+1. changes in $I$ presumed to be regime shifts do not represent the peaks of cyclic (periodic) patterns.
+
+The first assumption is one of philosophical debate and is thus not controllable. To attempt to control for false negatives, the user should take caution in her choice of input variables. In the the case of a high dimensional data, relativization and/or variable reduction measures may be useful (Rodionov 2005). However, Fisher Information does not convey information on how specific variables relate to the calculated index. Finally, we can take measures to  account for cyclic behavior in the data by ensuring integration periods capture at one full cycle of the system and, given sufficently high number of observations, increasing the integration period may also alleviate some issues related to irreducible error (white noise).
+
+The lack of patterns identified using Fisher Information may be influenced by one or more of the following: (1) the Breeding Bird Survey data collection scheme was designed to estimate and track **species** trends and not changes in entire communities; (2) these data consist of < 50 time points, and for some BBS routes much fewer. Ecological processes affecting large regions in this study area (e.g., the Central Great Plains) operate on larger time scales (i.e., >> 50 points). A mismatch among the ecologically relevant scales and the temporal resolution and extent of our data may influence the ability of this index to capture large-scale changes in whole bird communities.
+
+Aside from the typical biases associated with the BBS data (e.g., species detection probability, observer bias), there are additional considerations to be made when using these data to identify 'spatial regimes'. Breeding Bird Survey routes are spaced apart so as to reduce the probability of observing the same individuals, but birds which fly (especially in large flocks) overhead to foraging or roosting sites have a higher probability of being detected on multiple routes. We have, however, removed these species (waders, shorebirds, waterfowl, herons) from analysis. Regardless, this study assumes there is potential for each unique BBS route to represent its own state. If routes were closer together, it is more probable that the same type adn number of species would be identified on adjacent routes. Therefore, if this method does not detect slight changes in nearby routes which occupy the same 'regime', then it follows that the method is sensitive to loss or inclusion of new species, which are spatially bounded by geological and vegetative characteristics. What new information does this give us about the system? Fisher Information reduces and removes the dimensionality of these middle-numbered systems, which omits critical information. 
+
+Effective regime detection measures should provide sufficient evidence of the drivers and/or pressures associated with the identified regime shifts [@mac2014scrutiny]. The Fisher Information index collapses a wealth of data into a single metric, thereby foregoing the ability to relate state variables to the observed changes in Fisher Information, unlike other dimension reduction techniques. For example, loadings, or the relative influence of variables on the ordinated axes, can be derived from a Principal Components Analysis--this cannot be achieved using Fisher Information. If Fisher Information clearly suggested a spatial regime boundary or shift, a before-and-after post-hoc analysis of the regional community dynamics might confirm the regime shift occurrence.
+
+
+### Efficacy of Fisher Information as a spatial RDM  
+This study found no evidence suggesting Fisher Information accurately and consistently detects spatial boundaries of avian communities. Rapid changes in either direction of Fisher Information is suggested to indicate of a regime shift [@mayer_fisher_2006, @eason_evaluating_  2012]. Although this interpretation has been applied to multiple case studies of Fisher Information, there is yet a statistical indicator to objectively identify these abrupt changes. After calculating the Fisher Information for each spatial transect (Fig. \@ref(fig:ewRoutesUsedHere)) during each sampling year, I used pairwise correlation to determine whether spatial autocorrelation existed among pairs of spatial transects. If some set of points are close in space and  are *not* separated by some physical or functional boundary (e.g., an ecotone, high altitude rock formations), then the Fisher Infomration calculate should exhibit a relatively high degree of spatial autocorrelation that is consistent over time. It follows that the correlation coefficient of spatially adjacent transects should be similar, diverging only as the distance beteween the transects differs and/or a functional or physical boundary separates them.
+
+Several questions remain regarding the efficacy of Fisher Information as a regime detection measure in both spatial and temporal data. If signals of regime shifts do exist, it is clearly not possible to identify them using visual interpretation. I also did not find evidence to suggest spatial autocorrelation of the calculations. I suggest future studies of Fisher Infomration focuses on temporal, rather than spatial data. Potential areas of research and questions include: 
+1. Relationship of Fisher Information to likelihood ratio-based unsupervised change-point detection algorithms (e.g., ChangeFinder [@liu2013change]).
+1. Sensitivity of Fisher Information to data quality and quantity [this is explored in Chapter \@ref(resampling)].
+1. What, if any, advantages does FI have over other density estimation techniques?  
+1. Does FI provide signals in addition to or different than geophysical and vegetative (e.g. LIDAR) observations (data)? 

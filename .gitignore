@@ -11,6 +11,7 @@
 !_book/
 _bookdown_files/
 !myDissertation/chapterFiles/fiGuide/figures/
+!myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png/
 chapterFiles/appendix_predPreyExample/plots/.png
 chapterFiles/appendix_paleoExample/plots/*.png
 chapterFiles/appendix_paleoExample/plots/*.png

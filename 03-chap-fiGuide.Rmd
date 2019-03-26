@@ -128,7 +128,7 @@ Fisher Information (FI) is defined with respect to a probability distribution. I
 
 A single state of the model system is defined by the number of predators and prey at a given point in time such that for any given point in time $x(t)=[x_1 (t),x_2 (t)]$. At some random time between 0 and $t_{end}$ [$T_{obs}  ~ Uniform(0,t_{end})$] we can count the number of predators and the number of prey to determine the state of the model system. We must assume the system is deterministic and there is no observation error. We can then calculate the probability of observing a particular predator and prey abundance combination, $p(x)$. Under these assumptions, the only possible states of the system are defined by the system's observed trajectory, the model parameters, and the initial conditions. Therefore, the support of the probability distribution \@ref(fig:2D-hist) is the trajectory of the system. 
 
-```{r stringFig, echo=FALSE, fig.cap = paste("A single cycle of a hypothetical two-species system over time period $t = 0$ to $t = T$. $s^*$ is the state of the system at some point in time. The dotted line represents the distance travelled by the system in phase space over its trajectory during time $(0, T)$.")}
+```{r stringFig, echo=FALSE, out.width="85%", fig.cap = paste("A single cycle of a hypothetical two-species system over time period $t = 0$ to $t = T$. $s^*$ is the state of the system at some point in time. The dotted line represents the distance travelled by the system in phase space over its trajectory during time $(0, T)$.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/stringFig.png')
 ```
 
@@ -228,7 +228,7 @@ sysSol_highO <-
 
 ```
 
-```{r distSpeedAccel, echo=FALSE, fig.cap=paste("From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.")}
+```{r distSpeedAccel, echo=FALSE,out.width="85%", fig.cap=paste("From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.")}
 
 # Plot distance traveled
 p1 <- ggplot(data = sysSol_highO, aes(x = t, y = s)) +
@@ -417,10 +417,10 @@ for(i in 1:length(k)){
 ```
 
 
-```{r kByTime, fig.cap = paste("Carrying capacity over time with a regime shift occuring around time 200.")}
+```{r kByTime, echo=FALSE, out.width="85%",fig.cap = paste("Carrying capacity over time with a regime shift occuring around time 200.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/kByTime.png')
 ```
-```{r kTrajectories, echo=FALSE, fig.cap=paste("Phase space plot of system trajectories for different values of k")}
+```{r kTrajectories, out.width="85%", echo=FALSE, fig.cap=paste("Phase space plot of system trajectories for different values of k")}
 # Plot trajectories
 ggplot(data = results_kstudy, aes(x = x1, y = x2, color = k)) +
   geom_path() +
@@ -436,7 +436,7 @@ knitr::include_graphics('./chapterFiles/fiGuide/figures/dsdtOverTime.png')
 
 We calculated FI for the distribution of distance travelled over a series of non-overlapping time windows. Multiple sources suggest the length of the time window should be equal to one system period such that FI is constant for a periodic system [@mayer_applications_2007; @cabezas_towards_2002]. However, the system period is different before, during, and after the regime shift. Therefore, we performed two separate calculations of FI using window sizes corresponding to the initial and final period of the system ($13.061$ and $11.135$, respectively).  The change in FI over time is shown in \@ref(fig:fiOverTime). 
 
-```{r fiOverTime, echo=FALSE, fig.cap=paste("Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.")}
+```{r fiOverTime, echo=FALSE, out.width="85%", fig.cap=paste("Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/fiOverTime.png')
 ```
 

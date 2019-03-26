@@ -101,9 +101,8 @@ Filtering this WoS results to include only articles mentioning terms related to 
 Of the `r 250` articles scanned in Google Scholar, I retained 3 methods. I was previously aware of an additional 68 articles containing 'new' methods (\@ref(fig:rdmReviewFlow)). 
 
 ```{r rdmReviewFlow, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods."}
-
 webshot::install_phantomjs()
-DiagrammeR::grViz(
+tempGraph <- DiagrammeR::grViz(
   "digraph {
   graph [layout = dot, rankdir = TB]
 
@@ -130,11 +129,13 @@ prior -> data4
 
 }"
   )
+
+knitr::include_graphics("./chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png")
 ```
 
 ### List of new methods
 
-```{r methodsMetricsListTab, echo=FALSE}
+```{r methodsMetricsListTab1, echo=FALSE}
 require(kableExtra, quietly = T)
 long_dt <- finalMetricsList  %>%
   mutate(label2 = paste0("@",myLabel1)) %>%
@@ -144,7 +145,7 @@ kable(long_dt, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>
 # add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
   kable_styling(latex_options = c("repeat_header"))
 ```
-Using my prior knowledge of the relevant litearture, referring to previous review articles, and searching both Web of Science and Google Scholar, I identified `r nrow(finalMetricsList)` unique RDMs (Figure \@ref(fig:rdmReviewFlow); Table \@ref(methodsMetricsListTab)).
+Using my prior knowledge of the relevant litearture, referring to previous review articles, and searching both Web of Science and Google Scholar, I identified `r nrow(finalMetricsList)` unique RDMs (Figure \@ref(fig:rdmReviewFlow); Table \@ref(methodsMetricsListTab1)).
 
 ```{r jrnlYearFig, echo=FALSE,  fig.cap= "Number of methods publisheed over time."}
 yearTemp <- finalMetricsList.bib %>% 
@@ -158,14 +159,14 @@ ggplot(yearTemp ) +
 ```
 
 ## Discussion 
-In this chapter I highlighted the plethora of regime detection metrics (RDMs) proposed in the literature for analyzing ecological data (Table \@ref(methodsMetricsListTab)). Although multiple reviews of RDMs exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of RDMs. For example,  @roberts2018early summarizes methods capable of handling multiple (c.f. a single) variable, and @dakos2015resilience review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate--rather, I present an exaustive list of the plethora of methods proposed  for detecting ecological detect regime shifts, *sensu lato*, providing a much-needed update to collection provided by @rodionov_brief_2005, and other review papers [@mac2014scrutiny, @scheffer2015generic, @rodionov_brief_2005, @roberts2018early, @dakos2015resilience, @mantua_methods_2004, @litzow_early_2016, @kefi2014early, @andersen_ecological_2009, @boettiger_early_2013, @dakos_resilience_2015, @clements2018indicators, @filatova2016regime, @deyoung_regime_2008].
+In this chapter I highlighted the plethora of regime detection metrics (RDMs) proposed in the literature for analyzing ecological data (Table \@ref(methodsMetricsListTab1)). Although multiple reviews of RDMs exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of RDMs. For example,  @roberts2018early summarizes methods capable of handling multiple (c.f. a single) variable, and @dakos2015resilience review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate--rather, I present an exaustive list of the plethora of methods proposed  for detecting ecological detect regime shifts, *sensu lato*, providing a much-needed update to collection provided by @rodionov_brief_2005, and other review papers [@mac2014scrutiny, @scheffer2015generic, @rodionov_brief_2005, @roberts2018early, @dakos2015resilience, @mantua_methods_2004, @litzow_early_2016, @kefi2014early, @andersen_ecological_2009, @boettiger_early_2013, @dakos_resilience_2015, @clements2018indicators, @filatova2016regime, @deyoung_regime_2008].
 
 ### Barriers to identifying new RDMs 
 Clearly, as was shown in this chapter (Figure \@ref(fig:rdmReviewFlow)), a systematic review of the ecological literature will likely not yield anywhere near a comprehensive list of the RDMs proposed and/or used. This disaparity may be due to both my search methods and to the current state of regime shift research in ecology. 
 
 First, my review restricted articles to articles suggesting they were introducing a 'new method' as n RDM. Avoiding this potential barrier would have required I review the titles, abstracts, and bodies of over 22,000 articles (Figure \@ref(fig:rdmReviewFlow)). Alternatively, this may also be ameliorated by searching the relevant literature for *applications* of RDMs to ecological data, however, I suspect this would similarly yield a large number of articles to review.
 
-Next, only a handful of methods have been introduced to the mainstream methodological journals in ecology (e.g., *Ecological Modelling*, *Methods in Ecology and Evolution*; Figure \@ref(fig:jrnlDistFig)). Although many mainstream publications (e.g., *Science*, *Ecology Letters*) include applications of some of the methods identified in this chapter (Table \@ref(methodsMetricsListTab)), I argue that celebrity and 'new and shiny' [@steel2013applied] methods may influence which methodological articles are printed in these popular journals. 
+Next, only a handful of methods have been introduced to the mainstream methodological journals in ecology (e.g., *Ecological Modelling*, *Methods in Ecology and Evolution*; Figure \@ref(fig:jrnlDistFig)). Although many mainstream publications (e.g., *Science*, *Ecology Letters*) include applications of some of the methods identified in this chapter (Table \@ref(methodsMetricsListTab1)), I argue that celebrity and 'new and shiny' [@steel2013applied] methods may influence which methodological articles are printed in these popular journals. 
 
 ```{r jrnlDistFig, echo=FALSE, fig.cap="Distribution of identified methods across publications. Note: books, reports, and articles without original reference coded as 'Other'"}
 # Visualize results
@@ -187,7 +188,7 @@ ggplot2::ggplot(jrnlTemp) +
 ```
 
 
-A critical survey of potetial and realized applications of these methods would be useful for highlighting the needs of future research and methodological improvements. Many of the methods presented in Table \@ref(methodsMetricsListTab) have either not been applied to empirical data at all, or were tested only once (often but not always in the article introducing the method). Some methods, especially those dubbed 'early warning indicators' (variance, autoregressive model coefficients) have become relativley mainstream in their application to empirical data, however, have been shown to be less robust to noisy and nonlinear systems data [@burthe2016early] and systems not exhibiting catstrophic shifts [@dutta2018robustness]. Most other methods have yet to be rigorously tested on noisy, high dimensional, empirical data. Further, the methods which are not mainstream but have been applied to one of these data types have not any statistical indicators associated with confirming the existence and location of the regime shift. 
+A critical survey of potetial and realized applications of these methods would be useful for highlighting the needs of future research and methodological improvements. Many of the methods presented in Table \@ref(methodsMetricsListTab1) have either not been applied to empirical data at all, or were tested only once (often but not always in the article introducing the method). Some methods, especially those dubbed 'early warning indicators' (variance, autoregressive model coefficients) have become relativley mainstream in their application to empirical data, however, have been shown to be less robust to noisy and nonlinear systems data [@burthe2016early] and systems not exhibiting catstrophic shifts [@dutta2018robustness]. Most other methods have yet to be rigorously tested on noisy, high dimensional, empirical data. Further, the methods which are not mainstream but have been applied to one of these data types have not any statistical indicators associated with confirming the existence and location of the regime shift. 
 
 As shown this chapter, identifying RDMs using traditional literature review techniques may prove difficult. Many of the methods identified in my review were not identified using Web of Science or Google Scholar--rather, I was either previously aware of most of the methods, and many others were highlighted in previous RDM reviews ]. To facilitate this process, an online, comprehensive database may prove useful to the practical ecologist. 
 
