@@ -226,7 +226,7 @@ dist.sim.reduced <- dist.sim %>% filter(t==51) %>%
   mutate(var.sim = as.integer(var.sim))
 ```
 
-```{r simVarPlot, eval=FALSE, fig.cap = "Velocity ($v$$) generally increases as the total change in the variance of $\\x_{1_{t=50}}$ increases. This 2-variable system exhibits a regime shift at $t=50$."}
+```{r simVarPlot, eval=FALSE, fig.cap = "Velocity ($v$$) generally increases as the variance of $\\x_{1_{t=50}}$ increases."}
 ggplot(data = dist.sim %>% filter(sim.num==666, t==51), 
        aes(x = as.integer(var.sim), y = dsdt))+
   geom_line()+
