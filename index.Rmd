@@ -31,7 +31,6 @@ lot: true
 lof: true
 space_between_paragraphs: false
 ---
-
 ```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results ='hide'}
 instlLoadPkgs <- function(packages) {
   k <- packages[!(packages %in% installed.packages()[])];

@@ -1,16 +1,27 @@
 `r if(knitr:::is_latex_output()) '\\appendix'`
 
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
+# Appendix: R package regimeDetectionMeasures  {-#regimeDetectionMeasures} 
+This appendix contains example analysis associated with the R Package, `regimeDetectionMeasures`. Development source code for this package is available on GitHub as a compressed file at [https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip](https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip) or at [https://github.com/TrashBirdEcology/regimeDetectionMeasures](https://github.com/TrashBirdEcology/regimeDetectionMeasures).
 
-# Appendix: Distance travelled and velocity using a paleodiatom case study {-#appPaleo}
+## Package structure
+
+
+# Appendix: R package bbsRDM {-#bbsRDM} 
+
+This appendix contains example analysis associated with the R Package, `bbsRDM`. Development source code for this package is available on GitHub as a compressed file, [https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ](https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ) or at [https://github.com/TrashBirdEcology/rRDM](https://github.com/TrashBirdEcology/rRDM).
+
+## Package structure
+
+
+
+# Appendix: Paleodiatom case study: distance travelled, velocity, Fisher Information {-#appPaleo}
 
 This appendix provides documentation and R code association with the paleodiatom community example.
-
-## Setup
-### Load required packages
 You will need to install the following packages if they are not already.
 
 ```{r, echo = F, warning=F, message=F, cache = T}
+### Load required packages
 library(tidyverse)
 library(ggplot2)
 library(ggthemes)
@@ -24,15 +35,15 @@ library(gridExtra)
 theme_set(theme_minimal())
 ```
 
-### Load the data
 
+### Paleodiatom system data
 Pull in the data from the supplementary materials for Spanbauer *et al.* (2014) [@spanbauer_prolonged_2014]. This data contains the percent abundances of diatom species from Foy Lake. Spanbauer *et al.* (2014) calculated the number of relative diatom valves in each sample. They removed time steps with no diatom data, claiming poor preservation rather than zero abundance. The authors also averages time steps 301 - 312.
 
 ```{r, echo = T, warning=F, message=F, cache = T}
 data <- read_csv("https://doi.org/10.1371/journal.pone.0108936.s001")
 ```
 
-## Calculate the distance metric
+## Calculate the distance travelled and velocity metrics 
 
 ### Calculate the distance
 Calculate the difference, $\Delta x$, in each species' relative abundance from time *n* to time *n + 1*. Calculate the change in distance, $\Delta s$, as the sum of the squares of the change in each species. Calculate the distance as the cummulative sums of the change in distance.
@@ -152,7 +163,7 @@ plotData <-
 )
 ```
 
-## Moving window analysis
+## Calculate Fisher Information using moving window analysis
 ### Specifcy parameters for the moving window
 Distance over which to move the window (in units time)
 ```{r, echo = TRUE, warning=F, message=F, cache = T}
@@ -187,8 +198,6 @@ for(i in 1:nWin){
 
 ```
 
-## Plots
-
 ```{r FIplot, echo=F, warning=F, message=F, cache = T}
 
 # Plot of FI
@@ -210,32 +219,4 @@ gD$widths[2:5] <- as.list(maxWidth)
 
 grid.arrange(gB, gC, gD, ncol=1)
 ```
-
-### Export figures
-```{r, eval = FALSE, echo = F, warning=F, message=F, cache = T}
-ggsave(
-    "figures/stackplot.png",
-    # plot = grid.arrange(gA, gB, gC, gD, ncol=1) # with relative abundance plot
-    plot = grid.arrange(gB, gC, gD, ncol = 1),
-    units = "cm",
-    dpi = 300
-)
-ggsave(
-    "figures/joyPlotFisher.png",
-    plot = joy,
-    units = "cm",
-    dpi = 300
-)
-```
-
-
-
-
-
-# Appendix: R package bbsRDM {-#bbsRDM} 
-
-This appendix contains example analysis associated with the R Package, `bbsRDM`. Development source code for this package is available on GitHub as a compressed file, [https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ](https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ) or at [https://github.com/TrashBirdEcology/rRDM](https://github.com/TrashBirdEcology/rRDM).
-
-# Appendix: R package regimeDetectionMeasures  {-#regimeDetectionMeasures} 
-This appendix contains example analysis associated with the R Package, `regimeDetectionMeasures`. Development source code for this package is available on GitHub as a compressed file at [https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip](https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip) or at [https://github.com/TrashBirdEcology/regimeDetectionMeasures](https://github.com/TrashBirdEcology/regimeDetectionMeasures).
 
