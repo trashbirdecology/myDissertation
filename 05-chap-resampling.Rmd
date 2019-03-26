@@ -23,48 +23,12 @@ The transferability of RDMs to practitioners can only be facilitated by identify
 ### Study system and data  
 I used paleodiatom time series from a freshwater system in North America which exhibited a rapid shift in community dynamics. These data were  collected using a sediment coring method [see @spanbauer_detecting_2014]. Community profiles at various depths within sediment cores are analyzed to obtain relative abundances. Relative abundances at various depths within the sediment core are then related to time (years before present) using carbon dating techniques. These data can be obtained from the publisher’s website. 
 
-In Chapter \@ref(velocity), I described a 'new' method, __system velocity__, as a potential dimension reduction and regime shift detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see \@ref(fiGuide)]. First introduced in by @cabezas_2002_XXX as one of many steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described below.
-
-#### Step 1: 
-First, we calculate the change in each state variable, $x_i$, between two adjacent points in time, $t_0$ and $t_1$, such that one difference, $x_{it_1} - x_{it_0}$, is assigned to the latter time point, $t_1$. We next square this difference: $(x_{it_1} - x_{it_0})^2$. As will soon be apparent, observations do not need to be observed evenly spaced across time, however, all state variables should be observed at the same point in time. We then square the difference for each state variable,  $(x_{it_1} - x_{it_0})^2$, and get the sum of squares of all variables for the adjacent time points using Pythagoras' theorem, $a^2 + b^2 = c^2$, to linearly approximate the system's collective change from time $t_0$ to $t_1$:
-\begin{equation}
-$\Delta s = \sqrt{\sum(x_{it_1} - x_{it_0})^2}$
-  (\#eq:ds)
-\end{equation}
-
-To account for unequal time elapsed between observations (i.e., irregular sampling), we must next correct for change in time. Since $\Delta s$ is now the total change in the system between two time points, we can simply correct for uneven sampling between observations between time points by dividing the change in $s$, $\Delta s$, by the change in time $\Delta t$. I refer to this new measure as **system velocity**:
-\begin{equation}
-$\frac{\Delta s}{\Delta t} = \frac{\sqrt{\sum(x_{i(t_1)} - x_{i(t_0)})^2}}{t_1 - t_0}$
-  (\#eq:dsdt)
-\end{equation}
-System velocity, $\frac{\Delta s}{\Delta t}$, reduces the *n*-dimensional system to a single dimension, taking on the unit of the original data. For example, $x_i$ are species abundances, then the unit is species abundance. Importantly, this should be taken into consideration. 
-
-\begin{equation}
-$\frac{\Delta s}{\Delta t} = \frac{\sqrt{\sum(x_{i(t_1)} - x_{i(t_0)})^2}}{t_1 - t_0}$
-  (\#eq:dsdt)
-\end{equation}
-
-$\Delta s$, as the **distance travelled** by the entire system between two points in time. Using this calculation, we have so far reduced the $n$-dimensional system to a single, positive, and unitless measurement, $s$, at each time point (except the first, unless we are backwards-differencing). It is worth emphasizing that $\Delta s$ strictly increases over time. That is, $∀ s_{t+1} $
-
-$\Delta s$ and $\Delta t$ where $s = \sum{\Detlta s}$ and $t = \sum{\delta t}$ and $\Delta s / \delta t$ 
-
-Because $s$ will always be positive and 
-
-Finally, we can calculate the **distance travelled**, ($s$), as collectively by all state variables such that
-\begin{equation}
-$ s_{t+1} = \sqrt{\sum(x_{i(t+1)} - x_{i(t)})^2}$
-  (\#eq:distEq)
-\end{equation}
-
-
-Finally, the distance traveled at a given point in time, s(t) is calculated as the cumulative sum of d from time t=0 (or first time point) to t=T (Table 1, Step 4).
-
-The resulting value, $s$, is a unitless, 
+In Chapter \@ref(velocity), I described a 'new' method, __system velocity__, as a potential dimension reduction and regime  detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric (see also \@ref(fiGuide)). First introduced in by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described below.
 
 ## Results
-
+SEE IIASA REPORT
 
 ## Discussion 
 
 ## Ackowledgements
-This study was conceptualized at the International Institute for Applied Systems Analysis (IIASA) as part of the Young Scholars Summer Program in 2018. I thank my IIASA supervisors, Drs. Brian Fath and Elena Rovenskaya, for advisement on study design and for comments on earlier versions of this chapter. 
+This study was conceptualized at the International Institute for Applied Systems Analysis (IIASA) as part of the Young Scholars Summer Program in 2018. I thank my IIASA program supervisors, Drs. Brian Fath and Elena Rovenskaya, for advisement during this period and for comments on an earlier version of this chapter.

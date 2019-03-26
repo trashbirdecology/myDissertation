@@ -72,7 +72,6 @@
 <!-- "the recovery rate should decrease. It occurs because a system???s internal stabilizing forces become weaker near the point where they break and the system moves into a new regime. Thus critical slowing down is posited to exist at phase transitions, such as ecosystem collapse. A system is stable when it is in a deep basin of attraction corresponding to many strong negative feedback loops acting on it. In such a case small perturbations do not have long-term consequences. As a system degrades these negative feedback loops become broken and thus the steepness of the basin of attraction becomes lower. -->
 <!-- Its resilience becomes decreased bring the system close to a critical transition. This means that the same perturbation that may not flip the system will though likely take longer to dissipate. Thus it will take longer for the system to return to its point of equilibrium when close to a tipping point. The simplest way to measure the approach to a potential tipping point then would be to directly measure the recovery rate at which the system returns back to its initial equilibrium state following a perturbation. In cases where the system is close to a tipping point, the recovery rate should decrease ??? slow down. As such critical slowing down offers some potential to probe the dynamics of a system in order to assess its resilience and the risk of an upcoming regime shift. ???We have all these complex systems like the brain, the climate, ecosystems, the financial market, that are really difficult to understand, and we will probably never fully understand them. So it???s really kind of a small miracle that across these very different systems, we could find these universal indicators of how close they are to a threshold??? ??? Marten Scheffer"" -->
 
-<!-- For multispecies data you will typically need to reduce dimensionality before you can proceed, for example by some sort of ordination. The vegan package for R is typically the starting point for this. I can help you a bit further on the way if you are not familiar with this if you want to, but then I would need to know a bit more about your data. -->
 
 <!-- ## Brandolini's principle     -->
 
@@ -143,8 +142,6 @@
 
 <!-- cases where systems lose their periodicity  -->
 <!-- @hastings2018transient -->
-
-
 
 
 

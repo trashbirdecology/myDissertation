@@ -409,7 +409,7 @@ Placeholder
 \section{Ackowledgements}\label{ackowledgements}}
 
 \hypertarget{velocity}{%
-\chapter{\texorpdfstring{Velocity (\(v\)): rate-of-change of system trajectory as a dimension reduction technique and potential indicator of abrupt change}{Velocity (v): rate-of-change of system trajectory as a dimension reduction technique and potential indicator of abrupt change}}\label{velocity}}
+\chapter{\texorpdfstring{Velocity (\emph{v}): rate-of-change of system trajectory as a potential indicator of abrupt change}{Velocity (v): rate-of-change of system trajectory as a potential indicator of abrupt change}}\label{velocity}}
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(magrittr)}
@@ -440,11 +440,8 @@ Placeholder
 Dimension reduction techniques and RDms blablbah
 In this Chapter I describe the steps for calculating a `new' metric, \textbf{system velocity}, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric {[}see \ref{fiGuide}{]}, first introduced in Fath, Cabezas, \& Pawlowski (2003). Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time.
 
-\hypertarget{methodology}{%
-\section{Methodology}\label{methodology}}
-
-\hypertarget{toy-data}{%
-\subsection{Toy data}\label{toy-data}}
+\hypertarget{about-the-toy-system}{%
+\section{About the toy system}\label{about-the-toy-system}}
 
 Consider a system (Fig. \ref{fig:sysEx}) with \(N\) state variables (\(x_i\)), with observations taken at time points, \(t\). System velocity is calculated as the cumulative sum over time period \(t_0\) to \(t_j\), as the total change in all state variables, \{\(x_1 ...x_N\)\}, between two adjacent time points, e.g., \(t_j\) and \(t_{j+1}\), denoted \(t_{j,j+1}\). I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables \(x_1\) and \(x_2\), with observations occurring at each time point \(t = {1,2,3,...100}\).
 \begin{Shaded}
@@ -480,7 +477,7 @@ Joining, by = "t"
                        \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta x_1$"}\NormalTok{,}
                         \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta x_2$"}\NormalTok{,}
                         \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta t$"}\NormalTok{,}
-                        \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sum_\{i=1\}^N(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta x_i^2)) $"}\NormalTok{,}
+                        \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sum_\{i=1\}^N }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta x_i^2) $"}\NormalTok{,}
                         \StringTok{"$s$"}\NormalTok{,}
                         \StringTok{"$v$"}\NormalTok{)}
                        \CommentTok{# "$s = \textbackslash{}\textbackslash{}sum_\{t=1\}^j(\textbackslash{}\textbackslash{}sqrt(\textbackslash{}\textbackslash{}sum_\{i=1\}^N(\textbackslash{}\textbackslash{}Delta x_i^2))) $",}
@@ -497,7 +494,7 @@ Joining, by = "t"
 \caption{\label{fig:sysEx}The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, \(x\), is drawn from a normal distribution with means that change at \(t = 50\). State variables have constant variance \(\sigma = 5\).}
 \end{figure}
 \hypertarget{steps-for-calculating-system-velocity-v}{%
-\subsection{\texorpdfstring{Steps for calculating system velocity, \(v\)}{Steps for calculating system velocity, v}}\label{steps-for-calculating-system-velocity-v}}
+\section{\texorpdfstring{Steps for calculating system velocity, \emph{v}}{Steps for calculating system velocity, v}}\label{steps-for-calculating-system-velocity-v}}
 
 First, we calculate the change in each state variable, \(x_i\), between two adjacent points in time, \(t_j\) and \(t_{j+1}\), such that the difference, \(x_{t_{j+1}} - x_{t_j}\) is assigned to the latter time point, \(t_{j+1}\). For example, in our toy data, we use observations at time points \(t = 1\) \& \(t=2\) (Fig. \ref{fig:sysEx2}). For all examples in this chapter, the state variables \(x_1\) and \(x_2\) were drawn from a normal distribution (using function \emph{rnorm}), with parameters \(\bar{x}_i\) (mean) and \(\sigma_i\) (sd) for 100 time steps, \(t\). The regime shift occurs at \(t=50\), where a shift in either or both \(\bar{x}_i\) or \(\sigma_i\).
 
@@ -566,6 +563,258 @@ We now have a single measure, \(\Delta s\) (Eq. \eqref{eq:diffXsq2}), for each p
 s = \sum_{t=1}^T \Delta s
 \label{eq:s}
 \end{equation}
+\#\#\#\# Step 4: Calculate velocity, \(v\) (or \(\frac {\Delta s}{\Delta t}\))
+Finally, we calculate the \textbf{system velocity}, \(v\) (or \(\frac{\Delta s}{\Delta t}\)), by first calculating the change in \(s\) (Eq. \eqref{eq:s}), and then divide by the total time elapsed between consecutive sampling points:
+\begin{equation}
+ v = \frac {s_{t+1}-s_{t}}{\Delta t} 
+\label{eq:velocity}
+\end{equation}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
+\NormalTok{df.wide =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }
+\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
+
+\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
+\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
+  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"changing means, constant variance"}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\includegraphics{_myDissertation_files/figure-latex/velocSysEx1-1.pdf}
+The steps for calculating velocity {[}Eq. \eqref{eq:velocity}{]} are demonstrated using the first five time points of our toy system (Fig. \ref{fig:sysEx}) in Table \ref{tab:distTab}.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(kableExtra)}
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{knitr.kable.NA =} \StringTok{""}\NormalTok{)}
+\KeywordTok{kable}\NormalTok{(df.wide[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,],}\DataTypeTok{digits=}\DecValTok{3}\NormalTok{, }\StringTok{"latex"}\NormalTok{, }\DataTypeTok{align=}\StringTok{"c"}\NormalTok{, }\DataTypeTok{booktabs=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{escape =} \OtherTok{FALSE}\NormalTok{, }
+            \DataTypeTok{caption =} \StringTok{'Steps outlined for calculating system velocity, $v$, using the 2-variable toy data as an example.'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\hypertarget{velocity-v-performance-under-varying-mean-and-variance-in-the-toy-system}{%
+\section{\texorpdfstring{Velocity \emph{v} performance under varying mean and variance in the toy system}{Velocity v performance under varying mean and variance in the toy system}}\label{velocity-v-performance-under-varying-mean-and-variance-in-the-toy-system}}
+
+I simulated 10,000 random draws of the toy system, which experiences a rapid shift at \(t = 50\), while varying two each of the following system paramters at the regime shift:
+\(\bar{x}_1\), increased the mean value of \(x_1\)
+\(\sigma_1\), change in variance of \(x_1\)
+Simulations consisted of 10,000 random samples drawn from the normal distribution for each paramter, I randomly drew the toy system samples 10,000 times under increasing values of \(\bar{x}_1\) and \(\sigma_1\). To identify patterns in the influence of paramter values on velocity, I present the mean values of \(v\) across all simulations, with confidence intervals of \(\pm 2\) standard deviations. As mentione above, the state variables \(x_1\) and \(x_2\) were drawn from a normal distribution (using function \emph{rnorm}), with parameters \(\bar{x}_i\) (mean) and \(\sigma_i\) (sd) for 50 time steps, \(t\).
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The following sections require a simulated dataset to be presnt in the results file. If it does not exist, this code chunk will run the (expensive!) simulations in the source code!}
+\NormalTok{files <-}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults"}\NormalTok{, }\DataTypeTok{pattern=} \StringTok{"mean_x1"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(files) }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  mean.analy =}\StringTok{ }\OtherTok{TRUE}
+  \KeywordTok{source}\NormalTok{(}\StringTok{"./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R"}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{dist.sim <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{lapply}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults/"}\NormalTok{,files),}
+\NormalTok{        feather}\OperatorTok{::}\NormalTok{read_feather))}
+\end{Highlighting}
+\end{Shaded}
+\hypertarget{varying-post-shift-mean}{%
+\subsubsection{Varying post-shift mean}\label{varying-post-shift-mean}}
+
+I examined the influence of the magnitude of change in \(x_1\) in the period before (pre; \(t <50\)) and after (post; \(t \geq 50\)) by varying the mean parameter, \(\bar{x}_1\) in the set \(W=\{25,30,35,...100 \}\) (Figs. \ref{fig:simVplot1},\ref{simVplot2}). As expected, the magnitude of \(v\) increased linearly as the total difference between \(\bar{x}_{1_{pre}}\) and \(\bar{x}_{1_{post}}\) increased (\ref{fig:simVplot2}). This is not surprising, as \(s\) increases as the total change in abundance across the entire sytem increases (Eq. \eqref{eq:s}), therefore, the potential maximum of \(v\) also increases. This may indicate that \(v\), while capable of identifying large shifts in data structure, may not pick up subtle changes (i.e.~lower effect sizes).
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(sim.num}\OperatorTok{==}\DecValTok{666}\NormalTok{, t}\OperatorTok{==}\DecValTok{51}\NormalTok{), }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{as.integer}\NormalTok{(mean.sim), }\DataTypeTok{y =}\NormalTok{ dsdt))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"total change in "}\NormalTok{, }\KeywordTok{bar}\NormalTok{(}\StringTok{"x"}\NormalTok{)[}\DecValTok{1}\NormalTok{], }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist.sim.reduced <-}\StringTok{ }\NormalTok{dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(t}\OperatorTok{==}\DecValTok{51}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{group_by}\NormalTok{(mean.sim) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dsdt.sim.mean  =} \KeywordTok{mean}\NormalTok{(dsdt), }
+                \DataTypeTok{sd.sim    =} \KeywordTok{sd}\NormalTok{(dsdt), }
+                \DataTypeTok{lower     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{-}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim, }
+                \DataTypeTok{upper     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{+}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim}
+\NormalTok{                ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{distinct}\NormalTok{(mean.sim, sd.sim, lower, upper, dsdt.sim.mean) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mean.sim =} \KeywordTok{as.integer}\NormalTok{(mean.sim))}
+
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim.reduced)}\OperatorTok{+}
+\StringTok{ }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mean.sim, }\DataTypeTok{ymin =}\NormalTok{ lower , }\DataTypeTok{ymax =}\NormalTok{ upper), }\DataTypeTok{fill =} \StringTok{"grey70"}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mean.sim,  }\DataTypeTok{y =}\NormalTok{ dsdt.sim.mean))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"total change in "}\NormalTok{, }\KeywordTok{bar}\NormalTok{(}\StringTok{"x"}\NormalTok{)[}\DecValTok{1}\NormalTok{], }\StringTok{" between "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{), }\StringTok{" and "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Mean "}\NormalTok{,  }\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{),}\StringTok{" ($}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{pm 2$ SD) over "}\NormalTok{, }\DecValTok{10}\NormalTok{,}\DecValTok{000}\NormalTok{, }\StringTok{" iterations"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+\begin{figure}
+\centering
+\includegraphics{_myDissertation_files/figure-latex/simVplot2-1.pdf}
+\caption{\label{fig:simVplot2}Change in velocity (\(v\)) as the total change in the mean value of \(\bar{x}_{2_{t=50}}\) over 10,000 simulations. A regime shift was induced at \(t=50\) with constant varoance \(\sigma = 5\), \(\bar{x}_2 = 25\) when \(t<50\), and changes in variable mean values, \(\bar{x}_2 = 50\) when \(t \geq 50\), \(\bar{x}_1 = 25\) when \(t<50\).}
+\end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{files <-}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults"}\NormalTok{, }\DataTypeTok{pattern=} \StringTok{"var_x1"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(files) }\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  var.analy =}\StringTok{ }\OtherTok{TRUE}
+  \KeywordTok{source}\NormalTok{(}\StringTok{"./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R"}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{dist.sim <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{lapply}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults/"}\NormalTok{,files),}
+\NormalTok{        feather}\OperatorTok{::}\NormalTok{read_feather))}
+
+\NormalTok{dist.sim.reduced <-}\StringTok{ }\NormalTok{dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(t}\OperatorTok{==}\DecValTok{51}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{group_by}\NormalTok{(var.sim) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dsdt.sim.mean  =} \KeywordTok{mean}\NormalTok{(dsdt), }
+                \DataTypeTok{sd.sim    =} \KeywordTok{sd}\NormalTok{(dsdt), }
+                \DataTypeTok{lower     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{-}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim, }
+                \DataTypeTok{upper     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{+}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim}
+\NormalTok{                ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{distinct}\NormalTok{(var.sim, sd.sim, lower, upper, dsdt.sim.mean) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{var.sim =} \KeywordTok{as.integer}\NormalTok{(var.sim))}
+\end{Highlighting}
+\end{Shaded}
+\hypertarget{varying-post-shift-variance}{%
+\subsubsection{Varying post-shift variance}\label{varying-post-shift-variance}}
+
+In the previous example, variance was constant before and after the shift at \(t=50\). To determine whether the signal emitted by \(v\) at the regime shift is lost with increasing variance, I varied the variance parameter, \(\sigma_1\) in the set \(W = \{1,2,3,...25 \}\). The variance for both state variables prior to the regime shift, \(\sigma_1\) and \(\sigma_2\), was 5, with the change occurring in \(\sigma_1{_{post}}\). Sytem velocity \(v\) appears senstive to increases in the variance at the point of the regime shift (Figs. \ref{fig:simVarplot}, \ref{fig:simVarplot2}). This extreme sensitivity of \(v\) to \(\sigma{_{post}}\) (Fig. \ref{fig:simVarplot2}) is unsurprising, given the fact that, without smoothing the derivatives, the tangential speed of a `noisy' variable will always be noisy itself (see Figs. \ref{velocitySysEx1}, \ref{velocitySysEx2}, \ref{velocitySysEx3}, \ref{velocitySysEx4}).
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(sim.num}\OperatorTok{==}\DecValTok{666}\NormalTok{, t}\OperatorTok{==}\DecValTok{51}\NormalTok{), }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{as.integer}\NormalTok{(var.sim), }\DataTypeTok{y =}\NormalTok{ dsdt))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\KeywordTok{italic}\NormalTok{(}\StringTok{"W"}\NormalTok{), }\StringTok{"total change in "}\NormalTok{, }\StringTok{"sigma"}\NormalTok{[}\DecValTok{1}\NormalTok{], }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim.reduced) }\OperatorTok{+}
+\StringTok{ }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ var.sim, }\DataTypeTok{ymin =}\NormalTok{ lower , }\DataTypeTok{ymax =}\NormalTok{ upper), }\DataTypeTok{fill =} \StringTok{"grey70"}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ var.sim,  }\DataTypeTok{y =}\NormalTok{ dsdt.sim.mean))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{25}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(sigma, }\StringTok{" "}\NormalTok{, }\KeywordTok{bar}\NormalTok{(}\StringTok{"x"}\NormalTok{)[}\DecValTok{1}\NormalTok{], }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{))))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Mean "}\NormalTok{,  }\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{),}\StringTok{" ($}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{pm 2$ SD) over "}\NormalTok{, }\DecValTok{10}\NormalTok{,}\DecValTok{000}\NormalTok{, }\StringTok{" iterations"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+\begin{figure}
+\centering
+\includegraphics{_myDissertation_files/figure-latex/simVarPlot2-1.pdf}
+\caption{\label{fig:simVarPlot2}Average (\(\pm 2\) SD) velocity (\(v\)) woresens as the variance of \(\bar{x}_{2_{t=50 (post)}}\) (post shift) increases. \(\bar{x}_{1_{pre}} = 25\), \(\bar{x}_{1_{post}} = 100\), \(\bar{x}_{2_{pre}} = 25\), \(\bar{x}_{2_{post}} = 50\), \(\sigma_{1_{pre}} = 5\), \(\sigma_{2_{pre,post}} = 5\)}
+\end{figure}
+\hypertarget{smoothing-the-data-prior-to-calculating-v}{%
+\subsubsection{\texorpdfstring{Smoothing the data prior to calculating \emph{v}}{Smoothing the data prior to calculating v}}\label{smoothing-the-data-prior-to-calculating-v}}
+
+To ameliorate the influence of noise (e.g.~Fig. \ref{simVarPlot}) on the regime shift signal in \(v\), I used linear approximation techniques in attempt to smooth the velocity (derivatives). I used the function \emph{stats::approx} to interpolate values of \(x_1\) and \(x_2\) to regularly-spaced time points in the set \(t=\{1:100\}\), and then calculated \(v\) as described in the steps above (Eqs. \eqref{eq:diffX}:\eqref{eq:velocity}). Increasing the number of points (\(t\)) at which the original state variables were smoothed did not influence the amount of noise surrounding the signal of the regime shift (at \(t=50\)) in system velocity, \(v\) (Fig. \ref{fig:smoothV}).
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{1}\NormalTok{)}
+\NormalTok{p1<-}\StringTok{ }\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"no smoothing"}\NormalTok{)}
+\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{2}\NormalTok{)}
+\NormalTok{p2<-}\StringTok{ }\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 2X"}\NormalTok{)}
+\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{5}\NormalTok{)}
+\NormalTok{p3<-}\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 5X"}\NormalTok{)}
+\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{10}\NormalTok{)}
+\NormalTok{p4<-}\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 10X"}\NormalTok{)}
+\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{100}\NormalTok{)}
+\NormalTok{p5<-}\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 100X"}\NormalTok{)}
+
+\NormalTok{p1;p2;p3;p4;p5}
+\end{Highlighting}
+\end{Shaded}
+\hypertarget{discussion-3}{%
+\section{Discussion}\label{discussion-3}}
+
+In this chapter, I described the steps for calculating a novel regime detection metric, system velocity (\(v\)). First described in Fath et al. (2003), \(v\) is used as a single step for caclulating a more complicated regime detection metric, Fisher Information (see also Chapter \ref{fiGuide}). System velocity is arguably simple to calculate, as shown in this chapter, captures the total change in system variables under a variety of mean and variance conditions. The metric does not, however, perform well as variance increases (Fig. \ref{simVarPlot2}), and smooothing the original data does not reduce the noise surrounding this metric when variance is moderate (Fig. \ref{smoothV})
+
+Variance is a commonly-used indicator of ecological regime shifts (Brock \& Carpenter (2006)), however, fails to perform when the number of variables is \textgreater{}\textgreater{} a few. System velocity, \(v\), may be useful in situations where the number of state variables is much greater than a few, and appears especially useful when the magnitude of change in one or more state variables is high (Fig. \ref{fig:simVplot2}). For example, this method will likely identify signals of regime shifts where the shift is defined as high species turnover within a community.
+
+I tested the efficacy of this metric as an indicator of abrupt change in a two-variable system. Although a useful first step, this metric should be considered in a multi-species context, and particularly in community-level empirical data which is difficult to simulate. I demonstrate a compelling case study in materials associated with my R Package, \textbf{regimeDetectionMeasures}, in which multiple species turnover events are apparent in a paleodiatom community time series. In this case study, the `distance travelled', \(s\) (Eq. \eqref{eq:diffXsq2}), clearly exhibits shifts at points where expert opinion and species turnover (in species dominance) agree that a large change occurred. Further, velocity, \(v\) (see \emph{dsdt} in the package materials) indicates a large shift at only the most predonimnant shift in the time series, perhaps due to the metric's sensitivity to variance (Fig. \ref{fig:simVplot2}.
+
+Further work is required to determine the utility of system velocity as a regime detection metric, however, this chapter demonstrates that the metric may indicate clear shifts in variable means. In addition to examining high-dimensional and noisy data, a study of the performance of \(v\) under conditions where few variables exhibit large changes while many variables are relatively constant may also prove useful. Additionally, this metric may be a useful tool for reducing the dimensionality of high dimensional data. Although the metric loses much information, as opposed to some dimension reduction techniques, e.g.~Principal Components Analysis PCA, the metric is simple to calculate (even by hand), is computationally inexpensive, and is intuitive, unlike many clustering algorithms (e.g., Non-metric Multidimensional Scaling NMDS). Like system velocity, methods of the latter variety (e.g.~NMDS) require post-hoc statistical analyses to confirm the location of clusters (or abrupt change, regime shifts), while methods of the former variety (e.g.~PCA) retain loadings but do not necessarily identify the locations of abrupt shifts.
+
+\hypertarget{supplementary-materials}{%
+\section{Supplementary Materials}\label{supplementary-materials}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{10}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{10}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{10}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
+\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
+\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
+\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
+  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"change in mean & variance (x"}\NormalTok{[}\DecValTok{1}\NormalTok{], }\StringTok{", x"}\NormalTok{[}\DecValTok{2}\NormalTok{], }\StringTok{")"}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\begin{figure}
+\centering
+\includegraphics{_myDissertation_files/figure-latex/velocSysEx2-1.pdf}
+\caption{\label{fig:velocSysEx2}System change (\(s\)) and velocity (\(v\)) of the model system over the time period. Change in means (\(\bar{x}_{1_{pre}}=25\), \(\bar{x}_{1_{post}}=100\), \(\bar{x}_{2_{pre}}=50\), \(\bar{x}_{2_{post}}=10\)) and an increase in variance (\(\sigma_{1_{pre}}=2\), \(\sigma_{1_{post}}=10\), \(\sigma_{2_{pre}}=5\), \(\sigma_{2_{post}}=10\)).}
+\end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{12}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
+\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
+\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
+\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
+  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"constant mean, variance increase (x"}\NormalTok{[}\DecValTok{1}\NormalTok{], }\StringTok{")"}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\begin{figure}
+\centering
+\includegraphics{_myDissertation_files/figure-latex/velocSysEx3-1.pdf}
+\caption{\label{fig:velocSysEx3}System change (\(s\)) and velocity (\(v\)) of the model system over the time period. Constant means (\(\bar{x}_1=25\), \(\bar{x}_2=50\)) and sharp change in variance for one state variable \(\sigma_{1_{pre}} = 2\), \(\sigma_{1_{post}} = 12\), \(\sigma_{2_{pre,post}} = 5\)}
+\end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{25}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{50}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{15}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{15}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{150}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{150}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
+\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
+\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
+\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
+\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
+  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"changing means, variance = mean"}\NormalTok{))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\begin{figure}
+\centering
+\includegraphics{_myDissertation_files/figure-latex/velocSysEx4-1.pdf}
+\caption{\label{fig:velocSysEx4}System change (\(s\)) and velocity (\(v\)) of the model system over the time period. Variance equal to mean (\(\bar{x_i}=\sigma_i\)), where means (\(\bar{x}_{1_{pre}}=25\), \(\bar{x}_{1_{post}}=50\), \(\bar{x}_{2_{pre}}=15\), \(\bar{x}_{2_{post}}=150\)).}
+\end{figure}
 \hypertarget{rRDM}{%
 \chapter*{Appendix A}\label{rRDM}}
 \addcontentsline{toc}{chapter}{Appendix A}
@@ -579,6 +828,9 @@ Placeholder
 Placeholder
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-brock_variance_2006}{}%
+Brock, W., \& Carpenter, S. (2006). Variance as a Leading Indicator of Regime Shift in Ecosystem Services. \emph{Ecology and Society}, \emph{11}(2). \url{http://doi.org/10.5751/ES-01777-110209}
+
 \leavevmode\hypertarget{ref-fath_regime_2003}{}%
 Fath, B. D., Cabezas, H., \& Pawlowski, C. W. (2003). Regime changes in ecological systems: An information theory approach. \emph{Journal of Theoretical Biology}, \emph{222}(4), 517--530. \url{http://doi.org/10.1016/S0022-5193(03)00067-5}
 
