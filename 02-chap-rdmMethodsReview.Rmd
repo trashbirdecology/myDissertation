@@ -2,9 +2,14 @@
 
 ```{r cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE, eval=TRUE, results="hide"}
 # Chunk defaults
-require(knitr)
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
-                      out.width = "85%")
+# require(knitr)
+# knitr::opts_chunk$set(
+#           cache = TRUE, cache.path = "_cache/", 
+#           include=FALSE, 
+#           # message = FALSE,  eval=TRUE, echo=FALSE, error=FALSE,
+#           warning=FALSE,
+#           fig.align='center',
+          # out.width = "85%")
 ```
 
 ## Introduction
@@ -100,7 +105,7 @@ Filtering this WoS results to include only articles mentioning terms related to 
 
 Of the `r 250` articles scanned in Google Scholar, I retained 3 methods. I was previously aware of an additional 68 articles containing 'new' methods (\@ref(fig:rdmReviewFlow)). 
 
-```{r rdmReviewFlow, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods."}
+```{r rdmReviewFlow, echo=FALSE, message=FALSE, warning=FALSE, out.width="95%", fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods."}
 webshot::install_phantomjs()
 tempGraph <- DiagrammeR::grViz(
   "digraph {

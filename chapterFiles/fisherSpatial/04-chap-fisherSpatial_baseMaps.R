@@ -198,9 +198,11 @@ eco_poly_basemap <- ggplot() +
 allRoutesUsed_ecoregions <- eco_poly_basemap +
   theme.margin+
   geom_point(data = rtesUsed,
-             aes(x = long, y = lat, color = as.factor(rowID)), size = .5)+
-  scale_color_viridis_d()+
-  theme(legend.position = "none")
+             aes(x = long, y = lat, color = as.factor(rowID)), size = 1)+
+  # scale_color_viridis_d()+
+  scale_color_grey()+
+  theme(legend.position = "none")+
+  coord_map(xlim = c(-135, -60),ylim = c(25, 60))
 
 
 

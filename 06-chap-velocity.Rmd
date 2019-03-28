@@ -1,11 +1,13 @@
 # Velocity (*v*): rate-of-change of system trajectory as a potential indicator of abrupt change {#velocity}
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
-# Chunk defaults
+# # Chunk defaults
 set.seed(123)
-library(knitr)
+# library(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
                       out.width = "95%")
 ```
+
+
 ```{r}
 library(magrittr)
 library(tidyverse)
@@ -164,6 +166,7 @@ Simulations consisted of 10,000 random samples drawn from the normal distributio
 ```{r simV, cache=TRUE}
 # The following sections require a simulated dataset to be presnt in the results file. If it does not exist, this code chunk will run the (expensive!) simulations in the source code!
 files <- list.files("./chapterFiles/velocity/simResults", pattern= "mean_x1")
+if(quickRun) files <- files[1:500] # when knitting thesis for minor edits...
 if(length(files) == 0){
   mean.analy = TRUE
   source("./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R")
@@ -202,7 +205,11 @@ ggplot(data = dist.sim.reduced)+
   ggtitle(expression(paste("Mean ",  italic("v")," ($\\pm 2$ SD) over ", 10,000, " iterations")))
 ```
 ```{r simVar, cache=TRUE}
+
 files <- list.files("./chapterFiles/velocity/simResults", pattern= "var_x1")
+
+if(quickRun) files <- files[1:500] # when knitting thesis for minor edits...
+
 if(length(files) ==0){
   var.analy = TRUE
   source("./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R")

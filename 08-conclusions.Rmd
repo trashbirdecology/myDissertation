@@ -1,0 +1,14 @@
+# Conclusions {conclusions}
+
+Numerous indices, or composite metrics, have been suggested as 'early-warning indicators' of ecological regime shifts or abrupt change (Chapters \@ref(intro) and \@ref(rdmReview)). Ecological indicators (or indices) are methods of measurement which are designed to provide inference about one or more unobserved or latent processes, are inherently biased. Regardless of the state of the theory supporting *regime shifts* in ecology, ecological indicators and the methods for calculating them should be heavily scrutinized prior to being used in an ecological management or policy-making setting. Rather, new methods (indices, metrics, etc.) are being introduced into the literature at a rate exceeding that at which they are scrutinized (Chapter \@ref(rdmReview)).
+
+Despite the potential failure of some methods to act as indicators of 
+
+I argue that indices p:
+1. processes captured are restricted by the input data (resolution; Chapter \@ref(fiSpatial))
+1. the system boundaries (extent) are pre-defined (Chapter \@ref(fiSpatial))
+1. normalization and weighting techniques often impact results (whether ecological or numerical) (Appendices \@ref(bbsRDM) and \@ref(regimeDetectionMeasures))
+1. data aggregation techniques often impact results (Chapter \@ref(resampling))
+1. indices fail to generalize across systems or taxa (see Chapters \@ref(intro) and \@ref(rdmMethodsReview))
+
+Although ecological indicators 

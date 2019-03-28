@@ -1,21 +1,17 @@
 # An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial}
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
-# Chunk defaults
-require(knitr)
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center', fig.pos = 'h',
-                      out.width = "95%")
-```
-
-```{r fiSpatAnalysis}
+# # Chunk defaults
+# require(knitr)
+# knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center', fig.pos = 'h',
+#                       out.width = "95%")
 ## Only run this if you need to calculate more metrics, or fix them.
 # you need to go into this (line 158) and specify parameters for calculating metrics.
 # ('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')
-```
 
-```{r dirsfiSpat}
 figDir <- "./chapterFiles/fisherSpatial/figures"
 figDissDir <- "./chapterFiles/fisherSpatial/figures/figsCalledInDiss"
 ```
+
 ## Introduction    
 Ecosystems are open, dynamical systems which arguably cannot be fully represented by deterministic models. Despite the complexity of most ecological systems, some patterns have emerged in certain statistical mechanics of ecological observations. An uptick in recent years ofstudies of **regime shifts**^[see \@ref(glossary) for a definition] in ecology [\@ref(wosRegimePubsByYear)] has spurred an increase in the number of 'new' methods for detecting ecological regime shifts [\@ref(rdmReview)], some of which are proposed as indicators of 'spatial' regime shifts [@butitta_spatial_2017, @kefi2014early, @sundstrom2017detecting, @guttal2009spatial, @brock_variance_2006]. 
 
@@ -125,13 +121,13 @@ knitr::include_graphics(paste0(figDissDir, "/usaAllTsects_East-West_metric_logSc
 ### Spatial correlation of Fisher Information
 In addition to failing to identfiy clear geological boundaries across large swaths of our study area, (Fig \@ref(fig:usaFI)) I also did not identify spatial correlation of Fisher Information among adjacent spatial transects (Fig. \@ref(fig:corPlotTsectsInterp))^[Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.]. For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Fig. \@ref(fig:corPlotTsectsInterp)), we should expect high and positive correlation values, and these values shoudl stay consistent across time *unless* the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Fig. \@ref(ewRoutesUsedHere)), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Fig. \@ref(ewRoutes_ecoRegions)). Note spatial transects in Fig. \@ref(fig:ewRoutes_ecoRegions) overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these points (boundaries).
 
-```{r ewRoutes_ecoRegions, eval=TRUE, out.width="75%", echo = FALSE,  fig.cap=""}
+```{r ewRoutes_ecoRegions, out.width="85%", echo = FALSE, fig.cap=""}
 # Routes used in this chapter analysis. 
 # for some reason, when i include a caption on this chunk it fucking fails, saying the caption is beyond float, despite the length of hte caption,...
 knitr::include_graphics(paste0(figDissDir,  "/allRoutesUsed_ecoregions.png"))
 ```
 
-```{r corPlotTsectsInterp,echo = FALSE,   out.width="85%", fig.cap="Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time. "}
+```{r corPlotTsectsInterp,echo = FALSE, out.width="85%", fig.cap="Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time. "}
 knitr::include_graphics(paste0(figDissDir,  "/interpolated_FI_corplotSelectTransects_East-West.png"))
 ```
 
