@@ -1,84 +1,6 @@
 <!-- `r if(knitr:::is_latex_output()) '\\appendix'` -->
 
-<!-- `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`  -->
-<!-- # Appendix A: R package regimeDetectionMeasures  {-#regimeDetectionMeasures}  -->
-<!-- This appendix contains example analysis associated with the R Package, `regimeDetectionMeasures`. Development source code for this package is available on GitHub as a compressed file at [https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip](https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip) or at [https://github.com/TrashBirdEcology/regimeDetectionMeasures](https://github.com/TrashBirdEcology/regimeDetectionMeasures). -->
-
-<!-- ## Measures/metrics calculated   -->
-<!-- This package will calculate a various regime detection metrics that have been used to 'detect ecological regime shifts'. A 'new' metric, **distance travelled** is also calculated (Burnett and others, *in prep*).  -->
-
-<!-- COMPOSITE: -->
-<!-- 1. Distance travelled -see also package [`distanceTravelled`](https://github.com/TrashBirdEcology/distanceTravelled).  -->
-<!-- 1. Fisher Information -->
-<!-- 1. Variance Index -->
-
-<!-- UNIVARIABLE: -->
-<!-- 1. Skewness (mean and mode versions) -->
-<!-- 1. Kurtosis -->
-<!-- 1. Variance -->
-<!-- 1. Mean -->
-<!-- 1. Mode -->
-<!-- 1. Coefficient of variation, CV -->
-<!-- 1. Autocorrelation lag-1 (using `stats::acf`) -->
-
-<!-- ## Example analysis -->
-<!-- ```{r, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE} -->
-<!-- library(regimeDetectionMeasures) -->
-<!-- # Munge original data ----------------------------------------------------- -->
-<!-- origData = munge_orig_dat(example = T) -->
-
-<!-- # Visualize original data ------------------------------------------------- -->
-
-<!-- # Plot the original time series abundances -->
-<!-- plot_orig_data(data = origData, -->
-<!--                example = F, -->
-<!--                print = T) -->
-
-<!-- # Plot the distance between observations -->
-<!-- plot_timeDiff(data = origData, -->
-<!--               example = F, -->
-<!--               print = T) -->
-
-<!-- # Plot species richness over time -->
-<!-- plot_richness(data = origData, -->
-<!--               example = F, -->
-<!--               print = T) -->
-
-<!-- # Calculate distance travelled and derviatves of this --------------------- -->
-
-<!-- (distances <- calculate_distanceTravelled(origData, derivs = T)) -->
-
-
-<!-- # Calculate FI, VI, and early warning signals -------------------------------------------------------- -->
-
-<!-- # Uses a moving window analysis to calculate FI and Vi within each window -->
-<!-- results <- -->
-<!--     rdm_window_analysis( -->
-<!--         origData, -->
-<!--         winMove = 0.25, -->
-<!--         overrideSiteErr = F, -->
-<!--         min.window.dat = 2, -->
-<!--         fi.equation = "7.12", -->
-<!--         to.calc = c('EWS', 'VI') -->
-<!--     ) -->
-
-<!-- # Reults will return all results in a single data frame. -->
-<!-- head(results) -->
-
-<!-- # END RUN -------------------------------------------------------- -->
-
-<!-- ``` -->
-
-
-
-
-<!-- # Appendix B: R package bbsRDM {-#bbsRDM}  -->
-
-<!-- This appendix contains example analysis associated with the R Package, `bbsRDM`. Development source code for this package is available on GitHub as a compressed file, [https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ](https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ) or at [https://github.com/TrashBirdEcology/rRDM](https://github.com/TrashBirdEcology/rRDM). -->
-
-<!-- ## Package structure -->
-
-
+<!-- `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` -->
 
 <!-- # Appendix C: Paleodiatom case study: distance travelled, velocity, Fisher Information {-#appPaleo} -->
 
@@ -108,7 +30,7 @@
 <!-- data <- read_csv("https://doi.org/10.1371/journal.pone.0108936.s001") -->
 <!-- ``` -->
 
-<!-- ## Calculate the distance travelled and velocity metrics  -->
+<!-- ## Calculate the distance travelled and velocity metrics -->
 
 <!-- ### Calculate the distance -->
 <!-- Calculate the difference, $\Delta x$, in each species' relative abundance from time *n* to time *n + 1*. Calculate the change in distance, $\Delta s$, as the sum of the squares of the change in each species. Calculate the distance as the cummulative sums of the change in distance. -->

@@ -1,0 +1,9 @@
+<!-- `r if(knitr:::is_latex_output()) '\\appendix'` -->
+
+<!-- `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` -->
+
+<!-- # Appendix B: R package bbsRDM {-#bbsRDM} -->
+
+<!-- This appendix contains example analysis associated with the R Package, `bbsRDM`. Development source code for this package is available on GitHub as a compressed file, [https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ](https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ) or at [https://github.com/TrashBirdEcology/rRDM](https://github.com/TrashBirdEcology/rRDM). -->
+
+<!-- ## Package structure -->
