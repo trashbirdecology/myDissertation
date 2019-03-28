@@ -202,7 +202,8 @@ allRoutesUsed_ecoregions <- eco_poly_basemap +
   # scale_color_viridis_d()+
   scale_color_grey()+
   theme(legend.position = "none")+
-  coord_map(xlim = c(-135, -60),ylim = c(25, 60))
+  coord_map(xlim = c(-135, -60),ylim = c(25, 60))+
+  theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
 
 
 

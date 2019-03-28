@@ -43,7 +43,7 @@
 \usepackage{hyperref}
 \usepackage{lmodern}
 \usepackage{float}
-\floatplacement{figure}{H}
+\floatplacement{figure}{t}
 % End of CII addition
 \usepackage{rotating}
 % Next line commented out by CII
@@ -922,6 +922,24 @@ This study was conceptualized at the International Institute for Applied Systems
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(magrittr)}
+\end{Highlighting}
+\end{Shaded}
+\begin{verbatim}
+
+Attaching package: 'magrittr'
+\end{verbatim}
+\begin{verbatim}
+The following object is masked from 'package:purrr':
+
+    set_names
+\end{verbatim}
+\begin{verbatim}
+The following object is masked from 'package:tidyr':
+
+    extract
+\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \CommentTok{## Define a plotting function for plotting simulated and dist results}
 \NormalTok{sPlot <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df, dist, }\DataTypeTok{div =} \DecValTok{10}\NormalTok{)\{}
@@ -1330,6 +1348,19 @@ Further work is required to determine the utility of system velocity as a regime
 \end{figure}
 \hypertarget{conclusions-conclusions}{%
 \chapter{Conclusions \{conclusions\}}\label{conclusions-conclusions}}
+
+Numerous indices, or composite metrics, have been suggested as `early-warning indicators' of ecological regime shifts or abrupt change (Chapters \ref{intro} and \ref{rdmReview}). Ecological indicators (or indices) are methods of measurement which are designed to provide inference about one or more unobserved or latent processes, are inherently biased. Regardless of the state of the theory supporting \emph{regime shifts} in ecology, ecological indicators and the methods for calculating them should be heavily scrutinized prior to being used in an ecological management or policy-making setting. Rather, new methods (indices, metrics, etc.) are being introduced into the literature at a rate exceeding that at which they are scrutinized (Chapter \ref{rdmReview}).
+
+Despite the potential failure of some methods to act as indicators of
+
+I argue that indices p:
+1. processes captured are restricted by the input data (resolution; Chapter \ref{fiSpatial})
+1. the system boundaries (extent) are pre-defined (Chapter \ref{fiSpatial})
+1. normalization and weighting techniques often impact results (whether ecological or numerical) (Appendices \ref{bbsRDM} and \ref{regimeDetectionMeasures})
+1. data aggregation techniques often impact results (Chapter \ref{resampling})
+1. indices fail to generalize across systems or taxa (see Chapters \ref{intro} and \ref{rdmMethodsReview})
+
+Although ecological indicators
 
 \backmatter
 
