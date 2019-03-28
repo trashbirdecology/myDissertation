@@ -5,8 +5,6 @@ require(tidyverse)
 require(revtools)
 require(dplyr)
 
-rdm.dir <- "./chapterfiles/rdmReview"
-
 # Create some helper funs -------------------------------------------------
 # Create a function for filtering variables by abstrac,t title, etc. 
 myFilterFun <- function(words, df, columnName){
