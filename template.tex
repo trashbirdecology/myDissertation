@@ -55,7 +55,7 @@
 
 % Added by CII (Thanks, Hadley!)
 % Use ref for internal links
-\renewcommand{\hyperref}[2][???]{\autoref{#1}}
+\renewcommand{\hyperref}[2][???????]{\autoref{#1}}
 \def\chapterautorefname{Chapter}
 \def\sectionautorefname{Section}
 \def\subsectionautorefname{Subsection}
@@ -162,11 +162,11 @@ $endif$
 \frontmatter % this stuff will be roman-numbered
 \pagestyle{empty} % this removes page numbers from the frontmatter
 
-$if(acknowledgements)$
-  \begin{acknowledgements}
-    $acknowledgements$
-  \end{acknowledgements}
-$endif$
+%$if(acknowledgements)$
+%  \begin{acknowledgements}
+%    $acknowledgements$
+%  \end{acknowledgements}
+%$endif$
 
 $if(preface)$
   \begin{preface}
@@ -194,11 +194,11 @@ $if(abstract)$
   \end{abstract}
 $endif$
 
-$if(dedication)$
-  \begin{dedication}
-    $dedication$
-  \end{dedication}
-$endif$
+%$if(dedication)$
+%  \begin{dedication}
+%    $dedication$
+%  \end{dedication}
+%$endif$
 
 \mainmatter % here the regular arabic numbering starts
 \pagestyle{fancyplain} % turns page numbering back on
