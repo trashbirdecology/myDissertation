@@ -35,9 +35,7 @@
 \usepackage{graphicx,latexsym}
 \usepackage{amsmath}
 \usepackage{amssymb,amsthm}
-%\usepackage{longtable,booktabs,setspace}
 \usepackage{longtable,booktabs,setspace, array}
-\usepackage{chemarr} %% Useful for one reaction arrow, useless if you're not a chem major
 \usepackage[hyphens]{url}
 % Added by CII
 \usepackage{hyperref}
@@ -47,12 +45,12 @@
 % End of CII addition
 \usepackage{rotating}
 % Next line commented out by CII
-%%% \usepackage{natbib}
+% \usepackage{natbib}
 % Comment out the natbib line above and uncomment the following two lines to use the new
 % biblatex-chicago style, for Chicago A. Also make some changes at the end where the
 % bibliography is included.
 %\usepackage{biblatex-chicago}
-%\bibliography{thesis}
+\bibliography{thesis}
 
 
 % Added by CII (Thanks, Hadley!)
@@ -71,46 +69,6 @@
 % \usepackage{times} % other fonts are available like times, bookman, charter, palatino
 
 % Syntax highlighting #22
-  \usepackage{color}
-  \usepackage{fancyvrb}
-  \newcommand{\VerbBar}{|}
-  \newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-  % Add ',fontsize=\small' for more characters per line
-  \usepackage{framed}
-  \definecolor{shadecolor}{RGB}{248,248,248}
-  \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-  \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-  \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-  \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-  \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-  \newcommand{\BuiltInTok}[1]{#1}
-  \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-  \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-  \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-  \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-  \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-  \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-  \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-  \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-  \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-  \newcommand{\ExtensionTok}[1]{#1}
-  \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-  \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-  \newcommand{\ImportTok}[1]{#1}
-  \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-  \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-  \newcommand{\NormalTok}[1]{#1}
-  \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-  \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-  \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-  \newcommand{\RegionMarkerTok}[1]{#1}
-  \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-  \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-  \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-  \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-  \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-  \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 
 % To pass between YAML and LaTeX the dollar signs are added by CII
 \title{Regime Detection Measures for the Practical Ecologist}
@@ -226,6 +184,95 @@ Identifying abrupt changes in the structure and functioning of systems, or syste
 I will use Fisher Information to detect regime shifts in time and space using avian community data obtained from the North American Breeding Bird Survey within the area east of the Rockies and west of the Mississippi River. Fisher Information is a technique that captures the dynamic of a system, and this metric will be calculated about a suite of bird species abundances aggregated to the route level for all possible time periods. Transmutation (aggregation error) about inclusion or exclusion of certain bird species, functional groups, and guilds will be analyzed. Efforts have been made to develop early warning indicators of regime shifts in ecosystems, however, for most ecosystems there is great uncertainty in predicting the risk of a regime shift, regarding both when and how long it will take to happen and if it can be recognized early enough to be avoided when desired. We will complement the use of Fisher Information with multiple discontinuity analyses about body mass distributions at the route-level to achieve the aim of identifying individual species that best serve as early-warning indicators of regime shifts. For those species found on the edges of body mass aggregations, we test the hypothesis that the background variance in their abundances (on Breeding Bird Survey routes) will increase more than those not observed at the edge of discontinuity aggregations. Identification of early-warning indicators of regime shifts in ecological systems allows management efforts to focus on a single or a small number of species that inform us about ecosystem resilience and trajectory.\\
 These methods transcend the primary objective of the Breeding Bird Survey (to monitor population trends) and use this expansive dataset in such a way that information about ecosystem order, trajectory, and resilience emerge. Here, we utilize an expansive dataset (the Breeding Bird Survey) to make broad-scale estimations and predictions about ecosystem resilience, regime status and trajectory, and ecosystem sustainability. Identification of regime shifts and early-warning indicator species may afford us the ability to predict system regime shifts in time.
 
+\hypertarget{definitions}{%
+\chapter*{Table of Definitions}\label{definitions}}
+\addcontentsline{toc}{chapter}{Table of Definitions}
+
+Research surrounding regime shifts, threshold identification, change-point detection, bifurcation theory, etc. is muddled with jargon. Here, I provide a table of definitions (Table \ref{tab:glossary}) for terms and concepts that may either be unfamiliar to the practical ecologist, or may have multiple meanings among and within ecological researchers and practitioners. With this table, I aim to both improve the clarity of this dissertation \emph{and} highlight one potential issue associated with regime detection methods in ecology: semantics.
+
+\begingroup\fontsize{10}{12}\selectfont
+\begin{longtable}{>{\raggedright\arraybackslash}p{10em}>{\raggedright\arraybackslash}p{33em}}
+\caption{\label{tab:glossary}A table of definitions for terms, theories, and phrases often appearing in ecological regime shift literature.}\\
+\toprule
+\textbf{Term} & \textbf{Definition}\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:glossary}A table of definitions for terms, theories, and phrases often appearing in ecological regime shift literature. \textit{(continued)}}\\
+\toprule
+\textbf{Term} & \textbf{Definition}\\
+\midrule
+\endhead
+\
+\endfoot
+\bottomrule
+\endlastfoot
+Abrupt & A relative value of the speed and/or intensity of the change; the time period over which the regime shift occurs relative to the time observed (or expected to have been) in a particular state\\
+\textbf{Attractor} & \textbf{The set of values towards which a system tends}\\
+Basin-boundary collision & The parameter values for a system that causes the system to shift between alternate attractors.\\
+\textbf{Catastrophe theory} & \textbf{The study of abrupt changes within a dynamical system}\\
+Catastrophic bifurcation & big' jump to an alternate attractor due to initial attractor\\
+\addlinespace
+\textbf{Change-point} & \textbf{see also regime shift; a term often used in computer science, climatology, data science; represents the point at which a state changes its configuration.}\\
+Change-point detection & change point method which does not require supervision; identifies potential change points without a priori potential change points\\
+\textbf{Change-point estimation} & \textbf{change point method which DOES require supervision; identifies potential change points when given a set of potential change points; well-developed in computer science, statistics, data mining, etc.; although well-developed, still lacks with giving statistical significance of cahnge-points}\\
+Chaos & A system with extreme sensitivity to initial conditions.\\
+\textbf{Critical slowing down (CSD)} & \textbf{When the recovery rate (time to return) of a system decreases (approaches zero) as a system approaches a critical point (possibly a threshold or tipping point). A characteristic observed in some empirical systems data (e.g. nutrient loading in shallow lakes).}\\
+\addlinespace
+Degrees of freedom & The number of system parameters or components which vary independently\\
+\textbf{Domain of attraction} & \textbf{the range of values around which a system fluctuates}\\
+Driver & A widespread anthropogenic source of change which leads to one or more pressures (e.g., land-use change).\\
+\textbf{Driver-threshold regime shift} & \textbf{When a rapid change in external driver indcues a rapid change in ecosystem state}\\
+Dynamical system & A time-dependent system which can be described in state-space\\
+\addlinespace
+\textbf{Dynamical systems theory} & \textbf{The study of complex systems theory; the study of time-dependent systems}\\
+Equilibrium & The set of values around which a system revolves and does not change\\
+\textbf{Exogeneous process (forcing, driver)} & \textbf{An external process influencing the state of the dynamical system}\\
+First-order stationarity & When the mean is constan\\
+\textbf{Fold bifurcation} & \textbf{occurs when a stable point collides with an unstable point; when crossing a tipping point induces hysteresis}\\
+\addlinespace
+Fractal properties & A measurement of geometrical self-similarity; when a system has similar structure regardless of the scale of observation\\
+\textbf{Hysteresis} & \textbf{A system which is state-dependent (e.g. magnets); when a tipping point or threshold is crossed such that the previous state cannot be achieved by reversing the conditions.}\\
+Leading indicators & Whent eh statistical properties of the fluctuations (of the data) approach a critical treansition\\
+\textbf{Lyapunov exponent (and stability} & \textbf{A value that conveys the average rate of trajectory divergence that is caused by an endogenous force; how quickly (if at all) a system will tend away from a stable point if it starts near the stable point.}\\
+Measure theory & The study of measures and measurement (e.g.\\
+\addlinespace
+\textbf{Moving window} & \textbf{see sliding window}\\
+Noise & Processes manifested in data which are unaccounted for; sometimes referred to as meaningless; random variability\\
+\textbf{Non-stationarity of the mean value} & \textbf{Infers that a trend or a periodicity is present int eh time series}\\
+Online (c.f. off-line) & Real-time updating of model parameters, predictions, etc.\\
+\textbf{Persistent} & \textbf{A relative value of the longevity of the observed change in values}\\
+\addlinespace
+Phase space & A graphical representation of two or more trajectories where one axis is not time. In this representation\\
+\textbf{Prediction} & \textbf{A temporal forecast. Is intrinsic when a model and paramters are used to make forecast, is realized when the prediction becomes the actual state of the system.}\\
+Pressure & A perturbation which negatively influences a system, and can be defined as pulse, press, or monotonic.\\
+\textbf{Red noise} & \textbf{Noise having zero mean, constant variance, and serial autocorrelation; autocorrelated random variability}\\
+Regime & A set of system values that\\
+\addlinespace
+\textbf{Regime shift} & \textbf{"abrupt" and "persistent" change in a system's structure or functioning}\\
+Second-order stationarity & The nean is constant and the covariance is a function of a time lag, but not of time.\\
+\textbf{Self-similarity} & \textbf{A system satisfied by  power-law scaling}\\
+Sliding window & when a sample. \$X\_t\$ is used instead of \$x\_t\$, as an interval with Hankel matrix \$\{X\_t, X\_t+1, É X\_t+n-1\}\$; a set of retrospective (or prospective or a combination of both) subsequence samples starting a time t [@aminikhanghahi2017survey]\\
+\textbf{Stable equilibrium} & \textbf{An equilibrium is stable when small perturbations do not induce change}\\
+\addlinespace
+State-threshold regime shift & When a graduaal change in external driver induces a rapid change in ecosystem state (e.g,. System crosses a threshold)\\
+\textbf{State space} & \textbf{the set of all possible configurations of a system}\\
+Stationarity & When the probability density function of a system does not chagne with time\\
+\textbf{Statistical stationarity} & \textbf{A system with statistical properties unchanging over time. This concept extends to periodic stationarity for systems exhibiting periodic behavior}\\
+Strange attractor & An attractor which has fractal structure (an observable fractal dimension).\\
+\addlinespace
+\textbf{supervised machine learning} & \textbf{classifiers are used (a priori decisions required) to classify data}\\
+Threshold & A point where the system reacts to changing conditions\\
+\textbf{Tipping point} & \textbf{A point in a system's trajectory where a small change in an endogenous force induces a large change in sytem state or values; the point where a system can flip into an alternative state}\\
+Trajectory & The path of an object or system through space-time\\
+\textbf{Transient} & \textbf{A behavior that is responsive to intial conditions, or its effect declines over time}\\
+\addlinespace
+Trend smoothing & Local averaging of values such tahtt eh non-systematic components of the system are washed out\\
+\textbf{Unstable equilibrium} & \textbf{An equilibrium is unstable when small perturbations induce change.}\\
+Unsupervised maain learning & when no prior training is required (i.e. no classifications necessary a priori) to classify data\\
+\textbf{White noise} & \textbf{Noise having zero mean, constant variance, and is not autocorrelated; uncorrelated random variability}\\*
+\end{longtable}
+\endgroup{}
+
 \hypertarget{intro}{%
 \chapter{Introduction}\label{intro}}
 
@@ -276,11 +323,6 @@ Although it's taken us many decades to produce realiable weather forecasts 5 day
 \subsection{Dissertation structure}\label{dissertation-structure}}
 
 The chapters hereain are written as separate, publishable manuscripts. Where applicable, co-authors are listed in the front matter of the chapter. The dissertation comprises an introduction to the dissertation (Chapter \ref{intro}), a brief overview of early warning systems (or regime detection measures) for ecological systems data (Chapter \ref{rdmReview}), a detailed guide to Fisher Information as a RDM written for ecologists (Chapter \ref{fiGuide}), an application of Fisher Information to spatially-explicit data (Chapter \ref{fisherSpatial}), introduction of `new' RDM, Distance Travelled (Chapter \ref{distanceTravelled}), a study of data quality and data loss on select RDMs including Distance Travelled and Fisher Information (Chapter \ref{resampling}), and conclusions (Chapter \ref{conclusions}).
-
-\hypertarget{glossary}{%
-\section{Glossary}\label{glossary}}
-
-Research surrounding regime shifts, threshold identification, change-point detection, bifurcation theory, etc. is muddled with jargon. Here, I provide a glossary (Table \ref{glossary}) for terms and concepts that may either be unfamiliar to the practical ecologist, or may have multiple meanings among and within ecological researchers and practitioners.
 
 \hypertarget{rdmReview}{%
 \chapter{A brief overview of ecological regime detection methods methods}\label{rdmReview}}
@@ -371,15 +413,6 @@ Of the 250 articles scanned in Google Scholar, I retained 3 methods. I was previ
 \end{figure}
 \hypertarget{list-of-new-methods}{%
 \subsection{List of new methods}\label{list-of-new-methods}}
-\begin{verbatim}
-
-Attaching package: 'kableExtra'
-\end{verbatim}
-\begin{verbatim}
-The following object is masked from 'package:dplyr':
-
-    group_rows
-\end{verbatim}
 \begin{longtable}{lll}
 \caption{\label{tab:methodsMetricsListTab1}Longtable}\\
 \toprule
@@ -558,9 +591,7 @@ Ecological & Has the method been tested on empirical data? If so, to what rigor?
 \chapter{A guide to Fisher Information for Ecologists}\label{fiGuide}}
 
 \emph{This chapter is intended for submission to the publication \emph{Methods in Ecology and Evolution}.\footnote{Co-authors include: N.B. Price, A.J. Tyre, C.R. Allen, T. Eason, D.G. Angeler, and D. Twidwell}}
-\begin{verbatim}
-Loading required package: deSolve
-\end{verbatim}
+
 \hypertarget{abstract-1}{%
 \section{Abstract}\label{abstract-1}}
 
@@ -607,9 +638,12 @@ To calculate FI for a system with more than one state variable, we first estimat
 \end{equation}
 The specified parameters for the model system are \(g_1=m_2=1\), \(l_12=g_12 = 0.01\) , \(k=625\) ,and \(\beta=0.005\) (see Fath et al., 2003; Frieden \& Gatenby, 2007; Mayer et al., 2007). The initial conditions (predator and prey abundances) for the model system were not provided in the original references. Using package \emph{deSolve} in Program R (v 3.3.2) to solve the model system \eqref{eq:predprey} we found \(x_1 = 277.7815\) and \(x_1= 174.551\) provided reasonable results. We found that a complete cycle of the system corresponds to approximately 11.145 time units.
 \begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/pp1Period-1.pdf}
-\caption{\label{fig:pp1Period}Phase space plot of two-species Lotka-Volterra predator-prey system over a single period (\textasciitilde{}11.145 time units.}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/pp1Period-1} 
+
+}
+
+\caption{Phase space plot of two-species Lotka-Volterra predator-prey system over a single period (~11.145 time units.}\label{fig:pp1Period}
 \end{figure}
 \hypertarget{concepts-behind-the-calculations}{%
 \subsection{Concepts behind the calculations}\label{concepts-behind-the-calculations}}
@@ -619,20 +653,35 @@ Although the numerical steps for calculating the derivatives-based FI are relati
 \hypertarget{step-1.-probability-of-observing-the-system-in-a-particular-state-px}{%
 \subsubsection{\texorpdfstring{\textbf{Step 1. Probability of observing the system in a particular state, \(p(x)\)}}{Step 1. Probability of observing the system in a particular state, p(x)}}\label{step-1.-probability-of-observing-the-system-in-a-particular-state-px}}
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/2D-hist-1} \caption{A 2-dimensional histogram of the probability of observing a system in a particular state, $p(x)$, of the 2-species Lotka-Volterra predator prey system over a single period (~11.145 time units).}\label{fig:2D-hist}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/2D-hist-1} 
+
+}
+
+\caption{A 2-dimensional histogram of the probability of observing a system in a particular state, $p(x)$, of the 2-species Lotka-Volterra predator prey system over a single period (~11.145 time units).}\label{fig:2D-hist}
 \end{figure}
 Fisher Information (FI) is defined with respect to a probability distribution. In the derivatives-based method, FI is calculated for a probability of observing a system (as defined by one or more state variables) in a particular state, \(p(x)\), over some period of time, (\(0 to t_{end}\)). In other words \(p(x)\) is the probability that, at a specific point in time (\(t_{obs}^*\)) we will observe the system in a particular state, \(x^*\). The time at which we observe the system is a random variable, \(t_{obs} ~ Uniform(0,t_{end})\). To be clear, the study system is assumed to be deterministic and we assume no observation error, however, the observed state of the system, \(x(T_{obs})\), is a random variable because it is a function of the random observation time, \(x^*= x(t_{obs}^*)\). The state of the model system, x, is defined in two dimensions by the number of predators and the number of prey \eqref{eq:predprey} and is easily visualized \ref{fig:pp1Period}.Therefore, the probability of observing a particular state is a two-dimensional joint distribution \ref{fig:2d-hist}.
 
 A single state of the model system is defined by the number of predators and prey at a given point in time such that for any given point in time \(x(t)=[x_1 (t),x_2 (t)]\). At some random time between 0 and \(t_{end}\) {[}\(T_{obs} ~ Uniform(0,t_{end})\){]} we can count the number of predators and the number of prey to determine the state of the model system. We must assume the system is deterministic and there is no observation error. We can then calculate the probability of observing a particular predator and prey abundance combination, \(p(x)\). Under these assumptions, the only possible states of the system are defined by the system's observed trajectory, the model parameters, and the initial conditions. Therefore, the support of the probability distribution \ref{fig:2D-hist} is the trajectory of the system.
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/stringFig} \caption{A single cycle of a hypothetical two-species system over time period $t = 0$ to $t = T$. $s^*$ is the state of the system at some point in time. The dotted line represents the distance travelled by the system in phase space over its trajectory during time $(0, T)$.}\label{fig:stringFig}
+
+{\centering \includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/stringFig} 
+
+}
+
+\caption{A single cycle of a hypothetical two-species system over time period $t = 0$ to $t = T$. $s^*$ is the state of the system at some point in time. The dotted line represents the distance travelled by the system in phase space over its trajectory during time $(0, T)$.}\label{fig:stringFig}
 \end{figure}
 \hypertarget{step-2.-distance-traveled-by-the-system-s}{%
 \subsubsection{\texorpdfstring{\textbf{Step 2.} Distance traveled by the system, \(s\)}{Step 2. Distance traveled by the system, s}}\label{step-2.-distance-traveled-by-the-system-s}}
 
 Distance traveled by the system, s. We can now move from an n-dimensional representation of the probability distribution to a one-dimensional representation. To better understand this, imagine placing a string over the path of the entire trajectory from \(0 to t_{end}\) \ref{fig:stringFig}. If we know the number of predators and prey at a particular point in time \((t_{obs}^*)\) then we can mark that location on the string (see asterisk in \ref{fig:stringFig}. Next, imagine picking up the string and laying the string flat along a ruler. The length, s, of the entire string measures the total distance traveled by the system in phase space. The mark we made on the string (denoted \(*\)) lies at a distance \(s^*\) between 0 and \(s\). We call this length the distance traveled by the system, \(s^*\). In this context, \(s^*\) in phase space represents a measure of cumulative change in state. We note that the distance traveled in phase space increases monotonically with time. If the system never revisits the same state (i.e., the trajectory never overlaps or intersects itself), then every unique system state (i.e., point on the trajectory) is mapped to a unique value of distance traveled. Therefore, \(p(x)\) (n-dimensional) is equivalent to the probability that the system is at distance s, i.e., \(p(x)=p(s)\), (where \(p(s)\) is one dimensional; Cabezas, Pawlowski, Mayer, \& Hoagland (2005)). However, if the system revisits previous states, then a unique system state may be mapped to different values of distance traveled and the relationship between \(p(x)\) and \(p(s)\) is not one-to-one. We calculated the distance traveled s of the model system over a single cycle (11.145 time units; \ref{fig:distSpeedAccel}.
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/distSpeedAccel-1} \caption{From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.}\label{fig:distSpeedAccel}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/distSpeedAccel-1} 
+
+}
+
+\caption{From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.}\label{fig:distSpeedAccel}
 \end{figure}
 \hypertarget{step-3.-ps-as-a-function-of-the-rate-of-change-of-s}{%
 \subsubsection{\texorpdfstring{\textbf{Step 3.} \(p(s)\) as a function of the rate of change of \(s\)}{Step 3. p(s) as a function of the rate of change of s}}\label{step-3.-ps-as-a-function-of-the-rate-of-change-of-s}}
@@ -669,18 +718,38 @@ Mayer et al.~(2007) calculated FI for a predator-prey system for several discret
 \label{eq:mayerCase}
 \end{equation}
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/kByTime} \caption{Carrying capacity over time with a regime shift occuring around time 200.}\label{fig:kByTime}
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/kByTime} 
+
+}
+
+\caption{Carrying capacity over time with a regime shift occuring around time 200.}\label{fig:kByTime}
 \end{figure}
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/kTrajectories-1} \caption{Phase space plot of system trajectories for different values of k}\label{fig:kTrajectories}
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/kTrajectories-1} 
+
+}
+
+\caption{Phase space plot of system trajectories for different values of k}\label{fig:kTrajectories}
 \end{figure}
 We assumed an initial carrying capacity of 800 and a final carrying capacity of 625 which corresponds to the range of carrying capacities explored by Mayer et al.~(2007). We simulated a time series of 600 time units with a regime change after 200 time units. We used an alpha value of 0.05. The time series for carrying capacity is shown in \ref{fig:kByTime} and the system trajectory in phase space is shown in \ref{fig:kTrajectories}. The distance travelled in phase space (i.e., cumulative change in state) is shown in \ref{fig:distOverTime} and the speed of the system (i.e., rate of change) is shown in \ref{fig:dsdtOverTime}.
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/dsdtOverTime} \caption{Speed of the system (rate of change) in phase space. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:dsdtOverTime}
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/dsdtOverTime} 
+
+}
+
+\caption{Speed of the system (rate of change) in phase space. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:dsdtOverTime}
 \end{figure}
 We calculated FI for the distribution of distance travelled over a series of non-overlapping time windows. Multiple sources suggest the length of the time window should be equal to one system period such that FI is constant for a periodic system (Cabezas \& Fath, 2002; Mayer et al., 2007). However, the system period is different before, during, and after the regime shift. Therefore, we performed two separate calculations of FI using window sizes corresponding to the initial and final period of the system (\(13.061\) and \(11.135\), respectively). The change in FI over time is shown in \ref{fig:fiOverTime}.
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/fiOverTime} \caption{Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.}\label{fig:fiOverTime}
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/fiOverTime} 
+
+}
+
+\caption{Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.}\label{fig:fiOverTime}
 \end{figure}
 \hypertarget{conclusions}{%
 \section{Conclusions}\label{conclusions}}
@@ -721,15 +790,25 @@ Although it is suggested that statistical and pragmatic models and methods are a
 \subsection{Data: North American Breeding Bird Survey}\label{data-north-american-breeding-bird-survey}}
 
 I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \ref{derivatives}). The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\ref{fig:bbsPoints}) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately 24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data. Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed} \caption{Locations of Breeding Bird Survey routes sampled between 1966 and 2017.}\label{fig:bbsPoints}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed} 
+
+}
+
+\caption{Locations of Breeding Bird Survey routes sampled between 1966 and 2017.}\label{fig:bbsPoints}
 \end{figure}
 \hypertarget{study-area}{%
 \subsection{Study area}\label{study-area}}
 
 Although the NABBS conducts surveys throughout much of North America, I limited analyses to the continental United States and parts of southern Canada. NABBS coverage of the boreal forests of Canada are sparse in space, and many routes in Mexico have fewer than 25 years of observations.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingEx_1row} \caption{A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information.}\label{fig:ewRouteMap}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingEx_1row} 
+
+}
+
+\caption{A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information.}\label{fig:ewRouteMap}
 \end{figure}
 \hypertarget{focal-military-base}{%
 \subsubsection{Focal military base}\label{focal-military-base}}
@@ -737,7 +816,7 @@ Although the NABBS conducts surveys throughout much of North America, I limited 
 The Mission of the US Department of Defense is to provide military forces to deter war and protect the security of the country, and a primary objective of individual military bases is to maintain military readiness. To maintain readiness, military bases strictly monitor and manage their natural resources. Military bases vary in size and nature, and are heterogeneously distributed across the continental United States (See Fig. \ref{fig:ewRouteMap}). The spread of these bases (Fig. \ref{fig:milBases}), coupled with the top-down management of base-level natural resources presumably influences the inherent difficulties associated with collaborative management within and across military bases and other natural resource management groups (e.g., state management agencies, non-profit environmental groups.
 
 Much like other actively managed landscapes, miltiary bases are typically surrounded by non- or improperly-managed lands. Natural resource managers of military bases face environmental pressures within and surrounding their properties, yet their primary objectives are very different. Natural resource managers of military bases, whose primary objective is to maintain military readiness, are especially concerned with if and how broad-scale external forcings might influence their lands. Prominent concerns include invasive species, wildlife disease, and federally protected species (personal communication with Department of Defense natural resource managers at Eglin Air Force and Fort Riley military bases). For these reasons, natural resource managers attempt to create buffers along their perimeters (e.g., live fire/ammunitions suppression, wide fire breaks). Identifying the proximity of military bases to historic and modern ecological shifts may provide insight into the effectiveness of their natural resource management efforts.
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/milBases} 
 
@@ -746,7 +825,7 @@ Much like other actively managed landscapes, miltiary bases are typically surrou
 \caption{Locations of U.S. military bases in our study area.}\label{fig:milBases}
 \end{figure}
 The NABBS routes chosen for analyses in this Chapter lie within or near Fort Riley military base (located at approximately \(39.110474^{\circ}\), \(-96.809677^{\circ}\); Kansas, USA). Fort Riley (\ref{fig:basesOfInterestMap}) is a useful reference site for this study. Woody encroachment of the Central Great Plains over the last century has triggered shifts in dominant vegetative cover and diversity (Ratajczak et al.~2012) in the area surrounding Fort Riley military base (e.g., Van Auken 2009). This phenomena should present itself as a regime boundary should Fisher Information be a robust regime shift detection method.
-\begin{figure}
+\begin{figure}[h]
 
 {\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/basesOfInterestMap} 
 
@@ -758,8 +837,13 @@ The NABBS routes chosen for analyses in this Chapter lie within or near Fort Ril
 \subsubsection{Spatial sampling grid}\label{spatial-sampling-grid}}
 
 To my knowledge, Sundstrom, Eason, Nelson, Angeler, Barichievy, Garmestani, Graham, et al. (2017a) is the only study to use the Fisher Information on spatially-referenced data. The authors of this study hand-picked NABBS routes to be included in their samples such that their metrics should detect `regime changes' when adjacent sampling points represented different ecoregions (broad-scale vegetation classification system). The authors also suggest each ecoregion is similarly represented, having a similar number of NABBS routes within each ecoregion in the analysis. However, this method of handpicking routes resulted in a transect which was neither North-South nor East-West running (see Sundstrom, Eason, Nelson, Angeler, Barichievy, Garmestani, Graham, et al. (2017a)), but rather zigzagged across a midwestern region.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingALlRoutesUsed} \caption{The three East-West running transects used to visualize results in this chapter.}\label{fig:ewRoutesUsedHere}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingALlRoutesUsed} 
+
+}
+
+\caption{The three East-West running transects used to visualize results in this chapter.}\label{fig:ewRoutesUsedHere}
 \end{figure}
 I constructed a gridded system across the continental United States and parts of Canada. The gridded system comprises East-West running transects transects running in either North-South or East-West directions. This method ameliorates some sampling bias, as I have arbitrarily defined sampling transects, rather than hand-picking sites to include in the analysis. Additionally, this approach allows for raster stacking, or layering data layers (e.g., vegetation, LIDAR, weather) on top of the sampling grid and results, allowing one to identify potential relationships with large-scale drivers. This method also provides a simple vector for visualizing changes in the Fisher Information over space-time, using animations and still figures. For brevity, I present visual results of only three, spatially-adjacent, East-West running transects (Fig. \ref{fig:ewRoutesUsedHere}) at multiple time periods.
 
@@ -805,16 +889,26 @@ Increases in FI is proposed as an indicator of system orderliness, where periods
 \subsubsection{Interpolating results across spatial transects}\label{interpolating-results-across-spatial-transects}}
 
 Because the BBS routes are not regularly spaced, pairwise correlations of adjacent transects are not possible without either binning the Fisher Information calculations using a moving-window analysis, or interpolating the results to regularly-spaced positions in space. To avoid potential biases associated with the former option, I linearally interpolated Fisher Information within each spatial transect (Fig. \ref{fig:ewRoutesUsedHere}) at 50 points along the longitudinal axis. The 50 longitudinal points at which I interpolated were the same across each spatial transect. I used the function \emph{stats::approx()} to linearly approximate the Fisher Information. I did not interpolate values beyond the longitudinal range of the original data (using argument \emph{rule=1} in package \emph{approx}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingEx_1row} \caption{An example of two adjacent spatial transects within my sampling grid.}\label{fig:oneTsectEx}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingEx_1row} 
+
+}
+
+\caption{An example of two adjacent spatial transects within my sampling grid.}\label{fig:oneTsectEx}
 \end{figure}
 \hypertarget{spatial-correlation-of-fisher-information}{%
 \subsubsection{Spatial correlation of Fisher Information}\label{spatial-correlation-of-fisher-information}}
 
 If Fisher Information captures and reduces information regarding abrupt changes in community structure across the landscape, then the values of FI should be spatially autocorrelated. That is, the correlation of FI values should increase as the distance between points decreases. Fisher Information values calculated using Eq. \eqref{eq:derivativesFI} are \textbf{not} relatively comparable outside of our spatial transects, because the possible values are unbounded (can take on any value between \(-\infty\) and \(%\infty
 \). However, because FI is directly comparabe \textbf{within} each spatial transect (e.g., \ref{fig:oneTsectEx}), we can use use pairwise correlations among two transects (e.g., \ref{fig:oneTsectEx}) to determine whether values of FI are consistent across space. I calculate the pairwise correlation (Pearson's) among each pair of adjacent spatial transects (e.g., Fig. \ref{fig:adjacentTsectEx}) using the function \emph{stats::cor()}. I removed a pair of points if at least one point was missing an estimate for Fisher Information. This occurred when the original longitudinal range of one transect exceeded its pair's range, since I did not interpolate beyond the original longitudinal range.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingEx_2rows} \caption{An example of two adjacent spatial transects (12, 13) within my sampling grid.}\label{fig:adjacentTsectEx}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transectSamplingEx_2rows} 
+
+}
+
+\caption{An example of two adjacent spatial transects (12, 13) within my sampling grid.}\label{fig:adjacentTsectEx}
 \end{figure}
 \hypertarget{results-1}{%
 \section{Results}\label{results-1}}
@@ -823,29 +917,59 @@ If Fisher Information captures and reduces information regarding abrupt changes 
 \subsection{Fisher Information across spatial transects}\label{fisher-information-across-spatial-transects}}
 
 Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of `spatial regimes' (Fig. \ref{fig:fi1Tsect}). Of the three spatial transects analyzed in this chapter (Fig. \ref{fig:ewRoutesUsedHere}), Fig.\ref{fig:fi1Tsect} is representative of lack of pattern observed in teh Fisher Information values aross transects. I identified no clear pattern within or among spatial transects. Log-transforming the Fisher Information metric suppresses some of the extreme values, but still does not clearly identify sharp changes in the Fisher Information values.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-West_metric_FI_Eqn7_12} \caption{Fisher Information calculated for a single transect over time.}\label{fig:fi1Tsect}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-West_metric_FI_Eqn7_12} 
+
+}
+
+\caption{Fisher Information calculated for a single transect over time.}\label{fig:fi1Tsect}
 \end{figure}
 \hypertarget{spatial-correlation-of-fisher-information-1}{%
 \subsection{Spatial correlation of Fisher Information}\label{spatial-correlation-of-fisher-information-1}}
 
 In addition to failing to identfiy clear geological boundaries across large swaths of our study area, (Fig \ref{fig:usaFI}) I also did not identify spatial correlation of Fisher Information among adjacent spatial transects (Fig. \ref{fig:corPlotTsectsInterp})\footnote{Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.}. For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Fig. \ref{fig:corPlotTsectsInterp}), we should expect high and positive correlation values, and these values shoudl stay consistent across time \emph{unless} the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Fig. \ref{ewRoutesUsedHere}), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Fig. @ref(ewRoutes\_ecoRegions)). Note spatial transects in Fig. @ref(fig:ewRoutes\_ecoRegions) overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these points (boundaries).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecoregions} \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotSelectTransects_East-West} \caption{Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time. }\label{fig:corPlotTsectsInterp}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecoregions} 
+
+}
+
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePair_corPlot_East-West} \caption{Fisher Information of two transect pairs over time. }\label{fig:fiSinglePair}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotSelectTransects_East-West} 
+
+}
+
+\caption{Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time. }\label{fig:corPlotTsectsInterp}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2010_zoom_East-West} \caption{No patterns of abrupt change detected in Fisher Information along three transects in year 2010}\label{fig:fiEcoregion}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePair_corPlot_East-West} 
+
+}
+
+\caption{Fisher Information of two transect pairs over time. }\label{fig:fiSinglePair}
+\end{figure}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2010_zoom_East-West} 
+
+}
+
+\caption{No patterns of abrupt change detected in Fisher Information along three transects in year 2010}\label{fig:fiEcoregion}
 \end{figure}
 Upon initial investigation, there are no obvious signs of broad-scale patterns in FI across space (Fig. \ref{fig:fiEcoregion})\footnote{Size indicates value of Fisher Information (values are scaled and centered within transects). Red box (in top panel) indicates extent of bottom panel.}. If Fisher Information is an indicator of spatial regime boundaries, we should expect to see large changes in its value (in either direction) near the edges of functional spatial boundaries (e.g., at the boundaries of ecoregions). No clear regime changes appeared in areas where we might expect rapid changes (e.g., along the 105th meridian West, where a sharp change in altitude occurs).
 
 Numerical investigation of the spatial correlation among adjacent transects also yielded no clear patterns. I did not identify any obvious correlation with changes in FI values and functional potential (using Omernick Ecoregion Level 2; see Fig. \ref{fig:fiEcoregion}). Rather than abrupt changes in Fisher Information I found graduaal changes (e.g., see results for years 2000 and 2010 in Figs. \ref{fig:fiEcoregion00},\ref{fig:fiEcoregion}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2000_East-West} \caption{Fisher Information (scaled and centered; point size positively correlated with value) against ecoregion boundaries (EPA Level 2).}\label{fig:fiEcoregion00}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2000_East-West} 
+
+}
+
+\caption{Fisher Information (scaled and centered; point size positively correlated with value) against ecoregion boundaries (EPA Level 2).}\label{fig:fiEcoregion00}
 \end{figure}
 \hypertarget{discussion-1}{%
 \section{Discussion}\label{discussion-1}}
@@ -900,7 +1024,7 @@ The transferability of RDMs to practitioners can only be facilitated by identify
 \hypertarget{study-system-and-data}{%
 \subsection{Study system and data}\label{study-system-and-data}}
 
-I used paleodiatom time series from a freshwater system in North America which exhibited a rapid shift in community dynamics. These data were collected using a sediment coring method (see {\textbf{???}}). Community profiles at various depths within sediment cores are analyzed to obtain relative abundances. Relative abundances at various depths within the sediment core are then related to time (years before present) using carbon dating techniques. These data can be obtained from the publisher's website.
+I jackknifed paleodiatom time series from a freshwater system in North America which exhibited a rapid shift in community dynamics. These data were collected using a sediment coring method (see {\textbf{???}}). Community profiles at various depths within sediment cores are analyzed to obtain relative abundances. Relative abundances at various depths within the sediment core are then related to time (years before present) using carbon dating techniques. These data can be obtained from the publisher's website.
 
 In Chapter \ref{velocity}, I described a `new' method, \textbf{system velocity}, as a potential dimension reduction and regime detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric (see also \ref{fiGuide}). First introduced in by Fath et al. (2003) as one of multiple steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described below.
 
@@ -919,48 +1043,7 @@ This study was conceptualized at the International Institute for Applied Systems
 
 \hypertarget{velocity}{%
 \chapter{\texorpdfstring{Velocity (\emph{v}): rate-of-change of system trajectory as a potential indicator of abrupt change}{Velocity (v): rate-of-change of system trajectory as a potential indicator of abrupt change}}\label{velocity}}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(magrittr)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
 
-Attaching package: 'magrittr'
-\end{verbatim}
-\begin{verbatim}
-The following object is masked from 'package:purrr':
-
-    set_names
-\end{verbatim}
-\begin{verbatim}
-The following object is masked from 'package:tidyr':
-
-    extract
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{## Define a plotting function for plotting simulated and dist results}
-\NormalTok{sPlot <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df, dist, }\DataTypeTok{div =} \DecValTok{10}\NormalTok{)\{}
-  \ControlFlowTok{if}\NormalTok{(}\StringTok{"sortVar"} \OperatorTok{%in%}\StringTok{ }\KeywordTok{names}\NormalTok{(dist))dist <-}\StringTok{ }\NormalTok{dist }\OperatorTok{%>%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{t =}\NormalTok{ sortVar)}
-  \KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df, }\KeywordTok{aes}\NormalTok{(t, value, }\DataTypeTok{linetype=}\NormalTok{variable), }\DataTypeTok{color=}\StringTok{'black'}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ t, }\DataTypeTok{y =}\NormalTok{ s}\OperatorTok{/}\NormalTok{div), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{size =}\DecValTok{1}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{sec.axis =} \KeywordTok{sec_axis}\NormalTok{(}\OperatorTok{~}\NormalTok{.}\OperatorTok{*}\NormalTok{div, }\DataTypeTok{name =} \StringTok{"s"}\NormalTok{))}\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)\}}
-
-\NormalTok{dsdtPlot <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df, dist, }\DataTypeTok{div =} \DecValTok{10}\NormalTok{)\{}
-  \ControlFlowTok{if}\NormalTok{(}\StringTok{"sortVar"} \OperatorTok{%in%}\StringTok{ }\KeywordTok{names}\NormalTok{(dist))dist <-}\StringTok{ }\NormalTok{dist }\OperatorTok{%>%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{t =}\NormalTok{ sortVar)}
-\KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df, }\KeywordTok{aes}\NormalTok{(t, value, }\DataTypeTok{linetype=}\NormalTok{variable), }\DataTypeTok{color=}\StringTok{'black'}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ t, }\DataTypeTok{y =}\NormalTok{ dsdt}\OperatorTok{/}\NormalTok{div), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{size =}\DecValTok{1}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{sec.axis =} \KeywordTok{sec_axis}\NormalTok{(}\OperatorTok{~}\NormalTok{.}\OperatorTok{*}\NormalTok{div, }\DataTypeTok{name =} \StringTok{"v"}\NormalTok{))}\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)\}}
-\end{Highlighting}
-\end{Shaded}
 \hypertarget{introduction-4}{%
 \section{Introduction}\label{introduction-4}}
 
@@ -971,54 +1054,13 @@ In this Chapter I describe the steps for calculating a `new' metric, \textbf{sys
 \section{About the toy system}\label{about-the-toy-system}}
 
 Consider a system (Fig. \ref{fig:sysEx}) with \(N\) state variables (\(x_i\)), with observations taken at time points, \(t\). System velocity is calculated as the cumulative sum over time period \(t_0\) to \(t_j\), as the total change in all state variables, \{\(x_1 ...x_N\)\}, between two adjacent time points, e.g., \(t_j\) and \(t_{j+1}\), denoted \(t_{j,j+1}\). I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables \(x_1\) and \(x_2\), with observations occurring at each time point \(t = {1,2,3,...100}\).
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
-\NormalTok{df.wide =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }
-\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
+\begin{figure}[h]
 
-\NormalTok{dist <-}\StringTok{ }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{(df }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{t =}\NormalTok{ sortVar) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{cellID)}
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/sysEx-1} 
 
-\CommentTok{# join results with the orig data}
-\NormalTok{df.wide <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(df.wide, dist) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\CommentTok{# add column for change in variable}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dx_1 =}\NormalTok{ x_}\DecValTok{1}\OperatorTok{-}\KeywordTok{lag}\NormalTok{(x_}\DecValTok{1}\NormalTok{),}
-           \DataTypeTok{dx_2 =}\NormalTok{ x_}\DecValTok{2}\OperatorTok{-}\KeywordTok{lag}\NormalTok{(x_}\DecValTok{2}\NormalTok{), }
-         \DataTypeTok{dt =}\NormalTok{ t }\OperatorTok{-}\StringTok{ }\KeywordTok{lag}\NormalTok{(t)) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{, dx_}\DecValTok{1}\NormalTok{, dx_}\DecValTok{2}\NormalTok{, dt, }\KeywordTok{everything}\NormalTok{(), }\OperatorTok{-}\NormalTok{d2sdt2)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-Joining, by = "t"
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# change names of df.wide for table in latex}
-\KeywordTok{colnames}\NormalTok{(df.wide) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"t"}\NormalTok{, }
-                       \StringTok{"$x_1$"}\NormalTok{,}
-                       \StringTok{"$x_2$"}\NormalTok{, }
-                       \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta x_1$"}\NormalTok{,}
-                        \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta x_2$"}\NormalTok{,}
-                        \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta t$"}\NormalTok{,}
-                        \StringTok{"$}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt(}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{sum_\{i=1\}^N }\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Delta x_i^2) $"}\NormalTok{,}
-                        \StringTok{"$s$"}\NormalTok{,}
-                        \StringTok{"$v$"}\NormalTok{)}
-                       \CommentTok{# "$s = \textbackslash{}\textbackslash{}sum_\{t=1\}^j(\textbackslash{}\textbackslash{}sqrt(\textbackslash{}\textbackslash{}sum_\{i=1\}^N(\textbackslash{}\textbackslash{}Delta x_i^2))) $",}
-                       \CommentTok{# "$ velocity = \textbackslash{}\textbackslash{}frac\{\textbackslash{}\textbackslash{}Delta s_\{j,j+1\}\}\{\textbackslash{}\textbackslash{}Delta t\}$")}
-\NormalTok{(p.sysEx <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df, }\KeywordTok{aes}\NormalTok{(t, value, }\DataTypeTok{linetype=}\NormalTok{variable), }\DataTypeTok{color=}\StringTok{'black'}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position=}\StringTok{'bottom'}\NormalTok{))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/sysEx-1.pdf}
-\caption{\label{fig:sysEx}The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, \(x\), is drawn from a normal distribution with means that change at \(t = 50\). State variables have constant variance \(\sigma = 5\).}
+}
+
+\caption{The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\sigma = 5$. }\label{fig:sysEx}
 \end{figure}
 \hypertarget{steps-for-calculating-system-velocity-v}{%
 \section{\texorpdfstring{Steps for calculating system velocity, \emph{v}}{Steps for calculating system velocity, v}}\label{steps-for-calculating-system-velocity-v}}
@@ -1036,26 +1078,13 @@ The first step in calculating \(v\) is to obtain the change in values for each s
   \end{array}
 \label{eq:diffX}
 \end{equation}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{p.sysEx }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ t, }\DataTypeTok{y =}\NormalTok{ value, }\DataTypeTok{shape =}\NormalTok{ variable, }\DataTypeTok{color=}\NormalTok{variable), }\DataTypeTok{size=}\DecValTok{4}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}\OperatorTok{+}\KeywordTok{ylim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{,}\DecValTok{30}\NormalTok{))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values=}\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{,}\StringTok{"black"}\NormalTok{))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{'bottom'}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-Warning: Removed 196 rows containing missing values (geom_path).
-\end{verbatim}
-\begin{verbatim}
-Warning: Removed 196 rows containing missing values (geom_point).
-\end{verbatim}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/sysEx2-1.pdf}
-\caption{\label{fig:sysEx2}Data used to calculate velocity at the first two time points, \(t_1\) and \(t_2\).}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/sysEx2-1} 
+
+}
+
+\caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
 \end{figure}
 \hypertarget{step-2-sqrtsum_indelta-x_12}{%
 \subsubsection{\texorpdfstring{Step 2: \(\sqrt(\sum_i^N\Delta x_1^2)\)}{Step 2: \textbackslash{}sqrt(\textbackslash{}sum\_i\^{}N\textbackslash{}Delta x\_1\^{}2)}}\label{step-2-sqrtsum_indelta-x_12}}
@@ -1096,35 +1125,16 @@ Finally, we calculate the \textbf{system velocity}, \(v\) (or \(\frac{\Delta s}{
  v = \frac {s_{t+1}-s_{t}}{\Delta t} 
 \label{eq:velocity}
 \end{equation}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
-\NormalTok{df.wide =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }
-\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
+\begin{figure}[h]
 
-\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
-\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
-  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"changing means, constant variance"}\NormalTok{))}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\includegraphics{_myDissertation_files/figure-latex/velocSysEx1-1.pdf}
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/velocSysEx1-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\bar{x}_{pre}=25$, $\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\sigma =5$.}\label{fig:velocSysEx1}
+\end{figure}
 The steps for calculating velocity {[}Eq. \eqref{eq:velocity}{]} are demonstrated using the first five time points of our toy system (Fig. \ref{fig:sysEx}) in Table \ref{tab:distTab}.
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(kableExtra)}
-\KeywordTok{options}\NormalTok{(}\DataTypeTok{knitr.kable.NA =} \StringTok{""}\NormalTok{)}
-\KeywordTok{kable}\NormalTok{(df.wide[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,],}\DataTypeTok{digits=}\DecValTok{3}\NormalTok{, }\StringTok{"latex"}\NormalTok{, }\DataTypeTok{align=}\StringTok{"c"}\NormalTok{, }\DataTypeTok{booktabs=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{escape =} \OtherTok{FALSE}\NormalTok{, }
-            \DataTypeTok{caption =} \StringTok{'Steps outlined for calculating system velocity, $v$, using the 2-variable toy data as an example.'}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+
 \hypertarget{velocity-v-performance-under-varying-mean-and-variance-in-the-toy-system}{%
 \section{\texorpdfstring{Velocity \emph{v} performance under varying mean and variance in the toy system}{Velocity v performance under varying mean and variance in the toy system}}\label{velocity-v-performance-under-varying-mean-and-variance-in-the-toy-system}}
 
@@ -1132,141 +1142,36 @@ I simulated 10,000 random draws of the toy system, which experiences a rapid shi
 \(\bar{x}_1\), increased the mean value of \(x_1\)
 \(\sigma_1\), change in variance of \(x_1\)
 Simulations consisted of 10,000 random samples drawn from the normal distribution for each paramter, I randomly drew the toy system samples 10,000 times under increasing values of \(\bar{x}_1\) and \(\sigma_1\). To identify patterns in the influence of paramter values on velocity, I present the mean values of \(v\) across all simulations, with confidence intervals of \(\pm 2\) standard deviations. As mentione above, the state variables \(x_1\) and \(x_2\) were drawn from a normal distribution (using function \emph{rnorm}), with parameters \(\bar{x}_i\) (mean) and \(\sigma_i\) (sd) for 50 time steps, \(t\).
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# The following sections require a simulated dataset to be presnt in the results file. If it does not exist, this code chunk will run the (expensive!) simulations in the source code!}
-\NormalTok{files <-}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults"}\NormalTok{, }\DataTypeTok{pattern=} \StringTok{"mean_x1"}\NormalTok{)}
-\ControlFlowTok{if}\NormalTok{(quickRun) files <-}\StringTok{ }\NormalTok{files[}\DecValTok{1}\OperatorTok{:}\DecValTok{500}\NormalTok{] }\CommentTok{# when knitting thesis for minor edits...}
-\ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(files) }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)\{}
-\NormalTok{  mean.analy =}\StringTok{ }\OtherTok{TRUE}
-  \KeywordTok{source}\NormalTok{(}\StringTok{"./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R"}\NormalTok{)}
-\NormalTok{\}}
-\NormalTok{dist.sim <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{lapply}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults/"}\NormalTok{,files),}
-\NormalTok{        feather}\OperatorTok{::}\NormalTok{read_feather))}
-\end{Highlighting}
-\end{Shaded}
+
 \hypertarget{varying-post-shift-mean}{%
 \subsubsection{Varying post-shift mean}\label{varying-post-shift-mean}}
 
 I examined the influence of the magnitude of change in \(x_1\) in the period before (pre; \(t <50\)) and after (post; \(t \geq 50\)) by varying the mean parameter, \(\bar{x}_1\) in the set \(W=\{25,30,35,...100 \}\) (Figs. \ref{fig:simVplot1},\ref{simVplot2}). As expected, the magnitude of \(v\) increased linearly as the total difference between \(\bar{x}_{1_{pre}}\) and \(\bar{x}_{1_{post}}\) increased (\ref{fig:simVplot2}). This is not surprising, as \(s\) increases as the total change in abundance across the entire sytem increases (Eq. \eqref{eq:s}), therefore, the potential maximum of \(v\) also increases. This may indicate that \(v\), while capable of identifying large shifts in data structure, may not pick up subtle changes (i.e.~lower effect sizes).
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(sim.num}\OperatorTok{==}\DecValTok{666}\NormalTok{, t}\OperatorTok{==}\DecValTok{51}\NormalTok{), }
-       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{as.integer}\NormalTok{(mean.sim), }\DataTypeTok{y =}\NormalTok{ dsdt))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"total change in "}\NormalTok{, }\KeywordTok{bar}\NormalTok{(}\StringTok{"x"}\NormalTok{)[}\DecValTok{1}\NormalTok{], }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{))))}
-\end{Highlighting}
-\end{Shaded}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dist.sim.reduced <-}\StringTok{ }\NormalTok{dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(t}\OperatorTok{==}\DecValTok{51}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{         }\KeywordTok{group_by}\NormalTok{(mean.sim) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{         }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dsdt.sim.mean  =} \KeywordTok{mean}\NormalTok{(dsdt), }
-                \DataTypeTok{sd.sim    =} \KeywordTok{sd}\NormalTok{(dsdt), }
-                \DataTypeTok{lower     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{-}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim, }
-                \DataTypeTok{upper     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{+}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim}
-\NormalTok{                ) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{         }\KeywordTok{distinct}\NormalTok{(mean.sim, sd.sim, lower, upper, dsdt.sim.mean) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mean.sim =} \KeywordTok{as.integer}\NormalTok{(mean.sim))}
+\begin{figure}[h]
 
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim.reduced)}\OperatorTok{+}
-\StringTok{ }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mean.sim, }\DataTypeTok{ymin =}\NormalTok{ lower , }\DataTypeTok{ymax =}\NormalTok{ upper), }\DataTypeTok{fill =} \StringTok{"grey70"}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mean.sim,  }\DataTypeTok{y =}\NormalTok{ dsdt.sim.mean))}\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"total change in "}\NormalTok{, }\KeywordTok{bar}\NormalTok{(}\StringTok{"x"}\NormalTok{)[}\DecValTok{1}\NormalTok{], }\StringTok{" between "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{), }\StringTok{" and "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Mean "}\NormalTok{,  }\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{),}\StringTok{" ($}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{pm 2$ SD) over "}\NormalTok{, }\DecValTok{10}\NormalTok{,}\DecValTok{000}\NormalTok{, }\StringTok{" iterations"}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/simVplot2-1.pdf}
-\caption{\label{fig:simVplot2}Change in velocity (\(v\)) as the total change in the mean value of \(\bar{x}_{2_{t=50}}\) over 10,000 simulations. A regime shift was induced at \(t=50\) with constant varoance \(\sigma = 5\), \(\bar{x}_2 = 25\) when \(t<50\), and changes in variable mean values, \(\bar{x}_2 = 50\) when \(t \geq 50\), \(\bar{x}_1 = 25\) when \(t<50\).}
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/simVplot2-1} 
+
+}
+
+\caption{Change in velocity ($v$) as the total change in the mean value of $\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\sigma = 5$, $\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\bar{x}_2 = 50$ when $t \geq 50$, $\bar{x}_1 = 25$ when $t<50$.}\label{fig:simVplot2}
 \end{figure}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{files <-}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults"}\NormalTok{, }\DataTypeTok{pattern=} \StringTok{"var_x1"}\NormalTok{)}
-
-\ControlFlowTok{if}\NormalTok{(quickRun) files <-}\StringTok{ }\NormalTok{files[}\DecValTok{1}\OperatorTok{:}\DecValTok{500}\NormalTok{] }\CommentTok{# when knitting thesis for minor edits...}
-
-\ControlFlowTok{if}\NormalTok{(}\KeywordTok{length}\NormalTok{(files) }\OperatorTok{==}\DecValTok{0}\NormalTok{)\{}
-\NormalTok{  var.analy =}\StringTok{ }\OtherTok{TRUE}
-  \KeywordTok{source}\NormalTok{(}\StringTok{"./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R"}\NormalTok{)}
-\NormalTok{\}}
-\NormalTok{dist.sim <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{lapply}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"./chapterFiles/velocity/simResults/"}\NormalTok{,files),}
-\NormalTok{        feather}\OperatorTok{::}\NormalTok{read_feather))}
-
-\NormalTok{dist.sim.reduced <-}\StringTok{ }\NormalTok{dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(t}\OperatorTok{==}\DecValTok{51}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{         }\KeywordTok{group_by}\NormalTok{(var.sim) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{         }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dsdt.sim.mean  =} \KeywordTok{mean}\NormalTok{(dsdt), }
-                \DataTypeTok{sd.sim    =} \KeywordTok{sd}\NormalTok{(dsdt), }
-                \DataTypeTok{lower     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{-}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim, }
-                \DataTypeTok{upper     =}\NormalTok{ dsdt.sim.mean }\OperatorTok{+}\StringTok{ }\FloatTok{1.96}\OperatorTok{*}\NormalTok{sd.sim}
-\NormalTok{                ) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{         }\KeywordTok{distinct}\NormalTok{(var.sim, sd.sim, lower, upper, dsdt.sim.mean) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{var.sim =} \KeywordTok{as.integer}\NormalTok{(var.sim))}
-\end{Highlighting}
-\end{Shaded}
 \hypertarget{varying-post-shift-variance}{%
 \subsubsection{Varying post-shift variance}\label{varying-post-shift-variance}}
 
 In the previous example, variance was constant before and after the shift at \(t=50\). To determine whether the signal emitted by \(v\) at the regime shift is lost with increasing variance, I varied the variance parameter, \(\sigma_1\) in the set \(W = \{1,2,3,...25 \}\). The variance for both state variables prior to the regime shift, \(\sigma_1\) and \(\sigma_2\), was 5, with the change occurring in \(\sigma_1{_{post}}\). Sytem velocity \(v\) appears senstive to increases in the variance at the point of the regime shift (Figs. \ref{fig:simVarplot}, \ref{fig:simVarplot2}). This extreme sensitivity of \(v\) to \(\sigma{_{post}}\) (Fig. \ref{fig:simVarplot2}) is unsurprising, given the fact that, without smoothing the derivatives, the tangential speed of a `noisy' variable will always be noisy itself (see Figs. \ref{velocitySysEx1}, \ref{velocitySysEx2}, \ref{velocitySysEx3}, \ref{velocitySysEx4}).
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(sim.num}\OperatorTok{==}\DecValTok{666}\NormalTok{, t}\OperatorTok{==}\DecValTok{51}\NormalTok{), }
-       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{as.integer}\NormalTok{(var.sim), }\DataTypeTok{y =}\NormalTok{ dsdt))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\KeywordTok{italic}\NormalTok{(}\StringTok{"W"}\NormalTok{), }\StringTok{"total change in "}\NormalTok{, }\StringTok{"sigma"}\NormalTok{[}\DecValTok{1}\NormalTok{], }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{))))}
-\end{Highlighting}
-\end{Shaded}
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dist.sim.reduced) }\OperatorTok{+}
-\StringTok{ }\KeywordTok{geom_ribbon}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ var.sim, }\DataTypeTok{ymin =}\NormalTok{ lower , }\DataTypeTok{ymax =}\NormalTok{ upper), }\DataTypeTok{fill =} \StringTok{"grey70"}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ var.sim,  }\DataTypeTok{y =}\NormalTok{ dsdt.sim.mean))}\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{25}\NormalTok{))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"velocity, "}\NormalTok{,}\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{), }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 51"}\NormalTok{))))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(sigma, }\StringTok{" "}\NormalTok{, }\KeywordTok{bar}\NormalTok{(}\StringTok{"x"}\NormalTok{)[}\DecValTok{1}\NormalTok{], }\StringTok{" at "}\NormalTok{, }\KeywordTok{italic}\NormalTok{(}\StringTok{"t = 50"}\NormalTok{))))}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Mean "}\NormalTok{,  }\KeywordTok{italic}\NormalTok{(}\StringTok{"v"}\NormalTok{),}\StringTok{" ($}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{pm 2$ SD) over "}\NormalTok{, }\DecValTok{10}\NormalTok{,}\DecValTok{000}\NormalTok{, }\StringTok{" iterations"}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/simVarPlot2-1.pdf}
-\caption{\label{fig:simVarPlot2}Average (\(\pm 2\) SD) velocity (\(v\)) woresens as the variance of \(\bar{x}_{2_{t=50 (post)}}\) (post shift) increases. \(\bar{x}_{1_{pre}} = 25\), \(\bar{x}_{1_{post}} = 100\), \(\bar{x}_{2_{pre}} = 25\), \(\bar{x}_{2_{post}} = 50\), \(\sigma_{1_{pre}} = 5\), \(\sigma_{2_{pre,post}} = 5\)}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/simVarPlot2-1} 
+
+}
+
+\caption{Average ($\pm 2$ SD) velocity ($v$) woresens as the variance of $\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\bar{x}_{1_{pre}} = 25$, $\bar{x}_{1_{post}} = 100$, $\bar{x}_{2_{pre}} = 25$, $\bar{x}_{2_{post}} = 50$, $\sigma_{1_{pre}} = 5$, $\sigma_{2_{pre,post}} = 5$}\label{fig:simVarPlot2}
 \end{figure}
 \hypertarget{smoothing-the-data-prior-to-calculating-v}{%
 \subsubsection{\texorpdfstring{Smoothing the data prior to calculating \emph{v}}{Smoothing the data prior to calculating v}}\label{smoothing-the-data-prior-to-calculating-v}}
 
 To ameliorate the influence of noise (e.g.~Fig. \ref{simVarPlot}) on the regime shift signal in \(v\), I used linear approximation techniques in attempt to smooth the velocity (derivatives). I used the function \emph{stats::approx} to interpolate values of \(x_1\) and \(x_2\) to regularly-spaced time points in the set \(t=\{1:100\}\), and then calculated \(v\) as described in the steps above (Eqs. \eqref{eq:diffX}:\eqref{eq:velocity}). Increasing the number of points (\(t\)) at which the original state variables were smoothed did not influence the amount of noise surrounding the signal of the regime shift (at \(t=50\)) in system velocity, \(v\) (Fig. \ref{fig:smoothV}).
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{1}\NormalTok{)}
-\NormalTok{p1<-}\StringTok{ }\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"no smoothing"}\NormalTok{)}
-\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{2}\NormalTok{)}
-\NormalTok{p2<-}\StringTok{ }\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 2X"}\NormalTok{)}
-\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{5}\NormalTok{)}
-\NormalTok{p3<-}\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 5X"}\NormalTok{)}
-\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{10}\NormalTok{)}
-\NormalTok{p4<-}\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 10X"}\NormalTok{)}
-\NormalTok{smoothed <-}\StringTok{ }\KeywordTok{approx_dist.sim}\NormalTok{(}\DataTypeTok{t.mult =} \DecValTok{100}\NormalTok{)}
-\NormalTok{p5<-}\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ smoothed[[}\DecValTok{1}\NormalTok{]],}\DataTypeTok{dist =}\NormalTok{ smoothed[[}\DecValTok{2}\NormalTok{]], }\DataTypeTok{div =} \DecValTok{1}\OperatorTok{/}\FloatTok{1.4}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"increase t by 100X"}\NormalTok{)}
 
-\NormalTok{p1;p2;p3;p4;p5}
-\end{Highlighting}
-\end{Shaded}
 \hypertarget{discussion-3}{%
 \section{Discussion}\label{discussion-3}}
 
@@ -1280,71 +1185,29 @@ Further work is required to determine the utility of system velocity as a regime
 
 \hypertarget{supplementary-materials}{%
 \section{Supplementary Materials}\label{supplementary-materials}}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{100}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{10}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{10}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{10}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
-\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
-\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
-\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
-  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"change in mean & variance (x"}\NormalTok{[}\DecValTok{1}\NormalTok{], }\StringTok{", x"}\NormalTok{[}\DecValTok{2}\NormalTok{], }\StringTok{")"}\NormalTok{))}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/velocSysEx2-1.pdf}
-\caption{\label{fig:velocSysEx2}System change (\(s\)) and velocity (\(v\)) of the model system over the time period. Change in means (\(\bar{x}_{1_{pre}}=25\), \(\bar{x}_{1_{post}}=100\), \(\bar{x}_{2_{pre}}=50\), \(\bar{x}_{2_{post}}=10\)) and an increase in variance (\(\sigma_{1_{pre}}=2\), \(\sigma_{1_{post}}=10\), \(\sigma_{2_{pre}}=5\), \(\sigma_{2_{post}}=10\)).}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/velocSysEx2-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
 \end{figure}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{12}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
-\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
-\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
-\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
-  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"constant mean, variance increase (x"}\NormalTok{[}\DecValTok{1}\NormalTok{], }\StringTok{")"}\NormalTok{))}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/velocSysEx3-1.pdf}
-\caption{\label{fig:velocSysEx3}System change (\(s\)) and velocity (\(v\)) of the model system over the time period. Constant means (\(\bar{x}_1=25\), \(\bar{x}_2=50\)) and sharp change in variance for one state variable \(\sigma_{1_{pre}} = 2\), \(\sigma_{1_{post}} = 12\), \(\sigma_{2_{pre,post}} = 5\)}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/velocSysEx3-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
 \end{figure}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{25}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{25}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{50}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{50}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{x_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{15}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{15}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{), }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =}\DecValTok{150}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{150}\NormalTok{, }\DataTypeTok{n=}\DecValTok{50}\NormalTok{))}
-\NormalTok{t =}\StringTok{ }\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(x_}\DecValTok{1}\NormalTok{)}
-\NormalTok{df  =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(t, x_}\DecValTok{1}\NormalTok{, x_}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"variable"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"value"}\NormalTok{, }\OperatorTok{-}\NormalTok{t) }
-\NormalTok{dist <-}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cellID =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{sortVar =}\NormalTok{ t) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{regimeDetectionMeasures}\OperatorTok{::}\KeywordTok{calculate_distanceTravelled}\NormalTok{()}
-\KeywordTok{dsdtPlot}\NormalTok{(}\DataTypeTok{dist=}\NormalTok{dist, }\DataTypeTok{df=}\NormalTok{df, }\DataTypeTok{div =} \DecValTok{1}\NormalTok{)}\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}
-  \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"changing means, variance = mean"}\NormalTok{))}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/velocSysEx4-1.pdf}
-\caption{\label{fig:velocSysEx4}System change (\(s\)) and velocity (\(v\)) of the model system over the time period. Variance equal to mean (\(\bar{x_i}=\sigma_i\)), where means (\(\bar{x}_{1_{pre}}=25\), \(\bar{x}_{1_{post}}=50\), \(\bar{x}_{2_{pre}}=15\), \(\bar{x}_{2_{post}}=150\)).}
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.95\linewidth]{_myDissertation_files/figure-latex/velocSysEx4-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Variance equal to mean ($\bar{x_i}=\sigma_i$), where means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=50$, $\bar{x}_{2_{pre}}=15$, $\bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
 \end{figure}
 \hypertarget{conclusions-conclusions}{%
 \chapter{Conclusions \{conclusions\}}\label{conclusions-conclusions}}

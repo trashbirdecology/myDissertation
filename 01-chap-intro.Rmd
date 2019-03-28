@@ -29,15 +29,3 @@ Although it's taken us many decades to produce realiable weather forecasts 5 day
 ### Dissertation structure
 The chapters hereain are written as separate, publishable manuscripts. Where applicable, co-authors are listed in the front matter of the chapter. The dissertation comprises an introduction to the dissertation (Chapter \@ref(intro)), a brief overview of early warning systems (or regime detection measures) for ecological systems data (Chapter \@ref(rdmReview)), a detailed guide to Fisher Information as a RDM written for ecologists (Chapter \@ref(fiGuide)), an application of Fisher Information to spatially-explicit data (Chapter \@ref(fisherSpatial)),  introduction of 'new' RDM, Distance Travelled (Chapter \@ref(distanceTravelled)), a study of data quality and data loss on select RDMs including Distance Travelled and Fisher Information (Chapter \@ref(resampling)), and conclusions (Chapter \@ref(conclusions)). 
 
-## Glossary
-Research surrounding regime shifts, threshold identification, change-point detection, bifurcation theory, etc. is muddled with jargon. Here, I provide a glossary (Table \@ref(glossary)) for terms and concepts that may either be unfamiliar to the practical ecologist, or may have multiple meanings among and within ecological researchers and practitioners. 
-
-```{r glossary, echo = F, eval = F, message=F, warning=F}
-# Create a table of definitions 
-require(kableExtra)
-glossary <- read.csv("./chapterFiles/glossary.csv")
-kable(glossary, "latex", caption = "A table of definitions for terms, theories, and phrases often appearing in ecological regime shift literature.") %>% 
-kable_styling(full_width = F) 
-# %>%
-# kableExtra::column_spec(1, bold = T)
-```

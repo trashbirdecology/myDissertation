@@ -2,14 +2,13 @@
 
 ```{r cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE, eval=TRUE, results="hide"}
 # Chunk defaults
-# require(knitr)
-# knitr::opts_chunk$set(
-#           cache = TRUE, cache.path = "_cache/", 
-#           include=FALSE, 
-#           # message = FALSE,  eval=TRUE, echo=FALSE, error=FALSE,
-#           warning=FALSE,
-#           fig.align='center',
-          # out.width = "85%")
+knitr::opts_chunk$set(
+          cache = TRUE, cache.path = "_cache/",
+          include=FALSE,
+          # message = FALSE,  eval=TRUE, echo=FALSE, error=FALSE,
+          warning=FALSE,
+          fig.align='center',
+out.width = "85%")
 ```
 
 ## Introduction

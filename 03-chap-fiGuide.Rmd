@@ -3,10 +3,9 @@
 _This chapter is intended for submission to the publication *Methods in Ecology and Evolution* ^[Co-authors include: N.B. Price, A.J. Tyre, C.R. Allen, T. Eason, D.G. Angeler, and D. Twidwell]._
 
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
-# # Chunk defaults
-# require(knitr)
-# knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
-#                       out.width = "85%")
+# Chunk defaults
+knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+                      out.width = "85%")
 ```
 
 ```{r startParms, echo=FALSE}
@@ -133,7 +132,6 @@ knitr::include_graphics('./chapterFiles/fiGuide/figures/stringFig.png')
 ```
 
 #### **Step 2.** Distance traveled by the system, $s$ 
-
 Distance traveled by the system, s. We can now move from an n-dimensional representation of the probability distribution to a one-dimensional representation. To better understand this, imagine placing a string over the path of the entire trajectory from $0 to t_{end}$   \@ref(fig:stringFig). If we know the number of predators and prey at a particular point in time $(t_{obs}^*)$ then we can mark that location on the string (see asterisk in  \@ref(fig:stringFig). Next, imagine picking up the string and laying the string flat along a ruler. The length, s, of the entire string measures the total distance traveled by the system in phase space. The mark we made on the string (denoted $*$) lies at a distance $s^*$ between 0 and $s$. We call this length the distance traveled by the system, $s^*$. In this context, $s^*$ in phase space represents a measure of cumulative change in state. We note that the distance traveled in phase space increases monotonically with time. If the system never revisits the same state (i.e., the trajectory never overlaps or intersects itself), then every unique system state (i.e., point on the trajectory) is mapped to a unique value of distance traveled. Therefore, $p(x)$ (n-dimensional) is equivalent to the probability that the system is at distance s, i.e.,  $p(x)=p(s)$, (where $p(s)$ is one dimensional; @cabezas_simulated_2005). However, if the system revisits previous states, then a unique system state may be mapped to different values of distance traveled and the relationship between $p(x)$ and $p(s)$ is not one-to-one. We calculated the distance traveled s of the model system over a single cycle (11.145 time units;  \@ref(fig:distSpeedAccel). 
 
 ```{r solve-ODE, echo=FALSE}
