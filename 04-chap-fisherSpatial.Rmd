@@ -20,8 +20,8 @@ Defining the spatial regime shift is important since observations of non-random 
 
 Although it is suggested that statistical and pragmatic models and methods are advanced more rapidly by bottom-up approaches, i.e. case studies [see @deangelis2017spatially], to my knowledge no studies have yet to test the rigor of SRDMs using spatially-explicit empirical data. The objective of this chapter is to determine the utility of Fisher Information (Eq. \@ref(eq:fiDerivs)) as a spatial regime detection measure. This chapter is also supported by original software developed for implementation in Program R, which is publicly available [\@ref(burnett2019regime)].
 
-## Data and Methods  
-### Data: North American Breeding Bird Survey  
+## Data and methods  
+### Data: North American breeding bird communities  
 I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \@ref(derivatives)). The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data.  Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880). 
 ```{r bbsPoints,echo = FALSE,   out.width="85%", fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
 knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png"))

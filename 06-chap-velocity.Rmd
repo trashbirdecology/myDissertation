@@ -33,7 +33,8 @@ ggplot()+
 Dimension reduction techniques  and RDms blablbah
 In this Chapter I describe the steps for calculating a 'new' metric, __system velocity__, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see \@ref(fiGuide)], first introduced in @fath_regime_2003. Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time. 
 
-## About the toy system  
+## Data and methods
+### Example system: two-species time series  
 Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$.
 ```{r sysEx, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
 x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
@@ -72,7 +73,7 @@ colnames(df.wide) <- c("t",
   theme_bw()
 ```
 
-## Steps for calculating system velocity, *v*
+### Steps for calculating system velocity, *v*
 First, we calculate the change in each state variable, $x_i$, between two adjacent points in time, $t_j$ and $t_{j+1}$, such that the difference, $x_{t_{j+1}} - x_{t_j}$ is assigned to the latter time point, $t_{j+1}$. For example, in our toy data, we use observations at time points $t = 1$ & $t=2$ (Fig. \@ref(fig:sysEx2)). For all examples in this chapter, the state variables $x_1$ and $x_2$ were drawn from a normal distribution (using function *rnorm*), with parameters $\bar{x}_i$ (mean) and $\sigma_i$ (sd) for 100 time steps, $t$. The regime shift occurs at $t=50$, where a shift in either or both $\bar{x}_i$ or $\sigma_i$.
 
 #### Step 1: $\Delta x_i$
@@ -157,7 +158,7 @@ options(knitr.kable.NA = "")
 kable(df.wide[1:5,],digits=3, "latex", align="c", booktabs=TRUE, escape = FALSE, 
             caption = 'Steps outlined for calculating system velocity, $v$, using the 2-variable toy data as an example.')
 ```
-## Velocity *v* performance under varying mean and variance in the toy system
+### Velocity *v* performance under varying mean and variance in the toy system
 I simulated 10,000 random draws of the toy system, which experiences a rapid shift at $t = 50$, while varying two each of the following system paramters at the regime shift:
  $\bar{x}_1$, increased the mean value of $x_1$ 
  $\sigma_1$, change in variance of $x_1$ 

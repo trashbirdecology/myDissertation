@@ -1,14 +1,15 @@
 # Conclusions {#conclusions}
-
-Numerous indices, or composite metrics, have been suggested as 'early-warning indicators' of ecological regime shifts or abrupt change (Chapters \@ref(intro) and \@ref(rdmReview)). Ecological indicators (or indices) are methods of measurement which are designed to provide inference about one or more unobserved or latent processes, are inherently biased. Regardless of the state of the theory supporting *regime shifts* in ecology, ecological indicators and the methods for calculating them should be heavily scrutinized prior to being used in an ecological management or policy-making setting. Rather, new methods (indices, metrics, etc.) are being introduced into the literature at a rate exceeding that at which they are scrutinized (Chapter \@ref(rdmReview)). This dissertation demonstrates that, while potentially useful, regime detection metrics are inconsistent, not generalizable, and are currently not validated using probabilities or other statistical measurements of certainty. 
-
 \begin{equation}
 \begin{split}
-Information & = Signal \\
+Data  & = Information \\
+& = Signal \\
 & = Process + Noise
 \end{split}
 (\#eq:infoTheory)
 \end{equation}
+
+Ecological indicators (a.k.a. indices, metrics) have been suggested as 'early-warning indicators' of ecological regime shifts or abrupt change (Chapters \@ref(intro) and \@ref(rdmReview); \@ref()). Ecological indicators (or indices) are methods of measurement which are designed to provide inference about one or more unobserved or latent processes, are inherently biased. Regardless of the state of the theory supporting *regime shifts* in ecology, ecological indicators and the methods for calculating them should be heavily scrutinized prior to being used in an ecological management or policy-making setting. Rather, new methods (indices, metrics, etc.) are being introduced into the literature at a rate exceeding that at which they are scrutinized (Chapter \@ref(rdmReview)). This dissertation demonstrates that, while potentially useful, regime detection metrics are inconsistent, not generalizable, and are currently not validated using probabilities or other statistical measurements of certainty. 
+
 
 Regime detection meausres and other ecological indicators can signal (see \@ref(eq:infoTheory)) various changes in the data, however, understanding what processes are embedded in the signals (i.e., removing the noise) requires expert judgement. And because a consequence of data collection and data analysis limits the extent to which we can identify and infer processes and change within an ecological system, **I suggest the practical ecologist scrutinizes her data prior to identifying and conducting analyses**, including those that are purely exploratory. 
 
