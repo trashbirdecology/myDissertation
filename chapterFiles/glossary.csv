@@ -7,7 +7,7 @@ T,Abrupt,A relative value of the speed and/or intensity of the change; the time 
 F,Basin of attraction,,
 T,Threshold,A point where the system reacts to changing conditions.,
 T,Tipping point,A point in a system's trajectory where a small change in an endogenous force induces a large change in sytem state or values; the point where a system can flip into an alternative state.,
-F,Alternative stable state,,
+T,Alternative stable state,"Controversially can be distilled as one of either: the number of unique stable configurations that a system can adopt (see Lewontin 1969), or the impacts that processes or pressures can have on a system's state (see May 1977).",
 F,Equilibrium point,,
 T,"Exogeneous process (forcing, driver)",An external process influencing the state of the dynamical system.,
 T,Dynamical system,A time-dependent system which can be described in state-space.,

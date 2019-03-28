@@ -147,11 +147,6 @@
 
 <!-- ## Some text from the review chapter - -->
 <!-- Potential text:  -->
-<!-- 1. Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation.  -->
-
-<!-- 1. Because ecological and social systems are tightly coupled, we have used indicators in the environment and in wildlife communities to identify change and potential changes that may impact our social communities.  -->
-
-<!-- 1. Many regime shift analytical papers suggest that, using multiple quantitative methods to provide for evidence for a regime shift in a specific data set is necessary  [@lindegren_early_2012]. Although this proposition is valid, comparing results within a single system using multiple methods has often yielded varying results. Managing systems using quantitative methods that yield different results may yield improper management techniques and objectives.  -->
 
 
 <!-- Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows.  -->
