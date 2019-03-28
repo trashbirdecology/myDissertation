@@ -1,9 +1,9 @@
-#################### PART I ####################
-# SETUP -------------------------------------------------------------------
 
 require(tidyverse)
 require(revtools)
 require(dplyr)
+
+if(!exists("rdm.dir")) rdm.dir <- "./chapterfiles/rdmReview"
 
 # Create some helper funs -------------------------------------------------
 # Create a function for filtering variables by abstrac,t title, etc. 
@@ -139,5 +139,4 @@ finalMetricsList <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_
 
 # Read in the .bib associated with the final metricsMethodList ------------
 finalMetricsList.bib <- read_bibliography(paste0(rdm.dir, "/", "methodsMetricsList.bib")) %>% as_tibble() 
-
 
