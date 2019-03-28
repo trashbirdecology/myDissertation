@@ -3,10 +3,10 @@
 _This chapter is intended for submission to the publication *Methods in Ecology and Evolution* ^[Co-authors include: N.B. Price, A.J. Tyre, C.R. Allen, T. Eason, D.G. Angeler, and D. Twidwell]._
 
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
-# Chunk defaults
-require(knitr)
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
-                      out.width = "85%")
+# # Chunk defaults
+# require(knitr)
+# knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
+#                       out.width = "85%")
 ```
 
 ```{r startParms, echo=FALSE}
@@ -128,7 +128,7 @@ Fisher Information (FI) is defined with respect to a probability distribution. I
 
 A single state of the model system is defined by the number of predators and prey at a given point in time such that for any given point in time $x(t)=[x_1 (t),x_2 (t)]$. At some random time between 0 and $t_{end}$ [$T_{obs}  ~ Uniform(0,t_{end})$] we can count the number of predators and the number of prey to determine the state of the model system. We must assume the system is deterministic and there is no observation error. We can then calculate the probability of observing a particular predator and prey abundance combination, $p(x)$. Under these assumptions, the only possible states of the system are defined by the system's observed trajectory, the model parameters, and the initial conditions. Therefore, the support of the probability distribution \@ref(fig:2D-hist) is the trajectory of the system. 
 
-```{r stringFig, echo=FALSE, out.width="85%", fig.cap = paste("A single cycle of a hypothetical two-species system over time period $t = 0$ to $t = T$. $s^*$ is the state of the system at some point in time. The dotted line represents the distance travelled by the system in phase space over its trajectory during time $(0, T)$.")}
+```{r stringFig, echo=FALSE, out.width="95%", fig.cap = paste("A single cycle of a hypothetical two-species system over time period $t = 0$ to $t = T$. $s^*$ is the state of the system at some point in time. The dotted line represents the distance travelled by the system in phase space over its trajectory during time $(0, T)$.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/stringFig.png')
 ```
 
@@ -430,7 +430,7 @@ ggplot(data = results_kstudy, aes(x = x1, y = x2, color = k)) +
 
 We assumed an initial carrying capacity of 800 and a final carrying capacity of 625 which corresponds to the range of carrying capacities explored by Mayer et al. (2007). We simulated a time series of 600 time units with a regime change after 200 time units. We used an alpha value of 0.05. The time series for carrying capacity is shown in \@ref(fig:kByTime) and the system trajectory in phase space is shown in \@ref(fig:kTrajectories). The distance travelled in phase space (i.e., cumulative change in state) is shown in \@ref(fig:distOverTime) and the speed of the system (i.e., rate of change) is shown in \@ref(fig:dsdtOverTime). 
 
-```{r dsdtOverTime, echo=FALSE, fig.cap=paste("Speed of the system (rate of change) in phase space. Dashed vertical line at time 200 indicates location of regime shift.")}
+```{r dsdtOverTime, echo=FALSE,out.width="85%", fig.cap=paste("Speed of the system (rate of change) in phase space. Dashed vertical line at time 200 indicates location of regime shift.")}
 knitr::include_graphics('./chapterFiles/fiGuide/figures/dsdtOverTime.png')
 ```
 
