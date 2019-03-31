@@ -62,10 +62,10 @@ bib <- ReadBib("myBib.bib")
 
 # Dissertation Structure
 ####**Chapter I**:    Dissertation Overview
-####**Chapter II**:    Review of Regime Detection Methods
+####**Chapter II**:    Review of Regime Detection Methods (RDMs)
 ####**Chapter III**:   A Guide to Fisher Information (FI) for Ecologists
 ####**Chapter IIV**:   Application of FI to Spatially Explicit Data
-####**Chapter V**:     Data Quality Impacts on Regime Detection Methods 
+####**Chapter V**:     Data Quality & Aggregation Impacts on RDMs 
 ####**Chapter VI**:    System Velocity ($v$)
 ####**Chapter VII**:    Conclusions
 ---
@@ -73,7 +73,7 @@ bib <- ReadBib("myBib.bib")
 # Dissertation Structure
 ####**Appendix A**: R package `regimeDetectionMethods`
 ####**Appendix B**: R package `bbsRDM`
-####**Appendix C**: Case Study: Paleodiatom Community Regime Shifts 
+####**Appendix C**: Case Study /emdash Paleodiatom Community Regime Shifts 
 
 ---
 
@@ -81,9 +81,12 @@ bib <- ReadBib("myBib.bib")
 ```{r tornado, echo=FALSE}
 knitr::include_graphics("https://www.nssl.noaa.gov/users/brooks/public_html/tw8589.gif")
 ```
+.footnote[NOAA]
+
+???
+
 <!-- A **large**, persistent change in a system -->
 <!-- We can't predict tornados, why would one think we can predict undefined regime shifts?   -->
-
 
 ---
 # Regime Shift Detection Flowchart
@@ -91,10 +94,9 @@ I want to create somethign similar, but its too annoying to code it so I need to
 ```{r rsFlowchart, echo=FALSE, fig.pos="center"}
 knitr::include_graphics("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4247409/bin/rstb20130275-g3.jpg")
 ```
-.footnote[[*] Levin and Mollman 2015]
+.footnote[Levin and Mollman 2015]
 
 ---
-
 
 # References
 Test the citations  (not working... howt he fuck do i do this?!?!?!)  
@@ -103,6 +105,8 @@ Cite(bib, "levin2015marine")
 ```{r, 'refs', results='asis', echo=FALSE}
 PrintBibliography(bib)
 ```
+
+---
 
 # Acknowledgements (1)
 .pull-left[
@@ -113,7 +117,6 @@ PrintBibliography(bib)
   - John DeLong  
   - Drew Tyre  
 ]
-
 .pull-right[
 ## Funding
 - Department of Defense 
@@ -137,7 +140,7 @@ PrintBibliography(bib)
 ## Honorable Mentions
 - Mary Brown
 - John Carroll
-- Brigitte Tenhumberg
+- Brigitte Tenhumberg 
 - Erica Stuber
 - Hannah Birge
 - Frank LaSorte
