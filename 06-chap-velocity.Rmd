@@ -1,12 +1,10 @@
-# Velocity (*v*): rate-of-change of system trajectory as a potential indicator of abrupt change {#velocity}
+# Velocity (*v*): using rate-of-change of a system's trajectory to identify abrupt changes {#velocity}
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # # Chunk defaults
 set.seed(123)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
                       out.width = "95%")
 ```
-
-
 ```{r}
 library(magrittr)
 library(tidyverse)
@@ -34,7 +32,7 @@ Dimension reduction techniques  and RDms blablbah
 In this Chapter I describe the steps for calculating a 'new' metric, __system velocity__, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see \@ref(fiGuide)], first introduced in @fath_regime_2003. Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time. 
 
 ## Data and methods
-### Example system: two-species time series  
+### Theoretical system example: two-species time series  
 Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$.
 ```{r sysEx, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
 x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
@@ -166,6 +164,7 @@ Simulations consisted of 10,000 random samples drawn from the normal distributio
 ```{r simV, cache=TRUE}
 # The following sections require a simulated dataset to be presnt in the results file. If it does not exist, this code chunk will run the (expensive!) simulations in the source code!
 files <- list.files("./chapterFiles/velocity/simResults", pattern= "mean_x1")
+if(!exists("quickRun")) quickRun=TRUE
 if(quickRun) files <- files[1:500] # when knitting thesis for minor edits...
 if(length(files) == 0){
   mean.analy = TRUE
@@ -273,6 +272,166 @@ p5<-dsdtPlot(df = smoothed[[1]],dist = smoothed[[2]], div = 1/1.4)+
 p1;p2;p3;p4;p5
 ```
 
+### Performance on empirical data: paleodiatom community example
+```{r tvDiffPaleoCalculate, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+library(tvdiff)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+theme_set(theme_bw())
+
+# Load data
+data("paleo")
+
+# Linear interpolate data 
+xout <- seq(min(paleo$sortVar), max(paleo$sortVar), length.out = 700)
+paleoInterp <- 
+  paleo %>%
+  dplyr::select(-cellID, -site) %>% 
+  rename(t = sortVar, y = value) %>% 
+  group_by(variable) %>% 
+  nest() %>% 
+  mutate(
+    t = purrr::map(data, ~ approx(.$t, .$y, xout = xout)$x, rule = 1),
+    y = purrr::map(data, ~ approx(.$t, .$y, xout = xout)$y, rule = 1)
+  ) %>%
+  dplyr::select(-data) %>%
+  unnest()
+
+# Calculate distance
+paleoDistance <- 
+  paleoInterp %>% 
+  group_by(variable) %>% 
+  mutate(dy = lead(y) - y,
+         dt = lead(t) - t) %>% 
+  group_by(t) %>% 
+  summarize(ds = sqrt(sum(dy^2))) %>% 
+  mutate(s = cumsum(ds)) %>% 
+  dplyr::select(-ds) %>% 
+  na.omit()
+
+# Build dataframe
+paleoEx <-
+  paleoDistance %>% 
+  mutate(dt = lead(t) - t) %>% 
+  # Estimate derivative
+  mutate(dsdt =
+           TVRegDiffR(
+             data = s,
+             iter = 2e3,
+             alph = 100,
+             scale = "small",
+             ep = 1e-6,
+             dx = dt[1]
+           )[-1]) %>% 
+  # Simple numerical integration
+  mutate(pred = s[1] + cumsum(dsdt*dt)) %>% 
+  # Collect in long form
+  gather(key, value, -t, -dt)
+```
+To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \@ref(resampling) (see also Appendix \@ref(appPaleo). Briefly, the paleodiatom community comprises `r length(unique(paleo$variable))` time series over a period of approximately `r abs(max(paleo$sortVar)-min(paleo$sortVar)) %>% round(0)` years (Fig. \@ref(fig:paleoTurnover)). As elaborated in @spanbauer_prolonged_2014, the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundaces over time, as there are extreme levels of species turnover at multiple points in the data (Fig. \@ref(fig:paleoTurnover)). Using Fisher Information and climatological records, @spanbauer_prolonged_2014 suggest that regime shifts in this system at approximately 1,300 years before present (where present is equal to year 1950).
+
+```{r paleoTurnover, echo=F, warning=F, message=F, cache = T, fig.cap="Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations."}
+topSpecies <-
+  paleo %>%
+  group_by(variable) %>%
+  summarize(q95 = quantile(value, 0.95)) %>%
+  arrange(desc(q95))
+topSpecies <- topSpecies[1:10,]
+plotData <-
+  paleo %>%
+  mutate(variable = if_else(variable %in% topSpecies$variable, variable, "Other (n = 99)")) %>%
+  mutate(variable = factor(variable, levels = c(sort(topSpecies$variable), "Other (n = 99)"))) %>%
+  group_by(sortVar, variable) %>%
+  summarize(value = sum(value)) %>% 
+  mutate(year.plot = -1*sortVar)
+
+# Generate top species abundance plot to see turnover
+   ggplot(data = plotData,
+          aes(x = year.plot, y = value, fill = variable)) +
+   geom_area() +
+   geom_rug(sides = "b") +
+   scale_fill_brewer(palette = "Paired") +
+     theme_bw()+
+   theme(legend.position = "top") +
+   labs(x = "years before 1950", y = "relative abundance", fill = "variable")+
+     scale_x_reverse()
+```
+
+@spanbauer_prolonged_2014 used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at ~1,300 years before present. Using the methods outlined above, I calculated the distance travelled ($s$) and velocity ($v$; Fig. \@ref(fig:paleoV)). The results of $v$ and $s$ (\@ref(fig:paleoVelocity)) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \@ref(fig:paleoTurnover), and also with the regime shift identified by @spanbauer_prolonged_2014. However, two primary results can be made from the metrics  $v$ and $s$ that are not obvious nor identified numerically in the results of @spanbauer_prolonged_2014 (): 
+```{r paleoVelocity,  echo=F, warning=F, message=F, cache = T, fig.pos="T", fig.cap ="Velocity $v$ and distance travelled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts identified using $v$ and $s$."}
+plotData <- regimeDetectionMeasures::calculate_distanceTravelled(paleo) %>% na.omit(d2sdt2) %>% 
+  rename(acceleration= d2sdt2, 
+         v = dsdt) %>% 
+  gather(key ="key", value="value", -cellID,-sortVar) %>% 
+  filter(!key %in% c("acceleration","ds"))
+
+ggplot(plotData, aes(x = sortVar*-1, y = value))+
+  geom_line()+
+  ylab("")+
+  facet_wrap(~key, ncol=1, scales="free_y", strip.position="left")+
+  theme_bw()+
+  theme(panel.grid.minor = element_blank(),
+        strip.background = element_blank(),
+        panel.border = element_rect(colour = "black"))+
+        labs(x = "years before 1950")+
+     scale_x_reverse()+
+  geom_vline(xintercept = 1300, color="red",linetype=2)+
+  geom_vline(xintercept = c(1383, 2150, 4800), color="blue",linetype=3)
+```
+1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950   
+1. The periods before the first and after the second large shifts appear oscillatory (Fig. \@ref(fig:paleoRegime1and3)).
+```{r paleoRegime1and3,  echo=F, warning=F, message=F, cache = T, fig.pos="T", fig.cap ="Velocity $v$ indicates periodic-like conditions in the first (*a*) and second (*b*) regimes."}
+
+p1=ggplot(plotData %>% filter(sortVar < -5000, key=="v"), aes(x = sortVar*-1, y = value))+
+  geom_line()+
+  ylab("")+
+  theme_bw()+
+  theme(panel.grid.minor = element_blank(),
+        strip.background = element_blank(),
+        panel.border = element_rect(colour = "black"))+
+        labs(x = "years before 1950")+
+ annotate("text", x=6800, y=0.10, size=4.5, label= expression(bold("a")))+ 
+     scale_x_reverse()
+
+p2=ggplot(plotData%>% filter(sortVar < -1250, sortVar > -2200, key=="v"), aes(x = sortVar*-1, y = value))+
+  geom_line()+
+  ylab("")+
+  theme_bw()+
+  theme(panel.grid.minor = element_blank(),
+        strip.background = element_blank(),
+        panel.border = element_rect(colour = "black"))+
+        labs(x = "years before 1950")+
+ annotate("text", x=2125, y=0.20, size=4.5, label= expression(bold("b")))+ 
+     scale_x_reverse()
+
+grid.arrange(p1, p2, ncol=1)
+```
+
+To determine whether removing the noise in the data, I interpolated the each time series using function `stats::approx` to 700 time points. Next, I calculated the distance travelled of the entire system, $s$. Finally, I obtained the derivative of $s$ by using a regularized differentiation (using function `tvdiff::TVRegDiffR`; parameters were $iter = 2000$, scale = small, $ep = 1 x 10^-6$, and $\alpha = 100$)^[* We created the R-wrapper `tvdiff` as a Python wrapper for the tvdiff MatLab package [@price2019tvdiff].]. This method of regularized differentiation is an ideal approach to smoothing $s$ because it assumes the data are non-smooth, unlike other popular smoothing techniques e.g., Generalized Additive Models. 
+```{r paleoObsPred, eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE, fig.cap = "The regularized differentiation of $s$ ($pred$) was best fit using $\alpha = 100$. Higher overlap of $s$ and $pred$ indicate a good fit of the regularized differentiated metric to the non-smoothed metric, $s$."}
+# Plot observed vs predicted
+ggplot(paleoEx %>% 
+         filter(key %in% c("s", "pred")), 
+       aes(x = t, y = value, color = key, linetype = key)) +
+  geom_line(size = 1.2) +
+  labs(x = "time",
+       y = "cummulative change in state")
+```
+
+The smoothed velocity (\@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (\@ref(fig:paleoV)) to the non-smoothed velocity (\@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, but more clearly identifies the inter-regime dynamics (e.g., between 7,000 and 4,800 years before present).
+
+```{r paleoV, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+# Plot derivative
+ggplot(paleoEx %>% 
+         filter(key == "dsdt"), 
+       aes(x = t*-1, y = value)) +
+  geom_point() +
+  labs(x = "time", 
+       y = expression(italic("v")))+
+  scale_x_reverse()
+```
+
 ## Discussion
 In this chapter, I described the steps for calculating a novel regime detection metric, system velocity ($v$). First described in @fath_regime_2003, $v$ is used as a single step for caclulating a more complicated regime detection metric, Fisher Information (see also Chapter \@ref(fiGuide)). System velocity is arguably simple to calculate, as shown in this chapter, captures the total change in system variables under a variety of mean and variance conditions. The metric does not, however, perform well as variance increases (Fig. \@ref(simVarPlot2)), and smooothing the original data does not reduce the noise surrounding this metric when variance is moderate (Fig. \@ref(smoothV)). 
 
@@ -283,7 +442,7 @@ I tested the efficacy of this metric as an indicator of abrupt change in a two-v
 Further work is required to determine the utility of system velocity as a regime detection metric, however, this chapter demonstrates that the metric may indicate clear shifts in variable means. For multispecies data you will typically need to reduce dimensionality before you can proceed with analyses, for example using some sort of ordination. In addition to examining high-dimensional and noisy data, a study of the performance of $v$ under conditions where few variables exhibit large changes while many variables are relatively constant may also prove useful. Additionally, this metric may be a useful tool for reducing the dimensionality of high dimensional data. Although the metric loses much information, as opposed to some dimension reduction techniques, e.g. Principal Components Analysis PCA, the metric is simple to calculate (even by hand), is computationally inexpensive, and is intuitive, unlike many clustering algorithms (e.g., Non-metric Multidimensional Scaling NMDS). Like system velocity, methods of the latter variety (e.g. NMDS) require post-hoc statistical analyses to confirm the location of clusters (or abrupt change, regime shifts), while methods of the former variety (e.g. PCA) retain loadings but do not necessarily identify the locations of abrupt shifts. 
 
 ## Supplementary Materials
-```{r velocSysEx2, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Change in means ($\\bar{x}_{1_{pre}}=25$, $\\bar{x}_{1_{post}}=100$, $\\bar{x}_{2_{pre}}=50$, $\\bar{x}_{2_{post}}=10$) and an increase in variance ($\\sigma_{1_{pre}}=2$, $\\sigma_{1_{post}}=10$, $\\sigma_{2_{pre}}=5$,  $\\sigma_{2_{post}}=10$)."}
+```{r velocSysEx2,message=FALSE, warning=FALSE, echo=FALSE,  fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Change in means ($\\bar{x}_{1_{pre}}=25$, $\\bar{x}_{1_{post}}=100$, $\\bar{x}_{2_{pre}}=50$, $\\bar{x}_{2_{post}}=10$) and an increase in variance ($\\sigma_{1_{pre}}=2$, $\\sigma_{1_{post}}=10$, $\\sigma_{2_{pre}}=5$,  $\\sigma_{2_{post}}=10$)."}
 x_1 = c(rnorm(mean = 25, sd = 2, n=50), rnorm(mean =100, sd = 10, n=50))
 x_2 = c(rnorm(mean = 50, sd = 5, n=50), rnorm(mean =10, sd = 10, n=50))
 t = 1:length(x_1)
@@ -299,7 +458,7 @@ dsdtPlot(dist=dist, df=df, div = 1)+
 )
 ```
  
-```{r velocSysEx3, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\\bar{x}_1=25$, $\\bar{x}_2=50$) and sharp change in variance for one state variable $\\sigma_{1_{pre}} = 2$, $\\sigma_{1_{post}} = 12$, $\\sigma_{2_{pre,post}} = 5$"}
+```{r velocSysEx3, message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\\bar{x}_1=25$, $\\bar{x}_2=50$) and sharp change in variance for one state variable $\\sigma_{1_{pre}} = 2$, $\\sigma_{1_{post}} = 12$, $\\sigma_{2_{pre,post}} = 5$"}
 x_1 = c(rnorm(mean = 25, sd = 2, n=50), rnorm(mean =25, sd = 12, n=50))
 x_2 = c(rnorm(mean = 50, sd = 5, n=50), rnorm(mean =50, sd = 5, n=50))
 t = 1:length(x_1)
@@ -315,7 +474,7 @@ dsdtPlot(dist=dist, df=df, div = 1)+
 )
 ```
 
-```{r velocSysEx4, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Variance equal to mean ($\\bar{x_i}=\\sigma_i$), where means ($\\bar{x}_{1_{pre}}=25$, $\\bar{x}_{1_{post}}=50$, $\\bar{x}_{2_{pre}}=15$, $\\bar{x}_{2_{post}}=150$)."}
+```{r velocSysEx4, message=FALSE, warning=FALSE, echo=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Variance equal to mean ($\\bar{x_i}=\\sigma_i$), where means ($\\bar{x}_{1_{pre}}=25$, $\\bar{x}_{1_{post}}=50$, $\\bar{x}_{2_{pre}}=15$, $\\bar{x}_{2_{post}}=150$)."}
 x_1 = c(rnorm(mean = 25, sd = 25, n=50), rnorm(mean =50, sd = 50, n=50))
 x_2 = c(rnorm(mean = 15, sd = 15, n=50), rnorm(mean =150, sd = 150, n=50))
 t = 1:length(x_1)

@@ -35,6 +35,7 @@ space_between_paragraphs: false
 
 ## IS THSI A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulatiosn becaues time expensive
 quickRun<-TRUE
+if(!exists("quickRun")) quickRun <- FALSE
 
 instlLoadPkgs <- function(packages) {
   k <- packages[!(packages %in% installed.packages()[])];
@@ -76,10 +77,12 @@ suppressWarnings(suppressMessages(ipak(myPackages)))
 ## Re-install often as these packages are in  development.
 devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
 devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)  
+devtools::install_github("natbprice/tvdiff", force = FALSE)  
 
 # Load packages
 library(regimeDetectionMeasures) 
 library(bbsRDM)
+library(tvdiff)
 ```
 
 ```{r chunkOptsInd, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
