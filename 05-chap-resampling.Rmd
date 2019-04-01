@@ -1,4 +1,7 @@
 # Data Quality Impacts on Regime Detection Measures  {#resampling}
+
+**SEE IIASA REPORT** (.doc)
+
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 # Chunk defaults
 # require(knitr)
@@ -23,12 +26,14 @@ The transferability of RDMs to practitioners can only be facilitated by identify
 ### Study system and data  
 I jackknifed paleodiatom time series from a freshwater system in North America which exhibited a rapid shift in community dynamics. These data were collected using a sediment coring method [see @spanbauer_detecting_2014]. Community profiles at various depths within sediment cores are analyzed to obtain relative abundances. Relative abundances at various depths within the sediment core are then related to time (years before present) using carbon dating techniques. These data can be obtained from the publisher’s website. 
 
-### Regime detection metrics
+### Regime detection measures
 
-I use multipe
-#### Variance index
+I use multiple methods for identifying regime shifts. 
 
-#### Fisher Information
+
+#### Variance index  
+
+#### Fisher Information  
 
 #### System velocity, $v$
 In Chapter \@ref(velocity), I describe a 'new' method, __system velocity__, $v$, as a potential dimension reduction and regime  detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric. First introduced in by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described in great detail in Chapters \@ref(fiGuide) and \@ref(velocity). 

@@ -21,21 +21,21 @@ knitr::opts_chunk$set(
 
 There are a lot of dependencies to load. 
 
-```{r , message=FALSE, warning = FALSE, cache=T}
+```{r, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 ## Re-install often as this package is under major development.
 devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
-library(regimeDetectionMeasures)
-library(sp)
-library(raster)
-library(feather)
-library(bbsRDM)
-library(here)
+# library(regimeDetectionMeasures)
+# library(sp)
+# library(raster)
+# library(feather)
+# library(bbsRDM)
+# library(here)
 ```
 
 Create directories to locally store BBS data and results.
 ```{r  createDirs, warning=T}
 # a. Create a directory to store and/or load the BBS data as feathers
-bbsDir <- here::here("./chapterFiles/appendix_bbsRDM/bbs_raw_data")
+bbsDir <- "./chapterFiles/appendix_bbsRDM/bbs_raw_data"
     # If the bbs data already exists inside bbsDir, then we will create a logical to NOT download it (see below)
         if(length(list.files(bbsDir, pattern = "*.feather")) > 0 ){
             downloadBBSData = FALSE
@@ -47,16 +47,16 @@ bbsDir <- here::here("./chapterFiles/appendix_bbsRDM/bbs_raw_data")
 # If this returns a warning, proceed with caution as directory already exists, and results WILL be OVERRIDDEN.
 
 # b. Create a directory to store and/or load the BBS data as feathers
-resultsDir <- here::here("myResults")
+resultsDir <- "./chapterFiles/appendix_bbsRDM/myResults"
 dir.create(resultsDir)
 # ditto
 
 # c. Create directory for storing early warning signal results
-resultsDirEWS <- here::here("myResults/ews")
+resultsDirEWS <- "./chapterFiles/appendix_bbsRDM/myResults/ews"
 dir.create(resultsDirEWS)
 
 # d. Create directory for storing distance travelled results
-resultsDirDIST <- here::here("myResults/distances")
+resultsDirDIST <- "./chapterFiles/appendix_bbsRDM/myResults/distances"
 dir.create(resultsDirDIST)
 ```
 
@@ -98,7 +98,7 @@ birdsToFeathers(dataIn  = bbsData,
 # e. Clear object from memory
 rm(bbsData)
 } # end section I. loop
-}else(message(paste0("NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",bbsDir))) # end if-else to download the data
+}else(print(paste0("NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",bbsDir))) # end if-else to download the data
 ```
 
 ## Create the sampling grid 
@@ -156,10 +156,10 @@ For this example we will remove shorebirds, wading birds, and waterfowl (i.e., A
 feathers <- subsetByAOU(myData = feathers, subset.by= 'remove.shoreWaderFowl')
 ```
 
-## Subset species according to functional traits (or body mass). 
-### **Note: eval = F**
+## Subset species by trait, body mass, taxonomically, etc... 
 ```{r subsetFxn, eval =F, message = T, warning = F}
 # Load the functional trait and mass data, and munge/merge
+require(dplyr)
 funMass <-
     funcMass(dataWD = paste0(getwd(), "/data"),
              fxn = T, # get functional trait data?
@@ -174,8 +174,7 @@ rm(funMass)
 ```
 
 ## Calculate regime detection metrics across space or time
-
-## First, define the parameters required to calcualte the metrics. 
+### First, define the parameters required to calcualte the metrics. 
 ```{r defineParams, eval = T, warning=T, message=F}
 # Which metrics do you want to calculate?
 metrics.to.calc <- c("distances", "ews")

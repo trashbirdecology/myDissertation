@@ -35,9 +35,7 @@ Regime detection measures and other ecological indicators can signal (see \@ref(
 The actual limitations to the system  should be, theoretically, known as a result of bounding the system. Inference beyond this system is extrapolation, and should be treated as speculation, especially when not accompanied by a measure of uncertainty around one's predictions.
 
 
-
-## Limitations of the studies herein
-
+## Common Limitations of Regime Detection Measures
 Limitations of the findings in this dissertation and of the regime detection methods used herein are largely influenced by the **data collection**, **data munging** processes. Although the below mentioned points may seem logical to many, these assumptions are overlooked by many composite indicators, including regime detection measures. 
 1. Signals in the indicators are restricted to the ecological processes captured by the input data. Extrapolation occurs when processes manifest at scales different than the data collected.  (resolution; Chapter \@ref(fiSpatial))
 

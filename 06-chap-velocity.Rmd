@@ -1,13 +1,18 @@
 # Velocity (*v*): using rate-of-change of a system's trajectory to identify abrupt changes {#velocity}
+
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # # Chunk defaults
 set.seed(123)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
                       out.width = "95%")
 ```
-```{r}
+```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 library(magrittr)
 library(tidyverse)
+
+# Source some helper funs
+source("./chapterFiles/velocity/06-chap-velocity_helperFuns.R")
+
 ## Define a plotting function for plotting simulated and dist results
 sPlot <- function(df, dist, div = 10){
   if("sortVar" %in% names(dist))dist <- dist %>% rename(t = sortVar)
@@ -34,7 +39,7 @@ In this Chapter I describe the steps for calculating a 'new' metric, __system ve
 ## Data and methods
 ### Theoretical system example: two-species time series  
 Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$.
-```{r sysEx, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
+```{r sysEx,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
 x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 t = 1:length(x_1)
@@ -83,7 +88,7 @@ The first step in calculating $v$ is to obtain the change in values for each sta
   \end{array}
 (\#eq:diffX)
 \end{equation}
-```{r sysEx2, fig.cap="Data used to calculate velocity at the first two time points, $t_1$ and $t_2$."}
+```{r sysEx2,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="Data used to calculate velocity at the first two time points, $t_1$ and $t_2$."}
 p.sysEx +
   geom_point(data =df, aes(x = t, y = value, shape = variable, color=variable), size=4)+
   xlim(c(1,2))+ylim(c(20,30))+
@@ -132,7 +137,7 @@ Finally, we calculate the **system velocity**, $v$ (or $\frac{\Delta s}{\Delta t
  v = \frac {s_{t+1}-s_{t}}{\Delta t} 
 (\#eq:velocity)
 \end{equation}
-```{r velocSysEx1, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\\bar{x}_{pre}=25$, $\\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\\sigma =5$."}
+```{r velocSysEx1, echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\\bar{x}_{pre}=25$, $\\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\\sigma =5$."}
 x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 t = 1:length(x_1)
@@ -144,13 +149,14 @@ dist <- df %>%
   mutate(cellID = 1) %>% 
   rename(sortVar = t) %>% 
   regimeDetectionMeasures::calculate_distanceTravelled()
+
 dsdtPlot(dist=dist, df=df, div = 1)+
   ggtitle(
   expression(paste("changing means, constant variance"))
 )
 ```
 The steps for calculating velocity [Eq. \@ref(eq:velocity)] are demonstrated using the first five time points of our toy system (Fig. \@ref(fig:sysEx)) in Table \@ref(tab:distTab). 
-```{r distTab, eval=FALSE}
+```{r distTab, eval=FALSE, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE}
 library(kableExtra)
 options(knitr.kable.NA = "")
 kable(df.wide[1:5,],digits=3, "latex", align="c", booktabs=TRUE, escape = FALSE, 
@@ -161,7 +167,7 @@ I simulated 10,000 random draws of the toy system, which experiences a rapid shi
  $\bar{x}_1$, increased the mean value of $x_1$ 
  $\sigma_1$, change in variance of $x_1$ 
 Simulations consisted of 10,000 random samples drawn from the normal distribution for each paramter, I randomly drew the toy system samples 10,000 times under increasing values of $\bar{x}_1$ and $\sigma_1$. To identify patterns in the influence of paramter values on velocity, I present the mean values of $v$ across all simulations, with confidence intervals of $\pm 2$ standard deviations. As mentione above, the state variables $x_1$ and $x_2$ were drawn from a normal distribution (using function *rnorm*), with parameters $\bar{x}_i$ (mean) and $\sigma_i$ (sd) for 50 time steps, $t$.
-```{r simV, cache=TRUE}
+```{r simV, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # The following sections require a simulated dataset to be presnt in the results file. If it does not exist, this code chunk will run the (expensive!) simulations in the source code!
 files <- list.files("./chapterFiles/velocity/simResults", pattern= "mean_x1")
 if(!exists("quickRun")) quickRun=TRUE
@@ -175,15 +181,15 @@ dist.sim <- do.call("rbind", lapply(paste0("./chapterFiles/velocity/simResults/"
 ```
 #### Varying post-shift mean
 I examined the influence of the magnitude of change in $x_1$ in the period before (pre; $t <50$) and after (post; $t \geq 50$) by varying the mean parameter, $\bar{x}_1$ in the set $W=\{25,30,35,...100 \}$ (Figs. \@ref(fig:simVplot1),\@ref(simVplot2)). As expected, the magnitude of $v$ increased linearly as the total difference between $\bar{x}_{1_{pre}}$ and $\bar{x}_{1_{post}}$ increased (\@ref(fig:simVplot2)). This is not surprising, as $s$ increases as the total change in abundance across the entire sytem increases  (Eq. \@ref(eq:s)), therefore, the potential maximum of $v$ also increases. This may indicate that $v$, while capable of identifying large shifts in data structure, may not pick up subtle changes (i.e. lower effect sizes).
-```{r simVplot1, eval=FALSE, fig.cap = "Velocity ($v$) generally increases as the total change in the mean value of $\\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=666$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\\sigma = 5$, $\\bar{x}_1 = 25$ when $t<50$,  $\\bar{x}_2 = 50$ when $t \\geq50$, $\\bar{x}_1 = 25$ when $t <50$."}
-ggplot(data = dist.sim %>% filter(sim.num==666, t==51), 
+```{r simVplot1, eval=TRUE, fig.cap = "Velocity ($v$) generally increases as the total change in the mean value of $\\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\\sigma = 5$, $\\bar{x}_1 = 25$ when $t<50$,  $\\bar{x}_2 = 50$ when $t \\geq50$, $\\bar{x}_1 = 25$ when $t <50$."}
+ggplot(data = dist.sim %>% filter(sim.num==1, t==51), 
        aes(x = as.integer(mean.sim), y = dsdt))+
   geom_line()+
   theme_bw()+
   ylab(expression(paste("velocity, ",italic("v"), " at ", italic("t = 51"))))+
   xlab(expression(paste("total change in ", bar("x")[1], " at ", italic("t = 50"))))
 ```
-```{r simVplot2, fig.cap = "Change in velocity ($v$) as the total change in the mean value of $\\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\\sigma = 5$, $\\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\\bar{x}_2 = 50$ when $t \\geq 50$, $\\bar{x}_1 = 25$ when $t<50$."}
+```{r simVplot2, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "Change in velocity ($v$) as the total change in the mean value of $\\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\\sigma = 5$, $\\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\\bar{x}_2 = 50$ when $t \\geq 50$, $\\bar{x}_1 = 25$ when $t<50$."}
 dist.sim.reduced <- dist.sim %>% filter(t==51) %>% 
          group_by(mean.sim) %>% 
          mutate(dsdt.sim.mean  = mean(dsdt), 
@@ -203,7 +209,7 @@ ggplot(data = dist.sim.reduced)+
   xlab(expression(paste("total change in ", bar("x")[1], " between ", italic("t = 50"), " and ", italic("t = 51"))))+
   ggtitle(expression(paste("Mean ",  italic("v")," ($\\pm 2$ SD) over ", 10,000, " iterations")))
 ```
-```{r simVar, cache=TRUE}
+```{r simVar,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 
 files <- list.files("./chapterFiles/velocity/simResults", pattern= "var_x1")
 
@@ -230,8 +236,8 @@ dist.sim.reduced <- dist.sim %>% filter(t==51) %>%
 #### Varying post-shift variance
 In the previous example, variance was constant before and after the shift at $t=50$. To determine whether the signal emitted by $v$ at the regime shift is lost with increasing variance, I varied the variance parameter, $\sigma_1$ in the set $W = \{1,2,3,...25 \}$. The variance for both state variables prior to the regime shift, $\sigma_1$ and $\sigma_2$, was 5, with the change occurring in $\sigma_1{_{post}}$. Sytem velocity $v$ appears senstive to increases in the variance at the point of the regime shift (Figs. \@ref(fig:simVarplot), \@ref(fig:simVarplot2)). This extreme sensitivity of $v$ to $\sigma{_{post}}$  (Fig. \@ref(fig:simVarplot2)) is unsurprising, given the fact that, without smoothing the derivatives, the tangential speed of a 'noisy' variable will always be noisy itself (see Figs. \@ref(velocitySysEx1), \@ref(velocitySysEx2), \@ref(velocitySysEx3), \@ref(velocitySysEx4)). 
 
-```{r simVarPlot, eval=FALSE, fig.cap = "High variance of velocity ($v$) in a single iteration ($N_{iter}=666$, seed = 123) of simulations as we increase $\\sigma_1$ at $t=50$."}
-ggplot(data = dist.sim %>% filter(sim.num==666, t==51), 
+```{r simVarPlot, eval=TRUE, fig.cap = "High variance of velocity ($v$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\\sigma_1$ at $t=50$."}
+ggplot(data = dist.sim %>% filter(sim.num==1, t==51), 
        aes(x = as.integer(var.sim), y = dsdt))+
   geom_line()+
   theme_bw()+
@@ -239,7 +245,7 @@ ggplot(data = dist.sim %>% filter(sim.num==666, t==51),
   xlab(expression(paste(italic("W"), "total change in ", "sigma"[1], " at ", italic("t = 50"))))
 ```
 
-```{r simVarPlot2, fig.cap = "Average ($\\pm 2$ SD) velocity ($v$) woresens as the variance of $\\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\\bar{x}_{1_{pre}} = 25$, $\\bar{x}_{1_{post}} = 100$, $\\bar{x}_{2_{pre}} = 25$, $\\bar{x}_{2_{post}} = 50$, $\\sigma_{1_{pre}} = 5$, $\\sigma_{2_{pre,post}} = 5$"}
+```{r simVarPlot2,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "Average ($\\pm 2$ SD) velocity ($v$) woresens as the variance of $\\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\\bar{x}_{1_{pre}} = 25$, $\\bar{x}_{1_{post}} = 100$, $\\bar{x}_{2_{pre}} = 25$, $\\bar{x}_{2_{post}} = 50$, $\\sigma_{1_{pre}} = 5$, $\\sigma_{2_{pre,post}} = 5$"}
 ggplot(data = dist.sim.reduced) +
  geom_ribbon(aes(x = var.sim, ymin = lower , ymax = upper), fill = "grey70") +
     geom_line(aes(x = var.sim,  y = dsdt.sim.mean))+
@@ -252,7 +258,7 @@ ggplot(data = dist.sim.reduced) +
 
 #### Smoothing the data prior to calculating *v*
 To ameliorate the influence of noise (e.g. Fig. \@ref(simVarPlot)) on the regime shift signal in $v$, I used linear approximation techniques in attempt to smooth the velocity (derivatives). I used the function *stats::approx* to interpolate values of $x_1$ and $x_2$ to regularly-spaced time points in the set $t=\{1:100\}$, and then calculated $v$ as described in the steps above (Eqs. \@ref(eq:diffX):\@ref(eq:velocity)). Increasing the number of points ($t$) at which the original state variables were smoothed did not influence the amount of noise surrounding the signal of the regime shift (at $t=50$) in system velocity, $v$ (Fig. \@ref(fig:smoothV)).
-```{r smoothV, eval=FALSE, fig.cap = "The noise in system velocity ($v$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed."}
+```{r smoothV, eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "The noise in system velocity ($v$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed."}
 smoothed <- approx_dist.sim(t.mult = 1)
 p1<- dsdtPlot(df = smoothed[[1]],dist = smoothed[[2]], div = 1/1.4)+
   ggtitle("no smoothing")
@@ -379,7 +385,7 @@ ggplot(plotData, aes(x = sortVar*-1, y = value))+
   geom_vline(xintercept = 1300, color="red",linetype=2)+
   geom_vline(xintercept = c(1383, 2150, 4800), color="blue",linetype=3)
 ```
-1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950   
+1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950     
 1. The periods before the first and after the second large shifts appear oscillatory (Fig. \@ref(fig:paleoRegime1and3)).
 ```{r paleoRegime1and3,  echo=F, warning=F, message=F, cache = T, fig.pos="T", fig.cap ="Velocity $v$ indicates periodic-like conditions in the first (*a*) and second (*b*) regimes."}
 
