@@ -31,9 +31,9 @@ lot: true
 lof: true
 space_between_paragraphs: false
 ---
-```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results ='hide'}
+```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 
-## IS THSI A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulatiosn becaues time expensive
+## IS THIS A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulatiosn becaues time expensive
 quickRun<-TRUE
 if(!exists("quickRun")) quickRun <- FALSE
 
@@ -66,32 +66,36 @@ ipak <- function(pkg){
     new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
     if (length(new.pkg)) 
         install.packages(new.pkg, dependencies = TRUE)
-    sapply(pkg, library, character.only = TRUE)
+    suppressMessages(sapply(pkg, library, character.only = TRUE))
 }
 
+
+# Re-install often as these packages are in  development.
+devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
+devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
+devtools::install_github("natbprice/tvdiff", force = FALSE)
+```
+
+```{r loadPkgs, include=FALSE }
 # Detach all packages just in case...
-if(!is.null(sessionInfo()$otherPkgs)) lapply(paste('package:',names(sessionInfo()$otherPkgs),sep=""),detach,character.only=TRUE,unload=TRUE)
+if(!is.null(sessionInfo()$otherPkgs)) suppressWarnings(suppressMessages(lapply(paste('package:', names(sessionInfo()$otherPkgs),sep=""), detach,character.only=TRUE,unload=TRUE)))
 
 suppressWarnings(suppressMessages(ipak(myPackages)))
 
-## Re-install often as these packages are in  development.
-devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)  
-devtools::install_github("natbprice/tvdiff", force = FALSE)  
-
-# Load packages
-library(regimeDetectionMeasures) 
-library(bbsRDM)
-library(tvdiff)
+# Load additional packages
+library(regimeDetectionMeasures, quietly = TRUE) 
+library(bbsRDM, quietly = TRUE)
+library(tvdiff, quietly = TRUE)
 ```
 
 ```{r chunkOptsInd, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # Chunk defaults
 require(knitr)
-knitr::opts_chunk$set(results = "hide", cache = TRUE, cache.path = "_cache/",
+knitr::opts_chunk$set( cache = TRUE, cache.path = "_cache/",
                       message = FALSE, warning=FALSE,
                       eval=TRUE, echo=FALSE, error=FALSE,
                       # include=FALSE, 
+                      fig.pos = 'h',
                       fig.align='center', out.width = "85%")
 ```
 

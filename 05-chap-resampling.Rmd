@@ -1,14 +1,10 @@
 # Data Quality Impacts on Regime Detection Measures  {#resampling}
-
 **SEE IIASA REPORT** (.doc)
-
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 # Chunk defaults
 # require(knitr)
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',
-                      out.width = "95%")
+knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center', out.width = "85%")
 ```
-
 ## Introduction 
 Ecological systems have many unpredictable and variably interacting components (Jørgensen et al. 2011). Methods for analyzing these complex systems, e.g. Dynamic Bayesian Networks, network models, and food webs are designed to handle these complexities, yet require data- and knowledge-intensive models. Although ecological data collection and data management techniques are improving (La Sorte et al. 2018), the aforementioned approaches to modeling and understanding complex system are often infeasible in ecosystem research and management (Clements et al. 2015). 
 

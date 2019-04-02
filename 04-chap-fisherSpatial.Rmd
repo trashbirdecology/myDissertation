@@ -1,16 +1,12 @@
 # An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial}
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
-# Chunk defaults
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center', fig.pos = 'h',
-                      out.width = "95%")
-## Only run this if you need to calculate more metrics, or fix them.
+knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',out.width = "85%")
+## Only run line six this if you need to calculate more metrics, or fix them.
 # you need to go into this (line 158) and specify parameters for calculating metrics.
-# ('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')
-
+# source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')
 figDir <- "./chapterFiles/fisherSpatial/figures"
 figDissDir <- "./chapterFiles/fisherSpatial/figures/figsCalledInDiss"
 ```
-
 ## Introduction    
 Ecosystems are open, dynamical systems which arguably cannot be fully represented by deterministic models. Despite the complexity of most ecological systems, some patterns have emerged in certain statistical mechanics of ecological observations. An uptick in recent years of studies of **regime shifts** (\@ref(glossary)) in ecology has spurred an increase in the number of 'new' methods for detecting ecological regime shifts (\@ref(rdmReview)), some of which are proposed as indicators of 'spatial' regime shifts [@butitta_spatial_2017, @kefi2014early, @sundstrom2017detecting, @guttal2009spatial, @brock_variance_2006]. 
 
@@ -24,7 +20,7 @@ Although it is suggested that statistical and pragmatic models and methods are a
 ### Data: North American breeding bird communities  
 I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \@ref(eq:derivatives)). The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately  24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data.  Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880). 
 
-```{r bbsPoints,echo = FALSE, fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
+```{r bbsPoints,eval=FALSE, echo = FALSE, fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
 knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png"))
 ```
 

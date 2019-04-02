@@ -37,25 +37,29 @@
 \usepackage{amssymb,amsthm}
 \usepackage{longtable,booktabs,setspace, array}
 \usepackage[hyphens]{url}
-% Added by CII
 \usepackage{hyperref}
+% Added by JLB
+\usepackage{lineno} % line numbers
+\linenumbers
+
 \usepackage{lmodern}
+
 \usepackage{float}
 \floatplacement{figure}{h}
-% End of CII addition
+
 \usepackage{rotating}
-% Next line commented out by CII
-% \usepackage{natbib}
+
+\usepackage{natbib}
 % Comment out the natbib line above and uncomment the following two lines to use the new
 % biblatex-chicago style, for Chicago A. Also make some changes at the end where the
 % bibliography is included.
-%\usepackage{biblatex-chicago}
-\bibliography{thesis}
+% \usepackage{biblatex-chicago}
+% \bibliography{thesis}
 
 
 % Added by CII (Thanks, Hadley!)
 % Use ref for internal links
-\renewcommand{\hyperref}[2][???????]{\autoref{#1}}
+\renewcommand{\hyperref}[2][???]{\autoref{#1}}
 \def\chapterautorefname{Chapter}
 \def\sectionautorefname{Section}
 \def\subsectionautorefname{Subsection}
