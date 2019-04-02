@@ -6,9 +6,10 @@
 **/.DS_Store
 .DS_Store
 
-
 # remove builds
-!_book/
+!**/_myDissertation.pdf
+**/_myDissertation.tex
+**/_myDissertation.rmd
 _bookdown_files/
 !myDissertation/chapterFiles/fiGuide/figures/
 !myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png/
