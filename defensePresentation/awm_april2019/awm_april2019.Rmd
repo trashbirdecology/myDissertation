@@ -1,0 +1,121 @@
+---
+title: "Ecosystem velocity: a novel method for identifying ecological regime changes"
+author: "Jessica L. Burnett"#" School of Natural Resources \n University of Nebraska-Lincoln"
+date: "4/6/2019"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+---
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(inclde = FALSE, warning=FALSE, message=FALSE)
+pkgs <- c("tidyverse", "here")
+# create a function to load packages
+loadPkgs <- function(packages) {
+  for(package_name in packages)
+  {library(package_name,character.only=TRUE, quietly = TRUE);}
+}
+loadPkgs(pkgs)
+
+# Plotting shit
+theme_set(theme_bw())
+```
+
+## Ecosystems are Complex
+
+Insert image of an urban ecosystem (or a novel ecosystem, or the Hobbs book cover, or both)
+
+```{r}
+# knitr::include_graphics()
+```
+???
+- The consequences of globalization -- climate change, urbanization, habitat loss, etc.-- are expected to pave the way for novel ecosystems. 
+- Also expected are increases in both the frequency and intensity of  extreme events (especially weather events)
+
+---
+## Ecosystems are Complex
+- non-ergodic
+- high dimensional
+- non-linear interactions
+- difficult to model (middle-number systems) 
+
+```{r}
+# include a picture of a coral reef maybe
+# knitr::include_graphics()
+```
+???
+Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. Understandably, modeling ecosystems with accuracy and utility is difficult. Anyone studying empirical dynamical systems probably understands that as we move beyond a handful of state variables, the likelihood that someone can build a **useful** mathemtaical model of the system dynamics.
+
+## Ecosystems are Complex
+
+???
+Luckily for us, many ecological systems are notoriously complex--and in modern times, its difficult to parse  human influence from ecological systems. 
+
+One such example of a complex ecological system is a coral reef. There is an important functional interaction here that, if disturbed enough, can change a reef from healthy, to bleached (dead).
+
+## Regime Shifts
+
+???
+The death or near-death of this coral reef is something many would consider a **regime shift** 
+**Regime shifts** are long-lasting changes in the structure or functioning of a system.
+
+Often associated with large, quick, and dramatic changes -- especially of those systems from which humans benefit
+
+## Types of Regime Shifts^[Dakos et al. 2014]
+
+Given a system state $S$, and a driver, $D$, we can imagine a many potrential scenarios to evolve given shifts in $D$. 
+```{r rsTypesPlot}
+myPlot <- function(lab = "driver", x = t,  y1 =S, y2 = D, size =1, hline = D, ann.pos.x = NULL, ann.pos.y = NULL){
+
+  ggplot()+
+    geom_line(aes(x,S), size = size, color = "black", linetype = 1)+
+    geom_hline(yintercept = D, size = size, color = "blue", linetype = 1)+
+    annotate("text", x = ann.pos.x, y = ann.pos.y, label = lab)
+}
+  
+## slow driver to tipping point
+x = 1:10
+  a =-1
+  b = 4
+  c = 10
+S  = a*x^2 + b*x + c
+D = mean(S)
+
+(p1<-myPlot(x, y1=S, y2=D, hline = D)+ 
+  geom_line(aes(x = max(x):(max(x)+round(length(x)*.4)), # add flat line to end  
+                y = min(S)), size = 1)+
+  ggtitle("slow driver to tipping point"))
+
+## 
+x = 1:10
+  a =  rep(10, round(length(x)*.5,0))
+  b =  c(max(a), rep(2, round(length(x)*.5,0)-1))
+S = c(a,b)
+D = mean(S)      
+    
+p2<-myPlot(x, y1=S, y2=D, hline = D)
+p2
+p3<-myPlot(x, y1=S, y2=D, hline = D)#, ann.pos.x = -2.3, ann.pos.y = -18)
+
+```
+
+Panel 1: slow driver to a tipping point
+Panel 2:
+Panel 3: 
+
+<!-- Characteristics  -->
+<!-- 1. at least two 'stable' states, stable of ecologically relevant time scale -->
+<!-- 2. states are reinforce through some negative feedback -->
+<!-- 3.  -->
+
+
+## Holy Grail of Ecology
+z
+???
+Predicting and preventing undesirable changes in ecological systems is, arguably, the holy grail of ecology.
+
+<!-- For example, headlining the news in recent years is the expected death of hte Great Barrier Reef in near-shore Australia -- coral ecologists warn that -->
+
+<!-- Although the number of interactions within a reef is often high -->
+<!-- The negative feedback loops which we believe maintain coral reefs as *healthy*, as we suggest, are the relationship between algae and algae-eating fauna.x -->
+
+## Types of Regime Shifts
