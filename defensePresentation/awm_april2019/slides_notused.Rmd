@@ -1,0 +1,64 @@
+# Consequences of Globalization
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("http://rs.resalliance.org/wp-content/uploads/2010/01/2_tuesday.jpg")
+```
+
+Image credit: [Resilience Alliance](http://rs.resalliance.org/tag/adaptive-governance/)
+
+???
+
+- Globalization is leading to large-scale and long-lasting changes, including
+    - climate change
+    - urbanization
+- And is creating novel ecosystemsThe consequences of globalization -- climate change, urbanization, habitat loss, etc.-- are expected to pave the way for novel ecosystems.
+
+---
+
+# Types of Regime Shifts  <!-- type plots -->
+
+
+Given a system state $S$, and a driver, $D$, we can imagine a many potrential scenarios to evolve given shifts in $D$. 
+
+
+[Dakos et al. 2014]
+
+
+```{r rsTypesPlot}
+# slow driver to tipping point
+x = 1:10
+  a =-1
+  b = 4
+  c = 10
+S  = a*x^2 + b*x + c
+D = mean(S)
+
+p1<-myPlot(x = x, y1=S, y2=D, hline = D)+ 
+  geom_line(aes(x = max(x):(max(x)+round(length(x)*.4)), # add flat line to end  
+                y = min(S)), size = 1)+
+  ggtitle("slow driver to tipping point")
+# 
+x = c(1:5, 5:10)
+  a =  rep(10, 5)
+  b =  c(rep(2, round(length(x)*.5,0)))
+S = c(a,b)
+D = mean(S)      
+
+p2<-myPlot(x = x, y1=S, y2=D, hline = D)+
+    ggtitle("slow driver to tipping point")
+
+gridExtra::grid.arrange(p1, p2, nrow=2)
+```
+
+Panel 1: slow driver to a tipping point
+Panel 2:
+Panel 3: 
+
+<!-- Characteristics  -->
+<!-- 1. at least two 'stable' states, stable of ecologically relevant time scale -->
+<!-- 2. states are reinforce through some negative feedback -->
+<!-- 3.  -->
+
+
+---
+

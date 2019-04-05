@@ -115,12 +115,11 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 /* Add image and change bg color */
 .title-slide {
-	background-color: #fff;
   background-image: url(https://ucomm.unl.edu/images/brand-book/Our-marks/nebraska-n.jpg);
-	background-position: center bottom 170px;
-	background-size: 30%;
-	border-bottom: 0px solid  #522D80;
-	box-shadow:  0 55px 0 #fff;
+  background-position: 9% 15%;
+  background-size: 122px;
+  background-color: #fff;
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
 
 /* H1 fonts */

@@ -69,8 +69,8 @@ colnames(df.wide) <- c("t",
                        # "$ velocity = \\frac{\\Delta s_{j,j+1}}{\\Delta t}$")
 (p.sysEx <- ggplot()+
   geom_line(data = df, aes(t, value, linetype=variable), color='black')+
-  theme(legend.position='bottom'))+
-  theme_bw()
+  theme(legend.position='bottom')+
+  theme_bw())
 ```
 
 ### Steps for calculating system velocity, *v*

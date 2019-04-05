@@ -21,7 +21,7 @@ output:
 ---
 ```{r setup, include=FALSE, warning=FALSE, message=FALSE}
 #### Build the Slideshow in Viewer ####
-# xaringan::inf_mr() 
+# xaringan::inf_mr()
 # when the doc is saved it automatically updates viewer pane slides
   ## Note: do not run this when knitting the slides!!!
 

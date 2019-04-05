@@ -1,14 +1,22 @@
 ---
-title: "Ecosystem velocity: a novel method for identifying ecological regime changes"
-author: "Jessica L. Burnett"#" School of Natural Resources \n University of Nebraska-Lincoln"
-date: "4/6/2019"
+title: "Regime Shift Detection"
+subtitle: "in noisy, high-dimensional systems " #"<br/> "
+author: "Jessica Burnett"
+institute: "University of Nebraska-Lincoln"
+date: "2019.04.05"#(updated: `r Sys.Date()`)"
 output:
-  slidy_presentation: default
-  ioslides_presentation: default
+  xaringan::moon_reader:
+    css: ["default", "myTheme.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
-```{r setup, include=FALSE, message=FALSE, warning=FALSE}
-knitr::opts_chunk$set(inclde = FALSE, warning=FALSE, message=FALSE)
-pkgs <- c("tidyverse", "here")
+```{r setup, message=FALSE, warning=FALSE, cache=TRUE, echo=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(include = FALSE, warning=FALSE, message=FALSE, cache=TRUE)
+pkgs <- c("tidyverse", "here", "xaringan", "knitr")
 # create a function to load packages
 loadPkgs <- function(packages) {
   for(package_name in packages)
@@ -19,103 +27,193 @@ loadPkgs(pkgs)
 # Plotting shit
 theme_set(theme_bw())
 ```
-
-## Ecosystems are Complex
-
-Insert image of an urban ecosystem (or a novel ecosystem, or the Hobbs book cover, or both)
-
-```{r}
-# knitr::include_graphics()
-```
-???
-- The consequences of globalization -- climate change, urbanization, habitat loss, etc.-- are expected to pave the way for novel ecosystems. 
-- Also expected are increases in both the frequency and intensity of  extreme events (especially weather events)
-
----
-## Ecosystems are Complex
-- non-ergodic
-- high dimensional
-- non-linear interactions
-- difficult to model (middle-number systems) 
-
-```{r}
-# include a picture of a coral reef maybe
-# knitr::include_graphics()
-```
-???
-Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. Understandably, modeling ecosystems with accuracy and utility is difficult. Anyone studying empirical dynamical systems probably understands that as we move beyond a handful of state variables, the likelihood that someone can build a **useful** mathemtaical model of the system dynamics.
-
-## Ecosystems are Complex
-
-???
-Luckily for us, many ecological systems are notoriously complex--and in modern times, its difficult to parse  human influence from ecological systems. 
-
-One such example of a complex ecological system is a coral reef. There is an important functional interaction here that, if disturbed enough, can change a reef from healthy, to bleached (dead).
-
-## Regime Shifts
-
-???
-The death or near-death of this coral reef is something many would consider a **regime shift** 
-**Regime shifts** are long-lasting changes in the structure or functioning of a system.
-
-Often associated with large, quick, and dramatic changes -- especially of those systems from which humans benefit
-
-## Types of Regime Shifts^[Dakos et al. 2014]
-
-Given a system state $S$, and a driver, $D$, we can imagine a many potrential scenarios to evolve given shifts in $D$. 
-```{r rsTypesPlot}
+```{r sourceFunctions, echo=FALSE}
+# Source some functions
 myPlot <- function(lab = "driver", x = t,  y1 =S, y2 = D, size =1, hline = D, ann.pos.x = NULL, ann.pos.y = NULL){
-
+  
   ggplot()+
     geom_line(aes(x,S), size = size, color = "black", linetype = 1)+
     geom_hline(yintercept = D, size = size, color = "blue", linetype = 1)+
-    annotate("text", x = ann.pos.x, y = ann.pos.y, label = lab)
+    annotate("text", x = ann.pos.x, y = ann.pos.y, label = lab)+
+    xlab("driver")+
+    ylab("ecosystem state")
 }
-  
-## slow driver to tipping point
-x = 1:10
-  a =-1
-  b = 4
-  c = 10
-S  = a*x^2 + b*x + c
-D = mean(S)
-
-(p1<-myPlot(x, y1=S, y2=D, hline = D)+ 
-  geom_line(aes(x = max(x):(max(x)+round(length(x)*.4)), # add flat line to end  
-                y = min(S)), size = 1)+
-  ggtitle("slow driver to tipping point"))
-
-## 
-x = 1:10
-  a =  rep(10, round(length(x)*.5,0))
-  b =  c(max(a), rep(2, round(length(x)*.5,0)-1))
-S = c(a,b)
-D = mean(S)      
-    
-p2<-myPlot(x, y1=S, y2=D, hline = D)
-p2
-p3<-myPlot(x, y1=S, y2=D, hline = D)#, ann.pos.x = -2.3, ann.pos.y = -18)
-
 ```
 
-Panel 1: slow driver to a tipping point
-Panel 2:
-Panel 3: 
+<!-- ############ PART I: BACKGROUND ############-->
+# Ecosystems are Complex <!-- reef pic -->
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("https://www.australiangeographic.com.au/wp-content/uploads/2018/06/great-barrier-reef-hardy.jpg")
+```
+Great Barrier Reef (Australia)  
+Image credit: [Australia Geographic](https://www.australiangeographic.com.au)
 
-<!-- Characteristics  -->
-<!-- 1. at least two 'stable' states, stable of ecologically relevant time scale -->
-<!-- 2. states are reinforce through some negative feedback -->
-<!-- 3.  -->
+---
 
+# Ecosystems are Complex <!-- list of characteristics -->  
+##*(and complicated)*
 
-## Holy Grail of Ecology
-z
+### - high dimensional    
+
+--
+### - many ( $\infty$ ) interactions  
+
+--
+### - non-linear  
+
+--
+### - non-ergodic (open)   
+
+--
+### - difficult to model mathematically     
+
 ???
-Predicting and preventing undesirable changes in ecological systems is, arguably, the holy grail of ecology.
+Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. Understandably, modeling ecosystems with accuracy and utility is difficult. Anyone studying empirical dynamical systems probably understands that as we move beyond a handful of state variables, the likelihood that building a **useful** mathemtaical model of ecosystem dynamics is  impossible for most systems
+---
 
-<!-- For example, headlining the news in recent years is the expected death of hte Great Barrier Reef in near-shore Australia -- coral ecologists warn that -->
+# The Holy Grail of Ecology <!-- 1 -turtle reef pic-->
 
-<!-- Although the number of interactions within a reef is often high -->
-<!-- The negative feedback loops which we believe maintain coral reefs as *healthy*, as we suggest, are the relationship between algae and algae-eating fauna.x -->
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("https://coolkeywest-1165.kxcdn.com/wp-content/uploads/2014/05/reef.jpg")
+```
+Image credit: [coolkeywest.com](https://coolkeywest-1165.kxcdn.com/wp-content/uploads/2014/05/reef.jpg)
 
-## Types of Regime Shifts
+???
+- Despite the complexity of ecological systems, ecologists strive to make predictions about these complex systems. 
+- One important area of research is predicting changes in ecossystems which push a system from one state into another 
+- Especially when the consequences are grave
+
+---
+
+# The Holy Grail of Ecology <!-- ...is prediction -->
+<br>  
+<br>
+<br>
+## forecasting change in time to prevent or mitigate undesirable consequences
+
+---
+
+# The Holy Grail of Ecology <!-- 2 - dying reef pic-->
+### Predicting undesirable change   
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("https://static1.squarespace.com/static/5a5906400abd0406785519dd/t/5b7b180a6d2a7356c60f4ec4/1534793794260/IYORBank_BeforeAndAfter_TheOceanAgency_07.jpg")
+```
+
+Image credit: [The Ocean Agency](https://static1.squarespace.com/static/5a5906400abd0406785519dd/t/5b7b180a6d2a7356c60f4ec4/1534793794260/IYORBank_BeforeAndAfter_TheOceanAgency_07.jpg)
+
+???
+
+Predicting systemic change is especially important when humans are negatively affected.
+
+For example,  the bleaching and eventual death of this coral reef system impacts not only the wildlife within the reef system, but also has downstream impacts on human communities 
+ - ecotourism (economy)
+ - fisheries (food and economy)
+ - nearshore barrier from extreme weather events (safety)
+
+---
+
+# Ecological Regime Shift <!--intro --> 
+## what?  a persistent change in the structure or functioning of a system    
+</br>  
+## how? loss of negative feedback(s) maintaining the system
+<br>
+## goal? predict in time to prevent
+
+???
+- The reef is only one example of what many ecologists are calling, "regime shifts"
+- Briefly, an ecological regime shift is a persistent change in the sturcture or functioning of a system
+- Regime shifts occur, via a number of pathways, when a system loses the negative feedback(s) maintaining the system in its current state
+- Again, the ultimate goal here would be to predict these events, which can negatively imopact humans, in time to either prevent or plan for the negative consequences of such a change.
+
+---
+
+# Ecological Regime Shift <!-- definition -->  
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("https://static1.squarespace.com/static/5a5906400abd0406785519dd/t/5b7b180a6d2a7356c60f4ec4/1534793794260/IYORBank_BeforeAndAfter_TheOceanAgency_07.jpg")
+```
+Image credit: [The Ocean Agency](https://static1.squarespace.com/static/5a5906400abd0406785519dd/t/5b7b180a6d2a7356c60f4ec4/1534793794260/IYORBank_BeforeAndAfter_TheOceanAgency_07.jpg)
+
+???
+
+---
+
+
+<!-- ############ PART II: METHOD REVIEW ############-->
+
+
+# Regime Detection Metrics  <!-- revist complex system characteristics -->  
+### - high dimensional    
+
+### - many ( $\infty$ ) interactions  
+
+### - non-linear   
+
+### - non-ergodic (open)    
+
+### - **difficult to model mathematically**  
+
+???
+
+So, revisiting the characteristics of ecosystems, it should be unsurpisingly that descriving ecosystems sufficeintly to make predictions regarding changes is unsurprisingly difficult. 
+
+NUemrous methods have been introduced into our literature descrived as **Early warning indciators** of regime shifts
+
+---
+
+## Regime Detection Metrics <!-- lit review 1-->
+### $>70$ methods proposed in ecological literature
+### $<10$ are model-free
+### $3$ proposed for high-dimensional models  
+
+---
+
+## Regime Detection Metrics <!-- lit review 2 -->
+### $>70$ methods proposed in ecological literature
+### $<10$ are model-free 
+### $3$ proposed for high-dimensional models  
+### **None explicitly for noisy data**
+
+---
+
+<!-- ############ PART 3: VELOCITY ############-->
+
+# 2-species toy data
+
+```{r, echo=FALSE, out.width="100%", fig.cap = "Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
+knitr::include_graphics(paste0(here::here(), "/figures/exData.png"))
+```
+
+---
+
+# Velocity of Ecosystem State, dsdt<!-- velocity -->
+### Step 1: first differences
+
+.pull-left[
+The first step in calculating $v$ is to obtain the change in values for each state variables,$$x_1$$and$$x_2$$between two consecutive time points (e.g., from $t=1$ to $t=2$:
+
+$\Delta x_1 = x_{1_{t=2}} - x_{1_{t=1}}$
+
+$\Delta x_2 = x_{2_{t=2}} - x_{1_{t=1}}$
+]
+
+.pull-right[
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics(paste0(here::here(), "/figures/exData_t1t2.png"))
+
+```
+]
+---
+
+
+<!-- ############ PART X: TEMPLATES ############-->
+# NEW SLIDE  <!-- -->
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("")
+```
+
+Image credit: []()
+
+---
+
+
