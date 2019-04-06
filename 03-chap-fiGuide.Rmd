@@ -119,8 +119,9 @@ Although the numerical steps for calculating the derivatives-based FI are relati
 ggplot(data = sysSol, aes(x = x1, y = x2)) +
   geom_bin2d(aes(fill = ..density..), color = "black", drop = T, bins = 20) +
   scale_fill_distiller(palette = "YlOrRd") +
-  labs(x = "prey, x1", y = "predator, x2", fill = "p(x)") +
-  coord_fixed()
+  labs(x = "x_1", y = "x_2", fill = "p(x)") +
+  coord_fixed()+
+  theme_bw()
 ```
 
 Fisher Information (FI) is defined with respect to a probability distribution. In the derivatives-based method, FI is calculated for a probability of observing a system (as defined by one or more state variables) in a particular state, $p(x)$, over some period of time, ($0 to t_{end}$). In other words $p(x)$ is the probability that, at a specific point in time ($t_{obs}^*$) we will observe the system in a particular state, $x^*$. The time at which we observe the system is a random variable, $t_{obs}  ~ Uniform(0,t_{end})$. To be clear, the study system is assumed to be deterministic and we assume no observation error, however, the observed state of the system, $x(T_{obs})$, is a random variable because it is a function of the random observation time,  $x^*= x(t_{obs}^*)$. The state of the model system, x, is defined in two dimensions by the number of predators and the number of prey \@ref(eq:predprey) and is easily visualized \@ref(fig:pp1Period).Therefore, the probability of observing a particular state is a two-dimensional joint distribution  \@ref(fig:2d-hist). 
