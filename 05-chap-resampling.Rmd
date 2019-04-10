@@ -32,7 +32,7 @@ I use multiple methods for identifying regime shifts.
 #### Fisher Information  
 
 #### System velocity, $v$
-In Chapter \@ref(velocity), I describe a 'new' method, __system velocity__, $v$, as a potential dimension reduction and regime  detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric. First introduced in by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described in great detail in Chapters \@ref(fiGuide) and \@ref(velocity). 
+In Chapter \@ref(velocity), I describe a method, __system velocity__, $v$, as a potential dimension reduction and regime  detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric. First introduced in by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described in great detail in Chapters \@ref(fiGuide) and \@ref(velocity). 
 
 
 

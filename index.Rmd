@@ -37,11 +37,13 @@ space_between_paragraphs: false
 quickRun<-TRUE
 if(!exists("quickRun")) quickRun <- FALSE
 
-instlLoadPkgs <- function(packages) {
+instlLoadPkgs <- function(packages, install = TRUE) {
+  if(install){
   k <- packages[!(packages %in% installed.packages()[])];
   if(length(k))
   {install.packages(k, repos='https://cran.rstudio.com/');}
-
+  }
+  
   for(package_name in packages)
   {library(package_name,character.only=TRUE, quietly = TRUE);}
 }
@@ -71,9 +73,10 @@ ipak <- function(pkg){
 
 
 # Re-install often as these packages are in  development.
-devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
-devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
-devtools::install_github("natbprice/tvdiff", force = FALSE)
+# devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
+# devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
+# devtools::install_github("natbprice/tvdiff", force = FALSE)
+
 ```
 
 ```{r loadPkgs, include=FALSE }

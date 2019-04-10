@@ -256,7 +256,8 @@ getmode <- function(v) {
   uniqv <- unique(v)
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }
-getSpanbauerData <- function() {
+getSpanbauerData <- function(scale.spp= TRUE) {
+  print("scaling the spanbauer data")
   # Load data
   data = read_csv(
     url(
@@ -288,10 +289,10 @@ getSpanbauerData <- function() {
       total = sum(value)
     )
   
-  
-  stand01 <- function(x) {
+  if(scale.spp){
+  stand01 <- function(x) { # standardize the data
     (x - min(x)) / diff(range(x))
-  }
+  }}
   
   myDf.long <- myDf.long %>%
     group_by(time, site) %>%
@@ -332,6 +333,7 @@ resamplingAnalysis <-
           # Calculate distance travelled
           if (exists("results"))
             rm(results)
+          
           results <- temp %>%
             # Distance between species
             arrange(variable, method, prob, nDraw, time) %>%
@@ -364,6 +366,7 @@ resamplingAnalysis <-
                    myMethods[i],
                    "_draw",
                    j)
+          
           write_feather(x = results, path = fn)
           
           # Calculate EWSs
@@ -389,7 +392,7 @@ resamplingAnalysis <-
           require(caTools)
           if (fivi) {
             winResults_fivi <-
-              window_analysis(temp, winSize, winSpace)
+              window_analysis(data = temp, winSize = winSize, winSpace = winSpace)
           } else
             (winResults_fivi = NULL)
           if(ews)  {winResults_ews <- window_analysis_EWS(temp, winSize, winSpace)}else(winResults_fivi = NULL)
