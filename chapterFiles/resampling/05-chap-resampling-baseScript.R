@@ -88,13 +88,29 @@ if (dummyData) {
 
 
 # Visualize the Raw Data --------------------------------------------------
-(p.orig <- ggplot(myDf.long) + geom_line(aes(
+figDir<-'./chapterFiles/resampling/figsCalledInDiss/'
+dir.create("./chapterFiles/resampling/figsCalledInDiss/")
+
+ggplot(myDf.long) + geom_line(aes(
   x = time,
   y = value,
   color = (variable)
 )) + 
   theme_classic() +
-  theme(legend.position = 'none'))
+  theme(legend.position = 'none') +
+  ylab("relative abundance") +
+  ggsave(paste0(figDir,"origDataRelAbundance.png"))
+
+ggplot(myDf.long %>% 
+                   distinct(time) %>% 
+                   arrange(time) %>% 
+                   mutate(dt = time - lag(time))) + geom_line(aes(
+  x = time,
+  y = dt)) + 
+  theme_classic() +
+  theme(legend.position = 'none') +
+  ylab("time since last observation") +
+  ggsave(paste0(figDir,"timeElapsed.png"))
 
 
 # Create directories in which to store files.  ----------------------------
@@ -131,7 +147,6 @@ resamplingAnalysis(
   fivi = TRUE,
   fi.method = "7.12" #7.12 is the derivatives method
 )
-
 
 # Plot resampling results -------------------------------------------------
 origData <- purrr::map_df(list.files(origDataDir, full.names = TRUE), read_feather)

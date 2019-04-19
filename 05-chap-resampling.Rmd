@@ -1,43 +1,83 @@
-# Data Quality Impacts on Regime Detection Measures  {#resampling}
-**SEE IIASA REPORT** (.doc)
+# Robustness of Multivariate Regime Detection Measures to Varying Data Quality and Quantity {#resampling}
+
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 # Chunk defaults
 # require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center', out.width = "85%")
+figDir <- "./chapterFiles/resampling/figsCalledInDiss/"
+loadFig<-function(fn){paste0(figDir,fn,".png")}
 ```
 ## Introduction 
 Ecological systems have many unpredictable and variably interacting components (Jørgensen et al. 2011). Methods for analyzing these complex systems, e.g. Dynamic Bayesian Networks, network models, and food webs are designed to handle these complexities, yet require data- and knowledge-intensive models. Although ecological data collection and data management techniques are improving (La Sorte et al. 2018), the aforementioned approaches to modeling and understanding complex system are often infeasible in ecosystem research and management (Clements et al. 2015). 
 
-A growing concern with anthropogenic impacts on the environment has increased the demand for mathematical and statistical techniques that capture these dynamics. These often undesirable changes in the structure or functioning of ecological systems are often referred to as “regime shifts”, “regime changes”, “state change”, “abrupt change”, etc. (Andersen et al. 2009) . A yet-unattained goal of ecological research and management is to reach a point where these methods can predict impending regime shifts in real-time and with high confidence. Ideally, ecological regime shift detection methods (hereafter, RDMs) would require little knowledge of the intrinsic drivers of the system, and the users of the method would not be required to know if and where a regime shift occurred in the data. 
+A growing concern with anthropogenic impacts on the environment has increased the demand for mathematical and statistical techniques that capture these dynamics. These often undesirable changes in the structure or functioning of ecological systems are often referred to as “regime shifts”, “regime changes”, “state change”, “abrupt change”, etc. (Andersen et al. 2009) . A yet-unattained goal of ecological research and management is to reach a point where these methods can predict impending regime shifts in real-time and with high confidence. Ideally, ecological regime shift detection methods (hereafter, regime detection measures) would require little knowledge of the intrinsic drivers of the system, and the users of the method would not be required to know if and where a regime shift occurred in the data. 
 
-Despite the suite of RDMs in the environmental and ecological research literatures, they are not used in ecological management. We can describe the current state of RDMs as being either system–specific (i.e., the method is not widely applicable or generalizable across systems) or not. Methods of the latter type are convenient in that they can be applied across various system and data types, but the results of these analyses require some degree of subjective interpretation (Clements and Ozgul 2018; c.f. Batt et al. 2013). Efforts to develop and/or improve RDMs that can handle these biases will aid the advance of RDMs research and application. 
+Despite the suite of regime detection measures in the environmental and ecological research literatures, they are not used in ecological management. We can describe the current state of regime detection measures as being either system–specific (i.e., the method is not widely applicable or generalizable across systems) or not. Methods of the latter type are convenient in that they can be applied across various system and data types, but the results of these analyses require some degree of subjective interpretation (Clements and Ozgul 2018; c.f. Batt et al. 2013). Efforts to develop and/or improve regime detection measures that can handle these biases will aid the advance of regime detection measures research and application. 
 
-Current efforts to improve RDMs may be stunted by the lack of application beyond simple and/or theoretical (toy) systems data. Like most statistical and mathematical approaches, the evolution of many RDMs begins with application to theoretical data, followed by application to empirical data. Current applications of RDMs to empirical, ecological data are largely limited to data describing populations (e.g., Anderson and Piatt 1999, Alheit et al. 2005, deYoung et al. 2008), climatic, marine (e.g., Lipizer et al. n.d., Nicholls 2011),  and Paleolithic regime shifts (Spanbauer et al. 2014, Yang et al. 2017, Kong et al. 2017),  with few applications terrestrial data (c.f. Bahlai et al. 2015, Sundstrom et al. 2017). Although testing the performance and inference boundaries of theoretical and simple systems is important, they are of little use to ecosystem managers if they are not proven to be easily and reliably applicable to their system. Additionally, RDMs should be capable of handling diverse and often noisy field data.  
+Current efforts to improve regime detection measures may be stunted by the lack of application beyond simple and/or theoretical (toy) systems data. Like most statistical and mathematical approaches, the evolution of many regime detection measures begins with application to theoretical data, followed by application to empirical data. Current applications of regime detection measures to empirical, ecological data are largely limited to data describing populations (e.g., Anderson and Piatt 1999, Alheit et al. 2005, deYoung et al. 2008), climatic, marine (e.g., Lipizer et al. n.d., Nicholls 2011), and Paleolithic regime shifts (Spanbauer et al. 2014, Yang et al. 2017, Kong et al. 2017), with few applications to terrestrial data (c.f. Bahlai et al. 2015, Sundstrom et al. 2017). Although testing the performance and inference boundaries of theoretical and simple systems is important, they are of little use to ecosystem managers if they are not proven to be easily and reliably applicable to their system. Additionally, regime detection measures should be capable of handling empirical ecological data are often sparse and noisy.
 
-Ecological systems data is not only expensive and is difficult to capture, but is also notoriously imperfect—that is, process and observation error are common in these data. The resulting variability in data quality and quantity limits the numerical tools available for detecting ecological regime shifts (Thrush et al. 2009). Some methods, new and old, are proposed in the literature as RDMs which are capable of handling data limitation and quality issues inherent in ecological data and require few subjective decisions for choosing state variables and interpreting results. For example, variable reduction techniques, e.g. principal components analysis (Rodionov 2005, Andersen et al. 2009, Reid et al. 2016) and clustering algorithms (Weijerman et al. 2005, Weissmann and Shnerb 2016), an index of variance (Brock and Carpenter 2006) and Fisher Information (Cabezas and Fath 2002, Fath and Cabezas 2004, Karunanithi et al. 2008) were introduced as methods which collapse the system into a single indicator of ecological regime shifts. 
+Ecological systems data is not only expensive to capture, but are often difficult to perfectly capture due to the large  process and observation errors. The variability resulting from imperfect observation influences data quality and quantity, sometimes limiting the potential numerical tools used to identify trends and changes in the system in question (Thrush et al. 2009). Some methods, new and old, are proposed in the literature as regime detection measures which are capable of handling data limitation and quality issues inherent in ecological data and require few subjective decisions for choosing state variables and interpreting results. For example, variable reduction techniques, e.g. principal components analysis (Rodionov 2005, Andersen et al. 2009, Reid et al. 2016) and clustering algorithms (Weijerman et al. 2005, Weissmann and Shnerb 2016), an index of variance (Brock and Carpenter 2006) and Fisher Information (Cabezas and Fath 2002, Fath and Cabezas 2004, Karunanithi et al. 2008) were introduced as methods which collapse the system into a single indicator of ecological regime shifts. Although these methods have been tested on empirical ecological systems data, their robustness to empirical data quality and quantity have yet to be examined. 
 
-The transferability of RDMs to practitioners can only be facilitated by identifying intuitive metrics and testing the capacity of RDMs to handle high dimensional, empirical data. Here, we present a method for tracking the trajectory of an n-dimensional system using a single metric and its derivative. Here, I describe provide a description of this metric and apply it to empirical systems data. I then compare the results of this new metric to two other multivariate, model-free metrics: the Variance Index [@brock_carpenter_2005] and Fisher Information [@cabezas__2002; \@ref(fiGuide)]. Finally, we explore how decisions made during the data collection and data analysis phases impact these metrics.
+In this Chapter I examine the influence of observation and process errors on the inference obtained from select multivariable regime detection measures. There are two major objectives:
+1. Identify the effects of data quality on regime detection measure inference.
+1. Identify the effects of data quantity on regime detection measure inference. 
+1. Explore the relative performance of velocity [described in Chapter \@ref(velocity)] to the abovementioned methods under multiple scenarios.  
 
-## Methods
+This Chapter provides baseline relative performance estimates of select, multivariable regime detection measures under various scenarios of data quality and quantity. The results from this Chapter inform the practical ecologist of the potential limitations to consider when applying these regime detection measures to their data, and has potential to inform the data collection process. Additionally, the software accompanying this Chapter (soon to be an R Package) allows the end user to implement these methods on their data. 
+
+## Data and Methodology
 ### Study system and data  
-I used paleodiatom time series from a freshwater system in North America which exhibited a rapid shift in community dynamics. These data were collected using a sediment coring method [see @spanbauer_detecting_2014]. Community profiles at various depths within sediment cores are analyzed to obtain relative abundances. Relative abundances at various depths within the sediment core are then related to time (years before present) using carbon dating techniques. These data can be obtained from the publisher’s website. 
+I used paleodiatom time series from a freshwater system in North America (Foy Lake, present day Montana) that apparently underwent a rapid shift in algal community dynamics at multiple periods in time. This datum comprises a single soil core sample, from which the relative abundances of 109 diatom species were identified at  768 observations (time points) over $\approx7,00$ years [\@ref(fig:origDat)]. Althouh the soil core was sampled at regular distances, the soil accumulation process is not necessarily linear over time, resulting in irregularly-sampled observations (i.e., time elapsed between sampling points differs varies; see \@ref(fig:timeElapsed)). This datum was published in @spanbauer_detection_2014 and can be downloaded at the publisher's website.
+
+```{r origDat, echo=FALSE, fig.cap="Relative abundances of the diatom species in Foy Lake over the time period."}
+knitr::include_graphics(loadFig("origDataRelAbundance"))
+```
+
+```{r timeElapsed, echo=FALSE, fig.cap="The amount of time elapsed between observations."}
+knitr::include_graphics(loadFig("timeElapsed"))
+```
 
 ### Regime detection measures
+Fewer model-free regime detection metrics exist than do model-based metrics [Chapter \@ref(rdmReview)] and of these, only a few are suggested for handling multivariable data. Here, I examine the regime detection metrics that are model-free and can handle multivariable data: velocity [Chapter \@ref(velocity)], the Variance Index [@brock_variance_2006] and Fisher Information. These methods and the primary sources are described below. 
 
-I use multiple methods for identifying regime shifts. 
+#### Velocity ($v$) 
+In Chapter \@ref(velocity), I describe a new method, __velocity__, $v$, as a potential dimension reduction and regime detection method. First introduced in by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, velocity calculates the cumulative sum of the square root of the sum of the squared change in all state variables over a period of time [Eq. \@ref(eq:velocityEq)]. Steps for calculating this metric are described in detail in Chapters \@ref(fiGuide) and \@ref(velocity).  
+
+\begin{equation}
+\begin{array}{rcr}
+\Delta s_i = \sqrt{\sum_{j=1}^{n} (x_{i,j} -x_{i-1, j})^2}
+s_k =  \sum_{i=2}^{k}\Delta{s_i}
+2\leq k \leq n
+v =\frac{\Delta s}{\Delta t}  
+\end{array}
+(\#eq:velocityEq)
+\end{equation}
 
 
-#### Variance index  
+#### Variance Index  
+The Variance Index was introduced by @brock_variance_2006, and is simply defined asthe maximum eigenvalue of the covariance matrix of the system over some period (window) of time. The Variance Index (also called Variance Indicator) was originally applied to a modelled system [@brock_variance_2006], and has since been applied to empirical data [@spanbauer_detection_2004; @sundstrom_detecting_2017]. Although rising variance has been useful in many real systems (van Nes and Scheffer 2003, Brock et al. 2006, Carpenter and Brock 2006), the Variance Index, which is intended for multivariate data,  appears most useful when the system exhibits a discontinuous regime shift [@brock_variance_2006].
 
-#### Fisher Information  
+#### Fisher Information    
+In Chapter \@ref(fiGuide), I describe Fisher Information in detail [see Eq. \@ref(eq:fiDerivs)]. Fisher Information ($I$) is essentially calculated as the area under the curve of the acceleration to the fourth degree ($s''^4$) divided by the squared velocity [$s'^2$; also referred to as $v$ in Chapter \@ref(velocity) and in the next section] of the distance travelled by the system, $s$ over some period of time ($T$), and is given in the following equation [\@ref(eq:fiDerivs2)]:  
 
-#### System velocity, $v$
-In Chapter \@ref(velocity), I describe a method, __system velocity__, $v$, as a potential dimension reduction and regime  detection method. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric. First introduced in by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, system velocoty represents the cumulative sum of the squared change in all state variables over a period of time. Steps for calculating this metric are described in great detail in Chapters \@ref(fiGuide) and \@ref(velocity). 
+\begin{equation}   
+    I = \frac{1}{T} \int_0^T dt\left[\frac{s''^2}{s'^4}\right]^2 \\  
+  (\#eq:fiDerivs2)  
+\end{equation} 
+
+#### Calculating Fisher Information and Variance Index using moving window analysis
+Unlike $velocity$, the Variance Index and Fisher Information are calculated using moving window analysis. That is, over the entire time series, $T^*$, these metrics are calculated within multiple windows of time, $T$. In this approach, all state variables, $x_i$, are used to inform the calculations (of Variance Index and Fisher Information) over a time interval, $T$, where $T$ is the length in [time] units of the time interval and satisfies the following conditions: $T < T^*$ and  $2\leq T < (T^*-1)$. If $T = T^*-1$, then only a single value of the metrics will be calculated for entire time series, which does not allow for any estimate of change. 
+
+When using these metrics in the context of identifying abrupt changes in ecological systems data across $T*$, it is ideal the value of $T$ meets the following conditions: $3 < T \ll T^*-1$. The length of a time window dictates the number of calculations one can obtain over $T^*$, such that the number of potential metric calulations increases as $\frac{T}{\ T^*}$ decreases. Previous applications of moving window analyses to calculate Fisher Information found that at least eight observations (time points) should be used. 
+
+An additional parameter is required when conducting moving window analyses: the amount of time points by which the window advances. In order to maximize the data, I force the window to advance at a rate of one time unit. However, it is important to note that because these data are not sampled annually and the because the window always advances by a single time unit, the number of observations included in each calculation will not be the same. If fewer than 5 observations are in a window, I did not calculate metrics, advancing the window forward. 
+
+I assigned the calcuated values of Fisher Information and Variance Index within each moving window to the __end__ (last time unit) of the moving window. I  temporal analyses, assigning the value to any other point in time (e.g., the beginning or the middle) muddles the interpretation of the metric over $T^*$.
 
 
 
 ## Results
-SEE IIASA REPORT
+
 
 ## Discussion 
 
