@@ -33,7 +33,7 @@ ggplot()+
 ## Introduction
 In this Chapter I describe the steps for calculating a 'new' metric, __system velocity__, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see \@ref(fiGuide)], first introduced in @fath_regime_2003. Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time. 
 
-## Data and methods
+## Data and Methods
 ### Theoretical system example: two-species time series  
 Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$.
 ```{r sysEx,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
@@ -250,7 +250,7 @@ ggplot(data = dist.sim.reduced) +
   xlim(c(1,25))+
   ylab(expression(paste("velocity, ",italic("v"), " at ", italic("t = 51"))))+
   xlab(expression(paste(sigma, " ", bar("x")[1], " at ", italic("t = 50"))))+
-  ggtitle(expression(paste("Mean ",  italic("v")," ($\\pm 2$ SD) over ", 10,000, " iterations")))
+  ggtitle(expression(paste("Mean ",  italic("v")," ( $\\pm 2$ SD) over ", 10,000, " iterations")))
 ```
 
 #### Smoothing the data prior to calculating *v*
