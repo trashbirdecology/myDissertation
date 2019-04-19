@@ -5,10 +5,24 @@ resamplingAnalysis <- function(
   myMethods,
   nDraws,
   winMove,
-  ews = FALSE,
+  origData = TRUE, 
+  ews = TRUE,
   fivi = TRUE, 
   fi.method ="7.12") {
-  #Create an empty dataset
+
+  runTime <- Sys.time()
+  
+  # Print estimated runtime for diatoms
+  if(dirNameInd == 'diatoms') {
+    if(ews & fivi)  r <- 4.2
+    if(ews & !fivi) r <- 2.5
+    if(fivi & !ews) r <- 1.8
+    est <-  r*length(prop)*length(myMethods)*nDraws/60 # # minutes estimated for runtime
+    if(est < 15) {warning(paste0(nDraws, " draws for the diatom data should complete in approx. ", est, " minutes"), immediate. = TRUE)}else(warning(paste0("take a chill pill, this should take ~ ", est/60, " hours!"), immediate. = TRUE))
+    rm(est)
+  }
+  
+  # Create an empty dataset
   subsetData <- NULL
   
   # Loop over proportion(s), method(s), and draws
@@ -17,9 +31,11 @@ resamplingAnalysis <- function(
       for (j in 1:nDraws) {
         print(paste0("begin loops: h = ", h, " | i = ", i, " | j = ", j))
         # Subset the data
-        temp <- random_subset(myDf.long, myMethods[i], prop[h]) %>%
+        temp <- random_subset(myDf.long, myMethods[i], prob = prop[h]) %>%
           mutate(nDraw = j,
                  winMove = winMove)
+        
+        if(origData) writeResults(resultsDf = temp, myDir = origDataDir, h, i, j)
         
         # Calculate distance travelled
         if (exists("results")) results <- NULL
@@ -44,19 +60,9 @@ resamplingAnalysis <- function(
           ungroup() %>%
           # Drop NA's
           na.omit(p)
+ 
         
-        # Save the distance results to file
-        if (exists("fn")) rm(fn)
-        fn <-
-          paste0(distDir,
-                 'prop',
-                 prop[h],
-                 "_",
-                 myMethods[i],
-                 "_draw",
-                 j)
-        
-        write_feather(x = results, path = fn)
+        writeResults(resultsDf = results, myDir = distDir, h, i, j)
         
         # Calculate EWSs
         temp <- suppressMessages(full_join(results, temp)) %>%
@@ -80,36 +86,46 @@ resamplingAnalysis <- function(
         # calculate Fisher Information and Variance Index within the window
         require(caTools)
         if (fivi) {
-          winResults_fivi <- NULL
-          winResults_fivi <-
-            window_analysis(data = temp, winSize = winSize, winSpace = winSpace)
-          winResults <- winResults_fivi
-        } 
+          results <- NULL
+          results <-
+            window_analysis(data = temp, winSize = winSize, winSpace = winSpace) %>% 
+            mutate(method = myMethods[i], 
+                   prob = prop[h], 
+                   nDraw = j)
+          
+          writeResults(resultsDf = results, myDir = fiviDir, h, i, j)
+          } 
+          
+          
         
         if(ews) {
-          winResults_ews <- NULL
-          winResults_ews <- window_analysis_EWS(temp, winSize, winSpace)
-          if(fivi & !is.null(winResults_ews)){results <- suppressMessages(full_join(winResults_ews, winResults))}else(winResults <- winResults_ews)
+          results <- NULL
+          results <- window_analysis_EWS(temp, winSize, winSpace) %>% 
+            mutate(method = myMethods[i], 
+                   prob = prop[h], 
+                   nDraw = j)
+          writeResults(resultsDf = results, myDir = ewsDir, h, i, j)
+                  }
         
-          }
-
-        # Save the results to file
-        if(exists("fn")) rm(fn)
-        fn <- paste0(ewsDir, "prop",prop[h],"_", myMethods[i], "_draw" , j)
-        write_feather(x=winResults,path=fn)
+        
+        
+        
         
         
       } # end nDraws loop (j)
     } # end myMethods loop
   } #end prop loop
 
+# Print run time 
+print(paste0("this run took ~  ", (Sys.time()-runTime), " minutes"))  
+  
+  
 # Audio completion alerts
 {system("rundll32 user32.dll,MessageBeep -5") # will alert on Windows
 system("Hay girl! I D K if it's right but it's done!")
 }
   
 } # End function resamplingAnalysis
-
 
 # Window Analyses and Binning Prior to Calc -------------------------------
 window_analysis <- function(data, winSize, winSpace, fi.method = "7.12") {
@@ -163,7 +179,6 @@ window_analysis_EWS <- function(subData, winSize, winSpace) {
   nWin <- length(winStart)
   
   EWS <- list()
-  
   for (k in 1:nWin) {
     # Data from the time period within winStart:winStop
     winData <- subData %>%
@@ -182,9 +197,7 @@ window_analysis_EWS <- function(subData, winSize, winSpace) {
     EWS[[k]] <-  calculate_EWS(winData, winStartInd, winStopInd)
     
   }
-  
   result <-  plyr::ldply(EWS, data.frame) %>% as_tibble()
-  
   return(result)
   
   
@@ -326,13 +339,15 @@ getmode <- function(v) {
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }
 getSpanbauerData <- function(scale.spp= TRUE) {
-  print("scaling the spanbauer data")
+  
+  if(scale.spp) print("scaling the spanbauer data")else("species observations are not scaled")
+  
   # Load data
-  data = read_csv(
+  data = suppressMessages(read_csv(
     url(
       "http://journals.plos.org/plosone/article/file?type=supplementary&id=info:doi/10.1371/journal.pone.0108936.s001"
     )
-  )
+  ))
   
   
   # Convert data to long format
@@ -379,6 +394,8 @@ getSpanbauerData <- function(scale.spp= TRUE) {
   
   return(myDf.long)
 }
+
+
 random_subset <- function(data, method, prob = runif(1)) {
   # Switch method
   if (method == "species") {
@@ -433,5 +450,16 @@ random_subset <- function(data, method, prob = runif(1)) {
   
   return(result)
 }
+
+
+# Save the results to file
+writeResults <- function(resultsDf, myDir, h, i, j){
+  fn <- paste0(myDir, "prop", prop[h]*100,"_", myMethods[i], "_draw" , j, ".feather")
+  write_feather(resultsDf,path=fn)
+}
+
+
+# Plotting Functions ------------------------------------------------------
+
 
 
