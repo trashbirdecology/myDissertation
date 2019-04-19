@@ -1,57 +1,117 @@
-random_subset <- function(data, method, prob = runif(1)) {
-  # Switch method
-  if (method == "species") {
-    randVars <-
-      data %>%
-      distinct(variable) %>%
-      sample_frac(size = prob, replace = F)
-    
-    dataOut <- data %>%
-      filter(variable %in%  randVars$variable)
-    
-  } else if (method == "dominance") {
-    predominantSpp <-
-      data %>%
-      group_by(time, site) %>%
-      # Note: sum(value) = 1
-      mutate(scaledValue = value / sum(value)) %>%
-      filter(scaledValue >= prob) %>%
-      ungroup() %>%
-      distinct(variable)
-    
-    dataOut <-
-      data %>%
-      filter(variable %in% predominantSpp$variable)
-    
-  } else if (method == "observations") {
-    timeTemp <- unique(data$time)
-    
-    randObs <- sample(timeTemp, round(length(timeTemp) * prob))
-    
-    dataOut <-
-      data %>%
-      filter(time %in% randObs)
-    
-  } else if (method == "none") {
-    dataOut <- data
-    
-  } else {
-    warning("Unrecognized method")
-    dataOut <- NULL
-    
-  }
+# Wrapper Function --------------------------------------------------------
+resamplingAnalysis <- function(
+  myDf.long, 
+  prop,
+  myMethods,
+  nDraws,
+  winMove,
+  ews = FALSE,
+  fivi = TRUE, 
+  fi.method ="7.12") {
+  #Create an empty dataset
+  subsetData <- NULL
   
-  if (nrow(dataOut) == 0) {
-    warning("Returning empty data frame")
-  }
-  
-  result <-
-    dataOut %>%
-    mutate(method = method,
-           prob = prob)
-  
-  return(result)
+  # Loop over proportion(s), method(s), and draws
+  for (h in seq_along(prop)) {
+      for (i in 1:length(myMethods)) {
+      for (j in 1:nDraws) {
+        print(paste0("begin loops: h = ", h, " | i = ", i, " | j = ", j))
+        # Subset the data
+        temp <- random_subset(myDf.long, myMethods[i], prop[h]) %>%
+          mutate(nDraw = j,
+                 winMove = winMove)
+        
+        # Calculate distance travelled
+        if (exists("results")) results <- NULL
+        
+        results <- temp %>%
+          # Distance between species
+          arrange(variable, method, prob, nDraw, time) %>%
+          group_by(variable, method, prob, nDraw) %>%
+          mutate(dx = value - lag(value)) %>%
+          ungroup() %>%
+          na.omit(dx) %>%
+          # Sum of distances (across species at each time)
+          group_by(method, prob, nDraw, time, winMove) %>%
+          summarize(ds = sqrt(sum(dx ^ 2))) %>%
+          filter(ds != 0) %>%
+          ungroup() %>%
+          # Calculate cumulative ds and derivatives
+          group_by(method, prob, nDraw) %>%
+          mutate(s = cumsum(ds),
+                 dsdt = ((s - lag(s)) / (time - lag(time))),
+                 d2sdt2 = ((dsdt - lag(dsdt)) / (time - lag(time)))) %>%
+          ungroup() %>%
+          # Drop NA's
+          na.omit(p)
+        
+        # Save the distance results to file
+        if (exists("fn")) rm(fn)
+        fn <-
+          paste0(distDir,
+                 'prop',
+                 prop[h],
+                 "_",
+                 myMethods[i],
+                 "_draw",
+                 j)
+        
+        write_feather(x = results, path = fn)
+        
+        # Calculate EWSs
+        temp <- suppressMessages(full_join(results, temp)) %>%
+          arrange(time)
+        
+        if (nrow(temp) <= 5) {
+          warning("Five or less observations in data subset--not calculating EWS")
+          next
+        }
+        
+        
+        # Calculate FI and VI
+        # Window size
+        time <- temp$time
+        timeSpan <- range(time)
+        TT <- timeSpan[2] - timeSpan[1]
+        winSize <- winMove * TT
+        # Window spacing
+        winSpace <- max(lead(time) - time, na.rm = T)
+        
+        # calculate Fisher Information and Variance Index within the window
+        require(caTools)
+        if (fivi) {
+          winResults_fivi <- NULL
+          winResults_fivi <-
+            window_analysis(data = temp, winSize = winSize, winSpace = winSpace)
+          winResults <- winResults_fivi
+        } 
+        
+        if(ews) {
+          winResults_ews <- NULL
+          winResults_ews <- window_analysis_EWS(temp, winSize, winSpace)
+          if(fivi & !is.null(winResults_ews)){results <- suppressMessages(full_join(winResults_ews, winResults))}else(winResults <- winResults_ews)
+        
+          }
+
+        # Save the results to file
+        if(exists("fn")) rm(fn)
+        fn <- paste0(ewsDir, "prop",prop[h],"_", myMethods[i], "_draw" , j)
+        write_feather(x=winResults,path=fn)
+        
+        
+      } # end nDraws loop (j)
+    } # end myMethods loop
+  } #end prop loop
+
+# Audio completion alerts
+{system("rundll32 user32.dll,MessageBeep -5") # will alert on Windows
+system("Hay girl! I D K if it's right but it's done!")
 }
+  
+} # End function resamplingAnalysis
+
+
+# Window Analyses and Binning Prior to Calc -------------------------------
 window_analysis <- function(data, winSize, winSpace, fi.method = "7.12") {
   # Start and stop points for windows
   winStart <-
@@ -63,39 +123,33 @@ window_analysis <- function(data, winSize, winSpace, fi.method = "7.12") {
   # Number of windows
   nWin <- length(winStart)
   
-  FI <- numeric(nWin)
-  VI <- numeric(nWin)
+  VI <- FI <- rep(NA, length = nWin)
   EWS <- list()
   
-  for (i in 1:nWin) {
-    # Data from the time period within winStart:winStop
+for (l in 1:nWin) {
+      # Data from the time period within winStart:winStop
     winData <- data %>%
-      filter(time >= winStart[i],
-             time < winStop[i])
+      filter(time >= winStart[l],
+             time < winStop[l])
     
-    if (nrow(winData) <= 2) {
-      warning("Two or less observations in window")
-      next
-    }
+    # if (nrow(winData) <= 2) {
+    # warning("Two or less observations in window" )
+    # }
     
     # Calculate FI
-    FI[i] <- calculate_FI(winData, method = fi.method )
+    FI[l] <- calculate_FI(winData, method = fi.method)
     
     # Calculate variance index
-    VI[i] <- calculate_VI(winData)
+    
+    if(!is.na(FI[l])){ VI[l] <- calculate_VI(winData)}else(VI[l] <-NA)
     
     
   }
   
   result <- data_frame(winStart, winStop, FI, VI)
   
-  
-  
-  
   return(result)
-  return(ewsResult)
-  
-  
+
 }
 window_analysis_EWS <- function(subData, winSize, winSpace) {
   # Start and stop points for windows
@@ -110,11 +164,11 @@ window_analysis_EWS <- function(subData, winSize, winSpace) {
   
   EWS <- list()
   
-  for (i in 1:nWin) {
+  for (k in 1:nWin) {
     # Data from the time period within winStart:winStop
     winData <- subData %>%
-      filter(time >= winStart[i],
-             time < winStop[i])
+      filter(time >= winStart[k],
+             time < winStop[k])
     
     if (nrow(winData) <= 2) {
       warning("Two or less observations in window")
@@ -123,18 +177,21 @@ window_analysis_EWS <- function(subData, winSize, winSpace) {
     
     
     # Calculate species-specific indicators
-    winStartInd <- winStart[i]
-    winStopInd <- winStop[i]
-    EWS[[i]] <-  calculate_EWS(winData, winStartInd, winStopInd)
+    winStartInd <- winStart[k]
+    winStopInd <- winStop[k]
+    EWS[[k]] <-  calculate_EWS(winData, winStartInd, winStopInd)
     
   }
   
-  result <-  plyr::ldply(EWS, data.frame) %>% as_data_frame()
+  result <-  plyr::ldply(EWS, data.frame) %>% as_tibble()
   
   return(result)
   
   
 }
+
+
+# Calculations ------------------------------------------------------------
 calculate_VI <- function(winData) {
   spp.keep <-
     winData %>%
@@ -156,23 +213,30 @@ calculate_VI <- function(winData) {
   VI <- max(eigCov$values)
   
   return(VI)
-  
+
   
 }
 calculate_FI <- function(myDat, method = "7.12") {
+  # print('calculating FI')
+  FI <- NA
   # Calculate distribution of distance travelled
+  
   data <-
     myDat %>%
-    na.omit(dsdt) %>%
+    na.omit(dsdt) 
+  
+  if(nrow(data)==0) return(FI)
+  data <- data %>%
     distinct(time, s, dsdt, d2sdt2) %>%
     mutate(TT = max(time) - min(time),
            p = (1 / TT) * (1 / dsdt))
   
-  if (nrow(data) <= 2) {
-    warning("Two or less observations in window")
-  }
+  # if (nrow(data) <= 2) {
+  #   warning("Two or less observations in window")
+  # }
   
   if (method == "7.3b") {
+    # print("FI method 7.3b")
     # Equation 7.3b
     p <- data$p
     s <- data$s
@@ -181,8 +245,8 @@ calculate_FI <- function(myDat, method = "7.12") {
     dpds <- dp / ds
     ind <- 1:(length(s) - 1)
     FI <- trapz(s[ind], (1 / p[ind]) * dpds[ind] ^ 2)
-    
   } else if (method == "7.3c") {
+    # print("FI method 7.3c")
     # Equation 7.3c
     q <- sqrt(data$p)
     s <- data$s
@@ -194,7 +258,9 @@ calculate_FI <- function(myDat, method = "7.12") {
     
   } else if (method == "7.12") {
     # Equation 7.12
+    # print("FI method 7.12")
     t <- data$time
+    s <- data$s
     TT <- max(t) - min(t)
     dsdt <- data$dsdt
     d2sdt2 <- data$d2sdt2
@@ -252,6 +318,9 @@ calculate_EWS <- function(winData, winStartInd, winStopInd) {
   return(ews)
   
 }
+
+
+# Helper Functions --------------------------------------------------------
 getmode <- function(v) {
   uniqv <- unique(v)
   uniqv[which.max(tabulate(match(v, uniqv)))]
@@ -310,103 +379,59 @@ getSpanbauerData <- function(scale.spp= TRUE) {
   
   return(myDf.long)
 }
-
-resamplingAnalysis <-
-  function(prop,
-           myMethods,
-           nDraws,
-           winMove,
-           ews = FALSE,
-           fivi = TRUE, fi.method ="7.12") {
-    #Create an empty dataset
-    subsetData <- NULL
+random_subset <- function(data, method, prob = runif(1)) {
+  # Switch method
+  if (method == "species") {
+    randVars <-
+      data %>%
+      distinct(variable) %>%
+      sample_frac(size = prob, replace = F)
     
-    # Loop over proportion(s), method(s), and draws
-    for (h in seq_along(prop)) {
-      for (i in 1:length(myMethods)) {
-        for (j in 1:nDraws) {
-          # Subset the data
-          temp <- random_subset(myDf.long, myMethods[i], prop[h]) %>%
-            mutate(nDraw = j,
-                   winMove = winMove)
-          
-          # Calculate distance travelled
-          if (exists("results"))
-            rm(results)
-          
-          results <- temp %>%
-            # Distance between species
-            arrange(variable, method, prob, nDraw, time) %>%
-            group_by(variable, method, prob, nDraw) %>%
-            mutate(dx = value - lag(value)) %>%
-            ungroup() %>%
-            na.omit(dx) %>%
-            # Sum of distances (across species at each time)
-            group_by(method, prob, nDraw, time, winMove) %>%
-            summarize(ds = sqrt(sum(dx ^ 2))) %>%
-            filter(ds != 0) %>%
-            ungroup() %>%
-            # Calculate cumulative ds and derivatives
-            group_by(method, prob, nDraw) %>%
-            mutate(s = cumsum(ds),
-                   dsdt = ((s - lag(s)) / (time - lag(time))),
-                   d2sdt2 = ((dsdt - lag(dsdt)) / (time - lag(time)))) %>%
-            ungroup() %>%
-            # Drop NA's
-            na.omit(p)
-          
-          # Save the distance results to file
-          if (exists("fn"))
-            rm(fn)
-          fn <-
-            paste0(distDir,
-                   'distResults_',
-                   prop[h],
-                   "_",
-                   myMethods[i],
-                   "_draw",
-                   j)
-          
-          write_feather(x = results, path = fn)
-          
-          # Calculate EWSs
-          temp <- full_join(results, temp) %>%
-            arrange(time)
-          
-          if (nrow(temp) <= 5) {
-            warning("Five or less observations in data subset--not calculating EWS")
-            next
-          }
-          
-          
-          # Calculate EWS
-          # Window size
-          time <- temp$time
-          timeSpan <- range(time)
-          TT <- timeSpan[2] - timeSpan[1]
-          winSize <- winMove * TT
-          # Window spacing
-          winSpace <- max(lead(time) - time, na.rm = T)
-          
-          # calculate Fisher Information and Variance Index within the window
-          require(caTools)
-          if (fivi) {
-            winResults_fivi <-
-              window_analysis(data = temp, winSize = winSize, winSpace = winSpace)
-          } else
-            (winResults_fivi = NULL)
-          if(ews)  {winResults_ews <- window_analysis_EWS(temp, winSize, winSpace)}else(winResults_fivi = NULL)
-          
-          results <- full_join(winResults_fivi, winResults_ews)
-          
-          # Save the EWS results to file
-          if(exists("fn")) rm(fn)
-          fn <- paste0(ewsDir, 'ewsResults_', prop[h],"_", myMethods[i], "_draw" , j)
-          write_feather(x=results,path=fn)
-          
-          
-        } # end nDraws loop (j)
-      } # end myMethods loop
-    } #end prop loop
+    dataOut <- data %>%
+      filter(variable %in%  randVars$variable)
+    
+  } else if (method == "dominance") {
+    predominantSpp <-
+      data %>%
+      group_by(time, site) %>%
+      # Note: sum(value) = 1
+      mutate(scaledValue = value / sum(value)) %>%
+      filter(scaledValue >= prob) %>%
+      ungroup() %>%
+      distinct(variable)
+    
+    dataOut <-
+      data %>%
+      filter(variable %in% predominantSpp$variable)
+    
+  } else if (method == "observations") {
+    timeTemp <- unique(data$time)
+    
+    randObs <- sample(timeTemp, round(length(timeTemp) * prob))
+    
+    dataOut <-
+      data %>%
+      filter(time %in% randObs)
+    
+  } else if (method == "none") {
+    dataOut <- data
+    
+  } else {
+    warning("Unrecognized method")
+    dataOut <- NULL
     
   }
+  
+  if (nrow(dataOut) == 0) {
+    warning("Returning empty data frame")
+  }
+  
+  result <-
+    dataOut %>%
+    mutate(method = method,
+           prob = prob)
+  
+  return(result)
+}
+
+

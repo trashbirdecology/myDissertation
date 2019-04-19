@@ -19,13 +19,14 @@ dummyData <-
   TRUE # do you want to create a dummy data rather than using the Spanbauer data?
 
 # Load the data -----------------------------------------------------------
-
-if (diatoms)
+if (diatoms) {
+  dirNameInd <- "diatoms"
   myDf.long <- getSpanbauerData() # a data.frame with
+}
 if (dummyData) {
+  dirNameInd <- "dummy"
   myDf.long <- NULL
-  
-  nobs = 100 # number of observations
+  nobs = 1e2 # number of observations
   nspp = 1e1 # number of variables
   x    = 0:100   # the range of values to choose from for potential value
   
@@ -65,7 +66,8 @@ ggplot(myDf.long) + geom_line(aes(
   x = time,
   y = value,
   color = (variable)
-)) + theme(legend.position = 'none')
+)) + theme(legend.position = 'none') +
+  theme_classic()
 
 # Define subsetting parameters --------------------------------------------
 ## Which methods of data subsetting to observe..
@@ -75,22 +77,25 @@ myMethods <- c("species", "observations", "dominance")
 prop = c(0.25, 0.5, 0.75, 1.0)  # one or more numbers between 0 and 1
 
 # Define the number of random draws for each method
-nDraws <- 1e2
+nDraws <- 5
 
 # Proportion o the observations over which the moving window will advance
 winMove <- 0.20
 
-resultsDir <- "./chapterFiles/resampling/results/"
-distDir <- paste0(resultsDir, "distances/")
-ewsDir <- paste0(resultsDir, "ews/")
+# Create directories in which to store files. If exist will not create new.
+suppressWarnings({resultsDir <-
+  paste0("./chapterFiles/resampling/results/", dirNameInd, "/")
+distDir <- paste0(resultsDir, "", "distances/")
+ewsDir <- paste0(resultsDir, "ewsFiVi/")
 dir.create(resultsDir)
 dir.create(distDir)
 dir.create(ewsDir)
-
+})
 
 # Conduct reasmpling analysis --------------------------------------------------------
 # This will run and save results to feathers. if you want specific results only, specify ews or fivi = t/f
 resamplingAnalysis(
+  myDf.long,
   prop,
   myMethods,
   nDraws,
@@ -100,5 +105,8 @@ resamplingAnalysis(
   fi.method = "7.12" #7.12 is the derivatives method
 )
 
-
 # Plot resampling results -------------------------------------------------
+distFiles <- paste0(list.files(distDir), ".feather")
+read_feather(paste0(list.files(distDir), ".feather"))
+results <- read_feather(path = paste0(here::here()), distFiles[1])
+read_feather()
