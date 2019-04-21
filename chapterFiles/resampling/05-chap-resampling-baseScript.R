@@ -27,10 +27,13 @@ if(diatoms & dummyData) stop("The logicals diatoms and dummyData are both 'TRUE'
 
 # Define how to subset the data
 ## Which methods of data subsetting to observe?
-myMethods <- c("species", "observations", "dominance")
+myMethods <- c("species", "observations")#, "dominance")
 
 ## Which proportions of myMethods to explore?
-prop = c(0.25, 0.5, 0.75, 1.0)  # one or more numbers between 0 and 1
+prop = c(
+#   0.25, 0.5,C
+         # 0.75, 
+         1.0)  # one or more numbers between 0 and 1
 
 ## Define the number of random draws for each method
 nDraws <- 1e4
