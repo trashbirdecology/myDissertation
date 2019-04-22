@@ -332,6 +332,33 @@ calculate_EWS <- function(winData, winStartInd, winStopInd) {
   
 }
 
+# Create directories ----------------------------
+## If dirs exist will not create new.
+createDirs <- function(dirNameInd){
+  figDir<-'./chapterFiles/resampling/figsCalledInDiss/' 
+  dir.create("./chapterFiles/resampling/figsCalledInDiss/") 
+  
+  dir.create("./chapterFiles/resampling/results/") 
+  
+  resultsDir <-
+    paste0(
+      "./chapterFiles/resampling/results/", dirNameInd, "/") 
+  dir.create(resultsDir) 
+  
+  distDir <- paste0(resultsDir, "", "distances/")
+  ewsDir <- paste0(resultsDir, "ews/")
+  fiviDir <- paste0(resultsDir, "fiVi/")
+  origDataDir <- paste0(resultsDir, "originalData/")
+  dir.create(distDir)
+  dir.create(ewsDir)
+  dir.create(fiviDir)
+  dir.create(origDataDir)
+  
+  return(list(resultsDir = resultsDir, figDir = figDir, distDir = distDir, ewsDir = ewsDir, fiviDir= fiviDir, origDataDir = origDataDir))
+}
+
+
+returnDirs(dirs)
 
 # Helper Functions --------------------------------------------------------
 getmode <- function(v) {
