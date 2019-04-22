@@ -34,6 +34,7 @@ chapterFiles/appendix_paleoExample/plots/*.png
 
 # ignore  files
 *.feather
+!chapterFiles/resampling/results/diatoms/summaryResults/*.feather
 chapterFiles/binningChap/bbs_raw_data
 chapterFiles/rsdmReview/gScholar_20190204.csv
 *.CPG

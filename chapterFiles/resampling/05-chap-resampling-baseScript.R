@@ -38,8 +38,8 @@ myMethods <- c("species", "observations")#, "dominance")
 
 ## Which proportions of myMethods to explore?
 prop = c(
-#   0.25, 0.5,C
-         # 0.75, 
+  0.25, 0.5,
+0.75,
          1.0)  # one or more numbers between 0 and 1
 
 ## Define the number of random draws for each method
@@ -136,6 +136,16 @@ resamplingAnalysis(
   fivi = TRUE,
   fi.method = "7.12" #7.12 is the derivatives method
 )
+
+
+
+# Summarise the bootstraps ------------------------------------------------
+## Distance results
+summariseResults(dataDir=distDir, myMethods, prop, summaryResultsDir)
+## EWS results
+# summariseResults(dataDir=ewsDir, methods, prop, summaryResultsDir)
+## FIVI results
+summariseResults(dataDir=fiviDir, methods, prop, summaryResultsDir)
 
 
 # END RUN -----------------------------------------------------------------
