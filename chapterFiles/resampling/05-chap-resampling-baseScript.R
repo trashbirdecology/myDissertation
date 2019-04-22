@@ -16,12 +16,19 @@ set.seed(12345)
 source("./chapterFiles/resampling/05-chap-resampling-myFunctions.R")
 
 
+
 # Anlaysis paramters ------------------------------------------------------
 
 # Which dataset to use
 diatoms <- TRUE # do you want to analyze the Spanbuaer data? if not, program will create dummy data 
 dummyData <- FALSE # do you want to create a dummy data rather than using the Spanbauer data?
 
+# Create directories to store results, figures, load data etc.
+dirs <- createDirs(dirNameInd=ifelse(diatoms==TRUE, "diatoms","dummy")) # creates dirs if null and IDs
+# Return the directotries as objects
+for(i in seq_along(dirs)){assign(names(dirs)[i], dirs[[i]])}
+
+  
 # Spit an error to ensure no issues
 if(diatoms & dummyData) stop("The logicals diatoms and dummyData are both 'TRUE'. I cannot handle this, please make one FALSE.")
 
@@ -31,8 +38,8 @@ myMethods <- c("species", "observations")#, "dominance")
 
 ## Which proportions of myMethods to explore?
 prop = c(
-#   0.25, 0.5,C
-         # 0.75, 
+  0.25, 0.5,
+0.75,
          1.0)  # one or more numbers between 0 and 1
 
 ## Define the number of random draws for each method
@@ -91,8 +98,6 @@ if (dummyData) {
 
 
 # Visualize the Raw Data --------------------------------------------------
-figDir<-'./chapterFiles/resampling/figsCalledInDiss/'
-dir.create("./chapterFiles/resampling/figsCalledInDiss/")
 
 ggplot(myDf.long) + geom_line(aes(
   x = time,
@@ -116,25 +121,6 @@ ggplot(myDf.long %>%
   ggsave(paste0(figDir,"timeElapsed.png"))
 
 
-# Create directories in which to store files.  ----------------------------
-## If dirs exist will not create new.
-  {
-  dir.create("./chapterFiles/resampling/results/")
-  
-  resultsDir <-
-    paste0(
-           "./chapterFiles/resampling/results/", dirNameInd, "/")
-  dir.create(resultsDir)
-  
-  distDir <- paste0(resultsDir, "", "distances/")
-  ewsDir <- paste0(resultsDir, "ews/")
-  fiviDir <- paste0(resultsDir, "fiVi/")
-  origDataDir <- paste0(resultsDir, "originalData/")
-  dir.create(distDir)
-  dir.create(ewsDir)
-  dir.create(fiviDir)
-  dir.create(origDataDir)
-}
 
 
 # Conduct reasmpling analysis --------------------------------------------------------
@@ -151,10 +137,18 @@ resamplingAnalysis(
   fi.method = "7.12" #7.12 is the derivatives method
 )
 
-# Plot resampling results -------------------------------------------------
-origData <- purrr::map_df(list.files(origDataDir, full.names = TRUE), read_feather)
-distResults <- purrr::map_df(list.files(distDir, full.names = TRUE), read_feather)
-ewsResults <- purrr::map_df(list.files(ewsDir, full.names = TRUE), read_feather)
-fiviResults <- purrr::map_df(list.files(fiviDir, full.names = TRUE), read_feather)
-View(ewsResults)
+
+
+# Summarise the bootstraps ------------------------------------------------
+## Distance results
+summariseResults(dataDir=distDir, myMethods, prop, summaryResultsDir)
+
+## FIVI results
+summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)
+
+## EWS results
+# summariseResults(dataDir=ewsDir, methods, prop, summaryResultsDir)
+
+# END RUN -----------------------------------------------------------------
+
 

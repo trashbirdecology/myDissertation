@@ -332,6 +332,37 @@ calculate_EWS <- function(winData, winStartInd, winStopInd) {
   
 }
 
+# Create directories ----------------------------
+## If dirs exist will not create new.
+createDirs <- function(dirNameInd){
+  figDir<-'./chapterFiles/resampling/figsCalledInDiss/' 
+  dir.create("./chapterFiles/resampling/figsCalledInDiss/") 
+  
+  dir.create("./chapterFiles/resampling/results/") 
+  
+  resultsDir <-
+    paste0(
+      "./chapterFiles/resampling/results/", dirNameInd, "/") 
+  dir.create(resultsDir) 
+  
+  distDir <- paste0(resultsDir, "distances/")
+  ewsDir <- paste0(resultsDir, "ews/")
+  fiviDir <- paste0(resultsDir, "fiVi/")
+  origDataDir <- paste0(resultsDir, "originalData/")
+  dir.create(distDir)
+  dir.create(ewsDir)
+  dir.create(fiviDir)
+  dir.create(origDataDir)
+  
+  
+  # Saves the summarised results (called in resampling-plots.R)
+  summaryResultsDir <- paste0(resultsDir, "summaryResults/")
+  dir.create(summaryResultsDir)
+  
+  
+  return(list(resultsDir = resultsDir, figDir = figDir, distDir = distDir, ewsDir = ewsDir, fiviDir= fiviDir, origDataDir = origDataDir, summaryResultsDir=summaryResultsDir))
+}
+
 
 # Helper Functions --------------------------------------------------------
 getmode <- function(v) {
@@ -452,11 +483,100 @@ random_subset <- function(data, method, prob = runif(1)) {
 }
 
 
-# Save the results to file
+
+# Manipulate and Load Results ---------------------------------------------
+# Save the results to file after analysis
 writeResults <- function(resultsDf, myDir, h, i, j){
   fn <- paste0(myDir, "prop", prop[h]*100,"_", myMethods[i], "_draw" , j, ".feather")
   write_feather(resultsDf,path=fn)
 }
+
+
+
+# Returns a list of results from feather for each method/proportion/RDM combination, summarises, and saves to a list object
+summariseResults <- function(dataDir, myMethods, prop, summaryResultsDir){
+  results <- list() # initialize an empty df to store results
+  for(i in seq_along(prop)){
+    for(j in seq_along(myMethods)){
+      results.temp <- NULL 
+      if(!all(prop>1)) prop <- prop*100 # if proportions are <1, then need to adjust
+      my.ind <- paste0("prop", prop[i], "_", myMethods[j])
+      
+      results.temp = purrr::map_df(list.files(dataDir, full.names=TRUE, pattern = my.ind), read_feather)
+      
+      
+      ## Summarise the DISTANCES  
+      if(str_detect(string = dataDir, pattern = "distances")  
+      ){
+      my.ind <- paste0("distances_",my.ind)  
+        
+      if(prop[i]!=100){
+        results.temp <-  results.temp %>%
+          group_by(method, prob, time, winMove) %>%
+          summarise(
+            ds.mean      =  mean(ds, na.rm = TRUE),
+            s.mean       =  mean(s, na.rm = TRUE),
+            dsdt.mean    =  mean(dsdt, na.rm = TRUE),
+            d2sdt2.mean  =  mean(d2sdt2, na.rm = TRUE),
+            ds.sd      =  sd(ds, na.rm = TRUE),
+            s.sd       =  sd(s, na.rm = TRUE),
+            dsdt.sd    =  sd(dsdt, na.rm = TRUE),
+            d2sdt2.sd  =  sd(d2sdt2, na.rm = TRUE)
+          ) 
+      } # end ifelse prop!=100
+      
+      # If prop == 100% then we don't need means and SD, we just need orginal data. 
+      if(prop[i]==100){ 
+        results.temp<- results.temp %>%
+          group_by(method, prob, time, winMove) %>%
+          rename(
+            ds.mean      =  ds,
+            s.mean       =  s,
+            dsdt.mean    =  dsdt,
+            d2sdt2.mean  =  dsdt) %>% 
+          dplyr::select(-nDraw)
+      }  # end ifelse prop==100
+      }
+    
+      ## Summarise the FIVI
+      if(str_detect(string = dataDir, pattern = "fiVi")
+      ){
+        my.ind <- paste0("fivi_",my.ind)  
+        
+        if(prop[i]!=100){
+          results.temp <-  results.temp %>%
+            group_by(method, prob, winStart, winStop) %>%
+            summarise(
+              FI.mean      =  mean(FI, na.rm = TRUE),
+              VI.mean       =  mean(VI, na.rm = TRUE),
+              FI.sd    =  sd(FI, na.rm = TRUE),
+              VI.sd  =  sd(VI, na.rm = TRUE)
+            ) 
+        } # end ifelse prop!=100
+        
+        # If prop == 100% then we don't need means and SD, we just need orginal data. 
+        if(prop[i]==100){ 
+          results.temp <- results.temp %>%
+            group_by(method, prob, winStart, winStop) %>%
+            rename(
+              FI.mean      =  FI,
+              VI.mean       =  VI) %>% 
+            dplyr::select(-nDraw)
+        }  # end ifelse prop==100
+      }
+      
+        
+      # Save summary results to file
+       fn <- paste0(summaryResultsDir,"summaryResults_", "_" , my.ind, ".feather")
+       write_feather(results.temp, path=fn)
+  
+    } # end methods j loop
+  } # end prop i loop
+  
+print(paste0("results saved in ", summaryResultsDir))
+
+  } # end function getResultsSummary()
+
 
 
 # Plotting Functions ------------------------------------------------------
