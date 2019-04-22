@@ -504,6 +504,12 @@ summariseResults <- function(dataDir, myMethods, prop, summaryResultsDir){
       
       results.temp = purrr::map_df(list.files(dataDir, full.names=TRUE, pattern = my.ind), read_feather)
       
+      
+      ## Summarise the DISTANCES  
+      if(str_detect(string = dataDir, pattern = "distances")  
+      ){
+      my.ind <- paste0("distances_",my.ind)  
+        
       if(prop[i]!=100){
         results.temp <-  results.temp %>%
           group_by(method, prob, time, winMove) %>%
@@ -530,10 +536,38 @@ summariseResults <- function(dataDir, myMethods, prop, summaryResultsDir){
             d2sdt2.mean  =  dsdt) %>% 
           dplyr::select(-nDraw)
       }  # end ifelse prop==100
+      }
+    
+      ## Summarise the FIVI
+      if(str_detect(string = dataDir, pattern = "fiVi")
+      ){
+        my.ind <- paste0("fivi_",my.ind)  
+        
+        if(prop[i]!=100){
+          results.temp <-  results.temp %>%
+            group_by(method, prob, winStart, winStop) %>%
+            summarise(
+              FI.mean      =  mean(FI, na.rm = TRUE),
+              VI.mean       =  mean(VI, na.rm = TRUE),
+              FI.sd    =  sd(FI, na.rm = TRUE),
+              VI.sd  =  sd(VI, na.rm = TRUE)
+            ) 
+        } # end ifelse prop!=100
+        
+        # If prop == 100% then we don't need means and SD, we just need orginal data. 
+        if(prop[i]==100){ 
+          results.temp <- results.temp %>%
+            group_by(method, prob, winStart, winStop) %>%
+            rename(
+              FI.mean      =  FI,
+              VI.mean       =  VI) %>% 
+            dplyr::select(-nDraw)
+        }  # end ifelse prop==100
+      }
       
-      
+        
       # Save summary results to file
-       fn <- paste0(summaryResultsDir,"summaryResults_", myMethods[j], "_" , my.ind, ".feather")
+       fn <- paste0(summaryResultsDir,"summaryResults_", "_" , my.ind, ".feather")
        write_feather(results.temp, path=fn)
   
     } # end methods j loop

@@ -142,11 +142,12 @@ resamplingAnalysis(
 # Summarise the bootstraps ------------------------------------------------
 ## Distance results
 summariseResults(dataDir=distDir, myMethods, prop, summaryResultsDir)
+
+## FIVI results
+summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)
+
 ## EWS results
 # summariseResults(dataDir=ewsDir, methods, prop, summaryResultsDir)
-## FIVI results
-summariseResults(dataDir=fiviDir, methods, prop, summaryResultsDir)
-
 
 # END RUN -----------------------------------------------------------------
 
