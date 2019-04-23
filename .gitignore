@@ -33,10 +33,21 @@ chapterFiles/appendix_paleoExample/plots/*.png
 
 
 # ignore  files
-*.feather
-!chapterFiles/resampling/results/diatoms/summaryResults/*.feather 
+!chapterFiles/resampling/results/diatoms/summaryResults
+chapterFiles/resampling/results/diatoms/distances
+chapterFiles/resampling/results/diatoms/originalData
+chapterFiles/resampling/results/diatoms/ews
+chapterFiles/resampling/results/diatoms/fivi
+
+
+chapterFiles/velocity/simResults
+
 chapterFiles/binningChap/bbs_raw_data
 chapterFiles/rsdmReview/gScholar_20190204.csv
+
+chapterFiles/fisherSpatial/bbs_raw_data
+chapterFiles/fisherSpatial/myResults
+
 *.CPG
 *.dbf
 *.prj
