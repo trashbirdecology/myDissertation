@@ -13,7 +13,7 @@ library(feather)
 set.seed(12345)
 
 # Source functions
-source("./chapterFiles/resampling/05-chap-resampling-myFunctions.R")
+source(paste0(here::here(),"/chapterFiles/resampling/05-chap-resampling-myFunctions.R"))
 
 
 

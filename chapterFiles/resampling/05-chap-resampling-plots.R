@@ -9,8 +9,7 @@ library(tidyverse)
 library(feather)
 
 # Source functions
-source("./chapterFiles/resampling/05-chap-resampling-myFunctions.R")
-
+source(paste0(here::here(),"/chapterFiles/resampling/05-chap-resampling-myFunctions.R"))
 
 # What data are we plotting? ----------------------------------------------
 
@@ -19,17 +18,14 @@ diatoms <- TRUE # do you want to analyze the Spanbuaer data? if not, program wil
 
 # Create directories to store results, figures, load data etc.
 dirs <- createDirs(dirNameInd=ifelse(diatoms==TRUE, "diatoms","dummy")) # creates dirs if null and IDs
-# Return the directotries as objects
-for(i in seq_along(dirs)){assign(names(dirs)[i], dirs[[i]])}
-
-
-# Load resampling results -------------------------------------------------
-
-methods <- c("observations", "species")
-prop <- c(25, 50, 75,100)
-
+dataDir <- dirs$summaryResultsDir
 
 # Create Plots ------------------------------------------------------------
 
+my.ind <- "*distances"
+
+list.files(dataDir)
+
+results.temp = purrr::map_df(list.files(dataDir, full.names=TRUE, pattern = my.ind), read_feather)
 
 
