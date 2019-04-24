@@ -34,7 +34,7 @@ if(diatoms & dummyData) stop("The logicals diatoms and dummyData are both 'TRUE'
 
 # Define how to subset the data
 ## Which methods of data subsetting to observe?
-myMethods <- c("species", "observations")#, "dominance")
+myMethods <- c("dominance")#"species", "observations")#
 
 ## Which proportions of myMethods to explore?
 prop = c(
