@@ -1,24 +1,38 @@
 # Wrapper Function --------------------------------------------------------
-resamplingAnalysis <- function(
-  myDf.long, 
-  prop,
-  myMethods,
-  nDraws,
-  winMove,
-  origData = TRUE, 
-  ews = TRUE,
-  fivi = TRUE, 
-  fi.method ="7.12") {
-
+resamplingAnalysis <- function(myDf.long,
+                               prop,
+                               myMethods,
+                               nDraws,
+                               winMove,
+                               origData = TRUE,
+                               ews = TRUE,
+                               fivi = TRUE,
+                               fi.method = "7.12") {
   runTime <- Sys.time()
   
   # Print estimated runtime for diatoms
-  if(dirNameInd == 'diatoms') {
-    if(ews & fivi)  r <- 4.2
-    if(ews & !fivi) r <- 2.5
-    if(fivi & !ews) r <- 1.8
-    est <-  r*length(prop)*length(myMethods)*nDraws/60 # # minutes estimated for runtime
-    if(est < 15) {warning(paste0(nDraws, " draws for the diatom data should complete in approx. ", est, " minutes"), immediate. = TRUE)}else(warning(paste0("take a chill pill, this should take ~ ", est/60, " hours!"), immediate. = TRUE))
+  if (dirNameInd == 'diatoms') {
+    if (ews & fivi)
+      r <- 4.2
+    if (ews & !fivi)
+      r <- 2.5
+    if (fivi & !ews)
+      r <- 1.8
+    est <-
+      r * length(prop) * length(myMethods) * nDraws / 60 # # minutes estimated for runtime
+    if (est < 15) {
+      warning(
+        paste0(
+          nDraws,
+          " draws for the diatom data should complete in approx. ",
+          est,
+          " minutes"
+        ),
+        immediate. = TRUE
+      )
+    } else
+      (warning(paste0("take a chill pill, this should take ~ ", est / 60, " hours!"),
+               immediate. = TRUE))
     rm(est)
   }
   
@@ -27,21 +41,28 @@ resamplingAnalysis <- function(
   
   # Loop over proportion(s), method(s), and draws
   for (h in seq_along(prop)) {
-      for (i in 1:length(myMethods)) {
+    for (i in 1:length(myMethods)) {
       for (j in 1:nDraws) {
         print(paste0("begin loops: h = ", h, " | i = ", i, " | j = ", j))
-        # Line below is used to restart nalysis at last location.
+
+                # Line below is used to restart nalysis at last location.
         if(j < 1663 & prop[h]== .25){next}
 
               # Subset the data
         temp <- random_subset(myDf.long, myMethods[i], prob = prop[h]) %>%
-          mutate(nDraw = j,
+
+        # Subset the data
+        temp <-
+          random_subset(myDf.long, myMethods[i], prob = prop[h]) %>%
+                    mutate(nDraw = j,
                  winMove = winMove)
         
-        if(origData) writeResults(resultsDf = temp, myDir = origDataDir, h, i, j)
+        if (origData)
+          writeResults(resultsDf = temp, myDir = origDataDir, h, i, j)
         
         # Calculate distance travelled
-        if (exists("results")) results <- NULL
+        if (exists("results"))
+          results <- NULL
         
         results <- temp %>%
           # Distance between species
@@ -63,7 +84,7 @@ resamplingAnalysis <- function(
           ungroup() %>%
           # Drop NA's
           na.omit(p)
- 
+        
         
         writeResults(resultsDf = results, myDir = distDir, h, i, j)
         
@@ -91,24 +112,27 @@ resamplingAnalysis <- function(
         if (fivi) {
           results <- NULL
           results <-
-            window_analysis(data = temp, winSize = winSize, winSpace = winSpace) %>% 
-            mutate(method = myMethods[i], 
-                   prob = prop[h], 
+            window_analysis(data = temp,
+                            winSize = winSize,
+                            winSpace = winSpace) %>%
+            mutate(method = myMethods[i],
+                   prob = prop[h],
                    nDraw = j)
           
           writeResults(resultsDf = results, myDir = fiviDir, h, i, j)
-          } 
-          
-          
+        }
         
-        if(ews) {
+        
+        
+        if (ews) {
           results <- NULL
-          results <- window_analysis_EWS(temp, winSize, winSpace) %>% 
-            mutate(method = myMethods[i], 
-                   prob = prop[h], 
+          results <-
+            window_analysis_EWS(temp, winSize, winSpace) %>%
+            mutate(method = myMethods[i],
+                   prob = prop[h],
                    nDraw = j)
           writeResults(resultsDf = results, myDir = ewsDir, h, i, j)
-                  }
+        }
         
         
         
@@ -118,58 +142,63 @@ resamplingAnalysis <- function(
       } # end nDraws loop (j)
     } # end myMethods loop
   } #end prop loop
-
-# Print run time 
-print(paste0("this run took ~  ", (Sys.time()-runTime), " minutes"))  
+  
+  # Print run time
+  print(paste0("this run took ~  ", (Sys.time() - runTime), " minutes"))
   
   
-# Audio completion alerts
-{system("rundll32 user32.dll,MessageBeep -5") # will alert on Windows
-system("Hay girl! I D K if it's right but it's done!")
-}
+  # Audio completion alerts
+  {
+    system("rundll32 user32.dll,MessageBeep -5") # will alert on Windows
+    system("Hay girl! I D K if it's right but it's done!")
+  }
   
 } # End function resamplingAnalysis
 
 # Window Analyses and Binning Prior to Calc -------------------------------
-window_analysis <- function(data, winSize, winSpace, fi.method = "7.12") {
-  # Start and stop points for windows
-  winStart <-
-    round(seq(min(data$time),
-              max(data$time) - winSize,
-              by = winSpace))
-  winStop <- winStart + winSize
-  
-  # Number of windows
-  nWin <- length(winStart)
-  
-  VI <- FI <- rep(NA, length = nWin)
-  EWS <- list()
-  
-for (l in 1:nWin) {
+window_analysis <-
+  function(data, winSize, winSpace, fi.method = "7.12") {
+    # Start and stop points for windows
+    winStart <-
+      round(seq(min(data$time),
+                max(data$time) - winSize,
+                by = winSpace))
+    winStop <- winStart + winSize
+    
+    # Number of windows
+    nWin <- length(winStart)
+    
+    VI <- FI <- rep(NA, length = nWin)
+    EWS <- list()
+    
+    for (l in 1:nWin) {
       # Data from the time period within winStart:winStop
-    winData <- data %>%
-      filter(time >= winStart[l],
-             time < winStop[l])
+      winData <- data %>%
+        filter(time >= winStart[l],
+               time < winStop[l])
+      
+      # if (nrow(winData) <= 2) {
+      # warning("Two or less observations in window" )
+      # }
+      
+      # Calculate FI
+      FI[l] <- calculate_FI(winData, method = fi.method)
+      
+      # Calculate variance index
+      
+      if (!is.na(FI[l])) {
+        VI[l] <- calculate_VI(winData)
+      } else
+        (VI[l] <- NA)
+      
+      
+    }
     
-    # if (nrow(winData) <= 2) {
-    # warning("Two or less observations in window" )
-    # }
+    result <- data_frame(winStart, winStop, FI, VI)
     
-    # Calculate FI
-    FI[l] <- calculate_FI(winData, method = fi.method)
-    
-    # Calculate variance index
-    
-    if(!is.na(FI[l])){ VI[l] <- calculate_VI(winData)}else(VI[l] <-NA)
-    
+    return(result)
     
   }
-  
-  result <- data_frame(winStart, winStop, FI, VI)
-  
-  return(result)
-
-}
 window_analysis_EWS <- function(subData, winSize, winSpace) {
   # Start and stop points for windows
   winStart <-
@@ -229,7 +258,7 @@ calculate_VI <- function(winData) {
   VI <- max(eigCov$values)
   
   return(VI)
-
+  
   
 }
 calculate_FI <- function(myDat, method = "7.12") {
@@ -239,9 +268,10 @@ calculate_FI <- function(myDat, method = "7.12") {
   
   data <-
     myDat %>%
-    na.omit(dsdt) 
+    na.omit(dsdt)
   
-  if(nrow(data)==0) return(FI)
+  if (nrow(data) == 0)
+    return(FI)
   data <- data %>%
     distinct(time, s, dsdt, d2sdt2) %>%
     mutate(TT = max(time) - min(time),
@@ -337,16 +367,23 @@ calculate_EWS <- function(winData, winStartInd, winStopInd) {
 
 # Create directories ----------------------------
 ## If dirs exist will not create new.
-createDirs <- function(dirNameInd){
-  figDir<- paste0(here::here(),'/chapterFiles/resampling/figsCalledInDiss/') 
-  dir.create(paste0(here::here(),"/chapterFiles/resampling/figsCalledInDiss/")) 
+createDirs <- function(dirNameInd) {
+  figDir <-
+    paste0(here::here(),
+           '/chapterFiles/resampling/figsCalledInDiss/')
+  dir.create(paste0(
+    here::here(),
+    "/chapterFiles/resampling/figsCalledInDiss/"
+  ))
   
-  dir.create(paste0(here::here(),"/chapterFiles/resampling/results/"))
+  dir.create(paste0(here::here(), "/chapterFiles/resampling/results/"))
   
   resultsDir <-
-    paste0(
-      here::here(), "/chapterFiles/resampling/results/", dirNameInd, "/") 
-  dir.create(resultsDir) 
+    paste0(here::here(),
+           "/chapterFiles/resampling/results/",
+           dirNameInd,
+           "/")
+  dir.create(resultsDir)
   
   distDir <- paste0(resultsDir, "distances/")
   ewsDir <- paste0(resultsDir, "ews/")
@@ -363,7 +400,17 @@ createDirs <- function(dirNameInd){
   dir.create(summaryResultsDir)
   
   
-  return(list(resultsDir = resultsDir, figDir = figDir, distDir = distDir, ewsDir = ewsDir, fiviDir= fiviDir, origDataDir = origDataDir, summaryResultsDir=summaryResultsDir))
+  return(
+    list(
+      resultsDir = resultsDir,
+      figDir = figDir,
+      distDir = distDir,
+      ewsDir = ewsDir,
+      fiviDir = fiviDir,
+      origDataDir = origDataDir,
+      summaryResultsDir = summaryResultsDir
+    )
+  )
 }
 
 
@@ -372,9 +419,11 @@ getmode <- function(v) {
   uniqv <- unique(v)
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }
-getSpanbauerData <- function(scale.spp= TRUE) {
-  
-  if(scale.spp) print("scaling the spanbauer data")else("species observations are not scaled")
+getSpanbauerData <- function(scale.spp = TRUE) {
+  if (scale.spp)
+    print("scaling the spanbauer data")
+  else
+    ("species observations are not scaled")
   
   # Load data
   data = suppressMessages(read_csv(
@@ -408,9 +457,9 @@ getSpanbauerData <- function(scale.spp= TRUE) {
     )
   
   if(scale.spp){
-  stand01 <- function(x) { # standardize the data
-    (x - min(x)) / diff(range(x))
-  }}
+    stand01 <- function(x) { # standardize the data
+      (x - min(x)) / diff(range(x))
+    }}
   
   myDf.long <- myDf.long %>%
     group_by(time, site) %>%
@@ -489,85 +538,72 @@ random_subset <- function(data, method, prob = runif(1)) {
 
 # Manipulate and Load Results ---------------------------------------------
 # Save the results to file after analysis
-writeResults <- function(resultsDf, myDir, h, i, j){
-  fn <- paste0(myDir, "prop", prop[h]*100,"_", myMethods[i], "_draw" , j, ".feather")
-  write_feather(resultsDf,path=fn)
+writeResults <- function(resultsDf, myDir, h, i, j) {
+  fn <-
+    paste0(myDir,
+           "prop",
+           prop[h] * 100,
+           "_",
+           myMethods[i],
+           "_draw" ,
+           j,
+           ".feather")
+  write_feather(resultsDf, path = fn)
 }
 
 
 
 # Returns a list of results from feather for each method/proportion/RDM combination, summarises, and saves to a list object
-summariseResults <- function(dataDir, myMethods, prop, summaryResultsDir){
-  results <- list() # initialize an empty df to store results
-  for(i in seq_along(prop)){
-    for(j in seq_along(myMethods)){
-      results.temp <- NULL 
-      if(!all(prop>1)) prop <- prop*100 # if proportions are <1, then need to adjust
-      my.ind <- paste0("prop", prop[i], "_", myMethods[j])
-      
-      results.temp = purrr::map_df(list.files(dataDir, full.names=TRUE, pattern = my.ind), read_feather)
-      
-      
-      ## Summarise the DISTANCES  
-      if(str_detect(string = dataDir, pattern = "distances")  
-      ){
-      my.ind <- paste0("distances_",my.ind)  
+summariseResults <-
+  function(dataDir,
+           myMethods,
+           prop,
+           summaryResultsDir) {
+    results <- list() # initialize an empty df to store results
+    for (i in seq_along(prop)) {
+      for (j in seq_along(myMethods)) {
+        results.temp <- NULL
+        if (!all(prop > 1))
+          prop <- prop * 100 # if proportions are <1, then need to adjust
+        my.ind <- paste0("prop", prop[i], "_", myMethods[j])
         
-      if(prop[i]!=100){
-        results.temp <-  results.temp %>%
-          group_by(method, prob, time, winMove) %>%
-          summarise(
-            ds.mean      =  mean(ds, na.rm = TRUE),
-            s.mean       =  mean(s, na.rm = TRUE),
-            dsdt.mean    =  mean(dsdt, na.rm = TRUE),
-            d2sdt2.mean  =  mean(d2sdt2, na.rm = TRUE),
-            ds.sd      =  sd(ds, na.rm = TRUE),
-            s.sd       =  sd(s, na.rm = TRUE),
-            dsdt.sd    =  sd(dsdt, na.rm = TRUE),
-            d2sdt2.sd  =  sd(d2sdt2, na.rm = TRUE)
-          ) 
-      } # end ifelse prop!=100
-      
-      # If prop == 100% then we don't need means and SD, we just need orginal data. 
-      if(prop[i]==100){ 
-        results.temp<- results.temp %>%
-          group_by(method, prob, time, winMove) %>%
-          rename(
-            ds.mean      =  ds,
-            s.mean       =  s,
-            dsdt.mean    =  dsdt,
-            d2sdt2.mean  =  dsdt) %>% 
-          dplyr::select(-nDraw)
-      }  # end ifelse prop==100
-      }
-    
-      ## Summarise the FIVI
-      if(str_detect(string = dataDir, pattern = "fiVi")
-      ){
-        my.ind <- paste0("fivi_",my.ind)  
+        results.temp = purrr::map_df(list.files(dataDir, full.names = TRUE, pattern = my.ind),
+                                     read_feather)
         
-        if(prop[i]!=100){
-          results.temp <-  results.temp %>%
-            group_by(method, prob, winStart, winStop) %>%
-            summarise(
-              FI.mean      =  mean(FI, na.rm = TRUE),
-              VI.mean       =  mean(VI, na.rm = TRUE),
-              FI.sd    =  sd(FI, na.rm = TRUE),
-              VI.sd  =  sd(VI, na.rm = TRUE)
-            ) 
-        } # end ifelse prop!=100
         
-        # If prop == 100% then we don't need means and SD, we just need orginal data. 
-        if(prop[i]==100){ 
-          results.temp <- results.temp %>%
-            group_by(method, prob, winStart, winStop) %>%
-            rename(
-              FI.mean      =  FI,
-              VI.mean       =  VI) %>% 
-            dplyr::select(-nDraw)
-        }  # end ifelse prop==100
-      }
-      
+        ## Summarise the DISTANCES
+        if (str_detect(string = dataDir, pattern = "distances")) {
+          my.ind <- paste0("distances_", my.ind)
+          
+          if (prop[i] != 100) {
+            results.temp <-  results.temp %>%
+              group_by(method, prob, time, winMove) %>%
+              summarise(
+                ds.mean      =  mean(ds, na.rm = TRUE),
+                s.mean       =  mean(s, na.rm = TRUE),
+                dsdt.mean    =  mean(dsdt, na.rm = TRUE),
+                d2sdt2.mean  =  mean(d2sdt2, na.rm = TRUE),
+                ds.sd      =  sd(ds, na.rm = TRUE),
+                s.sd       =  sd(s, na.rm = TRUE),
+                dsdt.sd    =  sd(dsdt, na.rm = TRUE),
+                d2sdt2.sd  =  sd(d2sdt2, na.rm = TRUE)
+              )
+          } # end ifelse prop!=100
+          
+          # If prop == 100% then we don't need means and SD, we just need orginal data.
+          if (prop[i] == 100) {
+            if(nDraw > 1){next}
+            results.temp <- results.temp %>%
+              group_by(method, prob, time, winMove) %>%
+              rename(
+                ds.mean      =  ds,
+                s.mean       =  s,
+                dsdt.mean    =  dsdt,
+                d2sdt2.mean  =  dsdt
+              ) %>%
+              dplyr::select(-nDraw)
+          }  # end ifelse prop==100
+        }
         
       ## Summarise the EWSs
       if(str_detect(string = dataDir, pattern = "ews")
@@ -616,11 +652,78 @@ summariseResults <- function(dataDir, myMethods, prop, summaryResultsDir){
   
 print(paste0("results saved in ", summaryResultsDir))
 
-  } # end function getResultsSummary()
+        ## Summarise the FIVI
+        if (str_detect(string = dataDir, pattern = "fiVi")) {
+          my.ind <- paste0("fivi_", my.ind)
+          
+          if (prop[i] != 100) {
+            results.temp <-  results.temp %>%
+              group_by(method, prob, winStart, winStop) %>%
+              summarise(
+                FI.mean      =  mean(FI, na.rm = TRUE),
+                VI.mean       =  mean(VI, na.rm = TRUE),
+                FI.sd    =  sd(FI, na.rm = TRUE),
+                VI.sd  =  sd(VI, na.rm = TRUE)
+              )
+          } # end ifelse prop!=100
+          
+          # If prop == 100% then we don't need means and SD, we just need orginal data.
+          if (prop[i] == 100) {
+            if(nDraw > 1){next}
+            results.temp <- results.temp %>%
+              group_by(method, prob, winStart, winStop) %>%
+              rename(FI.mean      =  FI,
+                     VI.mean      =  VI) %>%
+              dplyr::select(-nDraw)
+          }  # end ifelse prop==100
+        }
+        
+        
+        # Save summary results to file
+        fn <-
+          paste0(summaryResultsDir,
+                 "summaryResults_",
+                 "_" ,
+                 my.ind,
+                 ".feather")
+        write_feather(results.temp, path = fn)
+        
+      } # end methods j loop
+    } # end prop i loop
+    
+    print(paste0("results saved in ", summaryResultsDir))
+    
+
+      } # end function getResultsSummary()
 
 
 
 # Plotting Functions ------------------------------------------------------
 
+## My plotting theme
+theme_mine <- function(base_size = 18,
+                       base_family = "Helvetica") {
+  # Starts with theme_grey and then modify some parts
+  theme_bw(base_size = base_size, base_family = base_family) %+replace%
+    theme(
+      strip.background = element_blank(),
+      # strip.text.x = element_text(size = 15),
+      # strip.text.y = element_text(size = 15),
+      # axis.text.x = element_text(size=14),
+      # axis.text.y = element_text(size=14,hjust=1.5),
+      # axis.ticks =  element_line(colour = "black"),
+      # axis.title.x= element_text(size=16),
+      # axis.title.y= element_text(size=16,angle=90),
+      panel.background = element_blank(),
+      panel.border = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      panel.spacing = unit(1.0, "lines"),
+      plot.background = element_blank(),
+      # axis.line.x = element_line(color="black", size = 1),
+      # axis.line.y = element_line(color="black", size = 1)
+      plot.margin = unit(c(0.5,  0.5, 0.5, 0.5), "lines")
+    )
+}
 
 
