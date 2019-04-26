@@ -553,6 +553,7 @@ writeResults <- function(resultsDf, myDir, h, i, j) {
 
 
 
+# Summarise the Results -------------------------------------------------------
 # Returns a list of results from feather for each method/proportion/RDM combination, summarises, and saves to a list object
 summariseResults <-
   function(dataDir,
@@ -605,53 +606,6 @@ summariseResults <-
           }  # end ifelse prop==100
         }
         
-      ## Summarise the EWSs
-      if(str_detect(string = dataDir, pattern = "ews")
-      ){
-        my.ind <- paste0("ews_",my.ind)  
-        
-        if(prop[i]!=100){
-          results.temp <-  results.temp %>%
-            group_by(variable, method, prob, winStart, winStop) %>%
-            summarise(
-              sd.mean      =  mean(sd, na.rm = TRUE),
-              sd.sd    =  sd(sd, na.rm = TRUE),
-              CV.mean      =  mean(CV, na.rm = TRUE),
-              CV.sd    =  sd(CV, na.rm = TRUE),
-              kurtosis.mean      =  mean(kurtosis, na.rm = TRUE),
-              kurtosis.sd    =  sd(kurtosis, na.rm = TRUE),
-              skewMode.mean      =  mean(skewMode, na.rm = TRUE),
-              skewMode.sd    =  sd(skewMode, na.rm = TRUE),
-              skewMean.mean      =  mean(skewMean, na.rm = TRUE),
-              skewMean.sd    =  sd(skewMean, na.rm = TRUE)
-              ) 
-        } # end ifelse prop!=100
-        
-        # If prop == 100% then we don't need means and SD, we just need orginal data. 
-        if(prop[i]==100){ 
-          results.temp <-  results.temp %>%
-            filter(nDraw == 1) %>% 
-            group_by(variable, method, prob, winStart, winStop) %>%
-            summarise(
-              sd.mean = sd, 
-              CV.mean = CV, 
-              kurotsis.mean = kurtosis,
-              skewMode.mean = skewMode, 
-              skewMean.mean = skewMean
-            )
-        }  # end ifelse prop==100
-      }
-      
-      
-      # Save summary results to file
-       fn <- paste0(summaryResultsDir,"summaryResults_", "_" , my.ind, ".feather")
-       write_feather(results.temp, path=fn)
-  
-    } # end methods j loop
-  } # end prop i loop
-  
-print(paste0("results saved in ", summaryResultsDir))
-
         ## Summarise the FIVI
         if (str_detect(string = dataDir, pattern = "fiVi")) {
           my.ind <- paste0("fivi_", my.ind)
@@ -678,6 +632,43 @@ print(paste0("results saved in ", summaryResultsDir))
           }  # end ifelse prop==100
         }
         
+        ## Summarise the EWSs
+        if(str_detect(string = dataDir, pattern = "ews")
+        ){
+          my.ind <- paste0("ews_",my.ind)  
+          
+          if(prop[i]!=100){
+            results.temp <-  results.temp %>%
+              group_by(variable, method, prob, winStart, winStop) %>%
+              summarise(
+                sd.mean      =  mean(sd, na.rm = TRUE),
+                sd.sd    =  sd(sd, na.rm = TRUE),
+                CV.mean      =  mean(CV, na.rm = TRUE),
+                CV.sd    =  sd(CV, na.rm = TRUE),
+                kurtosis.mean      =  mean(kurtosis, na.rm = TRUE),
+                kurtosis.sd    =  sd(kurtosis, na.rm = TRUE),
+                skewMode.mean      =  mean(skewMode, na.rm = TRUE),
+                skewMode.sd    =  sd(skewMode, na.rm = TRUE),
+                skewMean.mean      =  mean(skewMean, na.rm = TRUE),
+                skewMean.sd    =  sd(skewMean, na.rm = TRUE)
+              ) 
+          } # end ifelse prop!=100
+          
+          # If prop == 100% then we don't need means and SD, we just need orginal data. 
+          if(prop[i]==100){ 
+            results.temp <-  results.temp %>%
+              filter(nDraw == 1) %>% 
+              group_by(variable, method, prob, winStart, winStop) %>%
+              summarise(
+                sd.mean = sd, 
+                CV.mean = CV, 
+                kurotsis.mean = kurtosis,
+                skewMode.mean = skewMode, 
+                skewMean.mean = skewMean
+              )
+          }  # end ifelse prop==100
+        }
+        
         
         # Save summary results to file
         fn <-
@@ -693,8 +684,7 @@ print(paste0("results saved in ", summaryResultsDir))
     
     print(paste0("results saved in ", summaryResultsDir))
     
-
-      } # end function getResultsSummary()
+  } # end function summariseResults
 
 
 
