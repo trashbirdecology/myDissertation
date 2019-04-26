@@ -98,7 +98,6 @@ if (dummyData) {
 
 
 # Visualize the Raw Data --------------------------------------------------
-
 ggplot(myDf.long) + geom_line(aes(
   x = time,
   y = value,
@@ -138,7 +137,6 @@ resamplingAnalysis(
 )
 
 
-
 # Summarise the bootstraps ------------------------------------------------
 ## Distance results
 summariseResults(dataDir=distDir, myMethods, prop, summaryResultsDir)
@@ -147,7 +145,7 @@ summariseResults(dataDir=distDir, myMethods, prop, summaryResultsDir)
 summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)
 
 ## EWS results
-# summariseResults(dataDir=ewsDir, methods, prop, summaryResultsDir)
+summariseResults(dataDir=ewsDir, myMethods, prop[4], summaryResultsDir)
 
 # END RUN -----------------------------------------------------------------
 
