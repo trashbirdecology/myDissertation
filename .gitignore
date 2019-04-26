@@ -33,7 +33,8 @@ chapterFiles/appendix_paleoExample/plots/*.png
 
 
 # ignore  files
-!chapterFiles/resampling/results/diatoms/summaryResults
+chapterFiles/resampling/results/diatoms/summaryResults
+!chapterFiles/resampling/results/diatoms/summaryResults.zip
 chapterFiles/resampling/results/diatoms/distances
 chapterFiles/resampling/results/diatoms/originalData
 chapterFiles/resampling/results/diatoms/ews

@@ -147,6 +147,13 @@ summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)
 ## EWS results
 summariseResults(dataDir=ewsDir, myMethods, prop[4], summaryResultsDir)
 
+## Compress the summarised results
+files2zip <- dir(summaryResultsDir, full.names=TRUE)
+zip(zipfile = 'testZip', files = files2zip)
+
+unzip('testZip.zip', list = TRUE)
+
+
 # END RUN -----------------------------------------------------------------
 
 
