@@ -16,7 +16,6 @@ set.seed(12345)
 source(paste0(here::here(),"/chapterFiles/resampling/05-chap-resampling-myFunctions.R"))
 
 
-
 # Anlaysis paramters ------------------------------------------------------
 
 # Which dataset to use
@@ -147,11 +146,8 @@ summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)
 ## EWS results
 summariseResults(dataDir=ewsDir, myMethods, prop[4], summaryResultsDir)
 
-## Compress the summarised results
-files2zip <- dir(summaryResultsDir, full.names=TRUE)
-zip(zipfile = 'testZip', files = files2zip)
+## Be sure to summarise the directory (summaryResults) to summaryResults.zip in directory ~../diatoms
 
-unzip('testZip.zip', list = TRUE)
 
 
 # END RUN -----------------------------------------------------------------

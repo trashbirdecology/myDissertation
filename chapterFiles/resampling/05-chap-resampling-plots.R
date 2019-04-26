@@ -11,6 +11,7 @@ library(here)
 
 # Source functions
 source(paste0(here::here(),"/chapterFiles/resampling/05-chap-resampling-myFunctions.R"))
+source(paste0(here::here(),"/chapterFiles/resampling/05-chap-resampling-myPlottingFunctions.R"))
 
 # What data are we plotting? ----------------------------------------------
 
@@ -20,78 +21,45 @@ diatoms <- TRUE # do you want to analyze the Spanbuaer data? if not, program wil
 # Create directories to store results, figures, load data etc.
 dirs <- createDirs(dirNameInd=ifelse(diatoms==TRUE, "diatoms","dummy")) # creates dirs if null and IDs
 dataDir <- dirs$summaryResultsDir
+figDir <- dirs$figDir
+
 
 # Load summarizes results ------------------------------------------------------------
+if(exists("results")) stop("If you need to re-load feathers, please run entire script again (including rm(list=ls()) and restart session.") else(results <- loadSummaryResults(dataDir))
 
-my.ind <- "distances"
-results.dist <- purrr::map_df(list.files(dataDir, full.names=TRUE, pattern = my.ind), read_feather)
-my.ind <- "fivi"
-results.fivi <- purrr::map_df(list.files(dataDir, full.names=TRUE, pattern = my.ind), read_feather)
 
 # Create Plots ------------------------------------------------------------
 
-# my.ind <- "*distances"
-my.ind <- "*ews"
-# my.ind <- "*fivi
+# Which figures to create
+metrics.to.plot <- "distance"  # names(results)
+myLabels <- setLabels(metrics.to.plot, results) 
 
-# which metric to plot
-metric.ind <- "s"
-group.ind1 <- "observations" # a grouping variable
-# group.ind1 <- "method" # a grouping variable
-group.ind2 <- "prob" # a faceting var
-n.col <- 1 # # facet cols
-
-df <- results.dist
-x <- "time"
-y <-  paste0(metric.ind,".mean")
-y.sd <- paste0(metric.ind, ".sd")
-
-if(exists("group.ind1")) group1 <- paste0("as.factor(", group.ind1, ")")
-if(exists("group.ind2")) group2 <- paste0("as.factor(", group.ind2, ")")
-
-
-ggplot(data = df %>% 
-         filter(
-  time > min(time), 
-  method == method.filter
-                            )) +
-  geom_line(aes_string(x = x, y = y), alpha = .6) +
-    facet_wrap(facets = as.formula(paste0("~", group2)), ncol=n.col, scales="free_y")+
-  theme_mine() +
-  theme(legend.position = "top") 
-
-df.temp <- df %>% 
-  mutate(
-    upper = !!sym(y)+1.96*!!sym(y.sd),
-    lower = !!sym(y)-1.96*!!sym(y.sd)
-  ) %>% 
-  filter(method %in% method.filter) %>% 
-  filter(!is.na(upper), 
-         !is.na(lower)) %>% 
-  mutate(prob = as.factor(100*as.numeric(as.character(prob))),
-         method=as.factor(method))
-# Change for labelling purposes
-if(group2=="as.factor(prob)" | group2=="as.factor(prob)") levels(df.temp$prob) =  paste0(levels(df.temp$prob),"%")
-
-## ribbons
-p.ribbon <-
-  ggplot(data = df.temp) +
-  geom_line(aes_string(x = x, y = y)) +
-  facet_wrap(facets = as.formula(paste0("~", group2)), ncol = n.col, scales="free_y") +
-  geom_ribbon(aes_string(x = x,
-                         ymin = 'lower',
-                         ymax = 'upper' 
-  ), na.rm = TRUE,
-  color="grey", alpha=0.3)+
-  theme_mine() +
-  theme(legend.position = "top") +
-  ylab("mean velocity")
-
-
-fn <- paste0()
-ggsave(plot=p.ribbon, device=".png",
-       filename=)
-
-
+for(i in seq_along(metrics.to.plot)){
+## Boostrapped plots of single metric, facet by prob, single method
   
+  myDf <- results[[i]]
+    
+  for(j in seq_along){
+    myMetric <- myLabels[[i]][j]
+    
+    
+    x <- if(metrics.to.plot[i])
+plot.bootstrappedFacetGroup(
+  df = myDf,
+  metric.ind = myMetric,
+  method.filter = "observations",
+  facet.var = "prob",
+  x = "time",
+  preview = TRUE
+)
+
+
+
+  }
+}
+  
+
+
+# my.ind <- "*ews"
+# my.ind <- "*fivi
 
