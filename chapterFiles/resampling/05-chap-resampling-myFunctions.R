@@ -30,7 +30,10 @@ resamplingAnalysis <- function(
       for (i in 1:length(myMethods)) {
       for (j in 1:nDraws) {
         print(paste0("begin loops: h = ", h, " | i = ", i, " | j = ", j))
-        # Subset the data
+        # Line below is used to restart nalysis at last location.
+        if(j < 1663 & prop[h]== .25){next}
+
+              # Subset the data
         temp <- random_subset(myDf.long, myMethods[i], prob = prop[h]) %>%
           mutate(nDraw = j,
                  winMove = winMove)
@@ -566,6 +569,44 @@ summariseResults <- function(dataDir, myMethods, prop, summaryResultsDir){
       }
       
         
+      ## Summarise the EWSs
+      if(str_detect(string = dataDir, pattern = "ews")
+      ){
+        my.ind <- paste0("ews_",my.ind)  
+        
+        if(prop[i]!=100){
+          results.temp <-  results.temp %>%
+            group_by(variable, method, prob, winStart, winStop) %>%
+            summarise(
+              sd.mean      =  mean(sd, na.rm = TRUE),
+              sd.sd    =  sd(sd, na.rm = TRUE),
+              CV.mean      =  mean(CV, na.rm = TRUE),
+              CV.sd    =  sd(CV, na.rm = TRUE),
+              kurtosis.mean      =  mean(kurtosis, na.rm = TRUE),
+              kurtosis.sd    =  sd(kurtosis, na.rm = TRUE),
+              skewMode.mean      =  mean(skewMode, na.rm = TRUE),
+              skewMode.sd    =  sd(skewMode, na.rm = TRUE),
+              skewMean.mean      =  mean(skewMean, na.rm = TRUE),
+              skewMean.sd    =  sd(skewMean, na.rm = TRUE)
+              ) 
+        } # end ifelse prop!=100
+        
+        # If prop == 100% then we don't need means and SD, we just need orginal data. 
+        if(prop[i]==100){ 
+          results.temp <-  results.temp %>%
+            filter(nDraw == 1) %>% 
+            group_by(variable, method, prob, winStart, winStop) %>%
+            summarise(
+              sd.mean = sd, 
+              CV.mean = CV, 
+              kurotsis.mean = kurtosis,
+              skewMode.mean = skewMode, 
+              skewMean.mean = skewMean
+            )
+        }  # end ifelse prop==100
+      }
+      
+      
       # Save summary results to file
        fn <- paste0(summaryResultsDir,"summaryResults_", "_" , my.ind, ".feather")
        write_feather(results.temp, path=fn)

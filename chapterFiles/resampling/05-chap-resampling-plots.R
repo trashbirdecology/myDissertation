@@ -22,7 +22,9 @@ dataDir <- dirs$summaryResultsDir
 
 # Create Plots ------------------------------------------------------------
 
-my.ind <- "*distances"
+# my.ind <- "*distances"
+my.ind <- "*ews"
+# my.ind <- "*fivi
 
 list.files(dataDir)
 
