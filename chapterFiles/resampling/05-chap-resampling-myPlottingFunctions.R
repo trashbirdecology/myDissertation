@@ -132,6 +132,7 @@ plot.bootstrappedFacetGroup <- function(df,
         rename(baseline = y) %>% 
         dplyr::select(x, baseline)
 
+    y_label <- eval(bquote(expression(bar(.(metric.ind)))))
     
     ## Create the ribboned plot
     p.ribbon <-
@@ -143,7 +144,8 @@ plot.bootstrappedFacetGroup <- function(df,
         color="grey", alpha=0.3)+
         theme_mine()+
         theme(legend.position = "top") +
-        ylab(paste0("mean ", metric.ind)) +
+      
+        ylab(y_lab) +
         facet_wrap(facets = ~ prob, ncol = n.col, scales="free_y")+
         # ylab(expression(bar(y)))
             ylab(paste0(y))
