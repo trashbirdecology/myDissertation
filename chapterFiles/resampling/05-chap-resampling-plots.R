@@ -39,24 +39,20 @@ if(any(names(results) != names(myLabels))) stop("names of results must match myL
 ## Boostrapped plots of single metric, facet by prob, single method
 for(i in seq_along(results)){
     # subset data by analysis type and metric
-    myDf  <- results[[i]]  # e.g., distance, FIVI, ews
+    myDf.all  <- results[[i]]  # e.g., distance, FIVI, ews
     
       myMetrics <- myLabels[[i]] #e.g, dsdt, FI, VI
-      myMethods <- unique(myDf$method) # e.g, dominance, species
-      
-    
+      myMethods <- unique(myDf.all$method) # e.g, dominance, species
       
       for (h in seq_along(myMethods)) {
-    for(j in seq_along(myMetrics) ){
+          for(j in seq_along(myMetrics) ){
         
-
       # subset data by method
-        
-        myDf <- myDf %>%
+        myDf <- myDf.all %>%
           filter(method ==  myMethods[h])
 
 
-    if(nrow(myDf)==0)stop("data frame is empty -- this should not be")
+        if(nrow(myDf)==0)stop("data frame is empty -- this should not be")
         
 ##############################    
 plot.bootstrappedFacetGroup(

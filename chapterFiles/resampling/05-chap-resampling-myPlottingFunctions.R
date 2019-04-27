@@ -19,7 +19,7 @@ theme_mine <- function(base_size = 12,
             panel.border = element_blank(),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(),
-            # panel.spacing = unit(1.0, "lines"),
+            panel.spacing = unit(1.0, "lines"),
             plot.background = element_blank(),
             axis.line.x = element_line(color="black", size = 1),
             axis.line.y = element_line(color="black", size = 1),
@@ -132,7 +132,7 @@ plot.bootstrappedFacetGroup <- function(df,
         rename(baseline = y) %>% 
         dplyr::select(x, baseline)
 
-    y_label <- eval(bquote(expression(bar(.(metric.ind)))))
+    y_lab <- eval(bquote(expression(bar(.(metric.ind)))))
     
     ## Create the ribboned plot
     p.ribbon <-
