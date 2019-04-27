@@ -30,36 +30,48 @@ if(exists("results")) stop("If you need to re-load feathers, please run entire s
 
 # Create Plots ------------------------------------------------------------
 
-# Which figures to create
-metrics.to.plot <- "distance"  # names(results)
-myLabels <- setLabels(metrics.to.plot, results) 
+# Skip EWS (species-level) results for now...
+results <- list(distances = results$distances, fivi = results$fivi)
+# Identify the unique  the labels/metrics to plot 
+myLabels <- setLabels(names(results), results)
+if(any(names(results) != names(myLabels))) stop("names of results must match myLabels names")
 
-for(i in seq_along(metrics.to.plot)){
 ## Boostrapped plots of single metric, facet by prob, single method
-  
-  myDf <- results[[i]]
+for(i in seq_along(results)){
+    # subset data by analysis type and metric
+    myDf  <- results[[i]]  # e.g., distance, FIVI, ews
     
-  for(j in seq_along){
-    myMetric <- myLabels[[i]][j]
+      myMetrics <- myLabels[[i]] #e.g, dsdt, FI, VI
+      myMethods <- unique(myDf$method) # e.g, dominance, species
+      
     
-    
-    x <- if(metrics.to.plot[i])
+      
+      for (h in seq_along(myMethods)) {
+    for(j in seq_along(myMetrics) ){
+        
+
+      # subset data by method
+        
+        myDf <- myDf %>%
+          filter(method ==  myMethods[h])
+
+
+    if(nrow(myDf)==0)stop("data frame is empty -- this should not be")
+        
+##############################    
 plot.bootstrappedFacetGroup(
   df = myDf,
-  metric.ind = myMetric,
-  method.filter = "observations",
-  facet.var = "prob",
-  x = "time",
-  preview = TRUE
+  metric.ind = myMetrics[j],
+  method.filter =  myMethods[h],
+  preview = TRUE, 
+  add.baseline=TRUE, 
+  savePlot = TRUE
 )
+##############################      
 
-
-
+    
   }
-}
-  
+ }
+}  
 
-
-# my.ind <- "*ews"
-# my.ind <- "*fivi
 

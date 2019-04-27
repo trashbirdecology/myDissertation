@@ -18,6 +18,9 @@ resamplingAnalysis <- function(myDf.long,
       r <- 2.5
     if (fivi & !ews)
       r <- 1.8
+    
+    if(!exists("r")) r<-3
+    
     est <-
       r * length(prop) * length(myMethods) * nDraws / 60 # # minutes estimated for runtime
     if (est < 15) {
@@ -45,13 +48,7 @@ resamplingAnalysis <- function(myDf.long,
       for (j in 1:nDraws) {
         print(paste0("begin loops: h = ", h, " | i = ", i, " | j = ", j))
 
-                # Line below is used to restart nalysis at last location.
-        if(j < 1663 & prop[h]== .25){next}
-
-              # Subset the data
-        temp <- random_subset(myDf.long, myMethods[i], prob = prop[h]) %>%
-
-        # Subset the data
+       # Subset the data
         temp <-
           random_subset(myDf.long, myMethods[i], prob = prop[h]) %>%
                     mutate(nDraw = j,
@@ -560,12 +557,15 @@ summariseResults <-
            myMethods,
            prop,
            summaryResultsDir) {
+    
     results <- list() # initialize an empty df to store results
+    
+
     for (i in seq_along(prop)) {
-      for (j in seq_along(myMethods)) {
         results.temp <- NULL
-        if (!all(prop > 1))
-          prop <- prop * 100 # if proportions are <1, then need to adjust
+        if (!all(prop > 1)) prop <- prop * 100 # if proportions are <1, then need to adjust
+        
+      for (j in seq_along(myMethods)) {
         my.ind <- paste0("prop", prop[i], "_", myMethods[j])
         
         results.temp = purrr::map_df(list.files(dataDir, full.names = TRUE, pattern = my.ind),
@@ -573,11 +573,11 @@ summariseResults <-
         
         
         ## Summarise the DISTANCES
-        if (str_detect(string = dataDir, pattern = "distances")) {
+        if (str_detect(string = dataDir, pattern = "distance")) {
           my.ind <- paste0("distances_", my.ind)
           
           if (prop[i] != 100) {
-            results.temp <-  results.temp %>%
+            results.temp2 <-  results.temp %>%
               group_by(method, prob, time, winMove) %>%
               summarise(
                 ds.mean      =  mean(ds, na.rm = TRUE),
@@ -593,15 +593,14 @@ summariseResults <-
           
           # If prop == 100% then we don't need means and SD, we just need orginal data.
           if (prop[i] == 100) {
-            if(nDraw > 1){next}
-            results.temp <- results.temp %>%
+          results.temp2 <- results.temp %>%
+            filter(nDraw == 1) %>% 
               group_by(method, prob, time, winMove) %>%
               rename(
                 ds.mean      =  ds,
                 s.mean       =  s,
                 dsdt.mean    =  dsdt,
-                d2sdt2.mean  =  dsdt
-              ) %>%
+                d2sdt2.mean  =  d2sdt2) %>%
               dplyr::select(-nDraw)
           }  # end ifelse prop==100
         }
@@ -611,7 +610,7 @@ summariseResults <-
           my.ind <- paste0("fivi_", my.ind)
           
           if (prop[i] != 100) {
-            results.temp <-  results.temp %>%
+            results.temp2 <-  results.temp %>%
               group_by(method, prob, winStart, winStop) %>%
               summarise(
                 FI.mean      =  mean(FI, na.rm = TRUE),
@@ -623,11 +622,11 @@ summariseResults <-
           
           # If prop == 100% then we don't need means and SD, we just need orginal data.
           if (prop[i] == 100) {
-            if(nDraw > 1){next}
-            results.temp <- results.temp %>%
+            results.temp2 <- results.temp %>%
+              filter(nDraw == 1) %>% 
               group_by(method, prob, winStart, winStop) %>%
               rename(FI.mean      =  FI,
-                     VI.mean      =  VI) %>%
+                     VI.mean      =  VI) %>% 
               dplyr::select(-nDraw)
           }  # end ifelse prop==100
         }
@@ -638,7 +637,7 @@ summariseResults <-
           my.ind <- paste0("ews_",my.ind)  
           
           if(prop[i]!=100){
-            results.temp <-  results.temp %>%
+            results.temp2 <-  results.temp %>%
               group_by(variable, method, prob, winStart, winStop) %>%
               summarise(
                 sd.mean      =  mean(sd, na.rm = TRUE),
@@ -656,7 +655,7 @@ summariseResults <-
           
           # If prop == 100% then we don't need means and SD, we just need orginal data. 
           if(prop[i]==100){ 
-            results.temp <-  results.temp %>%
+            results.temp2 <-  results.temp %>%
               filter(nDraw == 1) %>% 
               group_by(variable, method, prob, winStart, winStop) %>%
               summarise(
@@ -685,35 +684,4 @@ summariseResults <-
     print(paste0("results saved in ", summaryResultsDir))
     
   } # end function summariseResults
-
-
-
-# Plotting Functions ------------------------------------------------------
-
-## My plotting theme
-theme_mine <- function(base_size = 18,
-                       base_family = "Helvetica") {
-  # Starts with theme_grey and then modify some parts
-  theme_bw(base_size = base_size, base_family = base_family) %+replace%
-    theme(
-      strip.background = element_blank(),
-      # strip.text.x = element_text(size = 15),
-      # strip.text.y = element_text(size = 15),
-      # axis.text.x = element_text(size=14),
-      # axis.text.y = element_text(size=14,hjust=1.5),
-      # axis.ticks =  element_line(colour = "black"),
-      # axis.title.x= element_text(size=16),
-      # axis.title.y= element_text(size=16,angle=90),
-      panel.background = element_blank(),
-      panel.border = element_blank(),
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      panel.spacing = unit(1.0, "lines"),
-      plot.background = element_blank(),
-      # axis.line.x = element_line(color="black", size = 1),
-      # axis.line.y = element_line(color="black", size = 1)
-      plot.margin = unit(c(0.5,  0.5, 0.5, 0.5), "lines")
-    )
-}
-
 

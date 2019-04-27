@@ -33,13 +33,14 @@ if(diatoms & dummyData) stop("The logicals diatoms and dummyData are both 'TRUE'
 
 # Define how to subset the data
 ## Which methods of data subsetting to observe?
-myMethods <- c("dominance")#"species", "observations")#
+myMethods <- c("dominance","species", "observations")#
 
 ## Which proportions of myMethods to explore?
 prop = c(
-  0.25, 0.5,
-0.75,
-         1.0)  # one or more numbers between 0 and 1
+        0.25, 
+        0.5,
+        0.75,
+        1.0)  # one or more numbers between 0 and 1
 
 ## Define the number of random draws for each method
 nDraws <- 1e4
@@ -120,7 +121,6 @@ ggplot(myDf.long %>%
 
 
 
-
 # Conduct reasmpling analysis --------------------------------------------------------
 # This will run and save results to feathers. if you want specific results only, specify ews or fivi =TRUE/FALSE. This function will always calc and save distances to file. Can also specify to save the original data (origDat= TRUE)
 resamplingAnalysis(
@@ -130,24 +130,23 @@ resamplingAnalysis(
   nDraws,
   winMove=.20,
   origData = TRUE, 
-  ews = TRUE,
-  fivi = TRUE,
+  ews = FALSE,
+  fivi = FALSE,
   fi.method = "7.12" #7.12 is the derivatives method
 )
 
 
 # Summarise the bootstraps ------------------------------------------------
 ## Distance results
-summariseResults(dataDir=distDir, myMethods, prop, summaryResultsDir)
+summariseResults(dataDir=distDir, myMethods =  myMethods, prop = prop, summaryResultsDir)
 
 ## FIVI results
 summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)
 
 ## EWS results
-summariseResults(dataDir=ewsDir, myMethods, prop[4], summaryResultsDir)
+summariseResults(dataDir=ewsDir, myMethods, prop, summaryResultsDir)
 
 ## Be sure to summarise the directory (summaryResults) to summaryResults.zip in directory ~../diatoms
-
 
 
 # END RUN -----------------------------------------------------------------
