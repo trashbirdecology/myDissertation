@@ -368,25 +368,26 @@ createDirs <- function(dirNameInd) {
   figDir <-
     paste0(here::here(),
            '/chapterFiles/resampling/figsCalledInDiss/')
-  dir.create(paste0(
-    here::here(),
-    "/chapterFiles/resampling/figsCalledInDiss/"
-  ))
   
-  dir.create(paste0(here::here(), "/chapterFiles/resampling/results/"))
   
   resultsDir <-
     paste0(here::here(),
            "/chapterFiles/resampling/results/",
            dirNameInd,
            "/")
-  dir.create(resultsDir)
   
+  
+  tempFigDir <- paste0(resultsDir, "tempFigures")
   distDir <- paste0(resultsDir, "distances/")
   ewsDir <- paste0(resultsDir, "ews/")
   fiviDir <- paste0(resultsDir, "fiVi/")
   origDataDir <- paste0(resultsDir, "originalData/")
+  
+  
   dir.create(distDir)
+  dir.create(tempFigDir)
+  dir.create(resultsDir)
+  dir.create(figDir)
   dir.create(ewsDir)
   dir.create(fiviDir)
   dir.create(origDataDir)
@@ -401,6 +402,7 @@ createDirs <- function(dirNameInd) {
     list(
       resultsDir = resultsDir,
       figDir = figDir,
+      tempFigDir = tempFigDir,
       distDir = distDir,
       ewsDir = ewsDir,
       fiviDir = fiviDir,

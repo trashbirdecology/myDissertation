@@ -10,18 +10,18 @@ theme_mine <- function(base_size = 12,
             strip.background = element_blank(),
             strip.text.x = element_text(size = 9),
             strip.text.y = element_text(size = 9),
-            axis.text.x = element_text(size=11),
-            axis.text.y = element_text(size=11,hjust=1.5),
-            axis.ticks =  element_line(colour = "black"),
+            # axis.text.x = element_text(size=11),
+            # axis.text.y = element_text(size=11,hjust=1.5),
+            # axis.Cticks =  element_line(colour = "black"),
             axis.title.x= element_text(size=11),
             axis.title.y= element_text(size=12,angle=90),
             panel.background = element_blank(),
             panel.border = element_blank(),
             panel.grid.major = element_blank(),
             panel.grid.minor = element_blank(),
-            panel.spacing = unit(1.0, "lines"),
+            # panel.spacing = unit(1.0, "lines"),
             plot.background = element_blank(),
-            axis.line.x = element_line(color="black", size = 1),
+            # axis.line.x = element_line(color="black", size = 1),
             axis.line.y = element_line(color="black", size = 1),
             plot.margin = unit(c(0.5,  0.5, 0.5, 0.5), "lines")
         )
@@ -95,7 +95,8 @@ plot.bootstrappedFacetGroup <- function(df,
                                         savePlot = TRUE, 
                                         preview = TRUE, 
                                         baseline.prob = c(1, 100), 
-                                        add.baseline=TRUE
+                                        add.baseline=TRUE,
+                                        regime.breaks = NULL
     ){
     
     if("time" %in% names(df)) x <-  "time"
@@ -132,6 +133,7 @@ plot.bootstrappedFacetGroup <- function(df,
         rename(baseline = y) %>% 
         dplyr::select(x, baseline)
 
+      
     y_lab <- eval(bquote(expression(bar(.(metric.ind)))))
     
     ## Create the ribboned plot
@@ -144,11 +146,9 @@ plot.bootstrappedFacetGroup <- function(df,
         color="grey", alpha=0.3)+
         theme_mine()+
         theme(legend.position = "top") +
-      
+        xlab("time") + 
         ylab(y_lab) +
-        facet_wrap(facets = ~ prob, ncol = n.col, scales="free_y")+
-        # ylab(expression(bar(y)))
-            ylab(paste0(y))
+        facet_wrap(facets = ~ prob, ncol = n.col, scales="free_y")
     
     fn <- paste0(metric.ind,"_",  method.filter,  "_ribboned_facetByProb", ".png")
     
@@ -161,7 +161,41 @@ plot.bootstrappedFacetGroup <- function(df,
      if(savePlot) ggsave(plot=p.ribbon, path =  figDir, 
            filename = fn) 
 
+    
+    # Save plots for individual regimes
+    if(!is.null(regime.breaks)){
+    
+      for(m in seq_along(regime.breaks)){
+        x_lim <- regime.breaks[[m]] 
+        ribbon.data.regime <- ribbon.data %>% filter(x >= min(x_lim), x <= max(x_lim))
+        baseline.data.regime <- baseline.data %>% filter(x >= min(x_lim), x <= max(x_lim))
+        
+        
+        p.ribbon.regime <-
+          ggplot() +
+          geom_line(data= ribbon.data.regime,  mapping = aes(x=x, y=y)) +
+          geom_ribbon( data=ribbon.data.regime, mapping=aes(x = x,
+                                                     ymin = lower,
+                                                     ymax = upper), na.rm = TRUE,
+                       color="grey", alpha=0.3)+
+          theme_mine()+
+          theme(legend.position = "top") +
+          xlab("time") + 
+          ylab(y_lab) +
+          facet_wrap(facets = ~ prob, ncol = n.col, scales="free_y")+
+          geom_line(data = baseline.data.regime, mapping = aes(x=x,y=baseline), color = "red", linetype = 1, alpha=.4) 
+                     
+       fn <- paste0(metric.ind,"_",  method.filter,  "_ribboned_facetByProb_regime", m, ".png")
+        ggsave(plot=p.ribbon.regime, path =  figDir, 
+                            filename = fn) 
+    }
+    
+      
+      }
+    
     # Export from function to screen or object
     if(preview) return(p.ribbon)
 
     }    
+
+

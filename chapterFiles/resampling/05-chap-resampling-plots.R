@@ -21,7 +21,8 @@ diatoms <- TRUE # do you want to analyze the Spanbuaer data? if not, program wil
 # Create directories to store results, figures, load data etc.
 dirs <- createDirs(dirNameInd=ifelse(diatoms==TRUE, "diatoms","dummy")) # creates dirs if null and IDs
 dataDir <- dirs$summaryResultsDir
-figDir <- dirs$figDir
+# figDir <- dirs$figDir
+figDir <- dirs$tempFigDir
 
 
 # Load summarizes results ------------------------------------------------------------
@@ -54,6 +55,7 @@ for(i in seq_along(results)){
 
         if(nrow(myDf)==0)stop("data frame is empty -- this should not be")
         
+        
 ##############################    
 plot.bootstrappedFacetGroup(
   df = myDf,
@@ -61,13 +63,22 @@ plot.bootstrappedFacetGroup(
   method.filter =  myMethods[h],
   preview = TRUE, 
   add.baseline=TRUE, 
-  savePlot = TRUE
+  savePlot = TRUE, 
+  regime.breaks = list(
+    c(-6894,-4800),
+    c(-2500,-2000), 
+    c(-2000, -1600),
+    c(-1300, -1000)
+    
+    )
 )
 ##############################      
 
     
   }
- }
-}  
+      }
+      
+    }  
+
 
 
