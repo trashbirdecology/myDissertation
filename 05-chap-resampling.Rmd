@@ -10,9 +10,9 @@ loadFig<-function(fn){paste0(figDir,fn,".png")}
 ## Introduction 
 Ecological systems have many unpredictable and variably interacting components (Jørgensen et al. 2011). Methods for analyzing these complex systems, e.g. Dynamic Bayesian Networks, network models, and food webs are designed to handle these complexities, yet require data- and knowledge-intensive models. Although ecological data collection and data management techniques are improving (La Sorte et al. 2018), the aforementioned approaches to modeling and understanding complex system are often infeasible in ecosystem research and management (Clements et al. 2015). 
 
-A growing concern with anthropogenic impacts on the environment has increased the demand for mathematical and statistical techniques that capture these dynamics. These often undesirable changes in the structure or functioning of ecological systems are often referred to as “regime shifts”, “regime changes”, “state change”, “abrupt change”, etc. (Andersen et al. 2009) . A yet-unattained goal of ecological research and management is to reach a point where these methods can predict impending regime shifts in real-time and with high confidence. Ideally, ecological regime shift detection methods (hereafter, regime detection measures) would require little knowledge of the intrinsic drivers of the system, and the users of the method would not be required to know if and where a regime shift occurred in the data. 
+A growing concern with anthropogenic impacts on the environment has increased the demand for mathematical and statistical techniques that capture these dynamics. These often undesirable changes in the structure or functioning of ecological systems are often referred to as *regime shifts*, *regime changes*, *state change*, *abrupt change*, etc. (Andersen et al. 2009) . A yet-unattained goal of ecological research and management is to reach a point where these methods can predict impending regime shifts in real-time and with high confidence. Ideally, ecological regime shift detection methods (hereafter, regime detection measures) would require little knowledge of the intrinsic drivers of the system, and the users of the method would not be required to know if and where a regime shift occurred in the data. 
 
-Despite the suite of regime detection measures in the environmental and ecological research literatures, they are not used in ecological management. We can describe the current state of regime detection measures as being either system–specific (i.e., the method is not widely applicable or generalizable across systems) or not. Methods of the latter type are convenient in that they can be applied across various system and data types, but the results of these analyses require some degree of subjective interpretation (Clements and Ozgul 2018; c.f. Batt et al. 2013). Efforts to develop and/or improve regime detection measures that can handle these biases will aid the advance of regime detection measures research and application. 
+Despite the suite of regime detection measures in the environmental and ecological research literatures, they are not used in ecological management. We can describe the current state of regime detection measures as being either system specific (i.e., the method is not widely applicable or generalizable across systems) or not. Methods of the latter type are convenient in that they can be applied across various system and data types, but the results of these analyses require some degree of subjective interpretation (Clements and Ozgul 2018; c.f. Batt et al. 2013). Efforts to develop and/or improve regime detection measures that can handle these biases will aid the advance of regime detection measures research and application. 
 
 Current efforts to improve regime detection measures may be stunted by the lack of application beyond simple and/or theoretical (toy) systems data. Like most statistical and mathematical approaches, the evolution of many regime detection measures begins with application to theoretical data, followed by application to empirical data. Current applications of regime detection measures to empirical, ecological data are largely limited to data describing populations (e.g., Anderson and Piatt 1999, Alheit et al. 2005, deYoung et al. 2008), climatic, marine (e.g., Lipizer et al. n.d., Nicholls 2011), and Paleolithic regime shifts (Spanbauer et al. 2014, Yang et al. 2017, Kong et al. 2017), with few applications to terrestrial data [*c.f.* Bahlai et al. 2015; @sundstrom2017detecting]. Although testing the performance and inference boundaries of theoretical and simple systems is important, they are of little use to ecosystem managers if they are not proven to be easily and reliably applicable to their system. Additionally, regime detection measures should be capable of handling empirical ecological data are often sparse and noisy.
 
@@ -84,15 +84,18 @@ Interpretation of the regime detection measures used in this analysis are curren
 
 ## Results
 
-In many cases the standard deviation of FI exceeded the mean value of FI as the proportion of data (and observations) used decreased. For example, when when we retained 
+In many cases the standard deviation of FI far exceeded the mean value of FI. I calculated the coeficient of variation (standard deviation divided by the mean), $frac{}{}$, for each . 
+
+as the proportion of data (and observations) used decreased. For example, when when we retained 
 ### Velocity of the distance travelled produces similar results with information loss
 
 ### Variance Index produces 
 
 ### Fisher Information is highly sensitive to information loss 
-When we bootstrap 25% of the species, the ratio of mean Fisher Information to standard deviation of Fisher Information (over `r 1e4` iterations) is always `r < 1`, suggesting Fisher Information does not produce fidel results when information is lost about the system. 
-```{r results, fig.align='center', out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the ratio of mean:standard deviation of the Fisher Information when boostrapping 25% of the species (over 1000 iterations)."}
-knitr::include_graphics(loadFig("fiRatio_densityPlot"))
+
+When we bootstrap 25% of the species, the ratio of mean Fisher Information to standard deviation of Fisher Information (over `r 1e4` iterations) is always $< 1$, suggesting Fisher Information does not produce fidel results when information is lost about the system. 
+```{r results, fig.align='center', out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher  Information bootstrapped samples (10,000 iterations). Densiies based on all values of CV, but values $>100%$ are not printed."}
+knitr::include_graphics(loadFig("FI_cvDensity"))
 ```
 
 ## Discussion 

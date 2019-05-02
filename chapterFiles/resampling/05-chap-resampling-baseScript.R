@@ -1,7 +1,7 @@
 # About -------------------------------------------------------------------
 # this is the script for analysing data for the rsampling chapter, which  explores the impact of data quality and information on various RDMs
 # Setup -------------------------------------------------------------------
-# rm(list=ls())
+rm(list=ls())
 
 library(caTools)
 library(kedd)

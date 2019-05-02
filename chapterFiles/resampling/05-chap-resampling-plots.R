@@ -57,36 +57,35 @@ for(i in seq_along(results)){
         if(nrow(myDf)==0)stop("data frame is empty -- this should not be")
         
         
-##############################    
-plot.bootstrappedFacetGroup(
-  df = myDf.all,
-  metric.ind = myMetrics[j],
-  method.filter =  myMethods[h],
-  preview = TRUE, 
-  add.baseline=TRUE, 
-  savePlot = TRUE, 
-  regime.breaks = list(
-    c(-6894,-4800),
-    c(-2500,-2000), 
-    c(-2000, -1600),
-    c(-1300, -1000)
-    )
-)
+##############################   
+# plot.bootstrappedFacetGroup(
+#   df = myDf.all,
+#   metric.ind = myMetrics[j],
+#   method.filter =  myMethods[h],
+#   preview = TRUE,
+#   add.baseline=TRUE,
+#   savePlot = TRUE,
+#   regime.breaks = list(
+#     c(-6894,-4800),
+#     c(-2500,-2000),
+#     c(-2000, -1600),
+#     c(-1300, -1000)
+#     )
+# )
 ##############################    
         
 
 # Plot density of error to mean ratio
 ##############################  
 
-if( h > 1 )next() # only need to plot this one time per metric
-plot.densityMeanSdRatio(data = myDf.all,
-                        mymetric = myMetrics[i], 
-                        figDir = figDir)
+if(h == 1) plot.densityCV(data = myDf.all,
+                        mymetric = myMetrics[j], 
+                        figDir = figDir
+                        )
       
 ##############################      
 
-
-      } # end j-loop (myMetrics)
+        } # end j-loop (myMetrics)
       } # end h-loop (myMethods)
     }  # end i-loop (individual metrics)
 

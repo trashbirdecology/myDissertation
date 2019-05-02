@@ -202,26 +202,50 @@ plot.bootstrappedFacetGroup <- function(df,
 # Plot density ratio ------------------------------------------------------
 
 ## plots a density ratio faceted by method and colored by probability. Only one figure spits into Temp fig dir per METRIC (e.g., FI, VI, dsdt, ds)
-plot.densityMeanSdRatio <- function(data=myDf.all, 
+plot.densityCV <- function(data=myDf.all, 
                                     mymetric,
                                     figDir = figDir
 ){
 
+## create some aesthetic and functional labels
   metric.ind <-paste0(mymetric,".mean")
   metric.ind2 <-paste0(mymetric,".sd")
   
-  temp.data <-  myDf.all %>% filter(prob<1 & !(method %in% c("dominance", "Dominance", "DOMINANCE")) )
+  x.lab <- ifelse(mymetric=="FI",'Fisher Information',
+                    ifelse(mymetric=="VI", "Variance Index",
+                           ifelse(mymetric=="s", "distance travelled (s)",
+                           mymetric
+                           )))
+  x.lab <- paste0("CV of ", mymetric)
  
-  p <- 
-    ggplot(data = temp.data)+
-    geom_density(aes(x=!!sym(metric.ind)/!!sym(metric.ind2), color=as.factor(prob)))+
-    theme_mine()+
-    theme(legend.position="bottom")+
-    scale_color_manual(name="test", values=c("black",'grey70',"grey30"), labels=paste0(levels(as.factor(temp.data$prob*100)), "%"))+ 
-    facet_wrap(~method, scales="free") +
-    labs(xlab = "ratio of mean FI: sd FI" )
+   
   
-  my.fn<- paste0(figDir, "/densityRatio_", mymetric ,".png")
+## subset the data
+  temp.data <-  myDf.all %>% filter(prob<1 & !(method %in% c("dominance", "Dominance", "DOMINANCE"))) %>% 
+    filter(!is.na(!!sym(metric.ind)), 
+           !is.na(!!sym(metric.ind2))) %>% 
+    mutate(cv = 100 * !!sym(metric.ind2)/!!sym(metric.ind)) 
+  
+  
+  
+  x.max <- ifelse(max(temp.data$cv) > 100,
+                 100,
+                 max(temp.data$cv))
+   
+   
+## build and save plot
+    p <- ggplot(data = temp.data)+
+            geom_density(aes(x=abs(cv), color=as.factor(prob)))+
+            coord_cartesian(xlim=c(0, x.max))+
+            facet_wrap(~method, scales="free") +
+            theme_mine()+
+            theme(legend.position="bottom")+
+            scale_color_manual(name="% data retained", values=c("black",'grey30',"grey70"), labels=paste0(levels(as.factor(temp.data$prob*100)), "%"))+ 
+            xlab(x.lab)+
+              ylab("density\n")
+    
+  p  
+  my.fn<- paste0(figDir, "/", mymetric ,"_cvDensity",".png")
   ggsave(p,filename=my.fn , width=6, height = 4)
   print(paste0("printing density plot to file. See ", my.fn))
 
