@@ -423,7 +423,7 @@ ggplot(paleoEx %>%
 
 The smoothed velocity (\@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (\@ref(fig:paleoV)) to the non-smoothed velocity (\@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, but more clearly identifies the inter-regime dynamics (e.g., between 7,000 and 4,800 years before present).
 
-```{r paleoV, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+```{r paleoV,  eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, message=FALSE}
 # Plot derivative
 ggplot(paleoEx %>% 
          filter(key == "dsdt"), 
