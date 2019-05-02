@@ -198,3 +198,31 @@ plot.bootstrappedFacetGroup <- function(df,
     }    
 
 
+
+# Plot density ratio ------------------------------------------------------
+
+## plots a density ratio faceted by method and colored by probability. Only one figure spits into Temp fig dir per METRIC (e.g., FI, VI, dsdt, ds)
+plot.densityMeanSdRatio <- function(data=myDf.all, 
+                                    mymetric,
+                                    figDir = figDir
+){
+
+  metric.ind <-paste0(mymetric,".mean")
+  metric.ind2 <-paste0(mymetric,".sd")
+  
+  temp.data <-  myDf.all %>% filter(prob<1 & !(method %in% c("dominance", "Dominance", "DOMINANCE")) )
+ 
+  p <- 
+    ggplot(data = temp.data)+
+    geom_density(aes(x=!!sym(metric.ind)/!!sym(metric.ind2), color=as.factor(prob)))+
+    theme_mine()+
+    theme(legend.position="bottom")+
+    scale_color_manual(name="test", values=c("black",'grey70',"grey30"), labels=paste0(levels(as.factor(temp.data$prob*100)), "%"))+ 
+    facet_wrap(~method, scales="free") +
+    labs(xlab = "ratio of mean FI: sd FI" )
+  
+  my.fn<- paste0(figDir, "/densityRatio_", mymetric ,".png")
+  ggsave(p,filename=my.fn , width=6, height = 4)
+  print(paste0("printing density plot to file. See ", my.fn))
+
+  }

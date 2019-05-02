@@ -1,8 +1,9 @@
 # About -------------------------------------------------------------------
-# this is the script for analysing data for the rsampling chapter, which  explores the impact of data quality and information on various RDMs
+# this is the script for PLOTTING the summarised results for the resampling chapter, 
+# which explores the impact of data quality and information on various RDMs
 # Setup -------------------------------------------------------------------
 
-rm(list=ls())
+# rm(list=ls())
 
 ## Libs
 library(tidyverse)
@@ -58,7 +59,7 @@ for(i in seq_along(results)){
         
 ##############################    
 plot.bootstrappedFacetGroup(
-  df = myDf,
+  df = myDf.all,
   metric.ind = myMetrics[j],
   method.filter =  myMethods[h],
   preview = TRUE, 
@@ -69,16 +70,25 @@ plot.bootstrappedFacetGroup(
     c(-2500,-2000), 
     c(-2000, -1600),
     c(-1300, -1000)
-    
     )
 )
+##############################    
+        
+
+# Plot density of error to mean ratio
+##############################  
+
+if( h > 1 )next() # only need to plot this one time per metric
+plot.densityMeanSdRatio(data = myDf.all,
+                        mymetric = myMetrics[i], 
+                        figDir = figDir)
+      
 ##############################      
 
-    
-  }
-      }
-      
-    }  
+
+      } # end j-loop (myMetrics)
+      } # end h-loop (myMethods)
+    }  # end i-loop (individual metrics)
 
 
 
