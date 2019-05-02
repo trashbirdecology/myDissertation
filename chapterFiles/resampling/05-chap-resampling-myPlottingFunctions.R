@@ -1,5 +1,4 @@
 ## functions for PLOTTING
-
 ## My plotting theme
 theme_mine <- function(base_size = 12,
                        base_family = "Times"
