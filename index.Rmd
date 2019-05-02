@@ -8,7 +8,7 @@ department: 'School of Natural Resources'
 degree: 'Doctor of Philosophy'
 title: 'Regime Detection Measures for the Practical Ecologist'
 knit: "bookdown::render_book"
-site: bookdown::bookdown_site
+# site: bookdown::bookdown_site
 output: 
  thesisdown::thesis_pdf: default
     # includes:
