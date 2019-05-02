@@ -4,7 +4,7 @@
 # Chunk defaults
 # require(knitr)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center', out.width = "85%")
-figDir <- here::here("chapterFiles/resampling/figsCalledInDiss/")
+figDir <- here::here("chapterFiles/resampling/figsCalledInDiss//")
 loadFig<-function(fn){paste0(figDir,fn,".png")}
 ```
 ## Introduction 
@@ -68,7 +68,7 @@ Fisher Information ($I$) is essentially calculted as the area under the curve of
 
 I describe this method in detail in Chapter \@ref(fiGuide).
 
-#### Calculating Fisher Information and Variance Index using moving window analysis
+#### Using moving window analysis to calculate  Fisher Information and Variance Index
 Unlike $velocity$, the Variance Index and Fisher Information are calculated using moving window analysis. That is, over the entire time series, $T^*$, these metrics are calculated within multiple windows of time, $T$. In this approach, all state variables, $x_i$, are used to inform the calculations (of Variance Index and Fisher Information) over a time interval, $T$, where $T$ is the length in [time] units of the time interval and satisfies the following conditions: $T < T^*$ and  $2\leq T < (T^*-1)$. If $T = T^*-1$, then only a single value of the metrics will be calculated for entire time series, which does not allow for any estimate of change. 
 
 When using these metrics in the context of identifying abrupt changes in ecological systems data across $T*$, it is ideal the value of $T$ meets the following conditions: $3 < T \ll T^*-1$. The length of a time window dictates the number of calculations one can obtain over $T^*$, such that the number of potential metric calulations increases as $\frac{T}{\ T^*}$ decreases. Previous applications of moving window analyses to calculate Fisher Information found that at least eight observations (time points) should be used. 
@@ -84,6 +84,16 @@ Interpretation of the regime detection measures used in this analysis are curren
 
 ## Results
 
+In many cases the standard deviation of FI exceeded the mean value of FI as the proportion of data (and observations) used decreased. For example, when when we retained 
+### Velocity of the distance travelled produces similar results with information loss
+
+### Variance Index produces 
+
+### Fisher Information is highly sensitive to information loss 
+When we bootstrap 25% of the species, the ratio of mean Fisher Information to standard deviation of Fisher Information (over `r 1e4` iterations) is always `r < 1`, suggesting Fisher Information does not produce fidel results when information is lost about the system. 
+```{r results, fig.align='center', out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the ratio of mean:standard deviation of the Fisher Information when boostrapping 25% of the species (over 1000 iterations)."}
+knitr::include_graphics(loadFig("fiRatio_densityPlot"))
+```
 
 ## Discussion 
 

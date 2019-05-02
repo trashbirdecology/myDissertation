@@ -1,7 +1,7 @@
 # About -------------------------------------------------------------------
 # this is the script for analysing data for the rsampling chapter, which  explores the impact of data quality and information on various RDMs
 # Setup -------------------------------------------------------------------
-rm(list=ls())
+# rm(list=ls())
 
 library(caTools)
 library(kedd)
@@ -106,7 +106,7 @@ ggplot(myDf.long) + geom_line(aes(
   theme_classic() +
   theme(legend.position = 'none') +
   ylab("relative abundance") +
-  ggsave(paste0(figDir,"origDataRelAbundance.png"))
+  ggsave(paste0(figDir,"/origDataRelAbundance.png"))
 
 ggplot(myDf.long %>% 
                    distinct(time) %>% 
@@ -117,7 +117,7 @@ ggplot(myDf.long %>%
   theme_classic() +
   theme(legend.position = 'none') +
   ylab("time since last observation") +
-  ggsave(paste0(figDir,"timeElapsed.png"))
+  ggsave(paste0(figDir,"/timeElapsed.png"))
 
 
 

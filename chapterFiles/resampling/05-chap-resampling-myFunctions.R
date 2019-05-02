@@ -573,6 +573,9 @@ summariseResults <-
         results.temp = purrr::map_df(list.files(dataDir, full.names = TRUE, pattern = my.ind),
                                      read_feather)
         
+        if(any(c("Dominance", "dominance", "DOMINANCE") %in% myMethods[j])) results.temp %>% 
+          filter(nDraw == 1)
+        
         
         ## Summarise the DISTANCES
         if (str_detect(string = dataDir, pattern = "distance")) {
