@@ -76,7 +76,6 @@ ipak <- function(pkg){
 # devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)
 # devtools::install_github("trashbirdecology/regimedetectionmeasures", force = FALSE)
 # devtools::install_github("natbprice/tvdiff", force = FALSE)
-
 ```
 
 ```{r loadPkgs, include=FALSE }

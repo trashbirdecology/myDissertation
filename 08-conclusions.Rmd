@@ -1,4 +1,4 @@
-# Conclusions {#conclusions}
+# Conclusions {}
 \begin{equation}
 \begin{split}
 Data  & = Information \\

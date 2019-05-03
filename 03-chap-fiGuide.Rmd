@@ -265,7 +265,7 @@ We will now demonstrate this using our model system as an example. Suppose the a
 Now that we understand how to calculate both the distance traveled, $s$, and its probability density, $p(s)$, calculating the derivatives-based FI is straightforward and computationally inexpensive \@ref(eq:fiDerivs). There are several comparable equations for calculating the shift-invariant FI, and some may offer numerical advantages over others. Equation \@ref(eq:fiAdapted) is the general form and Equation \@ref(eq:fi73c) is the amplitude form for FI (in @mayer_applications_2007, respectively). Although these formulations are equivalent, \@ref(eq:fi73c) is most readily calculated when the differential equations for the system are known, obviating any advantage of a model-free metric. 
 
 \begin{equation}   
-    $$I = \frac{1}{T} \int_0^T dt\left[\frac{s''^2}{s'^4}\right]^2$$ \\  
+    I=\frac{1}{T}\int_0^Tdt\left[\frac{s''^2}{s'^4}\right]^2 \\  
   (\#eq:fiDerivs)  
 \end{equation} 
 
