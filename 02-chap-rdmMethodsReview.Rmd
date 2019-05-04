@@ -1,6 +1,10 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # A brief overview of ecological regime detection methods methods {#rdmReview}    
-
-```{r cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE, eval=TRUE, results="hide"}
+```{r knitrSetup2, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE, eval=TRUE, results="hide"}
 # Chunk defaults
 knitr::opts_chunk$set(
           cache = TRUE, cache.path = "_cache/",
@@ -12,15 +16,12 @@ out.width = "85%")
 ```
 
 ## Introduction
-
 >*If a regime shift occurs and no one detects it--is it a regime shift at all?*
-
-- **No** when a regime shift is defined as a change in a system which negatively impacts humans. 
-- **Yes** when a regime shift is defined simply as a shift in the underlying strucutre of a system. 
+**No**, if the regime shift is defined as a change in a system which negatively impacts humans. **Yes** if the regime shift is defined simply as a shift in the underlying strucutre of a system. 
 
 Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist [@mac2014scrutiny; @scheffer2015generic; @rodionov_brief_2005; @roberts2018early; @dakos2015resilience; @mantua_methods_2004; @litzow_early_2016; @kefi2014early; @andersen_ecological_2009; @boettiger_early_2013; @dakos_resilience_2015; @clements2018indicators; @filatova2016regime; @deyoung_regime_2008], the most comprehensive presentation of available methods as they is outdated [@rodionov_brief_2005]* ^[I also refer the reader to @kefi2014early and @yin2017methods spatial methods, and to @ducre2003comparison select tests for homogeneity in climate data.]
 
-There is currently not a single, current resource to which the practical ecologist can refer when identifying or researching  potential regime detection measures. Previous reviews of this literature vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. Following the style of @rodionov_brief_2005, I present a brief, yet exhaustive, over regime detection measures in the ecological literature. I then sugest next steps for ameliorating the plethora of regime detection measures in ecology. 
+There is currently not a single, current resource to which the practical ecologist can refer for identifying  potential regime detection measures. Previous reviews of this literature vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. Following the style of @rodionov_brief_2005, I present a brief, yet exhaustive, over regime detection measures in the ecological literature. I then sugest next steps for ameliorating the plethora of regime detection measures in ecology. 
 
 ## Methods 
 
@@ -37,9 +38,9 @@ I first queried the Thomson-ISI Web of Science (WoS) database (on 06 March 2019)
 
 where '*' indicates a wildcard. 
 
-Limiting the search to 'Ecology' and 'Biodiversity Conservation' (by adding AND WC=(Ecology OR 'Biodiversity Conservation') to the above boolean) excludes many climatological and does not search the data science/computer science liteartures, where change-point analyses are abundant. However, because this dissertation is focused more on multivariate methods in ecology, this is not an issue. 
+Limiting the search to the fields of 'Ecology' and 'Biodiversity Conservation' (by adding AND WC=(Ecology OR 'Biodiversity Conservation') to the above boolean) excludes many methods used solely in climatology and data science/computer science literatures, where change-point analyses are abundant. Although numerous additional methods could be identified by searching these fields, this dissertation focuses on using methods for analysing *multivariable* data. Consequently, many of the time-series and change-point analyses excluded in this review are not of relevance. 
 
-Next, I filtered the results to identify articles which propose a 'new' method by retaining papers which included at least one of the following phrases in the title and/or abstract:
+I filtered the results to identify articles which propose a 'new' method by retaining papers which included at least one of the following phrases in the title and/or abstract:
  > 'new method', 'novel method', 'new approach', 'new practical method', 'new simple method', 'new multivariate method', 'new tool', 'novel tool', 'novel multivarte', 'novel approach', 'new numerical', 'novel numerical', 'new quantitative', 'novel quantitative', 'i introduce', 'we introduce'
 
 #### Prior knowledge and snowball method
@@ -99,10 +100,6 @@ ggplot(wos.regime.plotData %>%
 
 Filtering this WoS results to include only articles mentioning terms related to 'new method' yielded 202 articles. After removing prior knowledge, only 93 articles remained to be reviewed 'by hand' (i.e., reading the entire paper). Only 2 'new' methods were identified from the WoS search (\@ref(fig:rdmReviewFlow)). 
 
-### Google Scholar and prior knowledge
-
-Of the `r 250` articles scanned in Google Scholar, I retained 3 methods. I was previously aware of an additional 68 articles containing 'new' methods (\@ref(fig:rdmReviewFlow)). 
-
 ```{r rdmReviewFlow, echo=FALSE, message=FALSE, warning=FALSE, out.width="95%", fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods."}
 webshot::install_phantomjs()
 tempGraph <- DiagrammeR::grViz(
@@ -136,17 +133,26 @@ prior -> data4
 knitr::include_graphics("./chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png")
 ```
 
-### List of new methods
+### Google Scholar and prior knowledge
+Of the `r 250` articles scanned in Google Scholar, I retained 3 methods. I was previously aware of an additional 68 articles containing 'new' methods (\@ref(fig:rdmReviewFlow)).
 
+### Regime detection methods identified in review
 ```{r methodsMetricsListTab1, echo=FALSE}
 require(kableExtra, quietly = T)
 long_dt <- finalMetricsList  %>%
-  mutate(label2 = paste0("@",myLabel1)) %>%
-  dplyr::select(method, type1,label2 )
+  mutate(Source = paste0("\\@", myLabel1)) %>%
+  dplyr::select(method, type1, Source ) %>% 
+  rename(`Metric type`=type1,
+         Method = method) %>% 
+  arrange(`Metric type`, Method)
 
-kable(long_dt, "latex", longtable = T, booktabs = T,   caption = "Longtable") %>%
-# add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
-  kable_styling(latex_options = c("repeat_header"))
+# make the table
+pander::pander(long_dt,
+                     caption = "List of the regime detection methods identified in this review.",
+                     split.cells = c("50%", "20%", "30%"),
+                     justify = c('left', 'center', 'center')
+                     )
+
 ```
 Using my prior knowledge of the relevant litearture, referring to previous review articles, and searching both Web of Science and Google Scholar, I identified `r nrow(finalMetricsList)` unique regime detection measures (Figure \@ref(fig:rdmReviewFlow); Table \@ref(tab:methodsMetricsListTab1)).
 
@@ -190,7 +196,6 @@ ggplot2::ggplot(jrnlTemp) +
   theme(axis.text.y = element_text( hjust = 1, size = 8))
 ```
 
-
 A critical survey of potetial and realized applications of these methods would be useful for highlighting the needs of future research and methodological improvements. Many of the methods presented in Table \@ref(tab:methodsMetricsListTab1) have either not been applied to empirical data at all, or were tested only once (often but not always in the article introducing the method). Some methods, especially those dubbed 'early warning indicators' (variance, autoregressive model coefficients) have become relativley mainstream in their application to empirical data, however, have been shown to be less robust to noisy and nonlinear systems data [@burthe2016early] and systems not exhibiting catstrophic shifts [@dutta2018robustness]. Most other methods have yet to be rigorously tested on noisy, high dimensional, empirical data. Further, the methods which are not mainstream but have been applied to one of these data types have not any statistical indicators associated with confirming the existence and location of the regime shift. 
 
 As shown this chapter, identifying regime detection measures using traditional literature review techniques may prove difficult. Many of the methods identified in my review were not identified using Web of Science or Google Scholar--rather, I was either previously aware of most of the methods, and many others were highlighted in previous RDM reviews. To facilitate this process, an online, comprehensive database may prove useful to the practical ecologist. 
@@ -210,17 +215,16 @@ To make the regime detection measures more available and transparent to the prac
 1. more empirical applications of these methods (especially of those only tested on toy and experimental data)
 1. relation of RDMs in ecology to other fields (computer science, data science, climatology and oceanography)
 
-I suggest below a suite of questions which may provide useful in a critical review of the characteristics, rigor, and promise of methods in the context of ecological data analysis.
+I suggest below (Table \@ref(tab:nextStepsTab)) a suite of questions which may be useful in a critical review of the characteristics, rigor, and promise of methods in the context of ecological data analysis.
 
 ```{r nextStepsTab, echo=FALSE}
 Questions.stat <- c(
-  "What are the major assumptions about the distribution?",
-  "Does the method explicitly assume stationarity? If not, can it handle non-stationary processes?", 
-  "Does the performance of the method change with non-stationarity?",
-  "Can the method handle unstructured data (information)?",
   "Does the regime shift need to be identified *a priori*?",
-  "Can the method handle multiple regime shifts?",
+  "What are the major assumptions about the distribution of the original data?",
+  "Does the method explicitly assume the system/variable is stationary?", 
   "Does the performance of the method change with non-stationarity?",
+  "Can the method handle unstructured data?",
+  "Can the method handle multiple regime shifts?",
   "What types of regime shifts can the method detect (e.g., stochastic resonance, slow-fast cycles, noise-induced transition)?",
   "Is it a model- or metric-based method?", 
   "Does it have forecasting potential?",

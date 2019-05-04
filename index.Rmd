@@ -18,7 +18,7 @@ output:
 # thesisdown::thesis_epub: default
 acknowledgements: |
   <!-- Graduate school itself isn't hard, but the journey is. I have a lot of people and institutions to thank for their emotional, intellectual, financial, and other support. I wish to first highlight how **great it was to be a graduate student at this university and in the School of Natural Resources**. UNL has provided tremendous support at all levels of the university. Although I am not a fan of Nebraska's climate, I highly recommend this school to prospective students.  -->
-  <!-- I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me with this amazing opportunity and for supporting my growth as an independent researcherm and my committee members, Craig Allen, David Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support and advisement, but especially for their comprehensive examination--I found this process transformative, albeit very stress inducing. I also wish to thank Dirac for his comprehensive exam questions--I never knew how much I didn't know until I studied your recommendations. I also thank Craig for supporting my efforts to study and conduct research outside of our immediate geographical settings.  Studying at the International Institute for Applied Systems Analysis was an amazing opportunity! I thank Brian Fath and Elena Rovenskaya for their advisement, members of the Applied Systems Analysis research group for their feedback on my research, and to the postdocs and YSSPers.   I owe thanks to Craig Allen and Kevin Pope for entertaining my many hours of discussion (interrogation?) regarding federal employment. -->
+  <!-- I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me with this amazing opportunity and for supporting my growth as an independent researcher. I thank my also committee members, Craig Allen, David Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support and advisement, but especially for their comprehensive examination--I found this process transformative, albeit very stress inducing. I also wish to thank Dirac for his comprehensive exam questions--I never knew how much I didn't know until I studied your recommendations. I also thank Craig for supporting my efforts to study and conduct research outside of our immediate geographical settings.  Studying at the International Institute for Applied Systems Analysis was an amazing opportunity! I thank Brian Fath and Elena Rovenskaya for their advisement, members of the Applied Systems Analysis research group for their feedback on my research, and to the postdocs and YSSPers.   I owe thanks to Craig Allen and Kevin Pope for entertaining my many hours of discussion (interrogation?) regarding federal employment. -->
   <!-- I would like to especially thank some of the amazing and brilliant **female scientists** in my life for their encouragement: Jane Anderson, Karen Bailey, Hannah Birge, Mary Bomberger Brown, Tori Donovan, Brittany Dueker, Allie Schiltmeyer, Katie Sieving, Erica Stuber,  Becky Wilcox, Carissa Wonkka, and Lyndsie Wszola. I thank these women and others for their contributions to my professional development: David Angeler, Christie Bahlai, Mary Bomberger Brown, John Carroll, Jenny Dauer, John DeLong, Tarsha Eason, Brian Fath, Ahjond Garmestani, Chris Lepczyk, Frank La Sorte, Chai Molina, Zac Warren, Hao Ye. I also thank fellow graduate students whom I hope I have forged strong and lasting connections: Hannah Birge, Tori Donovan, Caleb Roberts, Allie Schiltmeyer, and Lyndsie Wszola. -->
   <!-- I am one of the many graduate students afflicted with mental health "disorders". I am first grafteful to one friend (H) who unknowingly destigmatized mental health in my mind and wihtout whom I may not have sought treatment. I applaud students and faculty who have been outspoken regarding mental health related issues, and I am indebtted to my general practitioner and mental health advocate, Terry Thomas M.A., M.S.N., A.P.R.N.    -->
   <!-- *Financial support*. This research was funded by the U.S. Department of Defense’s Strategic Environmental Research and Development Program (project ID: RC-2510). The University of Nebraska-Lincoln (UNL) has been highy supportive in my doctoral studies and reserach. I am grateful for the generous of donors to the University of Nebraska Foundation, which provided me with two prestigious supplemental fellowships: Fling and Othmer. I also thank the Nelson Family (Nelson Memorial Fellowship) and the Institute of Agriculture and Natural Resources, who funded large portions of my academic and research-related travel. I thank the School of Natural Resources for their financial support in my conference travel. The U.S. National Academy of Sciences generously funded part of my travel to the International Institute for Applied Systems Analysis (IIASA). This financial support provided me not only with invaluabe opportunities to attend and present at national and international conferences and workshops, conduct research abroad, and network--this funding alleviated some financial pressures associated with graduate school which allowed a more refined focus on my dissertation research. The opportunities and experiences provided to me by each funding source were amazing, thank you. -->
@@ -48,28 +48,29 @@ instlLoadPkgs <- function(packages, install = TRUE) {
   {library(package_name,character.only=TRUE, quietly = TRUE);}
 }
 
-myPackages <- c( "tidyverse", 
-  "rmarkdown", 
-  "ggplot2", "ggthemes", "gapminder",
-                      "devtools", "here", "dplyr", 
-                     "bookdown", 
-  # "envalysis", # publish theme plots
-  "kableExtra", "gganimate", "sp", "raster", 
-                      "feather", "maps", 
-                      # "inlabru", # not sure why i was using this...
-                      "gridExtra", 
-                      "kedd", "caTools", "deSolve","segmented", # for chapter 3
-                      "DiagrammeR", # for chapter 2 (flow chart figure (grViz))
-                      "webshot", # a bug with diagrammer requires me to use this when printing to .pdf
-                      "revtools" # import tidy bibtex
-                      )
-
-ipak <- function(pkg){
-    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-    if (length(new.pkg)) 
-        install.packages(new.pkg, dependencies = TRUE)
-    suppressMessages(sapply(pkg, library, character.only = TRUE))
-}
+myPackages <- c( "tidyverse",
+                 "pander",
+                 "rmarkdown",
+                 "ggplot2", "ggthemes", "gapminder",
+                 "devtools", "here", "dplyr",
+                 "bookdown",
+                 # "envalysis", # publish theme plots
+                 "kableExtra", "gganimate", "sp", "raster",
+                 "feather", "maps",
+                 # "inlabru", # not sure why i was using this...
+                 "gridExtra",
+                 "kedd", "caTools", "deSolve","segmented", # for chapter 3
+                 "DiagrammeR", # for chapter 2 (flow chart figure (grViz))
+                 "webshot", # a bug with diagrammer requires me to use this when printing to .pdf
+                 "revtools" # import tidy bibtex
+                 )
+                 
+                 ipak <- function(pkg){
+                 new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+                 if (length(new.pkg))
+                 install.packages(new.pkg, dependencies = TRUE)
+                 suppressMessages(sapply(pkg, library, character.only = TRUE))
+                 }
 
 
 # Re-install often as these packages are in  development.
@@ -99,6 +100,10 @@ knitr::opts_chunk$set( cache = TRUE, cache.path = "_cache/",
                       # include=FALSE, 
                       fig.pos = 'h',
                       fig.align='center', out.width = "85%")
+```
+
+```{r panderOpts, cache=TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+panderOptions('knitr.auto.asis', TRUE)
 ```
 
 # Abstract {.unnumbered}
