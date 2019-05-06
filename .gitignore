@@ -7,7 +7,6 @@
 .DS_Store
 
 # remove builds
-!**/_myDissertation.pdf
 **/_myDissertation.tex
 **/_myDissertation.rmd
 _bookdown_files/
