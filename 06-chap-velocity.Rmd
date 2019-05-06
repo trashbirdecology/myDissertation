@@ -178,9 +178,9 @@ if(length(files) == 0){
 if(quickRun){
 dist.sim <- do.call("rbind", lapply(paste0("./chapterFiles/velocity/simResults/",files),
 		feather::read_feather))
-dist.sim <- saveRDS(dist.sim, "./chapterFiles/velocity/simResults/distSim.RDS")
+dist.sim <- saveRDS(dist.sim, "./chapterFiles/velocity/simResults/distSim_meanx1.RDS")
 }
-dist.sim <- readRDS( "./chapterFiles/velocity/simResults/distSim.RDS")
+dist.sim <- readRDS( "./chapterFiles/velocity/simResults/distSim_meanx1.RDS")
 
 ```
 #### Varying post-shift mean
@@ -214,7 +214,6 @@ ggplot(data = dist.sim.reduced)+
   ggtitle(expression(paste("Mean ",  italic("v")," ($\\pm 2$ SD) over ", 10,000, " iterations")))
 ```
 ```{r simVar,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
-
 files <- list.files("./chapterFiles/velocity/simResults", pattern= "var_x1")
 
 if(quickRun) files <- files[1:500] # when knitting thesis for minor edits...
@@ -223,8 +222,13 @@ if(length(files) ==0){
   var.analy = TRUE
   source("./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R")
 }
+if(quickRun){
 dist.sim <- do.call("rbind", lapply(paste0("./chapterFiles/velocity/simResults/",files),
 		feather::read_feather))
+dist.sim <- saveRDS(dist.sim, "./chapterFiles/velocity/simResults/distSim_varx1.RDS")
+}
+
+dist.sim <- readRDS( "./chapterFiles/velocity/simResults/distSim_varx1.RDS")
 
 dist.sim.reduced <- dist.sim %>% filter(t==51) %>% 
          group_by(var.sim) %>% 
@@ -393,13 +397,13 @@ ggplot(plotData, aes(x = sortVar*-1, y = value))+
         panel.border = element_rect(colour = "black"))+
         labs(x = "years before 1950")+
      scale_x_reverse()+
-  geom_vline(xintercept = 1300, color="red",linetype=2)+
-  geom_vline(xintercept = c(1383, 2150, 4800), color="blue",linetype=3)
+  geom_vline(xintercept = 1300, color="red",size=.8, linetype=2)+
+  geom_vline(xintercept = c(1383, 2150, 4800), color="blue",linetype=3, size=.8)
 ```
 1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950       
 1. The periods before the first and after the second large shifts appear oscillatory (Fig. \@ref(fig:paleoRegime1and3)).  
 
-```{r paleoRegime1and3,  echo=FALSE, warning=F, message=F, cache = T, fig.pos="T", fig.cap ="Velocity $v$ indicates periodic-like conditions in the first (*a*) and second (*b*) regimes."}
+```{r paleoRegime1and3,  echo=FALSE, warning=F, message=F, cache = T, fig.pos="T", fig.cap ="Velocity ($v$) indicates periodic-like conditions in the first (*a*) and second (*b*) regimes."}
 
 p1=ggplot(plotData %>% filter(sortVar < -5000, key=="v"), aes(x = sortVar*-1, y = value))+
   geom_line()+
@@ -434,7 +438,7 @@ ggplot(paleoEx %>%
        aes(x = t, y = value, color = key, linetype = key)) +
   geom_line(size = 1.2) +
   labs(x = "time",
-       y = "cummulative change in state")
+       y = "cumulative change in state (s)")
 ```
 
 The smoothed velocity (\@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (\@ref(fig:paleoV)) to the non-smoothed velocity (\@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, but more clearly identifies the inter-regime dynamics (e.g., between 7,000 and 4,800 years before present).
