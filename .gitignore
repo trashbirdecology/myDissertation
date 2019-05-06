@@ -10,7 +10,13 @@
 **/_myDissertation.tex
 **/_myDissertation.rmd
 _bookdown_files/
-_myDissertation_files/figure-latex/
+_myDissertation_files/figure-html/*.png
+_myDissertation_files/figure-html/*.pdf
+_myDissertation_files/figure-latex/*.png
+_myDissertation_files/figure-latex/*.pdf
+
+_myDissertation_cache/
+
 !myDissertation/chapterFiles/fiGuide/figures/
 !myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png/
 chapterFiles/appendix_predPreyExample/plots/.png

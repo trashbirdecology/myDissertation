@@ -4,6 +4,7 @@
 set.seed(123)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',out.width = "85%")
 ```
+
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 library(magrittr)
 library(tidyverse)
@@ -172,8 +173,15 @@ if(length(files) == 0){
   mean.analy = TRUE
   source("./chapterFiles/velocity/06-chap-velocity_exampleAnalysis.R")
 }
+
+# Save this for knitting entire diss (takes a while.)
+if(quickRun){
 dist.sim <- do.call("rbind", lapply(paste0("./chapterFiles/velocity/simResults/",files),
 		feather::read_feather))
+dist.sim <- saveRDS(dist.sim, "./chapterFiles/velocity/simResults/distSim.RDS")
+}
+dist.sim <- readRDS( "./chapterFiles/velocity/simResults/distSim.RDS")
+
 ```
 #### Varying post-shift mean
 I examined the influence of the magnitude of change in $x_1$ in the period before (pre; $t <50$) and after (post; $t \geq 50$) by varying the mean parameter, $\bar{x}_1$ in the set $W=\{25,30,35,...100 \}$ (Figs. \@ref(fig:simVplot1),\@ref(simVplot2)). As expected, the magnitude of $v$ increased linearly as the total difference between $\bar{x}_{1_{pre}}$ and $\bar{x}_{1_{post}}$ increased (\@ref(fig:simVplot2)). This is not surprising, as $s$ increases as the total change in abundance across the entire sytem increases  (Eq. \@ref(eq:s)), therefore, the potential maximum of $v$ also increases. This may indicate that $v$, while capable of identifying large shifts in data structure, may not pick up subtle changes (i.e. lower effect sizes).

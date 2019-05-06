@@ -56,7 +56,6 @@ v =\frac{\Delta s}{\Delta t}
 (\#eq:velocityEq)
 \end{equation}
 
-
 #### Variance Index  
 The Variance Index was introduced by @brock_variance_2006, and is simply defined asthe maximum eigenvalue of the covariance matrix of the system over some period (window) of time. The Variance Index (also called Variance Indicator) was originally applied to a modelled system [@brock_variance_2006], and has since been applied to empirical data [@spanbauer_prolonged_2014; @sundstrom2017detecting]. Although rising variance has been useful in many real systems (van Nes and Scheffer 2003, Brock et al. 2006, Carpenter and Brock 2006), the Variance Index, which is intended for multivariate data,  appears most useful when the system exhibits a discontinuous regime shift [@brock_variance_2006].
 
@@ -95,7 +94,7 @@ Ad lorem ipsum blahblahlhba
 
 When we bootstrap 25% of the species, the ratio of mean Fisher Information to standard deviation of Fisher Information (over $10,000$ iterations) is always $< 1$, suggesting Fisher Information does not produce fidel results when information is lost about the system. 
 
-```{r results, out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher  Information bootstrapped samples (10,000 iterations). Densiies based on all values of CV, but values >100% are not printed."}
+```{r results, out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher  Information bootstrapped samples (10,000 iterations). Densities based on all values of CV, but values >100% are not printed."}
 knitr::include_graphics(loadFig("FI_cvDensity"))
 ```
 
