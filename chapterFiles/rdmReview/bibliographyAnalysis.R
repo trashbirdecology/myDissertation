@@ -73,11 +73,11 @@ wos.filtered.change <- full_join(wos.filtered.change.ti, wos.filtered.change.abs
 
 # Keep the intersection of these
 wos.filtered <- full_join(wos.filtered.change, wos.filtered.meth)
+nrow(wos.filtered)
 
 # Create this for use in plots later on 
 wos.filtered.regime.ti <- myFilterFun(words = regime.filter, df = wos.results, columnName = "title")
 wos.filtered.regime <- full_join(wos.filtered.regime.ti, wos.filtered.regime.abs)
-
 
 # Read in methods of which I was already aware ----------------------------
 prior.fil <- read_bibliography(paste0(rdm.dir, "/reviewResults/", "priorRdmReview_20190304_filtered.csv")) %>% as_tibble() %>% 
@@ -88,7 +88,6 @@ wos.fil <- read_bibliography(paste0(rdm.dir, "/reviewResults/", "wosRdmReview_20
 prior.dois <- c(prior.fil$doi, wos.fil$doi)
 
 # Merge all data to see which are new to me -------------------------------
-
 # Filter by labels on WOS results
 label.temp <- setdiff(wos.filtered.meth$label, wos.fil$label)
 # FIlter by DOIs
@@ -99,8 +98,8 @@ wos.withoutPrior <- wos.filtered.meth %>% filter(label %in% label.temp |
                                doi %in% doi.temp)
 
 # Save to file so I can edit by hand
-write_csv(wos.withoutPrior, 
-          path = paste0(temp.dir, "wos_withoutPrior.csv"))
+# write_csv(wos.withoutPrior, 
+#           path = paste0(temp.dir, "wos_withoutPrior.csv"))
 
 
 
@@ -118,12 +117,6 @@ wos.regime.plotData <- wos.filtered.regime %>%
   ungroup() %>% 
   mutate(year = as.integer(year))
 
-#################### PART II - PLOTS ################
-theme_set(theme_bw())
-# set a figure path for saving permanent figures
-fig.path <- paste0(rdm.dir, "/figures/figsCalledInDiss/")
-
-# Visualize regime.filter publications (orig data from boolean on WoS) --------
 
 # Read in the final list of results from WOS search.  ---------------------
 
@@ -140,3 +133,7 @@ finalMetricsList <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_
 # Read in the .bib associated with the final metricsMethodList ------------
 finalMetricsList.bib <- read_bibliography(paste0(rdm.dir, "/", "methodsMetricsList.bib")) %>% as_tibble() 
 
+# Visualize regime.filter publications (orig data from boolean on WoS) --------
+theme_set(theme_bw())
+# set a figure path for saving permanent figures
+fig.path <- paste0(rdm.dir, "/figures/figsCalledInDiss/")
