@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # A brief overview of ecological regime detection methods methods {#rdmReview}
 ```{r knitrSetup2, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE, eval=TRUE, results="hide"}
 # Chunk defaults
@@ -190,7 +185,9 @@ A few patterns appear in analyses of the intellectual structure of regime shift 
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph_75quantile.png"))
 ```
 ## Previous reviews of methods
-Numerous reviews have summarised a portion of the RDMs proposed in the literature , and even fewer review the efficacy or robustness of many RDMs using real world ecological data. Further, these reviews are increasingly out-dated given the uptick in recent years of research articles focused on regime shift theory and detection. A permanent and open-source database containing information critical to the implementation of RDMs would be a useful resource for those interested in applying RDMs but lacking the statistical or mathematical background to do so. 
+Numerous reviews of the regime shift literature exist, including a few specially reviewing the available regime detection methods. Fewer have reviewed the efficacy or robustness of multiple RDMs using real world ecological data [but see @;@;@]. 
+
+Further, these reviews are increasingly out-dated given the uptick in recent years of research articles focused on regime shift theory and detection. A permanent and open-source database containing information critical to the implementation of RDMs would be a useful resource for those interested in applying RDMs but lacking the statistical or mathematical background to do so. 
 
 [@rodionov_brief_2005; @roberts2018early; @mantua_methods_2004; @andersen_ecological_2009; @dakos2015resilience; @mac2014scrutiny; @scheffer2015generic; @boettiger_early_2013;  @litzow_early_2016; ] 
 

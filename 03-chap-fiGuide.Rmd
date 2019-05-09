@@ -1,7 +1,3 @@
----
-output:
-  pdf_document: default
----
 # Decoupling the Calculation of Fisher Information {#fiGuide}    
 
 _This chapter is intended for submission to the publication *Methods in Ecology and Evolution* ^[Co-authors include: N.B. Price, A.J. Tyre,  D.G. Angeler, T. Eason,  D. Twidwell, and C.R. Allen]._
