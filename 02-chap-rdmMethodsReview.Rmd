@@ -174,8 +174,6 @@ knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInD
 ```
 
 Four major themes were identified in the ISI keyword analysis and, interestingly, mostly fell within the two extreme quadrants, the first and the third (Figure \@ref(fig:thematicMaps_keyword_isi)). The themes identified by ISI keywords were much larger in scope (e.g, dymamics, ecosystems, climate; (Figure \@ref(fig:thematicMaps_keyword)a) than those identified in the author keywords (e.g., eutrophication, trophic cascade; Figure \@ref(fig:thematicMaps_keyword)b). Regime shifts and [ecosystem/population] dynamics are usually have both high centrality and density (Figure \@ref(fig:thematicMaps_keyword)b:d), suggesting these two themes are both important to the development of the field and still strongly influence the field. Although dynamics (i.e. non-linearity) plays a central role in the theory of ecological systems this is not reflected in many case studies of regime shifts in application [@litzow_early_2016]. @litzow_early_2016 found that $\sim50%$ of case studies using early warning indicators to identify regime shifts in time series actually tested and/or accounted for non-linear dymamics in the data.  
-
-
 ```{r thematicMaps_keyword_nvaries, fig.cap="Theme (cluster) identification varies with the number of keywords included in algorithm."}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps_keywords_nVaries_author.png"))
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps_keywords_nVaries_isi.png"))
@@ -187,48 +185,22 @@ A few patterns appear in analyses of the intellectual structure of regime shift 
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph_75quantile.png"))
 ```
 
-## State of the regime shift method literature
-
-It appears the most influential papers in this field (based solely on number of citations) were published in the late 2000s (Fig \@ref(fig:totArtCitesPerYear)), articles of which are very broad in-scope and are still used today to frame studies in the context of global change, planetary boundaries, and large-scale tipping points [@rockstrom2009planetary;@smith2009eutrophication; @bennett2009understanding]. Arguably equally as influential include the papers corresponding to the observed rapid increase in the number of publications (in the early 2000s), @folke2004regime and @scheffer2003catastrophic (Fig \@ref(fig:totArtCitesPerYear)).
+It appears the most influential papers in this field (based solely on number of citations) were published in the late 2000s (Fig \@ref(fig:totArtCitesPerYear)), articles of which are very broad in-scope and are still used today to frame studies in the context of global change, planetary boundaries, and large-scale tipping points [@rockstrom2009planetary;@smith2009eutrophication; @bennett2009understanding]. Arguably equally as influential include the papers corresponding to the observed rapid increase in the number of publications (in the early 2000s), @folke2004regime and @scheffer2003catastrophic (Fig \@ref(fig:totArtCitesPerYear)). 
 ```{r totArtCitesPerYear, fig.cap="Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s."}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear.png"))
 ```
 
-
-
-```{r totArtCitesPerYear, fig.cap="Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s."}
-knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear.png"))
+```{r revArtNums, fig.cap="Total number of articles published per year by category as categorized by ISI. Book chapters, proceedings, editorials, and letters are excluded."}
+knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/revArtNums.png"))
 ```
 
+Numerous reviews of the regime shift literature exist, ranging from conceptual reviews of the state of regime shift theory in ecology and application [e.g., @bestelmeyer_analysis_2011;@mac2014scrutiny;@andersen_ecological_2009], to studies of robustness of early warning indicators under various theoretical and practical conditions [e.g., @dutta2018robustness; @perretti2012regime; @lindegren2012early; @hastings2010regime; Figure \@ref(fig:revArtNums)]. Further, comprehensive reviews of the ecological regime shift detetion literautre are increasingly out-dated. A permanent and open-source database containing information critical to the testing, comparison, and implementation of RDMs may prove useful to the reader who is interested in applying RDMs but is lacking the statistical or mathematical background to do so. 
 
+The early warning indicators that are often referred to as, "traditional early warning indicators" (variance, skewness, autocorrelation at lag-1) are fairly well-reviewed, and have been tested under a variety of conditions [@dakos2012method;@ditlevsen2010tipping;@lindegren2012early;@boettiger2010regime;@sommer2017generic;@perretti2012regime;@dutta2018robustness;@litzow_early_2016]. However, many of these works apply the traditional (and other) early warning indicators to simulated data, with only some [@contamin_indicators_2009;@perretti2012regime;@dutta2018robustness;@dakos2012robustness] testing under varying conditions of noise and expected shift types. The utility and robustness of the traditional early warning indicators is not consistent across and within sytems, making them of limited utility in situations where the system cannot be reliably mathematically modelled, or where we have limited data [see also Ch. \@ref(resampling)]. The authors of most reviews and comparative studies of early warning indicators suggest that no early warning indicator is reliable alone, or that work is needed to understand under what empirical conditions early warning indicators might fail [@kefi2014early; @clements2018indicators;  @filatova2016regime; @deyoung_regime_2008].
 
-
-Numerous reviews of the regime shift literature exist, ranging from conceptual reviews of the state of regime shift theory in ecology [@], to studies of robustness of early warning indicators under various theoretical and practical conditions [@dutta2018robustness; @perretti2012regime; @lindegren2012early; @hastings2010regime].
-
-including a few specially reviewing the available regime detection methods. Fewer have reviewed the efficacy or robustness of multiple RDMs using real world ecological data [but see @;@;@]. 
-
-Further, these reviews are increasingly out-dated given the uptick in recent years of research articles focused on regime shift theory and detection. A permanent and open-source database containing information critical to the implementation of RDMs would be a useful resource for those interested in applying RDMs but lacking the statistical or mathematical background to do so. 
-
-[@rodionov_brief_2005; @roberts2018early; @mantua_methods_2004; @andersen_ecological_2009; @dakos2015resilience; @mac2014scrutiny; @scheffer2015generic; @boettiger_early_2013;  @litzow_early_2016; ] 
-
-[ @dakos2010regime; @ditlevsen2010tipping ]
-
- @kefi2014early; 
- ; @clements2018indicators; 
- @filatova2016regime; 
- @deyoung_regime_2008
- 
-It is thought by many that, should we assume a system exists in a statsitically-steady state, an abrupt shift can be identified prior to a system crossing a critical threshold (or tipping point).
-
-
-a synthetic review of these methods 
 
 ## A synthesis of the methods available for the practical ecologist 
-Many of the methods identified in this review have yet to be tested on multiple, empirical datum (see Table \@ref(tab:methodsMetricsListTab1)). 
-
-
-
-I categorize the regime detection methods as one of either model-free or model-dependent. Model-free and model-dependent methods are those which do and do not require a mechanistic model to describe the system, respectively. Because many of the model-dependent methods are based on autoregressive modelling apporaches, this is highlighted in the model-dependent section. 
+Many of the methods identified in this review have yet to be tested on multiple, empirical datum (see Table \@ref(tab:methodsMetricsListTab1)).  I categorize the regime detection methods as one of either model-free or model-dependent. Model-free and model-dependent methods are those which do and do not require a mechanistic model to describe the system, respectively. Because many of the model-dependent methods are based on autoregressive modelling apporaches, this is highlighted in the model-dependent section. 
 
 ### Model-depdendent
 Model-dependent require a mechanistic (mathematical) representation of the system, models which often carry strict assumptions that are easily violated by empirical systems [@abadi2010assessment]. Model-dependent methods are usefully categorized are used under two contexts: differentiable systems of equations or autoregressive. The methods relying on mechanistic models include model descriptions of systems with many, dynamic and interacting components. For example, models are used to reconstruct trophic food webs where prey or predator collapse induces trophic regime shifts in freshwater lake systems [@carpenterXXXX; @schefferXXX]. 

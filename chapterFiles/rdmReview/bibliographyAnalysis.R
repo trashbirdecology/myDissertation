@@ -3,7 +3,7 @@ require(tidyverse)
 require(revtools)
 require(dplyr)
 
-if(!exists("rdm.dir")) rdm.dir <- "./chapterfiles/rdmReview"
+if(!exists("rdm.dir")) rdm.dir <- here::here("/chapterfiles/rdmReview")
 
 # Create some helper funs -------------------------------------------------
 # Create a function for filtering variables by abstrac,t title, etc. 
