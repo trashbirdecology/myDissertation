@@ -173,7 +173,8 @@ The clustering algorithm identified fewer clusters (themes) in the ISI-keywords 
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps_keywords.png"))
 ```
 
-Four major themes were identified in the ISI keyword analysis and, interestingly, mostly fell within the two extreme quadrants, the first and the third (Figure \@ref(fig:thematicMaps_keyword_isi)). The themes identified by ISI keywords were much larger in scope (e.g, dymamics, ecosystems, climate; (Figure \@ref(fig:thematicMaps_keyword)a) than those identified in the author keywords (e.g., eutrophication, trophic cascade; Figure \@ref(fig:thematicMaps_keyword)b). Regime shifts and [ecosystem/population] dynamics are usually have both high centrality and density (Figure \@ref(fig:thematicMaps_keyword)b:d), suggesting these two themes are both important to the development of the field and still strongly influence the field.
+Four major themes were identified in the ISI keyword analysis and, interestingly, mostly fell within the two extreme quadrants, the first and the third (Figure \@ref(fig:thematicMaps_keyword_isi)). The themes identified by ISI keywords were much larger in scope (e.g, dymamics, ecosystems, climate; (Figure \@ref(fig:thematicMaps_keyword)a) than those identified in the author keywords (e.g., eutrophication, trophic cascade; Figure \@ref(fig:thematicMaps_keyword)b). Regime shifts and [ecosystem/population] dynamics are usually have both high centrality and density (Figure \@ref(fig:thematicMaps_keyword)b:d), suggesting these two themes are both important to the development of the field and still strongly influence the field. Although dynamics (i.e. non-linearity) plays a central role in the theory of ecological systems this is not reflected in many case studies of regime shifts in application [@litzow_early_2016]. @litzow_early_2016 found that $\sim50%$ of case studies using early warning indicators to identify regime shifts in time series actually tested and/or accounted for non-linear dymamics in the data.  
+
 
 ```{r thematicMaps_keyword_nvaries, fig.cap="Theme (cluster) identification varies with the number of keywords included in algorithm."}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps_keywords_nVaries_author.png"))
@@ -181,11 +182,30 @@ knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInD
 ```
 
 A few patterns appear in analyses of the intellectual structure of regime shift research in ecology (Figure \@ref(fig:historiograph)). First, although the concept of stability, thresholds, and multiple stable states in ecological systems first appeared (and was well-receieved) in the literature in the 1970s [e.g., @holling1973resilience; @may1977thresholds], the most important papers in this field appeared primarily in the early and mid 2000s [@scheffer2003catastrophic;@carpenter2006rising;@folke2004regime; @walker2004; @van2005implications]. The most recent major contributions to the field were concpetual works emphasizing planetery boundaries and tiping points and the impacts of not recognizing these shifts [@hughes2013living;@hughes2013multiscale]. Finally, the "rise" of resilience theory [@folke2004regime; @walker2004], the first efforts of a search for early warning indicators of ecological regime shifts [@carpenter2006rising] and a spur of critique of regime shift detection methods [@andersen_ecological_2009;@contamin_indicators_2009] are recognized in the historiograph.
+
 ```{r historiograph, fig.cap="Chronological direct citation newtwork suggests the intellectual structure can be mapped to a few papers. This historiograph identifies important works explicitly in chronological, as opposed to absolute, order."}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph_75quantile.png"))
 ```
-## Previous reviews of methods
-Numerous reviews of the regime shift literature exist, including a few specially reviewing the available regime detection methods. Fewer have reviewed the efficacy or robustness of multiple RDMs using real world ecological data [but see @;@;@]. 
+
+## State of the regime shift method literature
+
+It appears the most influential papers in this field (based solely on number of citations) were published in the late 2000s (Fig \@ref(fig:totArtCitesPerYear)), articles of which are very broad in-scope and are still used today to frame studies in the context of global change, planetary boundaries, and large-scale tipping points [@rockstrom2009planetary;@smith2009eutrophication; @bennett2009understanding]. Arguably equally as influential include the papers corresponding to the observed rapid increase in the number of publications (in the early 2000s), @folke2004regime and @scheffer2003catastrophic (Fig \@ref(fig:totArtCitesPerYear)).
+```{r totArtCitesPerYear, fig.cap="Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s."}
+knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear.png"))
+```
+
+
+
+```{r totArtCitesPerYear, fig.cap="Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s."}
+knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear.png"))
+```
+
+
+
+
+Numerous reviews of the regime shift literature exist, ranging from conceptual reviews of the state of regime shift theory in ecology [@], to studies of robustness of early warning indicators under various theoretical and practical conditions [@dutta2018robustness; @perretti2012regime; @lindegren2012early; @hastings2010regime].
+
+including a few specially reviewing the available regime detection methods. Fewer have reviewed the efficacy or robustness of multiple RDMs using real world ecological data [but see @;@;@]. 
 
 Further, these reviews are increasingly out-dated given the uptick in recent years of research articles focused on regime shift theory and detection. A permanent and open-source database containing information critical to the implementation of RDMs would be a useful resource for those interested in applying RDMs but lacking the statistical or mathematical background to do so. 
 
