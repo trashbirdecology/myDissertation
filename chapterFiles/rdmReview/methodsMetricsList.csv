@@ -12,7 +12,7 @@ n,,,"andersen_ecological_2009,",A review of some methods for detecting regime sh
 ,n,Coefficient of variation (CV),,,,,,,,statistical signature,,,metric,n,,,,,,,,,,,
 ,n,Skewness,guttal2008changing,,,,,,,statistical signature,,,metric,n,,,,,,,,,,,
 ,n,Kurtosis,biggs2009turning,,,,,,,statistical signature,,,metric,n,,,,,,,,,,,
-,,Conditional heteroskedasticity,seekell2011conditional,,,,,,,statistical signature,,,metric,n,,,,,,,,,,,
+,n,Conditional heteroskedasticity,seekell2011conditional,,,,,,,statistical signature,,,metric,n,,,,,,,,,,,
 ,,BDS test,carpenterBrock2011early,,,,,,,,,,metric,n,,,,,,,,,,,
 ,,Multivariable autoregressive models (MAR1),ives2012detecting,,,,Requires model selection efforts to identify a MAR1,,,supervised,,,model,n,,,memory,,,,,,,,
 ,,Nonparametric drift-diffusion-jump model,carpenter2011early,,,,,,,supervised,,,model,n,,,memory,,,,,,,,
