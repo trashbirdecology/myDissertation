@@ -103,3 +103,7 @@ _myDissertation.lot
 _myDissertation.toc
 _book/_myDissertation.tex
 _myDissertation.aux
+03-chap-fiGuide_cache/docx/__packages
+03-chap-fiGuide_cache/latex/__packages
+05-chap-resampling_cache/html/__packages
+05-chap-resampling_cache/latex/__packages
