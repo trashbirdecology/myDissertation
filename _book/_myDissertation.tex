@@ -341,80 +341,74 @@ This dissertation is accompanied by the vignettes for two software I created, wh
 \emph{If a regime shift occurs and no one detects it--is it a regime shift at all?}
 \textbf{No}, if the regime shift is defined as a change in a system which negatively impacts humans. \textbf{Yes} if the regime shift is defined simply as a shift in the underlying strucutre of a system.
 \end{quote}
-Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. There exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data. Despite the already large number of existing methods and models, new methods continue to permeate the literature. Although reviews of regime shift detection methods exist (Andersen, Carstensen, Hern??ndez-Garc??a, \& Duarte, 2009; Boettiger, Ross, \& Hastings, 2013; Clements \& Ozgul, 2018; Dakos et al., 2015a, 2015b; deYoung et al., 2008; Filatova, Polhill, \& Ewijk, 2016; Kefi et al., 2014; Litzow \& Hunsicker, 2016; Mac Nally, Albano, \& Fleishman, 2014; Mantua, 2004; Roberts et al., 2018; S. N. Rodionov, 2005; Scheffer, Carpenter, Dakos, \& Nes, 2015), the most comprehensive presentation of available methods as they is outdated (S. N. Rodionov, 2005)*\footnote{I also refer the reader to Kefi et al. (2014) and Yin, Leroux, \& He (2017) spatial methods, and to Ducré-Robitaille, Vincent, \& Boulet (2003) select tests for homogeneity in climate data.}
+Long-lasting changes in the underlying structure or functioning of natural systems due to exogeneous forcings (also called regime shifts) is of interest to ecologists. The ability to identify and predict these shifts is particularly useful for systems which are actively managed, provide ecosystem services, or provide benefit to societiy. Despite the utility of identifying and refining the regime detection methods (or early warning signals or indicators), there exists a disparity among the number of methods proposed for detecting abrupt changes in ecological, oceanographic, and climatological systems and the studies evaluating these methods using empircal data (@ Hawkins, Bohn, \& Doncaster, 2015). Further, new methods continue to permeate the literature despite this disparity. Although reviews of regime shift detection methods exist (Andersen, Carstensen, Hern??ndez-Garc??a, \& Duarte, 2009; Boettiger, Ross, \& Hastings, 2013; Clements \& Ozgul, 2018; Dakos et al., 2015a, 2015b; deYoung et al., 2008; Filatova, Polhill, \& Ewijk, 2016; Kefi et al., 2014; Litzow \& Hunsicker, 2016; Mac Nally, Albano, \& Fleishman, 2014; Mantua, 2004; Roberts et al., 2018; S. N. Rodionov, 2005; Scheffer, Carpenter, Dakos, \& Nes, 2015), the most comprehensive presentation of available methods as they is outdated (S. N. Rodionov, 2005)*\footnote{I also refer the reader to Kefi et al. (2014) and Yin, Leroux, \& He (2017) spatial methods, and to Ducré-Robitaille, Vincent, \& Boulet (2003) select tests for homogeneity in climate data.}
 
-There is currently not a single, current resource to which the practical ecologist can refer for identifying potential regime detection measures. Previous reviews of this literature vary in both the number and detail of the methods presented. This chapter is meant to serve as an addendum, of sorts, to previous reviews. Following the style of S. N. Rodionov (2005), I present a brief, yet exhaustive, over regime detection measures in the ecological literature. I then sugest next steps for ameliorating the plethora of regime detection measures in ecology.
+Perhaps given the sheer number of methods available, there is not currently a single, comprehensive source to which the practical ecologist can refer for identifying potential regime detection measures. Prior reviews of this literature vary in both the number and detail of the methods presented, often focusing on a single aspect of regime shift theory (Andersen et al., 2009), or relaying methods to disciplinary audiences (Roberts et al., 2018). Here I present a brief, systematic review of the methods proposed as what I will call regime detection methods (RDMS) in the ecological literature. I also synthesize the RDMs which are designed to identify ecological regime shifts under uncertainty. I.e., when the regime shift is not hypothesized \emph{a priori}.
+
+Methods proposed for detecting ecological regime shifts (RDMs) are not easily identified using systematic literature review techniques for several reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields (Andersen et al., 2009). For example, the terms, \emph{regime shifts, regime changes and tipping points} are variably used in studies of ecological systems, whereas \emph{inhomogeneities} is common in meterology and climatology and \emph{structural change} is largely confined to econometrics. Although semantics vary both within and across disciplines (e.g., a regime shift vs.~a structural change), many methods are shared or concurrently applicable. Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publication outlets with aims of disemminating new quantitative methods (e.g., \emph{Ecological Modelling}, \emph{Methods in Ecology and Evolution}). Rather, many new methods are published in journals with refined (e.g., \emph{Entropy}, \emph{Progress in Oceanography}), as opposed to broader scope scopes (e.g., \emph{Ecology} and \emph{Nature}).
+
+Some RDMs require the use of mechanistic models however some methods fall into the category of model-independent (or model-free), or they require only simple autoregressive (AR) models. In most situations, the practical ecologist will have insufficient data or a limited understanding of the system with which to parameterize even the simplest mechanistic models. The regime detection measures requiring only a limited or no understanding of the mechanisms generating the observed data, I synthesize the utility of these methods here. Further, I synthesize methods not requiring an \emph{a priori} hypothesis about if and where the regime shift occurred.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
-Methods proposed as RSDMs are not easily identified using systematic literature review techniques for a few reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields. For example, the terms, \emph{regime shifts, regime changes and tipping points} are variably used in studies of ecological systems, whereas \emph{inhomogeneities} is common in meterology and climatology and \emph{structural change} is largely confined to econometrics. Although the definition of, e.g., a regime shift and a structural change vary across and within fields of study, some methods are shared.
+To identify the extent to which these methods are not obvious to the practical ecologist, I conducted a systematic literature review. I attemped to identify original papers which introduce new, quantiative RDMs. Although the review method was to detect as many methodological papers as possible, most RDMs of which I was previously aware were not identified using a systematic technique. Therefore, while highlighting the literature search results, I also provide the missing methods. Finally, I synthesize the methods which may be of most utility to the practical ecologist who wishes to identify, rather than confirm, the presence of an ecological regime shift, placing emphasis on methods which can handle multivariable datum coupled with a limited understanding of system dynamics.
 
-Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publications that focus primarily on quantitative methodologies (e.g., \emph{Ecological Modelling}, \emph{Methods in Ecology and Evolution}) or in general ecology journals (e.g., \emph{Ecology}). Instead, they are often published in journals with audiences that may not necessarily overlap with typical searches of the ecological litearture (e.g., \emph{Entropy}, \emph{Progress in Oceanography}).
+\hypertarget{identifying-candidate-articles}{%
+\subsection{Identifying candidate articles}\label{identifying-candidate-articles}}
 
-I conducted a systematic literature review to identify original papers introducing quantiative regime detection measures. Although the literature review was designed to detect as many methodological papers as possible, most methods of which I was previous aware were not identified in this search. Therefore, I filled the gaps using prior knowledge and an informal search using Google Scholar.
-\#\#\# Identifying candidate articles
+\hypertarget{identifying-regime-detection-methods}{%
+\subsubsection{1. Identifying regime detection methods}\label{identifying-regime-detection-methods}}
 
-\hypertarget{web-of-science}{%
-\subsubsection{Web of Science}\label{web-of-science}}
+Candidate articles were identified for two reasons: 1) a bibliographic analysis of regime shift relevant papers in ecology and 2) to identify regime detection methods proposed in the literature. The data used for the latter (identify methods) are a subset of the data used for the former (bibliographic analysis).
 
 I first queried the Thomson-ISI Web of Science (WoS) database (on 06 March 2019) to identify articles which mention terms related to regime shifts, or abrupt changes, using the following boolean:
-\textgreater{} TS=((`regime shift' OR `regime shifts' OR `regime change' OR `regime changes' OR `catastrophic change' OR `catastrophic shift' OR `catastrophic changes' OR `catastrophic shifts' OR `sudden change' OR `sudden changes' OR `abrupt shift' OR `abrupt shifts OR 'abrupt change' OR `abrupt changes' OR bistab* OR threshol* OR hystere* OR `phase shift' OR `phase shifts' OR `phase change' OR `phase changes' OR `step change' OR `step changes' OR `stepped change' OR `stepped changes' OR `tipping point' OR `tipping points' OR `stable states' OR `stable state' OR `state change' OR `state changes' OR `stark shift' OR `stark change' OR `stark shifts' OR `stark changes' `structural change' OR `structural changes' OR `change-point' OR `change point' OR `change-points' OR `change point' OR `break point' OR `break points' OR `observational inhomogeneity' OR `observational inhomogeneities') AND (`new method' OR `new approach' OR `novel method' OR `novel approach'))
+\textgreater{} TS=((``regime shift'' OR ``regime shifts'' OR ``regime change'' OR ``regime changes'' OR ``catastrophic change'' OR ``catastrophic shift'' OR ``catastrophic changes'' OR ``catastrophic shifts'' OR ``sudden change'' OR ``sudden changes'' OR ``abrupt shift'' OR ``abrupt shifts'' OR ``abrupt change'' OR ``abrupt changes'' OR bistab* OR threshol* OR hystere* OR ``phase shift'' OR ``phase shifts'' OR ``phase change'' OR ``phase changes'' OR ``step change'' OR ``step changes'' OR ``stepped change'' OR ``stepped changes'' OR ``tipping point'' OR ``tipping points'' OR ``stable states'' OR ``stable state'' OR ``state change'' OR ``state changes'' OR ``stark shift'' OR ``stark change'' OR ``stark shifts'' OR ``stark changes'' ``structural change'' OR ``structural changes'' OR ``change-point'' OR ``change point'' OR ``change-points'' OR ``change point'' OR ``break point'' OR ``break points'' OR ``observational inhomogeneity'' OR ``observational inhomogeneities'') AND (``new method'' OR ``new approach'' OR ``novel method'' OR ``novel approach''))
 
 where '*' indicates a wildcard.
 
-Limiting the search to the fields of `Ecology' and `Biodiversity Conservation' (by adding AND WC=(Ecology OR `Biodiversity Conservation') to the above boolean) excludes many methods used solely in climatology and data science/computer science literatures, where change-point analyses are abundant. Although numerous additional methods could be identified by searching these fields, this dissertation focuses on using methods for analysing \emph{multivariable} data. Consequently, many of the time-series and change-point analyses excluded in this review are not of relevance.
+Limiting the search to the fields of `Ecology' and `Biodiversity Conservation' (by including WC=(Ecology OR `Biodiversity Conservation') to the above boolean) excludes many methods used solely in climatology, physics, and data science/computer science literatures, where change-point analyses are abundant. Although additional methods could be identified by searching these fields, this dissertation focuses on using methods for analysing \emph{multivariable} data. Consequently, many methods for analysing abrupt breaks in a single longitudinal data are excluded in this review.
 
-I filtered the results to identify articles which propose a `new' method by retaining papers which included at least one of the following phrases in the title and/or abstract:
-\textgreater{} `new method', `novel method', `new approach', `new practical method', `new simple method', `new multivariate method', `new tool', `novel tool', `novel multivarte', `novel approach', `new numerical', `novel numerical', `new quantitative', `novel quantitative', `i introduce', `we introduce'
+To obtain a reasonable number of articles I further filtered the results to identify articles which propose a `new' method by retaining papers which included at least one of the following phrases in the title and/or abstract:
+\textgreater{} `new method', `novel method', `new approach', `new practical method', `new simple method', `new multivariate', `new tool', `novel tool', `novel multivarte', `novel approach', `new numerical', `novel numerical', `new quantitative', `novel quantitative', `i introduce', `we introduce'
 
-\hypertarget{prior-knowledge-and-snowball-method}{%
-\subsubsection{Prior knowledge and snowball method}\label{prior-knowledge-and-snowball-method}}
+I removed articles from this query based on both prior knowledge (in my personal database) and those highlighted in previous reviews related to regime detection measures (Andersen et al., 2009; Boettiger et al., 2013; Clements \& Ozgul, 2018; Dakos et al., 2015a, 2015b; deYoung et al., 2008; Filatova et al., 2016; Kefi et al., 2014; Litzow \& Hunsicker, 2016; Mantua, 2004; Roberts et al., 2018; S. N. Rodionov, 2005; Scheffer et al., 2015).
 
-Next; I removed articles from the above search (WoS) results based on both prior knowledge (in my personal database) and those highlighted in previous reviews related to regime detection measures (Andersen et al., 2009; Boettiger et al., 2013; Clements \& Ozgul, 2018; Dakos et al., 2015a, 2015b; deYoung et al., 2008; Filatova et al., 2016; Kefi et al., 2014; Litzow \& Hunsicker, 2016; Mantua, 2004; Roberts et al., 2018; S. N. Rodionov, 2005; Scheffer et al., 2015).
-
-\hypertarget{google-scholar}{%
-\subsubsection{Google Scholar}\label{google-scholar}}
-
-There was a high disparity among the number of methods of which I was previously aware and those identified in an initial Web of Science review. In an attempt to collect as many new methods as possible, I conducted an informal search of the Google Scholar database, which is notoriously broader in scope. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I arbitrarily skimmed the titles of the first 25 pages of the Google Scholar results (25 pages = 250 articles). It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean:
+There appeared disparity among the number of methods of which I was previously aware and those identified in an initial Web of Science review. In an attempt to identify as many new methods as possible I conducted an informal search of the Google Scholar database, a database notoriously broader in scope than other academic dataabses. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I arbitrarily skimmed the titles of the first 25 pages of the Google Scholar results (25 pages = 250 articles). It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean to identify these articles in Google Scholar:
 \textgreater{} (`regime shift' OR `regime change' OR `tipping point') AND (`new method' OR `new approach' OR `novel method' OR `novel approach')
 
-\hypertarget{additional-filtering}{%
-\subsubsection{Additional filtering}\label{additional-filtering}}
+The candidate articles identified by Google Scholar and Web of Science contained numerous articles proposing a new framework for identifying regime shifts rather than new methods. As this chapter concerns the latter (new methods) I exluded these by removing articles proposing a ``new'' combination of previously-used methods (see Kong et al., 2017; Seddon, Froyd, Witkowski, \& Willis, 2014; Vasilakopoulos, Raitsos, Tzanatos, \& Maravelias, 2017). I also did not consider papers which made relatively minor adjustments or recommendations to existing methods (Zhou \& Shumway, 2008; but see K. Nicholls et al., 2011 for an addition of variable optimization to the method in @nicholls\_detection\_2011 that was not included in the results) or articles proposing new methodologies in mathematical journals (Byrski \& Byrski, 2016; Salehpour, Gustafsson, \& Johansson, 2011) that have yet to be associated with or tested on ecological data, or suggested to be useful for empirical data.
 
-In addition to using the abovementioned search booleans, I excluded the following types of articles: those which proposed a combination of previously-used methods (e.g., PCA combined with other techniques, see Kong et al., 2017; Seddon, Froyd, Witkowski, \& Willis, 2014; Vasilakopoulos, Raitsos, Tzanatos, \& Maravelias, 2017) as a `novel' method; those making relatively minor methodological updates/additions to existing methods (Zhou \& Shumway, 2008; but see K. Nicholls et al., 2011 for an addition of variable optimization to the method in @nicholls\_detection\_2011 that was not included in the results); and articles proposing new methodologies in mathematical journals (Byrski \& Byrski, 2016; Salehpour, Gustafsson, \& Johansson, 2011) that have yet to be associated with or tested ecological data, or suggested to be useful for empirical data.
+\hypertarget{bibliographic-analysis-of-ecological-regime-shift-literature}{%
+\subsubsection{2. Bibliographic analysis of ecological regime shift literature}\label{bibliographic-analysis-of-ecological-regime-shift-literature}}
+
+The stil vague definition of ecological regime shifts has led to a breadth of articles exploring systemic changes in nature. As such I conducted an exploratory bibliographic analysis of the ecological regime shift literature. To achieve this, I identified candidate articles in Web of Science using a boolean containing words relating to regime shift and restricting the fields to Ecology and Biodiversity Conservation:
+\textgreater{} TS=(``regime shift'' OR ``regime shifts'' OR ``regime change'' OR ``regime changes'' OR ``catastrophic change'' OR ``catastrophic shift'' OR ``catastrophic changes'' OR ``catastrophic shifts'' OR ``sudden change'' OR ``sudden changes'' OR ``abrupt shift'' OR ``abrupt shifts'' OR ``abrupt change'' OR ``abrupt changes'') AND WC=(``Ecology'' OR ``Biodiversity Conservation'')
+
+I constructed a variety of networks based on co-citation and keyword co-occurrence metrics to identify trends in the current state and development of the ecological regime shift literature. I used the package R \texttt{bibliographix} (Aria \& Cuccurullo, 2017) to construct the networks, whih uses various algorithms to statistically identify clusters. I focus results on keywords and concept themes, rather than citations and author dominance, in an attempt to undertand the evolution of regime shift methodologies in the ecological (and biodiversity conservation) literature.
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\hypertarget{literature-review-results}{%
+\subsection{1. Literature review results}\label{literature-review-results}}
+
+\includegraphics{_myDissertation_files/figure-latex/wosRegimePubsByJrnlmin10Pubs-1.pdf}
+The search boolean for WoS boolean \emph{not} including restriction to fields (WC) `Ecology' and `Conservation Biology' yielded over 20,000 results. Restricting to the abovementioned fields created a manageable database from which to filter. This search yielded 2,776 articles. 654 of these papers included terms relating to `regime shifts' (Figure \ref{fig:wosRegimePubsByYear}), many appearing in the journal \emph{Ecological Modelling} (Figure \ref{fig:wosRegimePubsByJrnlmin10Pubs}). The rate of publication of `regime shift' articles is not strongly correlated with the rate of papers published in `Ecology' and `Biodiversity Conservation' fields (Figure \ref{fig:wosRegimePubsByYearwithNumEcolPubs}).
 \begin{figure}
 \centering
 \includegraphics{_myDissertation_files/figure-latex/wosRegimePubsByYear-1.pdf}
 \caption{\label{fig:wosRegimePubsByYear}Number of publications by year in fields `Ecology' and `Biodiversity Conservation' which included terms related to `regime shift' (total = 654).}
 \end{figure}
-\hypertarget{results}{%
-\section{Results}\label{results}}
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/wosRegimePubsByJrnlmin10Pubs-1.pdf}
-\caption{\label{fig:wosRegimePubsByJrnlmin10Pubs}Distribution of the `regime shift' articles for journals with at least 10 articles.}
-\end{figure}
-\hypertarget{web-of-science-1}{%
-\subsection{Web of Science}\label{web-of-science-1}}
-
-The search boolean for WoS boolean \emph{not} including restriction to fields (WC) `Ecology' and `Conservation Biology' yielded over 20,000 results. Restricting to the abovementioned fields created a manageable database from which to filter. This search yielded 2,776 articles. 654 of these papers included terms relating to `regime shifts' (Figure \ref{fig:wosRegimePubsByYear}), many appearing in the journal \emph{Ecological Modelling} (Figure \ref{fig:wosRegimePubsByJrnlmin10Pubs}). The rate of publication of `regime shift' articles is not strongly correlated with the rate of papers published in `Ecology' and `Biodiversity Conservation' fields (Figure \ref{fig:wosRegimePubsByYearwithNumEcolPubs}).
+Filtering the Web of Science results by including only articles mentioning terms related to `new method' yielded 202 articles. After removing prior knowledge, only 93 articles remained to be reviewed `by hand' (i.e., reading the entire paper). Of those reviewed I identified 2 `new' methods (\ref{fig:rdmReviewFlow}). Similarly, of the 250 articles reviewed from the Google Scholar search, I retained only 3 methods. I was previously aware of an additional 68 articles containing `new' methods (\ref{fig:rdmReviewFlow}), approximately half of which were identified using the abovementioned techniques.
 \begin{figure}
 \centering
 \includegraphics{_myDissertation_files/figure-latex/wosRegimePubsByYearwithNumEcolPubs-1.pdf}
 \caption{\label{fig:wosRegimePubsByYearwithNumEcolPubs}Number of publications by year in fields `Ecology' and `Biodiversity Conservation' which included terms related to `regime shift' (total = 654).}
 \end{figure}
-Filtering this WoS results to include only articles mentioning terms related to `new method' yielded 202 articles. After removing prior knowledge, only 93 articles remained to be reviewed `by hand' (i.e., reading the entire paper). Only 2 `new' methods were identified from the WoS search (\ref{fig:rdmReviewFlow}).
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{./chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph} \caption{Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods.}\label{fig:rdmReviewFlow}
 \end{figure}
-\hypertarget{google-scholar-and-prior-knowledge}{%
-\subsection{Google Scholar and prior knowledge}\label{google-scholar-and-prior-knowledge}}
-
-Of the 250 articles scanned in Google Scholar, I retained 3 methods. I was previously aware of an additional 68 articles containing `new' methods (\ref{fig:rdmReviewFlow}).
-
-\hypertarget{regime-detection-methods-identified-in-review}{%
-\subsection{Regime detection methods identified in review}\label{regime-detection-methods-identified-in-review}}
 \begin{longtable}[]{@{}lc@{}}
 \caption{List of the regime detection methods identified in this review. (continued below)}\tabularnewline
 \toprule
@@ -439,19 +433,6 @@ length scale
 (CLS) estimation\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 attractor reconstruction\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.31\columnwidth}\raggedright
-Autocorrelation
-at-lag-1\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
-metric\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.31\columnwidth}\raggedright
-Autoregressive
-coefficient of
-AR(1)\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
-metric\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
 Average standard
@@ -484,9 +465,14 @@ deviation test
 metric\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Detrended
-fluctuation
-analysis\strut
+Degenerate
+Fingerprinting\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+metric\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Degenerate
+Fingerprinting\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
@@ -510,7 +496,8 @@ metric\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
 Inverse of AR(1)
-coefficient\strut
+coefficient,
+variance, etc.\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
@@ -609,18 +596,8 @@ Skewness\strut
 metric\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Spectral density\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
-metric\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.31\columnwidth}\raggedright
-Spectral
-exponent\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
-metric\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.31\columnwidth}\raggedright
-Spectral ratio\strut
+Spectral density
+ratio indicator\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
@@ -639,7 +616,9 @@ metric\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
 Standard
-deviation\strut
+deviation
+(rising
+variance)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
@@ -681,6 +660,21 @@ techniques
 metric\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
+NA\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+metric\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+NA\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+metric\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+NA\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+metric\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 two-phase
 regression\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
@@ -706,6 +700,13 @@ model\strut
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
 Generalized
 model\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+model\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Multivariable
+autoregressive
+models (MAR1)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
@@ -746,15 +747,15 @@ model\strut
 model\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
-Time-varying
-AR(p) model\strut
+shiftogram\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
-shiftogram\strut
+Autocorrelation
+at-lag-1\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
-model\strut
+model-based\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
 Online dynamic
@@ -769,6 +770,12 @@ models\strut
 \begin{minipage}[t]{0.31\columnwidth}\raggedright
 Clustering,
 various\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+NA\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Degenerate
+Fingerprinting\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
@@ -837,25 +844,22 @@ Source\strut
 @NA\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
-@vincent1998technique\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.46\columnwidth}\centering
-@held2004detection\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.46\columnwidth}\centering
 @ebbesmeyer19911976\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @carpenterBrock2011early\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
-@carpenter2006rising\strut
+@NA\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @seekell2011conditional\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @buishand1982some\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.46\columnwidth}\centering
+@held2004detection\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @livina2007modified\strut
@@ -921,12 +925,6 @@ Source\strut
 @guttal2008changing\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
-@kleinen2003potential\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.46\columnwidth}\centering
-@andersen\_ecological\_2009\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.46\columnwidth}\centering
 @biggs2009turning\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
@@ -957,6 +955,15 @@ Source\strut
 @NA\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
+@ives2003estimating\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.46\columnwidth}\centering
+@NA\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.46\columnwidth}\centering
+@andersen\_ecological\_2009,\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.46\columnwidth}\centering
 @easterling1995new\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
@@ -970,6 +977,9 @@ Source\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @lade2012early\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.46\columnwidth}\centering
+@ives2012detecting\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @carpenter2011early\strut
@@ -988,16 +998,19 @@ Source\strut
 gal2010novel\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
-@ives2012detecting\strut
+@groger2011analyses\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
-@groger2011analyses\strut
+@vincent1998technique\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @parparov2017quantifying\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @NA\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.46\columnwidth}\centering
+@kleinen2003potential\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @carpenter2010early\strut
@@ -1028,33 +1041,85 @@ gal2010novel\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
-Using my prior knowledge of the relevant litearture, referring to previous review articles, and searching both Web of Science and Google Scholar, I identified 64 unique regime detection measures (Figure \ref{fig:rdmReviewFlow}; Table \ref{tab:methodsMetricsListTab1}).
+Using my prior knowledge of the relevant literature and by systematically searching the Web of Science and Google Scholar databases, I identified 66 unique regime detection measures (Figure \ref{fig:rdmReviewFlow}; Table \ref{tab:methodsMetricsListTab1}).
 \begin{figure}
 \centering
 \includegraphics{_myDissertation_files/figure-latex/jrnlYearFig-1.pdf}
-\caption{\label{fig:jrnlYearFig}Number of methods publisheed over time.}
+\caption{\label{fig:jrnlYearFig}Number of methods published over time.}
 \end{figure}
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+\hypertarget{previous-reviews-of-methods}{%
+\section{Previous reviews of methods}\label{previous-reviews-of-methods}}
 
-In this chapter I highlighted the plethora of regime detection metrics proposed in the literature for analyzing ecological data (Table \ref{tab:methodsMetricsListTab1}). Although multiple reviews of regime detection measures exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of regime detection measures. For example, Roberts et al. (2018) summarizes methods capable of handling multiple (c.f. a single) variable, and Dakos et al. (2015b) review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate--rather, I present an exaustive list of the plethora of methods proposed for detecting ecological detect regime shifts, \emph{sensu lato}, providing a much-needed update to collection provided by S. N. Rodionov (2005), and other review papers (Mac Nally et al., 2014, pp. @scheffer2015generic, @rodionov\_brief\_2005, @roberts2018early, @dakos2015resilience, @mantua\_methods\_2004, @litzow\_early\_2016, @kefi2014early, @andersen\_ecological\_2009, @boettiger\_early\_2013, @dakos\_resilience\_2015, @clements2018indicators, @filatova2016regime, @deyoung\_regime\_2008).
+Numerous reviews have summarised a portion of the RDMs proposed in the literature , and even fewer review the efficacy or robustness of many RDMs using real world ecological data. Further, these reviews are increasingly out-dated given the uptick in recent years of research articles focused on regime shift theory and detection. A permanent and open-source database containing information critical to the implementation of RDMs would be a useful resource for those interested in applying RDMs but lacking the statistical or mathematical background to do so.
 
-\hypertarget{barriers-to-identifying-new-regime-detection-measures}{%
-\subsection{Barriers to identifying new regime detection measures}\label{barriers-to-identifying-new-regime-detection-measures}}
+{[}S. N. Rodionov (2005); Roberts et al. (2018); Mantua (2004); Andersen et al. (2009); Dakos et al. (2015b); Mac Nally et al. (2014); Scheffer et al. (2015); Boettiger et al. (2013); Litzow \& Hunsicker (2016); {]}
 
-Clearly, as was shown in this chapter (Figure \ref{fig:rdmReviewFlow}), a systematic review of the ecological literature will likely not yield anywhere near a comprehensive list of the regime detection measures proposed and/or used. This disaparity may be due to both my search methods and to the current state of regime shift research in ecology.
+({\textbf{???}}; Ditlevsen \& Johnsen, 2010 )
 
-First, my review restricted articles to articles suggesting they were introducing a `new method' as n RDM. Avoiding this potential barrier would have required I review the titles, abstracts, and bodies of over 22,000 articles (Figure \ref{fig:rdmReviewFlow}). Alternatively, this may also be ameliorated by searching the relevant literature for \emph{applications} of regime detection measures to ecological data, however, I suspect this would similarly yield a large number of articles to review.
+Kefi et al. (2014);
+; Clements \& Ozgul (2018);
+Filatova et al. (2016);
+deYoung et al. (2008)
 
-Next, only a handful of methods have been introduced to the mainstream methodological journals in ecology (e.g., \emph{Ecological Modelling}, \emph{Methods in Ecology and Evolution}; Figure \ref{fig:jrnlDistFig}). Although many mainstream publications (e.g., \emph{Science}, \emph{Ecology Letters}) include applications of some of the methods identified in this chapter (Table \ref{tab:methodsMetricsListTab1}), I argue that celebrity and `new and shiny' (Steel, Kennedy, Cunningham, \& Stanovick, 2013) methods may influence which methodological articles are printed in these popular journals.
+It is thought by many that, should we assume a system exists in a statsitically-steady state, an abrupt shift can be identified prior to a system crossing a critical threshold (or tipping point).
+
+a synthetic review of these methods
+
+\hypertarget{a-synthesis-of-the-methods-available-for-the-practical-ecologist}{%
+\section{A synthesis of the methods available for the practical ecologist}\label{a-synthesis-of-the-methods-available-for-the-practical-ecologist}}
+
+Many of the methods identified in this review have yet to be tested on multiple, empirical datum (see Table \ref{tab:methodsMetricsListTab1}).
+
+I categorize the regime detection methods as one of either model-free or model-dependent. Model-free and model-dependent methods are those which do and do not require a mechanistic model to describe the system, respectively. Because many of the model-dependent methods are based on autoregressive modelling apporaches, this is highlighted in the model-dependent section.
+
+\hypertarget{model-depdendent}{%
+\subsection{Model-depdendent}\label{model-depdendent}}
+
+Model-dependent require a mechanistic (mathematical) representation of the system, models which often carry strict assumptions that are easily violated by empirical systems (Abadi, Gimenez, Arlettaz, \& Schaub, 2010). Model-dependent methods are usefully categorized are used under two contexts: differentiable systems of equations or autoregressive. The methods relying on mechanistic models include model descriptions of systems with many, dynamic and interacting components. For example, models are used to reconstruct trophic food webs where prey or predator collapse induces trophic regime shifts in freshwater lake systems ({\textbf{???}}; {\textbf{???}}).
+
+Autoregressive models have been used extensively in ecology to calculate the return rate of an
+Among the most widely used RDMs includes return rate, which
+
+\hypertarget{model-free}{%
+\subsection{Model-free}\label{model-free}}
+
+Model-free (or metric-based per Dakos et al. (2012)) methods are those which do not require a mathematical represntation of the system. In fact, many require much less knowledge about the system component dynamics and their interactions to calculate a results. The utility of these methods vary with respect to the number of state variables encompassed in the method, and are therefore further categorized as either univariate (using a single dimesion) or multivariable (using but not necessarily requiring multiple dimensions).
+
+The most widely used model-free univariate RDMs include descriptive statistics of individual system components (i.e.~univariate), such as variance, skewness, and mean value (Andersen et al., 2009; Mantua, 2004; S. Rodionov \& Overland, 2005). These univariate methods require only very simple calculations, however, their efficacy in empirical systems analysis is controversial. For example, variance (Carpenter \& Brock, 2006) and skewness (of a single variable), oft referred to generally as `leading indicators' or `early-warning indicators' in the literature, has been applied to both theoretical and empirical systems data with varying results.
+
+Hastings \& Wysham (2010a) point out an important feature of using any methods for identifying regime shifts in empirical system data: we only have a single history within which we can compare AND these metrics which depend on the system exhibiting a change in variance or skewness around a mean value before and after a regime shift require hte system to have a smooth potential, rather than one which can manifest complex dynamics (i.e.~non-smooth potential). If we are using RDMs to attempt to forecast and prevent non-smooth or abrupt changes, then there is little justification for relying upon these early warning indicators. Specifcally, these early-warning indicators may be most useful when the system is expected to undergo a transcritical or critical bifurcation before exiting a regime (Lenton, 2011).
+
+Hastings \& Wysham (2010a) aptly point out that any realisitic ecological model should include some degree of stochasticity, and when this stochasticity is introduced into the function, the funciton will likely not be differentiable at the point of the regime shift (Graham \& Tél, 1984). If a function lacks a gradient along its range, then leading indicators will most likely not indicate the abrupt change in system dynamics alony any paramter.
+
+takimoto2009early - SD, but not skewness and return rate, is a decent early warning indicator in a system with Allee effects
+
+Non-smooth potentials occur in a variety of sitautions, including those exhibiting complex dynamics {[}@{]} or those having multiple attractors ({\textbf{???}}; Rinaldi, Muratori, \& Kuznetsov, 1993; Scheffer \& Carpenter, 2003).
+
+holling1973resilience -
+
+lenton2011early -
+
+Seekell, Cline, Carpenter, \& Pace (2013) - multiple attractors in ecology
+
+Rinaldi et al. (1993) pred prey ssytem with multiple attrac.
+
+may be most useful when there is only a single or a few variables of interest, and under the assumption that a change in variance
+For example, . Other univariate descriptive statistics used include the
+
+and composite measures (i.e.~multivariable)
+
+\hypertarget{conclusions}{%
+\section{Conclusions}\label{conclusions}}
+
+In this chapter I highlighted the plethora of regime detection metrics proposed in the literature for analyzing ecological data (Table \ref{tab:methodsMetricsListTab1}). Although multiple reviews of regime detection measures exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of regime detection measures. For example, Roberts et al. (2018) summarizes methods capable of handling multiple (c.f. a single) variable, and Dakos et al. (2015b) review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate--rather, I present an exaustive list of the methods proposed for detecting ecological regime shifts, \emph{sensu lato}, providing a much-needed update to collection provided by S. N. Rodionov (2005), and other review papers (Mac Nally et al., 2014, pp. @scheffer2015generic, @rodionov\_brief\_2005, @roberts2018early, @dakos2015resilience, @mantua\_methods\_2004, @litzow\_early\_2016, @kefi2014early, @andersen\_ecological\_2009, @boettiger\_early\_2013, @dakos\_resilience\_2015, @clements2018indicators, @filatova2016regime, @deyoung\_regime\_2008).
+
+Filtering In this review I restricted articles to those implying they introduced a `new method'. Avoiding this potential barrier would have required I review the titles, abstracts, and bodies of over 22,000 articles (Figure \ref{fig:rdmReviewFlow}). Alternatively, this may also be ameliorated by searching the relevant literature for \emph{applications} of regime detection measures to ecological data, however, I suspect this would similarly yield a large number of articles to review. Also, only a handful of methods have been introduced to the mainstream methodological journals in ecology (e.g., \emph{Ecological Modelling}, \emph{Methods in Ecology and Evolution}; Figure \ref{fig:jrnlDistFig}). Although many mainstream publications (e.g., \emph{Science}, \emph{Ecology Letters}) include applications of some of the methods identified in this chapter (Table \ref{tab:methodsMetricsListTab1}), I argue that celebrity and `new and shiny' (Steel, Kennedy, Cunningham, \& Stanovick, 2013) methods may influence which methodological articles are printed in these popular journals.
 \begin{figure}
 \centering
 \includegraphics{_myDissertation_files/figure-latex/jrnlDistFig-1.pdf}
 \caption{\label{fig:jrnlDistFig}Distribution of identified methods across publications. Note: books, reports, and articles without original reference coded as `Other'}
 \end{figure}
-A critical survey of potetial and realized applications of these methods would be useful for highlighting the needs of future research and methodological improvements. Many of the methods presented in Table \ref{tab:methodsMetricsListTab1} have either not been applied to empirical data at all, or were tested only once (often but not always in the article introducing the method). Some methods, especially those dubbed `early warning indicators' (variance, autoregressive model coefficients) have become relativley mainstream in their application to empirical data, however, have been shown to be less robust to noisy and nonlinear systems data (Burthe et al., 2016) and systems not exhibiting catstrophic shifts (Dutta, Sharma, \& Abbott, 2018). Most other methods have yet to be rigorously tested on noisy, high dimensional, empirical data. Further, the methods which are not mainstream but have been applied to one of these data types have not any statistical indicators associated with confirming the existence and location of the regime shift.
-
-As shown this chapter, identifying regime detection measures using traditional literature review techniques may prove difficult. Many of the methods identified in my review were not identified using Web of Science or Google Scholar--rather, I was either previously aware of most of the methods, and many others were highlighted in previous RDM reviews. To facilitate this process, an online, comprehensive database may prove useful to the practical ecologist.
+A critical survey of potetial and realized applications of these methods would be useful for highlighting the needs of future research and methodological improvements. Many of the methods presented in Table \ref{tab:methodsMetricsListTab1} have either not been applied to empirical data at all, or were tested only once, often but not always in the article introducing or adapting the methodology (Hawkins et al., 2015). Some methods, especially those dubbed `early warning indicators' (variance, autoregressive model coefficients) have become relativley mainstream in their application to empirical data, despite having been shown to be less robust in noisy and nonlinear systems (Burthe et al., 2016), in systems exhibiting lag-effects (Guttal, Jayaprakash, \& Tabbaa, 2013), and in systems not exhibiting catstrophic shifts (Dutta, Sharma, \& Abbott, 2018). Unlike these early warning indicators, fewer efforts have been made to test robustness under these and more simple conditions (Dutta et al., 2018; c.f. Brock \& Carpenter, 2010; Benedetti-Cecchi, Tamburello, Maggi, \& Bulleri, 2015). In addition to the paucity of studies attempting to understand the limitations of these methods, this review suggests that simply identifying the suite of methods used in ecological regime shift detections may be difficult using traditional review methods. Many of the methods metnioned in this review were not identified using a systematic search process in Web of Science and Google Scholar--rather, they were methods of which I was either previously aware and/or highlighted in the few methods reviews (Andersen et al., 2009; Boettiger et al., 2013; Clements \& Ozgul, 2018; Dakos et al., 2015a, 2015b; deYoung et al., 2008; Filatova et al., 2016; Kefi et al., 2014; Litzow \& Hunsicker, 2016; Mantua, 2004; Roberts et al., 2018; S. N. Rodionov, 2005; Scheffer et al., 2015). To facilitate this process, an online, comprehensive database may prove useful to the practical ecologist.
 
 \hypertarget{reducing-the-barriers-to-regime-detection-measures}{%
 \subsection{Reducing the barriers to regime detection measures}\label{reducing-the-barriers-to-regime-detection-measures}}
@@ -1073,7 +1138,7 @@ To make the regime detection measures more available and transparent to the prac
 1. more empirical applications of these methods (especially of those only tested on toy and experimental data)
 1. relation of RDMs in ecology to other fields (computer science, data science, climatology and oceanography)
 
-I suggest below (Table \ref{tab:nextStepsTab}) a suite of questions which may be useful in a critical review of the characteristics, rigor, and promise of methods in the context of ecological data analysis.
+I suggest below (Table \ref{tab:nextStepsTab}) a suite of questions which may be useful in a critical review of the characteristics, rigor, and promise of methods in the context of ecological regime shift detection.
 \begin{longtable}{>{\bfseries}l|>{\raggedright\arraybackslash}p{30em}}
 \caption{\label{tab:nextStepsTab}Potential questions for a comprehensive review of the ecological regime detection metrics literature.}\\
 \toprule
@@ -1124,7 +1189,7 @@ Ecological regime shifts are increasingly prevalent in the Anthropocene. The num
 
 Changes in the feedback(s) governing ecosystem processes can trigger unexpected and sometimes undesirable responses in environmental conditions (Scheffer, Carpenter, Foley, Folke, \& Walker, 2001; Walther et al., 2002). Ecologists often refer to such changes as regime shifts, but this term is used interchangeably in the literature with state change, state transition, or alternative state (Andersen et al., 2009). Climate change and globalization are triggering novel and unexpected changes in ecosystems, and the rapidity with which these changes occur make predictive modeling difficult. Although detecting regime shifts becomes more difficult as one increases the extent and complexity of the system in question , advances in the collection and analysis of ecological data may improve our ability to detect impending regime shifts in time for intervention (Jorgensen \& Svirezhev, 2004).
 
-Although multiple quantitative approaches are proposed as regime shift detection methods ,few are consistently applied to terrestrial ecological data. I classify a regime shift detection methods (DMs) broadly as either model-based or model-free (Boettiger \& Hastings, 2012; Dakos et al., 2012; Hastings \& Wysham, 2010). Model-based methods incorporate mathematical (mechanistic) representations of the system (Hefley, Tyre, \& Blankenship, 2013) and carry strict assumptions, which are often violated by real systems (Abadi, Gimenez, Arlettaz, \& Schaub, 2010). In addition to assumption violations nullifying parts of the model, model misspecification may yield spurious results (Perretti, Munch, \& Sugihara, 2013).
+Although multiple quantitative approaches are proposed as regime shift detection methods ,few are consistently applied to terrestrial ecological data. I classify a regime shift detection methods (DMs) broadly as either model-based or model-free (Boettiger \& Hastings, 2012; Dakos et al., 2012; Hastings \& Wysham, 2010b). Model-based methods incorporate mathematical (mechanistic) representations of the system (Hefley, Tyre, \& Blankenship, 2013) and carry strict assumptions, which are often violated by real systems (Abadi et al., 2010). In addition to assumption violations nullifying parts of the model, model misspecification may yield spurious results (Perretti, Munch, \& Sugihara, 2013).
 
 Model-free (or metric-based detectin ethods (e.g., descriptive statistics, cross-correlation mapping) require fewer assumptions to implement than do model-based DMs (Dakos et al., 2012). The most widely used model-free methods for detecting ecological regime shifts include descriptive statistics of one or a few components of a system, such as variance, skewness, and mean value (Andersen et al., 2009; Mantua, 2004; S. Rodionov \& Overland, 2005) and composite measures which handle multivariable data, including principal components analysis (Petersen et al., 2008), clustering algorithms (Beaugrand, 2004), exergy (Fath \& Cabezas, 2004), and Fisher Information (Cabezas \& Fath, 2002; Karunanithi, Cabezas, Frieden, \& Pawlowski, 2008).
 
@@ -1235,8 +1300,8 @@ We calculated FI for the distribution of distance travelled over a series of non
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/fiOverTime} \caption{Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.}\label{fig:fiOverTime}
 \end{figure}
-\hypertarget{conclusions}{%
-\section{Conclusions}\label{conclusions}}
+\hypertarget{conclusions-1}{%
+\section{Conclusions}\label{conclusions-1}}
 
 We simulated a regime shift caused by a change in carrying capacity (\(K\)) within a simulated, two-species Lotka-Volterra system. I applied the Fisher Information (FI) method for regime shift detection to the simulated time series data. The predator-prey system was modeled as deterministic and the time series data was free from measurement and observation error. Despite this, the estimated FI had high variation over time, and results were dependent on the size of the time window used (winsize) in the calculation \ref{fig:fiOverTime}. The FI method for regime shift detection is based on the cumulative change in the state of the system (i.e., distance traveled in phase space) and the rate of change of the system (i.e., speed tangential to trajectory in phase space). The distance travelled metric, \(s\), and its speed, \(dsdt\), appear better visual indicators of the regime shift than FI {[}\ref{fig:distOverTime}; \ref{fig:dsdtOverTime}{]}.
 
@@ -1398,8 +1463,8 @@ Numerical investigation of the spatial correlation among adjacent transects also
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2000_East-West} \caption{Fisher Information (scaled and centered; point size positively correlated with value) against ecoregion boundaries (EPA Level 2).}\label{fig:fiEcoregion00}
 \end{figure}
-\hypertarget{discussion-1}{%
-\section{Discussion}\label{discussion-1}}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
 The Fisher Information measure was introduced as a method to avoid some analytical issues related to complex and noisy ecological data (Karunanithi et al., 2008), and has also been suggested as an indicator of \emph{spatial} regimes ({\textbf{???}}). I found no evidence suggesting Fisher Information {[}Eq. \eqref{eq:fiDerivs}{]} can identify `spatial regimes'. Further, the absence of autocorrelation among spatially adjacent transects suggests Fisher Information may not be a realiable indicator of changes in bird community structure.
 
@@ -1575,8 +1640,8 @@ The smoothed velocity (\ref{fig:paleoV}) provides a similar but smoother picture
 \includegraphics{_myDissertation_files/figure-latex/paleoV-1.pdf}
 \caption{\label{fig:paleoV}Need a cpation here!!!}
 \end{figure}
-\hypertarget{discussion-2}{%
-\section{Discussion}\label{discussion-2}}
+\hypertarget{discussion-1}{%
+\section{Discussion}\label{discussion-1}}
 
 In this chapter, I described the steps for calculating a novel regime detection metric, system velocity (\(v\)). First described in Fath et al. (2003), \(v\) is used as a single step for caclulating a more complicated regime detection metric, Fisher Information (see also Chapter \ref{fiGuide}). System velocity is arguably simple to calculate, as shown in this chapter, captures the total change in system variables under a variety of mean and variance conditions. The metric does not, however, perform well as variance increases (Fig. \ref{simVarPlot2}), and smooothing the original data does not reduce the noise surrounding this metric when variance is moderate (Fig. \ref{smoothV}).
 
@@ -1726,8 +1791,8 @@ When we bootstrap 25\% of the species, the ratio of mean Fisher Information to s
 \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity} \textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Fisher Information bootstrapped samples (10,000 iterations). Densities based on all values of CV, but values \textgreater100\% are not printed.\}\label{fig:results}
 \textbackslash end\{figure\}
 
-\hypertarget{discussion-3}{%
-\section{Discussion}\label{discussion-3}}
+\hypertarget{discussion-2}{%
+\section{Discussion}\label{discussion-2}}
 
 \hypertarget{ackowledgements}{%
 \section{Ackowledgements}\label{ackowledgements}}
@@ -1746,11 +1811,11 @@ This study was conceptualized at the International Institute for Applied Systems
 \hypertarget{results-3}{%
 \section{Results}\label{results-3}}
 
-\hypertarget{conclusions-1}{%
-\section{Conclusions}\label{conclusions-1}}
-
 \hypertarget{conclusions-2}{%
-\chapter{Conclusions}\label{conclusions-2}}
+\section{Conclusions}\label{conclusions-2}}
+
+\hypertarget{conclusions-3}{%
+\chapter{Conclusions}\label{conclusions-3}}
 \begin{equation}
 \begin{split}
 Data  & = Information \\
@@ -1801,11 +1866,17 @@ Abadi, F., Gimenez, O., Arlettaz, R., \& Schaub, M. (2010). An assessment of int
 \leavevmode\hypertarget{ref-andersen_ecological_2009}{}%
 Andersen, T., Carstensen, J., Hern??ndez-Garc??a, E., \& Duarte, C. M. (2009). Ecological thresholds and regime shifts: Approaches to identification. \emph{Trends in Ecology \& Evolution}, \emph{24}(1), 49--57. \url{http://doi.org/10.1016/j.tree.2008.07.014}
 
+\leavevmode\hypertarget{ref-bibliometrix}{}%
+Aria, M., \& Cuccurullo, C. (2017). Bibliometrix: An r-tool for comprehensive science mapping analysis. \emph{Journal of Informetrics}, \emph{11}(4), 959--975. Retrieved from \url{https://doi.org/10.1016/j.joi.2017.08.007}
+
 \leavevmode\hypertarget{ref-beaugrand2004north}{}%
 Beaugrand, G. (2004). The north sea regime shift: Evidence, causes, mechanisms and consequences. \emph{Progress in Oceanography}, \emph{60}(2-4), 245--262.
 
 \leavevmode\hypertarget{ref-beisner2003alternative}{}%
 Beisner, B. E., Haydon, D. T., \& Cuddington, K. (2003). Alternative stable states in ecology. \emph{Frontiers in Ecology and the Environment}, \emph{1}(7), 376--382.
+
+\leavevmode\hypertarget{ref-benedetti2015experimental}{}%
+Benedetti-Cecchi, L., Tamburello, L., Maggi, E., \& Bulleri, F. (2015). Experimental perturbations modify the performance of early warning indicators of regime shift. \emph{Current Biology}, \emph{25}(14), 1867--1872.
 
 \leavevmode\hypertarget{ref-bestelmeyer_analysis_2011}{}%
 Bestelmeyer, B. T., Ellison, A. M., Fraser, W. R., Gorman, K. B., Holbrook, S. J., Laney, C. M., \ldots{} others. (2011). Analysis of abrupt transitions in ecological systems. \emph{Ecosphere}, \emph{2}(12), 1--26.
@@ -1815,6 +1886,9 @@ Boettiger, C., \& Hastings, A. (2012). Quantifying limits to detection of early 
 
 \leavevmode\hypertarget{ref-boettiger_early_2013}{}%
 Boettiger, C., Ross, N., \& Hastings, A. (2013). Early warning signals: The charted and uncharted territories. \emph{Theoretical Ecology}, \emph{6}(3), 255--264.
+
+\leavevmode\hypertarget{ref-brock2010interacting}{}%
+Brock, W. A., \& Carpenter, S. R. (2010). Interacting regime shifts in ecosystems: Implication for early warnings. \emph{Ecological Monographs}, \emph{80}(3), 353--367.
 
 \leavevmode\hypertarget{ref-brock_variance_2006}{}%
 Brock, W., \& Carpenter, S. (2006). Variance as a Leading Indicator of Regime Shift in Ecosystem Services. \emph{Ecology and Society}, \emph{11}(2). \url{http://doi.org/10.5751/ES-01777-110209}
@@ -1833,6 +1907,9 @@ Cabezas, H., \& Fath, B. D. (2002). Towards a theory of sustainable systems. \em
 
 \leavevmode\hypertarget{ref-cabezas_simulated_2005}{}%
 Cabezas, H., Pawlowski, C. W., Mayer, A. L., \& Hoagland, N. T. (2005). Simulated experiments with complex sustainable systems: Ecology and technology. \emph{Resources, Conservation and Recycling}, \emph{44}(3), 279--291. Retrieved from \url{http://www.sciencedirect.com/science/article/pii/S092134490500025X}
+
+\leavevmode\hypertarget{ref-carpenter2006rising}{}%
+Carpenter, S. R., \& Brock, W. A. (2006). Rising variance: A leading indicator of ecological transition. \emph{Ecology Letters}, \emph{9}(3), 311--318.
 
 \leavevmode\hypertarget{ref-clements2018indicators}{}%
 Clements, C. F., \& Ozgul, A. (2018). Indicators of transitions in biological systems. \emph{Ecology Letters}, \emph{21}(6), 905--919.
@@ -1854,6 +1931,9 @@ DeAngelis, D. L., \& Yurek, S. (2017). Spatially explicit modeling in ecology: A
 
 \leavevmode\hypertarget{ref-deyoung_regime_2008}{}%
 deYoung, B., Barange, M., Beaugrand, G., Harris, R., Perry, R. I., Scheffer, M., \& Werner, F. (2008). Regime shifts in marine ecosystems: Detection, prediction and management. \emph{Trends in Ecology \& Evolution}, \emph{23}(7), 402--409. \url{http://doi.org/10.1016/j.tree.2008.03.008}
+
+\leavevmode\hypertarget{ref-ditlevsen2010tipping}{}%
+Ditlevsen, P. D., \& Johnsen, S. J. (2010). Tipping points: Early warning and wishful thinking. \emph{Geophysical Research Letters}, \emph{37}(19).
 
 \leavevmode\hypertarget{ref-ducre2003comparison}{}%
 Ducré-Robitaille, J.-F., Vincent, L. A., \& Boulet, G. (2003). Comparison of techniques for detection of discontinuities in temperature series. \emph{International Journal of Climatology: A Journal of the Royal Meteorological Society}, \emph{23}(9), 1087--1101.
@@ -1885,8 +1965,20 @@ Frieden, B. R. (1998). \emph{Physics from Fisher information: A unification.} Ne
 \leavevmode\hypertarget{ref-frieden_exploratory_2007}{}%
 Frieden, B. R., \& Gatenby, R. (Eds.). (2007). \emph{Exploratory Data Analysis Using Fisher Information}. Springer. Retrieved from \url{http://www.springer.com/us/book/9781846285066}
 
+\leavevmode\hypertarget{ref-graham1984existence}{}%
+Graham, R., \& Tél, T. (1984). Existence of a potential for dissipative dynamical systems. \emph{Physical Review Letters}, \emph{52}(1), 9.
+
+\leavevmode\hypertarget{ref-guttal2013robustness}{}%
+Guttal, V., Jayaprakash, C., \& Tabbaa, O. P. (2013). Robustness of early warning signals of regime shifts in time-delayed ecological models. \emph{Theoretical Ecology}, \emph{6}(3), 271--283.
+
+\leavevmode\hypertarget{ref-hastings2010regime}{}%
+Hastings, A., \& Wysham, D. B. (2010a). Regime shifts in ecological systems can occur with no warning. \emph{Ecology Letters}, \emph{13}(4), 464--472.
+
 \leavevmode\hypertarget{ref-hastings_regime_2010}{}%
-Hastings, A., \& Wysham, D. B. (2010). Regime shifts in ecological systems can occur with no warning. \emph{Ecology Letters}, \emph{13}(4), 464--472. \url{http://doi.org/10.1111/j.1461-0248.2010.01439.x}
+Hastings, A., \& Wysham, D. B. (2010b). Regime shifts in ecological systems can occur with no warning. \emph{Ecology Letters}, \emph{13}(4), 464--472. \url{http://doi.org/10.1111/j.1461-0248.2010.01439.x}
+
+\leavevmode\hypertarget{ref-hawkins2015ecosystems}{}%
+Hawkins, S. J., Bohn, K., \& Doncaster, C. P. (2015). Ecosystems: The rocky road to regime-shift indicators. \emph{Current Biology}, \emph{25}(15), R666--R669.
 
 \leavevmode\hypertarget{ref-hefley2013statistical}{}%
 Hefley, T. J., Tyre, A. J., \& Blankenship, E. E. (2013). Statistical indicators and state--space population models predict extinction in a population of bobwhite quail. \emph{Theoretical Ecology}, \emph{6}(3), 319--331.
@@ -1902,6 +1994,9 @@ Kefi, S., Guttal, V., Brock, W. A., Carpenter, S. R., Ellison, A. M., Livina, V.
 
 \leavevmode\hypertarget{ref-kong2017hydrological}{}%
 Kong, X., He, Q., Yang, B., He, W., Xu, F., Janssen, A. B., \ldots{} others. (2017). Hydrological regulation drives regime shifts: Evidence from paleolimnology and ecosystem modeling of a large shallow chinese lake. \emph{Global Change Biology}, \emph{23}(2), 737--754.
+
+\leavevmode\hypertarget{ref-lenton2011early}{}%
+Lenton, T. M. (2011). Early warning of climate tipping points. \emph{Nature Climate Change}, \emph{1}(4), 201.
 
 \leavevmode\hypertarget{ref-lindegren_early_2012}{}%
 Lindegren, M., Dakos, V., Gr??ger, J. P., G??rdmark, A., Kornilovs, G., Otto, S. A., \& M??llmann, C. (2012). Early Detection of Ecosystem Regime Shifts: A Multiple Method Evaluation for Management Application. \emph{PLoS ONE}, \emph{7}(7), e38410. \url{http://doi.org/10.1371/journal.pone.0038410}
@@ -1942,6 +2037,9 @@ Perretti, C. T., Munch, S. B., \& Sugihara, G. (2013). Model-free forecasting ou
 \leavevmode\hypertarget{ref-petersen2008regime}{}%
 Petersen, J. K., Hansen, J. W., Laursen, M. B., Clausen, P., Carstensen, J., \& Conley, D. J. (2008). Regime shift in a coastal marine ecosystem. \emph{Ecological Applications}, \emph{18}(2), 497--510.
 
+\leavevmode\hypertarget{ref-rinaldi1993multiple}{}%
+Rinaldi, S., Muratori, S., \& Kuznetsov, Y. (1993). Multiple attractors, catastrophes and chaos in seasonally perturbed predator-prey communities. \emph{Bulletin of Mathematical Biology}, \emph{55}(1), 15--35.
+
 \leavevmode\hypertarget{ref-roberts2018early}{}%
 Roberts, C. P., Twidwell, D., Burnett, J. L., Donovan, V. M., Wonkka, C. L., Bielski, C. L., \ldots{} others. (2018). Early warnings for state transitions. \emph{Rangeland Ecology \& Management}, \emph{71}(6), 659--670.
 
@@ -1961,13 +2059,19 @@ Salehpour, S., Gustafsson, T., \& Johansson, A. (2011). An on-line method for es
 Scheffer, M. (2009). \emph{Critical transitions in nature and society}. Princeton University Press.
 
 \leavevmode\hypertarget{ref-scheffer_catastrophic_2001}{}%
-Scheffer, M., Carpenter, S., Foley, J. A., Folke, C., \& Walker, B. (2001). Catastrophic shifts in ecosystems. \emph{Nature}, \emph{413}(6856), 591--596.
+Scheffer, M., Carpenter, S., Foley, J. A., Folke, C., \& Walker, B. (2001). Catastrophic shifts in ecosystems. \emph{Nature}, \emph{413}(6856), 591.
+
+\leavevmode\hypertarget{ref-scheffer2003catastrophic}{}%
+Scheffer, M., \& Carpenter, S. R. (2003). Catastrophic regime shifts in ecosystems: Linking theory to observation. \emph{Trends in Ecology \& Evolution}, \emph{18}(12), 648--656.
 
 \leavevmode\hypertarget{ref-scheffer2015generic}{}%
 Scheffer, M., Carpenter, S. R., Dakos, V., \& Nes, E. H. van. (2015). Generic indicators of ecological resilience: Inferring the chance of a critical transition. \emph{Annual Review of Ecology, Evolution, and Systematics}, \emph{46}, 145--167.
 
 \leavevmode\hypertarget{ref-seddon2014quantitative}{}%
 Seddon, A. W., Froyd, C. A., Witkowski, A., \& Willis, K. J. (2014). A quantitative framework for analysis of regime shifts in a galápagos coastal lagoon. \emph{Ecology}, \emph{95}(11), 3046--3055.
+
+\leavevmode\hypertarget{ref-seekell2013evidence}{}%
+Seekell, D. A., Cline, T. J., Carpenter, S. R., \& Pace, M. L. (2013). Evidence of alternate attractors from a whole-ecosystem regime shift experiment. \emph{Theoretical Ecology}, \emph{6}(3), 385--394.
 
 \leavevmode\hypertarget{ref-sommer2017generic}{}%
 Sommer, S., Benthem, K. J. van, Fontaneto, D., \& Ozgul, A. (2017). Are generic early-warning signals reliable indicators of population collapse in rotifers? \emph{Hydrobiologia}, \emph{796}(1), 111--120.
