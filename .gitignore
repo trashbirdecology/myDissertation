@@ -17,7 +17,7 @@ _myDissertation_files/figure-latex/*.pdf
 
 _myDissertation_cache/
 
-!myDissertation/chapterFiles/fiGuide/figures/
+!myDissertation/chapterFiles/fiGuide/figures/*.png
 !myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png/
 chapterFiles/appendix_predPreyExample/plots/.png
 chapterFiles/appendix_paleoExample/plots/*.png
@@ -74,6 +74,7 @@ chapterFiles/fisherSpatial/myResults
 !/figsCalledInDiss
 
 # But remove pngs created that aren't called in diss
+!chapterFiles/fiGuide/figures/*.png
 chapterFiles/**/figures/*.png
 chapterFiles/***/figures/*.png
 /figures/*.png
