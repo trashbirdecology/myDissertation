@@ -31,20 +31,18 @@ if(exists("results")) stop("If you need to re-load feathers, please run entire s
 
 # Skip EWS (species-level) results for now...
 ## keep only the distnace and fivi results
-results <- list(distances = results$distances, fivi = results$fivi)
-
-
+results.list <- list(distances = results$distances, fivi = results$fivi)
 
 # Create Plots ------------------------------------------------------------
 # Identify the unique  the labels/metrics to plot 
-myLabels <- setLabels(names(results), results)
-if(any(names(results) != names(myLabels))) stop("names of results must match myLabels names")
+myLabels <- setLabels(names(results.list), results.list)
+if(any(names(results.list) != names(myLabels))) stop("names of results must match myLabels names")
 
 
 ## Boostrapped plots of single metric, facet by prob, single method
-for(i in seq_along(results)){
+for(i in seq_along(results.list)){
     # subset data by analysis type and metric
-    myDf.all  <- results[[i]]  # e.g., distance, FIVI, ews
+    myDf.all  <- results.list[[i]]  # e.g., distance, FIVI, ews
     
       myMetrics <- myLabels[[i]] #e.g, dsdt, FI, VI
       myMethods <- unique(myDf.all$method) # e.g, dominance, species

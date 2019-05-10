@@ -16,7 +16,7 @@ set.seed(12345)
 source(paste0(here::here(),"/chapterFiles/resampling/05-chap-resampling-myFunctions.R"))
 
 
-# Anlaysis paramters ------------------------------------------------------
+# Analysis paramters ------------------------------------------------------
 
 # Which dataset to use
 diatoms <- TRUE # do you want to analyze the Spanbuaer data? if not, program will create dummy data 
@@ -121,38 +121,38 @@ ggplot(myDf.long %>%
 
 
 # Detrend the original data to compare results ----------------------------
+### produce the loessExample to show that detreend these data is not a great option...
 vars <- unique(myDf.long$variable)
 
 temp <- myDf.long %>% 
   filter(variable == vars[17])
+temp <- myDf.long
 
-loessMod10 <- loess(value ~ time, data=temp, span=0.10) # 10% smoothing span
+loessMod10 <- loess(value ~ time, data=temp,span=0.1) # 10% smoothing span
 loessMod25 <- loess(value ~ time, data=temp, span=0.25) # 25% smoothing span
 loessMod50 <- loess(value ~ time, data=temp, span=0.50) # 50% smoothing span
+# get smoothed output
+smoothed10 <- predict(loessMod10) 
+smoothed25 <- predict(loessMod25) 
+smoothed50 <- predict(loessMod50) 
 
-# define function that returns the SSE
-calcSSE <- function(x){
-  loessMod <- try(loess(value ~ time, data=temp, span=x), silent=FALSE)
-  res <- try(loessMod$residuals, silent=T)
-  if(class(res)!="try-error"){
-    if((sum(res, na.rm=T) > 0)){
-      see<-NULL
-      sse <- sum(res^2)  
-    }
-  }else{
-    sse <- 99999
-  }
-  return(sse)
-}
 
-# Run optim to find span that gives min SSE, starting at 0.5
-optimPar <- optim(par=c(0.5), calcSSE, method="SANN")
+library(fANCOVA)
+FTSE.lo3 <- loess.as(temp$time, temp$value, degree = 1, criterion = c("aicc", "gcv")[2], user.span = NULL, plot = T)
+FTSE.lo.predict3 <- predict(FTSE.lo3, data.frame(time=temp$time))
 
-par <- optimPar$par
-
-mod <- loess(value ~ time, data=temp, span=par) # 10% smoothing span
-plot(mod)
-
+# Plot it
+png(here::here("chapterFiles/resampling/figsCalledInDiss/loess.png"),
+     width = 620, height = 450)
+  plot(x=temp$time, y=temp$value, type="l", main="Loess Smoothing and Prediction",
+       xlab="time", ylab=paste0("relative abundance of "))
+  lines(smoothed10, x=temp$time, col="red", lwd=2)
+  lines(smoothed25, x=temp$time, col="green", lwd=2 )
+  lines(smoothed50, x=temp$time, col="blue", lwd=2)
+  lines(FTSE.lo.predict3, x=temp$time, col="yellow", lwd=3, lty=4)
+  legend(-6800,1, legend=c(".025 span",".05 span", ".10 span", ".05 (automatic) span"), col=c("red", "green", "blue", "yellow"), 
+         lty=1:2, cex=0.8)
+  dev.off()
 
 # Conduct reasmpling analysis --------------------------------------------------------
 # This will run and save results to feathers. if you want specific results only, specify ews or fivi =TRUE/FALSE. This function will always calc and save distances to file. Can also specify to save the original data (origDat= TRUE)
@@ -171,7 +171,7 @@ resamplingAnalysis(
 
 # Summarise the bootstraps ------------------------------------------------
 ## Distance results
-summariseResults(dataDir=distDir, myMethods =  myMethods, prop = prop, summaryResultsDir)
+summariseResults(dataDir=distDir, myMethods =  myMethods, prop = prop, summaryResultsDir = summaryResultsDir)
 
 ## FIVI results
 summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)

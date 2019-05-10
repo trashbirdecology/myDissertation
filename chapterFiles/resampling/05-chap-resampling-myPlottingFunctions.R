@@ -235,12 +235,12 @@ plot.densityCV <- function(data=myDf.all,
    
 ## build and save plot
     p <- ggplot(data = temp.data)+
-            geom_density(aes(x=abs(cv), color=as.factor(prob)))+
+      geom_density(aes(x=abs(cv), color=as.factor(prob)))+
             coord_cartesian(xlim=c(0, x.max))+
             facet_wrap(~method, scales="free") +
             theme_mine()+
             theme(legend.position="bottom")+
-            scale_color_manual(name="% data retained", values=c("black",'grey30',"grey70"), labels=paste0(levels(as.factor(temp.data$prob*100)), "%"))+ 
+            scale_color_manual(name="% data retained", values=c("black",'grey60',"grey90"), labels=paste0(levels(as.factor(temp.data$prob*100)), "%"))+ 
             xlab(x.lab)+
               ylab("density\n")
     
