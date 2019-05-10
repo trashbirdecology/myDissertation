@@ -127,7 +127,8 @@ We now have a single measure, $\Delta s$ (Eq. \@ref(eq:diffXsq2)), for each pair
 s = \sum_{t=1}^T \Delta s
 (\#eq:s)
 \end{equation}
-#### Step 4: Calculate velocity, $v$ (or $\frac {\Delta s}{\Delta t}$)
+
+#### Step 4: Calculate velocity, $v$ (or $\frac {\Delta s}{\Delta t}$) 
 Finally, we calculate the **system velocity**, $v$ (or $\frac{\Delta s}{\Delta t}$), by first calculating the change in $s$ (Eq. \@ref(eq:s)), and then divide  by the total time elapsed between consecutive sampling points:
 \begin{equation}
  v = \frac {s_{t+1}-s_{t}}{\Delta t} 

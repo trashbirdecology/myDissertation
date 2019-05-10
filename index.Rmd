@@ -54,10 +54,8 @@ myPackages <- c( "tidyverse",
                  "ggplot2", "ggthemes", "gapminder",
                  "devtools", "here", "dplyr",
                  "bookdown",
-                 # "envalysis", # publish theme plots
                  "kableExtra", "gganimate", "sp", "raster",
                  "feather", "maps",
-                 # "inlabru", # not sure why i was using this...
                  "gridExtra",
                  "kedd", "caTools", "deSolve","segmented", # for chapter 3
                  "DiagrammeR", # for chapter 2 (flow chart figure (grViz))
