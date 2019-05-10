@@ -94,8 +94,8 @@ The specified parameters for the model system are $g_1=m_2=1$,$l_{12}=g_{12}= 0.
 ### Inducing a Regime Shift
 @mayer_applications_2007 calculated FI for a predator-prey system for several discrete values of carrying capacity of prey. The results of this study showed that FI was different for systems with different carrying capacities ($K$). However, this study did not address the central question of **FI behavior during a regime shift**.  As an extension of the original study, I simulated a regime shift by modeling an abrupt decline in carrying capacity, $k$. I assume $k$ is described by Eq. \@ref(eq:mayerCase) where $k_1$ is the initial carrying capacity, $k_2$ is the final carrying capacity, $t_shift$ is the time the regime shift occurred, and $\alpha$ is the parameter controlling the rate (slope) of the regime shift. The hyperbolic tangent function (see Eq. \@ref(eq:mayerCase)) simulates a smooth and continuous change in $k$ while still allowing for the regime shift to occur rapidly. I incorporate the change in $k$ into our system of differential equations by defining the rate of change in $k$, $k'(t)$, given by (Eq. \@ref(eq:mayerCase)). I assume $k_1=800$ and $k_2=625$, values corresponding to the range of carrying capacities explored by @mayer_applications_2007. I simulated a time series of 600 time units, introducing a regime change after 200 time units, and $\alpha=0.05$.
 \begin{equation}  
-  k(t) = k_1  - 0.5(k_1-k_2)(\tanh(\alpha (t-t^*))+1)\\ 
-  k'(t) = 0.5\alpha (k_1-k_2)(\tanh(\alpha(t-t^*))^2 +1)\\  
+  k(t) = k_1  - 0.5(k_1-k_2)(\tanh(\alpha (t-t^*))+1) \\ 
+  k'(t) = 0.5\alpha (k_1-k_2)(\tanh(\alpha(t-t^*))^2 +1) 
 (\#eq:mayerCase)
 \end{equation} 
 

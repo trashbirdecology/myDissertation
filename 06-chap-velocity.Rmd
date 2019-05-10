@@ -4,6 +4,7 @@
 set.seed(123)
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/",cache.lazy = FALSE,  message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',out.width = "85%")
 ```
+
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 library(magrittr)
 library(tidyverse)
@@ -31,7 +32,10 @@ ggplot()+
   theme(legend.position = "bottom")}
 ```
 ## Introduction
-In this Chapter I describe the steps for calculating a 'new' metric, __system velocity__, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see Ch.   \@ref(fiGuide)], first introduced in @fath_regime_2003. Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time. 
+
+
+
+In this Chapter I describe the steps for calculating a 'new' metric, __system velocity__ ($v$), as a method for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see Ch. \@ref(fiGuide)], first introduced in @fath_regime_2003. Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time. 
 
 ## Data and Methods
 ### Theoretical system example: two-species time series  

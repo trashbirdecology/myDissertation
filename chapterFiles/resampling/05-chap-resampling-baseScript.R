@@ -96,7 +96,6 @@ if (dummyData) {
   } # end i for
 } # end if dummyData
 
-
 # Visualize the Raw Data --------------------------------------------------
 ggplot(myDf.long) + geom_line(aes(
   x = time,
@@ -119,6 +118,40 @@ ggplot(myDf.long %>%
   ylab("time since last observation") +
   ggsave(paste0(figDir,"/timeElapsed.png"))
 
+
+
+# Detrend the original data to compare results ----------------------------
+vars <- unique(myDf.long$variable)
+
+temp <- myDf.long %>% 
+  filter(variable == vars[17])
+
+loessMod10 <- loess(value ~ time, data=temp, span=0.10) # 10% smoothing span
+loessMod25 <- loess(value ~ time, data=temp, span=0.25) # 25% smoothing span
+loessMod50 <- loess(value ~ time, data=temp, span=0.50) # 50% smoothing span
+
+# define function that returns the SSE
+calcSSE <- function(x){
+  loessMod <- try(loess(value ~ time, data=temp, span=x), silent=FALSE)
+  res <- try(loessMod$residuals, silent=T)
+  if(class(res)!="try-error"){
+    if((sum(res, na.rm=T) > 0)){
+      see<-NULL
+      sse <- sum(res^2)  
+    }
+  }else{
+    sse <- 99999
+  }
+  return(sse)
+}
+
+# Run optim to find span that gives min SSE, starting at 0.5
+optimPar <- optim(par=c(0.5), calcSSE, method="SANN")
+
+par <- optimPar$par
+
+mod <- loess(value ~ time, data=temp, span=par) # 10% smoothing span
+plot(mod)
 
 
 # Conduct reasmpling analysis --------------------------------------------------------
@@ -147,6 +180,9 @@ summariseResults(dataDir=fiviDir, myMethods, prop, summaryResultsDir)
 summariseResults(dataDir=ewsDir, myMethods, prop, summaryResultsDir)
 
 ## Be sure to summarise the directory (summaryResults) to summaryResults.zip in directory ~../diatoms
+
+
+
 
 
 # END RUN -----------------------------------------------------------------

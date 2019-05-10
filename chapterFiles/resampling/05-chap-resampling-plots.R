@@ -29,14 +29,17 @@ figDir <- dirs$tempFigDir
 # Load summarizes results ------------------------------------------------------------
 if(exists("results")) stop("If you need to re-load feathers, please run entire script again (including rm(list=ls()) and restart session.") else(results <- loadSummaryResults(dataDir))
 
+# Skip EWS (species-level) results for now...
+## keep only the distnace and fivi results
+results <- list(distances = results$distances, fivi = results$fivi)
+
+
 
 # Create Plots ------------------------------------------------------------
-
-# Skip EWS (species-level) results for now...
-results <- list(distances = results$distances, fivi = results$fivi)
 # Identify the unique  the labels/metrics to plot 
 myLabels <- setLabels(names(results), results)
 if(any(names(results) != names(myLabels))) stop("names of results must match myLabels names")
+
 
 ## Boostrapped plots of single metric, facet by prob, single method
 for(i in seq_along(results)){
