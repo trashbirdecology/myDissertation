@@ -209,17 +209,17 @@ dev.off()
 
 # Conduct reasmpling analysis --------------------------------------------------------
 # This will run and save results to feathers. if you want specific results only, specify ews or fivi =TRUE/FALSE. This function will always calc and save distances to file. Can also specify to save the original data (origDat= TRUE)
-resamplingAnalysis(
-  myDf.long,
-  prop,
-  myMethods,
-  nDraws,
-  winMove = .20,
-  origData = TRUE,
-  ews = FALSE,
-  fivi = FALSE,
-  fi.method = "7.12" #7.12 is the derivatives method
-)
+# resamplingAnalysis(
+#   myDf.long,
+#   prop,
+#   myMethods,
+#   nDraws,
+#   winMove = .20,
+#   origData = TRUE,
+#   ews = FALSE,
+#   fivi = FALSE,
+#   fi.method = "7.12" #7.12 is the derivatives method
+# )
 
 
 # Summarise the bootstraps ------------------------------------------------
@@ -234,7 +234,7 @@ summariseResults(
 ## FIVI results
 summariseResults(
   dataDir = fiviDir,
-  myMethods =  myMethods,
+  myMethods =  myMethods[1],
   prop = prop,
   summaryResultsDir = summaryResultsDir
 )

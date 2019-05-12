@@ -565,15 +565,18 @@ summariseResults <-
     results <- list() # initialize an empty df to store results
     
     for (i in seq_along(prop)) {
-     
+   
         results.temp <- NULL
         if (!all(prop > 1)) prop <- prop * 100 # if proportions are <1, then need to adjust
         
       for (j in seq_along(myMethods)) {
         my.ind <- paste0("prop", prop[i], "_", myMethods[j])
         
+        print(paste("summarising ", my.ind))
+        
         results.temp = purrr::map_df(list.files(dataDir, full.names = TRUE, pattern = my.ind),
                                      read_feather)
+        print("      results loaded")
         if(nrow(results.temp)==0){print(paste("skip j-loop ", j, "i-loop ", i)); next()}
         
         if(any(c("Dominance", "dominance", "DOMINANCE") %in% myMethods[j])) results.temp %>% 
@@ -621,16 +624,18 @@ summariseResults <-
           if (prop[i] != 100 & approx.metrics ==TRUE) {
             print("approximating FI and VI metrics...")
             require(akima)
-            x.out <- seq(min(results.temp$winStop), max(results.temp$winStop), length.out=n.approx) %>% round()
+            x.out <- seq(min(results.temp$winStop), max(results.temp$winStop), length.out=n.approx) %>% 
+              round()
             nDraw.ind <- unique(results.temp$nDraw)
             
             
-            results.temp2 <- NULL
+            temp2 <- NULL
             for(z in seq_along(nDraw.ind)){
+             if(z %% 1e3==0)print(paste("        approximating FIVI ", nDraw.ind[z]))
             temp <- results.temp %>% 
                   filter(nDraw == nDraw.ind[z])
            
-            temp <- as.data.frame(
+            temp2 <- as.data.frame(
               cbind(
                 winStart = NA, 
                 winStop = x.out,
@@ -641,8 +646,12 @@ summariseResults <-
                 method = unique(results.temp$method),
                 prob = unique(results.temp$prob), 
                 nDraw =nDraw.ind[z]
-                ))
+                )) %>% 
+              bind_rows(temp2)
             
+            } # end nDraw z-loop
+            
+            print("            calculating FiVi summary statistics and saving")
             # get mean and sd over nDraws
             results.temp2 <- temp %>% 
             group_by(method, prob, winStop) %>%
@@ -651,10 +660,8 @@ summariseResults <-
                 FI.mean      =  mean(as.numeric(FI), na.rm = TRUE),
                 VI.mean       =  mean(as.numeric(VI), na.rm = TRUE),
                 FI.sd    =  sd(FI, na.rm = TRUE),
-                VI.sd  =  sd(VI, na.rm = TRUE)) %>% 
-                  bind_rows(results.temp2)
+                VI.sd  =  sd(VI, na.rm = TRUE))
             
-            }
             
           } # end ifelse prop!=100 and approx=TRUE
           
@@ -682,7 +689,16 @@ summariseResults <-
               dplyr::select(-nDraw) %>% 
               ungroup()
           }  # end ifelse prop==100
-        }
+       
+          
+          results.temp2 <- results.temp2 %>% 
+            ungroup() %>% 
+            mutate(method=as.factor(method), 
+                   prob=as.factor(prob), 
+                   winStop=as.numeric(winStop)
+            )
+          
+           } # end summarise fivi
         
         ## Summarise the EWSs
         if(str_detect(string = dataDir, pattern = "ews")){
@@ -720,14 +736,9 @@ summariseResults <-
               ) %>% 
               ungroup()
           }  # end ifelse prop==100
-        }
+        } # end summarise ews
         
-        results.temp2 <- results.temp2 %>% 
-          ungroup() %>% 
-          mutate(method=as.factor(method), 
-                 prob=as.factor(prob), 
-                 winStop=as.numeric(winStop)
-          )
+        
         
         # Save summary results to file
         fn <-
