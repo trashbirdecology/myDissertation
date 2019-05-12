@@ -1,5 +1,4 @@
-## functions for PLOTTING
-## My plotting theme
+# Define plotting theme ---------------------------------------------------
 theme_mine <- function(base_size = 12,
                        base_family = "Times") {
   # Starts with theme_grey and then modify some parts
@@ -120,7 +119,8 @@ plot.bootstrappedFacetGroup <- function(df,
                                         baseline.prob = c(1, 100),
                                         add.baseline = TRUE,
                                         regime.breaks = NULL, 
-                                        logFI=TRUE) {
+                                        logFI=TRUE, 
+                                        approx.metric=TRUE) {
   # stop if df is empty
   if (nrow(df) == 0)
     stop("data frame is empty -- this should not be")
@@ -137,9 +137,9 @@ plot.bootstrappedFacetGroup <- function(df,
   y.sd <- paste0(metric.ind, ".sd")
   
   
-  ## Get log.FI if specified
+  # Get the uppper and lower CIs
+  ## Get when log.FI==TRUE
   if (metric.ind == "FI" & logFI) {
-    
   df2 <- df %>%
     filter(method %in% method.filter) %>%
     mutate(FI.mean = log(FI.mean + 1e-20))
@@ -155,8 +155,7 @@ plot.bootstrappedFacetGroup <- function(df,
   metric.ind <- "log(FI)"
   
   }
-  
-  # For all non-FI metrics
+  ## For all non-FI metrics
   if(!metric.ind %in% c("log(FI)","FI")){
     df2 <- df %>%
       filter(method %in% method.filter) %>%
@@ -169,6 +168,8 @@ plot.bootstrappedFacetGroup <- function(df,
              method = as.factor(method))  %>%
       dplyr::select(x, y, method, prob, upper, lower)
   }
+  
+  
   
   # Subset the data for prob < baseline prob
   ribbon.data <- df2 %>%

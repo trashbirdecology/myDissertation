@@ -238,13 +238,15 @@ summariseResults(
   prop = prop,
   summaryResultsDir = summaryResultsDir
 )
-## EWS results
-summariseResults(
-  dataDir = ewsDir,
-  myMethods =  myMethods,
-  prop = prop,
-  summaryResultsDir = summaryResultsDir
-)
+
+### I still havent figured out efficient way to visualize EWS data, so don't bother running it. 
+# ## EWS results
+# summariseResults(
+#   dataDir = ewsDir,
+#   myMethods =  myMethods,
+#   prop = prop,
+#   summaryResultsDir = summaryResultsDir
+# )
 ## Be sure to summarise the directory (summaryResults) to summaryResults.zip in directory ~../diatoms
 
 
