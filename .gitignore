@@ -74,6 +74,7 @@ chapterFiles/fisherSpatial/myResults
 !/figsCalledInDiss
 
 # But remove pngs created that aren't called in diss
+!chapterFiles/fiGuide/figures/*.png
 chapterFiles/**/figures/*.png
 chapterFiles/***/figures/*.png
 /figures/*.png
@@ -109,3 +110,6 @@ _myDissertation.aux
 05-chap-resampling_cache/latex/__packages
 chapterFiles/rdmReview/~$methodsOverview.xlsx
 02-chap-rdmMethodsReview.pdf
+chapterFiles/fiGuide/.DS_Store
+_book/_myDissertation.tex
+_book/_myDissertation.pdf

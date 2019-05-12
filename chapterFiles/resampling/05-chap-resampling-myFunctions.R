@@ -558,12 +558,14 @@ summariseResults <-
   function(dataDir,
            myMethods,
            prop,
-           summaryResultsDir) {
+           summaryResultsDir,
+           approx.metrics=TRUE, n.approx=500
+           ) {
     
     results <- list() # initialize an empty df to store results
     
-
     for (i in seq_along(prop)) {
+     
         results.temp <- NULL
         if (!all(prop > 1)) prop <- prop * 100 # if proportions are <1, then need to adjust
         
@@ -572,6 +574,7 @@ summariseResults <-
         
         results.temp = purrr::map_df(list.files(dataDir, full.names = TRUE, pattern = my.ind),
                                      read_feather)
+        if(nrow(results.temp)==0){print(paste("skip j-loop ", j, "i-loop ", i)); next()}
         
         if(any(c("Dominance", "dominance", "DOMINANCE") %in% myMethods[j])) results.temp %>% 
           filter(nDraw == 1)
@@ -614,31 +617,75 @@ summariseResults <-
         if (str_detect(string = dataDir, pattern = "fiVi")) {
           my.ind <- paste0("fivi_", my.ind)
           
-          if (prop[i] != 100) {
+          ###If approx is true 
+          if (prop[i] != 100 & approx.metrics ==TRUE) {
+            print("approximating FI and VI metrics...")
+            require(akima)
+            x.out <- seq(min(results.temp$winStop), max(results.temp$winStop), length.out=n.approx) %>% round()
+            nDraw.ind <- unique(results.temp$nDraw)
+            
+            
+            results.temp2 <- NULL
+            for(z in seq_along(nDraw.ind)){
+            temp <- results.temp %>% 
+                  filter(nDraw == nDraw.ind[z])
+           
+            temp <- as.data.frame(
+              cbind(
+                winStart = NA, 
+                winStop = x.out,
+                FI = aspline(temp$winStart, y=temp$FI, xout=x.out, 
+                             n = n.approx, ties = mean, method="original", degree=3)$y, 
+                VI = aspline(temp$winStart, y=temp$VI, xout=x.out, 
+                             n = n.approx, ties = mean, method="original", degree=3)$y,
+                method = unique(results.temp$method),
+                prob = unique(results.temp$prob), 
+                nDraw =nDraw.ind[z]
+                ))
+            
+            # get mean and sd over nDraws
+            results.temp2 <- temp %>% 
+            group_by(method, prob, winStop) %>%
+              arrange(winStart) %>% 
+              summarise(
+                FI.mean      =  mean(as.numeric(FI), na.rm = TRUE),
+                VI.mean       =  mean(as.numeric(VI), na.rm = TRUE),
+                FI.sd    =  sd(FI, na.rm = TRUE),
+                VI.sd  =  sd(VI, na.rm = TRUE)) %>% 
+                  bind_rows(results.temp2)
+            
+            }
+            
+          } # end ifelse prop!=100 and approx=TRUE
+          
+          ### If approx is false
+          if (prop[i] != 100 & approx.metrics ==FALSE) {
             results.temp2 <-  results.temp %>%
-              group_by(method, prob, winStart, winStop) %>%
+              group_by(method, prob, winStop) %>%
+              arrange(winStop) %>% 
               summarise(
                 FI.mean      =  mean(FI, na.rm = TRUE),
                 VI.mean       =  mean(VI, na.rm = TRUE),
                 FI.sd    =  sd(FI, na.rm = TRUE),
                 VI.sd  =  sd(VI, na.rm = TRUE)
-              )
-          } # end ifelse prop!=100
+              )  %>% 
+              ungroup()
+            } # end ifelse prop!=100 and approx=FALSE
           
           # If prop == 100% then we don't need means and SD, we just need orginal data.
           if (prop[i] == 100) {
             results.temp2 <- results.temp %>%
               filter(nDraw == 1) %>% 
-              group_by(method, prob, winStart, winStop) %>%
+              group_by(method, prob, winStop) %>%
               rename(FI.mean      =  FI,
                      VI.mean      =  VI) %>% 
-              dplyr::select(-nDraw)
+              dplyr::select(-nDraw) %>% 
+              ungroup()
           }  # end ifelse prop==100
         }
         
         ## Summarise the EWSs
-        if(str_detect(string = dataDir, pattern = "ews")
-        ){
+        if(str_detect(string = dataDir, pattern = "ews")){
           my.ind <- paste0("ews_",my.ind)  
           
           if(prop[i]!=100){
@@ -655,7 +702,8 @@ summariseResults <-
                 skewMode.sd    =  sd(skewMode, na.rm = TRUE),
                 skewMean.mean      =  mean(skewMean, na.rm = TRUE),
                 skewMean.sd    =  sd(skewMean, na.rm = TRUE)
-              ) 
+              )  %>% 
+              ungroup()
           } # end ifelse prop!=100
           
           # If prop == 100% then we don't need means and SD, we just need orginal data. 
@@ -669,10 +717,17 @@ summariseResults <-
                 kurotsis.mean = kurtosis,
                 skewMode.mean = skewMode, 
                 skewMean.mean = skewMean
-              )
+              ) %>% 
+              ungroup()
           }  # end ifelse prop==100
         }
         
+        results.temp2 <- results.temp2 %>% 
+          ungroup() %>% 
+          mutate(method=as.factor(method), 
+                 prob=as.factor(prob), 
+                 winStop=as.numeric(winStop)
+          )
         
         # Save summary results to file
         fn <-
@@ -681,7 +736,7 @@ summariseResults <-
                  "_" ,
                  my.ind,
                  ".feather")
-        write_feather(results.temp, path = fn)
+        write_feather(results.temp2, path = fn)
         
       } # end methods j loop
     } # end prop i loop

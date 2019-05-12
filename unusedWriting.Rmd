@@ -1,0 +1,11 @@
+
+<!-- ##UNUSED TEXT -->
+<!-- takimoto2009early - SD, but not skewness and return rate, is a decent early warning indicator in a system with Allee effects  -->
+<!-- holling1973resilience -  --> 
+<!-- lenton2011early -  -->
+<!-- @seekell2013evidence - multiple attractors in ecology -->
+<!-- @rinaldi1993multiple pred prey ssytem with multiple attrac.  -->
+<!-- may be most useful when there is only a single or a few variables of interest, and under the assumption that a change in variance  -->
+<!-- For example, . Other univariate descriptive statistics used include the  -->
+<!-- and composite measures (i.e. multivariable) -->
+<!-- Non-smooth potentials occur in a variety of sitautions, including those exhibiting complex dynamics [@] or those having multiple attractors [@rinaldi1993multiple; @scheffer2003regime; @scheffer2003catastrophic]. -->
