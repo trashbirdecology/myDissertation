@@ -235,10 +235,12 @@ summariseResults(
 ## FIVI results
 summariseResults(
   dataDir = fiviDir,
-  myMethods =  myMethods[1],
+  myMethods =  myMethods,
   prop = prop,
   summaryResultsDir = summaryResultsDir
 )
+
+
 
 ### I still havent figured out efficient way to visualize EWS data, so don't bother running it. 
 # ## EWS results

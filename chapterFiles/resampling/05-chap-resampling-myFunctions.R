@@ -653,14 +653,15 @@ summariseResults <-
             
             print("            calculating FiVi summary statistics and saving")
             # get mean and sd over nDraws
-            results.temp2 <- temp %>% 
+            results.temp2 <- temp2 %>% 
             group_by(method, prob, winStop) %>%
               arrange(winStart) %>% 
               summarise(
                 FI.mean      =  mean(as.numeric(FI), na.rm = TRUE),
                 VI.mean       =  mean(as.numeric(VI), na.rm = TRUE),
                 FI.sd    =  sd(FI, na.rm = TRUE),
-                VI.sd  =  sd(VI, na.rm = TRUE))
+                VI.sd  =  sd(VI, na.rm = TRUE)) %>% 
+              mutate(winStop=as.numeric(winStop))
             
             
           } # end ifelse prop!=100 and approx=TRUE
