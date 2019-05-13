@@ -1,0 +1,31 @@
+# Conclusions {}
+\begin{equation}
+\begin{split}
+Data  & = Information \\
+& = Signal \\
+& = Process + Noise
+\end{split}
+(\#eq:infoTheory)
+\end{equation}
+Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation. Because ecological and social systems are tightly coupled, it is commonplace to use ecological indicators to identify change and potential changes that may impact these systems. Many papers introducing or discussing regime detection measures suggest the ecologist uses multiple lines of evidence, ranging from historical observations to ecological modelling results, for identifying an ecological regime shift [@lindegren_early_2012]. Although  valid, comparing results of multiple methods or lines of evidence within a single system has yielded inconsistent results, and inconsistent results can result in either improper conclusions, or in what I am calling **method mining**. That is, a dataset is analyzed using until a sufficient number of methods yield affirmative results. 
+
+## Method mining regime detection methods
+Many regime detection measures have yet to be properly and statistically (or numerically) scrutinized. However, it should be noted that, in part due to both (i) the popularity and (ii) the sheer number of 'new' methods a handful of authors^[S.R. Carpenter is one example of an author who has relative infamy in the field and has, as primary author or otherwise, introduced a relatively large number of new methods (e.g., rising variance, the variance index, Fourier transform, online dynamic linear modelling, TVARSS, to name a few)].   Ecological indicators (a.k.a. indices, metrics) have been suggested as 'early-warning indicators' of ecological regime shifts or abrupt change (Chapters \@ref(intro) and \@ref(rdmReview)) and are methods of measurement designed to provide inference about one or more unobserved or latent processes, are inherently biased. Regardless of the state of the theory supporting *regime shifts* in ecology, ecological indicators and the methods for calculating them should be heavily scrutinized prior to being used in an ecological management or policy-making setting. Rather, new methods (indices, metrics, etc.) are being introduced into the literature at a rate exceeding that at which they are scrutinized (Chapter \@ref(rdmReview)). This dissertation demonstrates that, while potentially useful, regime detection metrics are inconsistent, not generalizable, and are currently not validated using probabilities or other statistical measurements of certainty. 
+
+## Ecological data are noisy  
+Regime detection metrics appear more reliable when the signal-to-noise ratio is high [Ch. \@ref(rdmReview), Ch. \@ref(velocity),  @taranu2018can]. Ecological systems are noisy, and the observational data we are collecting at large scales (e.g., the North American Breeding Bird survey), is noisy. Using methods incapable of identifying meaningful signals in noisy data appears futile, yet, methods for doing so are increasingly introduced in the scientific literature (Ch. \@ref(rdmReview)). 
+
+## Data collection and munging biases and limits findings
+
+Regime detection measures and other ecological indicators can signal (see \@ref(eq:infoTheory)) various changes in the data, however, understanding what processes are embedded in the signals (i.e., removing the noise) requires expert judgement. And because a consequence of data collection and data analysis limits the extent to which we can identify and infer processes and change within an ecological system, **I suggest the practical ecologist scrutinizes her data prior to identifying and conducting analyses**, including those that are purely exploratory. By collecting and analysing data, the ecologist has defined the bounaries of the system *a priori*^+[+ @beisner2003alternative states this eloquently as, "The number and choice of variables selected to characterize the community will be determined by what we wish to learn from the model"]. The influence of state variable selection is ignored  by some metrics [e.g. Fisher Information @eason2014managing and $v$ Chapter \@ref(velocity)], in that the resulting measure is composite and carries no information regarding the influence of state variables on the metric result.
+
+The actual limitations to the system  should be, theoretically, known as a result of bounding the system. Inference beyond this system is extrapolation, and should be treated as speculation, especially when not accompanied by a measure of uncertainty around one's predictions.
+
+## Common Limitations of Regime Detection Measures  
+Limitations of the findings in this dissertation and of the regime detection methods used herein are largely influenced by the **data collection**, **data munging** processes. Although the below mentioned points may seem logical to many, these assumptions are overlooked by many composite indicators, including regime detection measures.  
+1. Signals in the indicators are restricted to the ecological processes captured by the input data. Extrapolation occurs when processes manifest at scales different than the data collected.  (resolution; Chapter \@ref(fiSpatial))  
+1. normalization and weighting techniques often impact results (whether ecological or numerical) (Appendices \@ref(bbsRDM) and \@ref(regimeDetectionMeasures))  
+1. data aggregation techniques often impact results (Chapter \@ref(resampling))  
+1. some indices fail to generalize across systems or taxa (see Chapters \@ref(intro) and \@ref(rdmMethodsReview))  
+
+## Specific synthesis of chapter results

@@ -559,10 +559,12 @@ summariseResults <-
            myMethods,
            prop,
            summaryResultsDir,
-           approx.metrics=TRUE, n.approx=500
+           approx.metrics=TRUE, n.approx=500, 
+           n.cores = detectCores()-1
            ) {
     
     results <- list() # initialize an empty df to store results
+  
     
     for (i in seq_along(prop)) {
    

@@ -225,11 +225,13 @@ dev.off()
 
 # Summarise the bootstraps ------------------------------------------------
 ## Distance results
+lapply(myMethods,
 summariseResults(
   dataDir = distDir,
   myMethods =  myMethods,
   prop = prop,
   summaryResultsDir = summaryResultsDir
+)
 )
 
 ## FIVI results

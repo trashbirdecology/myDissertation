@@ -4,4 +4,4 @@ download: [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word
 delete_merged_file: true
 clean: ["R-packages.bib", "myDissertation.rmd"]#, "myDissertation.log"]
 new_session: no
-rmd_files: ["index.Rmd", "00-abstract.Rmd", "001-definitions.Rmd","01-chap-intro.Rmd", "02-chap-rdmMethodsReview.Rmd","03-chap-fiGuide.Rmd","04-chap-fisherSpatial.Rmd","06-chap-velocity.Rmd", "05-chap-resampling.Rmd", "07-discontinuity.Rmd","08-conclusions.Rmd"]#,"92-app-regimeDetectionMeasures.Rmd","91-app-bbsRDM.Rmd", "999-references.Rmd"] # specify the order of the chapters
+rmd_files: ["index.Rmd", "00-abstract.Rmd", "001-definitions.Rmd","01-chap-intro.Rmd", "02-chap-rdmMethodsReview.Rmd","03-chap-fiGuide.Rmd","04-chap-fisherSpatial.Rmd","06-chap-velocity.Rmd", "05-chap-resampling.Rmd", "07-chap-discontinuity.Rmd","08-chap-conclusions.Rmd"]#,"92-app-regimeDetectionMeasures.Rmd","91-app-bbsRDM.Rmd", "999-references.Rmd"] # specify the order of the chapters
