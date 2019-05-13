@@ -209,6 +209,7 @@ dev.off()
 
 # Conduct reasmpling analysis --------------------------------------------------------
 # This will run and save results to feathers. if you want specific results only, specify ews or fivi =TRUE/FALSE. This function will always calc and save distances to file. Can also specify to save the original data (origDat= TRUE)
+
 # resamplingAnalysis(
 #   myDf.long,
 #   prop,
