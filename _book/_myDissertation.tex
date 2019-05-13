@@ -385,7 +385,7 @@ Long-lasting changes in the underlying structure or functioning of natural syste
 
 Perhaps given the sheer number of methods available, there is not currently a single, comprehensive source to which the practical ecologist can refer for identifying potential regime detection measures. Prior reviews of this literature vary in both the number and detail of the methods presented, often focusing on a single aspect of regime shift theory (Andersen et al., 2009), or relaying methods to disciplinary audiences (Roberts et al., 2018). Here I present a brief, systematic review of the methods proposed as what I will call regime detection methods (RDMS) in the ecological literature. I also synthesize the RDMs which are designed to identify ecological regime shifts under uncertainty. I.e., when the regime shift is not hypothesized \emph{a priori}.
 
-Methods proposed for detecting ecological regime shifts (RDMs) are not easily identified using systematic literature review techniques for several reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields (Andersen et al., 2009). For example, the terms, \emph{regime shifts, regime changes} and \emph{tipping points} are variably used in studies of ecological systems, whereas \emph{inhomogeneities} is common in meterology and climatology and \emph{structural change} is largely confined to econometrics. Although semantics vary both within and across disciplines (e.g., a regime shift vs.~a structural change), many methods are shared or concurrently applicable. Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publication outlets with aims of disemminating new quantitative methods (e.g., \emph{Ecological Modelling}, \emph{Methods in Ecology and Evolution}). Rather, many new methods are published in journals with refined (e.g., \emph{Entropy}, \emph{Progress in Oceanography}), as opposed to broader scope scopes (e.g., \emph{Ecology} and \emph{Nature}).
+Methods proposed for detecting ecological regime shifts (RDMs) are not easily identified using systematic literature review techniques for several reasons. First, the terminology associated with regime shift detection methodologies is highly variable within and among fields (Andersen et al., 2009). For example, the terms, \emph{regime shifts, regime changes and tipping points} are variably used in studies of ecological systems, whereas \emph{inhomogeneities} is common in meterology and climatology and \emph{structural change} is largely confined to econometrics. Although semantics vary both within and across disciplines (e.g., a regime shift vs.~a structural change), many methods are shared or concurrently applicable. Second, papers introducing a new method or approach to identifying regime shifts are not often proposed in publication outlets with aims of disemminating new quantitative methods (e.g., \emph{Ecological Modelling}, \emph{Methods in Ecology and Evolution}). Rather, many new methods are published in journals with refined (e.g., \emph{Entropy}, \emph{Progress in Oceanography}), as opposed to broader scope scopes (e.g., \emph{Ecology} and \emph{Nature}).
 
 Some RDMs require the use of mechanistic models however some methods fall into the category of model-independent (or model-free), or they require only simple autoregressive (AR) models. In most situations, the practical ecologist will have insufficient data or a limited understanding of the system with which to parameterize even the simplest mechanistic models. The regime detection measures requiring only a limited or no understanding of the mechanisms generating the observed data, I synthesize the utility of these methods here. Further, I synthesize methods not requiring an \emph{a priori} hypothesis about if and where the regime shift occurred.
 
@@ -402,7 +402,7 @@ To identify the extent to which these methods are not obvious to the practical e
 
 Candidate articles were identified for two reasons: 1) a bibliographic analysis of regime shift relevant papers in ecology and 2) to identify regime detection methods proposed in the literature. The data used for the latter (identify methods) are a subset of the data used for the former (bibliographic analysis).
 
-I first queried the Thomson-ISI Web of Science (WoS) database (on 06 March 2019) to identify articles which mention terms related to regime shifts, or abrupt changes, using the following boolean:\\
+I first queried the Thomson-ISI Web of Science (WoS) database (on 06 March 2019) to identify articles which mention terms related to regime shifts, or abrupt changes, using the following boolean:
 \textgreater{} TS=((``regime shift'' OR ``regime shifts'' OR ``regime change'' OR ``regime changes'' OR ``catastrophic change'' OR ``catastrophic shift'' OR ``catastrophic changes'' OR ``catastrophic shifts'' OR ``sudden change'' OR ``sudden changes'' OR ``abrupt shift'' OR ``abrupt shifts'' OR ``abrupt change'' OR ``abrupt changes'' OR bistab* OR threshol* OR hystere* OR ``phase shift'' OR ``phase shifts'' OR ``phase change'' OR ``phase changes'' OR ``step change'' OR ``step changes'' OR ``stepped change'' OR ``stepped changes'' OR ``tipping point'' OR ``tipping points'' OR ``stable states'' OR ``stable state'' OR ``state change'' OR ``state changes'' OR ``stark shift'' OR ``stark change'' OR ``stark shifts'' OR ``stark changes'' ``structural change'' OR ``structural changes'' OR ``change-point'' OR ``change point'' OR ``change-points'' OR ``change point'' OR ``break point'' OR ``break points'' OR ``observational inhomogeneity'' OR ``observational inhomogeneities'') AND (``new method'' OR ``new approach'' OR ``novel method'' OR ``novel approach''))
 
 where '*' indicates a wildcard.
@@ -449,14 +449,10 @@ Filtering the Web of Science results by including only articles mentioning terms
 \begin{figure}
 \includegraphics[width=0.95\linewidth]{./chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph} \caption{Flowchart of the litearture review process for identifying new regime detection methods. *Only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods.}\label{fig:rdmReviewFlow}
 \end{figure}
-\begin{verbatim}
-Warning in pandoc.table.return(...): Supplied relative values don't add up
-to 100%. Reverting to default
-\end{verbatim}
 \begin{longtable}[]{@{}lc@{}}
 \caption{List of the regime detection methods identified in this review. (continued below)}\tabularnewline
 \toprule
-\begin{minipage}[b]{0.43\columnwidth}\raggedright
+\begin{minipage}[b]{0.31\columnwidth}\raggedright
 Method\strut
 \end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\centering
 Metric type\strut
@@ -464,363 +460,413 @@ Metric type\strut
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{0.43\columnwidth}\raggedright
+\begin{minipage}[b]{0.31\columnwidth}\raggedright
 Method\strut
 \end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\centering
 Metric type\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Characteristic length scale
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Characteristic
+length scale
 (CLS) estimation\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 attractor reconstruction\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Average standard deviates\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Average standard
+deviates\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 BDS test\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Coefficient of variation (CV)\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Coefficient of
+variation (CV)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Conditional heteroskedasticity\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Conditional
+heteroskedasticity\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Cumulative deviation test
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Cumulative
+deviation test
 (CUSUM)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Degenerate Fingerprinting\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Degenerate
+Fingerprinting\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Degenerate Fingerprinting\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Degenerate
+Fingerprinting\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Downton-Katz test\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Downton-Katz
+test\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Fisher Information\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Fisher
+Information\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Intervention Analysis\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Intervention
+Analysis\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Inverse of AR(1) coefficient,
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Inverse of AR(1)
+coefficient,
 variance, etc.\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Kurtosis\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 LePage test\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Mann-Kendall test\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Mann-Kendall
+test\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Mann-whitney U-test\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Mann-whitney
+U-test\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Moving detrended fluctuation
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Moving detrended
+fluctuation
 analysis (MDFA)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Nearest-neighbor statistics\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Nearest-neighbor
+statistics\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Nikiforiv method\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Oerleman's method\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Oerleman's
+method\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Pettitt test\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Probability density function
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Probability
+density function
 entropy method\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Quickest detection method
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Quickest
+detection method
 (ShiryaevRoberts
 statistic)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Rodionov method\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 STARS\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Sequential tests/moving
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Sequential
+tests/moving
 windows\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Signal-to-noise ratio\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Signal-to-noise
+ratio\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Skewness\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Spectral density ratio
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Spectral density
+ratio indicator\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+metric\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Spectrum
 indicator\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Spectrum indicator\strut
-\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
-metric\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Stability Index of the
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Stability Index
+of the
 Ecological Units\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Standard deviation (rising
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Standard
+deviation
+(rising
 variance)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Standard normal homoegeneity\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Standard normal
+homoegeneity\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 T-test\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Threshold Indicator Taxa
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Threshold
+Indicator Taxa
 ANalysis (TITAN)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Variance Index\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Wilcoxon rank-sum\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Wilcoxon
+rank-sum\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-dimension reduction techniques
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+dimension
+reduction
+techniques
 (e.g., PCA)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 NA\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 NA\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 NA\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-two-phase regression\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+two-phase
+regression\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric of a model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Zonal thresholding\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Zonal
+thresholding\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 metric*\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Bayesian approaches\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Bayesian
+approaches\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Convex model\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Generalized model\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Generalized
+model\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Multivariable autoregressive
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Multivariable
+autoregressive
 models (MAR1)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Nonparametric
-drift-diffusion-jump model\strut
+drift-diffusion-jump
+model\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Potential analysis\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Potential
+analysis\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Regression-based models\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Regression-based
+models\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Self-exciting threshold
-autoregressive state-space
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Self-exciting
+threshold
+autoregressive
+state-space
 model SETARSS(p)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Smooth transition
-autoregressive model\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Smooth
+transition
+autoregressive
+model\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 shiftogram\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Autocorrelation at-lag-1\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Autocorrelation
+at-lag-1\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 model-based\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Online dynamic linear
-modelling + time\_varying
-autoregressive state\_space
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Online dynamic
+linear modelling
++ time\_varying
+autoregressive
+state\_space
 models (TVARSS)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 models\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Clustering, various\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Clustering,
+various\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Degenerate Fingerprinting\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Degenerate
+Fingerprinting\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Fourier Analysis\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Free-knot splines \& piecewise
-linear modelling\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Free-knot
+splines \&
+piecewise linear
+modelling\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Lanzante method\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 MCMC\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Method 1-TBD\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Method 2-TBD\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-Vector-autoregressive method\strut
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+Vector-autoregressive
+method\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
 Wavelet analysis
 (decomposition)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.43\columnwidth}\raggedright
-method-fuzzy synthetic
+\begin{minipage}[t]{0.31\columnwidth}\raggedright
+method-fuzzy
+synthetic
 evaluation (FSE)\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
 NA\strut
@@ -988,7 +1034,8 @@ Source\strut
 @tong1990nonlinear\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
-@see gal2010novel\strut
+@see
+gal2010novel\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.46\columnwidth}\centering
 @groger2011analyses\strut
@@ -1051,16 +1098,16 @@ The clustering algorithm identified fewer clusters (themes) in the ISI-keywords 
 Four major themes were identified in the ISI keyword analysis and, interestingly, mostly fell within the two extreme quadrants, the first and the third (Figure @ref(fig:thematicMaps\_keyword\_isi)). The themes identified by ISI keywords were much larger in scope (e.g, dymamics, ecosystems, climate; (Figure @ref(fig:thematicMaps\_keyword)a) than those identified in the author keywords (e.g., eutrophication, trophic cascade; Figure @ref(fig:thematicMaps\_keyword)b). Regime shifts and ecosystems dynamics are usually have both high centrality and density (Figure @ref(fig:thematicMaps\_keyword)b:d), suggesting these two themes are both important to the development of the field and still strongly influence the field. Although dynamics (i.e.~non-linearity) plays a central role in the theory of ecological systems this is not reflected in many case studies of regime shifts in application (Litzow \& Hunsicker, 2016). Litzow \& Hunsicker (2016) found that \(\sim50%
 \) of case studies using early warning indicators to identify regime shifts in time series actually tested and/or accounted for non-linear dymamics in the data.
 
-A few patterns appear in analyses of the intellectual structure of regime shift research in ecology (Figure \ref{fig:historiograph}). First, although the concept of stability, thresholds, and multiple stable states in ecological systems first appeared (and was well-receieved) in the literature in the 1970s (e.g., Holling, 1973; May, 1977), the most important papers in this field appeared primarily in the early and mid 2000s ({\textbf{???}}; Carpenter \& Brock, 2006; Folke et al., 2004; Nes \& Scheffer, 2005; Scheffer \& Carpenter, 2003). The most recent major contributions to the field were concpetual works emphasizing planetery boundaries and tiping points and the impacts of not recognizing these shifts ({\textbf{???}}; Hughes, Carpenter, Rockström, Scheffer, \& Walker, 2013). Finally, the ``rise'' of resilience theory (Folke et al., 2004; Walker, Holling, Carpenter, \& Kinzig, 2004), the first efforts of a search for early warning indicators of ecological regime shifts (Carpenter \& Brock, 2006) and a spur of critique of regime shift detection methods (Andersen et al., 2009; Contamin \& Ellison, 2009) are recognized in the historiograph.
+A few patterns appear in analyses of the intellectual structure of regime shift research in ecology (Figure \ref{fig:historiograph}). First, although the concept of stability, thresholds, and multiple stable states in ecological systems first appeared (and was well-receieved) in the literature in the 1970s (e.g., Holling, 1973; May, 1977), the most important papers in this field appeared primarily in the early and mid 2000s ({\textbf{???}}; Carpenter \& Brock, 2006; Folke et al., 2004; Nes \& Scheffer, 2005; Scheffer \& Carpenter, 2003). The most recent major contributions to the field were concpetual works emphasizing planetery boundaries and tiping points and the impacts of not recognizing these shifts ({\textbf{???}}; Hughes, Carpenter, Rockström, Scheffer, \& Walker, 2013). Finally, the ``rise'' of resilience theory ({\textbf{???}}; Folke et al., 2004), the first efforts of a search for early warning indicators of ecological regime shifts (Carpenter \& Brock, 2006) and a spur of critique of regime shift detection methods (Andersen et al., 2009; Contamin \& Ellison, 2009) are recognized in the historiograph.
 
-It appears the most influential papers in this field (based solely on number of citations) were published in the late 2000s (Fig \ref{fig:totArtCitesPerYear}), articles of which are very broad in-scope and are still used today to frame studies in the context of global change, planetary boundaries, and large-scale tipping points (Bennett, Peterson, \& Gordon, 2009; Rockstr??m et al., 2009; Smith \& Schindler, 2009). Arguably equally as influential include the papers corresponding to the observed rapid increase in the number of publications (in the early 2000s), Folke et al. (2004) and Scheffer \& Carpenter (2003) (Fig \ref{fig:totArtCitesPerYear}).
+It appears the most influential papers in this field (based solely on number of citations) were published in the late 2000s (Fig \ref{fig:totArtCitesPerYear}), articles of which are very broad in-scope and are still used today to frame studies in the context of global change, planetary boundaries, and large-scale tipping points ({\textbf{???}}; Bennett, Peterson, \& Gordon, 2009; Smith \& Schindler, 2009). Arguably equally as influential include the papers corresponding to the observed rapid increase in the number of publications (in the early 2000s), Folke et al. (2004) and Scheffer \& Carpenter (2003) (Fig \ref{fig:totArtCitesPerYear}).
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph_75quantile.png"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph_75quantile} \caption{Chronological direct citation newtwork suggests the intellectual structure can be mapped to a few papers. This historiograph identifies important works explicitly in chronological, as opposed to absolute, order.}\label{fig:historiograph}
+\includegraphics[width=10.61in]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph_75quantile} \caption{Chronological direct citation newtwork suggests the intellectual structure can be mapped to a few papers. This historiograph identifies important works explicitly in chronological, as opposed to absolute, order.}\label{fig:historiograph}
 \end{figure}
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1068,7 +1115,7 @@ It appears the most influential papers in this field (based solely on number of 
 \end{Highlighting}
 \end{Shaded}
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear} \caption{Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s.}\label{fig:totArtCitesPerYear}
+\includegraphics[width=25in]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear} \caption{Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s.}\label{fig:totArtCitesPerYear}
 \end{figure}
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1076,111 +1123,12 @@ It appears the most influential papers in this field (based solely on number of 
 \end{Highlighting}
 \end{Shaded}
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/revArtNums} \caption{Total number of articles published per year by category as categorized by ISI. Book chapters, proceedings, editorials, and letters are excluded.}\label{fig:revArtNums}
+\includegraphics[width=25in]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/revArtNums} \caption{Total number of articles published per year by category as categorized by ISI. Book chapters, proceedings, editorials, and letters are excluded.}\label{fig:revArtNums}
 \end{figure}
-Numerous reviews of the regime shift literature exist, ranging from conceptual reviews of the state of regime shift theory in ecology and application (e.g., Bestelmeyer et al., 2011; Andersen et al., 2009; Mac Nally et al., 2014), to studies of robustness of early warning indicators under various theoretical and practical conditions {[}e.g., Dutta, Sharma, \& Abbott (2018); Perretti \& Munch (2012); ({\textbf{???}}); Hastings \& Wysham (2010); Figure \ref{fig:revArtNums}{]}. Further, comprehensive reviews of the ecological regime shift detetion literautre are increasingly out-dated. A permanent and open-source database containing information critical to the testing, comparison, and implementation of RDMs may prove useful to the reader who is interested in applying RDMs but is lacking the statistical or mathematical background to do so.
+Numerous reviews of the regime shift literature exist, ranging from conceptual reviews of the state of regime shift theory in ecology and application (e.g., Bestelmeyer et al., 2011; Andersen et al., 2009; Mac Nally et al., 2014), to studies of robustness of early warning indicators under various theoretical and practical conditions {[}e.g., Dutta, Sharma, \& Abbott (2018); Perretti \& Munch (2012); ({\textbf{???}}); Hastings \& Wysham (2010a); Figure \ref{fig:revArtNums}{]}. Further, comprehensive reviews of the ecological regime shift detetion literautre are increasingly out-dated. A permanent and open-source database containing information critical to the testing, comparison, and implementation of RDMs may prove useful to the reader who is interested in applying RDMs but is lacking the statistical or mathematical background to do so.
 
 The early warning indicators that are often referred to as, ``traditional early warning indicators'' (variance, skewness, autocorrelation at lag-1) are fairly well-reviewed, and have been tested under a variety of conditions ({\textbf{???}}; {\textbf{???}}; {\textbf{???}}; Ditlevsen \& Johnsen, 2010; Dutta et al., 2018; Litzow \& Hunsicker, 2016; Perretti \& Munch, 2012; Sommer, Benthem, Fontaneto, \& Ozgul, 2017). However, many of these works apply the traditional (and other) early warning indicators to simulated data, with only some ({\textbf{???}}; Contamin \& Ellison, 2009; Dutta et al., 2018; Perretti \& Munch, 2012) testing under varying conditions of noise and expected shift types. The utility and robustness of the traditional early warning indicators is not consistent across and within sytems, making them of limited utility in situations where the system cannot be reliably mathematically modelled, or where we have limited data {[}see also Ch. \ref{resampling}{]}. The authors of most reviews and comparative studies of early warning indicators suggest that no early warning indicator is reliable alone, or that work is needed to understand under what empirical conditions early warning indicators might fail (Clements \& Ozgul, 2018; deYoung et al., 2008; Filatova et al., 2016; Kefi et al., 2014).
 
-\hypertarget{a-synthesis-of-the-methods-available-for-the-practical-ecologist}{%
-\section{A synthesis of the methods available for the practical ecologist}\label{a-synthesis-of-the-methods-available-for-the-practical-ecologist}}
-
-Many of the methods identified in this review have yet to be tested on multiple, empirical data (see Table \ref{tab:methodsMetricsListTab1}). I categorize the regime detection methods as one of either model-free or model-dependent. Model-free and model-dependent methods are those which do and do not require a mechanistic model to describe the system, respectively. Because many of the model-dependent methods are based on autoregressive modelling apporaches, this is highlighted in the model-dependent section.
-
-\hypertarget{model-depdendent}{%
-\subsection{Model-depdendent}\label{model-depdendent}}
-
-Model-dependent require a mechanistic (mathematical) representation of the system, models which often carry strict assumptions that are easily violated by empirical systems (Abadi, Gimenez, Arlettaz, \& Schaub, 2010). Model-dependent methods are usefully categorized are used under two contexts: differentiable systems of equations or autoregressive. The methods relying on mechanistic models include model descriptions of systems with many, dynamic and interacting components. For example, models are used to reconstruct trophic food webs where prey or predator collapse induces trophic regime shifts in freshwater lake systems (Carpenter et al., 2011).
-
-\hypertarget{model-free}{%
-\subsection{Model-free}\label{model-free}}
-
-Model-free (or metric-based per Dakos et al. (2012)) methods are those which do not require a mathematical represntation of the system. In fact, many require much less knowledge about the system component dynamics and their interactions to calculate a results. The utility of these methods vary with respect to the number of state variables encompassed in the method, and are therefore further categorized as either univariate (using a single dimesion) or multivariable (using but not necessarily requiring multiple dimensions).
-
-The most widely used model-free univariate RDMs include descriptive statistics of individual system components (i.e.~univariate), such as variance, skewness, and mean value (Andersen et al., 2009; Mantua, 2004; S. Rodionov \& Overland, 2005). These univariate methods require only very simple calculations, however, their efficacy in empirical systems analysis is controversial. For example, variance (Carpenter \& Brock, 2006) and skewness (of a single variable), oft referred to generally as `leading indicators' or `early-warning indicators' in the literature, has been applied to both theoretical and empirical systems data with varying results.
-
-Hastings \& Wysham (2010) point out an important feature of using any methods for identifying regime shifts in empirical system data: we only have a single history within which we can compare AND these metrics which depend on the system exhibiting a change in variance or skewness around a mean value before and after a regime shift require hte system to have a smooth potential, rather than one which can manifest complex dynamics (i.e.~non-smooth potential). If we are using RDMs to attempt to forecast and prevent non-smooth or abrupt changes, then there is little justification for relying upon these early warning indicators. Specifcally, these early-warning indicators may be most useful when the system is expected to undergo a transcritical or critical bifurcation before exiting a regime (Lenton, 2011).
-
-Hastings \& Wysham (2010) aptly point out that any realisitic ecological model should include some degree of stochasticity, and when this stochasticity is introduced into the function, the funciton will likely not be differentiable at the point of the regime shift (Graham \& Tél, 1984). If a function lacks a gradient along its range, then leading indicators will most likely not indicate the abrupt change in system dynamics alony any paramter.
-
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
-
-In this chapter I highlighted the plethora of regime detection metrics proposed in the literature for analyzing ecological data (Table \ref{tab:methodsMetricsListTab1}). Although multiple reviews of regime detection measures exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of regime detection measures. For example, Roberts et al. (2018) summarizes methods capable of handling multiple (c.f. a single) variable, and Dakos et al. (2015b) review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate--rather, I present an exaustive list of the methods proposed for detecting ecological regime shifts, \emph{sensu lato}, providing a much-needed update to collection provided by S. N. Rodionov (2005); and other review papers (Andersen et al., 2009; Boettiger et al., 2013; Clements \& Ozgul, 2018; Dakos et al., 2015a, 2015b; deYoung et al., 2008; Filatova et al., 2016; Kefi et al., 2014; Litzow \& Hunsicker, 2016; Mac Nally et al., 2014; Mantua, 2004; Roberts et al., 2018; S. N. Rodionov, 2005; Scheffer et al., 2015).
-
-Filtering In this review I restricted articles to those implying they introduced a `new method'. Avoiding this potential barrier would have required I review the titles, abstracts, and bodies of over 22,000 articles (Figure \ref{fig:rdmReviewFlow}). Alternatively, this may also be ameliorated by searching the relevant literature for \emph{applications} of regime detection measures to ecological data, however, I suspect this would similarly yield a large number of articles to review. Also, only a handful of methods have been introduced to the mainstream methodological journals in ecology (e.g., \emph{Ecological Modelling}, \emph{Methods in Ecology and Evolution}; Figure \ref{fig:jrnlDistFig}). Although many mainstream publications (e.g., \emph{Science}, \emph{Ecology Letters}) include applications of some of the methods identified in this chapter (Table \ref{tab:methodsMetricsListTab1}), I argue that celebrity and `new and shiny' (Steel, Kennedy, Cunningham, \& Stanovick, 2013) methods may influence which methodological articles are printed in these popular journals.
-\begin{figure}
-\centering
-\includegraphics{_myDissertation_files/figure-latex/jrnlDistFig-1.pdf}
-\caption{\label{fig:jrnlDistFig}Distribution of identified methods across publications via the literature review.}
-\end{figure}
-A critical survey of potetial and realized applications of these methods would be useful for highlighting the needs of future research and methodological improvements. Many of the methods presented in Table \ref{tab:methodsMetricsListTab1} have either not been applied to empirical data at all, or were tested only once, often but not always in the article introducing or adapting the methodology (Hawkins et al., 2015). Some methods, especially those dubbed `early warning indicators' (variance, autoregressive model coefficients) have become relativley mainstream in their application to empirical data, despite having been shown to be less robust in noisy and nonlinear systems (Burthe et al., 2016), in systems exhibiting lag-effects (Guttal, Jayaprakash, \& Tabbaa, 2013), and in systems not exhibiting catstrophic shifts (Dutta et al., 2018). Unlike these early warning indicators, fewer efforts have been made to test robustness under these and more simple conditions (Dutta et al., 2018; c.f. Brock \& Carpenter, 2010; Benedetti-Cecchi, Tamburello, Maggi, \& Bulleri, 2015). In addition to the paucity of studies attempting to understand the limitations of these methods, this review suggests that simply identifying the suite of methods used in ecological regime shift detections may be difficult using traditional review methods. Many of the methods metnioned in this review were not identified using a systematic search process in Web of Science and Google Scholar--rather, they were methods of which I was either previously aware and/or highlighted in the few methods reviews (Andersen et al., 2009; Boettiger et al., 2013; Clements \& Ozgul, 2018; Dakos et al., 2015a, 2015b; deYoung et al., 2008; Filatova et al., 2016; Kefi et al., 2014; Litzow \& Hunsicker, 2016; Mantua, 2004; Roberts et al., 2018; S. N. Rodionov, 2005; Scheffer et al., 2015). To facilitate this process, an online, comprehensive database may prove useful to the practical ecologist.
-
-\hypertarget{on-the-widely-used-regime-detection-methods}{%
-\subsection{On the widely-used regime detection methods}\label{on-the-widely-used-regime-detection-methods}}
-
-Many of the methods identified in this review have yet to be tested on multiple, empirical datum (see Table \ref{tab:methodsMetricsListTab1}). I categorize the regime detection methods as one of either model-free or model-dependent. Model-free and model-dependent methods are those which do and do not require a mechanistic model to describe the system, respectively. Because many of the model-dependent methods are based on autoregressive modelling apporaches, this is highlighted in the model-dependent section (however most autoregessive models are non-specific).
-
-Model-dependent require a mechanistic (mathematical) representation of the system, models which often carry strict assumptions that are easily violated by empirical systems (Abadi et al., 2010). Model-dependent methods are usefully categorized are used under two contexts: differentiable systems of equations or autoregressive. The methods relying on mechanistic models include model descriptions of systems with many, dynamic and interacting components. For example, models are used to reconstruct trophic food webs where prey or predator collapse induces trophic regime shifts in freshwater lake systems.
-
-Model-free (or metric-based per Dakos et al., 2012) methods are those which do not require a mathematical represntation of the system. In fact, many require much less knowledge about the system component dynamics and their interactions to calculate a results. The utility of these methods vary with respect to the number of state variables encompassed in the method, and are therefore further categorized as either univariate (using a single dimesion) or multivariable (using but not necessarily requiring multiple dimensions). The most widely used model-free univariate RDMs include descriptive statistics of individual system components (i.e.~univariate), such as variance, skewness, and mean value (Andersen et al., 2009; Mantua, 2004; S. Rodionov \& Overland, 2005). These univariate methods require only very simple calculations, however, their efficacy in empirical systems analysis is controversial. For example, variance (Carpenter \& Brock, 2006) and skewness (of a single variable), oft referred to generally as `leading indicators' or `early-warning indicators' in the literature, has been applied to both theoretical and empirical systems data with varying results.
-
-Hastings \& Wysham (2010) point out an important feature of using any methods for identifying regime shifts in empirical system data: we only have a single history within which we can compare AND these metrics which depend on the system exhibiting a change in variance or skewness around a mean value before and after a regime shift require hte system to have a smooth potential, rather than one which can manifest complex dynamics (i.e.~non-smooth potential). If we are using RDMs to attempt to forecast and prevent non-smooth or abrupt changes, then there is little justification for relying upon these early warning indicators. Specifcally, these early-warning indicators may be most useful when the system is expected to undergo a transcritical or critical bifurcation before exiting a regime (Lenton, 2011). Hastings \& Wysham (2010) aptly point out that any realisitic ecological model should incorporate some degree of stochasticity, and when this stochasticity is introduced into the function, the function will likely not be differentiable at the point of the regime shift (Graham \& Tél, 1984). In other words, most (if not all) ecological systems have non-smooth potentials, and many of the current methods for identifying regime shifts assume otherwise, often failing if the assumption is violated.
-
-\#\#\#Reducing the barriers to regime detection measures
-To make the regime detection measures more available and transparent to the practical ecologist, I recommend the following:
-1. consitent use of fewer methods
-1. persistent collection and maintenance of baseline data (reference data)
-1. an on-line database of all methods
-- open-sourced
-- linked to the original sources (in ecology and statistics or mathematics)
-- linked to applications
-1. a critical review of the current state of methods in ecology
-- including methodological advancements
-- especially highlighting where the method fails to perform
-- including historical tracking of specific methods to identify which may need to be retired, rather than resuscitated
-1. more empirical applications of these methods (especially of those only tested on toy and experimental data)
-1. relation of RDMs in ecology to other fields (computer science, data science, climatology and oceanography)
-
-I suggest (Table \ref{tab:nextStepsTab}) a suite of questions which may be useful in a critical review of the characteristics, rigor, and application potential of methods in the context of ecological regime shift detection.
-\begin{longtable}{>{\bfseries}l|>{\raggedright\arraybackslash}p{30em}}
-\caption{\label{tab:nextStepsTab}Potential questions for a comprehensive review of the ecological regime detection metrics literature.}\\
-\toprule
-Type & Questions\\
-\midrule
-Methodological & Does the method assume smooth potential?\\
- & Does the regime shift need to be identified *a priori*?\\
- & What are the major assumptions about the distribution of the original data?\\
- & Does the method explicitly assume the system/variable is stationary?\\
- & Does the performance of the method change with non-stationarity?\\
-\addlinespace
- & Can the method handle unstructured data?\\
- & Can the method handle multiple regime shifts?\\
- & What types of regime shifts can the method detect (e.g., stochastic resonance, slow-fast cycles, noise-induced transition)?\\
- & Is it a model- or metric-based method?\\
- & Does it have forecasting potential?\\
-\addlinespace
- & Can the method handle uneven sampling?\\
- & What are the minimum data requirements (resolution, extent, number of observations)?\\
- & How does the method handle missing data (e.g., new invasions)?\\
- & Does the method assume Eulerian or Lagrangian processes?\\
-Ecological & Does the system *have* smooth potential?\\
-\addlinespace
- & Has the method been tested on empirical data? If so, to what rigor?\\
- & What is the impact of losing state variables on long-term predictions (e.g., species extinction)?\\
- & Can the method identify drivers?\\
- & What assumptions does the method make about the system?\\
- & What types of regime shifts are possible in the system?\\
-\addlinespace
- & Are regime shift(s) suspected *a priori*?\\
- & What lag(s) exist in the data (system)?\\
- & Would a positive forecast change management action?\\
- & Do predictions translate to other systems?\\
- & Can we interpolate data if necessary? If so, what does this mean for inference?\\
-\addlinespace
- & In which discipline(s) beyond ecology has the method been tested?\\
-\bottomrule
-\end{longtable}
 \hypertarget{fiGuide}{%
 \chapter{Decoupling the Calculation of Fisher Information}\label{fiGuide}}
 
@@ -1194,9 +1142,9 @@ Ecological regime shifts are increasingly prevalent in the Anthropocene. The num
 \hypertarget{introduction-1}{%
 \section{Introduction}\label{introduction-1}}
 
-Changes in the feedback(s) governing ecosystem processes can trigger unexpected and sometimes undesirable responses in environmental conditions (Scheffer, Carpenter, Foley, Folke, \& Walker, 2001; Walther et al., 2002). Ecologists often refer to such changes as regime shifts, but this term is used interchangeably in the literature with state change, state transition, or alternative state (Andersen et al., 2009). Climate change and globalization are triggering novel and unexpected changes in ecosystems (Hughes, 1994; Parmesan, 2006; Scheffer et al., 2001; Walther et al., 2002), and the rapidity with which these changes occur make predictive modeling difficult. Although detecting regime shifts is increasingly difficult as we increase the extent and complexity of the system in question (Jorgensen \& Svirezhev, 2004), advances in the collection and analysis of ecological data (La Sorte et al.~2018) may improve our ability to detect impending regime shifts in time for intervention (Carpenter et al., 2011; deYoung et al., 2008; Groffman et al., 2006; Jorgensen \& Svirezhev, 2004; Sagarin \& Pauchard, 2012; Wolkovich, Cook, McLauchlan, \& Davies, 2014).
+Changes in the feedback(s) governing ecosystem processes can trigger unexpected and sometimes undesirable responses in environmental conditions (Scheffer, Carpenter, Foley, Folke, \& Walker, 2001; Walther et al., 2002). Ecologists often refer to such changes as regime shifts, but this term is used interchangeably in the literature with state change, state transition, or alternative state (Andersen et al., 2009). Climate change and globalization are triggering novel and unexpected changes in ecosystems ({\textbf{???}}; Parmesan, 2006; Scheffer et al., 2001; Walther et al., 2002), and the rapidity with which these changes occur make predictive modeling difficult. Although detecting regime shifts is increasingly difficult as we increase the extent and complexity of the system in question (Jorgensen \& Svirezhev, 2004), advances in the collection and analysis of ecological data (La Sorte et al.~2018) may improve our ability to detect impending regime shifts in time for intervention (Carpenter et al., 2011; deYoung et al., 2008; Groffman et al., 2006; Jorgensen \& Svirezhev, 2004; Sagarin \& Pauchard, 2012; Wolkovich, Cook, McLauchlan, \& Davies, 2014).
 
-Numerous quantitative approaches have been proposed as regime shift detection methods (Clements \& Ozgul, 2016 ; Mantua, 2004; S. Rodionov \& Overland, 2005, p. @andersen\_ecological\_2009), but few are consistently applied to terrestrial ecological data (deYoung et al., 2008). I broadly classify these methods as either model-based or model-free {[}Boettiger \& Hastings (2012); ({\textbf{???}}); Dakos et al. (2012). Model-based methods use mathematical (mechanistic) representations of the system (Hefley, Tyre, \& Blankenship, 2013), which often carrying strict assumptions that are easily violated by dynamic systems such as ecosystems (Abadi et al., 2010). Further, model misspecification may yield spurious results (Perretti, Munch, \& Sugihara, 2013). Model-free (or metric-based, per Dakos et al., 2012) regime detection methods require fewer assumptions to implement than do model-based methods, and typically require much less knowledge (if any) about system component interactions. The most widely used model-free methods include both descriptive statistics of individual system components, such as variance, skewness, and mean value (Andersen et al., 2009; Mantua, 2004; S. Rodionov \& Overland, 2005) and composite measures of multiple variables, notably principal components analysis (Möllmann, Folke, Edwards, \& Conversi, 2015; Petersen et al., 2008), clustering algorithms (Beaugrand, 2004), and variance index (Brock \& Carpenter, 2006).
+Numerous quantitative approaches have been proposed as regime shift detection methods (Clements \& Ozgul, 2016 ; Mantua, 2004; S. Rodionov \& Overland, 2005, p. @andersen\_ecological\_2009), but few are consistently applied to terrestrial ecological data (deYoung et al., 2008). I broadly classify these methods as either model-based or model-free {[}Boettiger \& Hastings (2012); Hastings \& Wysham (2010b); Dakos et al. (2012). Model-based methods use mathematical (mechanistic) representations of the system (Hefley, Tyre, \& Blankenship, 2013), which often carrying strict assumptions that are easily violated by dynamic systems such as ecosystems (Abadi, Gimenez, Arlettaz, \& Schaub, 2010). Further, model misspecification may yield spurious results (Perretti, Munch, \& Sugihara, 2013). Model-free (or metric-based, per Dakos et al., 2012) regime detection methods require fewer assumptions to implement than do model-based methods, and typically require much less knowledge (if any) about system component interactions. The most widely used model-free methods include both descriptive statistics of individual system components, such as variance, skewness, and mean value (Andersen et al., 2009; Mantua, 2004; S. Rodionov \& Overland, 2005) and composite measures of multiple variables, notably principal components analysis ({\textbf{???}}; Petersen et al., 2008), clustering algorithms (Beaugrand, 2004), and variance index (Brock \& Carpenter, 2006).
 
 \hypertarget{fisher-information-as-a-regime-detection-method}{%
 \subsection{Fisher Information as a Regime Detection Method}\label{fisher-information-as-a-regime-detection-method}}
@@ -1206,26 +1154,20 @@ A method which has been more recently applied in the analysis of ecological and 
 \hypertarget{the-sustainable-regimes-hypothesis}{%
 \subsection{The Sustainable Regimes Hypothesis}\label{the-sustainable-regimes-hypothesis}}
 
-Fisher Information (hereafter, FI; Fisher, 1922) is a model-free, composite measure of any number of variables, and is proposed as an early warning signal for ecological regime shift detection and as a measure of system sustainability (Eason \& Cabezas, 2012; Eason et al., 2014a; Karunanithi et al., 2008; Mayer, Pawlowski, Fath, \& Cabezas, 2007). Three definitions of FI in this context exist: (i) a measure of the ability of the data to estimate a parameter, (ii) the amount of information extracted from a set of measurements (Frieden, 1990; Roy Frieden, 1998), and (iii) a measure representing the dynamic order/organization of a system (Cabezas \& Fath, 2002). Although definitions (i) and (ii) are widely applied in the statistical and physical sciences, I focus on definition (iii) as it is gaining traction as a tool to analyze used in the context ofeco ecological systems analysisresponses to fast environmental change. The application of FI to complex ecological systems was posed as part of the ``Sustainable Regimes Hypothesis,'' stating a system is sustainable, or is in a stable dynamic state, if over some period of time the average value of FI does not drastically change (Cabezas \& Fath, 2002). This concept can be described using an ecological example. Consider the simple diffusion of a population released from a point source at \(t=0\). This process can be described by a bivariate normal distribution, \(p(x,y|t)\). As the time since release, \(t\), increases, the spread of the distribution, \(p(x,y|t)\), disperses because the animals have moved further from the release location. As the animal moves away from the release location, the potential area within which it currently occupies will increase with time. In this example, FI will decrease in value as t increases because \(p(x,y|t)\) contains less information (higher uncertainty) about where the animals will be located. If we assume constant dispersal, as \(t\rightarrow\infty\) the animals will be relatively uniformly distributed across the environment and \(p(x,y|t)\) will carry no information about the location of the animals. Consequently, as \(t\rightarrow\infty\) FI approaches zero (no information). Per the Sustainable Regimes Hypothesis (Cabezas \& Fath, 2002), this example system is not in a stable dynamic state over the range of \(t\), since FI decreases with time.
+Fisher Information (hereafter, FI; Fisher, 1922) is a model-free, composite measure of any number of variables, and is proposed as an early warning signal for ecological regime shift detection and as a measure of system sustainability (Eason \& Cabezas, 2012; Eason et al., 2014a; Karunanithi et al., 2008; Mayer, Pawlowski, Fath, \& Cabezas, 2007). Three definitions of FI in this context exist: (i) a measure of the ability of the data to estimate a parameter, (ii) the amount of information extracted from a set of measurements ({\textbf{???}}; Roy Frieden, 1998), and (iii) a measure representing the dynamic order/organization of a system (Cabezas \& Fath, 2002). Although definitions (i) and (ii) are widely applied in the statistical and physical sciences, I focus on definition (iii) as it is gaining traction as a tool to analyze used in the context ofeco ecological systems analysisresponses to fast environmental change. The application of FI to complex ecological systems was posed as part of the ``Sustainable Regimes Hypothesis,'' stating a system is sustainable, or is in a stable dynamic state, if over some period of time the average value of FI does not drastically change (Cabezas \& Fath, 2002). This concept can be described using an ecological example. Consider the simple diffusion of a population released from a point source at \(t=0\). This process can be described by a bivariate normal distribution, \(p(x,y???t)\). As the time since release, \(t\), increases, the spread of the distribution, \(p(x,y???t)\), disperses because the animals have moved further from the release location. As the animal moves away from the release location, the potential area within which it currently occupies will increase with time. In this example, FI will decrease in value as t increases because \(p(x,y???t)\) contains less information (higher uncertainty) about where the animals will be located. If we assume constant dispersal, as \(t???\inf\) the animals will be relatively uniformly distributed across the environment and \(p(x,y???t)\) will carry no information about the location of the animals. Consequently, as \(t???\inf\) FI approaches zero (no information). Per the Sustainable Regimes Hypothesis (Cabezas \& Fath, 2002), this example system is not in a stable dynamic state over the range of \(t\), since FI decreases with time.
 
 Conversely, if a population following a simple logistic growth model, \(\frac{dN}{dt}=rN(1-\frac{N}{K})\), varies around some carrying capacity, K, and the average system parameters (\(r\), \(K\), and their variances \(\sigma_r, \sigma_k\)) are stationary, then the logarithm of the population size should follow a normal distribution, \(N ~ normal(\mu,\sigma)\). In this situation, the FI measured over any selected window of time will be relatively constant and, per the Sustainable Regimes Hypothesis, indicates the system is in a stable dynamic state. Further, this Hypothesis posits that a perturbation to N will also not affect FI so long as the perturbation occurs with a stationary probability distribution and if the perturbation does not change the distributions of \(r\) and \(K\).
 
-\hypertarget{fisher-information-requires-dimension-reduction}{%
-\subsection{Fisher Information Requires Dimension Reduction}\label{fisher-information-requires-dimension-reduction}}
-
+\#\#\#Fisher Information Requires Dimension Reduction
 An important feature of the FI method is that it requires a complete reduction in dimensionality (i.e., from \(>1\) to \(1\) system component). For example, a recent application of Fisher Information to empirical data condensed a species pool from 109 species time series into a 1-dimensional time series (Spanbauer et al., 2014). A reduction in dimensionality, i.e.~condensing multivariate data into a single metric, of over two orders of magnitude likely involves a large loss of relevant information, raising the questions of what information is preserved during the dimensionality reduction step in calculating FI, what is lost, and whether this is important. Other dimension reduction techniques, e.g., principal component analysis (PCA) and redundancy analysis (RDA), attempt to preserve the variance of the data, and the number of components scales with the dimensionality of the data (i.e.~they are scale explicit). In contrast, by reducing entirely the dimensionality of the data, the FI method does not identify which features of the data are preserved, and the dimensionality does not scale with the dimensionality of the original data.
 
-\hypertarget{aims}{%
-\subsection{Aims}\label{aims}}
-
+\#\#\#Aims
 The key contribution of this study is that I decouple the dimensionality reduction step of the FI method (Step 1) from the statistical analysis step (Step 2). By isolating the dimensionality reduction step, we can evaluate it based on its own merits and relate it to more well-known and established methods of dimensionality reduction. By isolating the statistical analysis step, one can better understand how Fisher Information is calculated on the single-dimensional data. I believe that this decoupled approach will eliminate some confusion regarding the calculation of FI, allowing interested researchers to readily evaluate the merits of this method. To facilitate our explanation of the method, I reproduce the predator-prey analysis used in (Fath, Cabezas, \& Pawlowski, 2003; Mayer et al., 2007), then induce a ``regime shift'' into the model. I hope this work will serve as a useful explanation of the FI metric for those seeking to understand it in the ecological regime shift context and will stimulate research using this and other multivariate, model-free, and composite measures to understand ecological regime shifts.
 
 \hypertarget{methods-1}{%
 \section{Methods}\label{methods-1}}
 
-\hypertarget{predator-prey-model-system}{%
-\subsection{Predator-Prey Model System}\label{predator-prey-model-system}}
-
+\#\#\#Predator-Prey Model System
 Our model system is a two-species predator-prey model (Eq. \eqref{eq:predprey}; Fath et al., 2003; Frieden \& Gatenby, 2007; Mayer et al., 2007), hereafter referred to as the ``model system'':
 \begin{equation} 
   dx_1 = g_{1}x_{1}(1-\frac{x_1}{k})- \frac{l_{12} x_{1} x_{2}}{1+\beta x_{1}} \\
@@ -1234,13 +1176,11 @@ Our model system is a two-species predator-prey model (Eq. \eqref{eq:predprey}; 
 \end{equation}
 The specified parameters for the model system are \(g_1=m_2=1\),\(l_{12}=g_{12}= 0.01\) ,\(k=625\) ,and \(\beta=0.005\) (Fath et al., 2003; Frieden \& Gatenby, 2007; Mayer et al., 2007). The initial conditions (predator and prey abundances,) for the model system were not provided in the original references (Fath et al., 2003; Mayer et al., 2007). I used package \texttt{deSolve} in Program R (version 3.3.2) to solve the model system (Eq. Eq. \eqref{eq:predprey}), finding \$x\_1 = 277.781\$5 and \(x_2= 174.551\) to provide reasonable results. A complete cycle of this system corresponds to \(~11.145\) time units.
 
-\hypertarget{inducing-a-regime-shift}{%
-\subsection{Inducing a Regime Shift}\label{inducing-a-regime-shift}}
-
+\#\#\#Inducing a Regime Shift
 Mayer et al. (2007) calculated FI for a predator-prey system for several discrete values of carrying capacity of prey. The results of this study showed that FI was different for systems with different carrying capacities (\(K\)). However, this study did not address the central question of \textbf{FI behavior during a regime shift}. As an extension of the original study, I simulated a regime shift by modeling an abrupt decline in carrying capacity, \(k\). I assume \(k\) is described by Eq. \eqref{eq:mayerCase} where \(k_1\) is the initial carrying capacity, \(k_2\) is the final carrying capacity, \(t_shift\) is the time the regime shift occurred, and \(\alpha\) is the parameter controlling the rate (slope) of the regime shift. The hyperbolic tangent function (see Eq. \eqref{eq:mayerCase}) simulates a smooth and continuous change in \(k\) while still allowing for the regime shift to occur rapidly. I incorporate the change in \(k\) into our system of differential equations by defining the rate of change in \(k\), \(k'(t)\), given by (Eq. \eqref{eq:mayerCase}). I assume \(k_1=800\) and \(k_2=625\), values corresponding to the range of carrying capacities explored by Mayer et al. (2007). I simulated a time series of 600 time units, introducing a regime change after 200 time units, and \(\alpha=0.05\).
 \begin{equation}  
-  k(t) = k_1  - 0.5(k_1-k_2)(\tanh(\alpha (t-t^*))+1) \\ 
-  k'(t) = 0.5\alpha (k_1-k_2)(\tanh(\alpha(t-t^*))^2 +1) 
+  k(t) = k_1  - 0.5(k_1-k_2)(\tanh(\alpha (t-t^*))+1)     \\
+  k'(t) = 0.5\alpha (k_1-k_2)(\tanh(\alpha(t-t^*))^2 +1)      \\ 
 \label{eq:mayerCase}
 \end{equation}
 \hypertarget{decoupling-the-steps-for-calculating-fisher-information}{%
@@ -1257,11 +1197,11 @@ The original motivation for the dimensionality reduction step is that, under res
 
 What is preserved in the calculation of distance travelled is the rate of change of the system (e.g., the speed and acceleration of the car). The rate of change of the system is the first derivative of the distance travelled in phase space. This is an important point because the concept of a ``regime shift'' is often associated with the idea of a sudden change in system state. Therefore, it may not be unreasonable to employ a dimensionality reduction procedure that preserves these system dynamics.
 
-\textbf{Step 2: Statistical Analysis.} The product of \textbf{Step 1} is a one-dimensional time series of what I call ``distance travelled'', \(s\), (in phase space). The variable \(s\) is referred to as ``Fisher variable s'' and ``represent{[}s{]} a particular state of phase space'' in the FI literature (Mayer et al., 2007). I believe distance travelled (\(s\)) is more descriptive than ``Fisher Variable s'' and avoids confusing the state of the system, defined in multiple dimensionsby the multivariate data , with the one-dimensional summary. Using this measure, we next calculate the probability of observing the system in a particular state by assuming a one-to-one mapping between distance travelled and the system state. That is, we calculate the probability of observing the system at a particular distance, \(p(s)\), along the trajectory for some period of time from 0 to \(t_end\). The time at which we observe the system is assumed to be a random variable, \(T_{obs} \sim Uniform(0,t_end)\). This approach assumes the system is deterministic and is observed without error. However, the observed distance travelled by the system, \(s\), is a random variable because it is a function of the random observation time.
+\textbf{Step 2: Statistical Analysis.} The product of \textbf{Step 1} is a one-dimensional time series of what I call ``distance travelled'', \(s\), (in phase space). The variable \(s\) is referred to as ``Fisher variable s'' and ???represent{[}s{]} a particular state of phase space??? in the FI literature (Mayer et al., 2007). I believe distance travelled (\(s\)) is more descriptive than ``Fisher Variable s'' and avoids confusing the state of the system, defined in multiple dimensionsby the multivariate data , with the one-dimensional summary. Using this measure, we next calculate the probability of observing the system in a particular state by assuming a one-to-one mapping between distance travelled and the system state. That is, we calculate the probability of observing the system at a particular distance, \(p(s)\), along the trajectory for some period of time from 0 to \(t_end\). The time at which we observe the system is assumed to be a random variable, \(T_{obs} \sim Uniform(0,t_end)\). This approach assumes the system is deterministic and is observed without error. However, the observed distance travelled by the system, \(s\), is a random variable because it is a function of the random observation time.
 
-Importantly, the probability of observing the system at a particular value of s increases if the system is changing slowly at that point in time. That is \(p(s)\) is inversely proportional to the system rate of change, \(s'\). Mathematically, the distance travelled in phase space, \(s\), is a monotonically increasing function of time and we assume it is differentiable. Therefore, the probability density function of the distance travelled is \(p(s)=\frac{1}{T}\frac{1}{s'}\), where \(s'=\frac{ds}{dt}\) is the speed (or velocity) of \(s\), and \(T\) is the time interval over which the system was observed (\(t_{start}\)-\(t_{end}\)). We note that \(p(s)\) is simply a constant multiplied by the inverse of the speed of the system.
+Importantly, the probability of observing the system at a particular value of s increases if the system is changing slowly at that point in time. That is \(p(s)\) is inversely proportional to the system rate of change, \(s'\). Mathematically, the distance travelled in phase space, \(s\), is a monotonically increasing function of time and we assume it is differentiable. Therefore, the probability density function of the distance travelled is \(p(s)=\frac{1}{T}\frac{1}{s'}\), where \(s'=\frac{ds}{dt}\) is the speed (or velocity) of \(s\), and \(T\) is the time interval over which the system was observed (\(t_start\)-\(t_end\)). We note that \(p(s)\) is simply a constant multiplied by the inverse of the speed of the system.
 
-The original motivation for the FI calculation as applied to ecological systems was the hypothesis that ``since Fisher Information is a measure of the variation'' it is also ``an indicator of system order, and thus system sustainability'' (Cabezas \& Fath, 2002). Equation \eqref{eq:fiAdapted} is a general form of FI and Equation \eqref{eq:fiDerivs} is the form used in the derivative-based method for FI (see eq. 7.3b and 7.12 in Mayer et al., 2007). To better understand the FI calculation, note that Eq.\eqref{eq:fiDerivs} is, in part, a measure of the gradient content of the probability density function. As the probability density function becomes flatter, the FI value will decrease. In this way, the FI calculation is closely related to the variance. In fact, the FI value for a normal distribution calculated according to Eq. \eqref{eq:fiDerivs} is simply one over the variance. It is also important to note that FI is zero for a uniform distribution, as the probability density function is flat. Note also that FI goes approaches \(\inf\) if the system is not changing over some period of time (Eq. \eqref{eq:fiDerivs}).
+The original motivation for the FI calculation as applied to ecological systems was the hypothesis that ???since Fisher Information is a measure of the variation??? it is also ``an indicator of system order, and thus system sustainability'' (Cabezas \& Fath, 2002). Equation \eqref{eq:fiAdapted} is a general form of FI and Equation \eqref{eq:fiDerivs} is the form used in the derivative-based method for FI (see eq. 7.3b and 7.12 in Mayer et al., 2007). To better understand the FI calculation, note that Eq.\eqref{eq:fiDerivs} is, in part, a measure of the gradient content of the probability density function. As the probability density function becomes flatter, the FI value will decrease. In this way, the FI calculation is closely related to the variance. In fact, the FI value for a normal distribution calculated according to Eq. \eqref{eq:fiDerivs} is simply one over the variance. It is also important to note that FI is zero for a uniform distribution, as the probability density function is flat. Note also that FI goes approaches \(\inf\) if the system is not changing over some period of time (Eq. \eqref{eq:fiDerivs}).
 \begin{equation} 
     I = \int \frac{ds}{p(s)}\left[\frac{dp(s)}{ds}\right]^2  \\
     \label{eq:fiAdapted}
@@ -1271,39 +1211,37 @@ The original motivation for the FI calculation as applied to ecological systems 
   \label{eq:fiDerivs}
 \end{equation}
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/distSppedAccel} \caption{From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.}\label{fig:distSpeedAccel}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/distSppedAccel} \caption{From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.}\label{fig:distSpeedAccel}
 \end{figure}
 \#\#Results
-Distance travelled (\(s\)), speed (\(\frac{ds}{dt}\)), and acceleration (\(\frac{d^2 s}{dt^2}\)) capture the dynamics of the model system {[}Eq. \eqref{eq:predprey}; Fig. @ref(fig:distSpeedAccel{]}. I simulated a regime shift in the carrying capacity of this model system, at approximately \(t=200\) (Fig. \ref{fig:kByTime}). The location of this regime shift with respect to the system trajectory in phase space over the entire simulated time period is shown in (Fig. \ref{fig:kTrajectories}). Although a slight change is captured by \(s\) (Figure 4) at the location of this regime shift, it is not pronounced. Although the distance travelled, \(s\) (Fig. \ref{fig:sOverTime}) changes fairly smoothly around the location of the regime shift, the system exhibits a steep decline in speed ds/dt soon after the induced regime shift (Fig. \ref{fig:dsdtOverTime}).
+Distance travelled (\(s\)), speed (\(\frac{ds}{dt}\)), and acceleration (\(\frac{d^2 s}{dt^2}\)) capture the dynamics of the model system (Eq. \eqref{eq:predprey}; Fig. \ref{fig:distSpeedAccel}). I simulated a regime shift in the carrying capacity of this model system, at approximately \(t=200\) (Fig. \ref{fig:kByTime}). The location of this regime shift with respect to the system trajectory in phase space over the entire simulated time period is shown in (Fig. \ref{fig:kTrajectories}). Although a slight change is captured by \(s\) (Figure 4) at the location of this regime shift, it is not pronounced. Although the distance travelled, \(s\) (Fig. \ref{fig:sOverTime}) changes fairly smoothly around the location of the regime shift, the system exhibits a steep decline in speed ds/dt soon after the induced regime shift (Fig. \ref{fig:dsdtOverTime}).
 
 I calculated FI for the distribution of \(s\) over a series of non-overlapping time windows. According to Mayer et al. (2007) the length of the time window should be equal to one system period such that FI is constant for a periodic system, however, the system periods are not identical before, during, and after the regime shift. Therefore, I performed two separate calculations of FI using window sizes corresponding to the initial (when \(t<200\)) and the final (\(t>200\)) periods of the system (\(winsize = 13.061\) and \(11.135\) time units, respectively). Using these window sizes the drop in FI at the regime shift initiation is bigger than the magnitude of the fluctuations preceding it (Fig. \ref{fig:fiOverTime}).
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/kByTime} \caption{Carrying capacity over time with a regime shift occuring around time 200.}\label{fig:kByTime}
+\includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/kByTime} \caption{Carrying capacity over time with a regime shift occuring around time 200.}\label{fig:kByTime}
 \end{figure}
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/kTrajectories} \caption{Phase space plot of system trajectories for different values of k}\label{fig:kTrajectories}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/kTrajectories} \caption{Phase space plot of system trajectories for different values of k}\label{fig:kTrajectories}
 \end{figure}
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/sOverTime} \caption{Distance travelled in phase space over time. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:sOverTime}
+\includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/sOverTime} \caption{Distance travelled in phase space over time. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:sOverTime}
 \end{figure}
-\hypertarget{discussion-1}{%
-\section{Discussion}\label{discussion-1}}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
 Part of the appeal of the FI method of regime shift detection is that it provides a 1-dimensional visual summary of system ``orderliness''. However, I have demonstrated that the dimensionality reduction step can be performed separately from the calculation of FI. The rate of change of the system (velocity, \(\frac{ds}{dt}\)\}), on which FI method is based, is also a 1-dimensional quantity. In the simple predator-prey example, calculating and plotting FI did not provide a clear benefit over simply plotting the system rate of change directly. I suggest that future research uncouple the dimensionality reduction step and the FI calculation step in order to better illustrate the benefits of the FI method relative to dimensionality reduction alone.
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/dsdtOverTime} \caption{Speed of the system (rate of change, velocity) in phase space. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:dsdtOverTime}
+\includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/dsdtOverTime} \caption{Speed of the system (rate of change, velocity) in phase space. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:dsdtOverTime}
 \end{figure}
 In the predator-prey example, I assumed the data was free from observation error. Despite these ideal conditions, the estimated FI had high variation and the results depended on the size of the time window used in the calculation. This issue arises because the period of the cyclic system is changing during the regime shift such that it is difficult to find a single window size that works well for the entire time series. Mayer et al. (2007) describe this as a ``confounding issue'' related to ``sorting out the FI signal of regime change from that originating from natural cycles'' and suggest using a time window that is large enough to include several periods. However, in the absence of a quantitative decision rule defining what changes in FI indicate regime shifts, it is difficult to separate the signal in the FI metric from the noise due to fluctuations in the natural cycles. Further research is needed to define quantitative decision rules for what changes in FI constitute a regime shift.
 
 The example used in this study is unrealistic in that I assume no measurement error and therefore focus on the ``derivatives-based'' method of calculating FI. However, our analysis also has implications for the ``binning'' method of calculating FI that was later developed for high-dimension noisy data (Karunanithi et al. (2008)). Rather than attempting to estimate the rate of change of each system component (e.g., hundreds of species) and combining these estimates to get the total system rate of change, I suggest an approach where the dimensionality of the data is first reduced by calculating distance travelled in phases-pace and then only a single rate of change is estimated. The advantage of this approach is that for an n-dimensional system it only requires the estimation of one derivative rather than n-derivatives . The drawback to this approach is that noisy observations will likely introduce some bias into the estimate of the system rate of change. Nonetheless, I believe this approach is worth exploring due to its simplicity relative to the ``binning'' method.
 \begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/fiOverTime} \caption{Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.}\label{fig:fiOverTime}
+\includegraphics[width=0.85\linewidth]{./chapterFiles/fiGuide/figures/fiOverTime} \caption{Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.}\label{fig:fiOverTime}
 \end{figure}
 The Fisher Information of an \(n\)-dimensional system is a vector of unitless values which can only be compared within a dataset (e.g., within a single community time series) and interpreting FI is still largely a qualitative effort (Fath et al., 2003; Mantua, 2004), not unlike most regime detection methods {[}Ch. \ref{rdmReview}{]}. When the FI of a system is increasing, the system is said to be moving toward a more orderly state, and most studies of FI propose that sharp changes in FI, regardless of the directionality of the change, may indicate a regime shift (Cabezas \& Fath, 2002; Karunanithi et al., 2008; Spanbauer et al., 2014). Although the aforementioned and numerous other works interpret FI in this context (e.g., Eason et al., 2014a; Eason \& Cabezas, 2012), I suggest future work which clearly identifies the ecological significance of the Fisher Information metric and its significance within the ecological regime shift paradigm.
 
-\hypertarget{acknowledgements}{%
-\section{Acknowledgements}\label{acknowledgements}}
-
+Acknowledgements
 I thank H. Cabezas and B. Roy Frieden for early discussions regarding the development of Fisher Information, and T.J. Hefley for comments on an earlier draft. This work was funded by the U.S. Department of Defense's Strategic Environmental Research and Development Program (project ID: RC-2510).
 
 \hypertarget{fisherSpatial}{%
@@ -1314,21 +1252,19 @@ I thank H. Cabezas and B. Roy Frieden for early discussions regarding the develo
 
 Ecosystems are open, dynamical systems which arguably cannot be fully represented by deterministic models. Despite the complexity of most ecological systems, some patterns have emerged in certain statistical mechanics of ecological observations. An uptick in recent years of studies of \textbf{regime shifts} (\ref{glossary}) in ecology has spurred an increase in the number of `new' methods for detecting ecological regime shifts (\ref{rdmReview}), some of which are proposed as indicators of `spatial' regime shifts (Butitta, Carpenter, Loken, Pace, \& Stanley, 2017, pp. @kefi2014early, @sundstrom2017detecting, @guttal2009spatial, @brock\_variance\_2006).
 
-As defined in \ref{glossary}, a regime shift is largely considered an abrupt and persistent change in a system's structure or functioning. Following this definition and without any associated \textbf{pressures} \ref{glossary}, it is not yet clear whether identifying a `spatial regime' using a snapshot of a system (a single or short period of time relative to the time scale of the pressure) is pragmatic. One spatial regime detection measure (hereafter, SRDM) is variance (Brock \& Carpenter, 2006), despite its controversial applicability to temporal data (Burthe et al., 2016, pp. @dutta2018robustness, @perretti2012regime, @sommer2017generic, @bestelmeyer\_analysis\_2011).
+As defined in \ref{glossary}, a regime shift is largely considered an abrupt and persistent change in a system's structure or functioning. Following this definition and without any associated \textbf{pressures} \ref{glossary}, it is not yet clear whether identifying a `spatial regime' using a snapshot of a system (a single or short period of time relative to the time scale of the pressure) is pragmatic. One spatial regime detection measure (hereafter, SRDM) is variance (Brock \& Carpenter, 2006), despite its controversial applicability to temporal data ({\textbf{???}}).
 
 Defining the spatial regime shift is important since observations of non-random spatial processes (e.g., land cover), could manifest as either rapid shift (e.g.~an ecotone) or a gradual change (slow mixing along a gradient). Consequently, and because most RDMs signal abrupt change, only the former may be identified as ``regime shifts'' using SRDMs. For the concept of spatial regimes to be ecologically useful, potential pressures must be associated with system structure over space \emph{and} time. Additionally and perhaps more importantly, the processes driving the observed information (drivers, pressures ) should be such that a statistically identified regime shift will roughly correspond with the time scale on which the pressure(s) operate.
 
-Although it is suggested that statistical and pragmatic models and methods are advanced more rapidly by bottom-up approaches, i.e.~case studies (see DeAngelis \& Yurek, 2017), to my knowledge no studies have yet to test the rigor of SRDMs using spatially-explicit empirical data. The objective of this chapter is to determine the utility of Fisher Information {[}Eq. \eqref{eq:fiDerivs}{]} as a spatial regime detection measure. This chapter is also supported by original software developed for implementation in Program R, which is publicly available {[}see Appendix \ref{regimeDetectionMeasures}{]}.
-\begin{figure}
-\includegraphics[width=29.17in]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed} \caption{Locations of Breeding Bird Survey routes sampled between 1966 and 2017.}\label{fig:bbsPoints}
-\end{figure}
+Although it is suggested that statistical and pragmatic models and methods are advanced more rapidly by bottom-up approaches, i.e.~case studies (see DeAngelis \& Yurek, 2017), to my knowledge no studies have yet to test the rigor of SRDMs using spatially-explicit empirical data. The objective of this chapter is to determine the utility of Fisher Information (Eq. \eqref{eq:fiDerivs}) as a spatial regime detection measure. This chapter is also supported by original software developed for implementation in Program R, which is publicly available {[}see Appendix \ref{regimeDetectionMeasures}{]}.
+
 \hypertarget{data-and-methods}{%
 \section{Data and methods}\label{data-and-methods}}
 
 \hypertarget{data-north-american-breeding-bird-communities}{%
 \subsection{Data: North American breeding bird communities}\label{data-north-american-breeding-bird-communities}}
 
-I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \eqref{eq:fiDerivs}). The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\ref{fig:bbsPoints}) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately 24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data. Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880).
+I use community abundance data from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \eqref{eq:derivatives}). The NABBS trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer point count protocol and has been collecting data regularly across North America (\ref{fig:bbsPoints}) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along an approximately 24.5 mile stretch of road. Due to strict reliane on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued, and some routes are not sampled in a given year. Route-year combinations which are missing years but are not discontinued are treated as missing data. Although NABBS volunteers identify all species as possible, persistent biases exist in this protocol. To reduce the influence of potential sampling bias, I removed waterfowl, waders, and shore species (AOU species codes 0000 through 2880).
 
 \hypertarget{study-area}{%
 \subsection{Study area}\label{study-area}}
@@ -1382,7 +1318,6 @@ where \(p(y|\theta)\) is the probability density of obtaining the data in presen
 Fisher Information as gathered from observational data provides insight as to the dynamic order of a system, where an orderly system is one with constant (i.e., unchanging) observation points, and one whose nature is highly predictable. A disorderly system is just the opposite, where each next data point is statistically unpredictable. In ecological systems, patterns are assumed to be a realization of ecosystem order; therefore, oneshould expect orderliness in a system with relatively stable processes and feedbacks. Orderliness, however, does not necessarily infer long-term predictability. Equation \eqref{eq:fiGeneral1922} is next adapted to estimate the dynamic order of an entire system, \(s\), as
 \begin{equation} 
   I = \int \frac{ds}{p(s)}\left[\frac{dp(s)}{ds}\right]^2
-  \label{eq:fi73c}
 \end{equation}
 where \(p(s)\) is the probability density for \(s\). Here, a relatively high Fisher Information value (\(I\)) infers higher dynamic order, whereas a lower value (approaching zero) infers less orderliness. To limit the potential values of \(I\) in real data, we can calculate the amount of Fisher Information by re-expressing it in terms of a probability amplitude function \(q(s)\) (Fath et al.~2003, Mayer et al.~2007, eq. 7.3):
 \begin{equation}
@@ -1396,7 +1331,7 @@ A form specific to the pdf of distance travelled by the entire system, which I c
 \end{equation}
 where T is the number of equally spaced time points over which the data are integrated. Numerical calculation of \(I\) using the binning method (Eq. \eqref{eq:fiAmp} and \eqref{eq:fiDerivs}) each incorporate a moving-window procedure for calculating the probability of the system, \(p(s)\), as being in one of an unidentified number of states (\(s\)). Although previously applied to spatially-explicit terrestrial community data,the binning method (Eq. \ref{derivatives}) requires multiple parameters to be defined \emph{a priori}, which have been shown to influence inference based on the metric. I therefore calculated FI using the derivatives equation (Eq. \ref{fiDerivs}).
 
-The binning procedure allows for a single point in time or space to be categorized into more than one state, which violating the properties of alternative stable states theory. The size of states (see Eason and Cabezas 2012) measure is required to construct p(s). In the case of high dimensional data, a univariate binning procedure of p(s) is not intuitive (i.e., reducing a multivariable system to a single probability distribution rather than constructing a multivariate probability distribution). Importantly, when using community or abundance data, rare or highly abundant species can influence the size of states criterion, thus influencing the assignment of each point into states. Finally, Eq. \eqref{eq:fiAmp} assumes equal spacing (in space or time) between sampling points. Each of these violations can be avoided by using Eq. \eqref{eq:fiDerivs}; Cabezas and Fath 2002, Fath et al.~2003) to calculate the Fisher Information measure. The derivatives method (Eq. \eqref{eq:fiDerivs}) estimates the trajectory of the system's state by calculating the integral of the ratio of the system's acceleration and speed in state space (Fath et al., 2003). I calculated Fisher Information using Equation \eqref{eq:fiDerivs} for all East-West transects (see Fig. \ref{fig:ewRoutesUsedHere}) for years 1980, 1990, 2000, and 2010.
+The binning procedure allows for a single point in time or space to be categorized into more than one state, which violating the properties of alternative stable states theory. The size of states (see Eason and Cabezas 2012) measure is required to construct p(s). In the case of high dimensional data, a univariate binning procedure of p(s) is not intuitive (i.e., reducing a multivariable system to a single probability distribution rather than constructing a multivariate probability distribution). Importantly, when using community or abundance data, rare or highly abundant species can influence the size of states criterion, thus influencing the assignment of each point into states. Finally, Eq. \eqref{eq:fiAmp} assumes equal spacing (in space or time) between sampling points. Each of these violations can be avoided by using Eq. \eqref{eq:fiDerivs}; Cabezas and Fath 2002, Fath et al.~2003) to calculate the Fisher Information measure. The derivatives method (Eq. \eqref{eq:fiDerivs}) estimates the trajectory of the system's state by calculating the integral of the ratio of the system's acceleration and speed in state space (Fath et al., 2003). I calculated Fisher Information using Equation \eqref{eq:fiDerivs} for all East-West transect (see Fig. \ref{fig:ewRoutesUsed}) for years 1980, 1990, 2000, and 2010.
 
 \hypertarget{interpreting-and-comparing-fisher-information-across-spatial-transects}{%
 \subsection{Interpreting and comparing Fisher Information across spatial transects}\label{interpreting-and-comparing-fisher-information-across-spatial-transects}}
@@ -1406,7 +1341,7 @@ The binning procedure allows for a single point in time or space to be categoriz
 
 Here I define a potential regime change as a point(s) having a non-zero derivative, and at which relatively large changes (sharp increase or decrease) in the Fisher Information measure occur. Regime shifts are identified as data changing from one state to another, thus, rapid shifts in the value of FI should indicate the points, in time or space, at which the system undergoes reorganization. Spatial and temporal Fisher Information calculation does not vary, but interpretation of either differ in that a spatial analysis will identify a spatial regime boundary (Sundstrom et al., 2017) in space within a single time period, whereas analysis of temporal data will identify a point(s) in time at which a system in a specific location undergoes a regime shift. I follow the methods outlined in the relevant literature for interpreting the Fisher Information (e.g., Karunanithi et al., 2008, p. @eason\_evaluating\_2012).
 
-Increases in FI is proposed as an indicator of system orderliness, where periods of relatively high values of FI indicate the system is in an ``orderly'' state, or is fluctuating around a single attractor. A rapid change in FI is supposed to indicated the system is no longer orderly and may be undergoing a reorganization phase. Whether Fisher Information can identify a switch among basins of attraction within a single, stable state (or around a single attractor) remains unknown, as does the number of states which a system can occupy. When a system occurs within any number of states equally, i.e., p(s) is equal for each state, both the derivative, (\(\frac{dq(s)}{ds}\), and \(I\) are zero. As \((\frac{dq(s)}{ds} \rightarrow \infty)\), we infer the system is approaching a stable state, and as \(\frac{dq(s)}{ds} \rightarrow 0\) the system is showing no preference for a single stable state and is on an unpredictable trajectory. \eqref{eq:fiAmp} bounds the potential values of Fisher Information at \([0, 8]\), whereas \eqref{eq:fiGeneral1922}, \eqref{eq:fi73c}, and \eqref{eq:fiDerivs} are positively unbounded \([0, \infty)\). If the Fisher Information is assumed to represent the probability of the system being observed in some state, \(s\), then the absolute value of the Fisher Information index is relative within a single datum (here, transect). It follows that Fisher Information should be interpreted relatively, but not absolutely.
+Increases in FI is proposed as an indicator of system orderliness, where periods of relatively high values of FI indicate the system is in an ``orderly'' state, or is fluctuating around a single attractor. A rapid change in FI is supposed to indicated the system is no longer orderly and may be undergoing a reorganization phase. Whether Fisher Information can identify a switch among basins of attraction within a single, stable state (or around a single attractor) remains unknown, as does the number of states which a system can occupy. When a system occurs within any number of states equally, i.e., p(s) is equal for each state, both the derivative, (\(\frac{dq(s)}{ds}\), and \(I\) are zero. As \((\frac{dq(s)}{ds} \rightarrow \infty)\), we infer the system is approaching a stable state, and as \(\frac{dq(s)}{ds} \rightarrow 0\) the system is showing no preference for a single stable state and is on an unpredictable trajectory. \eqref{eq:fiAmp} bounds the potential values of Fisher Information at \([0, 8]\), whereas \eqref{eq:fiGeneral1922}, \eqref{eq:fi73c}, and \eqref{eq:fiDerivs} have are positively unbounded \([0, \infty)\). If the Fisher Information is assumed to represent the probability of the system being observed in some state, \(s\), then the absolute value of the Fisher Information index is relative within a single datum (here, transect). It follows that Fisher Information should be interpreted relatively, but not absolutely.
 
 \hypertarget{interpolating-results-across-spatial-transects}{%
 \subsubsection{Interpolating results across spatial transects}\label{interpolating-results-across-spatial-transects}}
@@ -1432,12 +1367,11 @@ If Fisher Information captures and reduces information regarding abrupt changes 
 \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-West_metric_FI_Eqn7_12} \caption{Fisher Information calculated for a single transect over time.}\label{fig:fi1Tsect}
 \end{figure}
 Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of `spatial regimes' (Fig. \ref{fig:fi1Tsect}). Of the three spatial transects analyzed in this chapter (Fig. \ref{fig:ewRoutesUsedHere}), Fig.\ref{fig:fi1Tsect} is representative of the lack of pattern observed in the Fisher Information values aross transects. I identified no clear pattern within or among spatial transects. Log-transforming the Fisher Information metric suppresses some of the extreme values, but still does not clearly identify sharp changes in the Fisher Information values.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-West_metric_FI} \caption{Fisher Information of 5 East-West spatial transects over time.}\label{fig:usaFI}
-\end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-West_metric_logScaleFI} \caption{Fisher Information of 5 East-West spatial transects over time.}\label{fig:usaFI}
-\end{figure}
+
+\hypertarget{spatial-correlation-of-fisher-information-1}{%
+\subsection{Spatial correlation of Fisher Information}\label{spatial-correlation-of-fisher-information-1}}
+
+In addition to failing to identfiy clear geological boundaries across large swaths of our study area, (Fig \ref{fig:usaFI}) I also did not identify spatial correlation of Fisher Information among adjacent spatial transects (Fig. \ref{fig:corPlotTsectsInterp})\footnote{Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.}. For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Fig. \ref{fig:corPlotTsectsInterp}), we should expect high and positive correlation values, and these values shoudl stay consistent across time \emph{unless} the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Fig. \ref{ewRoutesUsedHere}), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Fig. @ref(ewRoutes\_ecoRegions)). Note spatial transects in Fig. @ref(fig:ewRoutes\_ecoRegions) overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these points (boundaries).
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecoregions} \end{figure}
 \begin{figure}
@@ -1446,10 +1380,6 @@ Interpreting the Fisher Information is currently a qualitative effort. As sugges
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePair_corPlot_East-West} \caption{Fisher Information of two transect pairs over time. }\label{fig:fiSinglePair}
 \end{figure}
-\hypertarget{spatial-correlation-of-fisher-information-1}{%
-\subsection{Spatial correlation of Fisher Information}\label{spatial-correlation-of-fisher-information-1}}
-
-In addition to failing to identfiy clear geological boundaries across large swaths of our study area, (Fig \ref{fig:usaFI}) I also did not identify spatial correlation of Fisher Information among adjacent spatial transects (Fig. \ref{fig:corPlotTsectsInterp})\footnote{Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.}. For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Fig. \ref{fig:corPlotTsectsInterp}), we should expect high and positive correlation values, and these values shoudl stay consistent across time \emph{unless} the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Fig. \ref{ewRoutesUsedHere}), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Fig. @ref(ewRoutes\_ecoRegions)). Note spatial transects in Fig. @ref(fig:ewRoutes\_ecoRegions) overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these points (boundaries).
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2010_zoom_East-West} \caption{No patterns of abrupt change detected in Fisher Information along three transects in year 2010}\label{fig:fiEcoregion}
 \end{figure}
@@ -1459,8 +1389,8 @@ Numerical investigation of the spatial correlation among adjacent transects also
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2000_East-West} \caption{Fisher Information (scaled and centered; point size positively correlated with value) against ecoregion boundaries (EPA Level 2).}\label{fig:fiEcoregion00}
 \end{figure}
-\hypertarget{discussion-2}{%
-\section{Discussion}\label{discussion-2}}
+\hypertarget{discussion-1}{%
+\section{Discussion}\label{discussion-1}}
 
 The Fisher Information measure was introduced as a method to avoid some analytical issues related to complex and noisy ecological data (Karunanithi et al., 2008), and has also been suggested as an indicator of \emph{spatial} regimes (Sundstrom et al., 2017). I found no evidence suggesting Fisher Information {[}Eq. \eqref{eq:fiDerivs}{]} can identify `spatial regimes'. Further, the absence of autocorrelation among spatially adjacent transects suggests Fisher Information may not be a realiable indicator of changes in bird community structure.
 
@@ -1480,18 +1410,18 @@ Effective regime detection measures should provide sufficient evidence of the dr
 \hypertarget{efficacy-of-fisher-information-as-a-spatial-rdm}{%
 \subsection{Efficacy of Fisher Information as a spatial RDM}\label{efficacy-of-fisher-information-as-a-spatial-rdm}}
 
-This study found no evidence suggesting Fisher Information accurately and consistently detects spatial boundaries of avian communities. Rapid changes in either direction of Fisher Information is suggested to indicate of a regime shift (Mayer, Pawlowski, \& Cabezas, 2006, p. @eason\_evaluating\_2012). Although this interpretation has been applied to multiple case studies of Fisher Information, there is yet a statistical indicator to objectively identify these abrupt changes. After calculating the Fisher Information for each spatial transect (Fig. \ref{fig:ewRoutesUsedHere}) during each sampling year, I used pairwise correlation to determine whether spatial autocorrelation existed among pairs of spatial transects. If some set of points are close in space and are \emph{not} separated by some physical or functional boundary (e.g., an ecotone, high altitude rock formations), then the Fisher Infomration calculate should exhibit a relatively high degree of spatial autocorrelation that is consistent over time. It follows that the correlation coefficient of spatially adjacent transects should be similar, diverging only as the distance beteween the transects differs and/or a functional or physical boundary separates them.
+This study found no evidence suggesting Fisher Information accurately and consistently detects spatial boundaries of avian communities. Rapid changes in either direction of Fisher Information is suggested to indicate of a regime shift (Mayer, Pawlowski, \& Cabezas, 2006, @eason\_evaluating\_ 2012). Although this interpretation has been applied to multiple case studies of Fisher Information, there is yet a statistical indicator to objectively identify these abrupt changes. After calculating the Fisher Information for each spatial transect (Fig. \ref{fig:ewRoutesUsedHere}) during each sampling year, I used pairwise correlation to determine whether spatial autocorrelation existed among pairs of spatial transects. If some set of points are close in space and are \emph{not} separated by some physical or functional boundary (e.g., an ecotone, high altitude rock formations), then the Fisher Infomration calculate should exhibit a relatively high degree of spatial autocorrelation that is consistent over time. It follows that the correlation coefficient of spatially adjacent transects should be similar, diverging only as the distance beteween the transects differs and/or a functional or physical boundary separates them.
 
 Several questions remain regarding the efficacy of Fisher Information as a regime detection measure in both spatial and temporal data. If signals of regime shifts do exist, it is clearly not possible to identify them using visual interpretation. I also did not find evidence to suggest spatial autocorrelation of the calculations. I suggest future studies of Fisher Infomration focuses on temporal, rather than spatial data. Potential areas of research and questions include:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Relationship of Fisher Information to likelihood ratio-based unsupervised change-point detection algorithms (e.g., ChangeFinder; Liu, Yamada, Collier, \& Sugiyama, 2013).\\
+  Relationship of Fisher Information to likelihood ratio-based unsupervised change-point detection algorithms (e.g., ChangeFinder (Liu, Yamada, Collier, \& Sugiyama, 2013)).\\
 \item
-  Sensitivity of Fisher Information to data quality and quantity {[}this is explored in Chapter \ref{resampling}{]}.
+  Sensitivity of Fisher Information to data quality and quantity {[}this is explored in Chapter \ref{resampling}{]}.\\
 \item
-  What, if any, advantages does FI have over other density estimation techniques?
+  What, if any, advantages does FI have over other density estimation techniques?\\
 \item
   Does FI provide signals in addition to or different than geophysical and vegetative (e.g.~LIDAR) observations (data)?
 \end{enumerate}
@@ -1501,7 +1431,7 @@ Several questions remain regarding the efficacy of Fisher Information as a regim
 \hypertarget{introduction-3}{%
 \section{Introduction}\label{introduction-3}}
 
-In this Chapter I describe the steps for calculating a `new' metric, \textbf{system velocity}, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric {[}see Ch. \ref{fiGuide}{]}, first introduced in Fath et al. (2003). Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time.
+In this Chapter I describe the steps for calculating a `new' metric, \textbf{system velocity}, for reducing the dimensionality and identifying abrupt shifts in high dimensional data. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric {[}see \ref{fiGuide}{]}, first introduced in Fath et al. (2003). Below, I describe the steps for calculating system velocity, simply defined as the cumulative sum of the squared change in all state variables over a period of time.
 
 \hypertarget{data-and-methods-1}{%
 \section{Data and Methods}\label{data-and-methods-1}}
@@ -1509,14 +1439,13 @@ In this Chapter I describe the steps for calculating a `new' metric, \textbf{sys
 \hypertarget{theoretical-system-example-two-species-time-series}{%
 \subsection{Theoretical system example: two-species time series}\label{theoretical-system-example-two-species-time-series}}
 
-\includegraphics{_myDissertation_files/figure-latex/sysEx-1.pdf}
 Consider a system (Fig. \ref{fig:sysEx}) with \(N\) state variables (\(x_i\)), with observations taken at time points, \(t\). System velocity is calculated as the cumulative sum over time period \(t_0\) to \(t_j\), as the total change in all state variables, \{\(x_1 ...x_N\)\}, between two adjacent time points, e.g., \(t_j\) and \(t_{j+1}\), denoted \(t_{j,j+1}\). I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables \(x_1\) and \(x_2\), with observations occurring at each time point \(t = {1,2,3,...100}\).
+\includegraphics{_myDissertation_files/figure-latex/sysEx-1.pdf}
 
 \hypertarget{steps-for-calculating-system-velocity-v}{%
 \subsection{\texorpdfstring{Steps for calculating system velocity, \emph{v}}{Steps for calculating system velocity, v}}\label{steps-for-calculating-system-velocity-v}}
 
 First, we calculate the change in each state variable, \(x_i\), between two adjacent points in time, \(t_j\) and \(t_{j+1}\), such that the difference, \(x_{t_{j+1}} - x_{t_j}\) is assigned to the latter time point, \(t_{j+1}\). For example, in our toy data, we use observations at time points \(t = 1\) \& \(t=2\) (Fig. \ref{fig:sysEx2}). For all examples in this chapter, the state variables \(x_1\) and \(x_2\) were drawn from a normal distribution (using function \emph{rnorm}), with parameters \(\bar{x}_i\) (mean) and \(\sigma_i\) (sd) for 100 time steps, \(t\). The regime shift occurs at \(t=50\), where a shift in either or both \(\bar{x}_i\) or \(\sigma_i\).
-\includegraphics{_myDissertation_files/figure-latex/sysEx2-1.pdf}
 
 \hypertarget{step-1-calculate-delta-x_i}{%
 \subsubsection{\texorpdfstring{Step 1: Calculate \(\Delta x_i\)}{Step 1: Calculate \textbackslash Delta x\_i}}\label{step-1-calculate-delta-x_i}}
@@ -1529,6 +1458,8 @@ The first step in calculating \(v\) is to obtain the change in values for each s
   \end{array}
 \label{eq:diffX}
 \end{equation}
+\includegraphics{_myDissertation_files/figure-latex/sysEx2-1.pdf}
+
 \hypertarget{step-2-calculate-sqrtsum_indelta-x_12}{%
 \subsubsection{\texorpdfstring{Step 2: Calculate \(\sqrt(\sum_i^N\Delta x_1^2)\)}{Step 2: Calculate \textbackslash sqrt(\textbackslash sum\_i\^{}N\textbackslash Delta x\_1\^{}2)}}\label{step-2-calculate-sqrtsum_indelta-x_12}}
 
@@ -1562,9 +1493,7 @@ We now have a single measure, \(\Delta s\) (Eq. \eqref{eq:diffXsq2}), for each p
 s = \sum_{t=1}^T \Delta s
 \label{eq:s}
 \end{equation}
-\hypertarget{step-4-calculate-velocity-v-or-frac-delta-sdelta-t}{%
-\subsubsection{\texorpdfstring{Step 4: Calculate velocity, \(v\) (or \(\frac {\Delta s}{\Delta t}\))}{Step 4: Calculate velocity, v (or \textbackslash frac \{\textbackslash Delta s\}\{\textbackslash Delta t\})}}\label{step-4-calculate-velocity-v-or-frac-delta-sdelta-t}}
-
+\#\#\#\# Step 4: Calculate velocity, \(v\) (or \(\frac {\Delta s}{\Delta t}\))
 Finally, we calculate the \textbf{system velocity}, \(v\) (or \(\frac{\Delta s}{\Delta t}\)), by first calculating the change in \(s\) (Eq. \eqref{eq:s}), and then divide by the total time elapsed between consecutive sampling points:
 \begin{equation}
  v = \frac {s_{t+1}-s_{t}}{\Delta t} 
@@ -1611,20 +1540,20 @@ To ameliorate the influence of noise (e.g.~Fig. \ref{simVarPlot}) on the regime 
 
 \hypertarget{performance-of-velocity-using-empirical-data-paleodiatom-community-example}{%
 \subsection{Performance of velocity using empirical data: paleodiatom community example}\label{performance-of-velocity-using-empirical-data-paleodiatom-community-example}}
+
+To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \ref{resampling} (see also Appendix \ref{appPaleo}. Briefly, the paleodiatom community comprises 109 time series over a period of approximately 6936 years (Fig. \ref{fig:paleoTurnover}). As elaborated in Spanbauer et al. (2014), the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundaces over time, as there are extreme levels of species turnover at multiple points in the data (Fig. \ref{fig:paleoTurnover}). Using Fisher Information and climatological records, Spanbauer et al. (2014) suggest that regime shifts in this system at approximately 1,300 years before present (where present is equal to year 1950).
 \begin{figure}
 \centering
 \includegraphics{_myDissertation_files/figure-latex/paleoTurnover-1.pdf}
 \caption{\label{fig:paleoTurnover}Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations.}
 \end{figure}
-To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \ref{resampling} (see also Appendix \ref{appPaleo}. Briefly, the paleodiatom community comprises 109 time series over a period of approximately 6936 years (Fig. \ref{fig:paleoTurnover}). As elaborated in Spanbauer et al. (2014), the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundaces over time, as there are extreme levels of species turnover at multiple points in the data (Fig. \ref{fig:paleoTurnover}). Using Fisher Information and climatological records, Spanbauer et al. (2014) suggest that regime shifts in this system at approximately 1,300 years before present (where present is equal to year 1950).
+Spanbauer et al. (2014) used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at \textasciitilde1,300 years before present. Using the methods outlined above, I calculated the distance travelled (\(s\)) and velocity (\(v\); Fig. \ref{fig:paleoV}). The results of \(v\) and \(s\) (\ref{fig:paleoVelocity}) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \ref{fig:paleoTurnover}, and also with the regime shift identified by Spanbauer et al. (2014). However, two primary results can be made from the metrics \(v\) and \(s\) that are not obvious nor identified numerically in the results of Spanbauer et al. (2014) ():
 
 \includegraphics{_myDissertation_files/figure-latex/paleoVelocity-1.pdf}
-\includegraphics{_myDissertation_files/figure-latex/paleoRegime1and3-1.pdf}
-
-Spanbauer et al. (2014) used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at \textasciitilde1,300 years before present. Using the methods outlined above, I calculated the distance travelled (\(s\)) and velocity (\(v\); Fig. \ref{fig:paleoV}). The results of \(v\) and \(s\) (\ref{fig:paleoVelocity}) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \ref{fig:paleoTurnover}, and also with the regime shift identified by Spanbauer et al. (2014). However, two primary results can be made from the metrics \(v\) and \(s\) that are not obvious nor identified numerically in the results of Spanbauer et al. (2014) ():
 1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950\\
 1. The periods before the first and after the second large shifts appear oscillatory (Fig. \ref{fig:paleoRegime1and3}).
 
+\includegraphics{_myDissertation_files/figure-latex/paleoRegime1and3-1.pdf}
 To determine whether removing the noise in the data, I interpolated the each time series using function \texttt{stats::approx} to 700 time points. Next, I calculated the distance travelled of the entire system, \(s\). Finally, I obtained the derivative of \(s\) by using a regularized differentiation (using function \texttt{tvdiff::TVRegDiffR}; parameters were \(iter = 2000\), scale = small, \(ep = 1 x 10^-6\), and \(\alpha = 100\))\footnote{*We created the R-wrapper \texttt{tvdiff} as a Python wrapper for the tvdiff MatLab package ({\textbf{???}})}.. This method of regularized differentiation is an ideal approach to smoothing \(s\) because it assumes the data are non-smooth, unlike other popular smoothing techniques e.g., Generalized Additive Models.
 \begin{figure}
 \centering
@@ -1637,8 +1566,8 @@ The smoothed velocity (\ref{fig:paleoV}) provides a similar but smoother picture
 \includegraphics{_myDissertation_files/figure-latex/paleoV-1.pdf}
 \caption{\label{fig:paleoV}Need a cpation here!!!}
 \end{figure}
-\hypertarget{discussion-3}{%
-\section{Discussion}\label{discussion-3}}
+\hypertarget{discussion-2}{%
+\section{Discussion}\label{discussion-2}}
 
 In this chapter, I described the steps for calculating a novel regime detection metric, system velocity (\(v\)). First described in Fath et al. (2003), \(v\) is used as a single step for caclulating a more complicated regime detection metric, Fisher Information (see also Chapter \ref{fiGuide}). System velocity is arguably simple to calculate, as shown in this chapter, captures the total change in system variables under a variety of mean and variance conditions. The metric does not, however, perform well as variance increases (Fig. \ref{simVarPlot2}), and smooothing the original data does not reduce the noise surrounding this metric when variance is moderate (Fig. \ref{smoothV}).
 
@@ -1788,8 +1717,8 @@ When we bootstrap 25\% of the species, the ratio of mean Fisher Information to s
 \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity} \textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Fisher Information bootstrapped samples (10,000 iterations). Densities based on all values of CV, but values \textgreater100\% are not printed.\}\label{fig:results}
 \textbackslash end\{figure\}
 
-\hypertarget{discussion-4}{%
-\section{Discussion}\label{discussion-4}}
+\hypertarget{discussion-3}{%
+\section{Discussion}\label{discussion-3}}
 
 \hypertarget{ackowledgements}{%
 \section{Ackowledgements}\label{ackowledgements}}
@@ -1872,9 +1801,6 @@ Beaugrand, G. (2004). The north sea regime shift: Evidence, causes, mechanisms a
 \leavevmode\hypertarget{ref-beisner2003alternative}{}%
 Beisner, B. E., Haydon, D. T., \& Cuddington, K. (2003). Alternative stable states in ecology. \emph{Frontiers in Ecology and the Environment}, \emph{1}(7), 376--382.
 
-\leavevmode\hypertarget{ref-benedetti2015experimental}{}%
-Benedetti-Cecchi, L., Tamburello, L., Maggi, E., \& Bulleri, F. (2015). Experimental perturbations modify the performance of early warning indicators of regime shift. \emph{Current Biology}, \emph{25}(14), 1867--1872.
-
 \leavevmode\hypertarget{ref-bennett2009understanding}{}%
 Bennett, E. M., Peterson, G. D., \& Gordon, L. J. (2009). Understanding relationships among multiple ecosystem services. \emph{Ecology Letters}, \emph{12}(12), 1394--1404.
 
@@ -1886,9 +1812,6 @@ Boettiger, C., \& Hastings, A. (2012). Quantifying limits to detection of early 
 
 \leavevmode\hypertarget{ref-boettiger_early_2013}{}%
 Boettiger, C., Ross, N., \& Hastings, A. (2013). Early warning signals: The charted and uncharted territories. \emph{Theoretical Ecology}, \emph{6}(3), 255--264.
-
-\leavevmode\hypertarget{ref-brock2010interacting}{}%
-Brock, W. A., \& Carpenter, S. R. (2010). Interacting regime shifts in ecosystems: Implication for early warnings. \emph{Ecological Monographs}, \emph{80}(3), 353--367.
 
 \leavevmode\hypertarget{ref-brock_variance_2006}{}%
 Brock, W., \& Carpenter, S. (2006). Variance as a Leading Indicator of Regime Shift in Ecosystem Services. \emph{Ecology and Society}, \emph{11}(2). \url{http://doi.org/10.5751/ES-01777-110209}
@@ -1971,23 +1894,17 @@ Fisher, R. A. (1922). On the Mathematical Foundations of Theoretical Statistics.
 \leavevmode\hypertarget{ref-folke2004regime}{}%
 Folke, C., Carpenter, S., Walker, B., Scheffer, M., Elmqvist, T., Gunderson, L., \& Holling, C. S. (2004). Regime shifts, resilience, and biodiversity in ecosystem management. \emph{Annu. Rev. Ecol. Evol. Syst.}, \emph{35}, 557--581.
 
-\leavevmode\hypertarget{ref-frieden_fisher_1990}{}%
-Frieden, B. R. (1990). Fisher information, disorder, and the equilibrium distributions of physics. \emph{Physical Review A}, \emph{41}(8), 4265--4276. \url{http://doi.org/10.1103/PhysRevA.41.4265}
-
 \leavevmode\hypertarget{ref-frieden_exploratory_2007}{}%
 Frieden, B. R., \& Gatenby, R. (Eds.). (2007). \emph{Exploratory Data Analysis Using Fisher Information}. Springer. Retrieved from \url{http://www.springer.com/us/book/9781846285066}
-
-\leavevmode\hypertarget{ref-graham1984existence}{}%
-Graham, R., \& Tél, T. (1984). Existence of a potential for dissipative dynamical systems. \emph{Physical Review Letters}, \emph{52}(1), 9.
 
 \leavevmode\hypertarget{ref-groffman_ecological_2006}{}%
 Groffman, P. M., Baron, J. S., Blett, T., Gold, A. J., Goodman, I., Gunderson, L. H., \ldots{} Wiens, J. (2006). Ecological Thresholds: The Key to Successful Environmental Management or an Important Concept with No Practical Application? \emph{Ecosystems}, \emph{9}(1), 1--13. \url{http://doi.org/10.1007/s10021-003-0142-z}
 
-\leavevmode\hypertarget{ref-guttal2013robustness}{}%
-Guttal, V., Jayaprakash, C., \& Tabbaa, O. P. (2013). Robustness of early warning signals of regime shifts in time-delayed ecological models. \emph{Theoretical Ecology}, \emph{6}(3), 271--283.
-
 \leavevmode\hypertarget{ref-hastings2010regime}{}%
-Hastings, A., \& Wysham, D. B. (2010). Regime shifts in ecological systems can occur with no warning. \emph{Ecology Letters}, \emph{13}(4), 464--472.
+Hastings, A., \& Wysham, D. B. (2010a). Regime shifts in ecological systems can occur with no warning. \emph{Ecology Letters}, \emph{13}(4), 464--472.
+
+\leavevmode\hypertarget{ref-hastings_regime_2010}{}%
+Hastings, A., \& Wysham, D. B. (2010b). Regime shifts in ecological systems can occur with no warning. \emph{Ecology Letters}, \emph{13}(4), 464--472. \url{http://doi.org/10.1111/j.1461-0248.2010.01439.x}
 
 \leavevmode\hypertarget{ref-hawkins2015ecosystems}{}%
 Hawkins, S. J., Bohn, K., \& Doncaster, C. P. (2015). Ecosystems: The rocky road to regime-shift indicators. \emph{Current Biology}, \emph{25}(15), R666--R669.
@@ -1997,9 +1914,6 @@ Hefley, T. J., Tyre, A. J., \& Blankenship, E. E. (2013). Statistical indicators
 
 \leavevmode\hypertarget{ref-holling1973resilience}{}%
 Holling, C. S. (1973). Resilience and stability of ecological systems. \emph{Annual Review of Ecology and Systematics}, \emph{4}(1), 1--23.
-
-\leavevmode\hypertarget{ref-hughes_catastrophes_1994}{}%
-Hughes, T. P. (1994). Catastrophes, phase shifts, and large-scale degradation of a caribbean coral reef. \emph{Science}, \emph{265}(5178), 1547--1551.
 
 \leavevmode\hypertarget{ref-hughes2013multiscale}{}%
 Hughes, T. P., Carpenter, S., Rockström, J., Scheffer, M., \& Walker, B. (2013). Multiscale regime shifts and planetary boundaries. \emph{Trends in Ecology \& Evolution}, \emph{28}(7), 389--395.
@@ -2015,9 +1929,6 @@ Kefi, S., Guttal, V., Brock, W. A., Carpenter, S. R., Ellison, A. M., Livina, V.
 
 \leavevmode\hypertarget{ref-kong2017hydrological}{}%
 Kong, X., He, Q., Yang, B., He, W., Xu, F., Janssen, A. B., \ldots{} others. (2017). Hydrological regulation drives regime shifts: Evidence from paleolimnology and ecosystem modeling of a large shallow chinese lake. \emph{Global Change Biology}, \emph{23}(2), 737--754.
-
-\leavevmode\hypertarget{ref-lenton2011early}{}%
-Lenton, T. M. (2011). Early warning of climate tipping points. \emph{Nature Climate Change}, \emph{1}(4), 201.
 
 \leavevmode\hypertarget{ref-lindegren_early_2012}{}%
 Lindegren, M., Dakos, V., Gr??ger, J. P., G??rdmark, A., Kornilovs, G., Otto, S. A., \& M??llmann, C. (2012). Early Detection of Ecosystem Regime Shifts: A Multiple Method Evaluation for Management Application. \emph{PLoS ONE}, \emph{7}(7), e38410. \url{http://doi.org/10.1371/journal.pone.0038410}
@@ -2046,9 +1957,6 @@ Mayer, A. L., Pawlowski, C. W., \& Cabezas, H. (2006). Fisher Information and dy
 \leavevmode\hypertarget{ref-mayer_applications_2007}{}%
 Mayer, D. A. L., Pawlowski, D. C., Fath, P. B. D., \& Cabezas, D. H. (2007). Applications of Fisher Information to the Management of Sustainable Environmental Systems. In B. R. F. B. MS \& R. A. G. B. MD (Eds.), \emph{Exploratory Data Analysis Using Fisher Information} (pp. 217--244). Springer London. \url{http://doi.org/10.1007/978-1-84628-777-0_7}
 
-\leavevmode\hypertarget{ref-mollmann2015marine}{}%
-Möllmann, C., Folke, C., Edwards, M., \& Conversi, A. (2015). Marine regime shifts around the globe: Theory, drivers and impacts. The Royal Society.
-
 \leavevmode\hypertarget{ref-van2005implications}{}%
 Nes, E. H. van, \& Scheffer, M. (2005). Implications of spatial heterogeneity for catastrophic regime shifts in ecosystems. \emph{Ecology}, \emph{86}(7), 1797--1807.
 
@@ -2072,9 +1980,6 @@ Petersen, J. K., Hansen, J. W., Laursen, M. B., Clausen, P., Carstensen, J., \& 
 
 \leavevmode\hypertarget{ref-roberts2018early}{}%
 Roberts, C. P., Twidwell, D., Burnett, J. L., Donovan, V. M., Wonkka, C. L., Bielski, C. L., \ldots{} others. (2018). Early warnings for state transitions. \emph{Rangeland Ecology \& Management}, \emph{71}(6), 659--670.
-
-\leavevmode\hypertarget{ref-rockstrom_planetary_2009}{}%
-Rockstr??m, J., Steffen, W., Noone, K., Persson, \textbackslash., Chapin III, F. S., Lambin, E., \ldots{} Schellnhuber, H. J. (2009). Planetary boundaries: Exploring the safe operating space for humanity. \emph{Ecology and Society}, \emph{14}(2).
 
 \leavevmode\hypertarget{ref-rodionov_brief_2005}{}%
 Rodionov, S. N. (2005). A brief overview of the regime shift detection methods. \emph{Large-Scale Disturbances (Regime Shifts) and Recovery in Aquatic Ecosystems: Challenges for Management Toward Sustainability}, 17--24. Retrieved from \url{http://www.beringclimate.noaa.gov/regimes/rodionov_overview.pdf}
@@ -2115,17 +2020,11 @@ Sommer, S., Benthem, K. J. van, Fontaneto, D., \& Ozgul, A. (2017). Are generic 
 \leavevmode\hypertarget{ref-spanbauer_prolonged_2014}{}%
 Spanbauer, T. L., Allen, C. R., Angeler, D. G., Eason, T., Fritz, S. C., Garmestani, A. S., \ldots{} Stone, J. R. (2014). Prolonged instability prior to a regime shift. \emph{PLoS One}, \emph{9}(10), e108936.
 
-\leavevmode\hypertarget{ref-steel2013applied}{}%
-Steel, E. A., Kennedy, M. C., Cunningham, P. G., \& Stanovick, J. S. (2013). Applied statistics in ecology: Common pitfalls and simple solutions. \emph{Ecosphere}, \emph{4}(9), 1--13.
-
 \leavevmode\hypertarget{ref-sundstrom2017detecting}{}%
 Sundstrom, S. M., Eason, T., Nelson, R. J., Angeler, D. G., Barichievy, C., Garmestani, A. S., \ldots{} Allen, C. R. (2017). Detecting spatial regimes in ecosystems. \emph{Ecology Letters}, \emph{20}(1), 19--32. \url{http://doi.org/10.1111/ele.12709}
 
 \leavevmode\hypertarget{ref-vasilakopoulos2017resilience}{}%
 Vasilakopoulos, P., Raitsos, D. E., Tzanatos, E., \& Maravelias, C. D. (2017). Resilience and regime shifts in a marine biodiversity hotspot. \emph{Scientific Reports}, \emph{7}(1), 13647.
-
-\leavevmode\hypertarget{ref-walker2004resilience}{}%
-Walker, B., Holling, C. S., Carpenter, S., \& Kinzig, A. (2004). Resilience, adaptability and transformability in social--ecological systems. \emph{Ecology and Society}, \emph{9}(2).
 
 \leavevmode\hypertarget{ref-walther_ecological_2002}{}%
 Walther, G.-R., Post, E., Convey, P., Menzel, A., Parmesan, C., Beebee, T. J., \ldots{} Bairlein, F. (2002). Ecological responses to recent climate change. \emph{Nature}, \emph{416}(6879), 389.
