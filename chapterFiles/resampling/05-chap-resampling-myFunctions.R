@@ -435,7 +435,7 @@ getSpanbauerData <- function(scale.spp = TRUE) {
   # Convert data to long format
   myDf.long <-
     data %>%
-    select(-Sample) %>%
+    dplyr::select(-Sample) %>%
     gather(variable, value, -YB1950) %>%
     rename(time = YB1950) %>%
     mutate(site = "Foy")
