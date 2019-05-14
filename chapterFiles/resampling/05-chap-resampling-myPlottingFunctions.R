@@ -34,12 +34,16 @@ loadSummaryResults <- function(dataDir,
   if (distance)
     results$distances <-
       purrr::map_df(list.files(dataDir, full.names = TRUE, pattern = "distances"),
-                    read_feather)
+                    read_feather) %>% 
+              mutate(method=as.factor(method), 
+                     prob=as.factor(prob))
   
   if (fivi)
     results$fivi <-
       purrr::map_df(list.files(dataDir, full.names = TRUE, pattern = "fivi"),
-                    read_feather)
+                    read_feather) %>% 
+      mutate(method=as.factor(method), 
+             prob=as.factor(prob))
   
   if (ews)
     results$ews <-
@@ -92,16 +96,9 @@ setLabels <- function(metrics.to.plot, results) {
     myLabels[[i]] <- myLabels[[i]] %>% unique()
     
   }
-  
-  
-  
-  
-  
-  
+
   return(myLabels)
-  
-  
-  
+   
   
 }
 
@@ -142,7 +139,7 @@ plot.bootstrappedFacetGroup <- function(df,
   if (metric.ind == "FI" & logFI) {
   df2 <- df %>%
     filter(method %in% method.filter) %>%
-    mutate(FI.mean = log(FI.mean + 1e-20))
+    mutate(FI.mean = log(FI.mean + 1e-20)) %>% 
     rename(x = !!sym(x),
            y = !!sym(y),
            y.sd = !!sym(y.sd)) %>%
@@ -168,7 +165,6 @@ plot.bootstrappedFacetGroup <- function(df,
              method = as.factor(method))  %>%
       dplyr::select(x, y, method, prob, upper, lower)
   }
-  
   
   
   # Subset the data for prob < baseline prob

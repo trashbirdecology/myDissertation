@@ -559,8 +559,7 @@ summariseResults <-
            myMethods,
            prop,
            summaryResultsDir,
-           approx.metrics=TRUE, n.approx=500, 
-           n.cores = detectCores()-1
+           approx.metrics=TRUE, n.approx=500
            ) {
     
     results <- list() # initialize an empty df to store results
@@ -633,7 +632,7 @@ summariseResults <-
             
             temp2 <- NULL
             for(z in seq_along(nDraw.ind)){
-             if(z %% 1e3==0)print(paste("        approximating FIVI ", nDraw.ind[z]))
+             if(z %% 1000==0)print(paste("        approximating FIVI ", nDraw.ind[z]))
             temp <- results.temp %>% 
                   filter(nDraw == nDraw.ind[z])
            
@@ -647,7 +646,7 @@ summariseResults <-
                              n = n.approx, ties = mean, method="original", degree=3)$y,
                 method = unique(results.temp$method),
                 prob = unique(results.temp$prob), 
-                nDraw =nDraw.ind[z]
+                nDraw = nDraw.ind[z]
                 )) %>% 
               bind_rows(temp2)
             
@@ -657,14 +656,14 @@ summariseResults <-
             # get mean and sd over nDraws
             results.temp2 <- temp2 %>% 
             group_by(method, prob, winStop) %>%
-              arrange(winStart) %>% 
+              arrange(winStop) %>% 
               summarise(
                 FI.mean      =  mean(as.numeric(FI), na.rm = TRUE),
                 VI.mean       =  mean(as.numeric(VI), na.rm = TRUE),
                 FI.sd    =  sd(FI, na.rm = TRUE),
                 VI.sd  =  sd(VI, na.rm = TRUE)) %>% 
-              mutate(winStop=as.numeric(winStop))
-            
+              mutate(winStop=as.numeric(as.character(winStop))) %>% 
+              ungroup()
             
           } # end ifelse prop!=100 and approx=TRUE
           
