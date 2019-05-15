@@ -153,7 +153,7 @@ plot.bootstrappedFacetGroup <- function(df,
   
   }
   ## For all non-FI metrics
-  if(!metric.ind %in% c("log(FI)","FI")){
+  if(!metric.ind %in% c("log(FI)")){
     df2 <- df %>%
       filter(method %in% method.filter) %>%
       rename(x = !!sym(x),
@@ -297,7 +297,7 @@ plot.bootstrappedFacetGroup <- function(df,
 # Plot density ratio ------------------------------------------------------
 
 ## plots a density ratio faceted by method and colored by probability. Only one figure spits into Temp fig dir per METRIC (e.g., FI, VI, dsdt, ds)
-plot.densityCV <- function(data = myDf.all,
+plot.densityCV <- function(data,
                            mymetric,
                            figDir = figDir) {
   ## create some aesthetic and functional labels
@@ -317,10 +317,11 @@ plot.densityCV <- function(data = myDf.all,
   x.lab <- paste0("CV of ", mymetric)
   
   
+  if(is.factor(data$prob)) data$prob <- as.numeric(as.character(data$prob))
   
   ## subset the data
   temp.data <-
-    myDf.all %>% filter(prob < 1 &
+    data %>% filter(prob < 1 &
                           !(method %in% c("dominance", "Dominance", "DOMINANCE"))) %>%
     filter(!is.na(!!sym(metric.ind)),
            !is.na(!!sym(metric.ind2))) %>%
@@ -350,7 +351,7 @@ plot.densityCV <- function(data = myDf.all,
     xlab(x.lab) +
     ylab("density\n")
   
-  p
+  # p
   my.fn <- paste0(figDir, "/", mymetric , "_cvDensity", ".png")
   ggsave(p,
          filename = my.fn ,

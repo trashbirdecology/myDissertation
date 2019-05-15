@@ -74,7 +74,7 @@ for (i in seq_along(results.list)) {
         preview = TRUE,
         add.baseline = TRUE,
         savePlot = TRUE,
-        logFI=TRUE,
+        logFI=FALSE,
         regime.breaks = list(
           c(-6894, -4800),
           c(-2500, -2000),
@@ -82,19 +82,17 @@ for (i in seq_along(results.list)) {
           c(-1300, -1000)
         )
       )
-      ##############################
       
+    ##############################
+    # Plot density of error to mean ratio
+    ##############################
+      if(h != 1) plot.densityCV(data = df,
+                              mymetric = myMetrics[j],
+                              figDir = figDir
+                              )
       
-      # Plot density of error to mean ratio
-      ##############################
-      
-      # if(h == 1) plot.densityCV(data = myDf.all,
-      #                         mymetric = myMetrics[j],
-      #                         figDir = figDir
-      #                         )
-      
-      ##############################
       
     } # end j-loop (myMetrics)
   } # end h-loop (myMethods)
 }  # end i-loop (individual metrics)
+ 
