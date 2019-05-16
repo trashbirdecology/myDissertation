@@ -8,6 +8,7 @@ library(gridExtra)
 library(magrittr)
 library(tidyverse)
 ```
+
 ```{r, cache = TRUE, echo=FALSE, warning=FALSE, eval=FALSE, message=FALSE}
 # Source some helper funs
 source("./chapterFiles/velocity/06-chap-velocity_helperFuns.R")
@@ -36,7 +37,7 @@ When, how and why ecological systems exhibit abrupt changes is a hallmark of mod
 
 A few broad classes of quantitative approaches exist for quantitatively identifying abrupt changes in complex ecosystems. First, one can use simple mathematical models to describe the system and statistically test for discontinuities in the observed variables [e.g., in coral reefs, @mumby2013evidence]. Although mathematical representations are ideal, very rarely are  ecological systems easily and well-described by them and often fail to meet the assumptions of the model. Second, we can track changes in the mean or variance of state variables to identify departures from the norm [e.g., early-warning indicators such as variance and variance index, @brock_variance_2006]. Much like the mathematical modelling approach, these early-warning indicators have shown to be useful in some simple driver-response systems [e.g., lake eutrophication @carpenter_leading_2008], but are unreliable in other empirical systems [e.g., @perretti2012regime;@dutta2018robustness;@dakos2012robustness]. The last type of approach is the model-free approach [@dakos_methods_2012; Ch. \@ref(rdmReview)]. This grouo of abrupt change indicators can incorporate multiple state variables, and ideally requires no  no *a priori* assumptions about the expected driver-response relationships, or even about the drivers at all. It is this class of abrupt change indicators to which this chapter contributes. 
 
-```{r lorenz3D, eval=TRUE, out.width="55%", fig.cap="An example solution of the Lorenz ('butterfly') represented in its 3-dimensional 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized."}
+```{r lorenz3D, eval=TRUE, out.width="85%", fig.cap="An example solution of the Lorenz ('butterfly') represented in its 3-dimensional 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized."}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/lorenz3D.png"))
 ```
 
@@ -54,8 +55,8 @@ I first describe the steps for calculating this new metric ($v$), as both a dime
  
 ## Data and Methods
 ### Theoretical system example: two-species time series  
-```{r sysEx,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$. "}
-x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
+```{r sysEx,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$."}
+x_1 = c(rnorm(mean =25, sd = rnorm(5,), n=50), rnorm(mean =100, sd = 5, n=50))
 x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 t = 1:length(x_1)
 df.wide = data.frame(t, x_1, x_2) 
@@ -89,6 +90,7 @@ colnames(df.wide) <- c("t",
   geom_line(data = df, aes(t, value, linetype=variable), color='black')+
   theme(legend.position='bottom')+
   theme_bw())
+
 ```
 Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$.
 
@@ -117,7 +119,7 @@ The first step in calculating $v$ is to obtain the change in values for each sta
 #### Step 2: Calculate $\sqrt(\sum_i^N\Delta x_1^2)$
 After calculating the differences for each state variable, we will next calculate the total change in the system over the time elapsed, following Pythagora's theorem, 
 \begin{equation}
- X_1^2 + X_2^2 = s^2 
+s^2 = x_1^2 + x_2^2
   (\#eq:pythagorean)
 \end{equation}
 where $s$ represents the total change in the system, and $X_1$ and $X_2$ represent the changes in all state variables ($x_{i_{t=2}} - x_{i_{t=1}}$). We achieve this by first squaring the differences obtained in Eq. \@ref(eq:diffX):
@@ -301,10 +303,9 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVa
 ```
 
 #### Smoothing the data prior to calculating *v*
-
 To ameliorate the influence of noise (e.g. Fig. \@ref(simVarPlot)) on the regime shift signal in $v$, I used linear approximation techniques in attempt to smooth the velocity (derivatives). I used the function *stats::approx* to interpolate values of $x_1$ and $x_2$ to regularly-spaced time points in the set $t=\{1:100\}$, and then calculated $v$ as described in the steps above (Eqs. \@ref(eq:diffX):\@ref(eq:velocity)). Increasing the number of points ($t$) at which the original state variables were smoothed did not influence the amount of noise surrounding the signal of the regime shift (at $t=50$) in system velocity, $v$ (Fig. \@ref(fig:smoothV)).
 
-```{r smoothV, eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "The noise in system velocity ($v$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed."}
+```{r smoothV, eval=FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "The noise in system velocity ($v$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed."}
 # smoothed <- approx_dist.sim(t.mult = 1)
 # p1<- dsdtPlot(df = smoothed[[1]],dist = smoothed[[2]], div = 1/1.4)+
 #   ggtitle("no smoothing")+theme(legend.position="none")
