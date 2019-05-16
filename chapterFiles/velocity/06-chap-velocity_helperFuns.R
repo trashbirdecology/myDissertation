@@ -169,25 +169,26 @@ kFun <- function(t, alpha = alpha, k1, k2, tregime) {
 # Calculate distance and dsdst --------------------------------------------
 ### Calculate teh distnace stuff
 calcDist <- function(dat, 
+                     fn = NULL, ## fn index ued for saving plot
                      tvdiff.iter,# = 100,
                      tvdiff.alpha# = 10 
 ){
   
   dx.ind = dat %>% arrange(time) %>% 
-    summarise(dt=mean(lead(time)-time, na.rm=TRUE)) %>% 
-    as.numeric(as.character())
+    summarise(dt=mean(time-lag(time), na.rm=TRUE)) %>% 
+    as.numeric()
   
   
   dist <- dat %>%
     arrange(time) %>%
+    ## calc dist of observed data
     mutate(
-      dx1 = x1_obs - lag(x1_obs),
-      dx2 = x2_obs - lag(x2_obs),
-      ds = sqrt(dx1 ^ 2 + dx2 ^ 2),
-      ds = replace_na(ds, 0),
-      s.obs = cumsum(ds),
-      dsdt = ((s.obs) - lag(s.obs)) / (time-lag(time))
-    ) %>% 
+      dx1.obs = x1_obs - lag(x1_obs),
+      dx2.obs = x2_obs - lag(x2_obs),
+      ds.obs = sqrt(dx1.obs ^ 2 + dx2.obs ^ 2),
+      ds.obs = replace_na(ds.obs, 0),
+      s.obs = cumsum(ds.obs),
+      dsdt.obs = ((s.obs) - lag(s.obs)) / (time-lag(time))) %>%
     # Use tvdiff to get deriv
     mutate(dsdt.tvdiff =
              TVRegDiffR(
@@ -197,7 +198,52 @@ calcDist <- function(dat,
                scale = "small",
                ep = 1e-6,
                dx = dx.ind ## this may need to be updated if the ts is not sampled at REGULAR INTERVALS
-             )[-1])
+             )[-1]) 
+  # browser()
+  dist2 <- dist %>% 
+    ## temporarily add on a value for dt
+    ## calc dist of true data
+    mutate(
+      dx1.true = x1_true - lag(x1_true),
+      dx2.true = x2_true - lag(x2_true),
+      ds.true = sqrt(dx1.true ^ 2 + dx2.true ^ 2),
+      ds.true = replace_na(ds.true, 0),
+      s.true = cumsum(ds.true),
+      dsdt.true = ((s.true) - lag(s.true)) / (time-lag(time))) %>%
+    # numerical differentiation
+    mutate(dt = lead(time) - time,
+           s.pred = s.obs[1] + cumsum(dsdt.tvdiff*dt)) %>% 
+    dplyr::select(-dt)
 
-  }
-
+  ## optional plots for debug/sensitivity
+     p <- ggplot(dist2)+
+        geom_line(aes(time,dsdt.true, color="black"), show.legend=TRUE)+
+        geom_line(aes(time,dsdt.tvdiff, color="grey50"), linetype=1, show.legend=TRUE)+
+        geom_point(aes(time,dsdt.obs, color="red"), alpha=.7, show.legend=TRUE)+
+        labs(color="",linetype="", xlab=expression(frac(Delta * "s", Delta * "t")))+
+        scale_color_manual(values= c("black", "grey50","red"),  
+                           labels = c('True', "Numerical differentiation",'Observed'))+
+       geom_text(aes(label = paste0("alpha==",tvdiff.alpha),y = .75*max(dist2$dsdt.true, na.rm=TRUE), 
+                     x =  .15*max(dist2$time, na.rm=TRUE)), 
+                 parse = T, colour = "black", size = 4)
+      saveFig(p,paste0("compareTvdiff_dsdt_",fn))
+      
+      # browser()
+      p2 <-ggplot(dist2)+
+        # geom_line(aes(time,s.true, color="black"), show.legend=TRUE, width=1)+
+        geom_line(aes(time,s.obs, color="grey50"),  show.legend=TRUE, width=1)+
+        geom_line(aes(time,s.pred, color="red"), alpha=.5, show.legend=TRUE, linetype=2, width=1)+
+        scale_color_manual(values= c("black", "grey50", "red"),  
+                           labels = c('True', 'Observed', 'Pred (tvdiff)'))+
+        labs(color="",linetype="")+
+        geom_text(aes(label = paste0("alpha==",tvdiff.alpha),y = .75*max(dist2$s.pred, na.rm=TRUE), 
+                      x =  .15*max(dist2$time, na.rm=TRUE)), 
+                  parse = T, colour = "black", size = 4)+
+        ylab("s")
+     p2
+     
+     saveFig(p2,paste0("compareTvdiff_s_",fn))
+     
+     return(list(dist=dist, dist2=dist2))
+  
+}
