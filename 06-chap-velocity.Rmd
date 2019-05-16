@@ -1,4 +1,9 @@
-# Velocity (*v*): using rate-of-change of a system's trajectory to identify abrupt changes {#velocity}
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes {#velocity}
 ```{r setupChVelocity, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # # Chunk defaults
 set.seed(123)
@@ -7,6 +12,9 @@ knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/",cache.lazy = FALSE,  
 library(gridExtra)
 library(magrittr)
 library(tidyverse)
+
+## source code for theme_Publications
+source(here::here("chapterFiles/velocity/06-chap-velocity_helperFuns.R"))
 ```
 
 ```{r, cache = TRUE, echo=FALSE, warning=FALSE, eval=FALSE, message=FALSE}
@@ -47,24 +55,30 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/loren
 
 A classic example of state-switching by a system is demonstrated in the Lorenz ('butterfly') attractor [Fig. \@ref(fig:lorenz3D); @takens1981detecting]. This phase plot (Fig. \@ref(fig:lorenz3D)) provides an informative visual of the behavior of a chaotic system manifesting two attractors. Although the periodic, attractor behaviors are made clear when examining the time series of each dimension (Fig \@ref(fig:lorenz3Dts)), identifying such behaviors in additional dimensions becomes increasingly difficult. 
 
-Although the behavior in phase space are used often in dynamical systems theory and systems ecology to make inference regarding system behavior and dynamics, phase space (trajectory) dynamics are not commonly used outside theoretical studies as a tool for ecological data analysis [c.f. @sugihara2012detecting for an example of phase-space reconstruction using Taken's theorem of ecological time series]. Some methods of attractor reconstruction have been applied to environmental data [e.g., individual time series of fisheries stocks, climate, stock market; @sugihara2012detecting; @ye2015equation], yet they **do not incorporate the dynamics of whole-systems**. Model-free methods for exploring and describing the dynamics of whole (i.e. $>1$ variable) ecological systems are restricted to the commonly-applied dimnesion reduction techniques and clustering algorithms (e.g., Principal Components Analysis, K-means clustering). In fact, this is true of many abrupt change and regime shift indicators. 
+System behavior/trajectory in phase space are used often in dynamical systems theory and systems ecology to make inference regarding system behavior and dynamics, but phase space (trajectory) dynamics are not commonly applied outside theoretical studies as a tool for ecological data analysis [c.f. @sugihara2012detecting for an example of phase-space reconstruction using Taken's theorem of ecological time series]. Some methods of attractor reconstruction have been applied to environmental data [e.g., individual time series of fisheries stocks, climate, stock market; @sugihara2012detecting; @ye2015equation], yet they **do not incorporate the dynamics of whole-systems**. Model-free methods for exploring and describing the dynamics of whole (i.e. $>1$ variable) ecological systems are restricted to the commonly-applied dimnesion reduction techniques and clustering algorithms (e.g., Principal Components Analysis, K-means clustering). In fact, this is true of many abrupt change and regime shift indicators. 
 
 ### Rate of change as an indicator of abrupt change in the system trajectory
-How quickly a system switches states [e.g., moving from attractor to another; \@ref(fig:lorenz3D)] may yield insights into the responses of ecological systems to perturbations (e.g., anthropogenically induced pressures such as climate change, urbanization) and community shifts (e.g., species introductions or extinctions, shifts in dominance). For example, @beck_variance_2018 used genearlized additive modelling (GAM)---a model-based method for describing rate of change of the smoothed system---to capture abrupt changes in community composition of a temperate, paleodiatom community. 
+How quickly a system switches states [e.g., moving from attractor to another; \@ref(fig:lorenz3D)] may yield insights into the responses of ecological systems to perturbations (e.g., anthropogenically induced pressures such as climate change, urbanization) and community shifts (e.g., species introductions or extinctions, shifts in dominance). For example, @beck_variance_2018 tracked rate of change using chord distances---a data transformation for positive values and which is suitable prior to ordination analysis---to capture abrupt changes in community composition of a temperate, paleodiatom community. Chord distance, however, is greatest when the observations among data rows (e.g., time, location) have no species in common. In other words, this measurement may be most useful in high community turnover conditions. Identifying alternative numerical methods for estimating system rates of change may be when the system does not exhibit, for example, high degrees of turnover. 
 
 Rate of change (ROC, often represented as $\Delta$) is a term used for various measures which describe the relationship among to variables, measuring the change in one variable relative to another. As a refresher ROC is represented as **speed** ($\textbf{S}$) or **velocity** ($\textbf{V}$), where ($\textbf{S}$) is the adirectional magnitude (i.e. it is a scalar) of the displacement of an object over unit time and $\textbf{V}$ describes both the direction and magnitude (i.e. it is a vector) of the object's movement in spacetime. $\textbf{S}$ is a scalar taking values of $\geq0$ and $\textbf{V}$ can take any value between $-\infty$ and $\infty$. For example, consider a car travelling at a constant speed of $50\frac{km}{h}$ around along a hilly landscape, where it is ascending and descending hills. Although $\textbf{S}$ is constant, $\textbf{V}$ changes in a sunusoidal fashion, where $\textbf{V}$ is $\textbf{V}>0$ when ascending, $\textbf{V}<0$ when descending, and $\textbf{V}\approx0$ at in the valleys and at the peaks of the hills. Although $\textbf{S}$ is useful when estimating other scalar quantities (e.g., $\frac{miles}{gallon}$), given a starting and/or final position in space, $\textbf{S}$ is not informative of its the path travelled. 
 
 ### Aims
-
 Here, I propose a method which simply describes the rate of change behavior of system dynamics in phase space: **velocity**, $V$. An alternative to other complicated, model-free approaches [e.g., Fisher Information; @cabezas_towards_2002], the velocity metric allows one to examine the behavior of an entire system along its trajectory 
 (through space or time) without having to reconstruct the pahse space. The ability to handle noisy and high-dimensional data and the lack of subjective parameters in calculating the metric makes this method an ideal alternative to existing early warning indicators and phase-space reconstruction methods. 
 
 I first describe the steps for calculating this new metric ($v$), as both a dimension reduction technique and abrupt change indicator. Although this is the first instance of this calculation to, alone, be suggested as a regime detection metric, it has been used as part of a larger series of calculations of the Fisher Information metric [see Ch. \@ref(fiGuide)], first introduced in @fath_regime_2003. I use this theoretical system to present baseline estimates of the expected  behavior of $v$ under various scenarios of changing mean and variability in a theoretical, discussing the contexts under which this metric may signal abrupt changes. Finally, I explore the utility of this metric in identifying known regime shifts in an empirical paleoecological time series data.
- 
-## Data and Methods
-### Theoretical system example: two-species time series  
-```{r sysEx,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="The 2-variable toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant variance $\\sigma = 5$."}
-x_1 = c(rnorm(mean =25, sd = rnorm(5,), n=50), rnorm(mean =100, sd = 5, n=50))
+
+### Analytical approach 
+I first describe the steps for calculating velocity by constructing a simple, two-variable system which exhibits only a rapid, discontinuous change in the means of the state variables. I next vary the mean and variance of the state variables of this system to demonstrate baseline expectations for the behavior of velocity under a simple rapid shift scenario. 
+
+Next, I construct a second model system similar to the first, but one which exhibits a non-discontinuous rapid change in the state variables. The purpose of this section is three-fold. First, I demonstrate how velocity behaves when the system undergoes varying degrees of change (e.g., slow change versus nearly discontinuous, rapid). Second, I concurrently identify baseline expectations of velocity under varying conditions of mean and variability of the state varilbes before and after a shift. Third, by introducing a smoothing function to the rapid shift, we gain an understanding of how process variability (noise) impacts the shift detectability by the velocity metric.
+
+Finally, I calculate the velocity of an empirical, paleolitic freshwater diatom community time series to demonstrate the utility of the velocity metric in highly noisy, high dimensional, and irregularly-sampled data. 
+
+## Calculating velocity, $v$ using a simple toy system 
+In this section, I first demonstrate the calculations of velocity using a very simple, two-variable toy system. The first system exhibits a rapid shift at a single point in time, where mean and variance are constant before and after the shift point. I demonstrate the signals achieved with and the variability within the $v$ calculation by exploring a number of scenarios of this simple system. For the examples in this section, observations of $x_i$ are randomly drawn from distribution $x_i\sim Normal(\mu, \sigma)$, where $\mu$ is the mean and $\sigma$ is the standard deviation. 
+```{r sysEx,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\\sigma = 5$."}
+x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 t = 1:length(x_1)
 df.wide = data.frame(t, x_1, x_2) 
@@ -98,70 +112,70 @@ colnames(df.wide) <- c("t",
   geom_line(data = df, aes(t, value, linetype=variable), color='black')+
   theme(legend.position='bottom')+
   theme_bw())
-
 ```
-Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use a simple, two-variable system to demonstrate the calculation of each step below. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$.
-
-### Steps for calculating system velocity, *v*
-First, we calculate the change in each state variable, $x_i$, between two adjacent points in time, $t_j$ and $t_{j+1}$, such that the difference, $x_{t_{j+1}} - x_{t_j}$ is assigned to the latter time point, $t_{j+1}$. For example, in our toy data, we use observations at time points $t = 1$ & $t=2$ (Fig. \@ref(fig:sysEx2)). For all examples in this chapter, the state variables $x_1$ and $x_2$ were drawn from a normal distribution (using function *rnorm*), with parameters $\bar{x}_i$ (mean) and $\sigma_i$ (sd) for 100 time steps, $t$. The regime shift occurs at $t=50$, where a shift in either or both $\bar{x}_i$ or $\sigma_i$.
+Consider a system (Fig. \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use this simple, two-variable system to demonstrate how *velocity* is calculated. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$. First, we calculate the change in each state variable, $x_i$, between two adjacent points in time, $t_j$ and $t_{j+1}$, such that the difference, $x_{t_{j+1}} - x_{t_j}$ is assigned to the latter time point, $t_{j+1}$. For example, in our toy data, we use observations at time points $t = 1$ & $t=2$ (Fig. \@ref(fig:sysEx2)). For all examples in this chapter, the state variables $x_1$ and $x_2$ were drawn from a normal distribution (using function *rnorm*), with parameters $\bar{x}_i$ (mean) and $\sigma_i$ (sd) for 100 time steps, $t$. The regime shift in this system occurs at $t=50$, where a shift in either or both $\bar{x}_i$ or $\sigma_i$.
 ```{r sysEx2,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap="Data used to calculate velocity at the first two time points, $t_1$ and $t_2$."}
 p.sysEx +
   geom_point(data =df, aes(x = t, y = value, shape = variable, color=variable), size=4)+
-  xlim(c(1,2))+ylim(c(20,30))+
+  xlim(c(1,2))+#+ylim(c(20,30))+
   scale_color_manual(values=c("red","black"))+
   theme(legend.position = 'bottom')+
   theme_bw()
 ```
-
+### Steps for calculating $v$
 #### Step 1: Calculate $\Delta x_i$
-The first step in calculating $v$ is to obtain the change in values for each state variables, $x_1$ and $x_2$ between two consecutive time points (e.g., from $t=1$ to $t=2$:
+The first step is to calculate the change in values for each state variables, $x_i$, between two consecutive time points [e.g., from time $t$ to $t+1$ for the discrete-time system; Fig. \@ref(fig:sysEx2); Eq. \@ref(eq:diffX)]:
 \begin{equation}
-\begin{array}{rcr}
-\Delta x_1 = x_{1_{t=2}} - x_{1_{t=1}} \\
-\Delta x_2 = x_{2_{t=2}} - x_{1_{t=1}}
-  \end{array}
+\Delta x_i = x_{i(t+1)} - x_{it} 
 (\#eq:diffX)
 \end{equation}
 
+Note that $\Delta x_i$ can take any value between $-\infty$ and $\infty$. 
 
-#### Step 2: Calculate $\sqrt(\sum_i^N\Delta x_1^2)$
-After calculating the differences for each state variable, we will next calculate the total change in the system over the time elapsed, following Pythagora's theorem, 
+#### Step 2: Calculate distance travelled, $s$
+Next, we calculate the total change in the system between two points in time as $\Delta s$. This is achieved by taking this square root of the sum of squares of the changes in all state variables per Pythagora's theorem (Eq. \@ref(eq:ds)): 
 \begin{equation}
-s^2 = x_1^2 + x_2^2
-  (\#eq:pythagorean)
-\end{equation}
-where $s$ represents the total change in the system, and $X_1$ and $X_2$ represent the changes in all state variables ($x_{i_{t=2}} - x_{i_{t=1}}$). We achieve this by first squaring the differences obtained in Eq. \@ref(eq:diffX):
-\begin{equation}
-\begin{array}{rcr}
-(x_{1_{t=2}} - x_{1_{t=1}})^2  \\
-(x_{2_{t=2}} - x_{2_{t=1}})^2 
-\end{array}
-  (\#eq:diffXsq)
+\Delta s = \sqrt{\sum{\Delta x_i^2}}
+(\#eq:ds)
 \end{equation}
 
-#### Step 3: Use Pythagorean theorem to isolate $s$
-Next, we isolate $s$ in Eq. \@ref(eq:pythagorean), capturing the total change in all state variables into a single measure by taking the 2<sup>nd</sup> root of the squared sums of all $x$:
+Although $\Delta s$ represents the absolute change in the system between consecutive points in time, the measure is not yet relative to the trajectory. Finally, because we are interested in identifying relative changes along the system trajectory, we calculate the distance travelled, $s$, as the cumulative sum of $\Delta s$  (Eq. \@ref(eq:ds)) over some time interval, $(0,T)$ (Eq. \@ref(eq:s)):
+
 \begin{equation}
-\begin{array}{rcr}
-\sum_{i=1}^{N} \Delta {x_i} = \sum_{i=1}^{N}(x_{t_{i+1}} - x_{t_i})^2 \\ 
-\ = \Delta s \\ 
-\ = \sqrt([x_{1_{t=2}} - x_{1_{t=1}}]^2 + [x_{2_{t=2}} - x_{2_{t=1}}]^2)
-\end{array}
-(\#eq:diffXsq2)
+s_T = \Sigma_{t=0}^{T}{\Delta s}) 
+  (\#eq:s)
 \end{equation}
 
-We now have a single measure, $\Delta s$ (Eq. \@ref(eq:diffXsq2)), for each pair of time points in our $N$-dimensional system. It is obvious that $\Delta s$ will always be a positive value, since we took the 2<sup>nd</sup> root of a squared value. Although discussed in a later section, it is important to note that this value is not unitless--that is, our example system takes on the units of our state variables, $x_1$ and $x_2$. Because we are interested in identifying abrupt changes in the entire system, we calculate the cumulative sum of $\Delta s$ at every time point, such that:
-\begin{equation}
-s = \sum_{t=1}^T \Delta s
-(\#eq:s)
-\end{equation}
+We now have a single measure, $s$ (Eq. \@ref(eq:s)), for each pair of time points in our $N$-dimensional system (Fig. \@ref(fig:sysExs)). It should be noted that $s$  (Fig. \@ref(fig:sysExs)) is monotonically increasing since the value of $\Delta s$ (Eq. \@ref(eq:ds)) is a sum of squares. Although discussed in a later section, it is important to note that $s$ is not unitless---that is, $s$ has units of the state variables, $x_i$. 
+```{r sysExs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "Distance travelled, $s$, for the 2-species toy system."}
+temp <- df %>%
+  group_by(variable) %>% 
+  arrange(t) %>% 
+  mutate(dx2 = ((value)-lag(value))^2) %>% 
+  ungroup() %>% 
+  group_by(t) %>% 
+  mutate(ds = sqrt(sum(dx2))) %>% 
+  distinct(t, ds) %>% 
+  ungroup() %>%
+  arrange(t)
+temp[1,"ds"]=0
+temp <- temp %>% 
+  mutate(s = cumsum(ds))
 
-#### Step 4: Calculate velocity, $v$ (or $\frac {\Delta s}{\Delta t}$) 
+ggplot(temp, aes(x=t, y=s))+
+  geom_line()+
+  theme_Publication()+
+  geom_line(aes(x=50), color="grey40", linetype=2)+
+  xlab("t")
+```
+
+#### Step 3: Calculate velocity, $v$ (or $\frac{\Delta s}{\Delta t}$) 
 Finally, we calculate the **system velocity**, $v$ (or $\frac{\Delta s}{\Delta t}$), by first calculating the change in $s$ (Eq. \@ref(eq:s)), and then divide  by the total time elapsed between consecutive sampling points:
 \begin{equation}
  v = \frac {s_{t+1}-s_{t}}{\Delta t} 
 (\#eq:velocity)
 \end{equation}
+
 ```{r velocSysEx1, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\\bar{x}_{pre}=25$, $\\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\\sigma =5$."}
 # x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 # x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
@@ -183,15 +197,17 @@ Finally, we calculate the **system velocity**, $v$ (or $\frac{\Delta s}{\Delta t
 # ggsave(p, filename=paste0(figDir,"velocitySysEx1.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/velocitySysEx1.png"))
 ```
-```{r distTab, eval=FALSE, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE}
+
+```{r distTab, eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE}
 library(kableExtra)
 options(knitr.kable.NA = "")
 kable(df.wide[1:5,],digits=3, "latex", align="c", booktabs=TRUE, escape = FALSE, 
             caption = 'Steps outlined for calculating system velocity, $v$, using the 2-variable toy data as an example.')
 ```
 
-The steps for calculating velocity [Eq. \@ref(eq:velocity)] are demonstrated using the first five time points of our toy system (Fig. \@ref(fig:sysEx)) in Table \@ref(tab:distTab). 
-### Velocity *v* performance under varying mean and variance in the toy system
+The numerical results for each step in the calculation of velocity [Eq. \@ref(eq:velocity)] is demonstrated using the first five time points of our toy system (Fig. \@ref(fig:sysEx)) in Table \@ref(tab:distTab). 
+
+### Velocity *v* performance under varying mean and variance
 I simulated 10,000 random draws of the toy system, which experiences a rapid shift at $t = 50$, while varying two each of the following system paramters at the regime shift:
  $\bar{x}_1$, increased the mean value of $x_1$ 
  $\sigma_1$, change in variance of $x_1$ 
@@ -282,7 +298,6 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVp
 
 #### Varying post-shift variance
 In the previous example, variance was constant before and after the shift at $t=50$. To determine whether the signal emitted by $v$ at the regime shift is lost with increasing variance, I varied the variance parameter, $\sigma_1$ in the set $W = \{1,2,3,...25 \}$. The variance for both state variables prior to the regime shift, $\sigma_1$ and $\sigma_2$, was 5, with the change occurring in $\sigma_1{_{post}}$. Sytem velocity $v$ appears senstive to increases in the variance at the point of the regime shift (Figs. \@ref(fig:simVarplot), \@ref(fig:simVarplot2)). This extreme sensitivity of $v$ to $\sigma{_{post}}$  (Fig. \@ref(fig:simVarplot2)) is unsurprising, given the fact that, without smoothing the derivatives, the tangential speed of a 'noisy' variable will always be noisy itself (see Figs. \@ref(velocitySysEx1), \@ref(velocitySysEx2), \@ref(velocitySysEx3), \@ref(velocitySysEx4)). 
-
 ```{r simVarPlot, echo=FALSE,  eval=TRUE, fig.cap = "High variance of velocity ($v$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\\sigma_1$ at $t=50$."}
 # p<- ggplot(data = dist.sim2 %>% filter(sim.num==1, t==51), 
 #        aes(x = as.integer(var.sim), y = dsdt))+
@@ -295,7 +310,6 @@ In the previous example, variance was constant before and after the shift at $t=
 # ggsave(p, filename=paste0(figDir,"simVarPlot.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVarPlot.png"))
 ```
-
 ```{r simVarPlot2,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "Average ($\\pm 2$ SD) velocity ($v$) worsens as the variance of $\\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\\bar{x}_{1_{pre}} = 25$, $\\bar{x}_{1_{post}} = 100$, $\\bar{x}_{2_{pre}} = 25$, $\\bar{x}_{2_{post}} = 50$, $\\sigma_{1_{pre}} = 5$, $\\sigma_{2_{pre,post}} = 5$"}
 # p<- ggplot(data = dist.sim.reduced2)+
 #  geom_ribbon(aes(x = var.sim, ymin = lower , ymax = upper), fill = "grey70") +
@@ -333,8 +347,60 @@ To ameliorate the influence of noise (e.g. Fig. \@ref(simVarPlot)) on the regime
 # ggsave(p, filename=paste0(figDir,"smoothV.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/smoothV.png"))
 ```
+## Velocity performance in a toy system with smooth transitions 
+Although the data constructed in this section are similar to that used in the previous section in that we are manipulating the mean and variance of two state variables before and/or after an abrupt shift, this section introduces a component of process noise into the shift itself. This is important because the derivative of a nearly discontinuous function is infinite. Although we are interested in identifying this type of rapid change, velocity will appraoch infinity regardless of the effect size. In other words, if the system exhibits turnover in e.g. $25\%$ of the state variables, the value of velocity will be equal to that of turnover in e.g. $75\%$ of the variables. Removing the possibility of infinite values provides more relative measures within the community time series. 
 
-### Performance of velocity using empirical data: paleodiatom community example
+### Generating the data
+Here we consider a two-variable system over the time interval $[1,100]$ with state variables $x_1$ and $x_2$ which exhibits abrupt shifts in mean and/or variance of one or both variables at time $t=50$. I generated species observations across the time interval by drawing from a normal distribution. 
+
+I generated a single datset for each of the six conditions explored explored six conditions (Table \@ref(tab:sysParams))
+
+```{r sysParams, echo=FALSE, eval=TRUE, cache=TRUE}
+params <- data.frame(
+  sd.perc_1a = c(0.05, 0.05, 0.05, 0.05, 0.05,  0.05), # percent of the mean will determine the sd_1a ... sd_2b
+  sd.perc_1b = c(0.10, 0.10, 0.05, 0.05, 0.10,  0.10),
+  sd.perc_2a = c(0.05, 0.05, 0.05, 0.05, 0.05,  0.05),# percent of the mean will determine the sd_1a ... sd_2b
+  sd.perc_2b = c(0.10, 0.05, 0.05, 0.05, 0.10,  0.05),
+       mu_1a = c(10,     10,   10,   10,   10,  10),
+       mu_1b = c(55,     55,   55,   55,   10,  10),
+       mu_2a = c(15,     15,   15,   15,   15,  15),
+       mu_2b = c(44,     15,   44,   15,   15,  15)
+)
+
+colnames(params) <- c(
+  "$\\sigma_{x_{1_{pre}}}$",
+  "$\\sigma_{x_{1_{post}}}$",
+  "$\\sigma_{x_{2_{pre}}}$",
+  "$\\sigma_{x_{2_{post}}}$",
+  "$\\mu_{x_{1_{pre}}}$",
+  "$\\mu_{x_{1_{post}}}$",
+  "$\\mu_{x_{2_{pre}}}$",
+  "$\\mu_{x_{2_{post}}}$"
+)
+
+conditions <-c( 
+  "$\\mu_{x_1}$, $\\mu_{x_2}$, $\\sigma_{x_1}$, $\\sigma_{x_2}$", 
+  "$\\mu_{x_1}$, $\\sigma_{x_1}$", 
+  "$\\mu_{x_1}$, $\\mu_{x_2}$", 
+  "$\\mu_{x_1}$", 
+  "$\\sigma_{x_1}$, $\\sigma_{x_2}$", 
+  "$\\sigma_{x_1}$" 
+)   
+
+myTab <- cbind(conditions, params)
+require(kableExtra)
+options(knitr.kable.NA = "")
+kable(myTab,digits=2, "latex", align="l", booktabs=TRUE, escape = FALSE, 
+            caption = 'Conditions for generating various scenarios of the hyperbolic tangent-induced abrupt change. $\\sigma_i$ represents the standard deviation of $\\mu_{x_i}$ as the percent of $\\mu_{x_i}$, $\\mu_{x_i}$ is the mean of the state variable, $x_i$, and pre and post represent the periods before and after the regime shift at $t=50$, respectively.')
+```
+
+<!-- ```{r plotname, echo=FALSE, warning=F, message=F, cache = T, fig.cap=""} -->
+<!-- knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/.png")) -->
+<!-- ``` -->
+
+
+
+## Application to empirical data: paleolithic freshwater diatom community
 ```{r tvDiffPaleoCalculate, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 library(tvdiff)
 library(tidyr)
@@ -422,7 +488,6 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleo
 ```
 
 To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \@ref(resampling) (see also Appendix \@ref(appPaleo). Briefly, the paleodiatom community comprises `r length(unique(paleo$variable))` time series over a period of approximately `r abs(max(paleo$sortVar)-min(paleo$sortVar)) %>% round(0)` years (Fig. \@ref(fig:paleoTurnover)). As elaborated in @spanbauer_prolonged_2014, the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundaces over time, as there are extreme levels of species turnover at multiple points in the data (Fig. \@ref(fig:paleoTurnover)). Using Fisher Information and climatological records, @spanbauer_prolonged_2014 suggest that regime shifts in this system at approximately 1,300 years before present (where present is equal to year 1950).
-
 ```{r paleoVelocity,  echo=FALSE, warning=F, message=F, cache = T,  fig.cap ="Velocity $v$ and distance travelled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $v$."}
 # plotData <- regimeDetectionMeasures::calculate_distanceTravelled(paleo) %>% na.omit(d2sdt2) %>% 
 #   rename(acceleration= d2sdt2, 
@@ -472,10 +537,11 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleo
 # ggsave(p, filename=paste0(figDir,"paleoRegime1and3.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3.png"))
 ```
+
 @spanbauer_prolonged_2014 used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at ~1,300 years before present. Using the methods outlined above, I calculated the distance travelled ($s$) and velocity ($v$; Fig. \@ref(fig:paleoV)). The results of $v$ and $s$ (\@ref(fig:paleoVelocity)) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \@ref(fig:paleoTurnover), and also with the regime shift identified by @spanbauer_prolonged_2014. However, two primary results can be made from the metrics  $v$ and $s$ that are not obvious nor identified numerically in the results of @spanbauer_prolonged_2014 (): 
 1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950       
 1. The periods before the first and after the second large shifts appear oscillatory (Fig. \@ref(fig:paleoRegime1and3)).  
-To determine whether removing the noise in the data, I interpolated the each time series using function `stats::approx` to 700 time points. Next, I calculated the distance travelled of the entire system, $s$. Finally, I obtained the derivative of $s$ by using a regularized differentiation (using function `tvdiff::TVRegDiffR`; parameters were $iter = 2000$, scale = small, $ep = 1 x 10^-6$, and $\alpha = 100$)^[\*We created the R-wrapper `tvdiff` as a Python wrapper for the tvdiff MatLab package @price2019tvdiff].. This method of regularized differentiation is an ideal approach to smoothing $s$ because it assumes the data are non-smooth, unlike other popular smoothing techniques e.g., Generalized Additive Models. 
+To determine whether removing the noise in the data, I interpolated the each time series using function `stats::approx` to 700 time points. Next, I calculated the distance travelled of the entire system, $s$. Finally, I obtained the derivative of $s$ by using a regularized differentiation (using function `tvdiff::TVRegDiffR`; parameters were $iter = 2000$, scale = small, $ep = 1 x 10^-6$, and $\alpha = 100$)^[\*We created the R-wrapper `tvdiff` as a Python wrapper for the tvdiff MatLab package @price2019tvdiff].. This method of regularized differentiation is an ideal approach to smoothing $s$ because it assumes the data are non-smooth and incorporates finite differencing. 
 ```{r paleoObsPred, eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE, fig.cap = "The regularized differentiation of $s$ was best fit using $\\alpha = 100$. Higher overlap of $s$ and pred indicates a good fit of the regularized differentiated metric to the non-smoothed metric, $s$."}
 # Plot observed vs predicted
 # p=ggplot(paleoEx %>% 
@@ -488,7 +554,7 @@ To determine whether removing the noise in the data, I interpolated the each tim
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoObsPred.png"))
 ```
 
-The smoothed velocity (\@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (\@ref(fig:paleoV)) to the non-smoothed velocity (\@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, but more clearly identifies the inter-regime dynamics (e.g., between 7,000 and 4,800 years before present).
+The smoothed velocity (\@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (\@ref(fig:paleoV)) to the non-smoothed velocity (\@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, however, it  more clearly demonstrates potential inter-regime dynamics (e.g., between 7,000 and 4,800 years before present), which were not identified in previous study of this ssytem [@spanbauer_prolonged_2014].
 ```{r paleoV,  eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, message=FALSE,fig.cap="The velocity metric  ($v$) signals potential periodicities in the paleo diatom time series data when the distance travelled metric, $s$, is smoothed using regularized differentiation methods [@price2019tvdiff]."}
 # Plot derivative
 # p=ggplot(paleoEx %>% 
@@ -564,4 +630,8 @@ Further work is required to determine the utility of system velocity as a regime
 <!-- ``` -->
 
 
+<!-- # END RUN -->
 
+<!-- ```{r plotname, echo=FALSE, warning=F, message=F, cache = T, fig.cap=""} -->
+<!-- knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/.png")) -->
+<!-- ``` -->

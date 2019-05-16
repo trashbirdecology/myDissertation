@@ -75,9 +75,12 @@ chapterFiles/fisherSpatial/myResults
 
 # But remove pngs created that aren't called in diss
 !chapterFiles/fiGuide/figures/*.png
-chapterFiles/**/figures/*.png
-chapterFiles/***/figures/*.png
+/chapterFiles/**/figures/*.png
+/chapterFiles/velocity/tempFigures/
+/chapterFiles/resampling/results/diatoms/tempFigures/
+/chapterFiles/***/figures/*.png
 /figures/*.png
+
 
 # Keep the rendered .pdf copy
 !_book
@@ -108,6 +111,8 @@ _myDissertation.aux
 03-chap-fiGuide_cache/latex/__packages
 05-chap-resampling_cache/html/__packages
 05-chap-resampling_cache/latex/__packages
+06-chap-velocity_files/
+
 chapterFiles/rdmReview/~$methodsOverview.xlsx
 02-chap-rdmMethodsReview.pdf
 chapterFiles/fiGuide/.DS_Store
