@@ -95,11 +95,11 @@ I observed the distributions of the CV [get rid of the error to mean ratio, conf
 
 
 
-```{r fiResamp, out.width = "55%",  echo=FALSE,  fig.cap="Mean Fisher Information (FI) and associated 95% confidence intervals over 10,000 iterations using the observations (top panel) and species (bottom panel) resampling methods. Red line indicates the value of FI when M and P = 100%."}
+```{r fiResamp, out.width = "55%",  echo=FALSE,  fig.cap="Mean Fisher Information (FI) and associated 95% confidence intervals over 10,000 iterations using the observations (top panel) and species (bottom panel) resampling methods. Red line indicates the value of FI when **M** and **P** = 100%."}
 knitr::include_graphics(loadFig("FI_observations_ribboned_facetByProb")) # observations
 knitr::include_graphics(loadFig("FI_species_ribboned_facetByProb")) # species
 ```
-```{r fiRegimes, out.width = "85%",  echo=FALSE,  fig.cap="Mean Fisher Information (FI) and associated 95% confidence intervals over 10,000 iterations using the observations (top panel) and species (bottom panel) resampling methods. Red line indicates the value of FI when M and P = 100%."}
+```{r fiRegimes, out.width = "85%",  echo=FALSE,  fig.cap="Mean Fisher Information (FI) and associated 95% confidence intervals over 10,000 iterations using the observations (top panel) and species (bottom panel) resampling methods. Red line indicates the value of FI when **M** and **P** = 100%."}
 knitr::include_graphics(loadFig(""))
 ```
 ```{r fiCV, out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
