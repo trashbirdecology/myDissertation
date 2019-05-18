@@ -351,9 +351,45 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/smoot
 Although the data constructed in this section are similar to that used in the previous section in that we are manipulating the mean and variance of two state variables before and/or after an abrupt shift, this section introduces a component of process noise into the shift itself. This is important because the derivative of a nearly discontinuous function is infinite. Although we are interested in identifying this type of rapid change, velocity will appraoch infinity regardless of the effect size. In other words, if the system exhibits turnover in e.g. $25\%$ of the state variables, the value of velocity will be equal to that of turnover in e.g. $75\%$ of the variables. Removing the possibility of infinite values provides more relative measures within the community time series. 
 
 ### Generating the data
-Here we consider a two-variable system over the time interval $[1,100]$ with state variables $x_1$ and $x_2$ which exhibits abrupt shifts in mean and/or variance of one or both variables at time $t=50$. I generated species observations across the time interval by drawing from a normal distribution. 
+Here we consider a two-variable system over the time interval $[1,100]$ with state variables $x_1$ and $x_2$ which exhibits abrupt shifts in mean and/or variance of one or both variables at time $t=50$. I generated species observations for the true process and  the true process with process variability. The true process data were created using the paramters for $\mu$ and $\sigma$ for each of the conditions in described in Table \@ref(tab:sysParams) (random seed in Program R was 12345).
 
-I generated a single datset for each of the six conditions explored explored six conditions (Table \@ref(tab:sysParams))
+#### True process model
+Data were generated from a normal distribution and an abrupt shift in the mean was incorporated using a hyperbolic tangent function. The true process for each state variable, $x_i$, was generated from Eq. (\@ref(eq:true)):
+ x_1_obs <- x_1_true + x_1_err
+  x_2_err <- c(
+    rnorm(
+      mean = 0,
+      sd = mu_2a * sd.perc_2a,
+      n = tregime
+    ),
+    rnorm(
+      mean = 0,
+      sd = mu_2b * sd.perc_2b,
+      n = tregime
+    )
+  )
+\begin{equation}
+<!-- \begin{array} -->
+\mu_i_{pre} \sim Normal(\mu_i_{pre},\sigma_i_{pre}) \\ 
+\mu_i_{post} \sim Normal(\mu_i_{post},\sigma_i_{post}) \\ 
+\sigma_i_{post} \sim Normal(0,\sigma_i_{post}\mu_i_{post}) \\ 
+
+
+\mu_{x_i}(t) = \mu_{i_{pre}}  - 0.5(\mu_{i_{pre}}-\mu_{i_{post}})(\tanh(\alpha (t-t_{shift}))+1) \\
+(#eq:true)
+<!-- \end{array} -->
+\end{equation}
+
+where $\mu_{x_i}(t)$ is the mean value of $x_i$ at time $t$ and *pre* and *post* are the periods before and after the abrupt shift ($t_{shift}$), respectively.
+The parameter $\alpha$ controls for the rate of change at the point of the abrupt change, $t_{shift}$, where higher values of $\alpha$ correspond with a higher slope at $t_{shift}$. 
+
+I generated a single dataset for each condition (see Table \@ref(tab:sysParams)) containing the true process values for $x_1\ \&\ x_2$ at intervals of $t=1$ along the temporal interval [1,100].
+
+#### Observed process data
+
+$\sigma_i_{post} $\sim \\Normal(0,\sigma_i_{post}\mu_i_{post})$
+$\sigma_{i_{post}} \sim Normal(0, )$
+
 
 ```{r sysParams, echo=FALSE, eval=TRUE, cache=TRUE}
 params <- data.frame(
@@ -386,7 +422,6 @@ conditions <-c(
   "$\\sigma_{x_1}$, $\\sigma_{x_2}$", 
   "$\\sigma_{x_1}$" 
 )   
-
 myTab <- cbind(conditions, params)
 require(kableExtra)
 options(knitr.kable.NA = "")
@@ -397,7 +432,6 @@ kable(myTab,digits=2, "latex", align="l", booktabs=TRUE, escape = FALSE,
 <!-- ```{r plotname, echo=FALSE, warning=F, message=F, cache = T, fig.cap=""} -->
 <!-- knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/.png")) -->
 <!-- ``` -->
-
 
 
 ## Application to empirical data: paleolithic freshwater diatom community

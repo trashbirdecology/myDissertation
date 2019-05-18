@@ -103,7 +103,7 @@ generateData <- function(n = 100, #length of time series
     kFun(
       t = t,
       alpha = alpha,
-      k1 = mu_1a,
+        k1 = mu_1a,
       k2 = mu_1b,
       tregime = tregime
     )
