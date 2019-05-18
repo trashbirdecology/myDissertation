@@ -92,7 +92,7 @@ ts <- generateData(
 calcDistResults <- calcDist(dat = ts, 
                             fn=fn,
                             tvdiff.iter = tvdiff.iter,
-                            tvdiff.alpha =   tvdiff.alpha
+                            tvdiff.alpha =  tvdiff.alpha
 )
 
 results <- calcDistResults$dist 
@@ -138,6 +138,10 @@ p.orig <- ggplot(data = results.long, aes(x = time, y = y, color = key)) +
     labels = labs
   ) +
   guides(color = guide_legend(override.aes = list(size = 4), ncol = 2))
+# +
+#   geom_text(aes(label = paste0("alpha==",alpha),y = .50*max(results.long$y, na.rm=TRUE), 
+#                 x =  .15*max(results.long$time, na.rm=TRUE)), 
+            # parse = T, colour = "black", size = 4)
 
 # p.orig
 

@@ -83,7 +83,7 @@ approx_dist.sim <- function(t.mult){
 
 
 ######### FUNCTIONS FOR THE TANH example #######
-# Geenrate data -----------------------------------------------------------
+# Generate data -----------------------------------------------------------
 ### generate a 2-var systems using smooth shift 
 generateData <- function(n = 100, #length of time series
                          tregime = .5 * n,
