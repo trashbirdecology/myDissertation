@@ -1,4 +1,10 @@
 base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
 gridExtra
 magrittr
 tidyverse
@@ -10,7 +16,3 @@ purrr
 dplyr
 stringr
 forcats
-ggthemes
-kableExtra
-reticulate
-tvdiff
