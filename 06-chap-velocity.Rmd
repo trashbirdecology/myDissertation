@@ -296,7 +296,7 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVp
 ```
 
 #### Varying post-shift variance
-In the previous example, variance was constant before and after the abrupt shift at $t=50$. To determine whether the signal emitted by $v$ at the regime shift is lost or dampened when increasing variance I varied the variance parameter, $\sigma_1$ along the set $W = \{1,2,3,...25 \}$. The variance for both state variables ($x_1, x_2$) prior to the regime shift, $\sigma_{x_1}$ and $\sigma_{x_2}$, was $5$, with the change occurring in $\sigma_{x{_1_{post}}}$. 
+In the previous example, variance was constant before and after the abrupt shift at $t=50$. To determine whether the signal emitted by $v$ at the regime shift is lost or dampened when increasing variance I varied the variance parameter, $\sigma_1$ along the set $W = \{1,2,3,...25 \}$. The variance for both state variables ($x_1, x_2$) prior to the regime shift, $\sigma_{x_1}$ and $\sigma_{x_2}$, was $5$, with the change occurring in $\sigma_x{_1_{post}}$. 
 ```{r simVarPlot, echo=FALSE,  eval=TRUE, fig.cap = "High variance of velocity ($v$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\\sigma_1$ at $t=50$."}
 # p<- ggplot(data = dist.sim2 %>% filter(sim.num==1, t==51), 
 #        aes(x = as.integer(var.sim), y = dsdt))+

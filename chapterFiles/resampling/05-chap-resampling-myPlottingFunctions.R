@@ -143,15 +143,15 @@ plot.bootstrappedFacetGroup <- function(df,
     rename(x = !!sym(x),
            y = !!sym(y),
            y.sd = !!sym(y.sd)) %>%
-    mutate(upper = y + 1.96 * log(y.sd + 1e-20),
-           lower = y - 1.96 * log(y.sd + 1e-20)) %>%
+    mutate(upper = y + log(1.96 * y.sd + 1e-20),
+           lower = y - log(1.96 * y.sd + 1e-20)) %>%
     mutate(prob = as.factor(100 * as.numeric(as.character(prob))),
            method = as.factor(method))  %>%
     dplyr::select(x, y, method, prob, upper, lower)
     
   metric.ind <- "log(FI)"
-  
   }
+  
   ## For all non-FI metrics
   if(!metric.ind %in% c("log(FI)")){
     df2 <- df %>%
@@ -166,6 +166,7 @@ plot.bootstrappedFacetGroup <- function(df,
       dplyr::select(x, y, method, prob, upper, lower)
   }
   
+  # head(df2)
   
   # Subset the data for prob < baseline prob
   ribbon.data <- df2 %>%
@@ -184,7 +185,6 @@ plot.bootstrappedFacetGroup <- function(df,
     metric.ind
   )))))
   
-  # browser()
   ## Create the ribboned plot
   p.ribbon <-
     ggplot() +
@@ -206,15 +206,6 @@ plot.bootstrappedFacetGroup <- function(df,
                ncol = n.col,
                scales = "free_y")
   
-  # p.ribbon
-  
-  fn <-
-    paste0(metric.ind,
-           "_",
-           method.filter,
-           "_ribboned_facetByProb",
-           ".png")
-  
   # Add the baseline geom_line to compare results
   # if(add.baseline) p.ribbon <-
   p.ribbon <- p.ribbon +
@@ -225,7 +216,15 @@ plot.bootstrappedFacetGroup <- function(df,
       linetype = 1,
       alpha = .4
     )
+  # p.ribbon
   
+  ## Create a filename to save plot
+  fn <-
+    paste0(metric.ind,
+           "_",
+           method.filter,
+           "_ribboned_facetByProb",
+           ".png")
   # Save the plot
   if (savePlot){
     ggsave(plot = p.ribbon,
