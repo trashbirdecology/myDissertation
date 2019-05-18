@@ -67,6 +67,7 @@ for (i in seq_along(results.list)) {
     for (j in seq_along(myMetrics)) {
       # browser()
       ##############################
+      if(myMethods[h]!="dominance")
       plot.bootstrappedFacetGroup(
         df = df,
         metric.ind = myMetrics[j],
@@ -74,7 +75,7 @@ for (i in seq_along(results.list)) {
         preview = TRUE,
         add.baseline = TRUE,
         savePlot = TRUE,
-        logFI=FALSE,
+        logFI=TRUE,
         regime.breaks = list(
           c(-6894, -4800),
           c(-2500, -2000),
@@ -82,7 +83,7 @@ for (i in seq_along(results.list)) {
           c(-1300, -1000)
         )
       )
-      
+      print("saved bootstrapped facet group fig. to file")
     ##############################
     # Plot density of error to mean ratio
     ##############################

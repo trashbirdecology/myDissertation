@@ -143,8 +143,8 @@ plot.bootstrappedFacetGroup <- function(df,
     rename(x = !!sym(x),
            y = !!sym(y),
            y.sd = !!sym(y.sd)) %>%
-    mutate(upper = y + 1.96 * y.sd,
-           lower = y - 1.96 * y.sd) %>%
+    mutate(upper = y + 1.96 * log(y.sd + 1e-20),
+           lower = y - 1.96 * log(y.sd + 1e-20)) %>%
     mutate(prob = as.factor(100 * as.numeric(as.character(prob))),
            method = as.factor(method))  %>%
     dplyr::select(x, y, method, prob, upper, lower)
@@ -184,6 +184,7 @@ plot.bootstrappedFacetGroup <- function(df,
     metric.ind
   )))))
   
+  # browser()
   ## Create the ribboned plot
   p.ribbon <-
     ggplot() +
@@ -226,11 +227,11 @@ plot.bootstrappedFacetGroup <- function(df,
     )
   
   # Save the plot
-  if (savePlot)
+  if (savePlot){
     ggsave(plot = p.ribbon,
            path =  figDir,
            filename = fn)
-  
+  }
   
   # Save plots for individual regimes
   if (!is.null(regime.breaks)) {
