@@ -73,7 +73,6 @@ myPackages <- c( "tidyverse",
 # remotes::install_github("noamross/redoc")
 
 ```
-
 ```{r loadPkgs, include=FALSE }
 # Detach all packages just in case...
 if(!is.null(sessionInfo()$otherPkgs)) suppressWarnings(suppressMessages(lapply(paste('package:', names(sessionInfo()$otherPkgs),sep=""), detach,character.only=TRUE,unload=TRUE)))
@@ -86,7 +85,6 @@ library(bbsRDM, quietly = TRUE)
 library(tvdiff, quietly = TRUE)
 # library(redoc, quietly=TRUE)
 ```
-
 ```{r chunkOptsInd, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # Chunk defaults
 require(knitr)
@@ -97,7 +95,6 @@ knitr::opts_chunk$set( cache = TRUE, cache.path = "_cache/",
                       fig.pos = 'h',
                       fig.align='center', out.width = "85%")
 ```
-
 ```{r panderOpts, cache=TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 panderOptions('knitr.auto.asis', TRUE)
 ```
