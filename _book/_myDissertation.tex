@@ -1519,21 +1519,21 @@ A few broad classes of quantitative approaches exist for quantitatively identify
 
 \hypertarget{tracking-ecosystem-trajectory-through-time-to-explore-system-dynamics}{%
 \subsection{Tracking ecosystem trajectory through time to explore system dynamics}\label{tracking-ecosystem-trajectory-through-time-to-explore-system-dynamics}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"chapterFiles/velocity/figsCalledInDiss/lorenz3D.png"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D} 
-
-}
-
-\caption{An example solution of the Lorenz ('butterfly') represented in 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized.}\label{fig:lorenz3D}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D} \caption{An example solution of the Lorenz ('butterfly') represented in 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized.}\label{fig:lorenz3D}
 \end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries.png"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries} 
-
-}
-
-\caption{An example solution of the Lorenz ('butterfly') represented in individual system compoents.}\label{fig:lorenz3Dts}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries} \caption{An example solution of the Lorenz ('butterfly') represented in individual system compoents.}\label{fig:lorenz3Dts}
 \end{figure}
 A classic example of state-switching by a system is demonstrated in the Lorenz (`butterfly') attractor (Fig. \ref{fig:lorenz3D}; Takens, 1981). This phase plot (Fig. \ref{fig:lorenz3D}) provides an informative visual of the behavior of a chaotic system manifesting two attractors. Although the periodic, attractor behaviors are made clear when examining the time series of each dimension (Fig \ref{fig:lorenz3Dts}), identifying such behaviors in additional dimensions becomes increasingly difficult.
 
@@ -1564,21 +1564,11 @@ I first describe the steps for calculating velocity by constructing a simple, tw
 
 In this section, I first demonstrate the calculations of velocity using a very simple, two-variable toy system. The first system exhibits a rapid shift at a single point in time, where mean and variance are constant before and after the shift point. I demonstrate the signals achieved with and the variability within the \(v\) calculation by exploring a number of scenarios of this simple system. For the examples in this section, observations of \(x_i\) are randomly drawn from distribution \(x_i\sim Normal(\mu, \sigma)\), where \(\mu\) is the mean and \(\sigma\) is the standard deviation.
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx-1} 
-
-}
-
-\caption{The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\sigma = 5$.}\label{fig:sysEx}
+\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx-1} \caption{The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\sigma = 5$.}\label{fig:sysEx}
 \end{figure}
 Consider a system (Fig. \ref{fig:sysEx}) with \(N\) state variables (\(x_i\)), with observations taken at time points, \(t\). System velocity is calculated as the cumulative sum over time period \(t_0\) to \(t_j\), as the total change in all state variables, \{\(x_1 ...x_N\)\}, between two adjacent time points, e.g., \(t_j\) and \(t_{j+1}\), denoted \(t_{j,j+1}\). I use this simple, two-variable system to demonstrate how \emph{velocity} is calculated. The system comprises variables \(x_1\) and \(x_2\), with observations occurring at each time point \(t = {1,2,3,...100}\). First, we calculate the change in each state variable, \(x_i\), between two adjacent points in time, \(t_j\) and \(t_{j+1}\), such that the difference, \(x_{t_{j+1}} - x_{t_j}\) is assigned to the latter time point, \(t_{j+1}\). For example, in our toy data, we use observations at time points \(t = 1\) \& \(t=2\) (Fig. \ref{fig:sysEx2}). For all examples in this chapter, the state variables \(x_1\) and \(x_2\) were drawn from a normal distribution (using function \emph{rnorm}), with parameters \(\bar{x}_i\) (mean) and \(\sigma_i\) (sd) for 100 time steps, \(t\). The regime shift in this system occurs at \(t=50\), where a shift in either or both \(\bar{x}_i\) or \(\sigma_i\).
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx2-1} 
-
-}
-
-\caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
+\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx2-1} \caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
 \end{figure}
 \hypertarget{steps-for-calculating-v}{%
 \subsection{\texorpdfstring{Steps for calculating \(v\)}{Steps for calculating v}}\label{steps-for-calculating-v}}
@@ -1607,12 +1597,7 @@ s_T = \Sigma_{t=0}^{T}{\Delta s})
   \label{eq:s}
 \end{equation}
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysExs-1} 
-
-}
-
-\caption{Distance travelled, $s$, for the 2-species toy system.}\label{fig:sysExs}
+\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysExs-1} \caption{Distance travelled, $s$, for the 2-species toy system.}\label{fig:sysExs}
 \end{figure}
 We now have a single measure, \(s_T\) {[}hereafter referred to as \(s\); Eq. \eqref{eq:s}{]} at each discrete point in time in our \(N\)-dimensional system (Fig. \ref{fig:sysExs}). It should be noted that \(s\)(Fig. \ref{fig:sysExs}) is monotonically increasing since the value of \(\Delta s\) (Eq. \eqref{eq:ds}) is a sum of squares. Although discussed in a later section, it is important to note that \(s\) is not unitless---that is, \(s\) has units of the state variables, \(x_i\). For example, if our 2-variable toy system represents biomass, then the units of \(s\) represents the cumulative absolute change in biomass of the entire system.
 
@@ -1625,12 +1610,7 @@ Finally, we calculate the \textbf{system velocity}, \(v\) (or \(\frac{\Delta s}{
 \label{eq:velocity}
 \end{equation}
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/velocitySysEx1} 
-
-}
-
-\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\bar{x}_{pre}=25$, $\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\sigma =5$.}\label{fig:velocSysEx1}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/velocitySysEx1} \caption{System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\bar{x}_{pre}=25$, $\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\sigma =5$.}\label{fig:velocSysEx1}
 \end{figure}
 \begin{table}[t]
 
@@ -1666,40 +1646,20 @@ Simulations consisted of 10,000 random samples drawn from the normal distributio
 
 I examined the influence of the magnitude of change in \(x_1\) in the period before (pre; \(t <50\)) and after (post; \(t \geq 50\)) by varying the mean parameter, \(\bar{x}_1\) in the set \(W=\{25,30,35,...100 \}\) (Figs. \ref{fig:simVplot1},\ref{simVplot2}). As expected, the magnitude of \(v\) increases linearly as the total difference between \(\bar{x}_{1_{pre}}\) and \(\bar{x}_{1_{post}}\) increases (\ref{fig:simVplot2}). This is not surprising because \(s\) increases as the total change in abundance across the entire sytem increases (Eq. \eqref{eq:s}). Consequently the potential of \(v\) also increases with total state variable values (e.g.~abundance, biomass). The linear relationship among \(v\) and total state variable values indicates that while \(v\) is capable of identifying large shifts in data structure, it may fail to identify subtle changes (i.e.~lower effect sizes).
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot1} 
-
-}
-
-\caption{Velocity ($v$) generally increases as the total change in the mean value of $\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\sigma = 5$, $\bar{x}_1 = 25$ when $t<50$,  $\bar{x}_2=50$ when $t\geq50$, $\bar{x}_1 = 25$ when $t <50$.}\label{fig:simVplot1}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot1} \caption{Velocity ($v$) generally increases as the total change in the mean value of $\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\sigma = 5$, $\bar{x}_1 = 25$ when $t<50$,  $\bar{x}_2=50$ when $t\geq50$, $\bar{x}_1 = 25$ when $t <50$.}\label{fig:simVplot1}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot2} 
-
-}
-
-\caption{Change in velocity ($v$) as the total change in the mean value of $\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\sigma = 5$, $\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\bar{x}_2 = 50$ when $t \geq 50$, $\bar{x}_1 = 25$ when $t<50$.}\label{fig:simVplot2}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot2} \caption{Change in velocity ($v$) as the total change in the mean value of $\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\sigma = 5$, $\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\bar{x}_2 = 50$ when $t \geq 50$, $\bar{x}_1 = 25$ when $t<50$.}\label{fig:simVplot2}
 \end{figure}
 \hypertarget{varying-post-shift-variance}{%
 \subsubsection{Varying post-shift variance}\label{varying-post-shift-variance}}
 
 In the previous example, variance was constant before and after the abrupt shift at \(t=50\). To determine whether the signal emitted by \(v\) at the regime shift is lost or dampened when increasing variance I varied the variance parameter, \(\sigma_1\) along the set \(W = \{1,2,3,...25 \}\). The variance for both state variables (\(x_1, x_2\)) prior to the regime shift, \(\sigma_{x_1}\) and \(\sigma_{x_2}\), was \(5\), with the change occurring in \(\sigma_{x1post}\).
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot} 
-
-}
-
-\caption{High variance of velocity ($v$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\sigma_1$ at $t=50$.}\label{fig:simVarPlot}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot} \caption{High variance of velocity ($v$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\sigma_1$ at $t=50$.}\label{fig:simVarPlot}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot2} 
-
-}
-
-\caption{Average ($\pm 2$ SD) velocity ($v$) worsens as the variance of $\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\bar{x}_{1_{pre}} = 25$, $\bar{x}_{1_{post}} = 100$, $\bar{x}_{2_{pre}} = 25$, $\bar{x}_{2_{post}} = 50$, $\sigma_{1_{pre}} = 5$, $\sigma_{2_{pre,post}} = 5$}\label{fig:simVarPlot2}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot2} \caption{Average ($\pm 2$ SD) velocity ($v$) worsens as the variance of $\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\bar{x}_{1_{pre}} = 25$, $\bar{x}_{1_{post}} = 100$, $\bar{x}_{2_{pre}} = 25$, $\bar{x}_{2_{post}} = 50$, $\sigma_{1_{pre}} = 5$, $\sigma_{2_{pre,post}} = 5$}\label{fig:simVarPlot2}
 \end{figure}
 Sytem velocity \(v\) appears senstive to increases in the variance at the point of the regime shift (Figs. \ref{fig:simVarplot}, \ref{fig:simVarplot2}). Again, because velocity is a function of the total change in the state variables, the variability of \(v\) will increase with both \(mu\) and \(\sigma\) (Fig. \ref{fig:simVarplot2}). Further, it is unsurpirsing that \(v\) exhibits sensitivity to changes in \(\sigma_{post}\) because, without prior smoothing of the data, the tangential speed of a `noisy' variable will always be noisy itself (see Figs. \ref{velocitySysEx1}, \ref{velocitySysEx2}, \ref{velocitySysEx3}, \ref{velocitySysEx4}).
 
@@ -1708,12 +1668,7 @@ Sytem velocity \(v\) appears senstive to increases in the variance at the point 
 
 To determine whether process or observational noise influences the signal in \(v\), I used linear approximation techniques to smooth the data prior to calculating the derivatives. I used the function \emph{stats::approx} which linearaly interpolates the original data, \(x_1\) and \(x_2\), to regularly-spaced time points along the set \(t=\{1:100\}\). I then calculated \(v\) as described in (Eqs. \eqref{eq:diffX}:\eqref{eq:velocity}). Increasing the number of points (\(t\)) at which the original state variables were smoothed (i.e., \(t\)) did not influence the amount of noise surrounding the signal of the regime shift (at \(t=50\)) in system velocity, \(v\) (Fig. \ref{fig:smoothV}).
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/smoothV} 
-
-}
-
-\caption{The noise in system velocity ($v$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed.}\label{fig:smoothV}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/smoothV} \caption{The noise in system velocity ($v$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed.}\label{fig:smoothV}
 \end{figure}
 \hypertarget{velocity-performance-under-a-smooth-transition}{%
 \section{Velocity performance under a smooth transition}\label{velocity-performance-under-a-smooth-transition}}
@@ -1756,20 +1711,10 @@ Data were generated from a normal distribution and an abrupt shift in the mean w
 \end{equation}
 where \(\mu_{x_i}(t)\) is the mean value of \(x_i\) at time \(t\) and \emph{pre} and \emph{post} are the periods before and after the abrupt shift (\(t_{shift}\)), respectively. The parameter \(\alpha\) in Eq. \eqref{eq:true} controls for the rate of change at the point of the abrupt change, \(t_{shift}\), where higher values of \(\alpha\) correspond with a higher slope at \(t_{shift}\). I simulated a single iteration (dataset) for various conditions of changing \(\mu_{xi}\) and \(\sigma_{xi}\) (see Table \ref{tab:sysParams}), for two state variables \(x_1\ \&\ x_2\) at intervals of \(t=1\) along the temporal interval \(t=[1,100]\).
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat} 
-
-}
-
-\caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat} \caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat} 
-
-}
-
-\caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat} \caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
 \end{figure}
 \hypertarget{observed-process-data}{%
 \subsubsection{Observed process data}\label{observed-process-data}}
@@ -1791,7 +1736,15 @@ where \(\sigma_{xi}\) is the observed error around \(\mu_{xi}\), and \(\sigma_{X
 I simulated a single dataset (R seed 12345) by randomly drawing a single realisation (observed data) of the hyperbolic tangent process model with additive process noise (Eq. \eqref{eq:observed}). I then calculated the distance travelled, \(s\), and the velocity of the distance travelled, \(v\) (also referred to as \(\frac{ds}{dt}\)) using first differences. The first differences approach is a simple alternative to numerical integration tecniques, requiring only simple algebraic techniques. This method is ideal for discrete time data, or where computational power woudl not suffice for numerical integration. When using the first differences method, however, \(v\) will demonstrate high variability, depending on the amount of time between samples (i.e.~as the intervals of \(t-t+1\) increase).
 
 I also calculated \(v\) using a numerical integration method for non-smooth, noisy data, called total variation regularized differentiation (Chartrand, 2011). I used the R package \texttt{tvdiff} (Price \& Burnett, 2019) to perform numerically integrate the distance travelled, \(s\). The regularized differentiation method in this package (function \texttt{tvRegDiff}; descried fully in Chartrand, 2011) provides a numerical solution for calculating non-noisy derivatives of noisy, non-smooth data. Using this smooth-derivative estimation technique may be an ideal supplement to the velocity method in cases where process and observational error generate noisy observational data. Although not possible in most ecological systems data, here we can compare the fit of the smooth-derivative to the derivative of the true process, allowing us to determine the usefulness of calculating a smooth-derivative. There are two tuning paramters required to be chosen by the analyst when implementing the total-variation regularized differentiation, each of which influence the amount of noise smoothed out in the resulting derivative: \(\alpha\) and the number of iterations. I implemented this numerical differentiation over 1,000 iterations, and selected \(\alpha\) by comparing the antidifferentiated distance travelled, \(s\), to the true process values of \(s\) (e.g., see Figure \ref{fig:antiDiffComp}). For most conditions and smoothness I found the tuning parameter for \texttt{tvdiff} \(\alpha=0.50\) provided a good fit of \(s\) (Fig. \ref{fig:antiDiffComp}), however, when the hyperbolic tangent smoothing paramter, \(\alpha\) was low (i.e.~\(\alpha_{tanh}=0.25\)) higher values of \(\alpha_{tvdiff}\) yielded more abrupt changes in the derivative.
-
+\begin{figure}
+\includegraphics[width=0.33\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter} \caption{Comparison of the antidifferentiated values ('observed') of the distance travelled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\alpha$. Under most conditions $\alpha \ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\alpha_{tanh}=1$) for the `tvdiff` alpha values of: $\alpha=0.50$ (top), $\alpha=1$ (middle), and $\alpha=10$ (bottom). Notice that the antidifferentiated $s$ (observed) is increasingly smoothed as $\alpha$ increases.}\label{fig:antiDiffComp}
+\end{figure}
+\begin{figure}
+\includegraphics[width=0.33\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-1tvdiffAlpha-1000iter} \caption{Comparison of the antidifferentiated values ('observed') of the distance travelled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\alpha$. Under most conditions $\alpha \ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\alpha_{tanh}=1$) for the `tvdiff` alpha values of: $\alpha=0.50$ (top), $\alpha=1$ (middle), and $\alpha=10$ (bottom). Notice that the antidifferentiated $s$ (observed) is increasingly smoothed as $\alpha$ increases.}\label{fig:antiDiffComp}
+\end{figure}
+\begin{figure}
+\includegraphics[width=0.33\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-10tvdiffAlpha-1000iter} \caption{Comparison of the antidifferentiated values ('observed') of the distance travelled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\alpha$. Under most conditions $\alpha \ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\alpha_{tanh}=1$) for the `tvdiff` alpha values of: $\alpha=0.50$ (top), $\alpha=1$ (middle), and $\alpha=10$ (bottom). Notice that the antidifferentiated $s$ (observed) is increasingly smoothed as $\alpha$ increases.}\label{fig:antiDiffComp}
+\end{figure}
 \hypertarget{smooth-changes-in-the-mean}{%
 \subsubsection{Smooth changes in the mean}\label{smooth-changes-in-the-mean}}
 
@@ -1799,140 +1752,65 @@ As discussed earlier, the velocity of the distance travelled, \(v\), is a measur
 
 When the hyperbolic tangent smooth transition function is less steep (@ref(fig:mu1var.25)) the observed velocity signal is dampened. This signal, however, is quickly recovered when the transition function becomes more abrupt (Figs. @ref(fig:mu1var.5),@ref(fig:mu1var.75,\ref{fig:mu1var1}; \(\alpha_{tanh}=0.5, 0.75, and 1.00\), respectively). Unsurprisingly, when we shift the means of both state variables while holding the relative variance constant, the velocity signal changes more abruptly (Fig. @ref(fig:muBoth.25)) than when only a single variable shifts mean value (compare with Fig. @ref(mu1Var.25)). Figure @ref(muBoth.75) is representative of the increasing signal in velocity as \(\alpha_{tanh}\) increases.
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is low (0.25). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:mu1var.25)
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is low (0.25). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:mu1var.25)
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:mu1var.5)
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:mu1var.5)
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:mu1var.75)
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:mu1var.75)
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1var1}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1var1}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.25$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:muBoth.25)
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.25$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:muBoth.25)
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.75$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:muBoth.75)
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.75$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:muBoth.75)
 \end{figure}
 \hypertarget{smooth-changes-in-variance}{%
 \subsubsection{Smooth changes in variance}\label{smooth-changes-in-variance}}
 
 Abrupt changes sometimes manifest first as a change in the variability, rather than the mean value, of the state variables. This condition manifests in the velocity signal when both variables experience a shift in relative variance (Fig. \ref{fig:varBoth}), however, does not signal change when only one variable exhibits a shift in variance (Fig. \ref{fig:var1}). Again, given the total magnitude of change influences the distance travelled, \(s\), and the derivative of s, \(v\), it is not surprising that the velocity signal is greater around the transition point when both, compared to a single, state variable exhibits increased variability about the mean. In these scenarios I shifted the variability in the state variables \(x_i\) from only \(\sim 5\%\) to \(\sim10\%\) (see Table \ref{tab:params})---this percent variability is low relative to most empirical observational ecological datasets. As such, I expect the velocity signal to be more pronounced when empirical systems undergo shifts in variance in at least one state variable.
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:varBoth}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:varBoth}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:var1}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:var1}
 \end{figure}
 \hypertarget{smooth-changes-in-the-mean-and-variance}{%
 \subsubsection{Smooth changes in the mean and variance}\label{smooth-changes-in-the-mean-and-variance}}
 
 Given the signals identified in the velocity when one or both state varialbes exhibits a shift in mean and/or variance, it is unsurprising that even under smooth transitions (when \(\alpha_{tanh} = 0.25\)), velocity manifests as a signal of change (Fig. @ref(muVarBoth.25)). This signal is most pronounced when the shift is abrupt (Fig. \ref{muVarBoth1})
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=0.25$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:muVarBoth.25)
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=0.25$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }(\#fig:muVarBoth.25)
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff} 
-
-}
-
-\caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=1.00$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:muVarBoth1}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=1.00$). True and observed values of $x_i$ (panel A), observed distance travelled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:muVarBoth1}
 \end{figure}
 \hypertarget{velocity-performance-under-empirical-transitions-paleolithic-freshwater-diatom-community}{%
 \section{Velocity performance under empirical transitions: paleolithic freshwater diatom community}\label{velocity-performance-under-empirical-transitions-paleolithic-freshwater-diatom-community}}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoTurnover} 
-
-}
-
-\caption{Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations.}\label{fig:paleoTurnover}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoTurnover} \caption{Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations.}\label{fig:paleoTurnover}
 \end{figure}
 To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \ref{resampling} (see also Appendix \ref{appPaleo}. Briefly, the paleodiatom community comprises 109 time series over a period of approximately 6936 years (Fig. \ref{fig:paleoTurnover}). As elaborated in Spanbauer et al. (2014), the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundaces over time, as there are extreme levels of species turnover at multiple points in the data (Fig. \ref{fig:paleoTurnover}). Using Fisher Information and climatological records, Spanbauer et al. (2014) suggest that regime shifts in this system at approximately 1,300 years before present (where present is equal to year 1950).
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoVelocity} 
-
-}
-
-\caption{Velocity $v$ and distance travelled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $v$.}\label{fig:paleoVelocity}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoVelocity} \caption{Velocity $v$ and distance travelled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $v$.}\label{fig:paleoVelocity}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3} 
-
-}
-
-\caption{Velocity ($v$) indicates periodic-like conditions in the first (A) and second (B) regimes.}\label{fig:paleoRegime1and3}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3} \caption{Velocity ($v$) indicates periodic-like conditions in the first (A) and second (B) regimes.}\label{fig:paleoRegime1and3}
 \end{figure}
 Spanbauer et al. (2014) used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at \textasciitilde1,300 years before present. Using the methods outlined above, I calculated the distance travelled (\(s\)) and velocity (\(v\); Fig. \ref{fig:paleoV}). The results of \(v\) and \(s\) (\ref{fig:paleoVelocity}) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \ref{fig:paleoTurnover}, and also with the regime shift identified by Spanbauer et al. (2014). However, two primary results can be made from the metrics \(v\) and \(s\) that are not obvious nor identified numerically in the results of Spanbauer et al. (2014) ():
 1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950\\
 1. The periods before the first and after the second large shifts appear oscillatory (Fig. \ref{fig:paleoRegime1and3}).\\
 To determine whether removing the noise in the data, I interpolated the each time series using function \texttt{stats::approx} to 700 time points. Next, I calculated the distance travelled of the entire system, \(s\). Finally, I obtained the derivative of \(s\) by using a regularized differentiation (using function \texttt{tvdiff::TVRegDiffR}; parameters were \(iter = 2000\), scale = small, \(ep = 1 x 10^-6\), and \(\alpha = 100\)). This method of regularized differentiation is an ideal approach to smoothing \(s\) because it assumes the data are non-smooth and incorporates finite differencing. The total variation regularized differentiation is desribed in Chartrand (2011), Price \& Burnett (2019), and in the previous first-level section.
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoObsPred} 
-
-}
-
-\caption{The regularized differentiation of $s$ was best fit using $\alpha = 100$. Higher overlap of $s$ and pred indicates a good fit of the regularized differentiated metric to the non-smoothed metric, $s$.}\label{fig:paleoObsPred}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoObsPred} \caption{The regularized differentiation of $s$ was best fit using $\alpha = 100$. Higher overlap of $s$ and pred indicates a good fit of the regularized differentiated metric to the non-smoothed metric, $s$.}\label{fig:paleoObsPred}
 \end{figure}
 The smoothed velocity (\ref{fig:paleoV}) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (\ref{fig:paleoV}) to the non-smoothed velocity (\ref{fig:paleoVelocity}) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, however, it more clearly demonstrates potential inter-regime dynamics (e.g., between 7,000 and 4,800 years before present), which were not identified in previous study of this ssytem (Spanbauer et al., 2014).
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoV} 
-
-}
-
-\caption{The velocity metric  ($v$) signals potential periodicities in the paleo diatom time series data when the distance travelled metric, $s$, is smoothed using regularized differentiation methods [@price2019tvdiff].}\label{fig:paleoV}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoV} \caption{The velocity metric  ($v$) signals potential periodicities in the paleo diatom time series data when the distance travelled metric, $s$, is smoothed using regularized differentiation methods [@price2019tvdiff].}\label{fig:paleoV}
 \end{figure}
 \hypertarget{discussion-3}{%
 \section{Discussion}\label{discussion-3}}
@@ -1948,28 +1826,13 @@ Further work is required to determine the utility of system velocity as a regime
 
 This section contains additional examples of the behavior of velocity, \(v\) when varying the mean and/or variance prior to and/or after the induced abrupt shiftt in the toy system with a discontinuous transition at \(t=50\).
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{_myDissertation_files/figure-latex/velocSysEx2-1} 
-
-}
-
-\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
+\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx2-1} \caption{System change ($s$) and velocity ($v$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{_myDissertation_files/figure-latex/velocSysEx3-1} 
-
-}
-
-\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
+\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx3-1} \caption{System change ($s$) and velocity ($v$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
 \end{figure}
 \begin{figure}
-
-{\centering \includegraphics[width=0.65\linewidth]{_myDissertation_files/figure-latex/velocSysEx4-1} 
-
-}
-
-\caption{System change ($s$) and velocity ($v$) of the model system over the time period. Variance equal to mean ($/bar{x_i}=/sigma_i$), where means ($/bar{x}_{1_{pre}}=25$, $/bar{x}_{1_{post}}=50$, $/bar{x}_{2_{pre}}=15$, $/bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
+\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx4-1} \caption{System change ($s$) and velocity ($v$) of the model system over the time period. Variance equal to mean ($/bar{x_i}=/sigma_i$), where means ($/bar{x}_{1_{pre}}=25$, $/bar{x}_{1_{post}}=50$, $/bar{x}_{2_{pre}}=15$, $/bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
 \end{figure}
 \hypertarget{resampling}{%
 \chapter{Robustness of Multivariate Regime Detection Measures to Varying Data Quality and Quantity Using Resampling}\label{resampling}}
@@ -2081,36 +1944,16 @@ I observed the distributions of the CV {[}get rid of the error to mean ratio, co
 The velocity of the distance travelled, \(\frac{ds}{dt}\) or \(v\), exhibited dispersion across the values of \(\textbf{P}\), however, yielded consistent results (i.e., high overlap in the densities of the CV across values of \(\textbf{P}\) and across methodologies; see Fig. \ref{fig:dsdtCV}). Further, it should be noted that because \(v\) is calculated using first differences, it will be sensitive to large changes in the state variables. By examining the density plot of the CV of the dsitance travelled, \(s\), we notice that this measure is highly \emph{insensitive} to data loss (Fig. \ref{fig:sCV}), suggesting that a finite differencing appraoch (e.g., using total variation regularized differentiation; see Chapter ) which can yield a much smoother derivatie than the approach used here, may decrease the sensitivity of \(v\) to data loss. This hypothesis is further supported when examining the effect of species (Fig. \ref{fig:dsdtResamp}) and temporal observation loss (Fig. \ref{fig:dsdtResampRegime2}) on the velocity metric. These conditions are representative of the other \(\textbf{P}-\textbf{M}\) combinations.
 
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_cvDensity}
-
-\}
-
-\textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the velocity of distance travelled, resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values \textgreater100\% are not printed.\}\label{fig:dsdtCV}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_cvDensity} \textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the velocity of distance travelled, resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values \textgreater100\% are not printed.\}\label{fig:dsdtCV}
 \textbackslash end\{figure\}
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/s_cvDensity}
-
-\}
-
-\textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the distance travelled, \(s\), resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values \textgreater100\% are not printed.\}\label{fig:sCV}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/s_cvDensity} \textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the distance travelled, \(s\), resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values \textgreater100\% are not printed.\}\label{fig:sCV}
 \textbackslash end\{figure\}
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.45\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_species_ribboned_facetByProb}
-
-\}
-
-\textbackslash caption\{Mean velocity (ds/dt) of the distance travelled and associated 95\% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:dsdtResamp}
+\includegraphics[width=0.45\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_species_ribboned_facetByProb} \textbackslash caption\{Mean velocity (ds/dt) of the distance travelled and associated 95\% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:dsdtResamp}
 \textbackslash end\{figure\}
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.45\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2}
-
-\}
-
-\textbackslash caption\{Mean velocity (ds/dt) of the distance travelled and associated 95\% confidence intervals over 10,000 iterations in the second `regime' using the species resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:dsdtResampRegime2}
+\includegraphics[width=0.45\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2} \textbackslash caption\{Mean velocity (ds/dt) of the distance travelled and associated 95\% confidence intervals over 10,000 iterations in the second `regime' using the species resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:dsdtResampRegime2}
 \textbackslash end\{figure\}
 
 \hypertarget{variance-index}{%
@@ -2118,48 +1961,23 @@ The velocity of the distance travelled, \(\frac{ds}{dt}\) or \(v\), exhibited di
 
 The Variance Index (VI) performed best under the the observations resampling method, exhibiting low values for and low dispersion in the CV density (Fig. \ref{viCV}) across iterations. However, the VI appears sensitive to high losses of species information, where the density of the CV still exhibits low dispersion but with higher overall mean values (Fig. \ref{viCV}). Surprisingly, the Variance Index was insensitive to temporal observation loss (Fig. \ref{fig:viResamp}, top panel), exhibiting a similar amount of noise across various degrees of data loss (\(\textbf{P}\)). Although the signal was dampened under the species method, the signals for the shifts in community composition were not lost across levels of \(\textbf{P}\) (Fig. \ref{fig:viResamp}, bottom panel). This is likey due to the high probably that the dominant species were rarely always excluded from the resampled observations.
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_cvDensity}
-
-\}
-
-\textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values \textgreater100\% are not printed.\}\label{fig:viCV}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_cvDensity} \textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values \textgreater100\% are not printed.\}\label{fig:viCV}
 \textbackslash end\{figure\}
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.33\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_observations_ribboned_facetByProb}
-
-\}
-
-\textbackslash caption\{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the observations (top) and species (bottom) resampling methods. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:viResamp}
+\includegraphics[width=0.33\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_observations_ribboned_facetByProb} \textbackslash caption\{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the observations (top) and species (bottom) resampling methods. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:viResamp}
 \textbackslash end\{figure\}
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.33\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_species_ribboned_facetByProb}
-
-\}
-
-\textbackslash caption\{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the observations (top) and species (bottom) resampling methods. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:viResamp}
+\includegraphics[width=0.33\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_species_ribboned_facetByProb} \textbackslash caption\{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the observations (top) and species (bottom) resampling methods. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.\}\label{fig:viResamp}
 \textbackslash end\{figure\}
 \#\#\# Fisher Information is highly sensitive to information loss\\
 The Fisher Information method did not yield conclusive results regarding the abrupt shifts in the paleodiatom community composition. Further, this method appears highly sensitive to varying quality and quantitaties of data (Figs. \ref{fig:fiResamp}, \ref{fig:fiCV}). Although the Fisher Information identifies the shift in community composition at \(\sim1,300\) years before present, it fails to identify shifts outside this period. Further, it is difficult to visually analyze any value of the Fisher Information on the original scale as the values range from \(\approx 0\) to \(10^15\) (Fig. \ref{fig:fiResamp}). In addition to failing to identify the shifts in community composition, the standard deviation of Fisher Information far exceeded the mean value of Fisher Information under all \(\textbf{M}-\textbf{P}\) scenarios (Fig. \ref{fig:fiCV}). When I resampled the data using 25\% and 50\% of the species the ratio of mean Fisher Information to standard deviation (CV) of Fisher Information is always \(\gg 1\) (i.e, not pictured in Fig. \ref{fig:fiCV}). The high variation in FI values across resampled iterations coupled with the high dispersion within each \(\textbf{M}-\textbf{P}\) combination (Fig. \ref{fig:fiCV}) suggests Fisher Information will not produce similar trends when we lose or distort the data collected. This is also sugggested by the high confidence intervals surrounding each \(\textbf{M}-\textbf{P}\) combination (Fig. \ref{fig:fiResamp}).
 
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.55\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/log(FI)_species_ribboned_facetByProb}
-
-\}
-
-\textbackslash caption\{Mean Fisher Information (FI; note the scale) and associated 95\% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when \textbf{M} and \textbf{P} = 100\%. A very small value was added to the mean FI prior to log transformation.\}\label{fig:fiResamp}
+\includegraphics[width=0.55\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/log(FI)_species_ribboned_facetByProb} \textbackslash caption\{Mean Fisher Information (FI; note the scale) and associated 95\% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when \textbf{M} and \textbf{P} = 100\%. A very small value was added to the mean FI prior to log transformation.\}\label{fig:fiResamp}
 \textbackslash end\{figure\}
 
 \textbackslash begin\{figure\}
-
-\{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity}
-
-\}
-
-\textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values \textgreater100\% are not printed.\}\label{fig:fiCV}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity} \textbackslash caption\{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values \textgreater100\% are not printed.\}\label{fig:fiCV}
 \textbackslash end\{figure\}
 
 \hypertarget{detrending-the-data-prior-to-calculations}{%
@@ -2167,12 +1985,7 @@ The Fisher Information method did not yield conclusive results regarding the abr
 
 If and how to manipulate the original data prior to calculating various regime detection methods is an important consideration, and a line of research that has not yet been fully explored. Although most of the multivariate methods identified in the literature review do not require data conforms to a specific distribution, how th results of these methods can vary as we change the quality and characteristics of the original data (Michener \& Jones, 2012). In fact, since many of the methods for regime shift detection are specifically looking for changes in variance structure and autocorrelation, standardizing variances is not counterintuitive.
 \begin{figure}
-
-{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity} 
-
-}
-
-\caption{Local regression (loess) smoothing of a dominant species in the paleodiatom community,     extit{Anomoeoneis costata} varies with the span parameter, making it difficult to justify smoothing the data prior to calculating various regime detection metrics.}\label{fig:loessEx}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity} \caption{Local regression (loess) smoothing of a dominant species in the paleodiatom community,     extit{Anomoeoneis costata} varies with the span parameter, making it difficult to justify smoothing the data prior to calculating various regime detection metrics.}\label{fig:loessEx}
 \end{figure}
 Some studies detrend the original time series prior to data aggregation and calculation of regime detection metrics. I did not detrend the original data for two reasons. First, the authors of the original paper analysing this dataset (Spanbauer et al., 2014) did not detrend species time series. Like Spanbauer et al. (2014) I only scaled the original data, rather than detrending. Second, detrending a time series requires yet another subjective decision by the data analyst. For example, a ``spanning'' parameter must be chosen when detrending (smoothing) non-linear time series using local regression (Loess) regression (see Fig. \ref{fig:loessEx}). Other smoothing methods are being explored for both detrending (e.g., PcR; Beck et al., 2018) and regime shift identification (e.g., generalized additive modelling; Beck et al., 2018). Finally, this data exhibits rapid and drastic shifts in community composition \emph{and} contains a disproprtionate amount of dominant versus non-dominant species. Consequently, most species contain more zero than non-zero observations, which makes loess smoothing difficult. Although this chapter concerns impacts of data quality and quantity based on hypothetical data collection and analytical decisions, adding yet another parameter necessitates another layer of compartive analysis. Future work studying the impact of detrending, data scaling, outlier removal, and other related decisions would be of value in understanding the efficacy of these and other regime detection measures in real-world situations.
 
