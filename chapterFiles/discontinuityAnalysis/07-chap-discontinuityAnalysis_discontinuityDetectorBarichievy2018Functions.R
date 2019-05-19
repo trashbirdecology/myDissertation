@@ -3,6 +3,7 @@
 
 #1.Neutral.Null
 Neutral.Null <- function(log10.data, resolution = 4000) {
+  log10.data <- sort(log10.data)
   Dmax = max(log10.data, na.rm = FALSE)
   Dmin = min(log10.data, na.rm = FALSE)
   ds = (Dmax - Dmin) / resolution
@@ -60,7 +61,32 @@ DD <- function(log10.data, hnull, Sample.N = 1000, adjust=1) {
       ecdf(gaps.null.samples[i, ])(gaps.log10.data[i])
     
   }
-  Bootstrap.gaps <- rbind(gap.percentile, 0)
-  Bootstrap.gaps <- cbind(log10.data, Bootstrap.gaps)
+  
+  Bootstrap.gaps<-rbind(gap.percentile,0)
+  Bootstrap.gaps<-cbind(log10.data,Bootstrap.gaps)
   return(Bootstrap.gaps)
+  
 }
+
+
+# Compare distribution to previous year distribution ----------------------
+
+
+
+# visualizing the body masses ---------------------------------------------
+plotDD <- function(Boostrap.gaps, perc.cutoff = 0.95, type=c("hist","density")){
+  
+  # if(type=="density") 
+    p <- ggplot(Bootstrap.gaps %>% filter(gap.percentile>=perc.cutoff))+
+        geom_density(aes(log10.data))
+    
+
+    p<-p+theme_bw()
+  
+    p2 <- ggplot(Bootstrap.gaps %>% filter(gap.percentile<=1-perc.cutoff))+
+      geom_point(aes(x =rank, y = log10.data))+
+      geom_vline(aes(xintercept=))
+    
+    p2  
+  
+  }

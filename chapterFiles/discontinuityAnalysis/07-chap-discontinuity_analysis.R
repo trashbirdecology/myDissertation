@@ -36,9 +36,14 @@ ggplot(pts, aes(Longi, Lati))+
 # DD ----------------------------------------------------------------------
 source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnalysis_discontinuityDetectorBarichievy2018Functions.R"))
 
-test <- data %>% filter(Year==2010, 
+test2010 <- data %>% filter(Year==2010, 
                         Lati == 48.28636,
                         Longi == -93.55119)
+test2011 <- data %>% filter(Year==2011, 
+                            Lati == 48.28636,
+                            Longi == -93.55119)
+setdiff(test2011$species, test2010$species)
+setdiff(test2010$species, test2011$species)
 
 
 
