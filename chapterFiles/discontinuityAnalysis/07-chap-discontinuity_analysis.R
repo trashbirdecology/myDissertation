@@ -74,13 +74,14 @@ ggplot(data=temp)+
 
 
 # Discontinuity Analysis using Barichievy Methods...-------------------------------------------------
-year.vec <- unique(data$Year) 
 loc.vec  <- unique(data$loc) 
+year.vec <- unique(data$Year) 
 
 for(i in seq_along(year.vec)){
+  results <- tibble()
   for(j in seq_along(loc.vec)){
-  if(i == 1 & j == 1) results <- list()
-    
+  if(j == 1 & i == 1) dir.create(here::here("chapterFiles/discontinuityAnalysis/results/"))
+
 analyData <- data %>% 
   filter(Year == year.vec[i],
          loc == loc.vec[j])
@@ -95,11 +96,22 @@ results <- gaps %>%
          loc = as.integer(loc.vec[j])) %>% 
   bind_rows(results)
 
+print(paste("end i=loop ", i , "/", length(year.vec), " & j-loop ", j, "/", length(loc.vec)))
   } # end j-loop
+
+  fn <-
+    paste0(
+      here::here("chapterFiles/discontinuityAnalysis/results/discontResults_"),
+      'year',
+      year.vec[i],
+      ".RDS"
+    )
+  
+  saveRDS(results, file=fn)
+  if(exists("results"))rm(results)
+
 } # end i-loop
 
-dir.create(here::here("chapterFiles/discontinuityAnalysis/results/"))
-saveRDS(results, here::here("chapterFiles/discontinuityAnalysis/results/results.RDS"))
 
 
 
