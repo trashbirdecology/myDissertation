@@ -1,20 +1,9 @@
 <!-- # Catch-all, unused, to be removed from pdf {-.unnumbered} -->
 <!-- ## Random -->
-<!-- To be useful to practitioners it may be necessary to move beyond heuristic methods, to methods which supply statistical signifiances or probabilites. -->
 
+<!-- The number of methods is overwhelming, and although there are quite a few reviews and critiques of RDMs in ecological, they are primarily limited to methods which are (relatively) widely cited or are authored by those wiht high H-indices. As a consequence, case studies of regime shifts often use methods which have been cited multiple times (e.g., variance index). Further, some fo these methods are fairly elegant adn require some level of knowledge to use correctly-- however, are being blindly applied to data.  Blind application of fancy methods [@steel13applied] -->
 
-<!-- Although critiques of some RDMs exist, the rate at which they are rigorously tested do not exceed the proliferation of new methods in the literature. For any method to gain credible traction as a pragmatic tool in ecology, studies shouldl address the concerns of these critiques. These can be addressed using, e.g., bootstrapping, simulations.  -->
-
-<!-- The number of methods is overwhelming, and although there are quite a few reviews and critiques of RDMs in ecological, they are primarily limited to methods which are (relatively) widely cited or are authored by those wiht high H-indices. As a consequence, case studies of regime shifts often use methods which have been cited multiple times (e.g., variance index). Further, some fo these methods are fairly elegant adn require some level of knowledge to use correctly-- however, are being blindly applied to data.  -->
-
-<!-- Blind application of fancy methods [@steel13applied] -->
 <!-- "Absence of enoguh evidence to disprove the null hypothesis is not evidence of the null hypothesis!" [@steel13applied] -->
-<!-- Tehre is also the issue of whetehr to transform the data -->
-
-<!-- Signs of multiple attractors present include: hysteresis, path-depdendency (dynanical), bimodality -->
-
-
-<!-- Leading indicators/regime detection measures of regime shifts using univariate data are well-tested on both theoretical and empirical data [e.g. @burthe2016early]. Among the most widely used RDMs indicators applied to time-series data include an index of variance, moments around the grand mean (skewness and kurtosis), and critical slowing down [@carpenterBrock2006, @carpenter2006rising]. Although univariate indicators may provide insight into relatively simple systems, their, their reliability as indicators for complex systems is less certain [@burthe2015early, @dutta2018robustness, @perretti2012regime, @sommer2017generic, @bestelmeyer_analysis_2011]. Leading indicators can be a reliable warning of impending shift [@carpenterBrock2006],  Some methods have been applied to early-warning indicators in whole systems (Carpenter et al. 2011), however, it is uncommon to have enough information to build reliable networks or food webs. Consequently, reliably measuring the ecological system at hand is often realistically (and financially) not possible.   -->
 
 <!-- Contrary to univariate indicators of regime change, the Fisher Information measure is proposed as a method for identifying changes in a multivariate data set (Fisher 1922, Cabezas and Fath 2002, Karunanithi et al. 2008, Eason and Cabezas 2012, Eason et al. 2014, Ahmad et al. 2016). See Chapter \@ref(#derivatives) for a detailed explanation of the concept of Fisher Information. It is suggested that Fisher Information captures the ecological complexity of a system if given a set of observations which encompass the ecological drivers which dictate the state of the system. A relatively rapid change in the amount of Fisher Information is interpreted as a change in system configuration or orderliness (e.g., see Karunanithi et al. 2008). Fisher Information is rooted in statistics and in the physical sciences-it has only recently been applied to complex ecological and social-ecological systems (Frieden 1998; Fath et al.; Palowski et al). Despite its established use in identifying the degree of predictability of closed systems in physics, Fisher Information's utility in rigorously and universally assessing the state of complex ecological systems is not known.  -->
 
