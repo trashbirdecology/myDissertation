@@ -4,26 +4,32 @@
 #1.Neutral.Null
 Neutral.Null <- function(log10.data, resolution = 4000) {
   log10.data <- sort(log10.data)
-  Dmax = max(log10.data, na.rm = FALSE)
-  Dmin = min(log10.data, na.rm = FALSE)
+  # get min and max body masses
+  Dmax = max(log10.data, na.rm = TRUE)
+  Dmin = min(log10.data, na.rm = TRUE)
+  # get time between sampling points
   ds = (Dmax - Dmin) / resolution
   MaxK = (Dmax - Dmin) / 2
   MinK = ds * 2
-  #define h's to analyze
+  
+  # create a vector of values for analysis (h?)
   ks = seq(MinK, MaxK, by = 1 / resolution)
-  #generate matrix
+  
+  # generate an empty matrix matrix
   bws = matrix(data = NA,
                nrow = length(ks),
                ncol = 1)
-  for (i in c(1:length(ks))) {
-    #calculate KS density estimate
+  
+  # Run loop over the vector of ks
+  for (i in 1:length(ks)) {
+    
+    # calculate KS density estimate
     KSdens <- density(log10.data, bw = ks[i], "gaussian", adjust = 1)
-    #Test if the ksdensity is unimodal
+    
+    # Test if the ksdensity is unimodal
     TF <- which(diff(sign(diff(KSdens$y))) == 2) + 1
-    if (length(TF) == 0)
-      bws[i] = 1
-    else
-      bws[i] = 0
+    if (length(TF) == 0) bws[i] = 1
+    if(length(TF) != 0)  bws[i] = 0
   }
   #Define the neutral Null
   r = min(which(bws == 1))
@@ -32,11 +38,11 @@ Neutral.Null <- function(log10.data, resolution = 4000) {
 }
 
 #2. bootstrap function
-DD <- function(log10.data, hnull, Sample.N = 1000, adjust=1) {
+DD <- function(log10.data, hnull, Sample.N = 1000, adjust=1, thresh=0.90) {
   NNull <- density(log10.data, bw = hnull, "gaussian", adjust = adjust)
   N <- length(log10.data)
-  #generate matrix
   
+  # generate empty matrix
   null.samples <- matrix(data = 0,
                          ncol = Sample.N,
                          nrow = N)
@@ -44,9 +50,8 @@ DD <- function(log10.data, hnull, Sample.N = 1000, adjust=1) {
   for (i in 1:Sample.N) {
     #sample the null model
     rand.N <- sample(NNull$x, N, replace = TRUE, prob = NNull$y)
-    #calculate the gaps
+    #calculate the gaps and insert into the matrix
     null.samples[, i] <- sort(rand.N, decreasing = FALSE)
-    #put into the matrix
   }
   
   #generate gaps
@@ -63,7 +68,12 @@ DD <- function(log10.data, hnull, Sample.N = 1000, adjust=1) {
   }
   
   Bootstrap.gaps<-rbind(gap.percentile,0)
-  Bootstrap.gaps<-cbind(log10.data,Bootstrap.gaps)
+  Bootstrap.gaps<-data.frame(log10.data,Bootstrap.gaps) %>% 
+    mutate(rank = seq(1,length(Bootstrap.gaps))) %>% 
+    mutate(
+      isGap = as.factor(ifelse(Bootstrap.gaps>=thresh, "yes","no")))
+           
+  
   return(Bootstrap.gaps)
   
 }

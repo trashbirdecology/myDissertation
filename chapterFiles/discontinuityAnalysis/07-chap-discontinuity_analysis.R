@@ -8,45 +8,114 @@
 # Year = year of BBS survey
 
 # Setup -------------------------------------------------------------------
+## Clear mem
 # rm(list=ls())
+
+## Load pkgs
+library(cowplot)
 library(tidyverse)
 
-# Load and munge data -----------------------------------------------------
-data <- read.csv(here::here("chapterFiles/discontinuityAnalysis/cpr_DA_transectData.csv")) %>% 
-  as_tibble()
-
-glimpse(data)
-
-unique(data$Longi) %>% length()
-unique(data$Lati) %>% length()
-
-
-pts <- data %>% distinct(Longi,Lati,Year) %>% 
-  group_by(Lati,Longi) %>% 
-  summarise(nYear= n_distinct(Year))
-
-head(pts)
-
-# Map ---------------------------------------------------------------------
-ggplot(pts, aes(Longi, Lati))+
-  geom_point(aes(size=nYear, color=as.factor(Lati)), show.legend=FALSE)+
-  geom_hline(aes(yintercept=(Lati)))
-
-
-# DD ----------------------------------------------------------------------
+## Source the script with Barichievy functions...
 source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnalysis_discontinuityDetectorBarichievy2018Functions.R"))
 
-test2010 <- data %>% filter(Year==2010, 
-                        Lati == 48.28636,
-                        Longi == -93.55119)
-test2011 <- data %>% filter(Year==2011, 
-                            Lati == 48.28636,
-                            Longi == -93.55119)
-setdiff(test2011$species, test2010$species)
-setdiff(test2010$species, test2011$species)
+
+# Load and munge data -----------------------------------------------------
+origData <- read.csv(here::here("chapterFiles/discontinuityAnalysis/cpr_DA_transectData.csv")) %>% 
+  as_tibble() %>% 
+  rename(Lat = Lati, Long = Longi)
+
+# Munge original data -----------------------------------------------------
+data <- origData   %>% 
+  mutate(loc= as.factor(group_indices(origData, Lat, Long))) %>% # creates a number for each lat-long pair..
+  # add a variable to filter by amount of annual data avialable
+  group_by(loc) %>%
+  mutate(nYear= n_distinct(Year)) %>% 
+  ungroup()
+
+# Filter the data by nYear
+hist((data %>% distinct(loc, nYear))$nYear)
+
+data <- data %>% 
+  filter(nYear >=10)
+hist((data %>% distinct(loc, nYear))$nYear)
+
+# Get spatial locations of sampling points --------------------------------
+pts <- data %>% distinct(loc,Year, .keep_all=TRUE) 
+  
+# Map of sampling locations (unique lat lon pts..) ---------------------------------------------------------------------
+# ggplot(pts, aes(Long, Lat))+
+#   geom_point(aes(size=nYear, color=as.factor(loc)), show.legend=FALSE)
+
+# Get species turnover ----------------------------------------------------------------------
+## Get lag-1 year turnover
+turnover <- data %>% 
+  group_by(loc, Year) %>% 
+  summarise(nSpp=n_distinct(species)) %>% 
+  group_by(loc) %>% 
+  mutate(nSppDiff = nSpp-lag(nSpp)) %>%   
+  ungroup()
+
+hist(turnover$nSpp)
+hist(turnover$nSppDiff)
+
+## Just plot the mean and SD since there are way too many locs to plot idnividual turnover rates
+temp <- turnover %>%
+  group_by(Year) %>% 
+  summarise(mean = mean(nSppDiff, na.rm=TRUE), 
+         sd = sd(nSppDiff, na.rm=TRUE)) %>% 
+  mutate(
+         upper    = 1.96*sd + mean,
+         lower    = mean - 1.96*sd)
+
+ggplot(data=temp)+
+  geom_line(aes(x=Year, y=mean))+
+  ylab("mean annual turnover")+
+  geom_ribbon(aes(x = Year, ymax = lower, ymin = upper), alpha=0.30)
+
+
+# Discontinuity Analysis using Barichievy Methods...-------------------------------------------------
+year.vec <- unique(data$Year) 
+loc.vec  <- unique(data$loc) 
+
+for(i in seq_along(year.vec)){
+  for(j in seq_along(loc.vec)){
+  if(i == 1 & j == 1) results <- list()
+    
+analyData <- data %>% 
+  filter(Year == year.vec[i],
+         loc == loc.vec[j])
+
+if(nrow(analyData)==0)next()
+
+hnull <- Neutral.Null(analyData$log.mass,resolution=4000)
+gaps  <- DD(analyData$log.mass,hnull,Sample.N=1000, thresh=0.95)
+
+results <- gaps %>% 
+  mutate(Year = as.integer(year.vec[i]),
+         loc = as.integer(loc.vec[j])) %>% 
+  bind_rows(results)
+
+  } # end j-loop
+} # end i-loop
+
+dir.create(here::here("chapterFiles/discontinuityAnalysis/results/"))
+saveRDS(results, here::here("chapterFiles/discontinuityAnalysis/results/results.RDS"))
 
 
 
-hnull<-Neutral.Null(test$log.mass,resolution)
-# Bootstrap.gaps<-DD(log10.data,hnull,Sample.N)
+# Visualize results -------------------------------------------------------
 
+p3 <- ggplot(data=gaps, aes(x=rank, y = log10.data))+
+  geom_point(aes(color=isGap, shape=isGap))+
+  scale_color_manual(values=c("yes"="red","no"="black"))+
+  scale_shape_manual(values=c("yes"=17,"no"=16))+
+  theme_bw()+
+  ylab("log(body mass)g)")+
+  xlab("rank order")+
+  labs(caption = "")
+
+p1
+p2
+p3
+library(cowplot)
+plot_grid(p1,p2,p3, ncol=1)
