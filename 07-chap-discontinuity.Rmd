@@ -23,8 +23,8 @@ I sampled BBS routes from a North-South-running transect in Central North Americ
 
 ###
 
-Given the extent and resolution of our data, we are able to only test the biotic interaction and textural discontinuity hypotheses [@allen2006sifting]. 
-"If scale‐dependent resource variability is introduced into the model, then a single mode can separate into multiple modes (Marquet et al. 1995), indicating an interaction between the distribution of resources in the landscape and body mass aggregations." --allen 2006
+Given the extent and resolution of our data, we are able to only test the biotic interaction and textural discontinuity hypotheses [@allen2006patterns]. 
+"If scale‐dependent resource variability is introduced into the model, then a single mode can separate into multiple modes (Marquet et al. 1995), indicating an interaction between the distribution of resources in the landscape and body mass aggregations." from allen2006patterns
 
 
 
