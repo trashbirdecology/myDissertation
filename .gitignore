@@ -119,5 +119,12 @@ chapterFiles/fiGuide/.DS_Store
 _book/_myDissertation.tex
 _book/_myDissertation.pdf
 chapterFiles/fiGuide/.DS_Store
-06-chap-velocity_cache/html/__packages
-06-chap-velocity_cache/latex/__packages
+
+# IGNORE CHAPTER CACHES
+07-chap-discontinuityAnalysis_cache/
+06-chap-velocity_cache/
+05-chap-resampling_cache/
+04-chap-fisherSpatial_cache/
+03-chap-fiGuide_cache/
+02-chap-rdmMethodsReview_cache/
+01-chap-intro_cache/
