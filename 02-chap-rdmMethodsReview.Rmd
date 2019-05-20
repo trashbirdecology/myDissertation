@@ -57,7 +57,7 @@ I created  co-citation and keyword co-occurrence metrics using network analysis 
 
 ## Results
 ### 1. Identifying regime detection methods
-```{r wosRegimePubsByJrnlmin10Pubs, echo=FALSE, fig.cap = "Distribution of the 'regime shift' articles for journals with at least 10 articles."}
+```{r wosRegimePubsByJrnlmin10Pubs, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, out.width="85%", fig.cap = "Distribution of the 'regime shift' articles for journals with at least 10 articles."}
  ggplot(wos.regime.plotData %>%
               group_by(journal) %>% 
               summarise(nJrnl = n()) %>% 
@@ -138,11 +138,11 @@ long_dt <- finalMetricsList  %>%
   arrange(`Metric type`, Method)
 
 # make the table
-pander::pander(long_dt,
+(pander::pander(long_dt,
                      caption = "List of the regime detection methods identified in this review.",
                      split.cells = c("50%", "20%", "15%"),
                      justify = c('left', 'center', 'center')
-                     )
+                     ))
 ```
 
 Using my prior knowledge of the relevant literature and by systematically searching the Web of Science and Google Scholar databases, I identified `r nrow(finalMetricsList)` unique regime detection measures (Figure \@ref(fig:rdmReviewFlow); Table \@ref(tab:methodsMetricsListTab1)).
@@ -179,13 +179,13 @@ A few patterns appear in analyses of the intellectual structure of regime shift 
 ```
 
 The clustering algorithm identified the most influential papers in the field (based solely on number of citations) as those published in the late 2000s (Fig \@ref(fig:totArtCitesPerYear)), articles which are broad in-scope and are still used today to frame studies in the context of global change, planetary boundaries, and large-scale tipping points [@rockstrom_planetary_2009; @smith2009eutrophication; @bennett2009understanding]. Arguably, the papers that are equally influential include those which correspond with the observed rapid increase in the number of publications (in the early 2000s), @folke2004regime and @scheffer2003catastrophic (Fig \@ref(fig:totArtCitesPerYear)).
-```{r historiograph, fig.cap="Chronological direct citation newtwork suggests the intellectual structure can be mapped to a few papers. This historiograph identifies important works explicitly in chronological, as opposed to absolute, order.", out.width="85%"}
+```{r historiograph, echo=FALSE, fig.cap="Chronological direct citation newtwork suggests the intellectual structure can be mapped to a few papers. This historiograph identifies important works explicitly in chronological, as opposed to absolute, order.", out.width="85%"}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph_75quantile.png"))
 ```
-```{r totArtCitesPerYear, out.width="85%", fig.cap="Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s."}
+```{r totArtCitesPerYear, echo=FALSE, out.width="85%", fig.cap="Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s."}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear.png"))
 ```
-```{r revArtNums, out.width="85%",fig.cap="Total number of articles published per year by category as categorized by ISI. Book chapters, proceedings, editorials, and letters are excluded."}
+```{r revArtNums,echo=FALSE,  out.width="85%",fig.cap="Total number of articles published per year by category as categorized by ISI. Book chapters, proceedings, editorials, and letters are excluded."}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/revArtNums.png"))
 ```
 
@@ -210,7 +210,7 @@ The most widely used model-free univariate RDMs include descriptive statistics o
 @hastings2010regime aptly point out that any realisitic ecological model should include some degree of stochasticity, and when this stochasticity is introduced into the function, the funciton will likely not be differentiable at the point of the regime shift [@graham1984existence]. If a function lacks a gradient along its range, then leading indicators will most likely not indicate the abrupt change in system dynamics alony any paramter.
 
 ## Discussion 
-In this chapter I highlighted the plethora of regime detection metrics proposed in the literature for analyzing ecological data (Table \@ref(tab:methodsMetricsListTab1)). Although multiple reviews of regime detection measures exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of regime detection measures. For example,  @roberts2018early summarizes methods capable of handling multiple (c.f. a single) variable, and @dakos2015resilience review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate--rather, I presented an exaustive list of the methods proposed  for detecting ecological  regime shifts, *sensu lato*, providing a much-needed update to collection provided by @rodionov_brief_2005; and other review papers [@mac2014scrutiny; @scheffer2015generic; @rodionov_brief_2005; @roberts2018early; @dakos2015resilience; @mantua_methods_2004; @litzow_early_2016; @kefi2014early; @andersen_ecological_2009; @boettiger_early_2013; @dakos_resilience_2015; @clements2018indicators; @filatova2016regime; @deyoung_regime_2008]. 
+In this chapter I present an exhaustive list of the regime detection metrics proposed in the literature for analyzing ecological data. Although multiple reviews of regime detection measures exist, they are not comprehensive in their survey of the possible methods. Most reviews have summarized various aspects of regime detection measures. For example,  @roberts2018early summarizes methods capable of handling multiple (c.f. a single) variable, and @dakos2015resilience review only methods designed to detect the phenomenon of critical slowing down. Here, I did not discriminate--rather, I presented an exaustive list of the methods proposed  for detecting ecological  regime shifts, *sensu lato*, providing a much-needed update to collection provided by @rodionov_brief_2005; and other review papers [@mac2014scrutiny; @scheffer2015generic; @rodionov_brief_2005; @roberts2018early; @dakos2015resilience; @mantua_methods_2004; @litzow_early_2016; @kefi2014early; @andersen_ecological_2009; @boettiger_early_2013; @dakos_resilience_2015; @clements2018indicators; @filatova2016regime; @deyoung_regime_2008]. 
 
 Leading indicators/regime detection measures which analyze only single variables (e.g., variance, autocorrelation at lag-1) are well-tested on both theoretical and empirical data [e.g. @burthe2016early]. Among the most widely used RDMs indicators applied to time-series data include an index of variance, moments around the grand mean (skewness and kurtosis), and critical slowing down [@carpenterBrock2011early, @carpenter2006rising]. Although univariate indicators may provide insight into relatively simple systems, their, their reliability as indicators for complex systems is less certain [@burthe2016early, @dutta2018robustness, @perretti2012regime, @sommer2017generic, @bestelmeyer_analysis_2011]. Leading indicators can be a reliable warning of impending shift [@carpenterBrock2011early],  Some methods have been applied to early-warning indicators in whole systems (Carpenter et al. 2011), however, it is uncommon to have enough information to build reliable networks or food webs. Consequently, reliably measuring the ecological system at hand is often realistically (and financially) not possible. To be useful to practitioners it may be necessary to move beyond heuristic methods, to methods which supply statistical signifiances or probabilites. And although critiques of some RDMs exist, the rate at which they are rigorously tested do not exceed the proliferation of new methods in the literature. For any method to gain credible traction as a pragmatic tool in ecology, studies shouldl address the concerns of these critiques. These can be addressed using, e.g., bootstrapping, simulations.
 

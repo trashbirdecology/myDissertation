@@ -35,8 +35,9 @@ Current efforts to improve regime detection measures may be stunted by the lack 
 Ecological systems data is expensive to capture, and has large  process variation and observation errors. This variability reduces data quality and quantity, limiting the numerical tools for identifing trends and changes in the system [@thrush2009forecasting]. Some methods, new and old, proposed as regime detection measures are purported to handle the data limitation and quality issues inherent in ecological data, and minimize subjective decisions for choosing state variables and interpreting results. For example, variable reduction techniques, e.g. principal components analysis [@rodionov_application_2005; @andersen_ecological_2009; @reid_global_2016], clustering algorithms [@weijerman2005regime;@weissmann2016predicting], an index of variance [@brock_variance_2006],  and Fisher Information [@cabezas_towards_2002; @fath_exergy_2004; @karunanithi_detection_2008] were introduced as methods which collapse the system into a single indicator of ecological regime shifts. Although these methods have been used on empirical ecological systems data, their robustness to empirical data quality and quantity have yet to be examined. 
 
 In this Chapter I examine the influence of observation and process errors on the inference obtained from select multivariable regime detection measures. There are three major objectives:  
-1. Identify the effects of data quality on regime detection measure inference.  
-2. Identify the effects of data quantity on regime detection measure inference. 
+
+1. Identify the effects of data quality on regime detection measure inference.    
+2. Identify the effects of data quantity on regime detection measure inference.   
 3. Explore the relative performance of velocity (described in Chapter \@ref(velocity)) to the above mentioned methods under multiple scenarios.   
 
 This Chapter provides baseline relative performance estimates of select, multivariable regime detection measures under various scenarios of data quality and quantity. The results from this Chapter inform the practical ecologist of the potential limitations to consider when applying these regime detection measures to their data, and has potential to inform the data collection process. Additionally, the software accompanying this Chapter allows the end user to implement these methods on this diatom system, a toy system, or their own data.
@@ -102,29 +103,21 @@ I observed the distributions of the CV [get rid of the error to mean ratio, conf
 ### Velocity of the distance travelled ($v$)
 The velocity of the distance travelled, $\frac{ds}{dt}$ or $v$, exhibited dispersion across the values of $\textbf{P}$, however, yielded consistent results (i.e., high overlap in the densities of the CV across values of $\textbf{P}$ and across methodologies; see Fig. \@ref(fig:dsdtCV)). Further, it should be noted that because $v$ is calculated using first differences, it will be sensitive to large changes in the state variables. By examining the density plot of the CV of the dsitance travelled, $s$, we notice that this measure is highly *insensitive* to data loss (Fig. \@ref(fig:sCV)), suggesting that a finite differencing appraoch (e.g., using total variation regularized differentiation; see Chapter ) which can yield a much smoother derivatie than the approach used here, may decrease the sensitivity of $v$ to data loss. This hypothesis is further supported when examining the effect of species (Fig. \@ref(fig:dsdtResamp)) and temporal observation loss (Fig. \@ref(fig:dsdtResampRegime2)) on the velocity metric. These conditions are representative of the other $\textbf{P}-\textbf{M}$ combinations. 
 
-```{r dsdtCV, out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the velocity of distance travelled, resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values >100% are not printed."}
-knitr::include_graphics(loadFig("dsdt_cvDensity"))
-```
-```{r sCV, out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the distance travelled, $s$, resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values >100% are not printed."}
-knitr::include_graphics(loadFig("s_cvDensity"))
-```
-```{r dsdtResamp, out.width = "45%",  echo=FALSE,  fig.cap="Mean velocity (ds/dt) of the distance travelled and associated 95% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
-knitr::include_graphics(loadFig("dsdt_species_ribboned_facetByProb")) # species method
-```
-```{r dsdtResampRegime2, out.width = "45%",  echo=FALSE,  fig.cap="Mean velocity (ds/dt) of the distance travelled and associated 95% confidence intervals over 10,000 iterations in the second 'regime' using the species resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
-knitr::include_graphics(loadFig("dsdt_observations_ribboned_facetByProb_regime2")) # observations method
-```
-
-
-### Variance Index
-The Variance Index (VI) performed best under the the observations resampling method, exhibiting low values for and low dispersion in the CV density (Fig. \@ref(viCV)) across iterations. However, the VI appears sensitive to high losses of species information, where the density of the CV still exhibits low dispersion but with higher overall mean values (Fig. \@ref(viCV)). Surprisingly, the Variance Index was insensitive to temporal observation loss (Fig. \@ref(fig:viResamp), top panel), exhibiting a similar amount of noise across various degrees of data loss ($\textbf{P}$). Although the signal was dampened under the species method, the signals for the shifts in community composition were not lost across levels of $\textbf{P}$ (Fig. \@ref(fig:viResamp), bottom panel). This is likey due to the high probably that the dominant species were rarely always excluded from the resampled observations.
 ```{r viCV, out.width = "85%",  echo=FALSE,  fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values >100% are not printed."}
 knitr::include_graphics(loadFig("VI_cvDensity"))
 ```
-```{r viResamp, out.width = "33%",  echo=FALSE,  fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the observations (top) and species (bottom) resampling methods. Red line indicates the value of VI when **M** and **P** = 100%."}
+
+```{r viResamp, out.width = "95%",  echo=FALSE,  fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the observations resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
 knitr::include_graphics(loadFig("VI_observations_ribboned_facetByProb")) # observations method
-knitr::include_graphics(loadFig("VI_species_ribboned_facetByProb")) # observations method
 ```
+
+```{r viResamp2, out.width = "95%",  echo=FALSE,  fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the  species resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
+knitr::include_graphics(loadFig("VI_species_ribboned_facetByProb")) # species method
+```
+
+### Variance Index
+The Variance Index (VI) performed best under the the observations resampling method, exhibiting low values for and low dispersion in the CV density (Fig. \@ref(viCV)) across iterations. However, the VI appears sensitive to high losses of species information, where the density of the CV still exhibits low dispersion but with higher overall mean values (Fig. \@ref(viCV)). Surprisingly, the Variance Index was insensitive to temporal observation loss (Fig. \@ref(fig:viResamp)), exhibiting a similar amount of noise across various degrees of data loss ($\textbf{P}$). Although the signal was dampened under the species method, the signals for the shifts in community composition were not lost across levels of $\textbf{P}$ (Fig. \@ref(fig:viResamp2)). This is likey due to the high probably that the dominant species were rarely always excluded from the resampled observations.
+
 ### Fisher Information is highly sensitive to information loss   
 The Fisher Information method did not yield conclusive results regarding the abrupt shifts in the paleodiatom community composition. Further, this method appears highly sensitive to varying quality and quantitaties of data (Figs. \@ref(fig:fiResamp), \@ref(fig:fiCV)). Although the Fisher Information identifies the shift in community composition at $\sim1,300$ years before present, it fails to identify shifts outside this period. Further, it is difficult to visually analyze any value of the Fisher Information on the original scale as the values range from $\approx 0$ to $10^15$ (Fig. \@ref(fig:fiResamp)). In addition to failing to identify the shifts in community composition, the standard deviation of Fisher Information far exceeded the mean value of Fisher Information under all $\textbf{M}-\textbf{P}$ scenarios (Fig. \@ref(fig:fiCV)). When I resampled the data using 25% and 50% of the species the ratio of mean Fisher Information to standard deviation (CV) of Fisher Information is always $\gg 1$ (i.e, not pictured in Fig. \@ref(fig:fiCV)). The high variation in FI values across resampled iterations coupled with the  high dispersion within each $\textbf{M}-\textbf{P}$ combination (Fig. \@ref(fig:fiCV)) suggests Fisher Information will not produce similar trends when we lose or distort the data collected. This is also sugggested by the high confidence intervals surrounding each  $\textbf{M}-\textbf{P}$ combination (Fig. \@ref(fig:fiResamp)).  
 

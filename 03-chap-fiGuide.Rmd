@@ -84,8 +84,10 @@ The key contribution of this study is that I decouple the dimensionality reducti
 ### Predator-Prey Model System
 Our model system is a two-species predator-prey model [Eq. \@ref(eq:predprey); @fath_regime_2003; @mayer_applications_2007; @frieden_exploratory_2007], hereafter referred to as the "model system":
 \begin{equation} 
+\begin{array}{rcr}
   dx_1 = g_{1}x_{1}(1-\frac{x_1}{k})- \frac{l_{12} x_{1} x_{2}}{1+\beta x_{1}} \\
   dx_2 = \frac{g_{21}x_1 x_2}{1+\beta x_1} - m_2 x_2)
+  \end{array}
   (\#eq:predprey)
 \end{equation}
 
@@ -94,15 +96,17 @@ The specified parameters for the model system are $g_1=m_2=1$,$l_{12}=g_{12}= 0.
 ### Inducing a Regime Shift
 @mayer_applications_2007 calculated FI for a predator-prey system for several discrete values of carrying capacity of prey. The results of this study showed that FI was different for systems with different carrying capacities ($K$). However, this study did not address the central question of **FI behavior during a regime shift**.  As an extension of the original study, I simulated a regime shift by modeling an abrupt decline in carrying capacity, $k$. I assume $k$ is described by Eq. \@ref(eq:mayerCase) where $k_1$ is the initial carrying capacity, $k_2$ is the final carrying capacity, $t_shift$ is the time the regime shift occurred, and $\alpha$ is the parameter controlling the rate (slope) of the regime shift. The hyperbolic tangent function (see Eq. \@ref(eq:mayerCase)) simulates a smooth and continuous change in $k$ while still allowing for the regime shift to occur rapidly. I incorporate the change in $k$ into our system of differential equations by defining the rate of change in $k$, $k'(t)$, given by (Eq. \@ref(eq:mayerCase)). I assume $k_1=800$ and $k_2=625$, values corresponding to the range of carrying capacities explored by @mayer_applications_2007. I simulated a time series of 600 time units, introducing a regime change after 200 time units, and $\alpha=0.05$.
 \begin{equation}  
+\begin{array}{rcr}
   k(t) = k_1  - 0.5(k_1-k_2)(\tanh(\alpha (t-t^*))+1) \\ 
-  k'(t) = 0.5\alpha (k_1-k_2)(\tanh(\alpha(t-t^*))^2 +1) 
+  k'(t) = 0.5\alpha (k_1-k_2)(\tanh(\alpha(t-t^*))^2 +1) \\
 (\#eq:mayerCase)
-\end{equation} 
+\end{array}
+\end{equation}
 
 ### Decoupling the Steps for Calculating Fisher Information
 Two methods exist for calculating Fisher Information (FI) as applied to ecological systems data to which I refer the "derivatives-based" method (first appearing in @cabezas_towards_2002 and the binning" method (first appearing in @karunanithi_detection_2008). Although the binning method is proposed as an alternative to the derivatives-based method for handling noisy and sparse data, our decoupling method reveals it may be an unnecessary method. Therefore, I focus on only the derivatives-based method for explaining the theoretical basis for the FI method. The general form of FI can be found in [@fath_regime_2003;@mayer_applications_2007] and I refer the reader to [@cabezas_towards_2002]. 
 
-__Step 1: Dimensionality Reduction. The key idea of the dimensionality reduction step is to calculate the Euclidean distance travelled in phase space. In phase space, each coordinate axis corresponds to a system state variable (e.g., number of predators and number of prey). The state of the model system over time describes a path or trajectory through phase space. The distance travelled represents the cumulative change in state relative to an arbitrary starting point in time. For the model system, the distance travelled in phase space can be obtained by solving the differential equation given by Eq. \@ref(eq:s)
+__Step 1__: Dimensionality Reduction. The key idea of the dimensionality reduction step is to calculate the Euclidean distance travelled in phase space. In phase space, each coordinate axis corresponds to a system state variable (e.g., number of predators and number of prey). The state of the model system over time describes a path or trajectory through phase space. The distance travelled represents the cumulative change in state relative to an arbitrary starting point in time. For the model system, the distance travelled in phase space can be obtained by solving the differential equation given by Eq. \@ref(eq:s)
 \begin{equation}  
 \frac{ds}{dt} = \sqrt(\frac{dx_1}{dt}^2 + \frac{dx_2}{dt}^2)
 (\#eq:s)

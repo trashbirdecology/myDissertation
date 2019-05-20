@@ -23,9 +23,10 @@ The actual limitations to the system  should be, theoretically, known as a resul
 
 ## Common Limitations of Regime Detection Measures  
 Limitations of the findings in this dissertation and of the regime detection methods used herein are largely influenced by the **data collection**, **data munging** processes. Although the below mentioned points may seem logical to many, these assumptions are overlooked by many composite indicators, including regime detection measures.  
-1. Signals in the indicators are restricted to the ecological processes captured by the input data. Extrapolation occurs when processes manifest at scales different than the data collected.  (resolution; Chapter \@ref(fiSpatial))  
-1. normalization and weighting techniques often impact results (whether ecological or numerical) (Appendices \@ref(bbsRDM) and \@ref(regimeDetectionMeasures))  
-1. data aggregation techniques often impact results (Chapter \@ref(resampling))  
-1. some indices fail to generalize across systems or taxa (see Chapters \@ref(intro) and \@ref(rdmMethodsReview))  
+
+1. Signals in the indicators are restricted to the ecological processes captured by the input data. Extrapolation occurs when processes manifest at scales different than the data collected [resolution; Chapter \@ref(fisherSpatial)]   
+1. Normalization and weighting techniques often impact results (whether ecological or numerical) (Appendices \@ref(bbsRDM) and \@ref(regimeDetectionMeasures))  
+1. Data aggregation techniques often impact results (Chapter \@ref(resampling))  
+1. Some indices fail to generalize across systems or taxa (see Chapters \@ref(intro) and \@ref(rdmReview))    
 
 ## Specific synthesis of chapter results
