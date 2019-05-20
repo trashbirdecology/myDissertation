@@ -4,7 +4,8 @@
 # Appendix A: R package regimeDetectionMeasures  {-#regimeDetectionMeasures}  
 This appendix contains example analysis associated with the R Package, `regimeDetectionMeasures`. Development source code for this package is available on GitHub as a compressed file at [https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip](https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip) or at [https://github.com/TrashBirdEcology/regimeDetectionMeasures](https://github.com/TrashBirdEcology/regimeDetectionMeasures).
 
-## Measures/metrics calculated
+## Example Analysis
+### Measures/metrics calculated
 This package will calculate a various regime detection metrics that have been used to 'detect ecological regime shifts'. A 'new' metric, **distance travelled** is also calculated (Burnett and others, *in prep*).
 
 **Composite measures:**
@@ -23,7 +24,7 @@ This package will calculate a various regime detection metrics that have been us
 1. Coefficient of variation, CV  
 1. Autocorrelation lag-1 (using `stats::acf`)  
 
-## Example analysis
+### Example analysis
 ```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 library(regimeDetectionMeasures)
 # Munge original data -----------------------------------------------------
@@ -84,3 +85,9 @@ head(results)
 
 
 
+
+
+## Source Code Documentation
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("packageDocumentation/regimeDetectionMeasures_0.1.0.pdf"))
+```

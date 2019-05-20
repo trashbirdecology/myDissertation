@@ -16,7 +16,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Load packages & create local directories
+## Example Analysis
+### Load packages & create local directories
 
 There are a lot of dependencies to load.
 
@@ -59,7 +60,7 @@ resultsDirDIST <- "./chapterFiles/appendix_bbsRDM/myResults/distances"
 dir.create(resultsDirDIST)
 ```
 
-## Download the BBS data and save to file locally
+### Download the BBS data and save to file locally
 If necessary, download all the state data. This takes 10-15 minutes, so only run if you have not recently downloaded the BBS data or are missing data. 
 ```{r getBBSdata, echo=TRUE}
 # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
@@ -99,7 +100,7 @@ rm(bbsData)
 }else(print(paste0("NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",bbsDir))) # end if-else to download the data
 ```
 
-## Create a sampling grid
+### Create a sampling grid
 Next, build a sampling grid to force route information onto a regular gridded area. This allows us to compare the results across space-time.
 ```{r samplingGrid, echo=TRUE}
 # III: Build sampling grid --------------------------------------------------------
@@ -139,7 +140,7 @@ for (i in 1:length(featherNames)) {
 }
 ```
 
-## Subset the BBS data by species and/or functional traits (OPTIONAL but highly recommended)
+### Subset the BBS data by species and/or functional traits (OPTIONAL but highly recommended)
 Although subsetting the speices is optional, I recommend removing waterfowl, wading birds, and shorebirds from analyses, especially as the spatial extent of the analysis increases.
 
 ### Subset species according to AOU species codes (i.e. by family, genera, etc..)
@@ -166,7 +167,7 @@ rm(funMass)
 
 ```
 
-## Calculate regime detection metrics across space or time
+### Calculate regime detection metrics across space or time
 ### First, define the parameters required to calcualte the metrics.
 ```{r defineParams, echo=TRUE}
 # Which metrics do you want to calculate?
@@ -204,7 +205,7 @@ if (direction == "East-West") {
 
 ```
 
-## Define the years we want to analyze
+### Define the years we want to analyze
 For this (spatial) example, we will analyze only every fifth year
 ```{r yearSubset, echo=FALSE, message=FALSE, paged.print=TRUE}
 # Get all possible years
@@ -215,7 +216,7 @@ T = 10
 years.use  <- years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort()
 ```
 
-## Conduct analysis!
+### Conduct analysis!
 This section will loop through `years.use` and `dir.use`, running each BBS route (temooral analysis) or spatial transect by year (spatial analysis) at a time. Results are saved in directories created in \@ref(#createDirs)
 
 ```{r calcMetrics, echo=TRUE}
@@ -276,7 +277,7 @@ for (j in 1:length(dir.use)) {
 } # end j-loop
 ```
 
-## Import and munge the results to prepare for visualization
+### Import and munge the results to prepare for visualization
 
 First, import and combine the results as created in \@ref(#calcMetrics)
 This chunk will import the EWS results and the distance results separately, combining each into their own data frames.
@@ -328,7 +329,7 @@ sp::proj4string(distResults) <-
 
 ```
 
-## Visualize results: one regime detection metric at a time
+### Visualize results: one regime detection metric at a time
 First, specify plotting parameters. We can visualize either the distance results (`distResults`) or the early-warning signal results (`ewsResults`). Define the results we want to visualize:
 ```{r , echo=TRUE}
 # Specify results to visualize
@@ -365,3 +366,9 @@ pl1
 
 
 
+
+
+## Source Code Documentation
+```{r, echo=FALSE}
+knitr::include_graphics(here::here("packageDocumentation/bbsRDM_0.1.0.pdf"))
+```

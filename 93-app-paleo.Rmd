@@ -4,6 +4,7 @@
 
 # Appendix C: Paleodiatom case study: distance travelled, velocity, Fisher Information {-#appPaleo}
 
+
 This appendix provides documentation and R code association with the paleodiatom community example.
 You will need to install the following packages if they are not already.
 
@@ -22,7 +23,7 @@ library(gridExtra)
 theme_set(theme_minimal())
 ```
 
-
+## Example 
 ### Paleodiatom system data
 Pull in the data from the supplementary materials for Spanbauer *et al.* (2014) [@spanbauer_prolonged_2014]. This data contains the percent abundances of diatom species from Foy Lake. Spanbauer *et al.* (2014) calculated the number of relative diatom valves in each sample. They removed time steps with no diatom data, claiming poor preservation rather than zero abundance. The authors also averages time steps 301 - 312.
 
@@ -30,7 +31,7 @@ Pull in the data from the supplementary materials for Spanbauer *et al.* (2014) 
 data <- read_csv("https://doi.org/10.1371/journal.pone.0108936.s001")
 ```
 
-## Calculate the distance travelled and velocity metrics
+### Calculate the distance travelled and velocity metrics
 
 ### Calculate the distance
 Calculate the difference, $\Delta x$, in each species' relative abundance from time *n* to time *n + 1*. Calculate the change in distance, $\Delta s$, as the sum of the squares of the change in each species. Calculate the distance as the cummulative sums of the change in distance.
@@ -77,7 +78,7 @@ topSpecies <-
   filter(row_number() <= 10)
 ```
 
-## Visualize data and results
+### Visualize data and results
 ### Plot the relative abundance data over time
 ```{r paleoAppPlotAbundance, echo = FALSE, warning=F, message=F, cache = T}
 
@@ -150,7 +151,7 @@ plotData <-
 )
 ```
 
-## Calculate Fisher Information using moving window analysis
+### Calculate Fisher Information using moving window analysis
 ### Specifcy parameters for the moving window
 Distance over which to move the window (in units time)
 ```{r, echo = TRUE, warning=F, message=F, cache = T}
@@ -205,6 +206,8 @@ gD$widths[2:5] <- as.list(maxWidth)
 
 grid.arrange(gB, gC, gD, ncol=1)
 ```
+
+
 
 
 
