@@ -206,8 +206,8 @@ if (direction == "East-West") {
 ```
 
 ### Define the years we want to analyze
-For this (spatial) example, we will analyze only every fifth year
-```{r yearSubset, echo=FALSE, message=FALSE, paged.print=TRUE}
+For this (spatial) example, we will analyze only every fifth year in the available data. 
+```{r yearSubset, echo=FALSE, message=FALSE}
 # Get all possible years
 years.use = unique(feathers$year)
 
