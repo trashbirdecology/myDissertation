@@ -6,11 +6,15 @@ This appendix contains example analysis associated with the R Package, `regimeDe
 
 ## Measures/metrics calculated
 This package will calculate a various regime detection metrics that have been used to 'detect ecological regime shifts'. A 'new' metric, **distance travelled** is also calculated (Burnett and others, *in prep*).
+
 **Composite measures:**
+
 1. Distance travelled -see also package [`distanceTravelled`](https://github.com/TrashBirdEcology/distanceTravelled).  
 1. Fisher Information 
 1. Variance Index  
+
 **Single-variable measures:**
+
 1. Skewness (mean and mode versions)  
 1. Kurtosis  
 1. Variance  
@@ -20,12 +24,14 @@ This package will calculate a various regime detection metrics that have been us
 1. Autocorrelation lag-1 (using `stats::acf`)  
 
 ## Example analysis
-```{r, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 library(regimeDetectionMeasures)
 # Munge original data -----------------------------------------------------
 origData = munge_orig_dat(example = T)
 ```
 
+### Plots
+Plot the original time series as relative abundances. 
 ```{r , echo=FALSE}
 # Plot the original time series abundances
 plot_orig_data(data = origData,
@@ -33,7 +39,7 @@ plot_orig_data(data = origData,
                print = T)
 ```
 
-
+Plot the time elapsed among observations.
 ```{r , echo=FALSE}
 # Plot the distance between observations
 plot_timeDiff(data = origData,
@@ -41,7 +47,8 @@ plot_timeDiff(data = origData,
               print = T)
 ```
 
-```{r , echo=FALSE}
+Plot species richness over time.
+```{r richness, echo=FALSE}
 # Plot species richness over time
 plot_richness(data = origData,
               example = T,
@@ -49,11 +56,13 @@ plot_richness(data = origData,
 
 ```
 
+Plot the distance travelled (*s*) and velocity of distance travelled (*v*)
 ```{r calcDist, echo=FALSE}
 # Calculate distance travelled and derviatves of this ---------------------
 distances <- calculate_distanceTravelled(origData, derivs = T)
 ```
 
+Plot the moving-window metrics (FI, VI, and the univariate EWSs)
 ```{r calcMovingWIndowShit}
 # Calculate FI, VI, and early warning signals --------------------------------------------------------
 # Uses a moving window analysis to calculate FI and Vi within each window
@@ -70,6 +79,7 @@ results <-
 # Reults will return all results in a single data frame.
 head(results)
 ```
+
 
 
 
