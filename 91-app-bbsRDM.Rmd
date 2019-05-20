@@ -370,5 +370,5 @@ pl1
 
 ## Source Code Documentation
 ```{r, echo=FALSE}
-knitr::include_graphics(here::here("packageDocumentation/bbsRDM_0.1.0.pdf"))
+knitr::include_graphics(here::here("packageDocumentation/bbsRDM.pdf"))
 ```

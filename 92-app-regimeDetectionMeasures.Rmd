@@ -89,5 +89,5 @@ head(results)
 
 ## Source Code Documentation
 ```{r, echo=FALSE}
-knitr::include_graphics(here::here("packageDocumentation/regimeDetectionMeasures_0.1.0.pdf"))
+knitr::include_graphics(here::here("packageDocumentation/regimeDetectionMeasures.pdf"))
 ```
