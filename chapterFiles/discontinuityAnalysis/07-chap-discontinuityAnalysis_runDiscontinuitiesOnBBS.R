@@ -1,6 +1,6 @@
 # Setup -------------------------------------------------------------------
 ## Clear mem
-rm(list=ls())
+# rm(list=ls())
 
 ## Load pkgs
 library(cowplot)
@@ -38,16 +38,16 @@ suppressWarnings(dir.create(figDir))
 suppressWarnings(dir.create(figDirTemp))
 
 
-# Visualize the spatial sampling grid -------------------------------------
-
+# Visualize the spatial sampling grid & BBS data locations ---------------------------------
 # Get the us state map data from ggplot
-us_states <- ggplot2::map_data("state")
-ca_states <- ggplot2::map_data("world", "Canada") 
-ca_us_states <- map_data("world", c("usa", "Canada")) %>% 
+us_states <- ggplot2::map_data("county")
+# ca_states <- ggplot2::map_data("world", "Canada") 
+ca_us_states <- ggplot2::map_data("world", c("usa", "Canada")) %>% 
   filter(long < -55, lat > 22.5)
-rm(us_states, ca_states)
 
-usBaseMap <-  ggplot() +
+
+## basemap of the use and all route location in US/CA
+p.usBaseMap <-  ggplot() +
   geom_polygon(
     data = ca_us_states,
     aes(x = long, y = lat, group = group),
@@ -58,72 +58,90 @@ usBaseMap <-  ggplot() +
   ggthemes::theme_map()+
   coord_map(xlim = c(-135, -60),ylim = c(25, 60))
 
-routesMap <- usBaseMap +
+p.allRoutes <- p.usBaseMap +
   geom_point(
     data = routes_gridList$routes_grid,
     aes(x = long, y = lat),
     color = "black",
-    size = .75) 
+    size = .75)
 
-## Get the military bases.
-milBases <- getMilBases() %>% 
-   as.data.frame() %>%
-  rename(lat = coords.x2, long = coords.x1)
-
-# milBasesMap <- usBaseMap +
-#   geom_point(data = milBases,
-#              aes(x = long, y = lat),
-#              color = "red",
-#              size = 0.75)
-
+## Fort Riley map in entire us/ca
 riley <-
   data.frame(long = -96.788448,
              lat = 39.199983,
-             base = "riley")
+             base = "Fort Riley")
 
 
-routesMap +
-  geom_point(
-    data = riley,
-    aes(x = long, y = lat),
-    color = "darkred",
-    shape = 16,
-    size = 3.5
+konza <-
+  data.frame(long = -96.583961,
+             lat = 39.091720,
+             base = "Konza Prairie")
+
+
+
+# Kansas maps by County 
+pts <- bbsData.forAnalysis %>% 
+    filter(year %in% c(1975, 2015)) %>%
+    distinct(countrynum, statenum, route, lat, long, colID, rowID, year) %>% 
+  # keep only the routes that were sampled in both years
+  group_by(countrynum, statenum, route) %>% 
+  filter(n()>1) %>% 
+  ungroup()#safety first
+  
+box <- pts%>% 
+  summarise(y.min = min(lat, na.rm=TRUE),
+            y.max = max(lat, na.rm=TRUE),
+            x.min = min(long, na.rm=TRUE),
+            x.max = max(long, na.rm=TRUE))
+
+
+p.kansas <-
+  ggplot() +
+  geom_polygon(
+    data = us_states %>% filter(region=="kansas") ,
+    aes(x = long, y = lat, group = group),
+    colour = "black",
+    fill = "grey90"
   ) +
-  geom_text(
-    data = riley,
-    aes(x = long, y = lat, label = 'Ft. Riley'),
-    nudge_x = 0,
-    nudge_y = 3,
-    color = "darkred",
-    size = 6
-  ) +
-  theme.margin
-saveFig(last_plot(), fn = "rileyMap", figDir)
+  coord_fixed(1.3) +
+  ggthemes::theme_map()+
+  geom_point(data=pts, aes(x=long, y=lat), size=2, show.legend=FALSE)+
+  geom_text(data=pts, aes(x=long, y=lat,  label=route), size=3.3,hjust=.5, vjust=-.75)+
+  coord_map(xlim = c(box$x.min-.5, box$x.max+.5),
+            ylim = c(box$y.min-.5, box$y.max+.5))+
+  # geom_point(data=riley, aes(x=long,y=lat), color="red",pch=21, fill=NA, size=25)+
+  geom_text(data=riley, aes(x=long,y=lat), label="Ft. Riley", vjust=-.7, hjust=.3,fontface="bold", size=5 ) +
+  geom_point(data=riley, aes(x=long,y=lat), color="red", size=3)+
+  geom_point(data=konza, aes(x=long,y=lat), color="red", size=3)+
+  geom_text(data=konza, aes(x=long,y=lat), label="Konza", vjust=1.4, hjust=.3,fontface="bold", size=5)
+
+p.kansas
+
+saveFig(p.kansas,"kansasBBSpts_1975and2010", dir=figDir)
 
 
-# Further munge/subset/merge BBS data by spatial locations ----------------
-
-glimpse(bbsData)
-
-
-
-
+########################## BEGIN ANALYSIS #################################
 
 # Discontinuity Analysis using Barichievy Methods...-------------------------------------------------
+data <- bbsData.forAnalysis %>% 
+  filter(
+    year %in% unique(pts$year),
+    route %in% unique(pts$route)) %>% 
+  mutate(loc = as.factor(paste(countrynum, statenum, route, sep="_")))
+
+
 loc.vec  <- unique(data$loc) 
-year.vec <- unique(data$Year) 
+year.vec <- unique(data$year)
 
 
-
-###############STOPPED HERE##############
+## Run over all year vecs and loc vecs
 for(i in seq_along(year.vec)){
   results <- tibble()
   for(j in seq_along(loc.vec)){
   if(j == 1 & i == 1) dir.create(here::here("chapterFiles/discontinuityAnalysis/results/"))
 
 analyData <- data %>% 
-  filter(Year == year.vec[i],
+  filter(year == year.vec[i],
          loc == loc.vec[j])
 
 if(nrow(analyData)==0)next()

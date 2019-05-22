@@ -134,6 +134,7 @@ for (i in 1:length(featherNames)) {
 
 
 # Filter the BBS data -----------------------------------------------------
+# BY TAXONONMIC DESIGNATION
 ## Subset the species by  REMOVING H20FOW and SHOREBIRDS
 order.keep = c(
   "Passeri", 
@@ -151,61 +152,74 @@ order.keep = c(
 # get aou codes for those species in the orders
 aou.keep <- sppListBBS %>%
   filter(order %in% order.keep) %>% 
-  distinct(aou)
+  distinct(aou, .keep_all=TRUE)
 
-# SUBSET THE DATA BY AOU 
-bbsData <- feathers %>%
-  filter(aou %in% aou.keep$aou)
-
-
-
+# BY TIMES ROUTE WAS SAMPLED
 ## Remove species which do not occur at least 3 times in the entire time series for each route
 bbsData <- feathers %>% group_by(aou,countrynum,statenum,route) %>% 
   mutate(nYrsPres = n_distinct(year)) %>% 
   filter(nYrsPres >= 10) %>% 
+  ungroup() %>% 
+  filter(aou %in% aou.keep$aou)
+
+## Translate counts to presence absence for each year-route combo 
+bbsData.forAnalysis<- bbsData %>% 
+  group_by(aou, year, countrynum, statenum, route) %>% 
+  filter(stoptotal>0)  %>% 
   ungroup() 
-rm(feathers)
+
+## Merge with AOU
+bbsData.forAnalysis<- bbsData.forAnalysis %>% 
+               left_join(aou.keep)
 
 
+# Merge body masses -------------------------------------------------------
 
-# Identify species OF INTEREST --------------------------------------------
+mass <- read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunning4.csv")) %>% 
+  dplyr::select(-X13, -Season, -Location, -`Source #`, -sortID, -common) %>% 
+  mutate(spp = stringr::word(spp, 1,2, sep=" ")) %>%
+  filter(!is.na(Mean)) %>% 
+  rename(scientificName = spp) %>% 
+  group_by(scientificName) %>% 
+  mutate(log10.mass = log(mean(Mean, na.rm=TRUE))) %>% 
+  ungroup() %>%  
+  distinct(log10.mass, scientificName)
+
+(missingMasses <- setdiff(bbsData.forAnalysis$scientificName, mass$scientificName) )
+
+## Fix the missign ones
+bbsData.forAnalysis$scientificName[bbsData.forAnalysis$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
+bbsData.forAnalysis$scientificName[bbsData.forAnalysis$scientificName=="Haemorhous mexicanus"] <- "Carpodacus mexicanus"
+bbsData.forAnalysis$scientificName[bbsData.forAnalysis$scientificName=="Colaptes auratus auratus"] <- "Colaptes auratus"
+## ignoring the 
+
+mass.aou <- left_join(aou.keep, mass)
+
+bbsData.forAnalysis <- full_join(bbsData.forAnalysis, mass.aou) 
+
+## Check for missing body masses and fill in as necessary
+(missingMasses <- setdiff(bbsData.forAnalysis$scientificName, mass$scientificName) )
+
+## now i need to get all the body masses for missign ones by hand...joy
+
+masses.temp <-c()
 
 
+for(i in seq_along(missingMasses$scientificName)){
+  sp <- missingMasses$scientificName[i]
+  bbsData.forAnalysis$log10.mass[bbsData.forAnalysis$scientificName==sp] <- log(masses.temp[i])
+  }
 
-# grassSpecies.aou <- AOU_species_codes %>% 
-#   filter(name %in% grassSpecies) %>% 
-#   dplyr::select(spp.num, name)
+
+# # Merge IUCN listings with aou data  --------------------------------------------------------
+# ## retrieve the IUCN listings that were downloaded in May 2019
+# iucn <- read_csv(here::here("chapterFiles/discontinuityAnalysis/redlistData/assessments.csv")) 
+# aou.iucn <- left_join(aou.keep, iucn, by= "scientificName")  
 # 
-# 
-# if(nrow(grassSpecies.aou) != length(grassSpecies)) {
-#   warning(paste0(
-#     "You're missing ",
-#     abs(nrow(grassSpecies.aou) - length(grassSpecies)),
-#     "  of your species:  ",
-#     setdiff(grassSpecies, grassSpecies.aou$name)
-#   ))
-# } else{
-#   (message("Good work: all species accounted for!"))
-# }
-# 
-# ## make sure all the aous align 
-# setdiff(grassSpecies.aou$spp.num, bbsData$aou)
-# 
-# ### If any come back, mkae sure this makes sense to you. E.g., visit <https://www.mbr-pwrc.usgs.gov/bbs/specl15.shtml> and see if there are any state-listed results , or regional results depending on scale of exercise, for this species. 
-# 
-# ## I am not sure why Upland Sandpiper isn't showing up, however.......
-#     ### ignoring this for now....
+# right_join(aou.keep, by=scientificName)
+# head(aou.iucn)  
 
 
-# Incorporate IUCN listings into the datasets  --------------------------------------------------------
-## retrieve the IUCN listings that were downloaded in May 2019
-iucn <- read_csv(here::here("chapterFiles/discontinuityAnalysis/redlistData/assessments.csv")) %>% 
-  rename(spp = scientificName) 
 
-## merge iucn status with scientific name of the AOU species codes
-iucn.aou <- left_join(AOU_species_codes, iucn %>% dplyr::select(spp,redlistCategory))  %>% 
-  mutate(aou =spp.num)
-
-temp <- left_join(bbsData,iucn.aou)
 
 
