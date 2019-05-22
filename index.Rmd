@@ -1,17 +1,18 @@
 ---
-author: 'Jessica L. Burnett'
-date: '2019'
+author: 'Jessica Leigh Burnett'
+title: 'Regime Detection Measures for the Practical Ecologist'
+date: 'July XX 2019'
 institution: 'University of Nebraska-Lincoln'
 advisor: 'Craig R. Allen'
 altadvisor: 'Dirac Twidwell'
 department: 'School of Natural Resources'
 degree: 'Doctor of Philosophy'
-title: 'Regime Detection Measures for the Practical Ecologist'
+major: 'Natural Resource Sciences'
 knit: "bookdown::render_book"
-reference_docx: Thesis2016Simple.docx
 output: 
  thesisdown::thesis_pdf: default
  # bookdown::word_document2: default
+# reference_docx: Thesis2016Simple.docx
 acknowledgements: |
   Graduate school itself isn't hard, but the journey is. I have a lot of people and institutions to thank for their emotional, intellectual, financial, and other support. I wish to first highlight how **great it was to be a graduate student at this university and in the School of Natural Resources**. UNL has provided tremendous support at all levels of the university. Although I am not a fan of Nebraska's climate, I highly recommend this school to prospective students.
   I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me with this amazing opportunity and for supporting my growth as an independent researcher. I thank my also committee members, Craig Allen, David Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support and advisement, but especially for their comprehensive examination--I found this process transformative (albeit very stress-inducing). I  parrticularly thank Dirac for his examination questions---I never knew how much I didn't know until I studied your recommendations. I also thank Craig and Dirac for supporting my efforts to study and conduct research in Austria. 
@@ -23,7 +24,7 @@ acknowledgements: |
 dedication: | 
   To the end-users researchers frustrated with jargon and lack of practical utility of ecological models and metrics. And to Mike Moulton, without whose support and encouragement many years ago two advanced degrees would likely not have been possible.
 bibliography: ["bib/thesis.bib"]
-csl: csl/ecology.csl
+csl: [csl/ecology.csl,csl/reedthesis.csl]
 lot: true
 lof: true
 space_between_paragraphs: true

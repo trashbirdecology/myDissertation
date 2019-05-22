@@ -27,4 +27,17 @@ Given the extent and resolution of our data, we are able to only test the biotic
 "If scale‐dependent resource variability is introduced into the model, then a single mode can separate into multiple modes (Marquet et al. 1995), indicating an interaction between the distribution of resources in the landscape and body mass aggregations." from allen2006patterns
 
 
+##Bibliography: grassland birds in NA
+@vickery2001recent -- grassland birds experienced widespread declines, in part spurring teh beginning of the NABBS program. BBS trend estiates estimated at least 15 species declinling over the period of 1966-1996,(Peterjohn and Sauer 1999). Compared to other functional grups or species guilds, grassland obligates seemed to have fared worst. These declines are primarily attributed to habitat loss and and degredation.
+And it i sno secret that native grasslands are among the most endangered biomes on the planet (Referece). 
+
+The CRP program (beginning in the mid1980s) appears to have benefitted some speies, however. Bobolink, Sedge Wrens, Dickcissels, Le Conte's sparrows, Henslow's sparrows. 
+
+Species not positivley influenced habe been the Grasshopper Sparrow, Easter and Western Meadowlarks (Sauer et al. 1999), despite these species utilizing CRP has habitat and for resources ..... cribbed...(Johnson and
+Schwartz 1993, Best et al. 1997).
+
+
+@brennan2005north -- praire vegetation loss, intensifying agricultural efficiency and practices, lack of fire, adn habitat loss all contribute to the ongoing "crisis" with the loss of grassland and grass-shrub avifauna. 
+
+@correll2019quantifying -- 
 

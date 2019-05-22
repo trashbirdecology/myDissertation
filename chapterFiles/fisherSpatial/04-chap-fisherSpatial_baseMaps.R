@@ -2,7 +2,7 @@
 # source helper functions
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
 
-  # rwos used in analysos/ see 04-chap-fisherSpatial_analysis.R
+# rows used in analysos/ see 04-chap-fisherSpatial_analysis.R
 rowEx.ind <- round(median(dir.use), 0)
 
 ######################## DEFINE & CREATE DIRECTORIES ########################
@@ -50,7 +50,7 @@ canada <- c(
   "Nova Scotia", "NS" 
 )
 
-# Get the us state map data frim ggplot
+# Get the us state map data from ggplot
 us_states <- ggplot2::map_data("state")
 ca_states <- ggplot2::map_data("world", "Canada") 
 ca_us_states <- map_data("world", c("usa", "Canada")) %>% 
@@ -133,7 +133,7 @@ rileyApprox <-
 eglinApprox <-
   data.frame(long = -86.554,
              lat = 30.458,
-             base = "riley")
+             base = "eglin")
 
 # hopefully correct locations for bases.
 basesOfInterest <- rbind(
