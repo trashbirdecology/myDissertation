@@ -110,21 +110,20 @@ p.kansas <-
   geom_point(data=konza, aes(x=long,y=lat), color="red", size=3)+
   geom_text(data=konza, aes(x=long,y=lat), label="Konza", vjust=1.4, hjust=.3,fontface="bold", size=5)
 p.kansas
-saveFig(p.kansas,"kansasBBSpts_1975and2010", dir=figDir)
+saveFig(p.kansas,"kansasBBSpts_1975and2015", dir=figDir)
 
 ########################## BEGIN ANALYSIS #################################
 # Discontinuity Analysis using Barichievy Methods...-------------------------------------------------
 
 ## Filter the bbsData by retaining relevant routes and years
-data <- bbsData.forAnalysis %>% 
+bbsData.forAnalysis <- bbsData.forAnalysis %>% 
   filter(
     year %in% unique(pts$year),
     route %in% unique(pts$route)) %>% 
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep="_")))
 
-loc.vec  <- unique(data$loc) 
-year.vec <- unique(data$year)
-
+loc.vec  <- unique(bbsData.forAnalysis$loc) 
+year.vec <- unique(bbsData.forAnalysis$year)
 
 ## Run over all year vecs and loc vecs
 for(i in seq_along(year.vec)){
@@ -132,20 +131,18 @@ for(i in seq_along(year.vec)){
   for(j in seq_along(loc.vec)){
   if(j == 1 & i == 1) dir.create(here::here("chapterFiles/discontinuityAnalysis/results/"))
 
-analyData <- data %>% 
+analyData <- bbsData.forAnalysis %>% 
   filter(year == year.vec[i],
          loc == loc.vec[j]) %>% 
-  filter(!is.na(log10.mass))
+  filter(!is.na(log10.mass)) 
 
-if(nrow(analyData)==0)next()
+
+if(length(analyData$log10.mass)==0)next()
 
 hnull <- Neutral.Null(analyData$log10.mass,resolution=4000)
-gaps  <- DD(analyData$log10.mass,hnull,Sample.N=1000, thresh=0.95)
+gaps  <- DD(log10.mass = analyData$log10.mass,hnull= hnull,Sample.N=1000, thresh=0.95) 
 
-results <- gaps %>% 
-  mutate(Year = as.integer(year.vec[i]),
-         loc = as.integer(loc.vec[j])) %>% 
-  bind_rows(results)
+results <- full_join(analyData, gaps) %>% bind_rows(results)
 
 print(paste("end i=loop ", i , "/", length(year.vec), " & j-loop ", j, "/", length(loc.vec)))
   } # end j-loop
@@ -157,6 +154,10 @@ print(paste("end i=loop ", i , "/", length(year.vec), " & j-loop ", j, "/", leng
       year.vec[i],
       ".RDS"
     )
+  
+  ## add rank variable to results
+  results<-results %>% 
+    group_by(countrynum, statenum, route) 
   
   saveRDS(results, file=fn)
   if(exists("results"))rm(results)

@@ -57,8 +57,12 @@ loadResultsDiscont <-function(resultsDir=here::here("chapterFiles/discontinuityA
   
   gaps <-  lapply(files, readRDS) %>% 
     bind_rows() %>% 
-    mutate(isGap = as.factor(as.character(isGap)),
-           loc = as.factor(as.character(loc)))
+    ungroup() %>% 
+    mutate(isGap = as.factor(as.character(isGap)), 
+           countrynum = as.integer(countrynum),
+           statenum = as.integer(statenum), 
+           route=as.integer(route)
+           )
   
 }
 
