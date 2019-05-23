@@ -160,21 +160,16 @@ bbsData <- feathers %>% group_by(aou,countrynum,statenum,route) %>%
   mutate(nYrsPres = n_distinct(year)) %>% 
   filter(nYrsPres >= 10) %>% 
   ungroup() %>% 
-  filter(aou %in% aou.keep$aou)
-
-## Translate counts to presence absence for each year-route combo 
-bbsData.forAnalysis<- bbsData %>% 
+  filter(aou %in% aou.keep$aou)%>% 
+  ## Translate counts to presence absence for each year-route combo 
   group_by(aou, year, countrynum, statenum, route) %>% 
   filter(stoptotal>0)  %>% 
-  ungroup() 
-
+  ungroup() %>% 
 ## Merge with AOU
-bbsData.forAnalysis<- bbsData.forAnalysis %>% 
                left_join(aou.keep)
 
 
 # Merge body masses -------------------------------------------------------
-
 mass <- read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunning4.csv")) %>% 
   dplyr::select(-X13, -Season, -Location, -`Source #`, -sortID, -common) %>% 
   mutate(spp = stringr::word(spp, 1,2, sep=" ")) %>%
@@ -185,32 +180,49 @@ mass <- read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunnin
   ungroup() %>%  
   distinct(log10.mass, scientificName)
 
-(missingMasses <- setdiff(bbsData.forAnalysis$scientificName, mass$scientificName) )
+(missingMasses <- setdiff(bbsData$scientificName, mass$scientificName))
 
 ## Fix the missign ones
-bbsData.forAnalysis$scientificName[bbsData.forAnalysis$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
-bbsData.forAnalysis$scientificName[bbsData.forAnalysis$scientificName=="Haemorhous mexicanus"] <- "Carpodacus mexicanus"
-bbsData.forAnalysis$scientificName[bbsData.forAnalysis$scientificName=="Colaptes auratus auratus"] <- "Colaptes auratus"
-## ignoring the 
+bbsData$scientificName[bbsData$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
+bbsData$scientificName[bbsData$scientificName=="Circus hudsonius"] <- "Circus cyaneus"
+bbsData$scientificName[bbsData$scientificName=="Haemorhous mexicanus"] <- "Carpodacus mexicanus"
+bbsData$scientificName[bbsData$scientificName=="Colaptes auratus auratus"] <- "Colaptes auratus"
+## I am going to go ahead and assign Sturnella magna to Eastern meadowlark since it is more common in this region than W. 
+bbsData$scientificName[bbsData$scientificName=="Sturnella magna / neglecta"] <- "Colaptes auratus"
 
+
+## Add the masses to aous since BBS data does not currently have the AOU numbers yet..
 mass.aou <- left_join(aou.keep, mass)
 
-bbsData.forAnalysis <- full_join(bbsData.forAnalysis, mass.aou) 
+bbsData.forAnalysis <- left_join(bbsData, mass.aou) 
 
 ## Check for missing body masses and fill in as necessary
-(missingMasses <- setdiff(bbsData.forAnalysis$scientificName, mass$scientificName) )
-
-## now i need to get all the body masses for missign ones by hand...joy
-
-masses.temp <-c()
+(missingMasses <- setdiff(bbsData$scientificName, mass$scientificName))
 
 
-for(i in seq_along(missingMasses$scientificName)){
-  sp <- missingMasses$scientificName[i]
-  bbsData.forAnalysis$log10.mass[bbsData.forAnalysis$scientificName==sp] <- log(masses.temp[i])
-  }
+bbsData.forAnalysis <-
+  bbsData.forAnalysis %>%
+  group_by(countrynum, statenum, route, aou) %>%
+  mutate(stoptotal.3year = ifelse(
+    year == min(year),
+    stoptotal + lead(stoptotal),
+    ifelse(
+      year == max(year),
+      stoptotal + lag(stoptotal),
+      stoptotal + lag(stoptotal) + lead(stoptotal)
+    )
+  )) %>%
+  ## replace NA with actual value from that year
+  # mutate(stoptotal.3year = ifelse(is.na(stoptotal.3year), stoptotal, stoptotal.3year)) %>%
+  ungroup() %>%
+  # create a variable for 3.year presence absence
+  mutate(pa.3year = ifelse(stoptotal.3year > 0, 1, 0))
 
 
+# Clear all but final data and species of interest from memory ------------
+rm(list= ls()[!(ls() %in% c("grassSpecies", "bbsData.forAnalysis", "routes_gridList"))])
+
+   
 # # Merge IUCN listings with aou data  --------------------------------------------------------
 # ## retrieve the IUCN listings that were downloaded in May 2019
 # iucn <- read_csv(here::here("chapterFiles/discontinuityAnalysis/redlistData/assessments.csv")) 

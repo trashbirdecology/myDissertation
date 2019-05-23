@@ -1,6 +1,6 @@
 # Setup -------------------------------------------------------------------
 ## Clear mem
-# rm(list=ls())
+rm(list=ls())
 
 ## Load pkgs
 library(cowplot)
@@ -8,21 +8,17 @@ library(tidyverse)
 
 ## Source the script that returns the obkect `feathers.subset`, whcih si the BBS data + sampling gridded subsetted data...
 source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnalysis_getMungeBBSdata.R"))
+    ## This will return a few objects:
+      ### 1. bbsData.forAnalysis - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
+      ### 2. grassSpecies - some grassland obligate spp of interest
+      ### 3. routes_gridList - the grid design assosciation with rowID and colID on the bbsData.forAnalysis
 
 ## Source the helper functions
 source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnalysis_helperFunctions.R"))
 
-
 ## Source the script with Barichievy functions...
 source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnalysis_discontinuityDetectorBarichievy2018Functions.R"))
-        ## Thsi data was obtained from CP Roberts in 2019.              
-              # species = common name of bird species detected at a BBS route
-              # log.mass = log-transformed mean body mass of species
-              # d.value = value computed by "discontinuity detector" (i.e., Gap Rarity Index modified per Barichievy et al., 2018) for delineating discontinuities
-              # aggs = body mass aggregation identified via "discontinuity detector." Low numbers indicate aggregations with small species (e.g., hummingbirds, etc).
-              # Lati = latitude
-              # Longi = longitude
-              # Year = year of BBS survey
+    ## this code was obtained from teh paper Barichievy et al 2018
 
 ## Source helper funs for plotting spatial data
 source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
@@ -65,13 +61,12 @@ p.allRoutes <- p.usBaseMap +
     color = "black",
     size = .75)
 
-## Fort Riley map in entire us/ca
+## Fort Riley mb
 riley <-
   data.frame(long = -96.788448,
              lat = 39.199983,
              base = "Fort Riley")
-
-
+### Konza prairie
 konza <-
   data.frame(long = -96.583961,
              lat = 39.091720,
@@ -114,21 +109,18 @@ p.kansas <-
   geom_point(data=riley, aes(x=long,y=lat), color="red", size=3)+
   geom_point(data=konza, aes(x=long,y=lat), color="red", size=3)+
   geom_text(data=konza, aes(x=long,y=lat), label="Konza", vjust=1.4, hjust=.3,fontface="bold", size=5)
-
 p.kansas
-
 saveFig(p.kansas,"kansasBBSpts_1975and2010", dir=figDir)
 
-
 ########################## BEGIN ANALYSIS #################################
-
 # Discontinuity Analysis using Barichievy Methods...-------------------------------------------------
+
+## Filter the bbsData by retaining relevant routes and years
 data <- bbsData.forAnalysis %>% 
   filter(
     year %in% unique(pts$year),
     route %in% unique(pts$route)) %>% 
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep="_")))
-
 
 loc.vec  <- unique(data$loc) 
 year.vec <- unique(data$year)
@@ -142,12 +134,13 @@ for(i in seq_along(year.vec)){
 
 analyData <- data %>% 
   filter(year == year.vec[i],
-         loc == loc.vec[j])
+         loc == loc.vec[j]) %>% 
+  filter(!is.na(log10.mass))
 
 if(nrow(analyData)==0)next()
 
-hnull <- Neutral.Null(analyData$log.mass,resolution=4000)
-gaps  <- DD(analyData$log.mass,hnull,Sample.N=1000, thresh=0.95)
+hnull <- Neutral.Null(analyData$log10.mass,resolution=4000)
+gaps  <- DD(analyData$log10.mass,hnull,Sample.N=1000, thresh=0.95)
 
 results <- gaps %>% 
   mutate(Year = as.integer(year.vec[i]),

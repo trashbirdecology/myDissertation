@@ -81,6 +81,9 @@ chapterFiles/fisherSpatial/myResults
 /chapterFiles/***/figures/*.png
 /figures/*.png
 
+/chapterFiles/discontinuityAnalysis/bbs_raw_data
+/chapterFiles/discontinuityAnalysis/tempFigs
+
 
 # Keep the rendered .pdf copy
 !_book
