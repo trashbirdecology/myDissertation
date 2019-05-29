@@ -36,8 +36,27 @@ suppressWarnings(dir.create(figDirTemp))
 gaps <- loadResultsDiscont()
 
 # Join the results with the locations of the BBS routes
-gaps<- 
-  left_join(gaps, bbsData.forAnalysis)
+gaps <- 
+  left_join(gaps, bbsData.forAnalysis) 
+
+
+## Load the GRI 'constant power table'
+pwr <- read_csv(here::here("/chapterFiles/discontinuityAnalysis/griConstantPowerTable.csv"))
+### Use linear apprxoimation to get richness for every integer between 20 and 300
+pwr.approx <- approx(x=pwr$richness,y=pwr$threshold, xout = seq(from = 20,to= 300)) %>% 
+  as_tibble() %>% 
+  rename(richness=x, powerConstant =y)
+
+
+## Append species richenss to gap data
+gaps.bbs <- gaps %>% 
+  group_by(countrynum, statenum, route, year) %>% 
+  mutate(richness=n_distinct(species)) %>% ungroup() %>% 
+  left_join(pwr.approx)
+
+## Add new column for GRI constant pwoer threshold level
+gaps.bbs <- gaps.bbs %>% 
+  mutate(isGap = ifelse(gap.percentile <= powerConstant, "yes","no"))
 
 
 # Species turnover within locations  ----------------------------------------------------------------------
@@ -121,16 +140,18 @@ thresh=0.95 # define threshold
 year.ind <- c(1975, 2015)
 for(i in 1:unique(gaps$route)){
 route.ind <- unique(gaps$route)[i]
-temp <- gaps %>% 
+temp <- gaps.bbs %>% 
   filter(countrynum ==840, statenum == 38, 
          route==route.ind
          # , year==2015
          ) %>% 
-  group_by(year) %>% 
-  arrange(log10.mass) %>% 
+  group_by(year,countrynum, statenum, route) %>% 
+  arrange(year, countrynum, statenum, route, log10.mass) %>% 
   mutate(rank = 1:n()) %>% 
-  ungroup() %>% 
-  mutate(isGap = ifelse(gap.percentile>=thresh, "yes","no"))
+  # mutate(isGap = ifelse(gap.percentile>=powerConstant, "yes","no")) %>% 
+  mutate(isGap = ifelse(gap.percentile >= thresh, "yes","no")) %>% 
+  ungroup() 
+
 
 p1 <-
 ggplot(data=temp %>% filter(year == year.ind[1]), aes(x=rank, y = log10.mass))+
