@@ -51,7 +51,6 @@ scale_colour_Publication <- function(...){
 
 
 # Load results ------------------------------------------------------------
-
 loadResultsDiscont <-function(resultsDir=here::here("chapterFiles/discontinuityAnalysis/results/"),myPattern=".RDS"){
   files <- list.files(path = resultsDir, pattern = myPattern, full.names = TRUE)
   
@@ -62,9 +61,10 @@ loadResultsDiscont <-function(resultsDir=here::here("chapterFiles/discontinuityA
            countrynum = as.integer(countrynum),
            statenum = as.integer(statenum), 
            route=as.integer(route)
-           )
+           ) 
   
-}
+  }
+
 
 
 
