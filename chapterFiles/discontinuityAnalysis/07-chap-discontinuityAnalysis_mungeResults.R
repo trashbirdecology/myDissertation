@@ -41,7 +41,7 @@ gaps <-
 
 
 ## Load the GRI 'constant power table'
-pwr <- read_csv(here::here("/chapterFiles/discontinuityAnalysis/griConstantPowerTable.csv"))
+pwr <- read_csv(here::here("chapterFiles/discontinuityAnalysis/griConstantPowerTable.csv"))
 ### Use linear apprxoimation to get richness for every integer between 20 and 300
 pwr.approx <- approx(x=pwr$richness,y=pwr$threshold, xout = seq(from = 20,to= 300)) %>% 
   as_tibble() %>% 
@@ -52,50 +52,49 @@ pwr.approx <- approx(x=pwr$richness,y=pwr$threshold, xout = seq(from = 20,to= 30
 gaps.bbs <- gaps %>% 
   group_by(countrynum, statenum, route, year) %>% 
   mutate(richness=n_distinct(species)) %>% ungroup() %>% 
-  left_join(pwr.approx)
-
-## Add new column for GRI constant pwoer threshold level
-gaps.bbs <- gaps.bbs %>% 
-  mutate(isGap = ifelse(gap.percentile <= powerConstant, "yes","no"))
-
+  left_join(pwr.approx) %>% 
+  ungroup() %>% 
+## Add new column for GRI constant pwoer threshold level%>% 
+  mutate(isGap.powerConstant = ifelse(gap.percentile >= powerConstant, "yes","no"))%>% 
+  mutate(isGap.percentile = ifelse(gap.percentile >= 0.90, "yes","no"))
 
 # Species turnover within locations  ----------------------------------------------------------------------
 ## Get lag-1 year turnover  
-turnover <- bbsData.forAnalysis %>% 
-    group_by(countrynum, statenum, route, year) %>% 
-    summarise(nSpp=n_distinct(species)) %>%  
-    spread(key="year", value="nSpp") %>% 
-    gather(key="year", value="nSpp", -countrynum, -statenum, -route) %>% 
-    group_by(countrynum, statenum, route) %>%
-    mutate(nSppDiff = nSpp-lag(nSpp), 
-           year = as.integer(year)) %>%
-    ungroup()
-head(turnover)
+# turnover <- bbsData.forAnalysis %>% 
+#     group_by(countrynum, statenum, route, year) %>% 
+#     summarise(nSpp=n_distinct(scientificName)) %>%  
+#     spread(key="year", value="nSpp") %>% 
+#     gather(key="year", value="nSpp", -countrynum, -statenum, -route) %>% 
+#     # group_by(countrynum, statenum, route, year) %>%
+#     mutate(nSppDiff = nSpp-lag(nSpp), 
+#            year = as.integer(year)) %>%
+#     ungroup()
+
 
 ## Histogram  - distribution of turnover ranges
-par(mfrow=c(1,2))
-hist(turnover$nSpp)
-hist(turnover$nSppDiff)
-par(mfrow=c(1,1))
+# par(mfrow=c(1,2))
+# hist(turnover$nSpp, xlab="species richness", main="")
+# hist(turnover$nSppDiff, xlab="turnover", main="")
+# par(mfrow=c(1,1))
 
 ## Lineplot of mean turnover and lag-1 turnover across routes
-temp <- turnover %>%
-    group_by(year) %>% 
-    summarise(mean = mean(nSppDiff, na.rm=TRUE), 
-              sd = sd(nSppDiff, na.rm=TRUE)) %>% 
-    ungroup() %>% 
-    mutate(
-        upper    = 1.96*sd + mean,
-        lower    = mean - 1.96*sd) 
+# temp <- turnover %>%
+#     group_by(year) %>% 
+#     summarise(mean = mean(nSppDiff, na.rm=TRUE), 
+#               sd = sd(nSppDiff, na.rm=TRUE)) %>% 
+#     ungroup() %>% 
+#     mutate(
+#         upper    = 1.96*sd + mean,
+#         lower    = mean - 1.96*sd) 
 
-
-p.turn <- ggplot(data=temp)+
-    geom_line(aes(x=year, y=mean))+
-    ylab(expression(mu*" annual species turnover (\u00B1% CI)"))+
-    # ylab(expression(mu*" annual species turnover (?95% CI)"))+
-    geom_ribbon(aes(x = year, ymax = lower, ymin = upper), alpha=0.30)+
-    theme_Publication()
-p.turn
+# 
+# p.turn <- ggplot(data=temp)+
+#     geom_line(aes(x=year, y=mean))+
+#     ylab(expression(mu*" annual species turnover (\u00B1% CI)"))+
+#     # ylab(expression(mu*" annual species turnover (?95% CI)"))+
+#     geom_ribbon(aes(x = year, ymax = lower, ymin = upper), alpha=0.30)+
+#     theme_Publication()
+# p.turn
 # saveFig(p=p.turn, fn = "meanAnnualTurnover")
 
 
@@ -110,84 +109,142 @@ p.turn
 # 
 # 
 # # Run gam on stopTotal.3year grass species ----------------------------------------------
-# temp <- bbsData.forAnalysis %>% filter(aou %in% unique(grassSpecies$aou)) %>% 
+# require(mgcv)
+# temp <- bbsData.forAnalysis %>% filter(aou %in% unique(grassSpecies$aou)) %>%
 #                 mutate(commonName = as.factor(commonName))
 # 
 # grass.gam <- mgcv::gam(data = temp,
-#                             formula = stoptotal  ~  factor(route) + s(year, by = commonName))
+#                             formula = stoptotal  ~  commonName + s(year ,by=route))
 # gam.check(grass.gam)
 # summary(grass.gam)
 # plot(grass.gam)
 # 
 # 
-# spp <- unique(grassSpecies$commonName)[10]
+# spp <- unique(grassSpecies$commonName)[4]
 # dat <- temp %>% filter(commonName == spp)
 # if(nrow(dat)>0){
-#   if(length(unique(dat$route))>1) gam <- mgcv::gam(data=dat,
-#                              formula = stoptotal  ~  factor(route) + s(year)) 
-#   gam <- mgcv::gam(data=dat,
-#                       formula = stoptotal  ~   s(year))
+# gam <- mgcv::gam(data=dat,
+#                       formula = stoptotal  ~   s(year, by=route))
 # gam.check(gam)
+# summary(gam)
 # plot(gam, main=spp)
-#   # par(mfrow=c(1,2))
-# # plot(gam,main=paste0(spp, "\n\nw/route"));plot(gam2,main=paste0(spp, "\n\nno route effect"))
-# }else(dev.off())
-# 
-# 
-# Plot the discontinuity results ------------------------------------------
+# }
 
-thresh=0.95 # define threshold
-year.ind <- c(1975, 2015)
-for(i in 1:unique(gaps$route)){
-route.ind <- unique(gaps$route)[i]
-temp <- gaps.bbs %>% 
-  filter(countrynum ==840, statenum == 38, 
-         route==route.ind
-         # , year==2015
-         ) %>% 
+
+# Plot the discontinuity results ------------------------------------------
+thresh=0.90 # define threshold
+year.ind <- unique(gaps.bbs$year)
+# gap.stat <- "isGap.powerConstant" ## whihc gap stat to plot
+gap.stat <- "isGap.percentile" ## whihc gap stat to plot
+
+for(j in seq_along(unique(gaps.bbs$statenum))){
+  state.ind = unique(gaps.bbs$statenum)[j]
+temp1 <- gaps.bbs %>% 
+  filter(year %in% year.ind, 
+         statenum ==state.ind) 
+
+for(i in seq_along(unique(temp1$route))){
+route.ind <- unique(temp1$route)[i]
+temp <- temp1 %>% 
+  filter(countrynum ==840, 
+         route==route.ind) %>% 
   group_by(year,countrynum, statenum, route) %>% 
   arrange(year, countrynum, statenum, route, log10.mass) %>% 
-  mutate(rank = 1:n()) %>% 
-  # mutate(isGap = ifelse(gap.percentile>=powerConstant, "yes","no")) %>% 
-  mutate(isGap = ifelse(gap.percentile >= thresh, "yes","no")) %>% 
-  ungroup() 
-
+  mutate(rank = 1:n(), 
+         edgeSpp  = ifelse(lag(!!sym(gap.stat))=="yes"| !!sym(gap.stat) == "yes" , "yes", "no"), 
+         edgeSpp  = ifelse(log10.mass == min(log10.mass) | log10.mass == max(log10.mass),"yes" , edgeSpp)
+  ) %>% 
+ ungroup() 
+# View(temp)
+## Define xlim for aligning the plot_grid plots
+ylims <- c(min(temp$log10.mass), max(temp$log10.mass))
 
 p1 <-
 ggplot(data=temp %>% filter(year == year.ind[1]), aes(x=rank, y = log10.mass))+
-    geom_point(aes(color=isGap, shape=isGap))+
+    geom_point(aes(color=edgeSpp, shape=edgeSpp))+
     scale_color_manual(values=c("yes"="red","no"="black"))+
     scale_shape_manual(values=c("yes"=17,"no"=16))+
     theme_bw()+
-    ylab("log mass")+
+    ylab("")+
     xlab("")+
-    labs(caption = "")
-
+  ylim(c(ylims))+
+  labs(caption = "")
+# p1
 p2 <-
   ggplot(data=temp %>% filter(year == year.ind[2]), aes(x=rank, y = log10.mass))+
-  geom_point(aes(color=isGap, shape=isGap))+
+  geom_point(aes(color=edgeSpp, shape=edgeSpp))+
   scale_color_manual(values=c("yes"="red","no"="black"))+
   scale_shape_manual(values=c("yes"=17,"no"=16))+
   theme_bw()+
-  ylab("log mass")+
-  xlab("rank order")+
+  ylab("")+
+  xlab("")+
+  ylim(c(ylims))+
+  labs(caption = "")
+# p2
+
+p3 <-
+  ggplot(data=temp %>% filter(year == year.ind[3]), aes(x=rank, y = log10.mass))+
+  geom_point(aes(color=edgeSpp, shape=edgeSpp))+
+  scale_color_manual(values=c("yes"="red","no"="black"))+
+  scale_shape_manual(values=c("yes"=17,"no"=16))+
+  theme_bw()+
+  ylim(c(ylims))+
+  ylab("")+
+  xlab("")+
+  labs(caption = "")
+
+p4 <-
+  ggplot(data=temp %>% filter(year == year.ind[3]), aes(x=rank, y = log10.mass))+
+  geom_point(aes(color=edgeSpp, shape=edgeSpp))+
+  scale_color_manual(values=c("yes"="red","no"="black"))+
+  scale_shape_manual(values=c("yes"=17,"no"=16))+
+  theme_bw()+
+  ylim(c(ylims))+
+  ylab("")+
+  xlab("")+
   labs(caption = "")
 
 
-prow <-
+
+(prow <-
   cowplot::plot_grid(p1+ theme(legend.position="none"), 
-                        p2+ theme(legend.position="none"), 
-                        ncol=1, 
-                        labels = c("1975","2015"), 
-                        hjust = -1.3, vjust=1.8)
-# labels = "AUTO")
+                      p2+ theme(legend.position="none"),
+                     p3 + theme(legend.position="none"),
+                     p4 + theme(legend.position="none"),
+                        ncol=2,
+                        labels = c(year.ind), 
+                        hjust = -1.3, vjust=1.8, 
+                     align="v"))
 
-legend_b <- get_legend(p2 + theme(legend.position="bottom", 
-                                  legend.spacing.x = unit(.3, 'cm')
-                                  ))
+# legend_b <- get_legend(p1 + theme(legend.position="bottom", 
+#                                   legend.spacing.y = unit(.3, 'cm')
+#                                   ))
 
-p <- plot_grid( prow, legend_b, ncol = 1, rel_heights = c(1, .2))
-fn <- paste0("ddBothYears_route", route.ind)
+(p <- plot_grid(prow,
+                # legend_b, 
+                ncol = 1, rel_heights = c(1, .4)))
+
+# p3 <- ggdraw(add_sub(p, paste0("threshold = ", thresh), y  = 0, vjust = -1.3))
+
+fn <- paste0(gap.stat, "_state", state.ind, "_rte", route.ind )
 saveFig(p = p, fn=fn, dir=figDirTemp)
+rm(p, p1,p2,p3,p4,prow)
 }
+}
+
+# Analysis based on Roberts et al. in press -------------------------------
+
+rtesOfInterest <- paste0("840_38_", c(25,28,29,31))
+
+select.gaps.bbs <- gaps.bbs %>% 
+  filter(loc %in% rtesOfInterest) %>% 
+  group_by(year,countrynum, statenum, route) %>% 
+  arrange(year, countrynum, statenum, route, log10.mass) %>% 
+  mutate(rank = 1:n(), 
+         edgeSpp  = ifelse(lag(isGap.percentile)=="yes"| isGap.percentile == "yes" , "yes", "no"), 
+         edgeSpp  = ifelse(log10.mass == min(log10.mass) | log10.mass == max(log10.mass),"yes" , edgeSpp)
+  ) %>% 
+  ungroup() 
+
+## Now i am intersted in calculating th distance from edge of each species
 

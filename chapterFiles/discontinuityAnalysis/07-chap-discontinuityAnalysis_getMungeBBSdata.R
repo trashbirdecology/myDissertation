@@ -36,7 +36,7 @@ rm(cs)
 
 # Import the BBS species list for filtering BY AOU codes --------------------------------------------
 sppListBBS <- bbsRDM::GetSpNames()
-head(sppListBBS)
+# head(sppListBBS)
 
 # Identify species of interest ------------------------------------------
 ## This will be used to ensure later track the species of interest after the discontinuity analyses. 
@@ -51,7 +51,7 @@ grassSpecies <- data.frame(commonName = c(
   "Henslow's Sparrow",
   "Lark Bunting",
   "Lark Sparrow",
-  "Le Conte's Sparrow", # not any data for NE KS
+  "LeConte's Sparrow", # not any data for NE KS
   "McCown's Longspur",  # not any data for NE KS; not much data at all, actually..
   "Savannah Sparrow",   # bad data for NE KS
   "Sprague's Pipit",    # not any data for NE KS
@@ -66,13 +66,18 @@ if(nrow(left_join(grassSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))=
   grassSpecies <- left_join(grassSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))
 }else(stop("All species in grassSpecies are not identifed in sppListBBS. Check common names align in grassSpecies list and sppListBBS"))
 
-
+# woodlandSpecies <- c(
+#   
+# )
+# if(nrow(left_join(woodlandSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))==nrow(woodlandSpecies))){
+#   woodlandSpecies <- left_join(woodlandSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))
+# }else(stop("All species in woodlandSpecies are not identifed in sppListBBS. Check common names align in woodlandSpecies list and sppListBBS"))
 
 # DOWNLOAD the BBS data for selected areas and SAVE TO FILE  ------------------------------------
 ### NOTE: this section DOES NOT pull the BBS data into memory. See next section ###
 ## Select the regions (states) we want to download
 bbsRegions <- GetRegions() %>% 
-  filter(stateName %in% c("KANSAS"))
+  filter(stateName %in% c("KANSAS", "NEBRASKA"))
 
 regionFileName <- bbsRegions$zipFileName %>% na.omit()
 
@@ -88,7 +93,7 @@ if(downloadBBSData==TRUE){
       file = regionFileName[i],
       dir =  "ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/States/",
       year = NULL,
-      aou = c(),
+      # aou = c(),
       countrynum = NULL,
       states = NULL,
       #  arguments for getRouteInfo():
@@ -100,7 +105,6 @@ if(downloadBBSData==TRUE){
       BCR = NULL
     )
     # Make sure the directory is correcetly defined... 
-    
     if(!( endsWith(bbsDir, "//") |  endsWith(bbsDir, "\\"))){bbsDir <- paste0(bbsDir,"/")}
 
 
@@ -111,7 +115,7 @@ if(downloadBBSData==TRUE){
     # Clear object from memory
     rm(bbsData)
   } # end section I. loop
-}else(message(paste0("NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",bbsDir))) # end if-else to download the data
+}else(paste0("NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",bbsDir)) # end if-else to download the data
 
 # Next, LOAD  the BBS data and align with the sampling grid -------------------------------------------------------
 # Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution.
@@ -153,6 +157,9 @@ order.keep = c(
 aou.keep <- sppListBBS %>%
   filter(order %in% order.keep) %>% 
   distinct(aou, .keep_all=TRUE)
+## Fix the AOU.keep to match bbs
+aou.keep$scientificName[aou.keep$scientificName=="Circus hudsonius"] <- "Circus cyaneus"
+aou.keep$scientificName[aou.keep$scientificName=="Haemorhous mexicanus"] <- "Carpodacus mexicanus"
 
 # BY TIMES ROUTE WAS SAMPLED
 ## Remove species which do not occur at least 3 times in the entire time series for each route
@@ -169,8 +176,8 @@ bbsData <- feathers %>% group_by(aou,countrynum,statenum,route) %>%
                left_join(aou.keep)
 
 
-# Merge body masses -------------------------------------------------------
-mass <- read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunning4.csv")) %>% 
+# Merge body masses with the BBS -------------------------------------------------------
+mass <- suppressWarnings(read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunning4.csv"))) %>% 
   dplyr::select(-X13, -Season, -Location, -`Source #`, -sortID, -common) %>% 
   mutate(spp = stringr::word(spp, 1,2, sep=" ")) %>%
   filter(!is.na(Mean)) %>% 
@@ -180,58 +187,86 @@ mass <- read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunnin
   ungroup() %>%  
   distinct(log10.mass, scientificName)
 
-(missingMasses <- setdiff(bbsData$scientificName, mass$scientificName))
-
-## Fix the missign ones
+## Check for missing spp
+### Fix some species names in BBS DATA
+bbsData$scientificName[bbsData$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
+bbsData$scientificName[bbsData$scientificName=="Pipilo maculatus / erythrophthalmus"] <- "Pipilo maculatus"
 bbsData$scientificName[bbsData$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
 bbsData$scientificName[bbsData$scientificName=="Circus hudsonius"] <- "Circus cyaneus"
 bbsData$scientificName[bbsData$scientificName=="Haemorhous mexicanus"] <- "Carpodacus mexicanus"
 bbsData$scientificName[bbsData$scientificName=="Colaptes auratus auratus"] <- "Colaptes auratus"
-## I am going to go ahead and assign Sturnella magna to Eastern meadowlark since it is more common in this region than W. 
+bbsData$scientificName[bbsData$scientificName=="Colaptes auratus cafer"] <- "Colaptes auratus"
+## I am going to go ahead and assign Sturnella magna to Eastern meadowlark since it is more common in this region than W.
 bbsData$scientificName[bbsData$scientificName=="Sturnella magna / neglecta"] <- "Colaptes auratus"
+bbsData$scientificName[bbsData$scientificName=="Setophaga coronata audoboni"] <- "Setophaga coronata"
+### Force all flickers to aou 4123 
+bbsData$aou[bbsData$aou %in% c(4130, 4120)] <- 4123
+## Force unid towhee to eastern towhee
+bbsData$aou[bbsData$aou %in% c(5871)] <- 5870
+setdiff(bbsData$scientificName, mass$scientificName)
+
+# Join mass with bbs data
+bbsData.forAnalysis<- left_join(bbsData, mass)
+
+# ## Set all the hybrids/UNID to the first classifiations..
+# aou.keep$scientificName=gsub(" /.*","", aou.keep$scientificName)
+# aou.keep$scientificName=gsub(" x .*","",aou.keep$scientificName)
+# aou.keep$scientificName <- 
+# ## Fix the names in aou.keep that appear in KS surveys... others, ignore (e.g., S. calliope)
+# aou.keep$scientificName[aou.keep$scientificName=="Buteo jamaicensis harlani"] <- "Buteo jamaicensis"
+# aou.keep$scientificName[aou.keep$scientificName=="Colaptes auratus auratus"] <- "Colaptes auratus"
+# aou.keep$scientificName[aou.keep$scientificName=="Colaptes auratus cafer"] <- "Colaptes auratus"
+# bbsData$scientificName[bbsData$scientificName=="Colaptes auratus cafer"] <- "Colaptes auratus"
+# bbsData$scientificName[bbsData$scientificName=="Setophaga coronata audoboni"] <- "Setophaga coronata"
+# bbsData$scientificName[bbsData$scientificName=="Setophaga coronata coronota"] <- "Setophaga coronata"
 
 
-## Add the masses to aous since BBS data does not currently have the AOU numbers yet..
-mass.aou <- left_join(aou.keep, mass)
-
-bbsData.forAnalysis <- left_join(bbsData, mass.aou) 
+## fix because im being lazy 
+fixmass <- function(bbsData.forAnalysis,latin,mass.aou ){
+  df.out<-bbsData.forAnalysis %>%
+  mutate(log10.mass = ifelse(scientificName==latin, mass.aou$log10.mass[mass.aou$scientificName==latin] , log10.mass))
+ return(df.out)
+}
 
 ## Check for missing body masses and fill in as necessary
-(missingMasses <- setdiff(bbsData$scientificName, mass$scientificName))
+(missingMasses<- bbsData.forAnalysis %>% 
+  filter(is.na(log10.mass)) %>% 
+    dplyr::select(scientificName, commonName, log10.mass) %>% 
+  distinct( scientificName) %>% arrange(scientificName))
+if(nrow(bbsData.forAnalysis %>% 
+   filter(is.na(log10.mass)))!=0) test <- for(i in seq_along(missingMasses$scientificName)){
+  bbsData.forAnalysis<- fixmass(bbsData.forAnalysis, latin=missingMasses$scientificName[i], mass.aou)
+}else("all masses etc. looks great")
+
 
 
 bbsData.forAnalysis <-
   bbsData.forAnalysis %>%
-  group_by(countrynum, statenum, route, aou) %>%
-  mutate(stoptotal.3year = ifelse(
-    year == min(year),
-    stoptotal + lead(stoptotal),
-    ifelse(
-      year == max(year),
-      stoptotal + lag(stoptotal),
-      stoptotal + lag(stoptotal) + lead(stoptotal)
-    )
-  )) %>%
+  group_by(countrynum, statenum, route, scientificName) %>%
+  # need to add over combined/reclassified sepcies.
+  mutate(stoptotal = sum(stoptotal)) %>%
+  mutate(
+    stoptotal.3year = ifelse(
+      year == min(year),
+      stoptotal + lead(stoptotal),
+      ifelse(
+        year == max(year),
+        stoptotal + lag(stoptotal),
+        stoptotal + lag(stoptotal) + lead(stoptotal)
+      )
+    ),
+    # create a variable for 3.year presence absence
+    pa.3year = ifelse(stoptotal.3year > 0, 1, 0)
+  ) %>%
   ## replace NA with actual value from that year
   # mutate(stoptotal.3year = ifelse(is.na(stoptotal.3year), stoptotal, stoptotal.3year)) %>%
-  ungroup() %>%
-  # create a variable for 3.year presence absence
-  mutate(pa.3year = ifelse(stoptotal.3year > 0, 1, 0))
+  ungroup()
 
 
 # Clear all but final data and species of interest from memory ------------
-rm(list= ls()[!(ls() %in% c("grassSpecies", "bbsData.forAnalysis", "routes_gridList"))])
+rm(list= ls()[!(ls() %in% c("grassSpecies", "bbsData.forAnalysis", "routes_gridList", "mass.aou"))])
 
    
-# # Merge IUCN listings with aou data  --------------------------------------------------------
-# ## retrieve the IUCN listings that were downloaded in May 2019
-# iucn <- read_csv(here::here("chapterFiles/discontinuityAnalysis/redlistData/assessments.csv")) 
-# aou.iucn <- left_join(aou.keep, iucn, by= "scientificName")  
-# 
-# right_join(aou.keep, by=scientificName)
-# head(aou.iucn)  
 
-
-
-
-
+# END RUN -----------------------------------------------------------------
+if(nrow(bbsData.forAnalysis %>% filter(is.na(log10.mass)))!=0)stop("Some species in `bbsData.forAnalysis` are missing log body masses!!")else("data munging complete.")

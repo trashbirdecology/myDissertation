@@ -6,7 +6,7 @@ rm(list=ls())
 library(cowplot)
 library(tidyverse)
 
-## Source the script that returns the obkect `feathers.subset`, whcih si the BBS data + sampling gridded subsetted data...
+## Source the script that returns the obkect `feathers.subset`, whcih si the BBS data + sampling gridded subsetted data
 source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnalysis_getMungeBBSdata.R"))
     ## This will return a few objects:
       ### 1. bbsData.forAnalysis - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
@@ -26,6 +26,7 @@ source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
 # Define, create directories -------------------------------------
 ## discontinuity results
 reultsDir <- here::here("chapterFiles/discontinuityAnalysis/results/")
+
 
 ## figures
 figDirTemp <- here::here("chapterFiles/discontinuityAnalysis/tempFigs/")
@@ -76,14 +77,14 @@ konza <-
 
 # Kansas maps by County 
 pts <- bbsData.forAnalysis %>% 
-    filter(year %in% c(1975, 2015)) %>%
+    filter(year %in% c(1970, 1985, 2000, 2015)) %>%
     distinct(countrynum, statenum, route, lat, long, colID, rowID, year) %>% 
-  # keep only the routes that were sampled in both years
+  # keep only the routes that were sampled in all the years of interest
   group_by(countrynum, statenum, route) %>% 
-  filter(n()>1) %>% 
+  filter(n()==4) %>% 
   ungroup()#safety first
   
-box <- pts%>% 
+box <- pts %>% 
   summarise(y.min = min(lat, na.rm=TRUE),
             y.max = max(lat, na.rm=TRUE),
             x.min = min(long, na.rm=TRUE),
@@ -93,7 +94,7 @@ box <- pts%>%
 p.kansas <-
   ggplot() +
   geom_polygon(
-    data = us_states %>% filter(region=="kansas") ,
+    data = us_states %>% filter(region %in% c("nebraska","kansas")),
     aes(x = long, y = lat, group = group),
     colour = "black",
     fill = "grey90"
@@ -102,15 +103,34 @@ p.kansas <-
   ggthemes::theme_map()+
   geom_point(data=pts, aes(x=long, y=lat), size=2, show.legend=FALSE)+
   geom_text(data=pts, aes(x=long, y=lat,  label=route), size=3.3,hjust=.5, vjust=-.75)+
-  coord_map(xlim = c(box$x.min-.5, box$x.max+.5),
-            ylim = c(box$y.min-.5, box$y.max+.5))+
+  coord_map(xlim = c(box$x.min-1, box$x.max+.5),
+            ylim = c(box$y.min-1, box$y.max+.5))+
   # geom_point(data=riley, aes(x=long,y=lat), color="red",pch=21, fill=NA, size=25)+
   geom_text(data=riley, aes(x=long,y=lat), label="Ft. Riley", vjust=-.7, hjust=.3,fontface="bold", size=5 ) +
   geom_point(data=riley, aes(x=long,y=lat), color="red", size=3)+
   geom_point(data=konza, aes(x=long,y=lat), color="red", size=3)+
   geom_text(data=konza, aes(x=long,y=lat), label="Konza", vjust=1.4, hjust=.3,fontface="bold", size=5)
+
 p.kansas
-saveFig(p.kansas,"kansasBBSpts_1975and2015", dir=figDir)
+# saveFig(p.kansas,"routes3years", dir=figDir)
+
+cpr.regimes <- tibble(year = c(1970,
+                               1985,
+                               2000,
+                               2015),
+                      lat = c(-39, -39.5,-40, -40.5))
+
+p.kansas2 = p.kansas +
+  geom_hline(aes(yintercept=39, color="1970"), size=3, alpha=.3, show.legend=TRUE)+
+  geom_hline(aes(yintercept=39.5, color="1985"), size=3, alpha=.3, show.legend=TRUE)+
+  geom_hline(aes(yintercept=40, color="2000"), size=3, alpha=.3, show.legend=TRUE)+
+  geom_hline(aes(yintercept=40.5, color="2015"), size=3, alpha=.3, show.legend=TRUE)+
+  ggthemes::scale_color_colorblind(name="spatial regime location per Roberts et. al")+
+  theme(legend.position="bottom")
+p.kansas2
+saveFig(p.kansas2,"routes3years_spatRegimeLines", dir=figDir)
+
+
 
 ########################## BEGIN ANALYSIS #################################
 # Discontinuity Analysis using Barichievy Methods...-------------------------------------------------
@@ -133,16 +153,24 @@ for(i in seq_along(year.vec)){
 
 analyData <- bbsData.forAnalysis %>% 
   filter(year == year.vec[i],
-         loc == loc.vec[j]) %>% 
-  filter(!is.na(log10.mass)) 
+         loc == loc.vec[j])  %>% 
+  arrange(log10.mass)
+
+if(nrow(analyData %>% 
+          filter(is.na(log10.mass)))>0)stop(message("body masses include NA. please check bbsData.forAnalysis for missing log10.mass values..."))
 
 
 if(length(analyData$log10.mass)==0)next()
 
-hnull <- Neutral.Null(analyData$log10.mass,resolution=4000)
-gaps  <- DD(log10.mass = analyData$log10.mass,hnull= hnull,Sample.N=1000, thresh=0.95) 
+hnull <- Neutral.Null(analyData$log10.mass,resolution=1000)
+gaps  <- DD(analyData$log10.mass,hnull=hnull,Sample.N=1000) %>% 
+  as.data.frame() %>% 
+  rename(log10.mass = log10.data, 
+         gap.percentile = V2)
 
-results <- full_join(analyData, gaps) %>% bind_rows(results)
+
+results <- full_join(analyData, gaps)
+if(j!=1)  results <- results %>% bind_rows(results)
 
 print(paste("end i=loop ", i , "/", length(year.vec), " & j-loop ", j, "/", length(loc.vec)))
   } # end j-loop
@@ -155,10 +183,6 @@ print(paste("end i=loop ", i , "/", length(year.vec), " & j-loop ", j, "/", leng
       ".RDS"
     )
   
-  ## add rank variable to results
-  results<-results %>% 
-    group_by(countrynum, statenum, route) 
-  
   saveRDS(results, file=fn)
   if(exists("results"))rm(results)
 
@@ -166,5 +190,3 @@ print(paste("end i=loop ", i , "/", length(year.vec), " & j-loop ", j, "/", leng
 
 
 # END RUN -----------------------------------------------------------------
-
-
