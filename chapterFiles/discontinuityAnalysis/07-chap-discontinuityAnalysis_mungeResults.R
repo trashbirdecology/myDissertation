@@ -42,7 +42,8 @@ gaps <-
 
 ## Load the GRI 'constant power table'
 pwr <- read_csv(here::here("chapterFiles/discontinuityAnalysis/griConstantPowerTable.csv"))
-### Use linear apprxoimation to get richness for every integer between 20 and 300
+
+## Use linear apprxoimation to get richness for every integer between 20 and 300
 pwr.approx <- approx(x=pwr$richness,y=pwr$threshold, xout = seq(from = 20,to= 300)) %>% 
   as_tibble() %>% 
   rename(richness=x, powerConstant =y)
@@ -249,14 +250,15 @@ select.gaps.bbs <- gaps.bbs %>%
 
 ### Identify the aggregation numbers 
 loc.ind <- unique(select.gaps.bbs$loc)
-aggNumber = NULL
+results<- NULL
 for (i in seq_along(loc.ind)) {
   ## go along each country/state/route location
   temp1 <- select.gaps.bbs %>%
     filter(loc == loc.ind[i])
   
   year.ind <- unique(temp1$year)
-  ## go along each year within temp1
+
+    df.out <- NULL
   for (h in seq_along(year.ind)) {
     temp <-  temp1 %>%
       filter(year == year.ind[h])
@@ -264,30 +266,81 @@ for (i in seq_along(loc.ind)) {
     # setup for j loop
     x = temp$edgeSpp
     agg.vec  = rep(1, length.out = length(x))
-    
     counter <- 1
     
+    ## Create a vector of aggregation numbers for all rows in temp 
     for (j in 2:length(x)) {
+      # browser()
       agg.vec[j] <- counter
       
-      if (x[j] == "yes" &
-          (x[j + 1] == "yes" | is.na(x[j + 1])))
-        counter <- counter + 1
-    } # end j loop
+      if(j!= length(x) & x[j] == "yes" &  x[j + 1] == "yes") counter <- counter + 1
+      
+      if(j==length(x)) agg.vec[j] = counter  # ensure the last one takes on current counter...
+      } # end j loop
     
-    aggNumber  <- c(aggNumber, agg.vec)
-    
+    temp$aggNumber = agg.vec
+    df.out <- bind_rows(temp, df.out)  
   } # end h loop
-} # end i-loop
+  
+  results <- bind_rows(results, df.out)  
+  
+  } # end i-loop
+   
+if(nrow(select.gaps.bbs)!=nrow(results))stop("results arent same size as selectgapsbbs")
 
-select.gaps.bbs$aggNumber <- aggNumber
+results <- results %>%
+  group_by(year, countrynum, statenum, route, aggNumber) %>% 
+  mutate(distEdge = abs(min(log10.mass - min(log10.mass),
+                            log10.mass - max(log10.mass)))) %>% 
+  group_by(year, countrynum, statenum, route) %>% 
+  mutate(nAggs = n_distinct(aggNumber), 
+         nSpp  = n_distinct(scientificName)
+         ) %>% 
+  ungroup()
 
-
-ggplot(data=select.gaps.bbs %>%  filter(year == 2015, loc== '840_38_29'), 
+# visualize species shit --------------------------------------------------
+ggplot(data=results %>%  filter(year == 2015, loc== '840_38_29'), 
        aes(x=rank, y = log10.mass))+
   # geom_point(aes(group=as.factor(as.character(aggNumber))), show.legend = FALSE)
-  geom_point(aes(color=edgeSpp), show.legend = FALSE)
+  geom_point(aes(color=factor(aggNumber)), show.legend = FALSE)
 
+
+
+# PLot # aggs in each route/year ------------------------------------------
+ggplot(results %>% distinct(loc, year, nAggs))+
+  geom_boxplot(aes(x=factor(year), y = nAggs))+
+  facet_wrap(~loc)
+
+ggplot(results %>% filter(isGap.percentile=="yes"))+
+  geom_point(aes(x=year, y = log10.mass,color=loc))
+
+
+
+# Plot distance to edge crap ----------------------------------------------
+require(ggridges)
+results <- results %>% mutate(year = as.factor(year))
+
+ggplot(results, aes(x = log10.mass, y = year, group = year))+
+  geom_density_ridges(scale = 10, size = 0.25, rel_min_height = 0.03) +
+  theme_ridges()+
+  facet_wrap(~loc)
+
+
+ggplot(results, aes(x = distEdge, y = year, group = year))+
+  geom_density_ridges(scale = 10, size = 0.25, rel_min_height = 0.03) +
+  theme_ridges()+
+  facet_wrap(~loc)
+
+ggplot(results)+
+  geom_density_ridges(aes(x = distEdge, y = year, group = year, fill=paste(year,factor(edgeSpp))),
+                      alpha = .8, color = "white")+
+  # scale = 10, size = 0.25, rel_min_height = 0.03) +
+  theme_ridges()+
+  facet_wrap(~loc)
+
+ggplot(results %>% filter(aou %in% grassSpecies$aou))+
+  geom_line(aes(x = as.integer(as.factor(year)), y = nSpp),show.legend=FALSE)+
+  facet_wrap(~loc)
 
 
 
