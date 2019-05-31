@@ -246,5 +246,57 @@ select.gaps.bbs <- gaps.bbs %>%
   ) %>% 
   ungroup() 
 
-## Now i am intersted in calculating th distance from edge of each species
 
+### Identify the aggregation numbers 
+loc.ind <- unique(select.gaps.bbs$loc)
+aggNumber = NULL
+for (i in seq_along(loc.ind)) {
+  ## go along each country/state/route location
+  temp1 <- select.gaps.bbs %>%
+    filter(loc == loc.ind[i])
+  
+  year.ind <- unique(temp1$year)
+  ## go along each year within temp1
+  for (h in seq_along(year.ind)) {
+    temp <-  temp1 %>%
+      filter(year == year.ind[h])
+    
+    # setup for j loop
+    x = temp$edgeSpp
+    agg.vec  = rep(1, length.out = length(x))
+    
+    counter <- 1
+    
+    for (j in 2:length(x)) {
+      agg.vec[j] <- counter
+      
+      if (x[j] == "yes" &
+          (x[j + 1] == "yes" | is.na(x[j + 1])))
+        counter <- counter + 1
+    } # end j loop
+    
+    aggNumber  <- c(aggNumber, agg.vec)
+    
+  } # end h loop
+} # end i-loop
+
+select.gaps.bbs$aggNumber <- aggNumber
+
+
+ggplot(data=select.gaps.bbs %>%  filter(year == 2015, loc== '840_38_29'), 
+       aes(x=rank, y = log10.mass))+
+  # geom_point(aes(group=as.factor(as.character(aggNumber))), show.legend = FALSE)
+  geom_point(aes(color=edgeSpp), show.legend = FALSE)
+
+
+
+
+# END RUN -----------------------------------------------------------------
+# select.gaps.bbs %>% 
+#   group_by(year, countrynum, statenum, route, aggNumber) %>%
+#   mutate(distEdge = if_else(
+#     log_avg_wt <= mean(log_avg_wt),
+#     abs(min(log_avg_wt) - log_avg_wt),
+#     abs(max(log_avg_wt) - log_avg_wt)
+#   )) %>%
+#   ungroup()
