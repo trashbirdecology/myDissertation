@@ -206,7 +206,8 @@ p4 <-
   labs(caption = "")
 
 
-
+require(grid)
+require(gridExtra)
 (prow <-
   cowplot::plot_grid(p1+ theme(legend.position="none"), 
                       p2+ theme(legend.position="none"),
@@ -217,6 +218,13 @@ p4 <-
                         hjust = -1.3, vjust=1.8, 
                      align="v"))
 
+
+y.grob <- textGrob("log mass", 
+                   gp=gpar(fontface="bold", col="blue", fontsize=12), rot=90)
+
+x.grob <- textGrob("rank", 
+                   gp=gpar(fontface="bold", col="blue", fontsize=12))
+
 # legend_b <- get_legend(p1 + theme(legend.position="bottom", 
 #                                   legend.spacing.y = unit(.3, 'cm')
 #                                   ))
@@ -225,7 +233,10 @@ p4 <-
                 # legend_b, 
                 ncol = 1, rel_heights = c(1, .4)))
 
-# p3 <- ggdraw(add_sub(p, paste0("threshold = ", thresh), y  = 0, vjust = -1.3))
+
+#add to plot
+p <- grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
+
 
 fn <- paste0(gap.stat, "_state", state.ind, "_rte", route.ind )
 saveFig(p = p, fn=fn, dir=figDirTemp)
@@ -233,7 +244,7 @@ rm(p, p1,p2,p3,p4,prow)
 }
 }
 
-# Analysis based on Roberts et al. in press -------------------------------
+# Analysis based on Roberts et al.spatial regimes shift paper -------------------------------
 
 rtesOfInterest <- paste0("840_38_", c(25,28,29,31))
 
@@ -323,24 +334,26 @@ results <- results %>% mutate(year = as.factor(year))
 ggplot(results, aes(x = log10.mass, y = year, group = year))+
   geom_density_ridges(scale = 10, size = 0.25, rel_min_height = 0.03) +
   theme_ridges()+
-  facet_wrap(~loc)
+  facet_wrap(~loc)+
+  labs(title="density mass by route")
 
-
-ggplot(results, aes(x = distEdge, y = year, group = year))+
+p<-ggplot(results, aes(x = distEdge, y = year, group = year))+
   geom_density_ridges(scale = 10, size = 0.25, rel_min_height = 0.03) +
   theme_ridges()+
   facet_wrap(~loc)
+saveFig(p,fn="distEdgePerRouteYear",dir = figDirTemp)
 
-ggplot(results)+
+p<-ggplot(results)+
   geom_density_ridges(aes(x = distEdge, y = year, group = year, fill=paste(year,factor(edgeSpp))),
                       alpha = .8, color = "white")+
-  # scale = 10, size = 0.25, rel_min_height = 0.03) +
   theme_ridges()+
   facet_wrap(~loc)
+saveFig(p,fn="distEdgePerRouteYear2",dir = figDirTemp)
 
-ggplot(results %>% filter(aou %in% grassSpecies$aou))+
-  geom_line(aes(x = as.integer(as.factor(year)), y = nSpp),show.legend=FALSE)+
-  facet_wrap(~loc)
+p<-ggplot(results %>% filter(aou %in% grassSpecies$aou))+
+  geom_line(aes(x = as.integer(as.character(year)), y = nSpp, color=loc),show.legend=FALSE)+
+  labs(xlab='year',ylab="spp richness",main='richness per route') 
+saveFig(p,fn="richnessPerRoute",dir = figDirTemp)
 
 
 
