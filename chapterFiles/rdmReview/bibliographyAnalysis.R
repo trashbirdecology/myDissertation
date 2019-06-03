@@ -119,7 +119,6 @@ wos.regime.plotData <- wos.filtered.regime %>%
 
 
 # Read in the final list of results from WOS search.  ---------------------
-
 wos.filteredByHand <- read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_20190310_withoutPrior_filteredByHand.csv")) 
 
 # # Get the total number of papers used
@@ -128,7 +127,8 @@ wos.filteredByHand <- read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_2
 
 
 # Read in the final table of methods --------------------------------------
-finalMetricsList <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_tibble()
+finalMetricsList <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_tibble() %>% 
+  filter(!is.na(method))
 
 # Read in the .bib associated with the final metricsMethodList ------------
 finalMetricsList.bib <- read_bibliography(paste0(rdm.dir, "/", "methodsMetricsList.bib")) %>% as_tibble() 

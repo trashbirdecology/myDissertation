@@ -1,6 +1,8 @@
 # Table of Definitions {-#definitions}
 Research surrounding regime shifts, threshold identification, change-point detection, bifurcation theory, etc. is muddled with jargon. Here, I provide a table of definitions (Table \@ref(tab:glossary)) for terms and concepts that may either be unfamiliar to the practical ecologist, or may have multiple meanings among and within ecological researchers and practitioners. With this table, I aim to both improve the clarity of this dissertation *and* highlight one potential issue associated with regime detection methods in ecology: semantics.
 
+\newpage
+\begin{landscape}
 ```{r glossary, echo = FALSE, eval = TRUE, message=F, warning=F}
 # Create a table of definitions 
 require(kableExtra)
@@ -19,10 +21,10 @@ kable_styling("striped", full_width = F, font_size = 10,
               latex_options = c("repeat_header")
               ) %>% 
   row_spec(0, bold=T) %>% 
-  column_spec(1, width = "8em") %>% 
-  column_spec(2, width = "25em") %>% 
-  column_spec(3, width = "6em") %>% 
+  column_spec(1, width = "12em") %>% 
+  column_spec(2, width = "35em") %>% 
+  column_spec(3, width = "8em") %>% 
   row_spec(row = eor, bold =T)
 ```
-
+\end{landscape}
 
