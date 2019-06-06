@@ -139,7 +139,7 @@ year.ind <- unique(gaps.bbs$year)
 gap.stat <- "isGap.percentile" ## whihc gap stat to plot
 
 for(j in seq_along(unique(gaps.bbs$statenum))){
-  state.ind = unique(gaps.bbs$statenum)[j]
+state.ind = unique(gaps.bbs$statenum)[j]
 temp1 <- gaps.bbs %>% 
   filter(year %in% year.ind, 
          statenum ==state.ind) 
@@ -208,7 +208,7 @@ p4 <-
 
 require(grid)
 require(gridExtra)
-(prow <-
+prow <-
   cowplot::plot_grid(p1+ theme(legend.position="none"), 
                       p2+ theme(legend.position="none"),
                      p3 + theme(legend.position="none"),
@@ -216,7 +216,7 @@ require(gridExtra)
                         ncol=2,
                         labels = c(year.ind), 
                         hjust = -1.3, vjust=1.8, 
-                     align="v"))
+                     align="v")
 
 
 y.grob <- textGrob("log mass", 
@@ -225,14 +225,9 @@ y.grob <- textGrob("log mass",
 x.grob <- textGrob("rank", 
                    gp=gpar(fontface="bold", col="blue", fontsize=12))
 
-# legend_b <- get_legend(p1 + theme(legend.position="bottom", 
-#                                   legend.spacing.y = unit(.3, 'cm')
-#                                   ))
-
-(p <- plot_grid(prow,
+p <- plot_grid(prow,
                 # legend_b, 
-                ncol = 1, rel_heights = c(1, .4)))
-
+                ncol = 1, rel_heights = c(1, .4))
 
 #add to plot
 p <- grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
@@ -240,7 +235,42 @@ p <- grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
 
 fn <- paste0(gap.stat, "_state", state.ind, "_rte", route.ind )
 saveFig(p = p, fn=fn, dir=figDirTemp)
-rm(p, p1,p2,p3,p4,prow)
+
+## Add grassland obligate species symbols to the plots
+
+  test <- temp %>% filter(aou %in% grassSpecies$aou) %>% 
+    dplyr::select(year, commonName, aou, log10.mass, rank)
+  
+  prow <-
+    cowplot::plot_grid(addGrassSppLabels(p1) + theme(legend.position="none"), 
+                       addGrassSppLabels(p2) + theme(legend.position="none"),
+                       addGrassSppLabels(p3)  + theme(legend.position="none"),
+                       addGrassSppLabels(p4)  + theme(legend.position="none"),
+                       ncol=2,
+                       labels = c(year.ind), 
+                       hjust = -1.3, vjust=1.8, 
+                       align="v")
+  
+  
+  y.grob <- textGrob("log mass", 
+                     gp=gpar(fontface="bold", col="blue", fontsize=12), rot=90)
+  
+  x.grob <- textGrob("rank", 
+                     gp=gpar(fontface="bold", col="blue", fontsize=12))
+  
+  p <- plot_grid(prow,
+                 # legend_b, 
+                 ncol = 1, rel_heights = c(1, .4))
+  
+  #add to plot
+  p <- grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
+  
+  
+  fn <- paste0(gap.stat, "_withGrassObligates_state", state.ind, "_rte", route.ind )
+  saveFig(p = p, fn=fn, dir=figDirTemp)
+  rm(p, p1,p2,p3,p4,prow)
+  
+  
 }
 }
 
@@ -309,13 +339,6 @@ results <- results %>%
          ) %>% 
   ungroup()
 
-# visualize species shit --------------------------------------------------
-ggplot(data=results %>%  filter(year == 2015, loc== '840_38_29'), 
-       aes(x=rank, y = log10.mass))+
-  # geom_point(aes(group=as.factor(as.character(aggNumber))), show.legend = FALSE)
-  geom_point(aes(color=factor(aggNumber)), show.legend = FALSE)
-
-
 
 # PLot # aggs in each route/year ------------------------------------------
 ggplot(results %>% distinct(loc, year, nAggs))+
@@ -337,22 +360,25 @@ ggplot(results, aes(x = log10.mass, y = year, group = year))+
   facet_wrap(~loc)+
   labs(title="density mass by route")
 
-p<-ggplot(results, aes(x = distEdge, y = year, group = year))+
+p <- ggplot(results, aes(x = distEdge, y = year, group = year))+
   geom_density_ridges(scale = 10, size = 0.25, rel_min_height = 0.03) +
   theme_ridges()+
-  facet_wrap(~loc)
+  facet_wrap(~loc)+
+  xlab("distance to edge")+ylab("year")
+
 saveFig(p,fn="distEdgePerRouteYear",dir = figDirTemp)
 
 p<-ggplot(results)+
   geom_density_ridges(aes(x = distEdge, y = year, group = year, fill=paste(year,factor(edgeSpp))),
                       alpha = .8, color = "white")+
   theme_ridges()+
-  facet_wrap(~loc)
+  facet_wrap(~loc)+
+  xlab("distance to edge")+ylab("year")
 saveFig(p,fn="distEdgePerRouteYear2",dir = figDirTemp)
 
 p<-ggplot(results %>% filter(aou %in% grassSpecies$aou))+
   geom_line(aes(x = as.integer(as.character(year)), y = nSpp, color=loc),show.legend=FALSE)+
-  labs(xlab='year',ylab="spp richness",main='richness per route') 
+  xlab("year")+ylab("spp richness")+ggtitle("richness per route") 
 saveFig(p,fn="richnessPerRoute",dir = figDirTemp)
 
 

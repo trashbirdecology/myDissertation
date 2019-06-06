@@ -49,6 +49,24 @@ scale_colour_Publication <- function(...){
 }
 
 
+## add the labels for grassland obligate species to the existing disontinuity plots.
+addGrassSppLabels <- function(plot){
+  plot.out <- plot +
+    ggrepel::geom_text_repel(aes(label = ifelse(commonName %in% grassSpecies$commonName, commonName,"")),
+                             size          = 3,
+                             box.padding   = 1.5,
+                             point.padding = 0.5,
+                             force         = 100,
+                             segment.size  = 0.2,
+                             nudge_y = 0.1,
+                             segment.color = "grey50",
+                             direction     = "x")
+  return(plot.out)
+  
+}
+
+
+
 
 # Load results ------------------------------------------------------------
 loadResultsDiscont <-function(resultsDir=here::here("chapterFiles/discontinuityAnalysis/results/"),myPattern=".RDS"){
