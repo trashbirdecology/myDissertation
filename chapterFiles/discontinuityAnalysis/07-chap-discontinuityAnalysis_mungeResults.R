@@ -383,6 +383,33 @@ saveFig(p,fn="richnessPerRoute",dir = figDirTemp)
 
 
 
+# Declinilng species ------------------------------------------------------
+## these speices are those with declining trends in BBS years 1966-2015 AND have high (blue) Bbs regional credibility
+declSpp <- c(
+  "Upland Sandpiper",
+  "Northern Bobwhite",
+  "American Kestrel",
+  "Swainson's Hawk",
+  "Red-headed Woodpecker",
+  "Eastern Kingbird",
+  "Western Kingbird",
+  "American Crow",
+  "Bri",
+  "",
+  "",
+  "",Bobolink                        9    -0.42   (  -6.42,   6.39)     1.81   ( -13.02,  27.95)     0.02
+  Brown-headed Cowbird           65    -0.82   (  -1.40,  -0.25)    -0.68   (  -2.58,   1.27)    45.24
+  Yellow-headed Blackbird        18     2.71   (  -6.79,  10.33)   -22.64   ( -45.16,   7.57)     0.14
+  Red-winged Blackbird           65    -1.17   (  -1.76,  -0.63)    -2.00   (  -3.45,  -0.72)   174.96
+  Eastern Meadowlark             61    -1.95   (  -2.53,  -1.35)    -2.26   (  -3.96,  -0.52)    51.46
+  Western Meadowlark             59    -0
+  "",
+  "",
+  "",
+)
+
+
+
 # END RUN -----------------------------------------------------------------
 # select.gaps.bbs %>% 
 #   group_by(year, countrynum, statenum, route, aggNumber) %>%

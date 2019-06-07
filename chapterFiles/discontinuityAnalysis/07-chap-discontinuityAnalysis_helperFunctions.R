@@ -58,7 +58,7 @@ addGrassSppLabels <- function(plot){
                              point.padding = 0.5,
                              force         = 100,
                              segment.size  = 0.2,
-                             nudge_y = 0.1,
+                             # nudge_y = 0.1,
                              segment.color = "grey50",
                              direction     = "x")
   return(plot.out)
