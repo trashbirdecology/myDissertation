@@ -1,6 +1,6 @@
 `r if(knitr:::is_latex_output()) '\\appendix'`
 
-`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-appPaleo}'`
 
 # Appendix C: Paleodiatom case study: distance travelled, velocity, Fisher Information {-#appPaleo}
 
@@ -8,7 +8,7 @@
 This appendix provides documentation and R code association with the paleodiatom community example.
 You will need to install the following packages if they are not already.
 
-```{r, echo = F, warning=F, message=F, cache = T}
+```{r, echo = FALSE, warning=FALSE, message=FALSE, cache = T}
 ### Load required packages
 library(tidyverse)
 library(ggplot2)
