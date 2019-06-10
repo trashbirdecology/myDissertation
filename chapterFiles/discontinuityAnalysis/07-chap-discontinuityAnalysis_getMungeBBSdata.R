@@ -40,6 +40,8 @@ sppListBBS <- bbsRDM::GetSpNames()
 
 # Identify species of interest ------------------------------------------
 ## This will be used to ensure later track the species of interest after the discontinuity analyses. 
+
+## These are grassland obligates
 grassSpecies <- data.frame(commonName = c(
   "Bobolink",
   "Chestnut-collared Longspur",
@@ -66,12 +68,38 @@ if(nrow(left_join(grassSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))=
   grassSpecies <- left_join(grassSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))
 }else(stop("All species in grassSpecies are not identifed in sppListBBS. Check common names align in grassSpecies list and sppListBBS"))
 
-# woodlandSpecies <- c(
-#   
-# )
-# if(nrow(left_join(woodlandSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))==nrow(woodlandSpecies))){
-#   woodlandSpecies <- left_join(woodlandSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))
-# }else(stop("All species in woodlandSpecies are not identifed in sppListBBS. Check common names align in woodlandSpecies list and sppListBBS"))
+
+## these speices are those with declining trends in BBS years 1966-2015 AND have high (blue) Bbs regional credibility for KANSAS 
+decliningSpecies <-data.frame(commonName = c(
+  "Upland Sandpiper",
+  "Northern Bobwhite",
+  "American Kestrel",
+  "Swainson's Hawk",
+  "Red-headed Woodpecker",
+  "Eastern Kingbird",
+  "Western Kingbird",
+  "American Crow",
+  "Chimney Swift",
+  "Eastern Meadowlark",
+  "Western Meadowlark",
+  "Red-winged Blackbird",
+  "Brown-headed Cowbird",
+  "Common Grackle",
+  "Grasshopper Sparrow",
+  "Barn Swallow",
+  "Northern Rough-winged Swallow",
+  "Loggerhead Shrike",
+  "Common Yellowthroat",
+  "House Sparrow",
+  "Brown Thrasher",
+  "Black-capped Chickadee",
+  "Nothern Flicker"
+))
+
+if(nrow(left_join(decliningSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))==nrow(decliningSpecies))){
+  decliningSpecies <- left_join(decliningSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))
+}else(stop("All species in grassSpecies are not identifed in sppListBBS. Check common names align in grassSpecies list and sppListBBS"))
+
 
 # DOWNLOAD the BBS data for selected areas and SAVE TO FILE  ------------------------------------
 ### NOTE: this section DOES NOT pull the BBS data into memory. See next section ###
@@ -264,7 +292,7 @@ bbsData.forAnalysis <-
 
 
 # Clear all but final data and species of interest from memory ------------
-rm(list= ls()[!(ls() %in% c("grassSpecies", "bbsData.forAnalysis", "routes_gridList", "mass.aou"))])
+rm(list= ls()[!(ls() %in% c("grassSpecies", "decliningSpecies", "bbsData.forAnalysis", "routes_gridList", "mass.aou"))])
 
    
 

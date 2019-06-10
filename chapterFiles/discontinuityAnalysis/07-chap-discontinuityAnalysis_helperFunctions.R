@@ -66,6 +66,13 @@ addGrassSppLabels <- function(plot){
 }
 
 
+# Export table to tabDir --------------------------------------------------
+
+saveTab <- function(tab, dir = tabDir, fn){
+  fn2 <- paste0(tabDir,"/",fn)#, ".RDS")
+  saveRDS(tab, file = fn2)
+  
+}
 
 
 # Load results ------------------------------------------------------------

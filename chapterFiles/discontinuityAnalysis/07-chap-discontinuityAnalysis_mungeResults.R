@@ -12,14 +12,14 @@ source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnal
     ## This ^ will return a few objects:
     ### 1. bbsData.forAnalysis - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
     ### 2. grassSpecies - some grassland obligate spp of interest
-    ### 3. routes_gridList - the grid design assosciation with rowID and colID on the bbsData.forAnalysis
+### 3. routes_gridList - the grid design assosciation with rowID and colID on the bbsData.forAnalysis
+### 4. decliningSpecies - species wtih sign. declining trends from 1966-2015 with HIGH (blue) credibility ratings according to bbs (https://www.mbr-pwrc.usgs.gov/cgi-bin/atlasa15.pl?KAN&2&15&csrfmiddlewaretoken=3YKakk7LxT2ki6NSpl4mstudYCqdW02C)
 
 ## Source the helper functions
 source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discontinuityAnalysis_helperFunctions.R"))
 
 ## Source helper funs for plotting spatial data
-source("./chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R")
-
+source(here::here("/chapterFiles/fisherSpatial/04-chap-fisherSpatial_helperFunctions.R"))
 
 # Define, create directories -------------------------------------
 ## discontinuity results location
@@ -237,7 +237,6 @@ fn <- paste0(gap.stat, "_state", state.ind, "_rte", route.ind )
 saveFig(p = p, fn=fn, dir=figDirTemp)
 
 ## Add grassland obligate species symbols to the plots
-
   test <- temp %>% filter(aou %in% grassSpecies$aou) %>% 
     dplyr::select(year, commonName, aou, log10.mass, rank)
   
@@ -275,11 +274,18 @@ saveFig(p = p, fn=fn, dir=figDirTemp)
 }
 
 # Analysis based on Roberts et al.spatial regimes shift paper -------------------------------
+## year and location of their proposed regime shifts
+rs.loc <- data.frame(year = as.factor(c(1970,1985, 2000, 2015)), 
+                     lat = c(39, 39.5, 40, 40.5))
+
 
 rtesOfInterest <- paste0("840_38_", c(25,28,29,31))
 
+
+
+
 select.gaps.bbs <- gaps.bbs %>% 
-  filter(loc %in% rtesOfInterest) %>% 
+  filter(loc %in% rtesOfInterest) %>%
   group_by(year,countrynum, statenum, route) %>% 
   arrange(year, countrynum, statenum, route, log10.mass) %>% 
   mutate(rank = 1:n(), 
@@ -291,8 +297,8 @@ select.gaps.bbs <- gaps.bbs %>%
 
 ### Identify the aggregation numbers 
 loc.ind <- unique(select.gaps.bbs$loc)
-results<- NULL
 for (i in seq_along(loc.ind)) {
+if(i==1) results<- NULL
   ## go along each country/state/route location
   temp1 <- select.gaps.bbs %>%
     filter(loc == loc.ind[i])
@@ -330,14 +336,19 @@ for (i in seq_along(loc.ind)) {
 if(nrow(select.gaps.bbs)!=nrow(results))stop("results arent same size as selectgapsbbs")
 
 results <- results %>%
-  group_by(year, countrynum, statenum, route, aggNumber) %>% 
-  mutate(distEdge = abs(min(log10.mass - min(log10.mass),
-                            log10.mass - max(log10.mass)))) %>% 
+  group_by(year, loc, aggNumber) %>% 
+  mutate(
+    distEdge.left = abs(log10.mass - min(log10.mass)), 
+    distEdge.right = abs(log10.mass - max(log10.mass))
+        ) %>% 
+  ungroup() %>% 
+  mutate(distEdge = ifelse(distEdge.left < distEdge.right, distEdge.left, distEdge.right)) %>% 
   group_by(year, countrynum, statenum, route) %>% 
   mutate(nAggs = n_distinct(aggNumber), 
          nSpp  = n_distinct(scientificName)
          ) %>% 
-  ungroup()
+  ungroup() 
+
 
 
 # PLot # aggs in each route/year ------------------------------------------
@@ -347,7 +358,6 @@ ggplot(results %>% distinct(loc, year, nAggs))+
 
 ggplot(results %>% filter(isGap.percentile=="yes"))+
   geom_point(aes(x=year, y = log10.mass,color=loc))
-
 
 
 # Plot distance to edge crap ----------------------------------------------
@@ -383,39 +393,145 @@ saveFig(p,fn="richnessPerRoute",dir = figDirTemp)
 
 
 
-# Declinilng species ------------------------------------------------------
-## these speices are those with declining trends in BBS years 1966-2015 AND have high (blue) Bbs regional credibility
-declSpp <- c(
-  "Upland Sandpiper",
-  "Northern Bobwhite",
-  "American Kestrel",
-  "Swainson's Hawk",
-  "Red-headed Woodpecker",
-  "Eastern Kingbird",
-  "Western Kingbird",
-  "American Crow",
-  "Bri",
-  "",
-  "",
-  "",Bobolink                        9    -0.42   (  -6.42,   6.39)     1.81   ( -13.02,  27.95)     0.02
-  Brown-headed Cowbird           65    -0.82   (  -1.40,  -0.25)    -0.68   (  -2.58,   1.27)    45.24
-  Yellow-headed Blackbird        18     2.71   (  -6.79,  10.33)   -22.64   ( -45.16,   7.57)     0.14
-  Red-winged Blackbird           65    -1.17   (  -1.76,  -0.63)    -2.00   (  -3.45,  -0.72)   174.96
-  Eastern Meadowlark             61    -1.95   (  -2.53,  -1.35)    -2.26   (  -3.96,  -0.52)    51.46
-  Western Meadowlark             59    -0
-  "",
-  "",
-  "",
-)
+# Get results for all the routes ------------------------------------------
+all.gaps.bbs <- gaps.bbs %>% 
+  group_by(year,countrynum, statenum, route) %>% 
+  arrange(year, countrynum, statenum, route, log10.mass) %>% 
+  mutate(rank = 1:n(), 
+         edgeSpp  = ifelse(lag(isGap.percentile)=="yes"| isGap.percentile == "yes" , "yes", "no"), 
+         edgeSpp  = ifelse(log10.mass == min(log10.mass) | log10.mass == max(log10.mass),"yes" , edgeSpp)
+  ) %>% 
+  ungroup() 
+
+### Identify the aggregation numbers 
+loc.ind <- unique(all.gaps.bbs$loc)
+for (i in seq_along(loc.ind)) {
+if(i==1) results <- NULL
+  ## go along each country/state/route location
+  temp1 <- all.gaps.bbs %>%
+    filter(loc == loc.ind[i])
+  
+  year.ind <- unique(temp1$year)
+  
+  df.out <- NULL
+  for (h in seq_along(year.ind)) {
+    temp <-  temp1 %>%
+      filter(year == year.ind[h])
+    
+    # setup for j loop
+    x = temp$edgeSpp
+    agg.vec  = rep(1, length.out = length(x))
+    counter <- 1
+    
+    ## Create a vector of aggregation numbers for all rows in temp 
+    for (j in 2:length(x)) {
+      # browser()
+      agg.vec[j] <- counter
+      
+      if(j!= length(x) & x[j] == "yes" &  x[j + 1] == "yes") counter <- counter + 1
+      
+      if(j==length(x)) agg.vec[j] = counter  # ensure the last one takes on current counter...
+    } # end j loop
+    
+    temp$aggNumber = agg.vec
+    df.out <- bind_rows(temp, df.out)  
+  } # end h loop
+  
+  results <- bind_rows(results, df.out)  
+  
+} # end i-loop
+
+if(nrow(all.gaps.bbs)!=nrow(results))stop("results arent same size as selectgapsbbs")
+
+results <- results %>%
+  group_by(year, loc, aggNumber) %>% 
+  mutate(
+    distEdge.left = abs(log10.mass - min(log10.mass)), 
+    distEdge.right = abs(log10.mass - max(log10.mass))
+  ) %>% 
+  ungroup() %>% 
+  mutate(distEdge = ifelse(distEdge.left < distEdge.right, distEdge.left, distEdge.right)) %>% 
+  group_by(year, countrynum, statenum, route) %>% 
+  mutate(nAggs = n_distinct(aggNumber), 
+         nSpp  = n_distinct(scientificName)
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    rs.1970 = ifelse(lat < rs.loc$lat[1], "below","above"), 
+      rs.1985 = ifelse(lat < rs.loc$lat[2], "below","above"), 
+      rs.2000 = ifelse(lat < rs.loc$lat[3], "below","above"), 
+      rs.2015 = ifelse(lat < rs.loc$lat[4], "below","above"),
+    
+    rs.all = ifelse((rs.1970==rs.1985) & (rs.2000==rs.1985) & (rs.2000==rs.2015), rs.1970, "different" )
+    )
+
+declining.results <- results %>% 
+  filter(commonName %in% decliningSpecies$commonName)
+
+grass.results <- results %>% 
+  filter(commonName %in% grassSpecies$commonName)
+
+grassDeclining.results <- results %>% 
+  filter(commonName %in% grassSpecies$commonName, 
+         commonName %in% decliningSpecies$commonName)
 
 
 
-# END RUN -----------------------------------------------------------------
-# select.gaps.bbs %>% 
-#   group_by(year, countrynum, statenum, route, aggNumber) %>%
-#   mutate(distEdge = if_else(
-#     log_avg_wt <= mean(log_avg_wt),
-#     abs(min(log_avg_wt) - log_avg_wt),
-#     abs(max(log_avg_wt) - log_avg_wt)
-#   )) %>%
-#   ungroup()
+(p1 <- ggplot(declining.results, aes(x=factor(year), y =distEdge, color = ))+ 
+  geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("Declining species in all routes"))
+saveFig(p=p1, fn = "distEdge_decliningSpp_allRoutes", dir = figDirTemp)
+
+(p2 <- ggplot(declining.results %>% filter(loc %in% rtesOfInterest), aes(x=factor(year), y =distEdge))+#, color=log10.mass))+ 
+  geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("Declining species in select routes"))
+saveFig(p=p2, fn = "distEdge_decliningSpp_selectRoutes", dir = figDirTemp)
+
+(p11 <- ggplot(grass.results, aes(x=factor(year), y =distEdge))+ 
+    geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("Grassland obligates in all routes"))
+saveFig(p=p11, fn = "distEdge_grassSpp_allRoutes", dir = figDirTemp)
+
+(p22 <- ggplot(grass.results %>% filter(loc %in% rtesOfInterest), aes(x=factor(year), y =distEdge))+#, color=log10.mass))+ 
+    geom_boxplot(outlier.shape = NA) +
+    geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("Grassland obligates in select routes"))
+saveFig(p=p22, fn = "distEdge_grassSpp_selectRoutes", dir = figDirTemp)
+
+(p111 <- ggplot(grassDeclining.results, aes(x=factor(commonName), y =distEdge, color=factor(year)))+ 
+    geom_point(outlier.shape = 2) + 
+    geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("Declining grassland obligates in all routes"))
+saveFig(p=p111, fn = "distEdge_grassDeclinSpp_allRoutes", dir = figDirTemp)
+
+(p222 <- ggplot(grassDeclining.results %>% filter(loc %in% rtesOfInterest), aes(x=factor(commonName), y =distEdge, color=factor(year)))+#, color=log10.mass))+ 
+    geom_boxplot(outlier.shape = 2) + 
+    # geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("Declining grassland obligates in select routes"))
+saveFig(p=p222, fn = "distEdge_grassDeclinSpp_selectRoutes", dir = figDirTemp)
+
+(p3 <- ggplot(results %>% filter(loc %in% rtesOfInterest), aes(x=factor(year), y =distEdge))+#, color=log10.mass))+ 
+    geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("All species in select routes"))
+saveFig(p=p3, fn = "distEdge_allSpp_selectRoutes", dir = figDirTemp)
+
+(p4 <- ggplot(results, aes(x=factor(year), y =distEdge))+ 
+    geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("All species in all routes"))
+saveFig(p=p4, fn = "distEdge_allSpp_allRoutes", dir = figDirTemp)
+
+# Correlation of distance to edge with body mass --------------------------
+cor(results$distEdge, results$log10.mass, method="pearson")
+cor(declining.results$distEdge, declining.results$log10.mass, method="pearson")
+cor(grass.results$distEdge, grass.results$log10.mass, method="pearson")
+cor(grassDeclining.results$distEdge, grassDeclining.results$log10.mass, method="pearson")
+
+
+
+
+
+
+
+
+
+

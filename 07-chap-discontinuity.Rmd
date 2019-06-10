@@ -1,30 +1,146 @@
-# Discontinuity chapter under construction {#discontinuity}
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Discontinuities in body mass distributions of bird communities does not capture a large-scale and long-term woody plant encroachment in Kansas, United States {#discontinuity}
+```{r ch7setup, echo=FALSE, message=FALSE, warning=FALSE, fig.align="c", fig.pos="h", out.width="85%"}
+figDir <- here::here("chapterFiles/discontinuityAnalysis/figsCalledInDiss/")
+tabDir <- here::here("chapterFiles/discontinuityAnalysis/tabsCalledInDiss/")
 
+## define function for getting table data from file
+getTab <- function(fn) readRDS(paste0(tabDir,"/" ,fn))#,".RDS"))
+
+library(tidyverse)
+library(kableExtra)
+```
 ## Introduction
-Body size influences the frequency and intensity of inter- and intraspecific competition for resources, territory, and mates, thereby dictating the spatial and temporal scales at which a species of a distinct body size operates [@peters1983effect;@silva1995allometric; @allen2006patterns]. The scaling structure of terrestrial communities are have been found to have 'lumpy' distributions --- that is, they are not well-described using paramteric statistical descriptions. Thes scaling structures as manifested in body mass distirbutions of communities are considered reflective of the  discontinuous and heterogeneous nature of resource use. Specifically, @holling1992cross suggests that the body mass distribution of a community or group of species reflects the discontinuous nature of environmental structures and processes. Quantitative analyses of animal body sizes [@allen2006patterns;@nash2014habitat] and other similar distributions has revealed the prevalence of discontinuous size distributions in faunal body mass [@skillen2008ecological], plant biomass [@spanbauer2016body], city population sizes [@garmestani2005time], and species’ home range size [@restrepo2008discontinuities].
+Body size influences the frequency and intensity of inter- and intraspecific competition for resources, territory, and mates, thereby dictating the spatial and temporal scales at which a species of a distinct body size operates [@peters1983effect;@silva1995allometric; @allen2006patterns]. The scaling structure of terrestrial communities are have been found to have 'lumpy' distributions --- that is, they are not well-described using paramteric statistical descriptions. If the scaling structure of a community manifests in the body mass distribution of the community, it is  considered reflective of the  discontinuous and heterogeneous nature of resource use. Specifically, @holling1992cross suggests that the body mass distribution of a community or group of species reflects the discontinuous nature of environmental structures and processes. Quantitative analyses of animal body sizes [@allen2006patterns;@nash2014habitat] and other similar distributions has revealed the ubiquity of the discontinuous nature of distributions of animal body masses [@skillen2008ecological; @havlicek2001pelagic], plant biomass [@spanbauer2016body], city population sizes [@garmestani2005time], and animal home range sizes [@restrepo2008discontinuities]. 
 
-Species operating at similar spatial and temporal scales are those close in body size, and are identified in discontinuity analyses as belonging to the same body mass aggregations or ‘lumps’ (Allen and others 1999). The interactions among species in a single aggregation presumably experience a higher frequency and intensity of interspecific interactions with each other as opposed to those in different aggregations (Peterson and others 1998). 
+Given the ubiquity of discontinuities in body mass distributions of fauna and social systems [@allen2009discontinuities], the ecological signifance of these patterns may prove useful in understanding ecosystem structure and functioning [@angeler2016management]. Various hypotheses are given for drivers of the discontinuous structure of animal body mass distributions including those related to resource use (the Energetic and Textural Discontinuity hypotheses), community interactions, biogeography, and evolution/phylogenetics  [@allen2006discontinuities; @holling1992cross; @blackburn1994animal; @allen2006patterns], and these hypotheses consecutively represent the spatial and temporal scales at which the system components operate. 
 
-<!-- In this chapter, I use a Bayesian implementation of classification and regression tree analysis [BCART; @chipman1998bayesian] to statistically identify the discontinuous structure of body mass distributions in avian communities of North America.  -->
-<!-- space time. I then identify patterns in the  -->
-barichievy2018method - method taht caleb used.
+Discontinuities in body mass distributions been quantified using various methods (e.g., multivariate time series models, regression trees, and gap rarity index)  which are collectively referred to as 'discontinuity analyses' [@nash2014discontinuities; @barichievy2018method; @stow2007evaluating; @allen2009discontinuities]. Using various methods, the discontinuous nature of body masses of ecological communities is well-documented, having been observed in various taxa of both terrestrial [@allen2006patterns] and aquatic [@spanbauer2016body] communities. While identifying discontinuities in body mass aggregations and other systems is ubiquitous, much work is needed to sift through the hypotheses for drivers of these patterns [@allen2006patterns].
 
-Multiple global change drivers are exerting influence in a south-to-north pattern within the Great Plains. For instance, in the Great Plains, climate change is shifting native and agricultural plant phenologies (Richardson et al., 2013) and geographic centers of species distributions (Hovick et al., 2016). Woody plant encroachment is causing regime shifts from historically grassland regimes to woodland or shrubland regimes (Engle et al., 2008); whole ecoregions in the southern Great Plains have shifted to woodlands in the past century, and northern ecoregions are increasingly on the brink of wholesale regime shifts (Twidwell et al., 2013). Interacting with climate change and woody plant encroachment, fire frequency and size have also increased by >400% in the Great Plains, especially in the southern portions that have transitioned to woodlands (Donovan et al., 2017). Energy development such as oil and gas extraction reduced net primary productivity by approximately 4.5 Tg between 2000-2015, with much of the development focused on the southern Great Plains (Allred et al., 2015). Although the rate of agricultural land conversion had greatly slowed by the 1950s (Brown et al., 2005), the northern plains lost much of its remaining grassland after commodity prices surged at the beginning of the 21st century (Drummond et al., 2012). Urbanization and population growth in the Great Plains has continually increased in and around already populated areas (Brown et al., 2005), with the greatest growth occurring in the southern portions of the Great Plains.
-In light of this, we selected a belt transect on the ecotone of the Great Plains and Eastern Temperate Forests extending from the Gulf of Mexico to the edge of the boreal forest in Canada. Specifically, the belt transect extended south-north from 28 - 49 degrees latitude (approximately 2300 km) and east-west from 93 - 97 degrees longitude (approximately 350 km).
-Statistical Analysis
-Identifying discontinuities
-For each route falling within the belt transect, we identified discontinuities in avian community body masses by rank-ordering the log-transformed body masses of each species observed at each route for each year. We obtained mean body mass estimates for all species in the analysis from the CRC Handbook of Avian Body Masses (Dunning Jr, 2007). We then used the “discontinuity detector” method (Barichievy et al., 2018) on the log-ranked body masses, which is based on the Gap Rarity Index for detecting discontinuities in continuous data (C. Stow, Allen, & Garmestani, 2007). For taxa with determinant growth, mean body mass has been shown to reliably differentiate size aggregations and is strongly allometric to the scales at which functions are carried out by organisms (Nash et al., 2014; Sundstrom & Allen, 2014). Because the discontinuity detector method is known to overestimate discontinuities in observations with low species richness, we removed any routes with < 40 species observed within a given year (Table 3.1). We used a power table (Lipsey, 1990) to account for sample size (the number of species observed at each BBS route in a given year) and average variance in body masses (Dunning Jr, 2007) to adjust the critical d-value (the value based on Monte Carlo simulations that identifies significant discontinuities) where N varied (Allen, Forys, & Holling, 1999) (Table 3.2).
+The goal of this Chapter is to determine if, under the assumption there exists a northward-shifting spatial regime in the Central Great Plains from 1970 to 2015 (Roberts et al. in prep), local bird communities exhibited shifts in the scaling structure, and whether vulnerable species were impacted by this shift. I use discontinuity analyses to determine whether large-scale shifts in the vegetative structure impact scale-specific structure (as manifested in body mass distributions) of local bird communities. As an extension of @allen1999body I test competing hypotheses for drivers of discontinuous body mass distributions by examining the location of vulnerable (declining) bird species within individual body mass aggregations. I found no evidence to support hypotheses for top-down influence of landscape-scale changes in vegetative structure on body mass distributions in my study area. I discuss the negative results and the potential limitations of this study and approach. 
 
 ## Methods
+The Central Great Plains has undergone a large-scale and relatively rapid spread of a native invasive woody plant, the Eastern Redcedar [*Juniperus virginianus*; @van2009causes; @twidwell2016plant;@donovan2018social], influencing habitat and resource availablity for bird communities across multiple spatial scales [@chapman2004tree]. A recent decadal analysis (C.P. Roberts et al. in prep) of avian body mass distributions suggets the avian communities within this study area underwent significant structural 'regime' shifts as a consequence of large-scale drivers including woody planty encroachment, and a climate change. Based on observed changes in the body mass distribution structure of avian communities the authors suggest a spatial regime boundary moved from approximately over a 30-year period. Here, I use determine the influence of their proposed moving spatial regime on local bird communities in a region of Kansas, U.S that is suggested to have undergone a regime shift. I achieve this by first identifying the scaling structure of the body mass distributions of local bird communities using discontinuity analysis. If the proposed regime shifts occurred at the larger spatial scales, then we should expect local-scale shifts to have occurred within the same time frame. I furhter examine the effect of the large-scale woody plant encroachment on the local avifauna by examining if and how vulnerable species (i.e. grassland obligates and other declining species) are impacted. Using the body mass distributions built from the entire local communities, I calculate the distance of these species-of-interest to the nearest 'edge' of a body mass aggregation. 
+
+### Study area and avian community data
+
+I constructed body mass distributions using route-level data from the North American Breeding Bird Survey hereafter [NABBS; @bbsData]. THe NABBS uses citizen scientist volunteers to annually collect data using a standardized roadside, single observer, 3-minute point count protocol and has organized data collection annually across North America (Figure \@ref(fig:bbsPoints)) since 1966. Each roadside survey consists of 50, 3-minute point counts (data collected using sight and sound) along  $\sim24.5$ mile stretch of road. Due to strict reliance on volunteers, some routes are not covered every year. I retained only the NABBS routes falling within the state boundaries of Kansas and Nebraska, further restricting analyses to routes with at least 3 years' worth of data during the years 1970, 1985, 2000, and 2015.
+
+Although NABBS volunteers attempt identify all species in the point-count area,  biases exist in data collection. For this reason, I removed some species from the analyses (see Methods section in Chapter \@ref(fisherSpatial) for a discussion). I removed all  
+
+I examined a subset of the area analyzed in C.P. Roberts et al. (in prep) which is proposed to have underwent a large-scale regime shift, as exhibited by changes in the scaling structure of the avian body mass distributions. Roberts et al. (in prep) hypothesize that a spatial regime boundary exists in the Central Great Plains and suggests it has exhibited a Northward shift at a rate of  $\sim\frac{0.05^\circ\ latitude}{year}$. The authors used discontinuity analysis to identify these 'spatial regimes', using the body massess of breeding bird communities. Their hypothesized spatial regime boundary occurs at $39^\circ$ latitude in year 1970, $39.5^\circ$ latitude  in year 1985, $40^\circ$ latitude in year 2000, and $40.5^\circ$ latitude in year 2015 (see Figure \@ref(fig:routesWithSpatRegimes)). I used the same latitudinal boundary to classify 
+
+Assuming the location and timing of these spatial regime boundaries, I restricted analyses to
+
+
+
+### Identifying community scaling structure using body mass distributions
+
+### Distance to edge
+@allen2006body propose alternative hypotheses for the relative locations of species within the body mass aggregation distributions as a function of 'distance to edge', a measure indicating the distance (in log-mass units) of each species to the edge of a body mass aggreagtion. This distance to edge measure is zero when the species is an 'edge species', and increases as it approaches the center of a single body mass aggreagtion. 
+
+
+<!-- Invasive and declining species could be distributed in the body-mass patterns of the animal communities in a number of possible ways (Figure 2). -->
+<!-- (a) A random distribution would indicate that the -->
+<!-- scale-specific structure of animal communities was -->
+<!-- not related to invasions or declines. (b) Invasive -->
+<!-- species could be distributed only within body-mass -->
+<!-- aggregations, well separated from the gaps, which -->
+<!-- would indicate that gaps are ''forbidden zones,'' but -->
+<!-- indicate little else. (c) Invasive and declining species -->
+<!-- could be restricted to a limited range of body masses, -->
+<!-- which would indicate that it is at the ecological scale -->
+<!-- corresponding to these species that perturbation has -->
+<!-- had its greatest impact (Morton 1990) or that -->
+<!-- phylogeny had a predominant influence. (d) Invasive -->
+<!-- species could occur only in gaps, which we would -->
+<!-- interpret as indicative of competitive processes unrelated to scale-specific animal community structure -->
+<!-- (Moulton and Pimm 1986). (e) Invasive and declining species could occur at the edge of aggregations, -->
+<!-- which would indicate that the areas between distinct ranges of scale are most susceptible to changes -->
+<!-- in ecological process and landscape structure. -->
+
+If the spatial regime shift occurred in the bird community, it should manifest in the local community scaling structure through one or both of species turnover and a shift in the number of body mass aggreagsations. 
+
+
+```{r routesWithSpatRegimes, echo=FALSE, eval=TRUE, fig.cap="North American Breeding Bird Survey routes (points) surrounding the (latitudinal) locations (horizontal bars) of the spatial regimes as proposed in Roberts et al. (in prep) in Nebraska and Kansas, United States. Routes with less than 3 years of data (among years 1970, 1985, 2000, 2015) are not displayed. Numbers indicate the route numbers assigned by the Breeding Bird Survey, and Kansas and Nebraska state numbers of 38 and 54, respectively (not shown). Fort Riley military base and Konza prairie are shown geographical reference."}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/routes3years_spatRegimeLines.png"))
+```
+
+```{r nRtesPerRegimePerYear}
+temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
+  rename(`# BBS routes` = nLoc, 
+         Year = year, Regime = regime)
+kableExtra::kable(temp, "latex", booktabs=TRUE)
+```
+
+
+
+```{r , echo=FALSE, eval=TRUE, fig.cap=""}
+getTab("grassDeclSppList") %>% dplyr::select(commonName, id) %>%  
+  spread(key="id" , -commonName, fill="")%>%
+  rename(`English Common Name`= commonName, 
+         `Grassland Obligate` = grass)%>% 
+  mutate(
+    `English Common Name` = cell_spec(`English Common Name`, "latex", color=ifelse(declining=="declining", "red","black")), 
+    `Grassland Obligate` = ifelse(`Grassland Obligate`=="grass", "yes","")
+    ) %>% dplyr::select(-declining) %>% 
+kable(booktabs=TRUE) 
+```
+
+```{r , echo=FALSE, eval=TRUE, fig.cap=""}
+# knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/.png"))
+```
+```{r , echo=FALSE, eval=TRUE, fig.cap=""}
+# knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/.png"))
+```
+```{r , echo=FALSE, eval=TRUE, fig.cap=""}
+# knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/.png"))
+```
+
+
+
+I first identify the discontinuous structure of the bird community before and after woody encroachment occurring at the landscape-scale. Next, I  
+
+on a local bird community  
+use the body mass distributions of bird communities in the Central Great Plains before and after a large-scale shift in vegetative structure to 
+
+bird test the Biotic Interaction Hypothesis, which suggests that the biotic interactions within a community operates at the local scale over a relatively short time scale, thus shaping the body mass distribution of the community. 
+
+
+For example, a recent comparison of body mass distributions in streams of varying quality revelead discontinuous body mass distributions, but no difference in the number of aggregations in the presence of disturbances [@bibi2019body].
+
+extinction 
+@wardwell2009variability - population variability 
+
+invasion
+@allen1999body
+
+regime shfits
+@spanbauer2016body, suggested in @angeler2016management
+
+@nash2014discontinuities - 
+
+as manifested in animal body masses is well-documented, however, the ecological significance of such discontinuous structure remains unknown. 
+
+The interactions among species in a single aggregation presumably experience a higher frequency and intensity of interspecific interactions with each other as opposed to those in different aggregations (Peterson and others 1998).
+
+
+
+## Methods
+@dunning2007crc
+
+
 I used discontinuity analysis to identify the cross-scale structure of the avian communities across space-time [@barichievy2018method]. 
 
-### Spatial sampling scheme
-I sampled BBS routes from a North-South-running transect in Central North America running from the Southern Great Plains ecoregion near the Gulf of Mexico ($\sim 28^\circ$ latitude) to boreal Canadaian forest ($\sim 49^\circ$ latitude), running $\sim 5^\circ$ west from ($\sim 93^\circ$ longitude) to ($\sim 97^\circ$ longitude). This region of the world is experience widespread range expansion of a native invasive woody plant, Eastern Redcedar [*Juniperus virginiana*;@twidwell2016plant;@donovan2018social]. This widespread and steadfast transition of native and replanted short and tallgrass prairie habitat to semi-wooded areas should manifest in the avian community composition across large spatial scales, potentially manifesting as changes in cross-scale strucutre of avian body masses. Given the body of evidence suggesting avian community composition shifts upon woody encroachment, we can make two predictions. First, an area undergoing woody encroachment should exhibit a shift in community composition, given the extreme sensitivity of grassland bird species to woody cover. As such, we should next expect a shift in the body mass aggregation structure of the avian community. However, this compositional shift need not manifest in the discontinuous strucutre of the body mass distribution (e.g., shifting the number, size, and/or location of body mass aggregations within a distribution). Rather, at a minimum, we should expect species turnover and potentially shifts in the species which dominate (comprise the center of) or are peripherally associated with (comprise the edges of) each body mass aggregation. 
 
 ###
 
 Given the extent and resolution of our data, we are able to only test the biotic interaction and textural discontinuity hypotheses [@allen2006patterns]. 
-"If scale‐dependent resource variability is introduced into the model, then a single mode can separate into multiple modes (Marquet et al. 1995), indicating an interaction between the distribution of resources in the landscape and body mass aggregations." from allen2006patterns
+"If scale deendent resource variability is introduced into the model, then a single mode can separate into multiple modes (Marquet et al. 1995), indicating an interaction between the distribution of resources in the landscape and body mass aggregations." from allen2006patterns
 
 
 ##Bibliography: grassland birds in NA
@@ -40,4 +156,12 @@ Schwartz 1993, Best et al. 1997).
 @brennan2005north -- praire vegetation loss, intensifying agricultural efficiency and practices, lack of fire, adn habitat loss all contribute to the ongoing "crisis" with the loss of grassland and grass-shrub avifauna. 
 
 @correll2019quantifying -- 
+
+## Discussion
+
+### Study limitations
+
+1. Cross-taxa interacitons -- bm dists assumes that the bird comm is not competing for resorueces with otehr taxa...
+1. Annual BBS surveys may not represent true census of the area (aggreagting the pres/abs data over multiple years...)
+1. 
 
