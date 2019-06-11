@@ -221,7 +221,6 @@ This section will loop through `years.use` and `dir.use`, running each BBS route
 
 ```{r calcMetrics, echo=TRUE}
 # **Please note: depending on the # of years and spatial transects, this could take a while!**
-
 for (j in 1:length(dir.use)) {
     # For east-west analysis
         if (direction == "East-West"){
