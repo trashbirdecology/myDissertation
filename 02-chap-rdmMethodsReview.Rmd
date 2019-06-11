@@ -300,11 +300,11 @@ Questions.ecol <- c(
   "In which discipline(s) beyond ecology has the method been tested?"
   )
 
-Questions = tibble(
+Questions = tibble::tibble(
   Type = c(
   "Methodological",
   rep("", length(Questions.stat) - 1),
-  rep("", length(Questions.ecol) - 1)
+  rep("", length(Questions.ecol))
   ),
   Questions = c(Questions.stat, Questions.ecol)
   )

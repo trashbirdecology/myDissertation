@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Discontinuities in body mass distributions of bird communities does not capture a large-scale and long-term woody plant encroachment in Kansas, United States {#discontinuity}
 ```{r ch7setup, echo=FALSE, message=FALSE, warning=FALSE, fig.align="c", fig.pos="h", out.width="85%"}
 figDir <- here::here("chapterFiles/discontinuityAnalysis/figsCalledInDiss/")

@@ -24,7 +24,7 @@ acknowledgements: |
 dedication: | 
   To the end-users researchers frustrated with jargon and lack of practical utility of ecological models and metrics. And to Mike Moulton, without whose support and encouragement many years ago two advanced degrees would likely not have been possible.
 bibliography: ["bib/thesis.bib"]
-csl: [csl/ecology.csl,csl/reedthesis.csl]
+csl: [csl/ecology.csl,csl/reedthesis.cls]
 lot: true
 lof: true
 space_between_paragraphs: true
