@@ -17,10 +17,11 @@ acknowledgements: |
 dedication: | 
   To the end-users researchers frustrated with jargon and lack of practical utility of ecological models and metrics. And to Mike Moulton, without whose support and encouragement many years ago two advanced degrees would likely not have been possible.
 bibliography: ["bib/thesis.bib"]
-csl: [reedthesis.cls, csl/nature.csl] #csl/ecology.csl
+csl: [reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
 lot: true
 lof: true
 space_between_paragraphs: true
+link-citations: yes
 ---
 ```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 ## IS THIS A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulations becaues time expensive

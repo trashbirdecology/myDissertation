@@ -54,3 +54,6 @@ On the Methods
 - Comparing multiple methods , sensitivity analyses
 - Far more studies applying regime detection measures exist than do critiques and reviews of this literature (Chapter \@ref(rdmReview)).
 - Relating process-control methods (cusum) to regime shift detection methods
+
+
+# References Cited {.unnumbered}
