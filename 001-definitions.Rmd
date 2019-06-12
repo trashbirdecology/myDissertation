@@ -15,7 +15,7 @@ glossary <- read.csv("./chapterFiles/glossary.csv") %>%
 
 eor <- seq(2,nrow(glossary), 2)# every other row
 
-kable(glossary %>% dplyr::select(Term, Definition, Synonyms), format = "latex", booktabs = T,longtable=T, 
+kable(glossary %>% dplyr::select(Term, Definition, Synonyms), format = "latex", booktabs =TRUE,longtable=TRUE, 
       caption = "A table of definitions for terms, theories, and phrases often appearing in ecological regime shift literature.") %>%
 kable_styling("striped", full_width = F, font_size = 10, 
               latex_options = c("repeat_header")
@@ -24,7 +24,7 @@ kable_styling("striped", full_width = F, font_size = 10,
   column_spec(1, width = "12em") %>% 
   column_spec(2, width = "35em") %>% 
   column_spec(3, width = "8em") %>% 
-  row_spec(row = eor, bold =T)
+  row_spec(row = eor, bold =TRUE)
 ```
 \end{landscape}
 

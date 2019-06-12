@@ -15,7 +15,7 @@ As defined in Table  \@ref(tab:glossary), a regime shift is largely considered a
 Although it is suggested that statistical and pragmatic methods are advanced more rapidly by bottom-up approaches, i.e. case studies [see @deangelis2017spatially], few studies test the rigor of SRDMs using spatially-explicit, *empirical* data. The objective of this chapter is to determine the utility of Fisher Information [Eq. \@ref(eq:fiDerivs)] as a spatial regime detection measure. This chapter is also supported by original software developed for implementation in Program R, which is publicly available [see Appendix \@ref(regimeDetectionMeasures)].
 
 Despite its controversial applicability to temporal data [@burthe2016early; @dutta2018robustness; @perretti2012regime; @sommer2017generic; @bestelmeyer_analysis_2011], variance is proposed as a spatial regime detection measure [hereafter, SRDM; @brock_variance_2006]. Here, variance is assumed to increase across space as an SRDM is approached, capturing the variability in the landscape relative to its surroundings.
-```{r bbsPoints, eval=TRUE, echo = FALSE, Figurecap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.'}
+```{r bbsPoints, eval=TRUE, echo = FALSE, fig.cap = 'Locations of Breeding Bird Survey routes sampled between 1966 and 2017.', out.width="85%"}
 knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png"))
 ```
 
@@ -24,7 +24,7 @@ knitr::include_graphics(paste0(figDissDir, "/bbsRoutesUsed.png"))
 I use community abundance data  [@bbsData] from long-term monitoring programs to identify spatial and temporal regimes using the Fisher Information (FI) derivatives method (see Eq. \@ref(eq:fiDerivs)). The North American Breeding Bird Survey (NABBS) trains citizen scientist volunteers to annually collect data using a standardized roadside, single observer 3-minute point count protocol and has organized data collection annually across North America (Figure \@ref(fig:bbsPoints)) since 1966. The roadside surveys consist of 50 point counts (by sight and sound) along $\sim24.5$ mile stretch of road. Due to strict reliance on volunteers, some routes are not covered every year. Additionally, some routes are moved or discontinued due to changing landscape conditions and change in observer safety. Route-year combinations that were missing years but were not discontinued were treated as missing data. Although NABBS volunteers attempt identify all species as possible, persistent biases exist in this protocol. Despite a standardized survey protocol, some species are difficult to identify using these methods. For example, crepuscular species are less likely to be detected beyond the first few points of the BBS route, given they are most active at sunrise and the survey begins within 30 minutes of sunrise. Further, species which congregate in large groups and are highly mobile (e.g., waterfowl) tend to have less reliable inter-annual abundance estimates given their ability to move long-distances in a short period of time. To remove any potential influence of sampling bias on the Fisher Information result, I removed birds of these types from all analyses: waterfowl, waders, and shore species (BBS AOU numeric codes 0000 through 2880). 
 ### Study area
 Although the NABBS conducts surveys throughout much of North America (most of the United States, Canada, and Mexico), coverage of the boreal forests of Canada are sparse in space, and many routes in Mexico have fewer than 25 years of observations. For these reasons I limited analyses largely to the continental United States and parts of Southern Canada (see Figure \@ref(fig:bbsPoints)).
-```{r ewRouteMap, echo = FALSE,  out.width="85%", Figurecap = 'A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information.'}
+```{r ewRouteMap, echo = FALSE,  out.width="85%", fig.cap = 'A single East-West transect of Breeding Bird Survey routes used to calculate the Fisher Information.'}
 knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_1row.png"))
 ```
 
@@ -32,14 +32,14 @@ knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_1row.png"))
 The Mission of the U.S. Department of Defense is to provide military forces to deter war and protect the security of the country, and a primary objective of individual military bases is to maintain military readiness. To maintain readiness, military bases strictly monitor and manage their natural resources. Military bases vary in size and nature, and are heterogeneously distributed across the continental United States (See Figure \@ref(fig:ewRouteMap)). The spread of these bases (Figure \@ref(fig:milBases)), coupled with the top-down management of base-level natural resources presumably influences the inherent difficulties associated with collaborative management within and across military bases and other natural resource management groups (e.g., state management agencies, non-profit environmental groups.
 
 Much like other actively managed landscapes, military bases are typically surrounded by non- or improperly-managed lands. Natural resource managers of military bases face environmental pressures within and surrounding their properties, yet their primary objectives are very different. Natural resource managers of military bases, whose primary objective is to maintain military readiness, are especially concerned with if and how broad-scale external forcings might influence their lands. Prominent concerns include invasive species, wildlife disease, and federally protected species (personal communication with Department of Defense natural resource managers at Eglin Air Force and Fort Riley military bases). For these reasons, natural resource managers attempt to create buffers along their perimeters (e.g., live fire/ammunition suppression, wide fire breaks). Identifying the proximity of military bases to historic and modern ecological shifts may provide insight into the effectiveness of their natural resource management efforts.
-```{r milBases, echo = FALSE, Figurealign='center',  out.width="85%", Figurecap = 'Locations of Fort Riley military base in Kansas, USA.'}
+```{r milBases, echo = FALSE, Figurealign='center',  out.width="85%", fig.cap = 'Locations of Fort Riley military base in Kansas, USA.'}
 knitr::include_graphics( paste0(figDissDir, "/milBases.png"))
 ```
 
 The NABBS routes chosen for analyses in this Chapter lie within or near Fort Riley military base (located at approximately $39.110474^{\circ}$, $-96.809677^{\circ}$; Kansas, USA). Fort Riley (Figure \@ref(fig:basesOfInterestMap)) is a useful reference site for this study.  Woody encroachment of the Central Great Plains over the last century has triggered shifts in dominant vegetative cover and diversity (Ratajczak et al. 2012) in the area surrounding Fort Riley military base (e.g., Van Auken 2009). This phenomena should present itself as a regime boundary if Fisher Information is a reliable SRDM. 
 <!-- The natural resource management teams are active on each base and have been for at least two decades and each uses wildfire as a management technique. Fort Riley military base is especially relevant to regime shift detection method exploratory analysis. -->
 <!-- Eglin Air Force base is embedded within a heavily developed matrix, and consequently has experienced less pronounced effects at broad spatial extent and over longer periods. Therefore, the ecological communities (and the data) surrounding Eglin Air Force base may exhibit a greater amount of noise, making the effect size of a regime shift and consequently the effect size smaller and more difficult to detect. For these reasons, Eglin Air Force and Fort Riley military bases are ideal locations for an exploratory analysis of the Fisher Information as an SRDM.  -->
-```{r basesOfInterestMap, echo = FALSE, Figurealign='center',  out.width="85%", Figurecap = 'Locations of focal U.S. military bases, Eglin Air Force Base (AFB) and Fort Riley Military Base.'}
+```{r basesOfInterestMap, echo = FALSE, Figurealign='center',  out.width="85%", fig.cap = 'Locations of focal U.S. military bases, Eglin Air Force Base (AFB) and Fort Riley Military Base.'}
 knitr::include_graphics(paste0(figDissDir, "/basesOfInterestMap.png"))
 ```
 
@@ -47,7 +47,7 @@ knitr::include_graphics(paste0(figDissDir, "/basesOfInterestMap.png"))
 Fisher Information has been applied to empirical data as a SRDM in recent years [@sundstrom2017detecting;@eason2019information]. The authors of  @sundstrom2017detecting used the Fisher Information binning method to prove the concept of this method as an SRDM, suggesting that the metric should detect 'regime changes' when adjacent sampling points represented different ecoregions (which is a nationally-recognized, broad-scale vegetation classification scheme). Suggesting that each ecoregion in their analyses should be similarly represented wit respected to the number of NABBS routes in each ecoregion,  the authors handpicked NABBS survey points (routes) which  resulted in a transect which was neither North-South nor East-West running. Rather, the handpicked routes zigzagged across a Midwestern region through multiple ecoregions [@sundstrom2017detecting].   
 
 To ameliorate any potential bias in handpicking NABBS routes, I first constructed a gridded system across the continental United States and parts of Canada. The gridded system comprises East-West running transects transects, ameliorating potential  sampling bias as the transect location and widths were designed to capture large-scale shifts in bird communities at regular intervals. This spatial sampling grid  approach also  allows for raster stacking, or layering data layers (e.g., vegetation, LIDAR, weather), providing an opportunity to  identify potential relationships with abiotic drivers, should regime shifts be observed in the avifauna data. This spatial sampling method also provides a simple vector for visualizing changes in the Fisher Information over space-time. For brevity, I present visual results of only three, spatially-adjacent, East-West running transects (Figure \@ref(fig:ewRoutesUsedHere)) at multiple time periods. 
-```{r ewRoutesUsedHere, echo = FALSE, out.width="85%", Figurecap = 'The three East-West running transects used to visualize results in this chapter.'}
+```{r ewRoutesUsedHere, echo = FALSE, out.width="85%", fig.cap = 'The three East-West running transects used to visualize results in this chapter.'}
 knitr::include_graphics(paste0(figDissDir, "/transectSamplingALlRoutesUsed.png"))
 ```
 
@@ -90,10 +90,7 @@ Here I define a potential regime change as a point(s) having a non-zero derivati
 
 #### Interpolating results across spatial transects
 NABBS are not regularly spaced, and pairwise correlations of adjacent transects (see Figure \@ref(fig:ewRoutesUsedHere)) is not possible without either (1) binning the Fisher Information calculations using a moving-window analysis, or (2) interpolating the results to regularly-spaced positions in space. To avoid potential biases associated with the former option (i.e. choosing window size, location of data aggregation), I linearly interpolated the calculated Fisher Information within each spatial transect to 50, evenly-spaced points along the longitudinal dimension. The 50 longitudinal points to which I interpolated were the same across each spatial transect, while latitude varied across transects. I used the function `stats::approx()` (with argument `rule=1`) to linearly approximate the Fisher Information. I did not interpolate values beyond the longitudinal range of the original data (i.e., no extrapolation). 
-```{r oneTsectEx, echo = FALSE,   out.width="85%", Figurecap = 'An example of two adjacent spatial transects within my sampling grid.'}
-knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_1row.png"))
-```
-```{r adjacentTsectEx, echo = FALSE,   out.width="85%", Figurecap = "An example of two adjacent spatial transects (12, 13) within my sampling grid."}
+```{r adjacentTsectEx, echo = FALSE,   out.width="85%", fig.cap = "An example of two adjacent spatial transects (12, 13) within my sampling grid."}
 knitr::include_graphics(paste0(figDissDir, "/transectSamplingEx_2rows.png"))
 ```
 
@@ -103,32 +100,36 @@ If Fisher Information captures and reduces information regarding abrupt changes 
 
 ## Results  
 ### Fisher Information across spatial transects
-```{r fi1Tsect, echo = FALSE, message=FALSE, warning=FALSE,  out.width="85%", Figurecap="Fisher Information calculated for a single transect over time."}
+```{r fi1Tsect, echo = FALSE, message=FALSE, warning=FALSE,  out.width="85%", fig.cap="Fisher Information calculated for a single transect over time."}
 knitr::include_graphics(paste0(figDissDir,  "/transect_12_East-West_metric_FI_Eqn7_12.png"))
 ```
 Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of 'spatial regimes' (Figure \@ref(fig:fi1Tsect)). Of the three spatial transects analyzed in this chapter (see Figure \@ref(fig:ewRoutesUsedHere)), Figure \@ref(fig:fi1Tsect) is representative of the lack of pattern observed in the Fisher Information values across all analyzed transects. I did not identify clear patterns within nor among spatial transects with respect to Fisher Information. Further, the log-transformed FI suppresses some of the extreme values which can visually dampen other sharp changes, but did not exhibit clear regime shifts in these data. 
-```{r ewRoutes_ecoRegions, out.width="85%", echo = FALSE, Figurecap=""}
+```{r ewRoutes_ecoRegions, out.width="85%", echo = FALSE, fig.cap=""}
 # Routes used in this chapter analysis. 
 # for some reason, when i include a caption on this chunk it fucking fails, saying the caption is beyond float, despite the length of hte caption,...
 knitr::include_graphics(paste0(figDissDir,  "/allRoutesUsed_ecoregions.png"))
 ```
 
-```{r fiSinglePair, echo = FALSE,  out.width="85%", Figurecap="Fisher Information of two spatially adjacent transect pairs (transects 12, 13) over time. Interdecadual trends in FI are very different within each transect and are not highly correlated among transects over time."}
+```{r fiSinglePair, echo = FALSE,  out.width="85%", fig.cap="Fisher Information of two spatially adjacent transect pairs (transects 12, 13) over time. Interdecadual trends in FI are very different within each transect and are not highly correlated among transects over time."}
 knitr::include_graphics(paste0(figDissDir,  "/interp_FI_singlePair_corPlot_East-West.png"))
 ```
 
-```{r usaFI, eval=TRUE, echo = FALSE,  out.width="85%", Figurecap="Fisher Information of 5 East-West spatial transects over time."}
+\begin{landscape}
+```{r usaFI, eval=TRUE, echo = FALSE,  out.width="85%", fig.cap="Fisher Information of 5 East-West spatial transects over time."}
 # knitr::include_graphics(paste0(figDissDir,  "/usaAllTsects_East-West_metric_FI.png"))
 knitr::include_graphics(paste0(figDissDir, "/usaAllTsects_East-West_metric_logScaleFI.png"))
 ```
+\end{landscape}
 
-```{r fiEcoregion, echo = FALSE,  out.width="85%", Figurecap="No patterns of abrupt change detected in Fisher Information along three transects in year 2010"}
+```{r fiEcoregion, echo = FALSE,  out.width="85%", fig.cap="No patterns of abrupt change detected in Fisher Information along three transects in year 2010"}
 knitr::include_graphics(paste0(figDissDir,  "/scaledFiInterpolated_year2010_zoom_East-West.png"))
 ```
-```{r corPlotTsectsInterp,echo = FALSE, out.width="85%", Figurecap="Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time do not exhibit expected patterns of high postive correlation."}
+
+```{r corPlotTsectsInterp,echo = FALSE, out.width="85%", fig.cap="Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time do not exhibit expected patterns of high postive correlation."}
 knitr::include_graphics(paste0(figDissDir,  "/interpolated_FI_corplotSelectTransects_East-West.png"))
 ```
-```{r corPlotTsectsInterpLog, eval=FALSE,echo = FALSE,  out.width="85%", Figurecap="Pairwise relationships of Fisher Information (interpolated values on the log-scale) of spatially adjacent transects over time."}
+
+```{r corPlotTsectsInterpLog, eval=FALSE,echo = FALSE,  out.width="85%", fig.cap="Pairwise relationships of Fisher Information (interpolated values on the log-scale) of spatially adjacent transects over time."}
 knitr::include_graphics(paste0(figDissDir,  "/interpolated_FI_corplotSelectTransects_East-West_log.png"))
 ```
 
@@ -138,7 +139,7 @@ In addition to failing to identify clear geological boundaries across large swat
 Upon initial investigation, there are no obvious signs of broad-scale patterns in FI across space (Figure \@ref(fig:fiEcoregion))^[Size indicates value of Fisher Information (values are scaled and centered within transects). Red box (in top panel) indicates extent of bottom panel.]. If Fisher Information is an indicator of spatial regime boundaries, we should expect to see large changes in its value (in either direction) near the edges of functional spatial boundaries (e.g., at the boundaries of ecoregions). No clear regime changes appeared in areas where we might expect rapid changes (e.g., along the 105th meridian West, where a sharp change in altitude occurs).
 
 Numerical investigation of the spatial correlation among adjacent transects also yielded no clear patterns. I did not identify any obvious correlation with changes in FI values and functional potential (using Omernick Ecoregion Level 2; see Figure \@ref(fig:fiEcoregion)). Rather than abrupt changes in Fisher Information I found gradual changes (e.g., see results for years 2000 and 2010 in Figs. \@ref(fig:fiEcoregion) and \@ref(fig:fiEcoregion00).
-```{r fiEcoregion00, echo = FALSE,  out.width="85%", Figurecap="Fisher Information (scaled and centered; point size positively correlated with value) against ecoregion boundaries (EPA Level 2)."}
+```{r fiEcoregion00, echo = FALSE,  out.width="85%", fig.cap="Fisher Information (scaled and centered; point size positively correlated with value) against ecoregion boundaries (EPA Level 2)."}
 knitr::include_graphics(paste0(figDissDir,  "/scaledFiInterpolated_year2000_East-West.png"))
 ```
 
