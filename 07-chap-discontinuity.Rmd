@@ -86,11 +86,11 @@ getTab("grassDeclSppList") %>% dplyr::select(commonName, id) %>%
 kable(booktabs=TRUE) 
 ```
 
-```{r , echo=FALSE, eval=TRUE, fig.cap=""}
-# knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/.png"))
+```{r , echo=FALSE, eval=TRUE, fig.cap="Relationship between species richness per route and (a) the number of aggregations identified in body mass distributions and (b) distance to the edge (units log body mass) of aggregations."}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_corrplot.png"))
 ```
 ```{r , echo=FALSE, eval=TRUE, fig.cap=""}
-# knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/.png"))
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_distribution.png"))
 ```
 ```{r , echo=FALSE, eval=TRUE, fig.cap=""}
 # knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/.png"))
