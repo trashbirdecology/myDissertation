@@ -166,6 +166,7 @@ results.munged <- results %>%
                                "no"
     )
   ) %>%
+  ## scale distanace to edge within each route-year
   group_by(year, loc) %>% 
   mutate(distEdge.scaled = scale(distEdge, center=TRUE)) %>% 
   ungroup() %>% 
@@ -188,6 +189,63 @@ locs.keep <- results.munged %>%
 results.munged <- results.munged %>% 
   filter(loc %in% locs.keep$loc)
 
+## ensure df has factors
+vars <- c("year","regime","is.declining", "is.grassland", "is.grassDeclining","loc","commonName")
+results.munged[vars] <- lapply(results.munged[vars], factor) 
+
+
+# Check Rep MEasures ANOVA assumptions ------------------------------------
+## Multivariate normality
+result <- MVN::mvn(data = results.munged$distEdge.scaled, mvnTest = "mardia")
+result$multivariateNormality
+
+# Save tables to file for diss --------------------------------------------
+## summary table to file for n routes per regime per year
+saveTab(
+  results.munged %>%  distinct(year, regime, loc) %>% group_by(year, regime) %>%  summarise(nLoc =
+                                                                                              n()),
+  fn = "nRtesPerRegimePerYear"
+)
+
+## summary of grassland and declinilng species in a table
+saveTab(full_join(
+  grassSpecies %>% mutate(id = "grass"),
+  decliningSpecies %>% mutate(id = "declining")
+),
+fn = "grassDeclSppList")
+
+
+
+
+# Visualize the scaled response  ---------------------------------------
+ggplot(results.munged, aes(x=distEdge.scaled))+
+  geom_histogram()
+
+ggplot(results.munged, aes(y=distEdge.scaled))+
+  geom_boxplot()
+
+## Q-Q plot
+ggplot(results.munged, aes(sample=distEdge.scaled))+
+  geom_qq_line()+stat_qq()+
+  xlab("standard normal quantiles")+
+  ylab("data quantiles")
+
+
+ggplot(results.munged, aes(sample=distEdge.scaled, color=regime))+
+  geom_qq_line()+stat_qq()
+ggplot(results.munged, aes(sample=distEdge.scaled, color=is.grassland))+
+  geom_qq_line()+stat_qq()
+ggplot(results.munged, aes(sample=distEdge.scaled, color=is.declining))+
+  geom_qq_line()+stat_qq()
+
+
+# Check for normality beyond QQ plots and Boxplots ------------------------
+# Skewness
+PerformanceAnalytics::skewness(results.munged$distEdge.scaled)
+## 0.906 = right skew - moderate (0.5-1) to severe (>1) skewness.... troublesome
+# Kurtosis
+PerformanceAnalytics::kurtosis(results.munged$distEdge.scaled)
+## 0.636 =  we cannot reach any conclusion about the kurtosis when it is betweeen -2 and 2. Excess kurtosis might be positive, negative, or zero....
 
 # Visualize dist to edge  --------------------------------------------------------------
 ggplot(results.munged)+
@@ -195,12 +253,9 @@ ggplot(results.munged)+
   facet_wrap(~year)
 
 ggplot(results.munged)+
-  geom_boxplot(aes(x=year, y=distEdge.scaled))+
-  facet_wrap(~regime, ncol=1)
-
-ggplot(results.munged)+
   geom_boxplot(aes(x=regime, y=distEdge.scaled))+
   facet_wrap(year~is.grassland, ncol=2)
+
 
 ggplot(results.munged)+
   geom_boxplot(aes(x=regime, y=distEdge.scaled))+
@@ -223,73 +278,39 @@ ggplot(results.munged)+
   facet_wrap(year~regime, ncol=2)
 
 
-
-# Save tables to file for diss --------------------------------------------
-## summary table to file for n routes per regime per year
-saveTab(
-  results.munged %>%  distinct(year, regime, loc) %>% group_by(year, regime) %>%  summarise(nLoc =
-                                                                                       n()),
-  fn = "nRtesPerRegimePerYear"
-)
-
-## summary of grassland and declinilng species in a table
-saveTab(full_join(
-  grassSpecies %>% mutate(id = "grass"),
-  decliningSpecies %>% mutate(id = "declining")
-),
-fn = "grassDeclSppList")
-
-
-
 # Correlation of nAggs with distEdge --------------------------------------
 ggplot(results.munged)+
-  geom_point(aes(x=nAggs, y=distEdge))+
+  geom_point(aes(x=nAggs, y=distEdge.scaled))+
   facet_wrap(year~regime, ncol=2)
 
-# Munge DF for ANOVA ---------------------------------------------------------------
-## ensure df has factors
-vars <- c("year","regime","is.declining", "is.grassland", "is.grassDeclining","loc","commonName")
-results.munged[vars] <- lapply(results.munged[vars], factor) 
 
+# Transform the response var to achieve approximate normality ------------------------------------------------
+hist(results.munged$distEdge.scaled^(1/2))
+hist((results.munged$distEdge.scaled))
 
-
-# Visualize the scaled response  ---------------------------------------
-ggplot(results.munged, aes(x=distEdge.scaled))+
-  geom_histogram()
-
-## Q-Q plot
-ggplot(results.munged, aes(sample=distEdge.scaled))+
-  geom_qq_line()+stat_qq()
-  
-ggplot(results.munged, aes(sample=distEdge.scaled, color=regime))+
-  geom_qq_line()+stat_qq()
-
-ggplot(results.munged, aes(sample=distEdge.scaled, color=is.grassland))+
-  geom_qq_line()+stat_qq()
-
-ggplot(results.munged, aes(sample=distEdge.scaled, color=is.declining))+
-  geom_qq_line()+stat_qq()
-
-
-
-# Check for overdispersion in response ------------------------------------
-library(AER)
-R> rd <- glm(scal ~ ., data = RecreationDemand, family = poisson)
-R> dispersiontest(rd,trafo=1)
 
 # Run ANOVA ---------------------------------------------------------------
 library(nlme)
-library(car)
+
+options(contrasts=c("contr.sum","contr.poly"))
+
 
 ## Question 1: Are declining and/or grassland species vulnerable to 'shifting regime' w.r.t. distance to edge?
-model = lme(distEdge ~  is.declining + is.grassland + regime , 
-            random = ~1|year,
-            data=results.munged,
-            method="REML")
+model <- nlme::lme(distEdge.scaled ~ regime*is.declining*is.grassland + regime*year , 
+                   random = ~1|loc, 
+                   # assuming compound symmetry
+                   correlation=corCompSymm(form=~1|loc),
+                   data=results.munged,
+                   method="REML")
 
-Anova(model)
+anova(model)
+summary(model)
+start = list(mu = 0, sigma = 2, lambda = 0, k = 1)
+
+levels(results.munged$is.declining)
+levels(results.munged$is.grassland)
+levels(results.munged$is.grassDeclining)
 
 
-
-
-
+anova.lme(model)
+summary(model)
