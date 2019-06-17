@@ -370,25 +370,27 @@ ggplot(results, aes(x = log10.mass, y = year, group = year))+
   facet_wrap(~loc)+
   labs(title="density mass by route")
 
-p <- ggplot(results, aes(x = distEdge, y = year, group = year))+
+(p <- ggplot(results, aes(x = distEdge, y = year, group = year))+
   geom_density_ridges(scale = 10, size = 0.25, rel_min_height = 0.03) +
   theme_ridges()+
   facet_wrap(~loc)+
   xlab("distance to edge")+ylab("year")
-
+)
 saveFig(p,fn="distEdgePerRouteYear",dir = figDirTemp)
 
-p<-ggplot(results)+
+(p<-ggplot(results)+
   geom_density_ridges(aes(x = distEdge, y = year, group = year, fill=paste(year,factor(edgeSpp))),
                       alpha = .8, color = "white")+
   theme_ridges()+
   facet_wrap(~loc)+
   xlab("distance to edge")+ylab("year")
+)
 saveFig(p,fn="distEdgePerRouteYear2",dir = figDirTemp)
 
-p<-ggplot(results %>% filter(aou %in% grassSpecies$aou))+
+(p<-ggplot(results %>% filter(aou %in% grassSpecies$aou))+
   geom_line(aes(x = as.integer(as.character(year)), y = nSpp, color=loc),show.legend=FALSE)+
   xlab("year")+ylab("spp richness")+ggtitle("richness per route") 
+)
 saveFig(p,fn="richnessPerRoute",dir = figDirTemp)
 
 
@@ -515,10 +517,23 @@ saveFig(p=p222, fn = "distEdge_grassDeclinSpp_selectRoutes", dir = figDirTemp)
     ylab("distance to edge")+xlab("year")+ggtitle("All species in select routes"))
 saveFig(p=p3, fn = "distEdge_allSpp_selectRoutes", dir = figDirTemp)
 
+(p33 <- ggplot(results %>% filter(loc %in% rtesOfInterest) %>% mutate(is.grass = ifelse(commonName %in% grassSpecies$commonName,"yes","no")), aes(x=factor(year), y =distEdge, color=is.grass))+
+    geom_boxplot(outlier.shape = NA) + #geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("All species in select routes"))
+saveFig(p=p33, fn = "distEdge_allSpp_selectRoutes_grassYN", dir = figDirTemp)
+
+(p33 <- ggplot(results %>% filter(loc %in% rtesOfInterest) %>% mutate(is.declining= ifelse(commonName %in% decliningSpecies$commonName,"yes","no")), aes(x=factor(year), y =distEdge, color=is.declining))+
+    geom_boxplot(outlier.shape = NA) + #geom_jitter(width = 0.2)+
+    ylab("distance to edge")+xlab("year")+ggtitle("All species in select routes"))
+saveFig(p=p33, fn = "distEdge_allSpp_selectRoutes_decliningYN", dir = figDirTemp)
+
+
 (p4 <- ggplot(results, aes(x=factor(year), y =distEdge))+ 
     geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)+
     ylab("distance to edge")+xlab("year")+ggtitle("All species in all routes"))
 saveFig(p=p4, fn = "distEdge_allSpp_allRoutes", dir = figDirTemp)
+
+
 
 # Correlation of distance to edge with body mass --------------------------
 cor(results$distEdge, results$log10.mass, method="pearson")
