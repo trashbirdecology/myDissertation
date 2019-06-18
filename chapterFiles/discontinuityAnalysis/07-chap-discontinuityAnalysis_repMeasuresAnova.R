@@ -167,31 +167,53 @@ results.munged <- results %>%
     )
   ) %>%
   ## scale distanace to edge within each route-year
-  group_by(year, loc) %>% 
-  mutate(distEdge.scaled = scale(distEdge, center=TRUE)) %>% 
-  ungroup() %>% 
-  mutate(regime="testing") %>% 
+  group_by(year, loc) %>%
+  mutate(distEdge.scaled = scale(distEdge, center = TRUE)) %>%
+  ungroup() %>%
+  mutate(regime = "testing") %>%
   mutate(
-    regime = ifelse(year == rs.loc$year[1],  ifelse(lat <= rs.loc$lat[1], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[2],  ifelse(lat <= rs.loc$lat[2], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[3],  ifelse(lat <= rs.loc$lat[3], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[4],  ifelse(lat <= rs.loc$lat[4], "South","North"),regime)
-  ) %>% 
-  group_by(loc) %>% 
-  mutate(regimeShift = ifelse(n_distinct(regime)==1, "no","yes")) %>% 
+    regime = ifelse(
+      year == rs.loc$year[1],
+      ifelse(lat <= rs.loc$lat[1], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year == rs.loc$year[2],
+      ifelse(lat <= rs.loc$lat[2], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year == rs.loc$year[3],
+      ifelse(lat <= rs.loc$lat[3], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year == rs.loc$year[4],
+      ifelse(lat <= rs.loc$lat[4], "South", "North"),
+      regime
+    )
+  ) %>%
+  group_by(loc) %>%
+  mutate(regimeShift = ifelse(n_distinct(regime) == 1, "no", "yes")) %>%
   ungroup()
 
 # View(results.munged %>% distinct(year, loc, regime) %>% arrange(year))
-locs.keep <- results.munged %>% 
-  distinct(loc, year) %>% 
-  filter(n()>2)
+locs.keep <- results.munged %>%
+  distinct(loc, year) %>%
+  filter(n() > 2)
 
-results.munged <- results.munged %>% 
+results.munged <- results.munged %>%
   filter(loc %in% locs.keep$loc)
 
 ## ensure df has factors
-vars <- c("regime","is.declining", "is.grassland", "is.grassDeclining","loc","commonName")
-results.munged[vars] <- lapply(results.munged[vars], factor) 
+vars <-
+  c("regime",
+    "is.declining",
+    "is.grassland",
+    "is.grassDeclining",
+    "loc",
+    "commonName")
+results.munged[vars] <- lapply(results.munged[vars], factor)
 
 # Save tables to file for diss --------------------------------------------
 ## summary table to file for n routes per regime per year
@@ -212,16 +234,16 @@ fn = "grassDeclSppList")
 
 
 # Visualize the scaled response  ---------------------------------------
-ggplot(results.munged, aes(x=distEdge.scaled))+
+ggplot(results.munged, aes(x = distEdge.scaled)) +
   geom_histogram()
 
-ggplot(results.munged, aes(y=distEdge.scaled))+
+ggplot(results.munged, aes(y = distEdge.scaled)) +
   geom_boxplot()
 
 ## Q-Q plot
-ggplot(results.munged, aes(sample=distEdge.scaled))+
-  geom_qq_line()+stat_qq()+
-  xlab("standard normal quantiles")+
+ggplot(results.munged, aes(sample = distEdge.scaled)) +
+  geom_qq_line() + stat_qq() +
+  xlab("standard normal quantiles") +
   ylab("data quantiles")
 
 # ggplot(results.munged, aes(sample=distEdge.scaled, color=regime))+
@@ -240,99 +262,47 @@ PerformanceAnalytics::skewness(results.munged$distEdge.scaled)
 PerformanceAnalytics::kurtosis(results.munged$distEdge.scaled)
 ## 0.636 =  we cannot reach any conclusion about the kurtosis when it is betweeen -2 and 2. Excess kurtosis might be positive, negative, or zero....
 
-# Visualize dist to edge  --------------------------------------------------------------
-ggplot(results.munged)+
-  geom_boxplot(aes(x=regime, y=distEdge.scaled))+
-  facet_wrap(~year)
-
-ggplot(results.munged)+
-  geom_boxplot(aes(x=regime, y=distEdge.scaled))+
-  facet_wrap(year~is.grassland, ncol=2)
-
-
-ggplot(results.munged)+
-  geom_boxplot(aes(x=regime, y=distEdge.scaled))+
-  facet_wrap(year~is.declining, ncol=2)
-
-ggplot(results.munged)+
-  geom_boxplot(aes(x=regime, y=distEdge.scaled))+
-  facet_wrap(year~nAggs, ncol=7)
-
-ggplot(results.munged)+
-  geom_boxplot(aes(x=is.grassland, y=distEdge.scaled))+
-  facet_wrap(year~regime, ncol=2)
-
-ggplot(results.munged)+
-  geom_boxplot(aes(x=is.declining, y=distEdge.scaled))+
-  facet_wrap(year~regime, ncol=2)
-
-ggplot(results.munged)+
-  geom_boxplot(aes(x=is.grassDeclining, y=distEdge.scaled))+
-  facet_wrap(year~regime, ncol=2)
-
-
-# Correlation of nAggs with distEdge --------------------------------------
-ggplot(results.munged)+
-  geom_point(aes(x=nAggs, y=distEdge.scaled))+
-  facet_wrap(year~regime, ncol=2)
-
-
 # Transform the response var to achieve approximate normality ------------------------------------------------
 hist(results.munged$distEdge)
 hist(results.munged$distEdge.scaled)
-hist((results.munged$distEdge.scaled+1 - min(results.munged$distEdge.scaled))^(1/2))
-hist(log2(results.munged$distEdge.scaled+1 - min(results.munged$distEdge.scaled)))
-hist(log10(results.munged$distEdge.scaled+1 - min(results.munged$distEdge.scaled)))
+hist((
+  results.munged$distEdge.scaled + 1 - min(results.munged$distEdge.scaled)
+) ^ (1 / 2))
+hist(log2(
+  results.munged$distEdge.scaled + 1 - min(results.munged$distEdge.scaled)
+))
+hist(log10(
+  results.munged$distEdge.scaled + 1 - min(results.munged$distEdge.scaled)
+))
 
 
-interaction.plot(response = results.munged$distEdge.scaled,results.munged$regime, results.munged$year)
-interaction.plot(response = results.munged$distEdge.scaled,results.munged$year, results.munged$regime)
-interaction.plot(response = results.munged$distEdge.scaled,results.munged$year, results.munged$regimeShift)
-interaction.plot(response = results.munged$distEdge,results.munged$regime, results.munged$is.grassland)
-interaction.plot(response = results.munged$distEdge.scaled,results.munged$regime, results.munged$is.declining)
-
-# What are the factor levels ----------------------------------------------
-levels(results.munged$regime)
-levels(results.munged$is.declining)
-levels(results.munged$is.grassland)
-levels(results.munged$is.grassDeclining)
-
-
-# Run ANOVA ---------------------------------------------------------------
-library(nlme)
-# Set contrasts
-options(contrasts=c("contr.sum","contr.poly")) ## type 3
-
-## Build a mixed model using lme (hierarchical model)
-M.mixed <- nlme::lme(distEdge.scaled ~ regime*is.declining*is.grassland + regime*year , 
-                   random = ~1|loc, 
-                   data=results.munged,
-                   method="REML")
-
-summary(M.mixed)
-(M.mixed.aov <- anova.lme(M.mixed))
-plot(ACF(M.mixed), 0.05)
-plot(M.mixed)
-
-## Build a mixed model using gls  to try to account for temporal autocorrelation
-M.gls <- nlme::gls(distEdge.scaled ~ regime*is.declining*is.grassland + regime*year , 
-                  # assuming compound symmetry over time
-                     correlation=corCompSymm(form=~year), ## this term specifies that the order of the data is by year variable..
-                     data=results.munged,
-                     method="REML")
-
-### Compare this to the M.mixed
-anova(M.mixed, M.gls)
-  ## this did not really improve the model whatsoever...
-
+interaction.plot(response = results.munged$distEdge.scaled,
+                 results.munged$regime,
+                 results.munged$year)
+interaction.plot(response = results.munged$distEdge.scaled,
+                 results.munged$year,
+                 results.munged$regime)
+interaction.plot(response = results.munged$distEdge.scaled,
+                 results.munged$year,
+                 results.munged$regimeShift)
+interaction.plot(response = results.munged$distEdge,
+                 results.munged$regime,
+                 results.munged$is.grassland)
+interaction.plot(response = results.munged$distEdge.scaled,
+                 results.munged$regime,
+                 results.munged$is.declining)
 
 
 # Using `margins` package to visualize ------------------------------------
 
-M.pairwise <- nlme::lme(distEdge.scaled ~ regime*is.declining + regime*is.grassland + regime*year ,
-                        random= ~1|loc, 
-                     data=results.munged,
-                     method="REML")
+M.pairwise <- nlme::lme(
+  distEdge.scaled ~
+    regimeShift * is.declining +
+    regime * is.grassland + regime * year ,
+  random = ~ 1 | loc,
+  data = results.munged,
+  method = "REML"
+)
 
 summary(M.pairwise)
 anova(M.pairwise)
@@ -340,25 +310,30 @@ anova(M.pairwise)
 plot(M.pairwise)
 
 
-newdat <- expand.grid(regime=unique(results.munged$regime),
-                      is.grassland=unique(results.munged$is.grassland),
-                      is.declining=unique(results.munged$is.declining),
-                      year=unique(results.munged$year), 
-                      distEdge.scaled=0)
+newdat <- expand.grid(
+  regime = unique(results.munged$regime),
+  is.grassland = unique(results.munged$is.grassland),
+  is.declining = unique(results.munged$is.declining),
+  year = unique(results.munged$year),
+  distEdge.scaled = 0
+)
 
 
 # Visualize nlme::lme mixed model -----------------------------------------
 (mm <- model.matrix(terms(M.pairwise), newdat))
 # Calculate height based on the relevant effect sizes
 
-newdat$distEdge <- mm %*% fixef(M.pairwise)  
+newdat$distEdge <- mm %*% fixef(M.pairwise)
 
 pvar.mm.distEdge <- diag(mm %*% tcrossprod(vcov(M.pairwise), mm))
 
 # Add standard errors to the dataframe
-(newdat <- data.frame(newdat, 
-                         plo = newdat$distEdge - 1.96*sqrt(pvar.mm.distEdge),
-                         phi = newdat$distEdge + 1.96*sqrt(pvar.mm.distEdge))  
+(
+  newdat <- data.frame(
+    newdat,
+    plo = newdat$distEdge - 1.96 * sqrt(pvar.mm.distEdge),
+    phi = newdat$distEdge + 1.96 * sqrt(pvar.mm.distEdge)
+  )
 )
 
 
@@ -368,24 +343,30 @@ pvar.mm.distEdge <- diag(mm %*% tcrossprod(vcov(M.pairwise), mm))
 ## from ZUrr et al. Mixed effects modelling book chapter 5
 
 ## Step 1a: Fit a linear regression of the fixed effects
-M.lm <- lm(distEdge.scaled ~ regime*is.declining*is.grassland + regime*year, 
-           data = results.munged)
-plot(M.lm, select=c(1))
+M.lm <-
+  lm(distEdge.scaled ~ regime * is.declining * is.grassland + regime * year,
+     data = results.munged)
+plot(M.lm, select = c(1))
 
 ## Step 1b. See if we can deal with heterogeneity in residuals
 ### Determine whether we need to include a term for loc (route)
-E<-rstandard(M.lm)
-boxplot(E~loc, data = results.munged, axes=FALSE)
-abline(0,0); axis(2)
+E <- rstandard(M.lm)
+boxplot(E ~ loc, data = results.munged, axes = FALSE)
+abline(0, 0)
+axis(2)
 text(1:length(unique(results.munged$loc)), -2, levels(results.munged$loc))
-    #### since all the residuals overlap zero, we do not need to include the loc term
+#### since all the residuals overlap zero, we do not need to include the loc term
 ### Same for richness
-E<-rstandard(M.lm)
-boxplot(E~richness, data = results.munged, axes=FALSE); abline(0,0); axis(2)
-    #### do not need to include richness
+E <- rstandard(M.lm)
+boxplot(E ~ richness, data = results.munged, axes = FALSE)
+abline(0, 0)
+axis(2)
+#### do not need to include richness
 
 ## Step 2: Fit model with GLS
-Form <- formula(distEdge.scaled ~ is.declining*is.declining*is.grassland + regime*year)
+Form <-
+  formula(distEdge.scaled ~ is.declining * is.declining * is.grassland + regime *
+            year)
 # Form <- formula(distEdge.scaled ~ is.declining*is.grassland + regime*is.declining + regime*is.grassland + regime*year)
 
 M.gls <- gls(Form, data = results.munged)
@@ -394,16 +375,21 @@ M.gls <- gls(Form, data = results.munged)
 ### It appears that richness and loc (route) do not need to be added as random effects...
 
 ## Step 4: Fit the lme model
-M1.lme <- lme(Form, random = ~1|loc, method="REML", data = results.munged)
+M1.lme <-
+  lme(Form,
+      random = ~ 1 | loc,
+      method = "REML",
+      data = results.munged)
 
 ## Step 5: Compare old and new model
 anova(M.gls, M1.lme)
-    ## further, including loc as a random effect doesnt improve the gls model
+## further, including loc as a random effect doesnt improve the gls model
 
 ### Fit the lme with year as random intercept
-M2.lme <- lme(Form, ~1|richness,   method="REML", data = results.munged)
+M2.lme <-
+  lme(Form, ~ 1 | richness,   method = "REML", data = results.munged)
 anova(M.gls, M2.lme)
-      ## still, no need for a random intercept....
+## still, no need for a random intercept....
 
 ## Step 5b: REport model comparison as
 anova(M.gls, M1.lme)
@@ -413,33 +399,42 @@ anova(M.gls, M1.lme)
 M.best <- M.gls
 
 ## Step 6: Check residuaks of best model
-E2 <- resid(M.best, type="normalized")
+E2 <- resid(M.best, type = "normalized")
 F2 <- fitted(M.best)
-op <- par(mfrow=c(2,2))
+op <- par(mfrow = c(2, 2))
 plot(F2, E2)
-boxplot(E2 ~regime, main ="regime", ylab="residuals", data=results.munged)
-boxplot(E2 ~is.declining, main ="is.declining", ylab="residuals", data=results.munged)
-boxplot(E2 ~is.grassland, main ="is.grassland", ylab="residuals", data=results.munged)
+boxplot(E2 ~ regime,
+        main = "regime",
+        ylab = "residuals",
+        data = results.munged)
+boxplot(E2 ~ is.declining,
+        main = "is.declining",
+        ylab = "residuals",
+        data = results.munged)
+boxplot(E2 ~ is.grassland,
+        main = "is.grassland",
+        ylab = "residuals",
+        data = results.munged)
 par(op)
 
 
 ## Step 7: Get optimal fixed structure
 summary(M.best) ## look at the significance of the regression parameter and coefficient estiamtes
- ## Significant estiamtes are:
-      ### is.declinling,  is.grassland1, is.declining1:is.grassland1
+## Significant estiamtes are:
+### is.declinling,  is.grassland1, is.declining1:is.grassland1
 ## See which interaction terms are significant
 anova(M.best)
-       ### regime:is.declining:is.grassland  & is.declining:is.grassland
- 
+### regime:is.declining:is.grassland  & is.declining:is.grassland
+
 ### Step 7b: fit using ML by dropping insignificant interaction terms
-regime:year    
+regime:year
 regime:is.declining
 regime:is.grassland
 
-M1.Full  <- gls(Form, method="ML", data=results.munged)
-M1.A <- update(M1.Full, .~. -regime:year) # drop regime:year
-M1.B <- update(M1.Full, .~. -regime:is.declining)
-M1.C <- update(M1.Full, .~. -regime:is.grassland)
+M1.Full  <- gls(Form, method = "ML", data = results.munged)
+M1.A <- update(M1.Full, . ~ . - regime:year) # drop regime:year
+M1.B <- update(M1.Full, . ~ . - regime:is.declining)
+M1.C <- update(M1.Full, . ~ . - regime:is.grassland)
 
 ### Step 7c: compare new models with M1.Full
 anova(M1.Full, M1.A) ## this one is least sigificant of A,B,C -- so we will drop "regime:year: interaction term...
@@ -447,8 +442,12 @@ anova(M1.Full, M1.B)
 anova(M1.Full, M1.C)
 
 ### Step 8: Build new model with one dropped interaction term...
-Form2 <- formula(distEdge.scaled ~ is.declining*is.grassland + regime*is.declining + regime*is.grassland)
-M2.Full <- gls(Form2, method="ML",data=results.munged)
+Form2 <-
+  formula(
+    distEdge.scaled ~ is.declining * is.grassland + regime * is.declining + regime *
+      is.grassland
+  )
+M2.Full <- gls(Form2, method = "ML", data = results.munged)
 
 ### Step 8b: drop the NS fixed terms and compare with full model
-M2.A <- update(M2.Full, .~. -)
+M2.A <- update(M2.Full, . ~ .-)

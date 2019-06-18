@@ -13,7 +13,6 @@ library(kableExtra)
 Body size influences the frequency and intensity of inter- and intraspecific competition for resources, territory, and mates, thereby dictating the spatial and temporal scales at which a species of a distinct body size operates [@peters1983effect;@silva1995allometric; @allen2006patterns]. The scaling structure of terrestrial communities are have been found to have 'lumpy' distributions --- that is, they are not well-described using paramteric statistical descriptions. If the scaling structure of a community manifests in the body mass distribution of the community, it is  considered reflective of the  discontinuous and heterogeneous nature of resource use. Specifically, @holling1992cross suggests that the body mass distribution of a community or group of species reflects the discontinuous nature of environmental structures and processes. Quantitative analyses of animal body sizes [@allen2006patterns;@nash2014habitat] and other similar distributions has revealed the ubiquity of the discontinuous nature of distributions of animal body masses [@skillen2008ecological; @havlicek2001pelagic], plant biomass [@spanbauer2016body], city population sizes [@garmestani2005time], and animal home range sizes [@restrepo2008discontinuities]. 
 
 Given the ubiquity of discontinuities in body mass distributions of fauna and social systems [@allen2009discontinuities], the ecological signifance of these patterns may prove useful in understanding ecosystem structure and functioning [@angeler2016management]. Various hypotheses are given for drivers of the discontinuous structure of animal body mass distributions including those related to resource use (the Energetic and Textural Discontinuity hypotheses), community interactions, biogeography, and evolution/phylogenetics  [@allen2006discontinuities; @holling1992cross; @blackburn1994animal; @allen2006patterns], and these hypotheses consecutively represent the spatial and temporal scales at which the system components operate. 
-
 Discontinuities in body mass distributions been quantified using various methods (e.g., multivariate time series models, regression trees, and gap rarity index)  which are collectively referred to as 'discontinuity analyses' [@nash2014discontinuities; @barichievy2018method; @stow2007evaluating; @allen2009discontinuities]. Using various methods, the discontinuous nature of body masses of ecological communities is well-documented, having been observed in various taxa of both terrestrial [@allen2006patterns] and aquatic [@spanbauer2016body] communities. While identifying discontinuities in body mass aggregations and other systems is ubiquitous, much work is needed to sift through the hypotheses for drivers of these patterns [@allen2006patterns].
 
 The goal of this Chapter is to determine if, under the assumption there exists a northward-shifting spatial regime in the Central Great Plains from 1970 to 2015 (Roberts et al. in prep), local bird communities exhibited shifts in the scaling structure, and whether vulnerable species were impacted by this shift. I use discontinuity analyses to determine whether large-scale shifts in the vegetative structure impact scale-specific structure (as manifested in body mass distributions) of local bird communities. As an extension of @allen1999body I test competing hypotheses for drivers of discontinuous body mass distributions by examining the location of vulnerable (declining) bird species within individual body mass aggregations. I found no evidence to support hypotheses for top-down influence of landscape-scale changes in vegetative structure on body mass distributions in my study area. I discuss the negative results and the potential limitations of this study and approach. 
@@ -21,24 +20,22 @@ The goal of this Chapter is to determine if, under the assumption there exists a
 ## Methods
 The Central Great Plains has undergone a large-scale and relatively rapid spread of a native invasive woody plant, the Eastern Redcedar [*Juniperus virginianus*; @van2009causes; @twidwell2016plant;@donovan2018social], influencing habitat and resource availablity for bird communities across multiple spatial scales [@chapman2004tree]. A recent decadal analysis (C.P. Roberts et al. in prep) of avian body mass distributions suggets the avian communities within this study area underwent significant structural 'regime' shifts as a consequence of large-scale drivers including woody planty encroachment, and a climate change. Based on observed changes in the body mass distribution structure of avian communities the authors suggest a spatial regime boundary moved from approximately over a 30-year period. Here, I use determine the influence of their proposed moving spatial regime on local bird communities in a region of Kansas, U.S that is suggested to have undergone a regime shift. I achieve this by first identifying the scaling structure of the body mass distributions of local bird communities using discontinuity analysis. If the proposed regime shifts occurred at the larger spatial scales, then we should expect local-scale shifts to have occurred within the same time frame. I furhter examine the effect of the large-scale woody plant encroachment on the local avifauna by examining if and how vulnerable species (i.e. grassland obligates and other declining species) are impacted. Using the body mass distributions built from the entire local communities, I calculate the distance of these species-of-interest to the nearest 'edge' of a body mass aggregation. 
 
-### Study area and avian community data
+### Data
+#### Avian community censuses and body mass
+I constructed body mass distributions using route-level data from the North American Breeding Bird Survey hereafter [NABBS; @bbsData]. THe NABBS uses citizen scientist volunteers to annually collect data using a standardized roadside, single observer, 3-minute point count protocol and has organized data collection annually across North America (Figure \@ref(fig:bbsPoints)) since 1966. Each roadside survey consists of 50, 3-minute point counts (data collected using sight and sound) along  $\sim24.5$ mile stretch of road. Due to strict reliance on volunteers, some routes are not covered every year. Although NABBS volunteers attempt identify all species in the point-count area,  biases exist in data collection. For this reason, I removed some species from the analyses (see Methods section in Chapter \@ref(fisherSpatial) for furhter discussion of this topic). I retained species of the following taxonomic families: Accipitriformes, Apodiformes, Cathartiformes, Charadriiformes, Columbiformes, Coraciiformes, Cuculiformes, Galliformes, Gruiformes, Passeriformes and Piciformes.
 
-I constructed body mass distributions using route-level data from the North American Breeding Bird Survey hereafter [NABBS; @bbsData]. THe NABBS uses citizen scientist volunteers to annually collect data using a standardized roadside, single observer, 3-minute point count protocol and has organized data collection annually across North America (Figure \@ref(fig:bbsPoints)) since 1966. Each roadside survey consists of 50, 3-minute point counts (data collected using sight and sound) along  $\sim24.5$ mile stretch of road. Due to strict reliance on volunteers, some routes are not covered every year. I retained only the NABBS routes falling within the state boundaries of Kansas and Nebraska, further restricting analyses to routes with at least 3 years' worth of data during the years 1970, 1985, 2000, and 2015.
+I used sex-averaged body masses provided in @dunning2007crc. 
 
-Although NABBS volunteers attempt identify all species in the point-count area,  biases exist in data collection. For this reason, I removed some species from the analyses (see Methods section in Chapter \@ref(fisherSpatial) for a discussion). I removed all  
+##### Study area
+A recent study (Roberts et al. in prep) recently identified what they refer to as spatial regimes across a large portion of the central United States. Roberts et al. (in prep) hypothesize that a spatial regime boundary exists in the Central Great Plains and suggests it has exhibited a Northward shift at a rate of  $\sim\frac{0.05^\circ\ latitude}{year}$. The authors used discontinuity analysis to identify these 'spatial regimes', using the body massess of breeding bird communities. Their hypothesized spatial regime boundary occurs at $39^\circ$ latitude in year 1970, $39.5^\circ$ latitude  in year 1985, $40^\circ$ latitude in year 2000, and $40.5^\circ$ latitude in year 2015 (see Figure \@ref(fig:routesWithSpatRegimes)). I classify the BBS route as either the Northern or Southern regime according to whether the route lies above (Northern) or below (Southern) this 'moving spatial regime' according to their conclusions. I limited analysis of the NABBS data to years 1970, 1985, 2000, and 2015 and retained only NABBS routes which fell inside the same spatial boundaries of Roberts et al: the area between $28^\circ$ and $49^\circ$ latitude, and  $-97^\circ$ and $-93^\circ$ longitude. 
 
-I examined a subset of the area analyzed in C.P. Roberts et al. (in prep) which is proposed to have underwent a large-scale regime shift, as exhibited by changes in the scaling structure of the avian body mass distributions. Roberts et al. (in prep) hypothesize that a spatial regime boundary exists in the Central Great Plains and suggests it has exhibited a Northward shift at a rate of  $\sim\frac{0.05^\circ\ latitude}{year}$. The authors used discontinuity analysis to identify these 'spatial regimes', using the body massess of breeding bird communities. Their hypothesized spatial regime boundary occurs at $39^\circ$ latitude in year 1970, $39.5^\circ$ latitude  in year 1985, $40^\circ$ latitude in year 2000, and $40.5^\circ$ latitude in year 2015 (see Figure \@ref(fig:routesWithSpatRegimes)). I used the same latitudinal boundary to classify 
-
-Assuming the location and timing of these spatial regime boundaries, I restricted analyses to
-
+### Statistical analysis
+#### Discontinuity analysis to identify community scaling structure using body mass distributions
 
 
-### Identifying community scaling structure using body mass distributions
 
-### Distance to edge
+#### Mixed modelling to ___xxx___
 @allen2006body propose alternative hypotheses for the relative locations of species within the body mass aggregation distributions as a function of 'distance to edge', a measure indicating the distance (in log-mass units) of each species to the edge of a body mass aggreagtion. This distance to edge measure is zero when the species is an 'edge species', and increases as it approaches the center of a single body mass aggreagtion. 
-
-
 <!-- Invasive and declining species could be distributed in the body-mass patterns of the animal communities in a number of possible ways (Figure 2). -->
 <!-- (a) A random distribution would indicate that the -->
 <!-- scale-specific structure of animal communities was -->
@@ -125,20 +122,16 @@ The interactions among species in a single aggregation presumably experience a h
 
 
 
-## Methods
-@dunning2007crc
+
+- Given the extent and resolution of our data, we are able to only test the biotic interaction and textural discontinuity hypotheses [@allen2006patterns]. 
+- I used discontinuity analysis to identify potential scales in the body mass distribution of local avian communities [@barichievy2018method]. 
+- "If scale deendent resource variability is introduced into the model, then a single mode can separate into multiple modes (Marquet et al. 1995), indicating an interaction between the distribution of resources in the landscape and body mass aggregations." from allen2006patterns
 
 
-I used discontinuity analysis to identify the cross-scale structure of the avian communities across space-time [@barichievy2018method]. 
-
-
-###
-
-Given the extent and resolution of our data, we are able to only test the biotic interaction and textural discontinuity hypotheses [@allen2006patterns]. 
-"If scale deendent resource variability is introduced into the model, then a single mode can separate into multiple modes (Marquet et al. 1995), indicating an interaction between the distribution of resources in the landscape and body mass aggregations." from allen2006patterns
-
-
-##Bibliography: grassland birds in NA
+## Results
+### intepreting the lme
+http://www.bodowinter.com/tutorial/bw_LME_tutorial.pdf
+## Bibliography: grassland birds in NA
 @vickery2001recent -- grassland birds experienced widespread declines, in part spurring teh beginning of the NABBS program. BBS trend estiates estimated at least 15 species declinling over the period of 1966-1996,(Peterjohn and Sauer 1999). Compared to other functional grups or species guilds, grassland obligates seemed to have fared worst. These declines are primarily attributed to habitat loss and and degredation.
 And it i sno secret that native grasslands are among the most endangered biomes on the planet (Referece). 
 
