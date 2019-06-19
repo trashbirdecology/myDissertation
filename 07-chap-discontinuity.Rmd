@@ -47,20 +47,9 @@ knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCall
 @allen2006body propose alternative hypotheses for the relative locations of species within the body mass aggregation distributions as a function of 'distance-to-edge', a measure indicating the distance (in log-mass units) of each species to the edge of a body mass aggreagtion (methods described in Section \@ref(discontAnaly)). This distance-to-edge measure is zero when the species falls at the edge of a statistically identifed body mass aggregation. This species is often referred to as an 'edge species'.
 
 To determine the effect of spatial regime shifts on edge species, I identified two types of species of interest: (1) grassland obligates species and (2) species with declinling trends over last 5 decades.
-
-##### Grassland obligates
-The spatial regimes identified in @roberts2019spatial are attributed to large-scale changes in the landscape, including woody plant invasion. The loss of native grassland in our study area due to land conversion is largely attributed to anthropogenic land use change (e.g., development) and fire suppression. Numerous species have been negatively impacted by this widespread habitat loss, but grassland obligates are particularly at risk. I identified `r nrow(sppIntTab)` grassland obligate species potentially occurring in North America (Table \@ref(tab:sppIntTab)) from teh primary and grey literatures [@shriver2005distribution; @north2009state].
-GOs declinilng accordin gto @north2009state from 1970-2003, when the farm bill was introduced...
-Farm bill 2003 == leveling off but still major loss of GO
-
-##### Declinling species
-
-
-,  on the censuses in our study area (Figure \@ref(fig:studyarea)) from the 
-Grassland obligate
-
-
 ```{r sppIntTab, echo=FALSE, eval=TRUE}
+grass <-getTab("grassDeclSppList") %>% filter(id=="grass")
+decl <-getTab("grassDeclSppList") %>% filter(id=="declining")
 sppIntTab <- getTab("grassDeclSppList") %>% dplyr::select(commonName, id) %>%  
   spread(key="id" , -commonName, fill="")%>%
   rename(`English Common Name`= commonName, 
@@ -77,6 +66,30 @@ kable(sppIntTab %>% dplyr::select(-declining),
       caption="Grassland obligates and species with declining trends (1966-2015) in our study area.",
       booktabs=TRUE) 
 ```
+
+
+##### Grassland obligates
+The spatial regimes identified in @roberts2019spatial are attributed to large-scale changes in the landscape, including woody plant invasion. The loss of native grassland in our study area due to land conversion is largely attributed to anthropogenic land use change (e.g., development) and fire suppression. Numerous species have been negatively impacted by this widespread habitat loss, but grassland obligates are particularly at risk. I identified `r nrow(grass)` North American grassland obligate species (Table \@ref(tab:sppIntTab)) from the grey literature [@shriver2005distribution; @north2009state] and white literatures [@peterjohn1999population]. Although some grassland obligates were positively impacted by the Conservation Reserve Program [CRP; @peterjohn1999population], this group of birds exhibited strong declines in North America until approximately 2003, the year the Farm Bill was adopted [@north2009state].
+
+Grassland obligates should be strong indicators of the large-scale spatil regime shifts identified in @roberts2019spatial, given their high sensitivity to grassland habitat loss [@herkert1994effects; @].
+
+murray2008relationship  - gos
+
+
+##### Declinling species
+
+CENTRAL BBS REGION: https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiP8Oy8m_biAhWrsVQKHX4UCPoQjRx6BAgBEAU&url=https%3A%2F%2Fwww.mbr-pwrc.usgs.gov%2Fbbs%2Ftrend_info09.html&psig=AOvVaw3VuZg7WgeEtSj5sRQ7gRRD&ust=1561056688844889
+ - I used DECLINING SPECIES according to the BBS - those with BLUE trend estiamtes and NEGATIVE estaimtes from 1966-2015
+- ALthough other species are declining, their credibilities are lower than blue and therefore are not considered to be species of interest....
+
+BCR - I also included any additionally declining blue species in BCRs 11 (Prairie Potholes) and 22 (Eastern Tallgrass Prairie) 
+- BCR map http://nabci-us.org/assets/images/bcr_map2.jpg
+
+
+,  on the censuses in our study area (Figure \@ref(fig:studyarea)) from the 
+Grassland obligate
+
+
 
 ### Statistical analysis
 #### Identifying scaling structure of avian communities using body mass distributions {#discontAnaly}

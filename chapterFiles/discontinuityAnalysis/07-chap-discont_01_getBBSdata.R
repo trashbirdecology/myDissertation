@@ -29,63 +29,177 @@ sppListBBS <- bbsRDM::GetSpNames()
 
 ## These are grassland obligates
 grassSpecies <- data.frame(commonName = c(
+  "Baird's Sparrow",
   "Bobolink",
+  "Cassin's Sparrow",
   "Chestnut-collared Longspur",
   "Chipping Sparrow",
   "Dickcissel",
   "Eastern Meadowlark",
+  "Ferruginous Hawk",
   "Field Sparrow",
   "Grasshopper Sparrow",
   "Henslow's Sparrow",
+  "Horned Lark",
   "Lark Bunting",
   "Lark Sparrow",
-  "LeConte's Sparrow", # not any data for NE KS
-  "McCown's Longspur",  # not any data for NE KS; not much data at all, actually..
-  "Savannah Sparrow",   # bad data for NE KS
-  "Sprague's Pipit",    # not any data for NE KS
+  "LeConte's Sparrow", # 
+  "McCown's Longspur",  # not much data at all, actually..
+  "Mountain Plover", 
+  "Ring-necked Pheasant",
+  "Savannah Sparrow",   # 
+  "Sedge Wren",
+  "Sprague's Pipit",    # 
   "Western Meadowlark",
-  "Upland Sandpiper", # removed because it is a shorebird
+  "Upland Sandpiper", # 
   "Vesper Sparrow",
-  "Yellow-headed Blackbird"
+  "Yellow-headed Blakcbird"
 )
 )
 
 if(nrow(left_join(grassSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))==nrow(grassSpecies))){
-  grassSpecies <- left_join(grassSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))
+  grassSpecies <- left_join(grassSpecies , sppListBBS %>%  dplyr::select(aou, commonName))
 }else(stop("All species in grassSpecies are not identifed in sppListBBS. Check common names align in grassSpecies list and sppListBBS"))
 
 
-## these speices are those with declining trends in BBS years 1966-2015 AND have high (blue) Bbs regional credibility for KANSAS 
+## these speices are those with declining trends in BBS years 1966-2015 AND have high (blue) Bbs regional credibility for CENTRALBBS REGION!!! 
 decliningSpecies <-data.frame(commonName = c(
-  "Upland Sandpiper",
-  "Northern Bobwhite",
-  "American Kestrel",
-  "Swainson's Hawk",
+  ############ SPECIES DECLINLING AND BLUE IN KANSAS below
+  # "American Kestrel",
+  # "American Crow",
+  # "Brown-headed Cowbird",
+  # "Barn Swallow",
+  # "Brown Thrasher",
+  # "Black-capped Chickadee",
+  # "Common Grackle",
+  # "Chimney Swift",
+  # "Common Yellowthroat",
+  # "Eastern Meadowlark",
+  # "Eastern Kingbird",
+  # "Grasshopper Sparrow",
+  # "Loggerhead Shrike",
+  # "Northern Bobwhite",
+  # "Northern Rough-winged Swallow",
+  # "House Sparrow",
+  # "Nothern Flicker",
+  # "Red-headed Woodpecker",
+  # "Red-winged Blackbird",
+  # "Swainson's Hawk",
+  # "Western Kingbird",
+  # "Western Meadowlark",
+  # "Upland Sandpiper",
+  ########### SPECIES DECLINING and (credibility==BLUE AND YELLOW) IN CENTRAL BBS REGION + BCRs 11 , 22
+  "Northern Pintail",
+  "Little Blue Heron",
+  "King Rail",
+  "Marbled Godwit",
+  "Killdeer",
+  "Mountain Plover",
+  "Bobwhite Quail",
+  "Rock Pigeon",
+  "Mourning Dove",
+  "Yellow-billed Cuckoo",
+  "Downy Woodpecker",
   "Red-headed Woodpecker",
+  "Golden-fronted Woodpecker",
+  "Red-bellied Woodpecker",
+  "Chuck-wills-widow",
+  "Common Nighthawk",
+  "Chimney Swift", 
   "Eastern Kingbird",
-  "Western Kingbird",
+  "Scissor-tailed Flycatcher",
+  "Great-crested Flycatcher",
+  "Horned Lark",
+  "Black-billed Magpie",
   "American Crow",
+  "Blue Jay",
+  "European Starling",
+  "Red-winged Blackbird",
+  "Western Meadowlark",
+  "Orchard Oriole",
+  "Bullock's Oriole",
+  "Baltimore Oriole",
+  "Common Grackle",
+  "Brewer's Blackbird",
+  "Chestnut-collared Longspur",
+  "Baird's Sparrow",
+  "Grasshopper Sparrow",
+  "Clay-colored Sparrow",
+  "Brewer's Sparrow",
+  "Field Sparrow",
+  "Black-throated Sparrow",
+  "Bachmans's Sparrow",
+  "Cassin's Sparrow",
+  "Rufous-crowned Sparrow",
+  "Green-tailed Towhee",
+  "Canyon Towhee",
+  "Pyrrhuloxia",
+  "Barn Swallow",
+  "Lark Bunting",
+  "Purple Martin",
+  "Loggerhead",
+  "Prothonotary Warbler",
+  "Prairie Warbler",
+  "Ovenbird",
+  "Kentucky Warbler",
+  "Prothonotary Warbler",
+  "House Sparrow",
+  "Northern Mockingbird",
+  "Sprague's Pipit",
+  "Brown Thrasher",
+  "Bewick's Wren",
+  "Curve-billed Thrasher",
+  "Cactus Wren",
+  "Rock Wren",
+  "Brown-headed Nuthatch",
+  "Black-capped Chickadee",
+  "Carolina Chickadee",
+  "Verdin",
+  "Wood Thrush",
+  "Veery",
+  "Northern Flicker",
+  ## Eastern tallgrass delcinling yellow and blue (all not in avoce)
+  "Upland Sandpiper",
+  "Ring-necked Pheasant",
+  "Northern Bobwhite",
+  "Greater Prairie-chicken",
+  "Great-horned Owl",
+  "Yellow-billed Cuckoo",
+  "Black-billed Cuckoo",
+  "Belted Kingfisher",
+  "Common Nighthawk",
+  "Eastern Whip-poor-will",
   "Chimney Swift",
+  "Eastern Kingbird",
   "Eastern Meadowlark",
   "Western Meadowlark",
-  "Red-winged Blackbird",
-  "Brown-headed Cowbird",
-  "Common Grackle",
-  "Grasshopper Sparrow",
-  "Barn Swallow",
-  "Northern Rough-winged Swallow",
-  "Loggerhead Shrike",
+  "Savannah Sparrow",
+  "Vesper Sparrow",
+  "Field Sparrow",
+  "Song Sparrow",
+  "Dickcissel",
   "Common Yellowthroat",
-  "House Sparrow",
-  "Brown Thrasher",
-  "Black-capped Chickadee",
-  "Nothern Flicker"
-))
+  "Yellow-bellied Sapsucker",
+  ## Prairie potholes declinig yellow and blue (all not in aboce)
+  "Common Tern",
+  "American Wigeon",
+  "Northern Pintail",
+  "Gray Partridge",
+  "Marbled Godwit",
+  "Willet",
+  "Northern Harrier",
+  "American Kestrel",
+  "Short-eared Owl",
+  "Western Kingbird",
+  "European Starling"
+)) %>% 
+  # remove the duplicates!
+  distinct(commonName)
+
 
 if(nrow(left_join(decliningSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))==nrow(decliningSpecies))){
   decliningSpecies <- left_join(decliningSpecies ,sppListBBS %>%  dplyr::select(aou, commonName))
 }else(stop("All species in grassSpecies are not identifed in sppListBBS. Check common names align in grassSpecies list and sppListBBS"))
-
 
 
 # DOWNLOAD the BBS data for selected areas and SAVE TO FILE  ------------------------------------
@@ -117,12 +231,13 @@ bbsRoutes <- getRouteInfo()
 ## make sure we have enough data for the bounding box (i.e. all lat and long covered..)
 temp <- bbsRoutes %>% 
   filter(statenum %in% as.numeric(bbsRegions$regionCode %>% unique())) 
-summary(temp$latitude)
-summary(temp$longitude)
+# summary(temp$latitude)
+# summary(temp$longitude)
 
 ## TWO state files should only take a couple of minutes...
-if(downloadBBSData==TRUE){
+if(downloadBBSData){
   for(i in 1:length(regionFileName)){
+    # browser()
     warning("Downloading BBS data. If more than one or two states worth of data is required, you may want to talk a walk...")
     bbsData <-  importDataBBS(
       # arguments for getDataBBS()
