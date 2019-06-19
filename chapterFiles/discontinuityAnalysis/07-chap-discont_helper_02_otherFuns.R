@@ -123,7 +123,7 @@ saveTab <- function(tab, dir = tabDir, fn) {
 # Load results ------------------------------------------------------------
 loadResultsDiscont <-
   function(resultsDir = here::here("chapterFiles/discontinuityAnalysis/results/"),
-           myPattern = ".RDS") {
+           myPattern = "distcontResults") {
     files <-
       list.files(path = resultsDir,
                  pattern = myPattern,

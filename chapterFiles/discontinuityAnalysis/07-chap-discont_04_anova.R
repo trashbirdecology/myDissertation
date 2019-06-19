@@ -210,10 +210,13 @@ summary(M.mixed)
 
 saveTab(tab=M.mixed.aov, dir=tabDir, fn="aov-table-lme")
 
+VarCorr(M.mixed)
 
 ##########################################################################
 #### Interpret Model 
 ##########################################################################
+
+
 
 # Check residuals
 E2 <- resid(M.mixed, type = "normalized")
@@ -242,3 +245,10 @@ newdat <- expand.grid(regime=unique(dat$regime),
 
 
 
+p <- ggplot(dat, aes(x=regime, y=distEdge.scaled, colour=year)) +
+  geom_point(size=3) +
+  geom_line(aes(y=predict(M.mixed), group=loc, size="locs")) +
+  geom_line(data=newdat, aes(y=predict(M.mixed, level=0, newdata=newdat), size="Population")) +
+  scale_size_manual(name="Predictions", values=c("locs"=0.5, "Text"=3)) +
+  theme_bw(base_size=22) 
+p
