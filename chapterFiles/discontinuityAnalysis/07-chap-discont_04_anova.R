@@ -28,13 +28,14 @@ dat <-
   )) %>% 
   mutate(year = as.factor(year)) %>% 
   mutate(regimeShift = as.factor(regimeShift)) %>% 
-mutate(regime = as.factor(regime))
+  mutate(regime = as.factor(regime))
 
 glimpse(dat)
 
 # Reorder factor levels for easy interp
 levels(dat$regimeShift)
 dat$regimeShift = factor(dat$regimeShift,levels(dat$regimeShift)[c(3,2,1)])
+levels(dat$regimeShift)
 
 if(levels(dat$regime)[1]=="North") dat$regime = factor(dat$regime,levels(dat$regime)[c(2,1)])
 
@@ -64,15 +65,15 @@ suppressWarnings(dir.create(figDir))
 suppressWarnings(dir.create(tabDir))
 
 ################################################################################
-  ## A. DATA EXPLORATION of  response variable
+## A. DATA EXPLORATION of  response variable
 ################################################################################
 # 4. Check for normality beyond QQ plots and Boxplots ------------------------
 # Skewness
 PerformanceAnalytics::skewness(dat$distEdge.scaled)
-## 0.766 = right skew - moderate (0.5-1) to severe (>1) skewness.... troublesome
+## 0.752 = right skew - moderate (0.5-1) to severe (>1) skewness.... troublesome
 # Kurtosis
 PerformanceAnalytics::kurtosis(dat$distEdge.scaled)
-## 0.117 =  we cannot reach any conclusion about the kurtosis when it is betweeen -2 and 2. Excess kurtosis might be positive, negative, or zero....
+## 0.177 =  we cannot reach any conclusion about the kurtosis when it is betweeen -2 and 2. Excess kurtosis might be positive, negative, or zero....
 
 # 5. Visualize the original and scaled response  ---------------------------------------
 h1 <- ggplot(dat, aes(x = distEdge)) +
@@ -100,66 +101,79 @@ ggplot(dat, aes(sample = distEdge.scaled)) +
   ylab("data quantiles")
 ## better but not amazing
 
-# 6. Check for normality beyond QQ plots and Boxplots ------------------------
-# Skewness
-PerformanceAnalytics::skewness(dat$distEdge.scaled)
-## 0.766 = right skew - moderate (0.5-1) to severe (>1) skewness.... troublesome
-PerformanceAnalytics::kurtosis(dat$distEdge.scaled)
-## 0.117 =  we cannot reach any conclusion about the kurtosis when it is betweeen -2 and 2. Excess kurtosis might be positive, negative, or zero....
 
 
-# 7. Visualize dist to edge  --------------------------------------------------------------
-ggplot(dat) +
-  geom_boxplot(aes(x = regimeShift, y = distEdge.scaled)) +
+# 6. Visualize dist to edge  --------------------------------------------------------------
+year.ind <- c(1970, 1985, 2000, 2015)
+
+dat2 <- dat %>% filter(year %in% year.ind) %>% 
+  mutate(year = droplevels(year))
+
+ggplot(dat2) +
+  geom_boxplot(aes(x = regimeShift, y = distEdge)) +
   facet_wrap( ~ year)
 
-ggplot(dat) +
-  geom_boxplot(aes(x = regime, y = distEdge.scaled)) +
+ggplot(dat2) +
+  geom_boxplot(aes(x = regime, y = distEdge)) +
   facet_wrap(year ~ is.grassland, ncol = 2)
 
-
-ggplot(dat) +
-  geom_boxplot(aes(x = regime, y = distEdge.scaled)) +
+ggplot(dat2) +
+  geom_boxplot(aes(x = regime, y = distEdge)) +
   facet_wrap(year ~ is.declining, ncol = 2)
 
-ggplot(dat) +
-  geom_boxplot(aes(x = regime, y = distEdge.scaled)) +
+ggplot(dat2) +
+  geom_boxplot(aes(x = regime, y = distEdge)) +
   facet_wrap(year ~ nAggs, ncol = 7)
 
-ggplot(dat) +
-  geom_boxplot(aes(x = is.grassland, y = distEdge.scaled)) +
+ggplot(dat2) +
+  geom_boxplot(aes(x = is.grassland, y = distEdge)) +
   facet_wrap(year ~ regime, ncol = 2)
 
-ggplot(dat) +
-  geom_boxplot(aes(x = is.declining, y = distEdge.scaled)) +
+ggplot(dat2) +
+  geom_boxplot(aes(x = is.declining, y = distEdge)) +
   facet_wrap(year ~ regime, ncol = 2)
 
-ggplot(dat) +
-  geom_boxplot(aes(x = is.grassDeclining, y = distEdge.scaled)) +
+ggplot(dat2) +
+  geom_boxplot(aes(x = is.grassDeclining, y = distEdge)) +
   facet_wrap(year ~ regime, ncol = 2)
 
-# 8. Correlation of nAggs with distEdge --------------------------------------
-ggplot(dat) +
-  geom_point(aes(x = nAggs, y = distEdge.scaled)) +
-  facet_wrap(year ~ regime, ncol = 2)
+# 7. Correlation of nAggs with distEdge --------------------------------------
+
+ggplot(dat2, aes(x = nAggs, y = distEdge)) +
+  geom_point() +
+  facet_wrap(year ~ regime, ncol = 2)+
+  geom_smooth(method="lm", se = T)
+## unsurprisingly dist edge decreases with # aggs. so that's a good sign.
+
+# 8. Interaction plots -------------------------------------------------------
+## Nothing too interesting here..
+interaction.plot(response = dat2$distEdge,
+                 dat2$regime,
+                 dat2$year)
+interaction.plot(response = dat2$distEdge,
+                 dat2$year,
+                 dat2$regime)
+interaction.plot(response = dat2$distEdge,
+                 dat2$regime,
+                 dat2$is.grassland)
+## Below, however, we see something goin gon...
+saveFig(interaction.plot(response = dat2$distEdge,
+                 dat2$year,
+                 dat2$regimeShift, xlab = "Year", ylab="Mean distance-to-edge",
+                 trace.label = "Regime\n   shift",  # label for legend
+                 xpd = FALSE) ,#,  # 'clip' legend at border
+fn="intrxnRegimeShift", dir=figDir)
 
 
-# 9. Interaction plots -------------------------------------------------------
-interaction.plot(response = dat$distEdge.scaled,
-                 dat$regime,
-                 dat$year)
-interaction.plot(response = dat$distEdge.scaled,
-                 dat$year,
-                 dat$regime)
-interaction.plot(response = dat$distEdge.scaled,
-                 dat$year,
-                 dat$regimeShift)
-interaction.plot(response = dat$distEdge,
-                 dat$regime,
-                 dat$is.grassland)
-interaction.plot(response = dat$distEdge.scaled,
-                 dat$regime,
-                 dat$is.declining)
+saveFig(interaction.plot(response = dat2$distEdge,
+                 dat2$regimeShift,
+                 dat2$is.declining,
+                 fun = "mean",
+                 xlab="Regime shift",
+                 ylab="Mean distance-to-edge",
+                 trace.label = "Declining\n   species",  # label for legend
+                 xpd = FALSE) ,#,  # 'clip' legend at border
+        fn="intrxnRegimeShiftDeclinSpp", dir=figDir)
 
 
 ################################################################################
@@ -174,8 +188,10 @@ rs.loc <- data.frame(year = as.factor(c(1970, 1985, 2000, 2015)),
 ################################################################################
 ## ANOVA time
 ################################################################################
-# 11. Ensure factors and best levels ----------------------------------------------
+# 11. Ensure factors and best level order for interpretation purposes ----------------------------------------------
 levels(dat$regime)
+dat$regimeShift = factor(dat$regimeShift,levels(dat$regimeShift)[c(2,1)])
+levels(dat$regimeShift)
 levels(dat$is.declining)
 levels(dat$is.grassland)
 levels(dat$is.grassDeclining)
@@ -193,13 +209,13 @@ dat <- dat %>%
 
 M.mixed <-
   nlme::lme(
-    distEdge.scaled ~ 
+    distEdge ~ 
       regime * is.declining + # declining species X whether the route underwent shift 
       regime * is.grassland + # grassland oblig. species X whether the route underwent shift
       is.grassland * is.declining + # grass X declining
       regime * year , # south or north regime X year
     random = ~ 1 | loc / aou,  
-   correlation = corAR1(form = ~ 1 | loc / aou),
+    correlation = corAR1(form = ~ 1 | loc / aou),
     data = dat,
     method = "REML"
   )
@@ -215,8 +231,6 @@ VarCorr(M.mixed)
 ##########################################################################
 #### Interpret Model 
 ##########################################################################
-
-
 
 # Check residuals
 E2 <- resid(M.mixed, type = "normalized")
