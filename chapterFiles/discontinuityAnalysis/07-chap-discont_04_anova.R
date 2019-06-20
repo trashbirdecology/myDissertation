@@ -22,17 +22,31 @@ library(ggthemes)
 ## `regimeShift` =  one of c(south, north, regimeShift). Did the location (`loc`; BBS route) undergo a 'regime shift' according to authors? If so, categorized as regimeShift. If not, categorized as either norht or south regime, corresponding to `regime`
 
 
-# 1. Load anlaysis data ------------------------------------------------------
+# 0. Load anlaysis data ------------------------------------------------------
 dat <-
   readRDS(here::here(
     "/chapterFiles/discontinuityAnalysis/results/datForAnova.RDS"
   )) %>% 
   mutate(year = as.factor(year)) %>% 
   mutate(regimeShift = as.factor(regimeShift)) %>% 
-  mutate(regime = as.factor(regime))
+  mutate(regime = as.factor(regime)) %>%
+  mutate(year.int = as.integer(as.character(year)), 
+         year.int = year.int - min(year.int))%>% 
+  mutate(
+    sppGroup = "allOthers",
+    sppGroup = ifelse(is.declining=="yes","declining",sppGroup),
+    sppGroup = ifelse(is.grassland=="yes","grassObli",sppGroup),
+    sppGroup = as.factor(ifelse(is.grassDeclining=="yes","grassDeclining", sppGroup) )
+  ) 
 
 glimpse(dat)
 
+# arrange data frame prior to analysis to account for year as a factor and as a rep. measure
+dat <- dat %>%
+  arrange(loc, aou, year)
+
+
+# 1. Munge analysis data -------------------------------------------------
 # Reorder factor levels for easy interp
 levels(dat$regimeShift)
 dat$regimeShift = factor(dat$regimeShift,levels(dat$regimeShift)[c(3,2,1)])
@@ -40,6 +54,12 @@ levels(dat$regimeShift)
 
 if(levels(dat$regime)[1]=="North") dat$regime = factor(dat$regime,levels(dat$regime)[c(2,1)])
 
+## Set year ind for simple plotting 
+year.ind <- c(1970, 1985, 2000, 2015)
+
+## Reduced dataset for simpler plotting
+dat2 <- dat %>% filter(year %in% year.ind) %>% 
+  mutate(year = droplevels(year)) 
 
 # 2. Source functions --------------------------------------------------------
 to.source <- list.files(
@@ -105,31 +125,21 @@ ggplot(dat, aes(sample = distEdge.scaled)) +
 
 
 # 6. Visualize dist to edge  --------------------------------------------------------------
-year.ind <- c(1970, 1985, 2000, 2015)
-dat2 <- dat %>% filter(year %in% year.ind) %>% 
-  mutate(year = droplevels(year)) %>% 
-  mutate(
-    sppGroup = "allOthers",
-    sppGroup = ifelse(is.declining=="yes","declining",sppGroup),
-    sppGroup = ifelse(is.grassland=="yes","grassObli",sppGroup),
-    sppGroup = as.factor(ifelse(is.grassDeclining=="yes","grassDeclining", sppGroup) )
-  ) 
-
 
 ## Determine whether we need random intercepts/slopes for loc and aou
 ggplot(dat2) +
-  geom_boxplot(aes(x = loc, y = distEdge)) +
+  geom_boxplot(aes(x = loc, y = distEdge.scaled)) +
   facet_wrap(~year  , ncol = 2)+
-  xlab("NABBS route")+ ylab("distance to edge")+
+  xlab("NABBS route")+ ylab("scaled distance to edge")+
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
   ## eh.. not too much difference among locations....
   saveFig(last_plot(), dir=figDir, fn="randEffect_loc")
 
 ggplot(dat2) +
-  geom_boxplot(aes(x = as.factor(aou), y = distEdge)) +
+  geom_boxplot(aes(x = as.factor(aou), y = distEdge.scaled)) +
   facet_wrap(~year  , ncol = 2)+
-  xlab("species")+ ylab("distance to edge")+
+  xlab("species")+ ylab("scaled distance to edge")+
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 ## eh.. not too much difference among locations....
@@ -137,49 +147,30 @@ saveFig(last_plot(), dir=figDir, fn="randEffect_aou")
   ## definitely need to account for AOU/species ID
 
 ggplot(dat2) +
-  geom_boxplot(aes(x = sppGroup, y = distEdge, color = regime)) +
+  geom_boxplot(aes(x = sppGroup, y = distEdge.scaled, color = regime)) +
   facet_wrap(~year  , ncol = 2)+
-  xlab("species group")+ ylab("distance to edge")+
+  xlab("species group")+ ylab("scaled distance to edge")+
   theme(axis.text.x = element_text(angle = 90))+
   ggthemes::scale_color_colorblind()
 saveFig(last_plot(), dir=figDir, fn="randEffect_sppGroupByRegime")
 
 
 
-ggplot(dat2 %>% group_by(year, loc, sppGroup) %>% summarise(y = mean(distEdge)))+ 
+ggplot(dat2 %>% group_by(year, loc, sppGroup) %>% summarise(y = mean(distEdge.scaled)))+ 
   geom_line(aes(x=year, y =y, group=loc), show.legend=F)+
   facet_wrap(~sppGroup)
 
-ggplot(dat2 %>% group_by(year, aou, sppGroup) %>% summarise(y = mean(distEdge)))+ 
+ggplot(dat2 %>% group_by(year, sppGroup, regime) %>% summarise(y = mean(distEdge.scaled)))+ 
+  geom_line(aes(x=year, y =y,group= regime), show.legend=F)+
+  facet_wrap(~sppGroup)
+
+ggplot(dat2 %>% group_by(year, aou, sppGroup) %>% summarise(y = mean(distEdge.scaled)))+ 
   geom_line(aes(x=year, y =y, group=aou), show.legend=F)+
   facet_wrap(~sppGroup)
 
 
-#   geom_boxplot(aes(x = regime, y = distEdge)) +
-#   facet_wrap(year ~ is.grassland, ncol = 2)
-# 
-# ggplot(dat2) +
-#   geom_boxplot(aes(x = regime, y = distEdge)) +
-#   facet_wrap(year ~ is.declining, ncol = 2)
-# 
-# ggplot(dat2) +
-#   geom_boxplot(aes(x = regime, y = distEdge)) +
-#   facet_wrap(year ~ nAggs, ncol = 7)
-# 
-# ggplot(dat2) +
-#   geom_boxplot(aes(x = is.grassland, y = distEdge)) +
-#   facet_wrap(year ~ regime, ncol = 2)
-# 
-# ggplot(dat2) +
-#   geom_boxplot(aes(x = is.declining, y = distEdge)) +
-#   facet_wrap(year ~ regime, ncol = 2)
-# 
-# ggplot(dat2) +
-#   geom_boxplot(aes(x = is.grassDeclining, y = distEdge)) +
-#   facet_wrap(year ~ regime, ncol = 2)
 
 # 7. Correlation of nAggs with distEdge --------------------------------------
-
 ggplot(dat2, aes(x = nAggs, y = distEdge)) +
   geom_point() +
   facet_wrap(year ~ regime, ncol = 2)+
@@ -230,7 +221,6 @@ rs.loc <- data.frame(year = as.factor(c(1970, 1985, 2000, 2015)),
 ## ANOVA time
 ################################################################################
 # 11. Ensure factors and best level order for interpretation purposes ----------------------------------------------
-
 dat <- dat %>% 
   mutate(
     sppGroup = "allOthers",
@@ -252,10 +242,6 @@ str(dat$year)
 library(nlme)
 # Set contrasts
 options(contrasts = c("contr.sum", "contr.poly")) ## type 3
-
-# arrange data frame prior to analysis to account for year as a factor and as a rep. measure
-dat <- dat %>% 
-  arrange(loc, aou, year) 
 
 
 M.mixed <-
@@ -279,29 +265,49 @@ VarCorr(M.mixed)
 saveTab(tab=M.mixed.aov, dir=tabDir, fn="aov-table-lme")
 
 
-#  Make a new df wehre year is int and starts at 0
-dat3 <- dat %>% 
-  mutate(
-    year = as.integer(year),
-    year = year - min(year))
+M.mixed <-
+  nlme::lme(
+    distEdge ~ 
+      regime * is.declining + # declining species X whether the route underwent shift 
+      regime * is.grassland + # grassland oblig. species X whether the route underwent shift
+      is.grassland * is.declining + # grass X declining
+      regime * year , # south or north regime X year
+    random = ~ 1 | loc / aou,  
+    correlation = corAR1(form = ~ 1 | loc / aou),
+    data = dat,
+    method = "REML"
+  )
+
+
+# My new model....
 
 M.mixed2 <-
   nlme::lme(
-    distEdge ~ 
-      regime * sppGroup + year , 
-    random = ~ year | loc / aou,  
+    distEdge.scaled ~ year.int + regime*sppGroup, 
+    random = ~year.int + 1|loc/aou,  
     correlation = corAR1(form = ~ 1 | loc / aou ),
-    data = dat3,
-    method = "REML"
-  )
+    data = dat,
+    method = "REML")
+
+## Does intercept approximately equal the mean Y?
+M.mixed2$coefficients$fixed[1]
+mean(dat$distEdge)
 
 plot(M.mixed2)
 (M.mixed2.aov <- nlme::anova.lme(M.mixed2))
 summary(M.mixed2)
 
-## Does intercept approximately equal the mean Y?
-M.mixed2$coefficients$fixed[1]
-mean(dat3$distEdge)
+coef.pa.time.nlme <- coef(pa.na.time.nlme)
+round(coef.pa.time.nlme, 2)
+
+
+m.randint <- nlme::lme(fixed = distEdge.scaled ~ 
+               regime * sppGroup + year.int, 
+             random = ~ 1 | loc/aou, 
+             correlation = corAR1(form = ~ 1 | loc / aou ),
+             data = dat)
+m.randslope <- update(m.randint, random = ~ year|loc/aou)
+
   ## Yes..
 
 
