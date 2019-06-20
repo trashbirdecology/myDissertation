@@ -600,8 +600,8 @@ grassDeclining.results <- results %>%
                                        y = distEdge)) +
     geom_boxplot(outlier.shape = 1, show.legend = FALSE) +
     # geom_jitter(width = 0.2, show.legend = FALSE)+
-    ylab("distance to edge") + xlab("year") +
     ggtitle("Declining species in all routes")+
+    ylab("distance to edge") + xlab("year") +
     theme(axis.text.x = element_text(angle = 90))
 )
 saveFig(p = p1, fn = "distEdge_decliningSpp_allRoutes", dir = figDirTemp)

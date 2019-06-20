@@ -1,6 +1,7 @@
 # Init -------------------------------------------------------------------
 rm(list = ls())
 library(tidyverse)
+library(ggthemes)
 
 
 # META -------------------------------------------------------------------
@@ -105,37 +106,77 @@ ggplot(dat, aes(sample = distEdge.scaled)) +
 
 # 6. Visualize dist to edge  --------------------------------------------------------------
 year.ind <- c(1970, 1985, 2000, 2015)
-
 dat2 <- dat %>% filter(year %in% year.ind) %>% 
-  mutate(year = droplevels(year))
+  mutate(year = droplevels(year)) %>% 
+  mutate(
+    sppGroup = "allOthers",
+    sppGroup = ifelse(is.declining=="yes","declining",sppGroup),
+    sppGroup = ifelse(is.grassland=="yes","grassObli",sppGroup),
+    sppGroup = as.factor(ifelse(is.grassDeclining=="yes","grassDeclining", sppGroup) )
+  ) 
+
+
+## Determine whether we need random intercepts/slopes for loc and aou
+ggplot(dat2) +
+  geom_boxplot(aes(x = loc, y = distEdge)) +
+  facet_wrap(~year  , ncol = 2)+
+  xlab("NABBS route")+ ylab("distance to edge")+
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+  ## eh.. not too much difference among locations....
+  saveFig(last_plot(), dir=figDir, fn="randEffect_loc")
 
 ggplot(dat2) +
-  geom_boxplot(aes(x = regimeShift, y = distEdge)) +
-  facet_wrap( ~ year)
+  geom_boxplot(aes(x = as.factor(aou), y = distEdge)) +
+  facet_wrap(~year  , ncol = 2)+
+  xlab("species")+ ylab("distance to edge")+
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+## eh.. not too much difference among locations....
+saveFig(last_plot(), dir=figDir, fn="randEffect_aou")
+  ## definitely need to account for AOU/species ID
 
 ggplot(dat2) +
-  geom_boxplot(aes(x = regime, y = distEdge)) +
-  facet_wrap(year ~ is.grassland, ncol = 2)
+  geom_boxplot(aes(x = sppGroup, y = distEdge, color = regime)) +
+  facet_wrap(~year  , ncol = 2)+
+  xlab("species group")+ ylab("distance to edge")+
+  theme(axis.text.x = element_text(angle = 90))+
+  ggthemes::scale_color_colorblind()
+saveFig(last_plot(), dir=figDir, fn="randEffect_sppGroupByRegime")
 
-ggplot(dat2) +
-  geom_boxplot(aes(x = regime, y = distEdge)) +
-  facet_wrap(year ~ is.declining, ncol = 2)
 
-ggplot(dat2) +
-  geom_boxplot(aes(x = regime, y = distEdge)) +
-  facet_wrap(year ~ nAggs, ncol = 7)
 
-ggplot(dat2) +
-  geom_boxplot(aes(x = is.grassland, y = distEdge)) +
-  facet_wrap(year ~ regime, ncol = 2)
+ggplot(dat2 %>% group_by(year, loc, sppGroup) %>% summarise(y = mean(distEdge)))+ 
+  geom_line(aes(x=year, y =y, group=loc), show.legend=F)+
+  facet_wrap(~sppGroup)
 
-ggplot(dat2) +
-  geom_boxplot(aes(x = is.declining, y = distEdge)) +
-  facet_wrap(year ~ regime, ncol = 2)
+ggplot(dat2 %>% group_by(year, aou, sppGroup) %>% summarise(y = mean(distEdge)))+ 
+  geom_line(aes(x=year, y =y, group=aou), show.legend=F)+
+  facet_wrap(~sppGroup)
 
-ggplot(dat2) +
-  geom_boxplot(aes(x = is.grassDeclining, y = distEdge)) +
-  facet_wrap(year ~ regime, ncol = 2)
+
+#   geom_boxplot(aes(x = regime, y = distEdge)) +
+#   facet_wrap(year ~ is.grassland, ncol = 2)
+# 
+# ggplot(dat2) +
+#   geom_boxplot(aes(x = regime, y = distEdge)) +
+#   facet_wrap(year ~ is.declining, ncol = 2)
+# 
+# ggplot(dat2) +
+#   geom_boxplot(aes(x = regime, y = distEdge)) +
+#   facet_wrap(year ~ nAggs, ncol = 7)
+# 
+# ggplot(dat2) +
+#   geom_boxplot(aes(x = is.grassland, y = distEdge)) +
+#   facet_wrap(year ~ regime, ncol = 2)
+# 
+# ggplot(dat2) +
+#   geom_boxplot(aes(x = is.declining, y = distEdge)) +
+#   facet_wrap(year ~ regime, ncol = 2)
+# 
+# ggplot(dat2) +
+#   geom_boxplot(aes(x = is.grassDeclining, y = distEdge)) +
+#   facet_wrap(year ~ regime, ncol = 2)
 
 # 7. Correlation of nAggs with distEdge --------------------------------------
 
@@ -158,21 +199,21 @@ interaction.plot(response = dat2$distEdge,
                  dat2$is.grassland)
 ## Below, however, we see something goin gon...
 saveFig(interaction.plot(response = dat2$distEdge,
-                 dat2$year,
-                 dat2$regimeShift, xlab = "Year", ylab="Mean distance-to-edge",
-                 trace.label = "Regime\n   shift",  # label for legend
-                 xpd = FALSE) ,#,  # 'clip' legend at border
-fn="intrxnRegimeShift", dir=figDir)
+                         dat2$year,
+                         dat2$regimeShift, xlab = "Year", ylab="Mean distance-to-edge",
+                         trace.label = "Regime\n   shift",  # label for legend
+                         xpd = FALSE) ,#,  # 'clip' legend at border
+        fn="intrxnRegimeShift", dir=figDir)
 
 
 saveFig(interaction.plot(response = dat2$distEdge,
-                 dat2$regimeShift,
-                 dat2$is.declining,
-                 fun = "mean",
-                 xlab="Regime shift",
-                 ylab="Mean distance-to-edge",
-                 trace.label = "Declining\n   species",  # label for legend
-                 xpd = FALSE) ,#,  # 'clip' legend at border
+                         dat2$regimeShift,
+                         dat2$is.declining,
+                         fun = "mean",
+                         xlab="Regime shift",
+                         ylab="Mean distance-to-edge",
+                         trace.label = "Declining\n   species",  # label for legend
+                         xpd = FALSE) ,#,  # 'clip' legend at border
         fn="intrxnRegimeShiftDeclinSpp", dir=figDir)
 
 
@@ -189,12 +230,21 @@ rs.loc <- data.frame(year = as.factor(c(1970, 1985, 2000, 2015)),
 ## ANOVA time
 ################################################################################
 # 11. Ensure factors and best level order for interpretation purposes ----------------------------------------------
+
+dat <- dat %>% 
+  mutate(
+    sppGroup = "allOthers",
+    sppGroup = ifelse(is.declining=="yes","declining",sppGroup),
+    sppGroup = ifelse(is.grassland=="yes","grassObli",sppGroup),
+    sppGroup = as.factor(ifelse(is.grassDeclining=="yes","grassDeclining", sppGroup) )
+  ) 
+
 levels(dat$regime)
-dat$regimeShift = factor(dat$regimeShift,levels(dat$regimeShift)[c(2,1)])
-levels(dat$regimeShift)
 levels(dat$is.declining)
 levels(dat$is.grassland)
 levels(dat$is.grassDeclining)
+levels(dat$sppGroup)
+
 # ensure year is a factor
 str(dat$year)
 
@@ -206,6 +256,7 @@ options(contrasts = c("contr.sum", "contr.poly")) ## type 3
 # arrange data frame prior to analysis to account for year as a factor and as a rep. measure
 dat <- dat %>% 
   arrange(loc, aou, year) 
+
 
 M.mixed <-
   nlme::lme(
@@ -223,10 +274,62 @@ M.mixed <-
 plot(M.mixed)
 (M.mixed.aov <- nlme::anova.lme(M.mixed))
 summary(M.mixed)
+VarCorr(M.mixed)
 
 saveTab(tab=M.mixed.aov, dir=tabDir, fn="aov-table-lme")
 
-VarCorr(M.mixed)
+
+#  Make a new df wehre year is int and starts at 0
+dat3 <- dat %>% 
+  mutate(
+    year = as.integer(year),
+    year = year - min(year))
+
+M.mixed2 <-
+  nlme::lme(
+    distEdge ~ 
+      regime * sppGroup + year , 
+    random = ~ year | loc / aou,  
+    correlation = corAR1(form = ~ 1 | loc / aou ),
+    data = dat3,
+    method = "REML"
+  )
+
+plot(M.mixed2)
+(M.mixed2.aov <- nlme::anova.lme(M.mixed2))
+summary(M.mixed2)
+
+## Does intercept approximately equal the mean Y?
+M.mixed2$coefficients$fixed[1]
+mean(dat3$distEdge)
+  ## Yes..
+
+
+# Using LME4 lmer ---------------------------------------------------------
+
+
+lmer.full <- lme4::lmer(distEdge ~ 
+                          regime * sppGroup + 
+                          (1 + regime*sppGroup | loc) + 
+                          (1 + year            | loc) + 
+                          (1 + year            | aou), 
+                        dat3)
+
+nlme.full <- nlme::lme(data   = distEdge, 
+                       fixed  =     , 
+                       random =  
+                       )
+
+
+# GEEE GLm model -------------------------------------------
+# install.packages("geepack")
+library("geepack")
+
+df <- dat3 %>% mutate(id = paste0(loc,"_" ,aou))
+mf <- formula(distEdge ~ year + regime + sppGroup)
+geeInd <- geeglm(mf, id=id, data=df, family=beta, corstr="ind")
+summary(geeInd)
+
 
 ##########################################################################
 #### Interpret Model 
