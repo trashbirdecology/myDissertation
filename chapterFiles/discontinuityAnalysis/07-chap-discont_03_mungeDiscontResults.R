@@ -17,9 +17,9 @@ source(
 # takes about thirty to sixty seconds......
 
 ## This will return a few objects:
-### 1. bbsData.forAnalysis - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
+### 1. bbsData - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
 ### 2. grassSpecies - some grassland obligate spp of interest
-### 3. routes_gridList - the grid design assosciation with rowID and colID on the bbsData.forAnalysis
+### 3. routes_gridList - the grid design assosciation with rowID and colID on the bbsData
 
 
 # 2. Source helper functions -------------------------------------------------
@@ -41,28 +41,27 @@ source(
 
 # 3. Define, create directories -------------------------------------
 ## discontinuity results location
-reultsDir <-
-  here::here("chapterFiles/discontinuityAnalysis/results/")
+resultsDir <-  here::here("/chapterFiles/discontinuityAnalysis/results/")
 
 ## figures
 figDirTemp <-
-  here::here("chapterFiles/discontinuityAnalysis/tempFigs/")
+  here::here("/chapterFiles/discontinuityAnalysis/tempFigs/")
 figDir <-
-  here::here("chapterFiles/discontinuityAnalysis/figsCalledInDiss/")
+  here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/")
 suppressWarnings(dir.create(figDir))
 suppressWarnings(dir.create(figDirTemp))
-tabDir <- here::here("chapterFiles/discontinuityAnalysis/tabsCalledInDiss/")
+tabDir <- here::here("/chapterFiles/discontinuityAnalysis/tabsCalledInDiss/")
 suppressWarnings(dir.create(tabDir))
 
 
 # 4. Merge discontinuity results and bbs dat -----------------------------------------------------------
 # Import the discontinuity analysis results
-gaps <- loadResultsDiscont()%>%
+gaps <- loadResultsDiscont(resultsDir=resultsDir, myPattern = "discont") %>%
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep = "_")))
 
 # Join the results with the locations of the BBS routes
 gaps <-
-  left_join(gaps, bbsData.forAnalysis)
+  left_join(gaps, bbsData)
 
 ## Load the GRI 'constant power table'
 pwr <-
@@ -260,7 +259,7 @@ fn = "grassDeclSppList")
 
 # 8. Species turnover within locations  ----------------------------------------------------------------------
 # Get lag-1 year turnover
-turnover <- bbsData.forAnalysis %>%
+turnover <- bbsData %>%
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep = "_"))) %>%
   dplyr::select(year, loc,  aou) %>%
   group_by(loc, year) %>%
