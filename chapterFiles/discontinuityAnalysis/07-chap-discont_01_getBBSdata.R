@@ -48,12 +48,12 @@ grassSpecies <- data.frame(commonName = c(
   "Mountain Plover", 
   "Ring-necked Pheasant",
   "Savannah Sparrow",   # 
-  "Sedge Wren",
+  # "Sedge Wren", ## larkin powell says no no
   "Sprague's Pipit",    # 
   "Western Meadowlark",
   "Upland Sandpiper", # 
-  "Vesper Sparrow",
-  "Yellow-headed Blakcbird"
+  "Vesper Sparrow"
+  # "Yellow-headed Blackbird" ## larkin powell says no no
 )
 )
 
@@ -95,7 +95,7 @@ decliningSpecies <-data.frame(commonName = c(
   "Marbled Godwit",
   "Killdeer",
   "Mountain Plover",
-  "Bobwhite Quail",
+  "Northern Bobwhite",
   "Rock Pigeon",
   "Mourning Dove",
   "Yellow-billed Cuckoo",
@@ -103,12 +103,12 @@ decliningSpecies <-data.frame(commonName = c(
   "Red-headed Woodpecker",
   "Golden-fronted Woodpecker",
   "Red-bellied Woodpecker",
-  "Chuck-wills-widow",
+  "Chuck-will's-widow",
   "Common Nighthawk",
   "Chimney Swift", 
   "Eastern Kingbird",
   "Scissor-tailed Flycatcher",
-  "Great-crested Flycatcher",
+  "Great Crested Flycatcher",
   "Horned Lark",
   "Black-billed Magpie",
   "American Crow",
@@ -128,7 +128,7 @@ decliningSpecies <-data.frame(commonName = c(
   "Brewer's Sparrow",
   "Field Sparrow",
   "Black-throated Sparrow",
-  "Bachmans's Sparrow",
+  "Bachman's Sparrow",
   "Cassin's Sparrow",
   "Rufous-crowned Sparrow",
   "Green-tailed Towhee",
@@ -137,7 +137,7 @@ decliningSpecies <-data.frame(commonName = c(
   "Barn Swallow",
   "Lark Bunting",
   "Purple Martin",
-  "Loggerhead",
+  "Loggerhead Shrike",
   "Prothonotary Warbler",
   "Prairie Warbler",
   "Ovenbird",
@@ -162,8 +162,8 @@ decliningSpecies <-data.frame(commonName = c(
   "Upland Sandpiper",
   "Ring-necked Pheasant",
   "Northern Bobwhite",
-  "Greater Prairie-chicken",
-  "Great-horned Owl",
+  "Greater Prairie-Chicken",
+  "Great Horned Owl",
   "Yellow-billed Cuckoo",
   "Black-billed Cuckoo",
   "Belted Kingfisher",
@@ -220,19 +220,19 @@ states.of.interest <- c(
   "TEXAS"
 )
 
-bbsRegions <- GetRegions() %>% 
-  filter(stateName %in% states.of.interest)
+bbsRegions <- suppressWarnings(GetRegions() %>% 
+  filter(stateName %in% states.of.interest))
 
 regionFileName <- bbsRegions$zipFileName %>% na.omit()
 
 ## Get the bbs routes
-bbsRoutes <- getRouteInfo()
+bbsRoutes <- suppressMessages(getRouteInfo())
 
 ## make sure we have enough data for the bounding box (i.e. all lat and long covered..)
 temp <- bbsRoutes %>% 
   filter(statenum %in% as.numeric(bbsRegions$regionCode %>% unique())) 
-# summary(temp$latitude)
-# summary(temp$longitude)
+summary(temp$latitude)
+summary(temp$longitude)
 
 ## TWO state files should only take a couple of minutes...
 if(downloadBBSData){
@@ -284,7 +284,7 @@ rm(cs)
 
 # Next, LOAD  the BBS data and align with the sampling grid -------------------------------------------------------
 # Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution.
-feathers <- NULL
+bbsData <- NULL
 featherNames <- list.files(bbsDir, pattern = ".feather")
 featherNames <- str_c("/", featherNames) #add separator
 for (i in 1:length(featherNames)) {
@@ -296,7 +296,7 @@ for (i in 1:length(featherNames)) {
                   long = longitude) %>%
     left_join(routes_grid, by = c("countrynum", "statenum", "route", "lat", "long"))
   
-  feathers <- rbind(feathers, feather)
+  bbsData <- rbind(bbsData, feather)
   rm(feather)
 }
 
@@ -305,47 +305,61 @@ for (i in 1:length(featherNames)) {
 # BY TAXONONMIC DESIGNATION
 ## Subset the species by  REMOVING H20FOW and SHOREBIRDS
 order.keep = c(
-  "Passeri", 
-  "Grui", 
-  'Apodi', 
+  "Passeri",
+  "Grui",
+  'Apodi',
   'Pici',
-  'Cuculi', 
-  'Coracii', 
+  'Cuculi',
+  'Coracii',
   'Accipitri',
-  'Columbi', 
+  'Columbi',
   'Galli',
-  'Catharti', 
+  'Catharti',
   'Charadrii') %>% paste0("formes")
 
 # get aou codes for those species in the orders
-aou.keep <- sppListBBS %>%
-  filter(order %in% order.keep) %>% 
-  distinct(aou, .keep_all=TRUE)
-## Fix the AOU.keep to match bbs
-aou.keep$scientificName[aou.keep$scientificName=="Circus hudsonius"] <- "Circus cyaneus"
-aou.keep$scientificName[aou.keep$scientificName=="Haemorhous mexicanus"] <- "Carpodacus mexicanus"
+sppListBBS <- sppListBBS %>%
+  filter(order %in% order.keep)
+  
+aou.keep <- sppListBBS %>% distinct(aou, .keep_all=TRUE)
 
-# BY TIMES ROUTE WAS SAMPLED
-## Remove species which do not occur at least 3 times in the entire time series for each route
-bbsData <- feathers %>% group_by(aou,countrynum,statenum,route) %>% 
-  mutate(nYrsPres = n_distinct(year)) %>% 
-  filter(nYrsPres >= 10) %>% 
-  ungroup() %>% 
-  filter(aou %in% aou.keep$aou)%>% 
-  ## Translate counts to presence absence for each year-route combo 
-  group_by(aou, year, countrynum, statenum, route) %>% 
-  filter(stoptotal>0)  %>% 
-  ungroup() %>% 
+# FILTER  BY TIMES ROUTE WAS SAMPLED
+# # Remove species which do not occur at least 3 times in the entire time series for each route
+# bbsData <- feathers %>% 
+#   group_by(aou,countrynum,statenum,route) %>%
+#   mutate(nYrsPres = n_distinct(year)) %>%
+#   filter(nYrsPres >= 10) %>%
+#   ungroup() %>%
+
+bbsData <- bbsData  %>% 
+  filter(aou %in% aou.keep$aou)%>%
+  ## Translate counts to presence absence for each year-route combo
+  group_by(aou, year, countrynum, statenum, route) %>%
+  filter(stoptotal>0)  %>%
+  ungroup() %>%
   ## Merge with AOU
   left_join(aou.keep)
 
-# BY LAT AND LONG
-bbsData <- 
-  bbsData %>% 
-  filter(lat >=28 & lat <=49 & long >-97 & long < -93 )
+
+# Check for missing/error spices BEFOFRE filtering by geographic location
+t=setdiff(grassSpecies$aou, bbsData$aou)
+if(!length(t)==0){warning("Not all grass species  are in the aou.keep file.");t}
+t=setdiff(decliningSpecies$aou, bbsData$aou)
+if(!length(t)==0){warning("Not all declining species  are in the aou.keep file.");t}
+### GO THROUGH THIS BY HAND TO MAKE SURE EVERYTHIGN IS OKAY. 
+
+# FILTER BY LAT AND LONG
+bbsData <-
+  bbsData %>%
+  # filter(lat >= 28 & lat <=49 & long >-97 & long < -93) ## Caleb Roberts et al bounding box... doesnt make sense, though
+  filter(lat >= 37.84 & lat <= 44.5 & long >-101 & long < -95.5) ## MY bounding box which comprises only praire (within BCRs see below)
+
+# distinct(test, statenum, route, bcr)
+# distinct(test, route, statenum)
 
 # Merge body masses with the BBS -------------------------------------------------------
-mass <- suppressWarnings(read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunning4.csv"))) %>% 
+mass <- suppressMessages(suppressWarnings(
+  read_csv(here::here("chapterFiles/discontinuityAnalysis/bird.mass.dunning4.csv")) %>% 
   dplyr::select(-X13, -Season, -Location, -`Source #`, -sortID, -common) %>% 
   mutate(spp = stringr::word(spp, 1,2, sep=" ")) %>%
   filter(!is.na(Mean)) %>% 
@@ -354,81 +368,119 @@ mass <- suppressWarnings(read_csv(here::here("chapterFiles/discontinuityAnalysis
   mutate(log10.mass = log(mean(Mean, na.rm=TRUE))) %>% 
   ungroup() %>%  
   distinct(log10.mass, scientificName)
+  ))
 
-## Check for missing spp
-### Fix some species names in BBS DATA
+
+# Taxonmic Changes to match mass ------------------------------------------
+
+
+# Simple taxonomic changes
 bbsData$scientificName[bbsData$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
-bbsData$scientificName[bbsData$scientificName=="Pipilo maculatus / erythrophthalmus"] <- "Pipilo maculatus"
 bbsData$scientificName[bbsData$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
 bbsData$scientificName[bbsData$scientificName=="Circus hudsonius"] <- "Circus cyaneus"
 bbsData$scientificName[bbsData$scientificName=="Haemorhous mexicanus"] <- "Carpodacus mexicanus"
 bbsData$scientificName[bbsData$scientificName=="Colaptes auratus auratus"] <- "Colaptes auratus"
 bbsData$scientificName[bbsData$scientificName=="Colaptes auratus cafer"] <- "Colaptes auratus"
-## I am going to go ahead and assign Sturnella magna to Eastern meadowlark since it is more common in this region than W.
-bbsData$scientificName[bbsData$scientificName=="Sturnella magna / neglecta"] <- "Colaptes auratus"
+bbsData$scientificName[bbsData$scientificName=="Colaptes auratus auratus x auratus cafer"] <- "Colaptes auratus"
 bbsData$scientificName[bbsData$scientificName=="Setophaga coronata audoboni"] <- "Setophaga coronata"
-### Force all flickers to aou 4123 
-bbsData$aou[bbsData$aou %in% c(4130, 4120)] <- 4123
-## Force unid towhee to eastern towhee
-bbsData$aou[bbsData$aou %in% c(5871)] <- 5870
-setdiff(bbsData$scientificName, mass$scientificName)
-# Further munge...
 bbsData$scientificName[bbsData$scientificName=="Junco hyemalis hyemalis"] <- "Junco hyemalis"
-
 bbsData$scientificName[bbsData$scientificName=="Haemorhous purpureus"] <- "Carpodacus purpureus"
-bbsData$scientificName[bbsData$scientificName=="Baeolophus bicolor / atricristatus"] <- "Baeolophus bicolor"
 bbsData$scientificName[bbsData$scientificName=="Setophaga coronata coronata"] <- "Setophaga coronata"
-
 bbsData$scientificName[bbsData$scientificName=="Geranoaetus albicaudatus"] <- "Buteo albicaudatus"
-bbsData$scientificName[bbsData$scientificName=="Corvus brachyrhynchos / ossifragus"] <- "Corvus brachyrhynchos"
-bbsData$scientificName[bbsData$scientificName=="Petrochelidon pyrrhonota / fulva"] <- "Petrochelidon pyrrhonota"
 bbsData$scientificName[bbsData$scientificName=="Porphyrio martinicus"] <- "Porphyrio martinica"
-bbsData$scientificName[bbsData$scientificName=="Quiscalus major / mexicanus"] <- "Quiscalus major"
 bbsData$scientificName[bbsData$scientificName=="Antigone canadensis"] <- "Grus canadensis"
 bbsData$scientificName[bbsData$scientificName=="Rallus crepitans"] <- "Rallus longirostris"
+bbsData$scientificName[bbsData$scientificName=="Antrostomus carolinensis"] <- "Caprimulgus carolinensis"
+bbsData$scientificName[bbsData$scientificName=="Antrostomus vociferus"] <- "Caprimulgus vociferus"
+bbsData$scientificName[bbsData$scientificName=="Spatula discors"] <- "Anas discors"
+bbsData$scientificName[bbsData$scientificName=="Spatula clypeata"] <- "Anas clypeata"
+bbsData$scientificName[bbsData$scientificName=="Spatula cyanoptera"] <- "Anas clypeata"
+bbsData$scientificName[bbsData$scientificName=="Mareca strepera"] <- "Anas strepera"
+bbsData$scientificName[bbsData$scientificName=="Coragyps / Cathartes atratus / aura"] <- "Coragyps atratus"
 
 
-setdiff(bbsData$scientificName, mass$scientificName)
-# Remove Woodpecker sp.
+# Subjetive taxonommic changes and assignments of UNID/hybrid/sp.  --------
+
+### Force all flickers to aou 4123 
+bbsData$aou[bbsData$aou %in% c(4130, 4120)] <- 4123
+### Force unid towhee to eastern towhee
+bbsData$aou[bbsData$aou %in% c(5871)] <- 5870
+## black crested has avery limited range in texas
+bbsData$scientificName[bbsData$scientificName=="Baeolophus bicolor / atricristatus"] <- "Baeolophus bicolor"
+### Why
+bbsData$scientificName[bbsData$scientificName=="Corvus brachyrhynchos / ossifragus"] <- "Corvus brachyrhynchos"
+### Why
+bbsData$scientificName[bbsData$scientificName=="Petrochelidon pyrrhonota / fulva"] <- "Petrochelidon pyrrhonota"
+### Why
+bbsData$scientificName[bbsData$scientificName=="Quiscalus major / mexicanus"] <- "Quiscalus major"
+### Why
+bbsData$scientificName[bbsData$scientificName=="Pipilo maculatus / erythrophthalmus"] <- "Pipilo maculatus"
+### Assign Sturnella magna to Eastern meadowlark since it is more common in this region than Western (western breeds in the northernmost region while eastern is entire egion of our study area)
+bbsData$scientificName[bbsData$scientificName=="Sturnella magna / neglecta"] <- "Colaptes auratus"
+### Make unid ibis a White-faced Ibis
+bbsData$scientificName[bbsData$scientificName=="Plegadis falcinellus"] <- "Plegadis chihi"
+bbsData$scientificName[bbsData$scientificName=="Plegadis falcinellus / chihi"] <- "Plegadis chihi"
+### clark and western grebes
+bbsData$scientificName[bbsData$scientificName=="Aechmophorus occidentalis clarkii"] <- "Aechmophorus occidentalis"
+### Remove Woodpecker sp. entirely
 bbsData <- bbsData %>% 
   filter(scientificName != "Woodpecker sp.")
 
+# Force UNID cukoo to black-billed (eythropthalmus)
+bbsData$scientificName[bbsData$scientificName=="Coccyzus americanus / erythropthalmus"] <- "Coccyzus erythropthalmus"
+
+# Force Alder/Willow AND other UNID flycatcher to WILLOW b/c Alder doesn't breed in this region..
+bbsData$scientificName[bbsData$scientificName=="Empidonax alnorum / traillii"] <- "Empidonax traillii"
+bbsData$scientificName[bbsData$scientificName=="Empidonax sp."] <- "Empidonax traillii"
+
+# Force Bulloks/Baltimore UNID flycatcher to BALTIMORE b/c Bullocks' is in the Western US mostly....
+bbsData$scientificName[bbsData$scientificName=="Icterus bullockii / galbula"] <- "Icterus galbula"
+
+# Force Yellow-crowned night heron to black crowned because range of yellow crowned is limted to southest us
+bbsData$scientificName[bbsData$scientificName=="Nycticorax / Nyctanassa nycticorax / violacea"] <- "Nyctanassa nycticorax"
+ ## Change name in mass database because it does not contain nycticorax
+mass$scientificName[mass$scientificName=="Nyctanassa violacea"] <- "Nyctanassa nycticorax"
+
+### Indigo bunting breeding range is in great plains, but lazuli is NOT
+bbsData$scientificName[bbsData$scientificName=="Passerina amoena x cyanea"] <- "Passerina cyanea"
+
+### Force all black-capped and carolina chickadees to the same species since minimal overlap in their occurrence
+bbsData$scientificName[bbsData$scientificName=="Poecile carolinensis / atricapillus"] <- "Poecile atricapillus"
+
+## Unidentified hummingbirds were classified as ruby-throated since others really don't occur herein breeding. 
+bbsData$scientificName[bbsData$scientificName=="Trochilid sp."] <- "Selasphorus rufus"
+### UNID tern to black tern -- most likely to be in range during breeding season
+bbsData$scientificName[bbsData$scientificName=="Tern sp."] <- "Chlidonias niger"
+
+# Check for missing species in bbsData one last time... -------------------
+#### Make sure this is zero, or deal with it!
+setdiff(bbsData$scientificName, mass$scientificName)
+### I am okay with removing accipiter sp, buteo sp, gull sp (no gulls should be breeding here...)
+
+## Go ahead and remove these species if we want to (DO NOT AUTOMATE THIS to be certain you want to remove them..)
+bbsData <- bbsData %>% 
+  filter(!scientificName %in% c( "Accipiter sp." ,"Buteo sp.", "Gull sp."))
+# t=as.nusetdiff(bbsData$scientificName, mass$scientificName)
+# if(!=0)error("STOP! Not all species in bbsData have mass values!")
+
+
+# Merge BBS observations with the BODY MASS data --------------------------
 # Join mass with bbs data
-bbsData.forAnalysis<- left_join(bbsData, mass)
-
-# ## Set all the hybrids/UNID to the first classifiations..
-# aou.keep$scientificName=gsub(" /.*","", aou.keep$scientificName)
-# aou.keep$scientificName=gsub(" x .*","",aou.keep$scientificName)
-# aou.keep$scientificName <- 
-# ## Fix the names in aou.keep that appear in KS surveys... others, ignore (e.g., S. calliope)
-# aou.keep$scientificName[aou.keep$scientificName=="Buteo jamaicensis harlani"] <- "Buteo jamaicensis"
-# aou.keep$scientificName[aou.keep$scientificName=="Colaptes auratus auratus"] <- "Colaptes auratus"
-# aou.keep$scientificName[aou.keep$scientificName=="Colaptes auratus cafer"] <- "Colaptes auratus"
-# bbsData$scientificName[bbsData$scientificName=="Colaptes auratus cafer"] <- "Colaptes auratus"
-# bbsData$scientificName[bbsData$scientificName=="Setophaga coronata audoboni"] <- "Setophaga coronata"
-# bbsData$scientificName[bbsData$scientificName=="Setophaga coronata coronota"] <- "Setophaga coronata"
+bbsData <- left_join(bbsData, mass)
 
 
-## fix because im being lazy 
-# fixmass <- function(bbsData.forAnalysis,latin,mass.aou ){
-#   df.out<-bbsData.forAnalysis %>%
-#     mutate(log10.mass = ifelse(scientificName==latin, mass.aou$log10.mass[mass.aou$scientificName==latin] , log10.mass))
-#   return(df.out)
-# }
-# 
 # ## Check for missing body masses and fill in as necessary
-# (missingMasses<- bbsData.forAnalysis %>% 
-#     filter(is.na(log10.mass)) %>% 
-#     dplyr::select(scientificName, commonName, log10.mass) %>% 
-#     distinct( scientificName) %>% arrange(scientificName))
-# if(nrow(bbsData.forAnalysis %>% 
-#         filter(is.na(log10.mass)))!=0) test <- for(i in seq_along(missingMasses$scientificName)){
-#           bbsData.forAnalysis<- fixmass(bbsData.forAnalysis, latin=missingMasses$scientificName[i], mass.aou)
-#         }else("all masses etc. looks great")
+bbsData %>%
+    filter(is.na(log10.mass)) %>%
+    dplyr::select(scientificName, commonName, log10.mass) %>%
+    distinct( scientificName) %>% arrange(scientificName)
+## or 
+# bbsData[is.na(bbsData$log10.mass),]
 
 
-bbsData.forAnalysis <-
-  bbsData.forAnalysis %>%
+# One final munge ---------------------------------------------------------
+bbsData <-
+  bbsData %>%
   group_by(countrynum, statenum, route, scientificName) %>%
   # need to add over combined/reclassified sepcies.
   mutate(stoptotal = sum(stoptotal)) %>%
@@ -450,15 +502,26 @@ bbsData.forAnalysis <-
   mutate(pa.3year = ifelse(is.na(pa.3year), 0,  pa.3year)) %>%
   ungroup()
 
-glimpse(bbsData.forAnalysis)
 
+glimpse(bbsData)
+
+# Fix the declining and grass species for use in tables, pub --------------
+decliningSpecies <- decliningSpecies %>% 
+  filter(aou %in%  unique(bbsData$aou))
+
+grassSpecies <- grassSpecies %>% 
+  filter(aou %in%  unique(bbsData$aou))
 
 # Clear all but final data and species of interest from memory ------------
-rm(list= ls()[!(ls() %in% c("states.of.interest","grassSpecies", "decliningSpecies", "bbsData.forAnalysis", "routes_gridList", "mass.aou"))])
+rm(list= ls()[!(ls() %in% c("routes_grid", "sp_grd", "states.of.interest","grassSpecies", "decliningSpecies", "bbsData", "routes_gridList", "mass.aou"))])
 
 
 # END RUN -----------------------------------------------------------------
-if(nrow(bbsData.forAnalysis %>% filter(is.na(log10.mass)))!=0)stop("Some species in `bbsData.forAnalysis` are missing log body masses!!")else("data munging complete.")
+if(nrow(bbsData %>% filter(is.na(log10.mass)))!=0)stop("Some species in `bbsData` are missing log body masses!!")else("DATA MUNGING COMPLETE! Outputs include:
+                                                                                                                    bbsData = the bbs data filtered, munged, etc.; 
+                                                                                                                        decliningSpecies: list of species ")
+
+
 
 # ## RUN WITH CAUTION
-# bbsData.forAnalysis <- bbsData.forAnalysis %>% filter(!is.na(log10.mass))
+# bbsData <- bbsData %>% filter(!is.na(log10.mass))

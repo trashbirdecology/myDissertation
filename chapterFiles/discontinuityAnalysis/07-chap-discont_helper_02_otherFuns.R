@@ -134,7 +134,7 @@ loadResultsDiscont <-
       ungroup()
     # %>%
     # mutate(
-      #     # isGap = as.factor(as.character(isGap)),
+    #     # isGap = as.factor(as.character(isGap)),
     #   countrynum = as.integer(countrynum),
     #   statenum = as.integer(statenum),
     #   route = as.integer(route)

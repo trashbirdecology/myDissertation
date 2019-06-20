@@ -14,7 +14,7 @@ source(
     "/chapterFiles/discontinuityAnalysis/07-chap-discont_01_getBBSdata.R"
   )
 )
-# takes about thirty to sixty seconds...
+# takes about thirty to sixty seconds......
 
 ## This will return a few objects:
 ### 1. bbsData.forAnalysis - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
@@ -29,8 +29,7 @@ source(
      pattern = "helper",
      full.names = TRUE
    ))
-for (i in 1:length(to.source))
-  source(to.source[i])
+for (i in 1:length(to.source)) source(to.source[i])
 
 ## Source helper funs for plotting spatial data located in another chapter!
 source(
@@ -56,10 +55,9 @@ tabDir <- here::here("chapterFiles/discontinuityAnalysis/tabsCalledInDiss/")
 suppressWarnings(dir.create(tabDir))
 
 
-
 # 4. Merge discontinuity results and bbs dat -----------------------------------------------------------
 # Import the discontinuity analysis results
-gaps <- loadResultsDiscont() %>%
+gaps <- loadResultsDiscont()%>%
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep = "_")))
 
 # Join the results with the locations of the BBS routes

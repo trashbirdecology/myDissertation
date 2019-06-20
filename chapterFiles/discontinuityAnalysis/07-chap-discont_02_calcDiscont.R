@@ -12,9 +12,9 @@ source(here::here("/chapterFiles/discontinuityAnalysis/07-chap-discont_01_getBBS
 # takes about thirty to sixty seconds...
 
 ## This will return a few objects:
-### 1. bbsData.forAnalysis - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
+### 1. bbsData - containes the subsetted data and munged species/aou and body masses. This df also includes presence absence data for 3-year aggregates
 ### 2. grassSpecies - some grassland obligate spp of interest
-### 3. routes_gridList - the grid design assosciation with rowID and colID on the bbsData.forAnalysis
+### 3. routes_gridList - the grid design assosciation with rowID and colID on the bbsData
 
 ### THIS SECTION NEEDS TO BE SOURCED BEFORE ANY OTHER DATA OR FUNCTIONS ARE ADDED TO MEMORY!
 
@@ -40,13 +40,12 @@ suppressWarnings(dir.create(figDirTemp))
 
 
 # Define some things for plotting and subsetting data ---------------------
-
-pts <- bbsData.forAnalysis %>% 
-  filter(year %in% c(1970, 1985, 2000, 2015)) %>%
+pts <- bbsData %>% 
+  # filter(year %in% c(1970, 1985, 2000, 2015)) %>%
   distinct(countrynum, statenum, route, lat, long, colID, rowID, year) %>% 
   # keep only the routes that were sampled in all the years of interest
   group_by(countrynum, statenum, route) %>% 
-  filter(n()==4) %>% 
+  # filter(n()==4) %>% 
   ungroup() %>%  #safety first
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep="_")))
 
@@ -60,8 +59,7 @@ box <- pts %>%
 # Get the us state map data from ggplot
 us_states <- ggplot2::map_data("county")
 # ca_states <- ggplot2::map_data("world", "Canada") 
-ca_us_states <- ggplot2::map_data("world", c("usa", "Canada")) %>% 
-  filter(long < -55, lat > 22.5)
+ca_us_states <- ggplot2::map_data("world", c("usa", "Canada"))
 
 
 ## basemap of the use and all route location in US/CA
@@ -97,8 +95,7 @@ konza <-
 
 
 # Create county maps 
-
-p.studyarea <-
+(p.studyarea <-
   ggplot() +
   geom_polygon(
     data = us_states %>% filter(region %in% tolower(states.of.interest)),
@@ -107,20 +104,20 @@ p.studyarea <-
     fill = "grey90"
   ) +
   coord_fixed(1.3) +
-  ggthemes::theme_map()+
-  geom_point(data=pts, aes(x=long, y=lat), size=2, show.legend=FALSE)+
+  # ggthemes::theme_map()+
+  geom_point(data=pts, aes(x=long, y=lat), size=1.3, show.legend=FALSE)+
   # geom_text(data=pts, aes(x=long, y=lat,  label=route), size=3.3,hjust=.5, vjust=-.75)+
-  coord_map(xlim = c(box$x.min-1, box$x.max+.5),
-            ylim = c(box$y.min-1, box$y.max+.5))+
+  # coord_map(xlim = c(box$x.min-1, box$x.max+.5),
+  #           ylim = c(box$y.min-1, box$y.max+.5))+
   # geom_point(data=riley, aes(x=long,y=lat), color="red",pch=21, fill=NA, size=25)+
   geom_text(data=riley, aes(x=long,y=lat), label="Ft. Riley", vjust=-.9, 
             hjust=.3,fontface="bold", size=2 , color="red") +
   geom_point(data=riley, aes(x=long,y=lat), color="red", size=2)
   # geom_point(data=konza, aes(x=long,y=lat), color="red", size=3)+
   # geom_text(data=konza, aes(x=long,y=lat), label="Konza", vjust=1.4, hjust=.3,fontface="bold", size=5)
+)
 
-p.studyarea
-saveFig(p.studyarea,"routes3years", dir=figDir)
+saveFig(p.studyarea,"bbsRoutes", dir=figDir)
 
 cpr.regimes <- tibble(year = c(1970,
                                1985,
@@ -129,40 +126,41 @@ cpr.regimes <- tibble(year = c(1970,
                       lat = c(-39, -39.5,-40, -40.5))
 
 p.studyarea2 = p.studyarea +
-  geom_hline(aes(yintercept=39, color="1970"), size=1, alpha=.3, show.legend=TRUE)+
-  geom_hline(aes(yintercept=39.5, color="1985"), size=1, alpha=.3, show.legend=TRUE)+
-  geom_hline(aes(yintercept=40, color="2000"), size=1, alpha=.3, show.legend=TRUE)+
-  geom_hline(aes(yintercept=40.5, color="2015"), size=1, alpha=.3, show.legend=TRUE)+
-  ggthemes::scale_color_colorblind(name="spatial regimes identified \nin Roberts 2018")+
+  geom_hline(aes(yintercept=39, color="1970"), size=1, alpha=.7, show.legend=TRUE)+
+  geom_hline(aes(yintercept=39.5, color="1985"), size=1, alpha=.7, show.legend=TRUE)+
+  geom_hline(aes(yintercept=40, color="2000"), size=1, alpha=.7, show.legend=TRUE)+
+  geom_hline(aes(yintercept=40.5, color="2015"), size=1, alpha=.7, show.legend=TRUE)+
+  ggthemes::scale_color_colorblind(name="spatial regimes\n identified \nin Roberts 2018")+
   theme(legend.position="left")
 p.studyarea2
-saveFig(p.studyarea2,"routes3years_spatRegimeLines2", dir=figDir)
+saveFig(p.studyarea2,"routes_spatRegimeLines2", dir=figDir)
 
 
 ########################## BEGIN ANALYSIS #################################
 # Discontinuity Analysis using Barichievy Methods...-------------------------------------------------
 
 ## Filter the bbsData by retaining relevant routes and years
-bbsData.forAnalysis <- bbsData.forAnalysis %>% 
+bbsData <- bbsData %>% 
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep="_"))) %>%
   filter(
     year %in% unique(pts$year), 
     loc %in% unique(pts$loc))  
 
-loc.vec  <- unique(bbsData.forAnalysis$loc) 
-year.vec <- unique(bbsData.forAnalysis$year)
+loc.vec  <- unique(bbsData$loc) 
+year.vec <- unique(bbsData$year)
 
-unique(bbsData.forAnalysis$statenum)
 
 ## Run over all year vecs and loc vecs
-for(i in seq_along(year.vec)){
-  
-  for(j in seq_along(loc.vec)){
-    if(j==1)results <- tibble()
+# for(i in seq_along(year.vec)){
+    # for(j in seq_along(loc.vec)){
+  for( i in 21:length(year.vec)){
+    for(j in 91:length(loc.vec)){
+      
+      if(j==1)results <- tibble()
     # for(j in 45:length(loc.vec)){
     if(j == 1 & i == 1) suppressWarnings(dir.create(here::here("chapterFiles/discontinuityAnalysis/results/")))
     
-    analyData <- bbsData.forAnalysis %>% 
+    analyData <- bbsData %>% 
       filter(year == year.vec[i],
              loc == loc.vec[j])  %>% 
       arrange(log10.mass)
@@ -177,7 +175,7 @@ for(i in seq_along(year.vec)){
     if(nrow(analyData)<5)next()
     # throw error
     if(nrow(analyData %>% 
-            filter(is.na(log10.mass)))>0)stop(message("body masses include NA. please check bbsData.forAnalysis for missing log10.mass values..."))
+            filter(is.na(log10.mass)))>0)stop(message("body masses include NA. please check bbsData for missing log10.mass values..."))
     
     
     if(length(analyData$log10.mass)==0)next()
@@ -205,7 +203,7 @@ for(i in seq_along(year.vec)){
   
   saveRDS(results, file=fn)
 
+if( i == max(seq_along(year.vec)) & i == max(seq_along(loc.vec))) message("um hello i am done running this analysis for you...")
 } # end i-loop
 
-message("um hello i am done running this analysis for you...")
 # END RUN -----------------------------------------------------------------
