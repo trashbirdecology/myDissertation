@@ -24,7 +24,7 @@ library(tidyverse)
 # 1. Load anlaysis data ------------------------------------------------------
 dat <-
   readRDS(here::here(
-    "/chapterFiles/discontinuityAnalysis/results/anovaData.rds"
+    "/chapterFiles/discontinuityAnalysis/results/datForAnova.RDS"
   )) %>% 
   mutate(year = as.factor(year)) %>% 
   mutate(regimeShift = as.factor(regimeShift)) %>% 

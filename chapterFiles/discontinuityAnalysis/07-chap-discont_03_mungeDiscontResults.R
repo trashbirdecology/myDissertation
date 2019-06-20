@@ -29,7 +29,8 @@ source(
      pattern = "helper",
      full.names = TRUE
    ))
-for (i in 1:length(to.source)) source(to.source[i])
+for (i in 1:length(to.source))
+  source(to.source[i])
 
 ## Source helper funs for plotting spatial data located in another chapter!
 source(
@@ -41,7 +42,8 @@ source(
 
 # 3. Define, create directories -------------------------------------
 ## discontinuity results location
-resultsDir <-  here::here("/chapterFiles/discontinuityAnalysis/results/")
+resultsDir <-
+  here::here("/chapterFiles/discontinuityAnalysis/results/")
 
 ## figures
 figDirTemp <-
@@ -50,13 +52,15 @@ figDir <-
   here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/")
 suppressWarnings(dir.create(figDir))
 suppressWarnings(dir.create(figDirTemp))
-tabDir <- here::here("/chapterFiles/discontinuityAnalysis/tabsCalledInDiss/")
+tabDir <-
+  here::here("/chapterFiles/discontinuityAnalysis/tabsCalledInDiss/")
 suppressWarnings(dir.create(tabDir))
 
 
 # 4. Merge discontinuity results and bbs dat -----------------------------------------------------------
 # Import the discontinuity analysis results
-gaps <- loadResultsDiscont(resultsDir=resultsDir, myPattern = "discont") %>%
+gaps <-
+  loadResultsDiscont(resultsDir = resultsDir, myPattern = "discont") %>%
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep = "_")))
 
 # Join the results with the locations of the BBS routes
@@ -87,14 +91,13 @@ gaps.bbs <- gaps %>%
   ungroup() %>%
   ## Add new column for GRI constant pwoer threshold level%>%
   mutate(isGap.powerConstant = ifelse(gap.percentile >= powerConstant, "yes", "no")) %>%
-  mutate(
-    isGap.percentile = ifelse(gap.percentile >= 0.90, "yes", "no"),
-    year = as.factor(year)
-  )
+  mutate(isGap.percentile = ifelse(gap.percentile >= 0.90, "yes", "no"))
+
+rm(gaps)
 
 # 5. Identify things associated with Roberts et al.spatial regimes -------------------------------
 ## year and location of their proposed regime shifts
-rs.loc <- data.frame(year = as.factor(c(1970, 1985, 2000, 2015)),
+rs.loc <- data.frame(year = c(1970, 1985, 2000, 2015),
                      lat = c(39, 39.5, 40, 40.5))
 
 # Identify which routes to highlight
@@ -121,7 +124,7 @@ gaps.bbs <- gaps.bbs %>%
       edgeSpp
     )
   ) %>%
-  ungroup() %>% 
+  ungroup() %>%
   mutate(
     rs.1970 = ifelse(lat < rs.loc$lat[1], "below", "above"),
     rs.1985 = ifelse(lat < rs.loc$lat[2], "below", "above"),
@@ -176,9 +179,11 @@ for (i in seq_along(loc.ind)) {
   results <- bind_rows(results, df.out)
   
 } # end i-loop
-if (nrow(gaps.bbs) != nrow(results)) stop("results arent same size as selectgapsbbs")
+if (nrow(gaps.bbs) != nrow(results))
+  stop("results arent same size as selectgapsbbs")
 
-rm(gaps.bbs, gaps)
+
+# MUNGE RESULTS SOME MORE!
 results <- results %>%
   group_by(year, loc, aggNumber) %>%
   mutate(
@@ -201,29 +206,70 @@ results <- results %>%
     )
   ) %>%
   ## scale distanace to edge within each route-year
-  group_by(year, loc) %>% 
-  mutate(distEdge.scaled = scale(distEdge, center=TRUE)) %>% 
-  ungroup() %>% 
-  mutate(regime="testing") %>% 
+  group_by(year, loc) %>%
+  mutate(distEdge.scaled = scale(distEdge, center = TRUE)) %>%
+  ungroup() %>%
+  mutate(regime = "testing")
+
+## And some more.
+results <- results %>%
   mutate(
-    regime = ifelse(year == rs.loc$year[1],  ifelse(lat <= rs.loc$lat[1], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[2],  ifelse(lat <= rs.loc$lat[2], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[3],  ifelse(lat <= rs.loc$lat[3], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[4],  ifelse(lat <= rs.loc$lat[4], "South","North"),regime)
-  ) %>% 
-  group_by(loc) %>% 
-  mutate(regimeShift = ifelse(n_distinct(regime)==1, "no","yes")) %>% 
-  ungroup()%>% 
-  mutate(regime="testing") %>% 
+    regime = ifelse(
+      year < rs.loc$year[1],
+      ifelse(lat <= rs.loc$lat[1], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year >= rs.loc$year[2] &
+        year < rs.loc$year[3],
+      ifelse(lat <= rs.loc$lat[2], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year >= rs.loc$year[2] &
+        year < rs.loc$year[4],
+      ifelse(lat <= rs.loc$lat[3], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year >= rs.loc$year[4],
+      ifelse(lat <= rs.loc$lat[4], "South", "North"),
+      regime
+    )
+  ) %>%
+  group_by(loc) %>%
+  mutate(regimeShift = ifelse(n_distinct(regime) == 1, "no", "yes")) %>%
+  ungroup() %>%
+  mutate(regime = "testing") %>%
   mutate(
-    regime = ifelse(year == rs.loc$year[1],  ifelse(lat <= rs.loc$lat[1], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[2],  ifelse(lat <= rs.loc$lat[2], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[3],  ifelse(lat <= rs.loc$lat[3], "South","North"),regime),
-    regime = ifelse(year == rs.loc$year[4],  ifelse(lat <= rs.loc$lat[4], "South","North"),regime)
-  ) %>% 
-  group_by(loc) %>% 
-  mutate(regimeShift = ifelse(n_distinct(regime)==2, "yes", ifelse(regime=="South", "South", "North"))) %>% 
-  ungroup()  %>% 
+    regime = ifelse(
+      year == rs.loc$year[1],
+      ifelse(lat <= rs.loc$lat[1], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year == rs.loc$year[2],
+      ifelse(lat <= rs.loc$lat[2], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year == rs.loc$year[3],
+      ifelse(lat <= rs.loc$lat[3], "South", "North"),
+      regime
+    ),
+    regime = ifelse(
+      year == rs.loc$year[4],
+      ifelse(lat <= rs.loc$lat[4], "South", "North"),
+      regime
+    )
+  ) %>%
+  group_by(loc) %>%
+  mutate(regimeShift = ifelse(
+    n_distinct(regime) == 2,
+    "yes",
+    ifelse(regime == "South", "South", "North")
+  )) %>%
+  ungroup()  %>%
   mutate(
     is.declining = ifelse(aou %in% decliningSpecies$aou, "yes", "no"),
     is.grassland = ifelse(aou %in% grassSpecies$aou, "yes", "no"),
@@ -235,25 +281,33 @@ results <- results %>%
   )
 
 ## ensure df has factors
-vars <- c("regime","is.declining", "is.grassland", "is.grassDeclining","loc","commonName")
-results[vars] <- lapply(results[vars], factor) 
+vars <-
+  c("regime",
+    "is.declining",
+    "is.grassland",
+    "is.grassDeclining",
+    "loc",
+    "commonName")
+results[vars] <- lapply(results[vars], factor)
 
 # 7. Save tables to file for diss --------------------------------------------
 ## summary table to file for n routes per regime per year
 saveTab(
-  tab= results %>%  distinct(year, regime, loc) %>% 
-    group_by(year, regime) %>%  
-    summarise(nLoc =n()),
-  fn = "nRtesPerRegimePerYear", 
-  dir=tabDir
+  tab = results %>%  distinct(year, regime, loc) %>%
+    group_by(year, regime) %>%
+    summarise(nLoc = n()),
+  fn = "nRtesPerRegimePerYear",
+  dir = tabDir
 )
 
 ## summary of grassland and declinilng species in a table
-saveTab(tab = full_join(
-  grassSpecies %>% mutate(id = "grass"),
-  decliningSpecies %>% mutate(id = "declining")
-),
-fn = "grassDeclSppList")
+saveTab(
+  tab = full_join(
+    grassSpecies %>% mutate(id = "grass"),
+    decliningSpecies %>% mutate(id = "declining")
+  ),
+  fn = "grassDeclSppList"
+)
 
 
 
@@ -261,22 +315,60 @@ fn = "grassDeclSppList")
 # Get lag-1 year turnover
 turnover <- bbsData %>%
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep = "_"))) %>%
+  # filter(year %in% c(1970,1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015)) %>%
   dplyr::select(year, loc,  aou) %>%
   group_by(loc, year) %>%
   summarise(nSpp = n_distinct(aou)) %>%
   ungroup() %>%
   spread(key = "year", value = "nSpp") %>%
-  gather(key = "year", value = "nSpp", -loc) %>%
+  gather(key = "year", value = "nSpp",-loc) %>%
   # group_by(countrynum, statenum, route, year) %>%
   mutate(nSppDiff = nSpp - lag(nSpp),
          year = as.integer(year))
 
 
-# Histogram  - distribution of turnover ranges
+# Base histogram  - distribution of turnover ranges
 par(mfrow = c(1, 2))
 hist(turnover$nSpp, xlab = "species richness", main = "")
 hist(turnover$nSppDiff, xlab = "turnover", main = "")
 par(mfrow = c(1, 1))
+
+require(ggridges)
+# fancier historgrams
+(
+  p = ggplot(
+    turnover %>%  filter(year %in% c(
+      rs.loc$year + 5, rs.loc$year, rs.loc$year + 10
+    )),
+    aes(x = nSpp, y = year,
+        fill = as.factor(year))
+  ) +
+    geom_density_ridges(
+      show.legend = F,
+      stat = "binline",
+      draw_baseline = F,
+      scale = 2, alpha=0.4
+    ) +
+    theme_ridges() +
+    xlab("route-level annual species richness")+
+    scale_fill_colorblind()
+)
+saveFig(p = p, dir = figDir, fn = "richnessByYear")
+
+
+(p <- ggplot(turnover %>%  filter(
+  !is.na(nSppDiff),
+  year %in% c(rs.loc$year + 5, rs.loc$year, rs.loc$year + 10)
+),
+aes(x = nSppDiff, y = year, fill = as.factor(year))) +
+  geom_density_ridges(show.legend = F, scale = 4, alpha=0.6) +
+  theme_ridges() +
+  xlab("route-level annual species turnover")+
+    theme_ridges()+
+    scale_fill_colorblind()
+  
+)
+saveFig(p = p, dir = figDir, fn = "turnoverByYear")
 
 # Lineplot of mean turnover and lag-1 turnover across routes
 temp <- turnover %>%
@@ -290,207 +382,206 @@ temp <- turnover %>%
 
 (
   p.turn <- ggplot(data = temp) +
-    geom_line(aes(x = year, y = mean)) +
+    geom_line(aes(x = year, y = mean), size=1) +
     ylab(expression("mean annual \n turnover (\u00B1 95 %CI)")) +
     # ylab(expression(mu*" annual species turnover (?95% CI)"))+
     geom_ribbon(aes(
       x = year, ymax = lower, ymin = upper
-    ), alpha = 0.30) +
+    ), alpha = 0.20) +
     theme_Publication()
 )
 
 saveFig(p = p.turn, fn = "meanAnnualTurnover")
-rm(turnover, temp)
 
 # # 9. Plot the discontinuity results ------------------------------------------
-# thresh = 0.90 # define threshold
-# year.ind <- unique(gaps.bbs$year)
-# # gap.stat <- "isGap.powerConstant" ## whihc gap stat to plot
-# gap.stat <- "isGap.percentile" ## whihc gap stat to plot
-# 
-# for (j in seq_along(unique(gaps.bbs$statenum))) {
-#   state.ind = unique(gaps.bbs$statenum)[j]
-#   temp1 <- gaps.bbs %>%
-#     filter(year %in% year.ind,
-#            statenum == state.ind)
-#   
-#   for (i in seq_along(unique(temp1$route))) {
-#     route.ind <- unique(temp1$route)[i]
-#     temp <- temp1 %>%
-#       filter(countrynum == 840,
-#              route == route.ind) %>%
-#       group_by(year, countrynum, statenum, route) %>%
-#       arrange(year, loc, log10.mass) %>%
-#       mutate(
-#         rank = 1:n(),
-#         edgeSpp  = ifelse(lag(!!sym(gap.stat)) == "yes" |
-#                             !!sym(gap.stat) == "yes" , "yes", "no"),
-#         edgeSpp  = ifelse(
-#           log10.mass == min(log10.mass) |
-#             log10.mass == max(log10.mass),
-#           "yes" ,
-#           edgeSpp
-#         )
-#       ) %>%
-#       ungroup()
-#     # View(temp)
-#     ## Define xlim for aligning the plot_grid plots
-#     ylims <- c(min(temp$log10.mass), max(temp$log10.mass))
-#     
-#     p1 <-
-#       ggplot(data = temp %>% filter(year == year.ind[1]),
-#              aes(x = rank, y = log10.mass)) +
-#       geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
-#       scale_color_manual(values = c("yes" = "red", "no" = "black")) +
-#       scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
-#       theme_bw() +
-#       ylab("") +
-#       xlab("") +
-#       ylim(c(ylims)) +
-#       labs(caption = "")
-#     # p1
-#     p2 <-
-#       ggplot(data = temp %>% filter(year == year.ind[2]),
-#              aes(x = rank, y = log10.mass)) +
-#       geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
-#       scale_color_manual(values = c("yes" = "red", "no" = "black")) +
-#       scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
-#       theme_bw() +
-#       ylab("") +
-#       xlab("") +
-#       ylim(c(ylims)) +
-#       labs(caption = "")
-#     # p2
-#     
-#     p3 <-
-#       ggplot(data = temp %>% filter(year == year.ind[3]),
-#              aes(x = rank, y = log10.mass)) +
-#       geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
-#       scale_color_manual(values = c("yes" = "red", "no" = "black")) +
-#       scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
-#       theme_bw() +
-#       ylim(c(ylims)) +
-#       ylab("") +
-#       xlab("") +
-#       labs(caption = "")
-#     
-#     p4 <-
-#       ggplot(data = temp %>% filter(year == year.ind[3]),
-#              aes(x = rank, y = log10.mass)) +
-#       geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
-#       scale_color_manual(values = c("yes" = "red", "no" = "black")) +
-#       scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
-#       theme_bw() +
-#       ylim(c(ylims)) +
-#       ylab("") +
-#       xlab("") +
-#       labs(caption = "")
-#     
-#     
-#     require(grid)
-#     require(gridExtra)
-#     prow <-
-#       cowplot::plot_grid(
-#         p1 + theme(legend.position = "none"),
-#         p2 + theme(legend.position = "none"),
-#         p3 + theme(legend.position = "none"),
-#         p4 + theme(legend.position = "none"),
-#         ncol = 2,
-#         labels = c(year.ind),
-#         hjust = -1.3,
-#         vjust = 1.8,
-#         align = "v"
-#       )
-#     
-#     
-#     y.grob <- textGrob(
-#       "log mass",
-#       gp = gpar(
-#         fontface = "bold",
-#         col = "blue",
-#         fontsize = 12
-#       ),
-#       rot = 90
-#     )
-#     
-#     x.grob <- textGrob("rank",
-#                        gp = gpar(
-#                          fontface = "bold",
-#                          col = "blue",
-#                          fontsize = 12
-#                        ))
-#     
-#     p <- plot_grid(prow,
-#                    # legend_b,
-#                    ncol = 1, rel_heights = c(1, .4))
-#     
-#     #add to plot
-#     p <-
-#       grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
-#     
-#     
-#     fn <- paste0(gap.stat, "_state", state.ind, "_rte", route.ind)
-#     # saveFig(p = p, fn=fn, dir=figDirTemp)
-#     
-#     ## Add grassland obligate species symbols to the plots
-#     test <- temp %>% filter(aou %in% grassSpecies$aou) %>%
-#       dplyr::select(year, commonName, aou, log10.mass, rank)
-#     
-#     prow <-
-#       cowplot::plot_grid(
-#         addGrassSppLabels(p1) + theme(legend.position = "none"),
-#         addGrassSppLabels(p2) + theme(legend.position =
-#                                         "none"),
-#         addGrassSppLabels(p3)  + theme(legend.position =
-#                                          "none"),
-#         addGrassSppLabels(p4)  + theme(legend.position =
-#                                          "none"),
-#         ncol = 2,
-#         labels = c(year.ind),
-#         hjust = -1.3,
-#         vjust = 1.8,
-#         align = "v"
-#       )
-#     
-#     
-#     y.grob <- textGrob(
-#       "log mass",
-#       gp = gpar(
-#         fontface = "bold",
-#         col = "blue",
-#         fontsize = 12
-#       ),
-#       rot = 90
-#     )
-#     
-#     x.grob <- textGrob("rank",
-#                        gp = gpar(
-#                          fontface = "bold",
-#                          col = "blue",
-#                          fontsize = 12
-#                        ))
-#     
-#     p <- plot_grid(prow,
-#                    # legend_b,
-#                    ncol = 1, rel_heights = c(1, .4))
-#     
-#     #add to plot
-#     p <-
-#       grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
-#     
-#     
-#     fn <-
-#       paste0(gap.stat,
-#              "_withGrassObligates_state",
-#              state.ind,
-#              "_rte",
-#              route.ind)
-#     saveFig(p = p, fn = fn, dir = figDirTemp)
-#     rm(p, p1, p2, p3, p4, prow)
-#     
-#     
-#   }
-# }
+thresh = 0.90 # define threshold
+year.ind <- unique(gaps.bbs$year)
+# gap.stat <- "isGap.powerConstant" ## whihc gap stat to plot
+gap.stat <- "isGap.percentile" ## whihc gap stat to plot
+
+for (j in seq_along(unique(gaps.bbs$statenum))) {
+  state.ind = unique(gaps.bbs$statenum)[j]
+  temp1 <- gaps.bbs %>%
+    filter(year %in% year.ind,
+           statenum == state.ind)
+
+  for (i in seq_along(unique(temp1$route))) {
+    route.ind <- unique(temp1$route)[i]
+    temp <- temp1 %>%
+      filter(countrynum == 840,
+             route == route.ind) %>%
+      group_by(year, countrynum, statenum, route) %>%
+      arrange(year, loc, log10.mass) %>%
+      mutate(
+        rank = 1:n(),
+        edgeSpp  = ifelse(lag(!!sym(gap.stat)) == "yes" |
+                            !!sym(gap.stat) == "yes" , "yes", "no"),
+        edgeSpp  = ifelse(
+          log10.mass == min(log10.mass) |
+            log10.mass == max(log10.mass),
+          "yes" ,
+          edgeSpp
+        )
+      ) %>%
+      ungroup()
+    # View(temp)
+    ## Define xlim for aligning the plot_grid plots
+    ylims <- c(min(temp$log10.mass), max(temp$log10.mass))
+
+    p1 <-
+      ggplot(data = temp %>% filter(year == year.ind[1]),
+             aes(x = rank, y = log10.mass)) +
+      geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
+      scale_color_manual(values = c("yes" = "red", "no" = "black")) +
+      scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
+      theme_bw() +
+      ylab("") +
+      xlab("") +
+      ylim(c(ylims)) +
+      labs(caption = "")
+    # p1
+    p2 <-
+      ggplot(data = temp %>% filter(year == year.ind[2]),
+             aes(x = rank, y = log10.mass)) +
+      geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
+      scale_color_manual(values = c("yes" = "red", "no" = "black")) +
+      scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
+      theme_bw() +
+      ylab("") +
+      xlab("") +
+      ylim(c(ylims)) +
+      labs(caption = "")
+    # p2
+
+    p3 <-
+      ggplot(data = temp %>% filter(year == year.ind[3]),
+             aes(x = rank, y = log10.mass)) +
+      geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
+      scale_color_manual(values = c("yes" = "red", "no" = "black")) +
+      scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
+      theme_bw() +
+      ylim(c(ylims)) +
+      ylab("") +
+      xlab("") +
+      labs(caption = "")
+
+    p4 <-
+      ggplot(data = temp %>% filter(year == year.ind[3]),
+             aes(x = rank, y = log10.mass)) +
+      geom_point(aes(color = edgeSpp, shape = edgeSpp)) +
+      scale_color_manual(values = c("yes" = "red", "no" = "black")) +
+      scale_shape_manual(values = c("yes" = 17, "no" = 16)) +
+      theme_bw() +
+      ylim(c(ylims)) +
+      ylab("") +
+      xlab("") +
+      labs(caption = "")
+
+
+    require(grid)
+    require(gridExtra)
+    prow <-
+      cowplot::plot_grid(
+        p1 + theme(legend.position = "none"),
+        p2 + theme(legend.position = "none"),
+        p3 + theme(legend.position = "none"),
+        p4 + theme(legend.position = "none"),
+        ncol = 2,
+        labels = c(year.ind),
+        hjust = -1.3,
+        vjust = 1.8,
+        align = "v"
+      )
+
+
+    y.grob <- textGrob(
+      "log mass",
+      gp = gpar(
+        fontface = "bold",
+        col = "blue",
+        fontsize = 12
+      ),
+      rot = 90
+    )
+
+    x.grob <- textGrob("rank",
+                       gp = gpar(
+                         fontface = "bold",
+                         col = "blue",
+                         fontsize = 12
+                       ))
+
+    p <- plot_grid(prow,
+                   # legend_b,
+                   ncol = 1, rel_heights = c(1, .4))
+
+    #add to plot
+    p <-
+      grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
+
+
+    fn <- paste0(gap.stat, "_state", state.ind, "_rte", route.ind)
+    # saveFig(p = p, fn=fn, dir=figDirTemp)
+
+    ## Add grassland obligate species symbols to the plots
+    test <- temp %>% filter(aou %in% grassSpecies$aou) %>%
+      dplyr::select(year, commonName, aou, log10.mass, rank)
+
+    prow <-
+      cowplot::plot_grid(
+        addGrassSppLabels(p1) + theme(legend.position = "none"),
+        addGrassSppLabels(p2) + theme(legend.position =
+                                        "none"),
+        addGrassSppLabels(p3)  + theme(legend.position =
+                                         "none"),
+        addGrassSppLabels(p4)  + theme(legend.position =
+                                         "none"),
+        ncol = 2,
+        labels = c(year.ind),
+        hjust = -1.3,
+        vjust = 1.8,
+        align = "v"
+      )
+
+
+    y.grob <- textGrob(
+      "log mass",
+      gp = gpar(
+        fontface = "bold",
+        col = "blue",
+        fontsize = 12
+      ),
+      rot = 90
+    )
+
+    x.grob <- textGrob("rank",
+                       gp = gpar(
+                         fontface = "bold",
+                         col = "blue",
+                         fontsize = 12
+                       ))
+
+    p <- plot_grid(prow,
+                   # legend_b,
+                   ncol = 1, rel_heights = c(1, .4))
+
+    #add to plot
+    p <-
+      grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
+
+
+    fn <-
+      paste0(gap.stat,
+             "_withGrassObligates_state",
+             state.ind,
+             "_rte",
+             route.ind)
+    saveFig(p = p, fn = fn, dir = figDirTemp)
+    rm(p, p1, p2, p3, p4, prow)
+
+
+  }
+}
 
 
 # 10. Create and plot grassland, declining species results --------------------
@@ -625,7 +716,7 @@ saveFig(p = p33, fn = "distEdge_allSpp_selectRoutes_decliningYN", dir = figDirTe
 
 (
   p4 <- ggplot(results, aes(x = factor(year), y = distEdge)) +
-    geom_boxplot(outlier.shape = 1) + 
+    geom_boxplot(outlier.shape = 1) +
     # geom_jitter(width = 0.2) +
     ylab("distance to edge") + xlab("year") + ggtitle("All species in all routes")
 )
@@ -633,17 +724,24 @@ saveFig(p = p4, fn = "distEdge_allSpp_allRoutes", dir = figDirTemp)
 
 
 # 11. Correlation of distance to edge with body mass --------------------------
-cor.test(results$distEdge, results$log10.mass, method="pearson")
-cor.test(grass.results$distEdge, grass.results$log10.mass, method="pearson")
-cor.test(grassDeclining.results$distEdge, grassDeclining.results$log10.mass, method="pearson")
+cor.test(results$distEdge, results$log10.mass, method = "pearson")
+cor.test(grass.results$distEdge, grass.results$log10.mass, method = "pearson")
+cor.test(grassDeclining.results$distEdge,
+         grassDeclining.results$log10.mass,
+         method = "pearson")
 ## following is coorrelated:
-cor.test(declining.results$distEdge, declining.results$log10.mass, method="pearson")
+cor.test(declining.results$distEdge,
+         declining.results$log10.mass,
+         method = "pearson")
 
 
 
 
 # 12. SAVE RESULTS TO FILE FOR QUICK LOADING --------------------------------
-saveRDS(results,here::here("/chapterFiles/discontinuityAnalysis/results/anovaData.rds"))
+saveRDS(
+  results,
+  here::here(
+    "/chapterFiles/discontinuityAnalysis/results/datForAnova.RDS"
+  )
+)
 # END RUN -----------------------------------------------------------------
-
-

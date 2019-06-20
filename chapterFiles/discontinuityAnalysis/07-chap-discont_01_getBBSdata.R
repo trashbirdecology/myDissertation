@@ -221,7 +221,7 @@ states.of.interest <- c(
 )
 
 bbsRegions <- suppressWarnings(GetRegions() %>% 
-  filter(stateName %in% states.of.interest))
+                                 filter(stateName %in% states.of.interest))
 
 regionFileName <- bbsRegions$zipFileName %>% na.omit()
 
@@ -320,7 +320,7 @@ order.keep = c(
 # get aou codes for those species in the orders
 sppListBBS <- sppListBBS %>%
   filter(order %in% order.keep)
-  
+
 aou.keep <- sppListBBS %>% distinct(aou, .keep_all=TRUE)
 
 # FILTER  BY TIMES ROUTE WAS SAMPLED
