@@ -264,27 +264,11 @@ VarCorr(M.mixed)
 
 saveTab(tab=M.mixed.aov, dir=tabDir, fn="aov-table-lme")
 
-
-M.mixed <-
-  nlme::lme(
-    distEdge ~ 
-      regime * is.declining + # declining species X whether the route underwent shift 
-      regime * is.grassland + # grassland oblig. species X whether the route underwent shift
-      is.grassland * is.declining + # grass X declining
-      regime * year , # south or north regime X year
-    random = ~ 1 | loc / aou,  
-    correlation = corAR1(form = ~ 1 | loc / aou),
-    data = dat,
-    method = "REML"
-  )
-
-
 # My new model....
-
 M.mixed2 <-
   nlme::lme(
     distEdge.scaled ~ year.int + regime*sppGroup, 
-    random = ~year.int + 1|loc/aou,  
+    random = ~ year.int + 1|loc/aou,  
     correlation = corAR1(form = ~ 1 | loc / aou ),
     data = dat,
     method = "REML")
@@ -309,33 +293,6 @@ m.randint <- nlme::lme(fixed = distEdge.scaled ~
 m.randslope <- update(m.randint, random = ~ year|loc/aou)
 
   ## Yes..
-
-
-# Using LME4 lmer ---------------------------------------------------------
-
-
-lmer.full <- lme4::lmer(distEdge ~ 
-                          regime * sppGroup + 
-                          (1 + regime*sppGroup | loc) + 
-                          (1 + year            | loc) + 
-                          (1 + year            | aou), 
-                        dat3)
-
-nlme.full <- nlme::lme(data   = distEdge, 
-                       fixed  =     , 
-                       random =  
-                       )
-
-
-# GEEE GLm model -------------------------------------------
-# install.packages("geepack")
-library("geepack")
-
-df <- dat3 %>% mutate(id = paste0(loc,"_" ,aou))
-mf <- formula(distEdge ~ year + regime + sppGroup)
-geeInd <- geeglm(mf, id=id, data=df, family=beta, corstr="ind")
-summary(geeInd)
-
 
 ##########################################################################
 #### Interpret Model 
