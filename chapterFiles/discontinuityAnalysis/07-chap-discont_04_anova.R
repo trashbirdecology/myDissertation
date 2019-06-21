@@ -281,18 +281,29 @@ plot(M.mixed2)
 (M.mixed2.aov <- nlme::anova.lme(M.mixed2))
 summary(M.mixed2)
 
-coef.pa.time.nlme <- coef(pa.na.time.nlme)
-round(coef.pa.time.nlme, 2)
+coef.M.mixed2 <- coef(M.mixed2)
+round(coef.pa.time.nlme, 2) %>% head()
 
+M.mixed3 <-
+  nlme::lme(
+    distEdge.scaled ~ year.int + regime*sppGroup, 
+    random = ~ year.int|loc/aou,  
+    correlation = corAR1(form = ~ 1 | loc / aou ),
+    data = dat,
+    method = "REML")
 
-m.randint <- nlme::lme(fixed = distEdge.scaled ~ 
-               regime * sppGroup + year.int, 
-             random = ~ 1 | loc/aou, 
-             correlation = corAR1(form = ~ 1 | loc / aou ),
-             data = dat)
-m.randslope <- update(m.randint, random = ~ year|loc/aou)
+## Does intercept approximately equal the mean Y?
+M.mixed3$coefficients$fixed[1]==M.mixed3$coefficients$fixed[2]
+  ## if yes to above line, then the models are the same.....
+mean(dat$distEdge)
 
-  ## Yes..
+plot(M.mixed2)
+(M.mixed2.aov <- nlme::anova.lme(M.mixed2))
+summary(M.mixed2)
+
+coef.M.mixed2 <- coef(M.mixed2)
+round(coef.pa.time.nlme, 2) %>% head()
+
 
 ##########################################################################
 #### Interpret Model 
