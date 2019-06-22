@@ -117,7 +117,7 @@ levels(sppIntDat$`Species Group`)  = c( "Grassland Obligates",  "Declining", "De
 kable(sppIntDat,
       "latex",
       caption="Grassland obligates and species with declining trends over the period of (1966-2015) in the Central Breeding Bird Survey region in our study area.",
-      booktabs=TRUE) 
+      booktabs=TRUE, longtable=TRUE) 
 
 # grass <-getTab("grassDeclSppList") %>% filter(id=="grass")
 # decl <-getTab("grassDeclSppList") %>% filter(id=="declining")
@@ -147,10 +147,12 @@ temp <- getTab(fn="nRtesPerRegimePerYear") %>%
 # do not comibn ewith getTab -- does nto work 
 temp <- temp %>% spread(key="Regime",value="nLoc")
 kableExtra::kable(temp,
-                  caption = "The number of NABBS routes analysed in the Southern regime is smaller than those used in the Northern regime each year given the location of the regimes identified in a previous study with respect to the contiguous grasslands of Central North America (see Figure \\@ref(fig:studyarea)).",
+                  caption = "The number of NABBS routes analysed in the Southern regime is smaller than those used in the Northern regime each year given the location of the regimes identified in a previous study with respect to the contiguous grasslands of Central North America.",
                   "latex",
-booktabs=TRUE)
+booktabs=TRUE,  
+      longtable=TRUE)
 ```
+
 ```{r nRtesPerRegimePerYearFig, fig.cap= "Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation."}
 temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
   rename(
@@ -186,7 +188,8 @@ temp <- getTab(fn="richTurnStatsTab") %>%
 kableExtra::kable(temp, escape = FALSE, digits = 2, 
                   caption = "Summary statistics for annual species richness and annual turnover in all NABBS routes in study area.",
                   # "latex",
-                  booktabs=TRUE) %>% 
+                  booktabs=TRUE, 
+      longtable=TRUE) %>% 
     add_header_above(c(" ", "Annual Richness" = 3, "Annual Turnover" = 3))
 ```
 
@@ -256,7 +259,7 @@ kable_styling(full_width = FALSE) %>%
 column_spec(1, border_right = T, bold = T) 
 ```
 
-```{r aggEdgeCorrPlot, echo=FALSE, eval=TRUE, fig.cap="Relationship between species richness per route and (a) the number of aggregations identified in body mass distributions and (b) distance to the edge (units log body mass) of aggregations."}
+```{r aggEdgeCorrPlot, echo=FALSE, eval=TRUE, fig.cap="Relationship between species richness per route and (a) the number of aggregations identified in body mass distributions and (b) distance to the edge (units log body mass) of aggregations.", out.width="80%"}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_corrplot.png"))
 ```
 
@@ -265,9 +268,7 @@ The discontinuities in the body mass distribution identified appeared relatively
 # knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/isGap.percentile_withGrassObligates_state36_rte15.png"))
 ```
 
-```{r distEdgeDistribution, eval=FALSE, echo=FALSE, eval=TRUE, fig.cap=""}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_distribution.png"))
-```
+
 ```{r lmeTab, echo=FALSE}
 varFix <- getTab("lme_varFix") %>% round(3) %>% 
   rename(Estimate = "est.") 
@@ -286,33 +287,9 @@ kable(est,
 ```
 
 #### Linear Mixed Effects Analysis of Distance to Edge
-Declining species and declining grassland obligate species were located closer to the edge than the 'other' species, while grassland obligate species were further from the edge than 'other' species (Table \@ref(tab:lmeTab)). Similar trends held for declining grassland obligates and grassland obligates in the Northern regime location. There was, however, no evidence to suggest additive effects of the regime  location or year, or their interactions  (Table \@ref(tab:lmeTab)). The lack of additive effects but the presence of multiplicative effects of the regime location  (Table \@ref(tab:lmeTab)) strengthens the support for the differences in grassland obligates and declining grassland obligates with respect to all other species, however, the confidence intervals around the estimates of  declining grassland obligates, grassland obligates suggests the evidence for such an effect is relatively weak. 
+Declining species and declining grassland obligate species were located closer to the edge than the 'other' species, while grassland obligate species were further from the edge than 'other' species (Table \@ref(tab:lmeTab)). Similar trends held for declining grassland obligates and grassland obligates in the Northern regime location. There was, however, no evidence to suggest additive effects of the regime  location or year, or their interactions  (Table \@ref(tab:lmeTab)). The lack of additive effects but the presence of multiplicative effects of the regime location  (Table \@ref(tab:lmeTab)) strengthens the support for the differences in grassland obligates and declining grassland obligates with respect to all other species, however, the confidence intervals around the estimates of  declining grassland obligates, grassland obligates suggests the evidence for such an effect is relatively weak (Figure \@ref(fig:intrxnPlot_regime1). 
 
 This is unsurprising given the distribution of grassland obligate body masses is highly skewed right relative to the remaining species (Figures \@ref(fig:bmDistPerSppGroup)), \@ref(fig:bmDistPerSppGroup-byRegime))). Many grassland obligate species have small body masses, reducing the probability that they will appear in different body mass aggregations, however, depending on the local bird community identities, local grassland obligates may all have similar body masses, removing this effect. The larger, non-declining grassland obligates occur in a relatively small portion of our study area, Shortgrass Prairie BCR (Figures \@ref(fig:studyarea),\@ref(fig:bmDistPerSppGroup-byBCR)). 
-
-<!-- I obtained similar results after fitting (*post hoc*) a similar model (below) by building annual censuses within the BCR-level, rather than the NABBS route-level,   -->
-<!-- > distEdge.scaled ~ year.center*regime + regime*sppGroup, -->
-<!-- >     random = ~ 1 | bcr/aou,   -->
-<!-- >     correlation = corAR1(form = ~ 1 | bcr / aou ) -->
-
-
-<!-- ```{r lmeTab-byBCR, echo=FALSE} -->
-<!-- require(kableExtra) -->
-<!-- varFix <- getTab("lme_varFix-byBCR") %>% round(3) %>%  -->
-<!--   rename(Estimate = "est.")  -->
-
-<!-- est <- varFix %>%  -->
-<!--   mutate("95% CI" = paste0("(", lower,", ", upper,")" )) %>%  -->
-<!--   dplyr::select(-lower, -upper)  -->
-
-<!-- row.names(est) <- row.names(varFix) -->
-<!-- kable(est, -->
-<!--       # "latex", -->
-<!--       booktabs=TRUE) %>%  -->
-<!--   kable_styling(full_width = FALSE) %>%  -->
-<!--     row_spec(c(3, 4,5,6, 9,10), bold=T) -->
-<!-- ``` -->
-
 
 ```{r bmDistPerSppGroup, echo=FALSE, eval=TRUE, fig.cap="Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group over the entire study area and all years."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png"))
@@ -324,18 +301,24 @@ knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCall
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png"))
 ```
 
-```{r intrxnPlot_regime, echo=FALSE, eval=TRUE, fig.cap=""}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png"))
-```
 ```{r intrxnPlot_regime1, echo=FALSE, eval=TRUE, fig.cap=""}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png"))
-```
-
-```{r simpleCoefEst, eval=FALSE, echo=FALSE, fig.cap="Coefficient estimates of fixed predictors of the linear mixed effects model."}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/simpleCoefEst.png"))
 ```
 
 ## Discussion
 South-North shifts in the past 50 years have been demonstrated in large scale processes, including bird populations and ranges [@sorte2007poleward] and plant hardening zones [@mckenney2014change]. The concept of spatial regimes has recently been introduced as a way of describing or identifying large-scale shifts of this nature  [@roberts2019shifting; @sundstrom2017detecting]. The methods and ecological significance of the findings of these methods, however, is in its infancy. In this Chapter, I used discontinuity analysis of bird communities, under the assumption of a zone of shifting 'spatial regimes' [@roberts2019shifting] to determine whether local-scale changes in the scaling structure were impacted by these shifts. Although I found moderate support for the hypothesis that declining species operate at the edges of body mass aggregations, I did not find sufficient support for the impact of these proposed spatial regime shifts. 
 
 Although the body mass distiributions of terrestrial communities at small scales tends to differ from the distribution at larger spatial scales [@blackburn1994animal], numerous studies confirm the evidence for 'discontinuities' in these distributions at across scales for a variety of phenomenon [@wardwell2009variability; @allen199body; @spanbauer2016body;@nash2014discontinuities]. The jury is still out, however, as numerous studies are finding a lack of evidence for discontinuities in their study sysytems [@siemann1999gaps;@bibi2019body; @manly1996there]. 
+
+<!-- UNUSED SHIT -->
+
+```{r distEdgeDistribution, eval=FALSE, echo=FALSE, eval=TRUE, fig.cap=""}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_distribution.png"))
+```
+
+```{r intrxnPlot_regime, eval=FALSE, echo=FALSE, eval=TRUE, fig.cap=""}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png"))
+```
+```{r simpleCoefEst, eval=FALSE, echo=FALSE, fig.cap="Coefficient estimates of fixed predictors of the linear mixed effects model."}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/simpleCoefEst.png"))
+```
