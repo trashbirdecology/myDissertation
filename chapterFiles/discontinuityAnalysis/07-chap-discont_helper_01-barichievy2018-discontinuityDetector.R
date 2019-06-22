@@ -1,17 +1,11 @@
-# ORIGINAL FUNCITONS FROM PAPER: ------------------------------------------
-#Supporting data for the manuscript entitled:
-# A method to detect discontinuities in census data
+# THIS FUNCTION WAS SLIGHTLY MODIFIED FROM THAT PROVIDED IN BARICHIEVY ET AL 2018 ------------------------------------------
 #Authors: Chris Barichievy*, David G. Angeler, Tarsha Eason, Ahjond S. Garmestani,  Kirsty L. Nash, #Craig A. Stow, Shana Sundstrom, and Craig R. Allen.
 #Coded May 2017
 #Contact: Chris Barichievy cbarichievy@gmail.com / Chris. Barichievy@zsl.org
 #----
 # The Discontinuity Detector ( DD) calls 2 functions:
-# The neutral Null and The Discontinuity Detector
-#hnull<-Neutral.Null(log10.data,resolution)
-#Bootstrap.gaps<-DD(log10.data,hnull,Sample.N)
-#Defaults are set to mimic the original code used in Restrepo 1997
 
-#1.Neutral.Null
+#.Neutral.Null
 Neutral.Null <- function(log10.data, resolution = 4000) {
   Dmax = max(log10.data, na.rm = FALSE)
   Dmin = min(log10.data, na.rm = FALSE)

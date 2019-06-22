@@ -179,8 +179,7 @@ for (i in seq_along(loc.ind)) {
   results <- bind_rows(results, df.out)
   
 } # end i-loop
-if (nrow(gaps.bbs) != nrow(results))
-  stop("results arent same size as selectgapsbbs")
+if (nrow(gaps.bbs) != nrow(results))stop("results arent same size as selectgapsbbs")
 
 
 # MUNGE RESULTS SOME MORE!
