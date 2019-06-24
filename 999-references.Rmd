@@ -28,6 +28,8 @@ This is just for testing with more citations for the bibliography at the end.  A
 -->
 
 ---
-nocite: | 
-  @angel2000, @angel2001, @angel2002a
+nocite: |
+`r paste(c("@tvdiff","rmarkdown","base","bbsRDM","regimeDetectionMeasures","bookdown","bookdown2", "rmarkdown2",myPackages), collapse = ", @")`
 ...
+
+

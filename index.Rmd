@@ -15,8 +15,8 @@ output:
 # reference_docx: Thesis2016Simple.docx
 acknowledgements: |
 dedication: | 
-  To the end-users researchers frustrated with jargon and lack of practical utility of ecological models and metrics. And to Mike Moulton, without whose support and encouragement many years ago two advanced degrees would likely not have been possible.
-bibliography: ["bib/thesis.bib"]
+  To: those not yet exposed to the great outdoors; those unaware of the possibility of careers in ecology and research; to Mike Moulton, my first and best cheerleader; to S; and myself.
+bibliography: ["bib/thesis.bib", "bib/packages.bib"]
 csl: [reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
 lot: true
 lof: true
@@ -27,7 +27,6 @@ link-citations: yes
 ## IS THIS A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulations becaues time expensive
 quickRun<-FALSE
   if(!exists("quickRun")) quickRun <- FALSE
-
 instlLoadPkgs <- function(packages, install = TRUE) {
   if(install){
   k <- packages[!(packages %in% installed.packages()[])];
@@ -42,13 +41,26 @@ instlLoadPkgs <- function(packages, install = TRUE) {
 myPackages <- c( "tidyverse",
                  "pander",
                  "rmarkdown",
-                 "ggplot2", "ggthemes", "gapminder",
-                 "devtools", "here", "dplyr",
+                 "ggplot2", 
+                 "ggthemes", 
+                 "gapminder",
+                 "devtools", 
+                 "here", 
+                 "dplyr",
                  "bookdown",
-                 "kableExtra", "gganimate", "sp", "raster",
-                 "feather", "maps",
+                 "kableExtra", 
+                 "gganimate", 
+                 "sp", 
+                 "raster",
+                 "feather", 
+                 "maps",
                  "gridExtra",
-                 "kedd", "caTools", "deSolve", "segmented", # for chapter 3
+                 "kedd", 
+                 "caTools", 
+                 "kableExtra",
+                 "tvdiff",
+                 "deSolve", 
+                 # "segmented", # for chapter 3
                  "DiagrammeR", # for chapter 2 (flow chart figure (grViz))
                  "webshot", # a bug with diagrammer requires me to use this when printing to .pdf
                  "revtools" # import tidy bibtex
@@ -60,7 +72,6 @@ myPackages <- c( "tidyverse",
                  install.packages(new.pkg, dependencies = TRUE)
                  suppressMessages(sapply(pkg, library, character.only = TRUE))
                  }
-
 
 # Re-install often as these packages are in  development.
 # devtools::install_github("trashbirdecology/bbsRDM", force = FALSE)

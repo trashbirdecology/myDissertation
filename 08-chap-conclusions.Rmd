@@ -30,30 +30,30 @@ Limitations of the findings in this dissertation and of the regime detection met
 1. Data aggregation techniques often impact results (Chapter \@ref(resampling))
 1. Some indices fail to generalize across systems or taxa (see Chapters \@ref(intro) and \@ref(rdmReview))
 
-## Future Research for Advancing Ecological Regime Detection Measures
-!!! IN PROGRESS !!!
-- Comment on our working group progress goals, including:
-  - Create a common definitions database (initialized 10 june)
-  - Create database for regime shift methods (initialized 10 june)
+<!-- ## Future Research for Advancing Ecological Regime Detection Measures -->
+<!-- !!! IN PROGRESS !!! -->
+<!-- - Comment on our working group progress goals, including: -->
+<!--   - Create a common definitions database (initialized 10 june) -->
+<!--   - Create database for regime shift methods (initialized 10 june) -->
 
-Transient behavior & regime shifts
-- Regime shfits for ecological managemnt and regime shfits for scientific pursuit
-- how to identify transient behavior -- group at UWisc pursuing these ideas, and the Hastings et al wg
+<!-- Transient behavior & regime shifts -->
+<!-- - Regime shfits for ecological managemnt and regime shfits for scientific pursuit -->
+<!-- - how to identify transient behavior -- group at UWisc pursuing these ideas, and the Hastings et al wg -->
 
-The Human Element of Regime Shift Detection & management
-- Impact of human decision making (in all stages from study design $\rightarrow$ analyses)
-  - see also Bahlai work  in progress (bad breakup) + Chapter \@ref(resampling)
-- Misalignment of speed of human intervention (the institution/policy/action) vs. ability to manage or prevent a regime shift
-  - Alignment of speed of human intervention/detection and the speed of drivers and ecological responses
-      - How is the probability of preventing a regime shift influenced by - the speed of the driver or response? 
-      - the speed of the human institution's capacity to intervene (policy, action)?
-
-
-On the Methods 
-- A critical and comparative review of method performance (mention workign group progress)
-- Comparing multiple methods , sensitivity analyses
-- Far more studies applying regime detection measures exist than do critiques and reviews of this literature (Chapter \@ref(rdmReview)).
-- Relating process-control methods (cusum) to regime shift detection methods
+<!-- The Human Element of Regime Shift Detection & management -->
+<!-- - Impact of human decision making (in all stages from study design $\rightarrow$ analyses) -->
+<!--   - see also Bahlai work  in progress (bad breakup) + Chapter \@ref(resampling) -->
+<!-- - Misalignment of speed of human intervention (the institution/policy/action) vs. ability to manage or prevent a regime shift -->
+<!--   - Alignment of speed of human intervention/detection and the speed of drivers and ecological responses -->
+<!--       - How is the probability of preventing a regime shift influenced by - the speed of the driver or response?  -->
+<!--       - the speed of the human institution's capacity to intervene (policy, action)? -->
 
 
-# References Cited {.unnumbered}
+<!-- On the Methods  -->
+<!-- - A critical and comparative review of method performance (mention workign group progress) -->
+<!-- - Comparing multiple methods , sensitivity analyses -->
+<!-- - Far more studies applying regime detection measures exist than do critiques and reviews of this literature (Chapter \@ref(rdmReview)). -->
+<!-- - Relating process-control methods (cusum) to regime shift detection methods -->
+
+
+# References {.unnumbered}

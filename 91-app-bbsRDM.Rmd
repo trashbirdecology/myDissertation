@@ -119,8 +119,20 @@ sp_grd <- routes_gridList$sp_grd
 rm(cs)
 ```
 
-Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution.
+
+See if the results are already saved to file. This will save us some computational time when knitting the document. Otherwise, will take about a minute to calculate, depending on the size of birdsData
+
+```{r import.ind, echo=FALSE, eval=TRUE}
+tempResultsDir <- here::here("/tempFiles_bbsRDM/")
+dir.create(tempResultsDir)
+fns <- list.files(tempResultsDir)
+import.ind = ifelse(length(fns)!=0 %in% fns, TRUE,FALSE)
+import.feathers <- ifelse("feathers.RDS" %in% list.files(tempResultsDir), FALSE, TRUE)
+```
+
+Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution. If it's already saved in the tempResultsDir (see Section \@ref(import.ind)) then it will just upload from file.
 ```{r,echo=TRUE}
+if(import.feathers){
 feathers <- NULL
 featherNames <- list.files(bbsDir, pattern = ".feather")
 featherNames <- str_c("/", featherNames) #add separator
@@ -136,8 +148,8 @@ for (i in 1:length(featherNames)) {
 
   feathers <- rbind(feathers, feather)
   rm(feather)
-
-}
+  if(i == length(featherNames)) saveRDS(feathers, paste0(tempResultsDir, "feathers.RDS"))
+}}else(feathers <- readRDS(paste0(tempResultsDir, "feathers.RDS")))
 ```
 
 ### Subset the BBS data by species and/or functional traits (OPTIONAL but highly recommended)
@@ -150,8 +162,8 @@ For this example we will remove shorebirds, wading birds, and waterfowl (i.e., A
 feathers <- subsetByAOU(myData = feathers, subset.by= 'remove.shoreWaderFowl')
 ```
 
-### Subset species by trait, body mass, taxonomically, etc...
-```{r subsetFxn, eval =F, message = T, warning = F}
+### Subset species by trait, body mass, taxonomically, etc...(optional)
+```{r subsetFxn, eval =FALSE, message = TRUE, warning = FALSE, echo=TRUE}
 # Load the functional trait and mass data, and munge/merge
 require(dplyr)
 funMass <-
@@ -164,11 +176,10 @@ bbsData <-
     mergeFunMassBBS(bbsData = feather, funMass = funMass)
 
 rm(funMass)
-
 ```
 
 ### Calculate regime detection metrics across space or time
-### First, define the parameters required to calcualte the metrics.
+First, define the parameters required to calcualte the metrics.
 ```{r defineParams, echo=TRUE}
 # Which metrics do you want to calculate?
 metrics.to.calc <- c("distances", "ews")
@@ -205,8 +216,7 @@ if (direction == "East-West") {
 
 ```
 
-### Define the years we want to analyze
-For this (spatial) example, we will analyze only every fifth year in the available data. 
+Define the years we want to analyze. For this (spatial) example, we will analyze only every fifth year in the available data. 
 ```{r yearSubset, echo=FALSE, message=FALSE}
 # Get all possible years
 years.use = unique(feathers$year)
@@ -216,12 +226,12 @@ T = 10
 years.use  <- years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort()
 ```
 
-### Conduct analysis!
+### Conduct analysis
 This section will loop through `years.use` and `dir.use`, running each BBS route (temooral analysis) or spatial transect by year (spatial analysis) at a time. Results are saved in directories created in \@ref(#createDirs)
 
-```{r calcMetrics, echo=TRUE}
+```{r calcMetrics, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 # **Please note: depending on the # of years and spatial transects, this could take a while!**
-for (j in 1:length(dir.use)) {
+if(import.ind==FALSE) for (j in 1:length(dir.use)) {
     # For east-west analysis
         if (direction == "East-West"){
             birdsData <- feathers %>%
@@ -277,22 +287,31 @@ for (j in 1:length(dir.use)) {
 ```
 
 ### Import and munge the results to prepare for visualization
-
 First, import and combine the results as created in \@ref(#calcMetrics)
 This chunk will import the EWS results and the distance results separately, combining each into their own data frames.
 ```{r importCalcMetrics, echo=TRUE}
 #  Import EWS results
-results_ews <-
+if(!"results_ews.RDS" %in% fns){results_ews <-
     importResults(resultsDir = resultsDir, myPattern = 'ews',
                   subset.by = direction) %>%
     # assign the end of the window as the cellID
     mutate(cellID = cellID_max)
-
+  saveRDS(results_ews, file = paste0(tempResultsDir, "results_ews.RDS"))}
 ## FYI: rows will likely be absent when metricTypes = c(FI, VI), because FI and VI are calculated across multiple variables (species), rather than calculated for individual variables.
 
 #  Import distance results
-results_dist <-
+if(!"results_dist.RDS" %in% fns){ results_dist <-
     importResults(resultsDir = resultsDir, myPattern = 'distances', subset.by = direction)
+
+    saveRDS(results_dist, file = paste0(tempResultsDir, "results_dist.RDS"))}
+
+if(import.ind){
+  fn = list.files(tempResultsDir, "results_ews", full.names = T)
+  results_ews <- readRDS(fn)
+  fn = list.files(tempResultsDir, "results_dist", full.names = T)
+  results_dist <- readRDS(fn)
+  rm(fn)
+}  
 ```
 
 Next, get the results to align with our sampling grid for visualizing results across space.
@@ -355,19 +374,15 @@ dirID.ind <- 13
 metric.ind <- "s"
 
 
-pl1 <- sort.year.line(plotResults, metric.ind, year.ind, dirID.ind, dirInd,  scale = T, center = T)+
-    # place a v-line at the
-     geom_vline(aes(xintercept=-96.8), color = "grey", linetype = 2)
-pl1
+pl1 <- sort.year.line(plotResults, metric.ind, year.ind, dirID.ind, dirInd,  scale = T, center = T)
+# +
+#     # place a v-line at the
+     # geom_vline(aes(xintercept=-96.8), color = "grey", linetype = 2)
+pl1 
 
 ```
 
-
-
-
-
-
 ## Source Code Documentation
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 knitr::include_graphics(here::here("packageDocumentation/bbsRDM.pdf"))
 ```

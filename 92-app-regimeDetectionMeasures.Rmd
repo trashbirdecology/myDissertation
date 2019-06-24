@@ -26,7 +26,10 @@ This package will calculate a various regime detection metrics that have been us
 
 ### Example analysis
 ```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, out.width = "85%")
+
 library(regimeDetectionMeasures)
+
 # Munge original data -----------------------------------------------------
 origData = munge_orig_dat(example = T)
 ```
@@ -80,12 +83,6 @@ results <-
 # Reults will return all results in a single data frame.
 head(results)
 ```
-
-
-
-
-
-
 
 ## Source Code Documentation
 ```{r, echo=FALSE}

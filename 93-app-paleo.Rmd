@@ -4,7 +4,6 @@
 
 # Appendix C: Paleodiatom case study: distance travelled, velocity, Fisher Information {-#appPaleo}
 
-
 This appendix provides documentation and R code association with the paleodiatom community example.
 You will need to install the following packages if they are not already.
 

@@ -1,5 +1,4 @@
 `r if(knitr:::is_latex_output()) '\\appendix'`
-
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-appDiscont}'`
 
 # Appendix D: Functions used to calculate discontinuities in avian body mass distributions. {-#appDiscont}
