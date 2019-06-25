@@ -1,14 +1,13 @@
 # Conclusions {#conclusions}
 Climate change is expected to induce an increase in both the intensity and frequency of rapid ecological change or disturbance, impacting social systems, potentially to the detriment of human communities most vulnerable. Identifying and forecasting these changes is critical for community and ecological planning, management, and disaster mitigation. Because ecological and social systems are tightly coupled, it is commonplace to use ecological indicators to identify change and potential changes that may impact these systems. Many papers introducing or discussing regime detection measures suggest the ecologist uses multiple lines of evidence, ranging from historical observations to ecological modelling results, for identifying an ecological regime shift [@lindegren_early_2012]. Although  valid, comparing results of multiple methods or lines of evidence within a single system has yielded inconsistent results, and inconsistent results can result in either improper conclusions, or in what I am calling **method mining**. That is, a dataset is analyzed using until a sufficient number of methods yield affirmative results. 
-
-\begin{equation}
-\begin{split}
-Data  & = Information \\
-& = Signal \\
-& = Process + Noise
-\end{split}
-(\#eq:infoTheory)
-\end{equation}
+<!-- \begin{equation} -->
+<!-- \begin{split} -->
+<!-- Data  & = Information \\ -->
+<!-- & = Signal \\ -->
+<!-- & = Process + Noise -->
+<!-- \end{split} -->
+<!-- (\#eq:infoTheory) -->
+<!-- \end{equation} -->
 
 ## Method mining regime detection methods 
 <!-- (and HARKing - hypothesizing after results are knownn - @kerr1998harking) -->
@@ -56,4 +55,4 @@ Limitations of the findings in this dissertation and of the regime detection met
 <!-- - Relating process-control methods (cusum) to regime shift detection methods -->
 
 
-# References {.unnumbered}
+<!-- # References {.unnumbered} -->

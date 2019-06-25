@@ -94,41 +94,28 @@ Using a resampling approach I calculated the regime detection measures over diff
 
 ### Comparing regime detection measures 
 Interpretation of the regime detection measures used in this analysis are currently limited to visual inspection. Therefore, I limit inference in this study largely to the impact of data loss on the variability with a regime detection measure (i.e. how robust is the measure to data loss). It is important to not only identify the influence of data quality and quantity on the performance of individual regime detection metrics, but also to somehow relate these qualities. I visually inspect the relatve performance of these metrics by comparing the coefficient of variation of the resampled samples for the results of resampling method ($\textbf{M}$; species, observations) and sampling percentage ($\textbf{P}$; 25%, 50%, 75%) combination for each metric (FI, VI, $v$). The coefficient of variation measures provides a relative measure of the variability in the estimated metric across resampled samples as $100\frac{\sigma}{\mu}$, where $\sigma$ is the standard deviation and $\mu$ is the mean value.
-
 I observed the distributions of the CV to identify potential flaws in the metrics should data quality or quantity ($\textbf{M}$, $\textbf{P}$) decrease. First, within a value of $\textbf{P}$ a low error to mean ratio (CV) indicates that the metric value is similar across the resampled samples ($N_{samp}=10,000$). The efficacy of the metric should be questioned as CV$\rightarrow 1$, and perahps even abandoned as CV$\gg1$. Next, we can examine how the distribution of CV changes within $\textbf{M}$ and across $\textbf{P}$. As we increase $\textbf{P}$, we are increasing the volume of data we are feeding the metric. Intuitively, we can assume that as we add more data (volume), we are supplying the metric with more *information*, theoretically increasing the signal-to-noise ratio. Following this logic, we should expect the distribution of CV to generally decrease in mean CV value and also become less variable (less dispersion around the mean CV). A visual examination of the distribution of CV across $\textbf{P}$ and within $\textbf{M}$ was suffcient to achieve inference regarding the quality of these metrics upon data loss and lessened quality. 
 
-\pagebreak[4]  
-
-\begin{landscape}
-```{r viCV,  echo=FALSE, out.width="75%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values >100% are not printed."}
+```{r viCV,  echo=FALSE, out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values >100% are not printed."}
 knitr::include_graphics(loadFig("VI_cvDensity"))
 ```
 
-\pagebreak[4]  
-
-```{r viResamp,  echo=FALSE, out.width="75%", fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the **observations** resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
+```{r viResamp,  echo=FALSE, out.width="85%", fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the **observations** resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
 knitr::include_graphics(loadFig("VI_observations_ribboned_facetByProb")) # observations method
 ```
 
-\pagebreak[4] 
-
-```{r viResamp2,   echo=FALSE, out.width="75%", fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the  **species** resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
+```{r viResamp2,   echo=FALSE, out.width="85%", fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the  **species** resampling method. Red line indicates the value of VI when **M** and **P** = 100%."}
 knitr::include_graphics(loadFig("VI_species_ribboned_facetByProb")) # species method
 ```
-
-\pagebreak[4]  
 
 ```{r dsdtResamp,   echo=FALSE, out.width="75%", fig.cap="Mean velocity and associated 95% confidence intervals over 10,000 iterations using the observations resampling method. Red line indicates the value of velocity when **M** and **P** = 100%."}
 knitr::include_graphics(loadFig("dsdt_observations_ribboned_facetByProb")) # observations method
 ```
 
-\pagebreak[4]  
-
 ```{r dsdtResampRegime2,   echo=FALSE, out.width="75%", fig.cap="Mean velocity and associated 95% confidence intervals over 10,000 iterations using the observations resampling method for a subset of the time series (the second 'regime' identified). Red line indicates the value of velocity when **M** and **P** = 100%."}
 knitr::include_graphics(loadFig("dsdt_observations_ribboned_facetByProb_regime2")) # species method
 ```
 
-\end{landscape}
 
 ## Results
 ### Velocity of the distance travelled ($v$)
@@ -139,16 +126,15 @@ The Variance Index (VI) performed best under the the observations resampling met
 
 ### Fisher Information is highly sensitive to information loss   
 The Fisher Information method did not yield conclusive results regarding the abrupt shifts in the paleodiatom community composition. Further, this method appears highly sensitive to varying quality and quantitaties of data (Figures \@ref(fig:fiResamp), \@ref(fig:fiCV)). Although the Fisher Information identifies the shift in community composition at $\sim1,300$ years before present, it fails to identify shifts outside this period. Further, it is difficult to visually analyze any value of the Fisher Information on the original scale as the values range from $\approx 0$ to $10^{15}$ (Figure \@ref(fig:fiResamp)). In addition to failing to identify the shifts in community composition, the standard deviation of Fisher Information far exceeded the mean value of Fisher Information under all $\textbf{M}-\textbf{P}$ scenarios (Figure \@ref(fig:fiCV)). When I resampled the data using 25% and 50% of the species the ratio of mean Fisher Information to standard deviation (CV) of Fisher Information is always $\gg 1$ (i.e, not pictured in Figure \@ref(fig:fiCV)). The high variation in FI values across resampled iterations coupled with the  high dispersion within each $\textbf{M}-\textbf{P}$ combination (Figure \@ref(fig:fiCV)) suggests Fisher Information will not produce similar trends when we lose or distort the data collected. This is also sugggested by the high confidence intervals surrounding each  $\textbf{M}-\textbf{P}$ combination (Figure \@ref(fig:fiResamp)).  
-\pagebreak[4] 
-```{r fiResamp,   echo=FALSE, out.width="75%", fig.cap="Mean Fisher Information (FI; note the scale) and associated 95% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when **M** and **P** = 100%. A very small value was added to the mean FI prior to log transformation."}
+```{r fiResamp, echo=FALSE, out.width="75%", fig.cap="Mean Fisher Information (FI; note the scale) and associated 95% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when **M** and **P** = 100%. A very small value was added to the mean FI prior to log transformation."}
 knitr::include_graphics(loadFig("log(FI)_species_ribboned_facetByProb")) # species method
 ```
-\pagebreak[4]
-\begin{landscape}
-```{r fiCV,echo=FALSE, out.width="75%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
+
+<!-- \begin{landscape} -->
+```{r fiCV,echo=FALSE, out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
 knitr::include_graphics(loadFig("FI_cvDensity"))
 ```
-\end{landscape}
+<!-- \end{landscape} -->
 
 ## Detrending the Data Prior to Calculations 
 If and how to manipulate the original data prior to calculating various regime detection methods is an important consideration, and a line of research that has not yet been fully explored. Although most of the multivariate methods identified in the literature review do not require data conforms to a specific distribution, how th results of these methods can vary as we change the quality and characteristics of the original data [@michener2012ecoinformatics]. In fact, since many of the methods for regime shift detection are specifically looking for changes in variance structure and autocorrelation, standardizing variances is not counterintuitive. 
@@ -164,4 +150,4 @@ Some studies detrend the original time series prior to data aggregation and calc
 In this chapter I provide additional evidence for the sensitivity of select regime detection measures to  information (data) quality and quantity loss. The loss of data quantity was simulated by randomly sampling subsets of both the species and the temporal observations, and the reduction in data quality manifests as a function of removing whole species from the community profile. Previous studies of the robustness of univariate regime detection metrics have found similar results, suggesting the measures fail in numerous real-world ecological conditions [@andersen_ecological_2009;@contamin_indicators_2009]. This chapter also highlights the relative insensitivity of the new  velocity metric (see Chapters \@ref(fiGuide), \@ref(velocity)) to data and information quality and quantity (e.g., Figure \@ref(fig:dsdtResamp)) loss. 
 
 ## Ackowledgements 
-This study was conceptualized at the International Institute for Applied Systems Analysis (IIASA) as part of the Young Scholars Summer Program in 2018. I thank my IIASA program supervisors, Drs. Brian Fath and Elena Rovenskaya, for their advisement of this project and IIASA scientists Drs. Matthias Jonas, Chai Molina, Piotr Zebrowski for additional support. 
+This study was conceptualized at the International Institute for Applied Systems Analysis (IIASA) as part of the Young Scholars Summer Program in 2018. I thank my IIASA program supervisors, Drs. Brian Fath and Elena Rovenskaya, for their advisement of this project and IIASA scientists Drs. Matthias Jonas, Chai Molina, Piotr Zebrowski for feedback on study design. 

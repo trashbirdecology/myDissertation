@@ -205,8 +205,3 @@ gD$widths[2:5] <- as.list(maxWidth)
 
 grid.arrange(gB, gC, gD, ncol=1)
 ```
-
-
-
-
-

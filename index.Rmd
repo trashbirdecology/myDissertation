@@ -11,8 +11,6 @@ major: 'Natural Resource Sciences'
 knit: "bookdown::render_book"
 output: 
  thesisdown::thesis_pdf: default
- # bookdown::word_document2: default
-# reference_docx: Thesis2016Simple.docx
 acknowledgements: |
 dedication: | 
   To: those not yet exposed to the great outdoors; those unaware of the possibility of careers in ecology and research; to Mike Moulton, my first and best cheerleader; to S; and myself.

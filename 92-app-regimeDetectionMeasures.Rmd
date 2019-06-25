@@ -84,7 +84,7 @@ results <-
 head(results)
 ```
 
-## Source Code Documentation
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("packageDocumentation/regimeDetectionMeasures.pdf"))
-```
+<!-- ## Source Code Documentation -->
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_graphics(here::here("packageDocumentation/regimeDetectionMeasures.pdf")) -->
+<!-- ``` -->

@@ -193,3 +193,10 @@ Because cahracteristic to regime shifts is the suggestion that the state is main
 
 ## For resampling chapter
 What is the tradeoff between redundancy and dviersity in identifying these regime shifts? For ecological value?
+
+
+# Unsued shit
+
+```{r distEdgeDistribution, eval=FALSE, echo=FALSE, fig.cap=""}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_distribution.png"))
+```
