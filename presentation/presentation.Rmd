@@ -1,13 +1,13 @@
 ---
-title: "Velocity of Ecological System Trajectory"
-subtitle: "**A new method for dimension reduction and ecological regime shift detection** </br> </br> **Jessica L. Burnett**"
-author: "N.B. Price, A.J. Tyre, C.R. Allen, D.G. Angeler, & D. Twidwell"
+title: "Regime Detection Methods for the Practical Ecologist"
+subtitle: "**Jessica L. Burnett**"
+author: "Advised by C.R. Allen & D. Twidwell"
 institute: "University of Nebraska-Lincoln"
 date: "2019.04.07"#(updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     chakra: libs/remark-latest.min.js # to load the last saved verion for offline use
-    css: ["myFonts.css", "myTheme.css"]
+    css: ["css/myFonts.css", "css/myTheme.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -15,10 +15,11 @@ output:
       countIncrementalSlides: false
 ---
 ```{r setup, message=FALSE, warning=FALSE, cache=TRUE, echo=FALSE}
-# summon_remark(version = "latest", to = "libs/")
-
+summon_remark(version = "latest", to = "libs/")
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(include = FALSE, warning=FALSE, message=FALSE, cache=TRUE,fig.path="/figures")
+knitr::opts_chunk$set(include = FALSE, warning=FALSE, message=FALSE, cache=TRUE, fig.path="/figures")
+
+# PACKAGES
 pkgs <- c("tidyverse", "here", "xaringan", "knitr")
 # create a function to load packages
 loadPkgs <- function(packages) {
@@ -27,26 +28,15 @@ loadPkgs <- function(packages) {
 }
 loadPkgs(pkgs)
 
-# Plotting shit
+# SET PLOT THEME
 theme_set(theme_bw())
 ```
-```{r sourceFunctions, echo=FALSE}
-# Source some functions
-myPlot <- function(lab = "driver", x = t,  y1 =S, y2 = D, size =1, hline = D, ann.pos.x = NULL, ann.pos.y = NULL){
-  
-  ggplot()+
-    geom_line(aes(x,S), size = size, color = "black", linetype = 1)+
-    geom_hline(yintercept = D, size = size, color = "blue", linetype = 1)+
-    annotate("text", x = ann.pos.x, y = ann.pos.y, label = lab)+
-    xlab("driver")+
-    ylab("ecosystem state")
-}
+
+```{r helperfuns, echo=FALSE}
 ```
 
 
 # Ecosystems are Complex <!-- list of characteristics -->  
-###*(and complicated)*
-
 #### - high dimensional    
 #### - many ( $\infty$ ?) interactions  
 #### - non-linear  
@@ -62,7 +52,7 @@ Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usu
 #### - **difficult to model mathematically**     
 
 ???
-Anyone studying dynamical systems or studying ecological systems probabl understands that building mathewmatical models to accurately and usefully describe empirical systems is difficult. 
+Anyone studying dynamical systems or studying ecological systems probably understands that building mathewmatical models to accurately and usefully describe empirical systems is difficult. 
 
 Especially as we move beyonbd just a handful of state  variables.
 ---
@@ -357,5 +347,5 @@ knitr::include_graphics(paste0(here::here(),"/figures/distance_dsdt_observations
 ####  `natbprice/tvdiff` (regularized differentiation)
 
 ```{r, eval=FALSE, echo=FALSE}
-source(paste0(here::here(), "/savePrezToPDF.R"))
+source(paste0(here::here(), "/R/savePrezToPDF.R"))
 ```

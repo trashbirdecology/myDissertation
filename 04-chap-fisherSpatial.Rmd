@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 # An application of Fisher Information to spatially-explicit avian community data   {#fisherSpatial}
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align='center',out.width = "85%", fig.pos="h")

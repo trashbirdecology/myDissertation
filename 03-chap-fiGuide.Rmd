@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  word_document: default
+---
 # Decoupling the Calculation of Fisher Information {#fiGuide}    
 
 _This chapter will be submitted for review with authors Burnett, J.L., N.B. Price, A.J. Tyre,  D.G. Angeler, T. Eason,  D. Twidwell, and C.R. Allen]._

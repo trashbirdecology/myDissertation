@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 # Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes {#velocity}
 ```{r setupChVelocity, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # # Chunk defaults
@@ -6,9 +11,9 @@ set.seed(123)
   # cache = TRUE, cache.path = "_cache/",cache.lazy = FALSE,  message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE
   # )
 ## load pkgs
-# library(gridExtra)
+library(gridExtra)
 # library(magrittr)
-# library(tidyverse)
+library(tidyverse)
 
 ## source code for theme_Publications
 source(here::here("chapterFiles/velocity/06-chap-velocity_helperFuns.R"))
@@ -463,12 +468,13 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/chang
 ## Velocity performance under empirical transitions: paleolithic freshwater diatom community
 ```{r tvDiffPaleoCalculate, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 library(tvdiff)
-library(tidyr)
+library(tidyverse)
 library(dplyr)
 library(ggplot2)
 theme_set(theme_bw())
 
 # Load data
+regimeDetectionMeasures::munge_orig_dat()
 data("paleo")
 
 # Linear interpolate data 
