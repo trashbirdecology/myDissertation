@@ -10,6 +10,7 @@ degree: 'Doctor of Philosophy'
 major: 'Natural Resource Sciences'
 knit: "bookdown::render_book"
 output: 
+ # word_document:
  thesisdown::thesis_pdf: default
 acknowledgements: |
 dedication: | 
