@@ -1,0 +1,34 @@
+---
+title: "Regime Detection Measures for the Practical Ecologist"
+subtitle: "Jessica L. Burnett"
+author: "Nebraska Cooperative Fish and Wildlife Research Unit, School of Natural Resources"
+date: "2019 July 22"
+output: pdf_document
+bibliography: ["bib/thesis.bib", "bib/packages.bib"]
+header-includes: 
+   - \usepackage{wrapfig}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Defense Presentation Details   
+__Date/Time__: Jul 22, 2019 9:00 AM Central Time (US and Canada)  
+__Join Remotely__: [https://unl.zoom.us/j/546697980](https://unl.zoom.us/j/546697980)  
+
+## Summary   
+Anthropogenic activity in the last few decades will continue to influence the interactions within and among ecological systems worldwide. The complexity and drivers of changes in coupled human-natural systems is consequently altered, further limiting our ability to detect and predict change and impacts of change. Early warning systems are developed to detect, and in some cases predict, abrupt changes in disparate systems (e.g. cyber security, banking, and stock markets]. Although the ecological literature is inundated with quantitative methods and models for detecting and predicting ecological regime shifts, there is a paucity of rigorous tests and applications using empirical systems data. Jessica's research contributes to our understanding of the early warning systems and their utility for detecting ecological regime shifts. 
+
+Jessica uses a combination of theoretical and empirical community data to test the efficacy of regime detection measures under varying conditions of process and observational noise. In the public presentation, she will review the current state of quantitative measures of regime shift detection, present a new approach to using rate-of-change to track communities through phase space, and discuss the effects of common, observational errors on the results and inference of these measures. 
+
+## Bio  
+\begin{wrapfigure}{R}{.33\textwidth}  
+ \begin{center}
+    \includegraphics[width=.3\textwidth]{me.jpg}  
+\end{center}
+\end{wrapfigure}
+Jessica is a quantitative ecologist and Ph.D. candidate in the Nebraska Cooperative Fish and Wildlife Research Unit, in the School of Natural Resources at the University of Nebraska-Lincoln. Her dissertation research is advised by Drs. Craig Allen and Dirac Twidwell. She received her M.Sc. in Wildlife Ecology & Conservation at the University of Florida, studying  urban ecology and House Sparrow population trends with Drs. Michael Moulton & Katie Sieving. She has received numerous competitive fellowships and awards at the University of Nebraska-Lincoln, including the Fling and Othmer Fellowships, and the SNR Meritorious Graduate Student award. She conducted part of her dissertation research in Austria as an invited Young Scholar at the International Institute for Applied Systems Analysis. Upon completion of her Ph.D. will begin a position as Research Ecologist and Mendenhall Fellow in the Science Analytics and Synthesis group at the U.S. Geological Survey, where she will use integrated population modelling to bridge science and decision makers. 
+
+__Committee Members__  
+Craig R. Allen (advisor), Dirac Twidwell (co-advisor), David Angeler,      John DeLong   &  Andrew Tyre
