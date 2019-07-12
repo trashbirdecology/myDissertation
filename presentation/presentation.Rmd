@@ -33,8 +33,27 @@ loadPkgs(pkgs)
 # SET PLOT THEME
 theme_set(theme_bw())
 ```
+
+# Ecosystems are Complex <!-- intro -->  
+  high dimensional    
+  many ($\infty$) interactions  
+  non-linear  
+  non-ergodic (open)   
+  dynamic  
+
+???
+Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. 
+
 ---
-# Chapter Overview 
+
+---
+# Dissertation Aims 
+<font size="11">
+1. sldkfjds  <br>
+2. 
+</font>
+---
+# Dissertation Overview <!-- intro -->
 <!-- -------    -->
 ### __Chapter 2__: Review of regime shift detection measures  
 --
@@ -54,6 +73,7 @@ theme_set(theme_bw())
 ### __Chapter 7__: Discontinuity analysis of avian body mass distributions  
 
 ---
+
 
 # Chapter 2: Aims & Approach
 ## Census & Review of Regime Shift Detection Measures  

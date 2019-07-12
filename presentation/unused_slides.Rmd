@@ -15,15 +15,6 @@ output:
 
 
 
-# Ecosystems are Complex <!-- list of characteristics -->  
-#### - high dimensional    
-#### - many ( $\infty$) interactions  
-#### - non-linear  
-#### - non-ergodic (open)   
-#### - dynamic  
-
-???
-Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. 
 
 
 --
