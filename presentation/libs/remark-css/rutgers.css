@@ -1,7 +1,7 @@
 /*
 CSS for xaringan slides in RU flavor
-Author: Joseph V. Casillas 
-Updated by Jessica Burnett to UNL logo, colors, etc. 04/01/2019
+Author: Joseph V. Casillas
+Updated: 03/06/2018
 */
 
 /* Package defaults that we slightly tweak */
@@ -17,7 +17,6 @@ a, a > code {
   bottom: 1em;
   padding-right: 4em;
   font-size: 95%;
-  background-image: 
 }
 
 /* important code slightly red */
@@ -41,8 +40,8 @@ a, a > code {
 /* Two-column layout (slightly wider for aspect ration) */
 .left-column {
   color: #777;
-  width: 35%;
-/*  height: 92%; */
+  width: 25%;
+  height: 92%;
   float: left;
 }
 
@@ -52,9 +51,9 @@ a, a > code {
 
 /* slightly thiner to suppor aspect ration */
 .right-column {
-  width: 60%;
+  width: 70%;
   float: right;
-  padding-top: 1em; 
+  padding-top: 1em;
 }
 
 .pull-left {
@@ -115,9 +114,9 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 /* Add image and change bg color */
 .title-slide {
-  background-image: url(https://ucomm.unl.edu/images/brand-book/Our-marks/nebraska-n.jpg);
+  background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png);
   background-position: 9% 15%;
-  background-size: 122px;
+  background-size: 55px;
   background-color: #fff;
   padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
@@ -128,7 +127,6 @@ thead, tfoot, tr:nth-child(even) { background: none; }
   padding-top: 250px;
   font-weight: normal;
   font-size: 45px;
-  line-height: 0.05;
   text-align: left;
   text-shadow: none;
   padding-bottom: 18px;
@@ -282,4 +280,3 @@ ru-blockquote {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
-

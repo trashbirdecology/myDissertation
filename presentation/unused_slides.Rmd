@@ -1,0 +1,306 @@
+---
+title: "UNUSED SLIDES"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["css/myFonts.css", "css/myTheme.css"]
+    chakra: libs/remark-latest.min.js # to load the last saved verion for offline use
+    nature:
+      beforeInit: "http://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:7"
+---
+
+
+
+# Ecosystems are Complex <!-- list of characteristics -->  
+#### - high dimensional    
+#### - many ( $\infty$) interactions  
+#### - non-linear  
+#### - non-ergodic (open)   
+#### - dynamic  
+
+???
+Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. 
+
+
+--
+
+#### - **difficult to model mathematically**     
+
+???
+Anyone studying dynamical systems or studying ecological systems probably understands that building mathewmatical models to accurately and usefully describe empirical systems is difficult. 
+
+Especially as we move beyonbd just a handful of state  variables.
+---
+
+# The Holy Grail of Ecology <!-- ...is prediction -->
+<br>  
+<br>
+# **forecasting change in time to prevent or mitigate undesirable consequences**
+<br>
+
+
+???
+
+- **Despite this complexity** of ecological systems, we as ecologists strive to **make predictions
+
+- One **increasingly active line of research** in ecology is "regime shifts"
+
+<!-- -- -->
+
+<!-- # regime shifts -->
+
+
+---
+
+# Ecological Regime Shifts 
+
+## **what?**  a persistent change in the structure or functioning of a system 
+</br>  
+
+???
+- A **persistent change in the structure or functioning of a system**
+--
+
+## **how?** loss of negative feedback(s) maintaining the system
+<br>
+???
+- Regime shifts occur, via a number of pathways, when a system **loses the negative feedback(s) maintaining** the system in its current state
+
+- Again, *goal* is to predict in time to prevent something bad from happening. Pipe dream? Probably...
+--
+
+## **goal?** predict in time to prevent  
+---
+
+# Regime Shifts Detection Methods
+  ###   Rising Variance/Critical Slowing Down
+  ###   Variance Index (max eigenvalue of covariance matrix)
+  ###   Principal Coordinates Analysis
+  
+--
+  
+  ###   **Fisher Information** 
+  
+--
+
+  ### **Velocity**, $v$
+
+???
+
+- A few of the methods capable of handling multivariable data variance, PCA and an obscure method called, Fisher Information. 
+
+- And its from FI where we derived a new method that I am described today, called **Velocity**
+
+---
+
+# Toy System
+```{r, echo=FALSE, out.width="55%", fig.align="center"}
+knitr::include_graphics(paste0(here::here(),"/figures/exData.png"))
+```
+
+$$ x ~ normal(\mu = 25, \sigma = 5) \textrm{ for t } > 50$$
+$$x ~ normal(\mu =100, \sigma = 5) \textrm{ for t } \geq 50$$
+???
+So the calculations for **velocity** are quite simple, and I am goign to step through the few steps first using this simple 2-variable system, where I induced a change in mean of state variables at time t = 50. 
+
+---
+
+# Velocity, $\frac{\Delta s}{\Delta t}$ 
+#### the linear speed of a system's trajectory (e.g., in phase space)
+
+.pull-left[
+```{r, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics(paste0(here::here(),"/figures/exData.png"))
+```
+]
+.pull-right[
+```{r, echo=FALSE, out.width="150%", fig.align="center"}
+knitr::include_graphics(paste0(here::here(),"/figures/phaseplot.png"))
+```
+]
+
+???
+
+So, our method, velocity, is basically the linear speed of a system's trajectory as it moves through phase space. 
+
+---
+
+# Step 1: Calculate ** $\Delta s$ **, 'distance travelled'
+
+## $$s = \textrm{system state}$$
+
+--
+</br> 
+
+
+## $$\Delta s_i = \sqrt{\sum_{j=1}^{n} (x_{i,j} -x_{i-1, j})^2}$$ 
+
+```{r,eval=FALSE, echo=FALSE, out.width="35%", fig.align="center"}
+knitr::include_graphics(paste0(here::here(),"/figures/exData_t1t2.png"))
+```
+
+
+---
+
+# Step 2: Calculate ** $s$ **, **cumulative** distance travelled
+
+### $$\Delta s_i = \sqrt{\sum_{j=1}^{n} (x_{i,j} -x_{i-1, j})^2}$$
+
+## $$s_k =  \sum_{i=2}^{k}\Delta{s_i}$$
+### $$2\leq k \leq n$$
+
+---
+
+# Step 3: Calculate ** $v$ ** , the linear speed of ** $s$ **
+#### $$v =  \frac{\Delta s}{\Delta t}$$  
+
+```{r, echo=FALSE, out.width="55%", fig.align="center"}
+knitr::include_graphics(paste0(here::here(),"/figures/dsdtplot.png"))
+```
+
+---
+
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(paste0(here::here(),"/figures/velocSysEx1-1.png"))
+```
+</br>
+```{r, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(paste0(here::here(),"/figures/velocSysEx2-1.png"))
+```
+
+---
+# Potential Limitations of $v$
+### $v$ increases with increasing effect size
+
+```{r, eval=TRUE,echo=FALSE, out.width="80%"}
+  knitr::include_graphics(paste0(here::here(),"/figures/simVplot1.png"))
+```
+
+???
+- Going back to our toy system, the velocity increases as our total change in X_i increases 
+
+---
+# Potential Limitations of $v$
+### $v$ increases with increasing effect size
+
+```{r, eval=TRUE,echo=FALSE, out.width="80%"}
+knitr::include_graphics(paste0(here::here(),"/figures/simVplot2.png"))
+```
+
+???
+- But does not necessarily improve as an indicator
+
+---
+
+
+# Empirical System: Paleodiatom <!--1-->
+
+```{r, eval=TRUE,echo=FALSE, out.width="80%"}
+knitr::include_graphics(paste0(here::here(),"/figures/paleoData.png"))
+```
+ 
+Data published in Spanbauer *et al.* 2014. Prolonged Instability Prior to a Regime Shift. PLoS One
+  
+???
+
+We also tested the method on paleodiatom data dating back about 8,000 years before present.
+Notice here there is a high species turnover
+---
+# Empirical System: Paleodiatom <!--2-->
+
+```{r, eval=TRUE,echo=FALSE, out.width="100%"}
+knitr::include_graphics(paste0(here::here(),"/figures/fipaleo.png"))
+```
+
+
+???
+
+We also tested the method on paleodiatom data dating back about 8,000 years before present.
+Notice here there is a high species turnover
+---
+
+
+# Empirical System: Paleodiatom <!--3 Results-->
+<!-- ## Distance travelled ** $s$ ** & Velocity ** $v$ ** identify these turnover events -->
+
+```{r, eval=TRUE,echo=FALSE, out.width="100%"}
+knitr::include_graphics(paste0(here::here(),"/figures/paleoVelocity.png"))
+```
+
+???
+S and V clearly identify these turnover events, but V is somewhat noisy.
+
+---
+
+# Smoothing Noisy Data Before Calculating ** $v$ ** 
+
+#### Total Variation Regularized Numerical Differentiation
+
+```{r, eval=TRUE,echo=FALSE, out.width="90%"}
+knitr::include_graphics(paste0(here::here(),"/figures/paleoV.png"))
+```
+
+???
+Here we have used regularized differentiation to smooth out the original data, and which in turn smooths out the velocity. 
+
+---
+
+# $v$ Identifies Potential Periodicities in Certain Regimes
+```{r, eval=TRUE,echo=FALSE, out.width="90%"}
+knitr::include_graphics(paste0(here::here(),"/figures/paleoV2.png"))
+```
+
+???
+- Additioanlly, we found it interesting that velocity also identifies interesting dynamics within the system regimes. Note the periodicities in regime 1 and 2. 
+- These periodicities were not discussed in origianl examinations of this data.
+---
+
+# Impacts of Changes in Data Quality on $s$ and $v$  <!-- 1 -->
+```{r, eval=TRUE,echo=FALSE, out.width="90%"}
+knitr::include_graphics(paste0(here::here(),"/figures/distance_95PI_s_observations.png"))
+```
+
+---
+# Impacts of Changes in Data Quality on $s$ and $v$  <!-- 2 -->
+```{r, eval=TRUE,echo=FALSE, out.width="90%"}
+knitr::include_graphics(paste0(here::here(),"/figures/distance_dsdt_observations.png"))
+```
+
+---
+
+# Conclusions 
+
+### Reduction of high dimensional data
+### Capable of handling noisy data
+### Is not sensitive to data quality issues common in ecology
+### Best when mean > variance
+### Identifies regime shifts known *a priori* 
+
+---
+
+
+# Next Steps
+### Numerical identification of change point in $v$  
+### Compare to distance-based metrics (feedback?)
+### Compare to ordination techniques
+### Predictive capacity
+
+???
+- One of the primary motivations for this project was to identify an objective, intuitive, and easy-to-calculate method for identifying ecological regime shifts
+
+
+---
+# Related Software
+### R packages (dev versions):
+####  `trashbirdecology/distanceTravelled` (calculate $s$ and $v$)
+####  `trashbirdecology/regimeDetectionMeasures` (calculate multiple regime detection metrics)
+####  `trashbirdecology/bbsRDM` (application to spatial data)
+####  `natbprice/tvdiff` (regularized differentiation)
+
+```{r, eval=FALSE, echo=FALSE}
+source(paste0(here::here(), "/R/savePrezToPDF.R"))
+```
