@@ -33,7 +33,7 @@ x = 1:10
 S  = a*x^2 + b*x + c
 D = mean(S)
 
-p1<-myPlot(x = x, y1=S, y2=D, hline = D)+ 
+p1<-ggplot(x = x, y1=S, y2=D, hline = D)+ 
   geom_line(aes(x = max(x):(max(x)+round(length(x)*.4)), # add flat line to end  
                 y = min(S)), size = 1)+
   ggtitle("slow driver to tipping point")

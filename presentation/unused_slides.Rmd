@@ -14,9 +14,6 @@ output:
 ---
 
 
-
-
-
 --
 
 #### - **difficult to model mathematically**     

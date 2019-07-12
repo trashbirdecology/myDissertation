@@ -34,6 +34,14 @@ loadPkgs(pkgs)
 theme_set(theme_bw())
 ```
 
+# Ecosystems are Complex  <!-- turtle reef pic-->
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("https://coolkeywest-1165.kxcdn.com/wp-content/uploads/2014/05/reef.jpg")
+```
+Image credit: [coolkeywest.com](https://coolkeywest-1165.kxcdn.com/wp-content/uploads/2014/05/reef.jpg)
+
+
 # Ecosystems are Complex <!-- intro -->  
   high dimensional    
   many ($\infty$) interactions  
@@ -76,7 +84,8 @@ Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usu
 
 
 # Chapter 2: Aims & Approach
-## Census & Review of Regime Shift Detection Measures  
+### Comprehensive review of regime shift detection methods
+### Identify themes among regime shift relevant research artciels
 
 .pull-left[
 ### __Aim__  
@@ -86,7 +95,7 @@ Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usu
 
 .pull-left[
 ### __Approach__  
-Systematic literature review    
+Systematic literature review
 Bibliographic analysis
 ]
 

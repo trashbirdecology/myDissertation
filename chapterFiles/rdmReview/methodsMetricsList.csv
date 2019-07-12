@@ -32,7 +32,7 @@ n,,,NA,,NA,"andersen_ecological_2009,",,A review of some methods for detecting r
 ,,,,,Intervention Analysis,francis1994decadal,,,,,,,,,,,metric,n,,,steps,,,,,y,,,
 ,,,,,STARS,buishand1982some,,,,,,,,,,,metric,y,,,,,first-order statistics,mean, ,,,parameter choices,
 ,,,,,MCMC,,,,,,,,,,,,,,,,,,,,,y,,parameter choices,uncertainty increases as we near the transition point (Brock and Carpenter 2012)
-,,,,,Quickest detection method (Shiryaev–Roberts statistic),moustakides2009numerical,,,,,,,,,,,metric,,,carpenter2014new,distribution,,,,,,,,
+,,,,,Quickest detection method (Shiryaev-Roberts statistic),moustakides2009numerical,,,,,,,,,,,metric,,,carpenter2014new,distribution,,,,,,,,
 ,,,,,Variance Index,brock_variance_2006,,,,,,,,,,,metric,y,,,,,second-order,eigenvalue of var-cov mat,,,,,
 ,,,,,Spectrum indicator,,,,,,,,,,,,metric,n,,,,,,,,,,,
 ,,,,,Wavelet analysis (decomposition),cazelles2008wavelet,,,,,,,,,,,other,n,,,,,,,,,,,
