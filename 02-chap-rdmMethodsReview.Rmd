@@ -2,7 +2,14 @@
 ```{r sourceBibAnalysis, echo=FALSE, warning=FALSE,  message=FALSE}
 # This chunk is the initial analysis of the bibliography results, and turned the search results into csvs for simple reviewing. 
 ## This script also saves some objects to refer to later in figures in this chapter
-suppressMessages(source("./chapterFiles/rdmReview/bibliographyAnalysis.R"))
+suppressMessages(source(here::here("chapterFiles/rdmReview/bibliographyAnalysis.R")))
+# if(!exists("rdm.dir")) rdm.dir <- here::here("chapterfiles/rdmReview")
+# wos.filteredByHand <- read_csv(paste0(rdm.dir, "/wosSearchResults_20190310/wos_20190310_withoutPrior_filteredByHand.csv")) 
+# 
+# finalMetricsList <- read_csv(paste0(rdm.dir, "/methodsMetricsList.csv")) %>% as_tibble() %>% 
+#   filter(!is.na(method))
+# finalMetricsList.bib <- revtools::read_bibliography(paste0(rdm.dir, "/", "methodsMetricsList.bib")) %>% as_tibble() 
+# fig.path <- paste0(rdm.dir, "/figures/figsCalledInDiss/")
 ```
 ## Introduction
 <!-- >*If a regime shift occurs and no one detects it--is it a regime shift at all?* -->
@@ -90,13 +97,20 @@ I restricted the ISI Web of Science to the Web of Science categories (WC) 'Ecolo
 
 \begin{landscape}
 
-```{r methodsMetricsListTab1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r methodsMetricsListTab1, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
 long_dt <- finalMetricsList %>%
-  mutate(Source = paste0("\\@", myLabel1)) %>%
+  mutate(Source = paste0("@", myLabel1)) %>% 
+  # mutate(Source = paste0('"' , "@", myLabel1, '"')) %>% 
   dplyr::select(method, type1, Source ) %>% 
   rename(`Metric type`=type1,
          Method = method) %>% 
-  arrange(`Metric type`, Method)
+  arrange(`Metric type`, Method) %>% 
+  na.omit(Source)
+
+# for(i in 1:(nrow(long_dt))){
+#   tmp <- long_dt$Source[i]
+#   long_dt$Source[i] = wrapr::qc(.(tmp))
+#   }
 
 kableExtra::kable(long_dt,
       # format = "latex", 
@@ -294,15 +308,15 @@ Questions = tibble::tibble(
   Questions = c(Questions.stat, Questions.ecol)
   )
   
-kable(Questions,
+kableExtra::kable(Questions,
   format="latex",
   longtable = TRUE,
   booktabs = TRUE,
   caption = "Potential questions for a comprehensive review of the ecological regime detection metrics literature."
   ) %>%
-  kable_styling(full_width = FALSE) %>%
-  column_spec(1, bold = TRUE, border_right = TRUE) %>%
-  column_spec(2, bold = FALSE, width = "30em")
+  kableExtra::kable_styling(full_width = FALSE) %>%
+  kableExtra::column_spec(1, bold = TRUE, border_right = TRUE) %>%
+  kableExtra::column_spec(2, bold = FALSE, width = "30em")
 ```
 
 <!-- ## Notes -->

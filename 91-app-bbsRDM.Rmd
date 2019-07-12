@@ -32,7 +32,7 @@ library(bbsRDM)
 library(here)
 ```
 
-```{r  createDirs, echo=FALSE}
+```{r  bbsrdm_createDirs, echo=FALSE}
 # Create directories to locally store BBS data and results.
 # a. Create a directory to store and/or load the BBS data as feathers
 bbsDir <- "./chapterFiles/appendix_bbsRDM/bbs_raw_data"
@@ -62,7 +62,7 @@ dir.create(resultsDirDIST)
 
 ### Download the BBS data and save to file locally
 If necessary, download all the state data. This takes 10-15 minutes, so only run if you have not recently downloaded the BBS data or are missing data. 
-```{r getBBSdata, echo=TRUE}
+```{r bbsrdm_getBBSdata, echo=TRUE}
 # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
 regions <- GetRegions()
 
@@ -102,7 +102,7 @@ rm(bbsData)
 
 ### Create a sampling grid
 Next, build a sampling grid to force route information onto a regular gridded area. This allows us to compare the results across space-time.
-```{r samplingGrid, echo=TRUE}
+```{r bbsrdm_samplingGrid, echo=TRUE}
 # III: Build sampling grid --------------------------------------------------------
 # Define the grid's cell size (lat, long; unit:degrees)
         ## 1 deg latitude ~= 69 miles
@@ -122,7 +122,7 @@ rm(cs)
 
 See if the results are already saved to file. This will save us some computational time when knitting the document. Otherwise, will take about a minute to calculate, depending on the size of birdsData
 
-```{r import.ind, echo=FALSE, eval=TRUE}
+```{r bbsrdm_import.ind, echo=FALSE, eval=TRUE}
 tempResultsDir <- here::here("/tempFiles_bbsRDM/")
 dir.create(tempResultsDir)
 fns <- list.files(tempResultsDir)
@@ -131,7 +131,7 @@ import.feathers <- ifelse("feathers.RDS" %in% list.files(tempResultsDir), FALSE,
 ```
 
 Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution. If it's already saved in the tempResultsDir (see Section \@ref(import.ind)) then it will just upload from file.
-```{r,echo=TRUE}
+```{r bbsrdm_importfeathers,echo=TRUE}
 if(import.feathers){
 feathers <- NULL
 featherNames <- list.files(bbsDir, pattern = ".feather")
@@ -157,13 +157,13 @@ Although subsetting the speices is optional, I recommend removing waterfowl, wad
 
 ### Subset species according to AOU species codes (i.e. by family, genera, etc..)
 For this example we will remove shorebirds, wading birds, and waterfowl (i.e., AOU species' codes 0000:2880). *See `R/subsetByAOU.R` source code or documentation for options (see: `subset.by`)
-```{r subsetAOU, echo=TRUE}
+```{r bbsrdm_subsetAOU, echo=TRUE}
 # Subset the species
 feathers <- subsetByAOU(myData = feathers, subset.by= 'remove.shoreWaderFowl')
 ```
 
 ### Subset species by trait, body mass, taxonomically, etc...(optional)
-```{r subsetFxn, eval =FALSE, message = TRUE, warning = FALSE, echo=TRUE}
+```{r bbsrdm_subsetFxn, eval =FALSE, message = TRUE, warning = FALSE, echo=TRUE}
 # Load the functional trait and mass data, and munge/merge
 require(dplyr)
 funMass <-
@@ -180,7 +180,7 @@ rm(funMass)
 
 ### Calculate regime detection metrics across space or time
 First, define the parameters required to calcualte the metrics.
-```{r defineParams, echo=TRUE}
+```{r bbsrdm_defineParams, echo=TRUE}
 # Which metrics do you want to calculate?
 metrics.to.calc <- c("distances", "ews")
 
@@ -217,7 +217,7 @@ if (direction == "East-West") {
 ```
 
 Define the years we want to analyze. For this (spatial) example, we will analyze only every fifth year in the available data. 
-```{r yearSubset, echo=FALSE, message=FALSE}
+```{r bbsrdm_yearSubset, echo=FALSE, message=FALSE}
 # Get all possible years
 years.use = unique(feathers$year)
 
@@ -229,7 +229,7 @@ years.use  <- years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort(
 ### Conduct analysis
 This section will loop through `years.use` and `dir.use`, running each BBS route (temooral analysis) or spatial transect by year (spatial analysis) at a time. Results are saved in directories created in \@ref(#createDirs)
 
-```{r calcMetrics, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
+```{r bbsrdm_calcMetrics, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
 # **Please note: depending on the # of years and spatial transects, this could take a while!**
 if(import.ind==FALSE) for (j in 1:length(dir.use)) {
     # For east-west analysis
@@ -289,7 +289,7 @@ if(import.ind==FALSE) for (j in 1:length(dir.use)) {
 ### Import and munge the results to prepare for visualization
 First, import and combine the results as created in \@ref(#calcMetrics)
 This chunk will import the EWS results and the distance results separately, combining each into their own data frames.
-```{r importCalcMetrics, echo=TRUE}
+```{r bbsrdm_importCalcMetrics, echo=TRUE}
 #  Import EWS results
 if(!"results_ews.RDS" %in% fns){results_ews <-
     importResults(resultsDir = resultsDir, myPattern = 'ews',
@@ -315,7 +315,7 @@ if(import.ind){
 ```
 
 Next, get the results to align with our sampling grid for visualizing results across space.
-```{r , echo=TRUE}
+```{r bbsrdm_importresults, echo=TRUE}
 #  Get the spatial sampling grid coordinates
 coords_grd <-
     cbind(routes_gridList$sp_grd@data,
@@ -349,7 +349,7 @@ sp::proj4string(distResults) <-
 
 ### Visualize results: one regime detection metric at a time
 First, specify plotting parameters. We can visualize either the distance results (`distResults`) or the early-warning signal results (`ewsResults`). Define the results we want to visualize:
-```{r , echo=TRUE}
+```{r bbsrdm_plotresults, echo=TRUE}
 # Specify results to visualize
 plotResults <- distResults
 
@@ -367,7 +367,7 @@ sortVar.lab <-
 ```
 
 Plot the individual transects. **Note: please specify dirID.ind as desired spatial transect number, and dirInd as direction (E-W or N-S)**
-```{r , echo=TRUE}
+```{r bbsrdm.plotind.tsect, echo=TRUE}
 # Specify the transect # we want to see
 dirID.ind <- 13
 

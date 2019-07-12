@@ -27,7 +27,7 @@ library(tidyverse)
 #### Define and/or create local directories
 This function will create, if it does not already exist, folder **./bbsData/** within which to locally store BBS data and results. 
 **NOTE**: If the directory exists, it will not overwrite files. If the bbs data already exists inside bbsDir, then we will create a logical to NOT download the data (see below). If you wish to download more, or overwrite existing data, please specify downloadBBSData=TRUE or remove .zip files from **/bbsData/**.
-```{r  createDirs, echo=TRUE}
+```{r  bbsass.makedirs, echo=TRUE}
 # Create a directory to store and/or load the BBS data as feathers
 bbsDir <- here::here("bbsData/")
 dir.create(bbsDir)

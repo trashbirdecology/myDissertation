@@ -1,9 +1,3 @@
----
-output:
-  html_document:
-    df_print: paged
-  word_document: default
----
 # Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions {#discontinuity}
 ```{r ch7setup, echo=FALSE, message=FALSE, warning=FALSE, fig.align="c", fig.pos="h", out.width="85%"}
 figDir <- here::here("chapterFiles/discontinuityAnalysis/figsCalledInDiss/")

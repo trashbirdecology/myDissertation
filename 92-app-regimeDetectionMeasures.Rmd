@@ -74,7 +74,6 @@ results <-
     rdm_window_analysis(
         origData,
         winMove = 0.25,
-        overrideSiteErr = F,
         min.window.dat = 2,
         fi.equation = "7.12",
         to.calc = c('EWS', 'VI')

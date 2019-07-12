@@ -1,8 +1,3 @@
----
-output:
-  word_document: default
-  html_document: default
----
 # Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes {#velocity}
 ```{r setupChVelocity, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # # Chunk defaults
