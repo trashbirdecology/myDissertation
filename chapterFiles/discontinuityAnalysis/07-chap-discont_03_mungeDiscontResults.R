@@ -233,8 +233,10 @@ results[results$year >= rs.loc$year[4] & results$lat > rs.loc$lat[4], ]$regime="
 
 ## ENSURE THE N-S split occurs at correct latitude/year
 # View(results %>% distinct(year, loc, regime, lat, long) %>% arrange(year, lat))
-ggplot(results %>% group_by(year, regime) %>% summarise(y=n_distinct(loc)) %>% ungroup(),
-       aes(year, y))+geom_boxplot()+facet_wrap(~regime)
+ggplot(
+  results %>% group_by(year, regime) %>% summarise(y = n_distinct(loc)) %>% ungroup(),
+  aes(year, y)
+) + geom_boxplot() + facet_wrap( ~ regime)
 
 ## Munge some more...
 results <-    
