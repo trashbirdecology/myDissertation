@@ -14,8 +14,8 @@ output:
  thesisdown::thesis_pdf: default
 acknowledgements: |
 dedication: | 
-  To: those not yet exposed to the great outdoors; those unaware of the possibility of careers in ecology and research; to Mike Moulton, my first and best cheerleader; to S; and myself.
-bibliography: ["bib/thesis.bib", "bib/packages.bib"]
+  To those not yet exposed to the great outdoors. To those unaware of the possibility of careers in ecology and research. To Mike Moulton, my first and best cheerleader. To S. And to myself. 
+bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib"]
 csl: [reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
 lot: true
 lof: true
@@ -23,7 +23,7 @@ space_between_paragraphs: true
 link-citations: yes
 ---
 ```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
-## IS THIS A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulations becaues time expensive
+## IS THIS A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulations becaues time expensive # i think i disabled this, though?
 quickRun<-FALSE
   if(!exists("quickRun")) quickRun <- FALSE
 instlLoadPkgs <- function(packages, install = TRUE) {
