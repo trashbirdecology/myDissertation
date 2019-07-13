@@ -351,11 +351,8 @@ if(!length(t)==0){warning("Not all declining species  are in the aou.keep file."
 # FILTER BY LAT AND LONG
 bbsData <-
   bbsData %>%
-  # filter(lat >= 28 & lat <=49 & long >-97 & long < -93) ## Caleb Roberts et al bounding box... doesnt make sense, though
-  filter(lat >= 37.84 & lat <= 44.5 & long >-101 & long < -95.5) ## MY bounding box which comprises only praire (within BCRs see below)
-
-# distinct(test, statenum, route, bcr)
-# distinct(test, route, statenum)
+  filter(lat >= 28 & lat <=49 & long >-97 & long < -93) ## Caleb Roberts et al bounding box... doesnt make sense, though
+  # filter(lat >= 37.84 & lat <= 44.5 & long >-101 & long < -95.5) ## MY bounding box which comprises only praire (within BCRs see below)
 
 # Merge body masses with the BBS -------------------------------------------------------
 mass <- suppressMessages(suppressWarnings(
@@ -372,8 +369,6 @@ mass <- suppressMessages(suppressWarnings(
 
 
 # Taxonmic Changes to match mass ------------------------------------------
-
-
 # Simple taxonomic changes
 bbsData$scientificName[bbsData$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
 bbsData$scientificName[bbsData$scientificName=="Circus cyaneus hudsonius"] <- "Circus cyaneus"
@@ -517,9 +512,7 @@ rm(list= ls()[!(ls() %in% c("routes_grid", "sp_grd", "states.of.interest","grass
 
 
 # END RUN -----------------------------------------------------------------
-if(nrow(bbsData %>% filter(is.na(log10.mass)))!=0)stop("Some species in `bbsData` are missing log body masses!!")else("DATA MUNGING COMPLETE! Outputs include:
-                                                                                                                    bbsData = the bbs data filtered, munged, etc.; 
-                                                                                                                        decliningSpecies: list of species ")
+if(nrow(bbsData %>% filter(is.na(log10.mass)))!=0)stop("Some species in `bbsData` are missing log body masses!!")else("DATA MUNGING COMPLETE! Outputs include: bbsData = the bbs data filtered, munged, etc.; decliningSpecies: list of species ")
 
 
 

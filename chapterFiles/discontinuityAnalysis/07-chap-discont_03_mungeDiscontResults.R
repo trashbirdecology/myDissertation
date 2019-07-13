@@ -776,8 +776,6 @@ saveTab(tab = cor.table, fn = "corTabBySppGroup", dir = tabDir)
 # 12. SAVE RESULTS TO FILE FOR QUICK LOADING --------------------------------
 saveRDS(
   results,
-  here::here(
-    "/chapterFiles/discontinuityAnalysis/results/datForAnova.RDS"
+  here::here(paste0(resultsDir, "datForAnova.RDS"))
   )
-)
 # END RUN -----------------------------------------------------------------

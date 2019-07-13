@@ -50,7 +50,9 @@ pts <- bbsData %>%
   mutate(loc = as.factor(paste(countrynum, statenum, route, sep="_")))
 
 # see # routes per year
-pts %>% group_by(year) %>% summarise(z=n_distinct(loc))->t;ggplot(t, aes(x=year, y=z))+geom_line()
+t <- pts %>% group_by(year) %>% summarise(z=n_distinct(loc))
+
+ggplot(t, aes(x=year, y=z))+geom_line() ## n available routes per year increases, almost doubling...
 
 box <- pts %>% 
   summarise(y.min = min(lat, na.rm=TRUE),
