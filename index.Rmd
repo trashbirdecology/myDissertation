@@ -15,6 +15,8 @@ output:
 acknowledgements: |
 dedication: | 
   To those not yet exposed to the great outdoors. To those unaware of the possibility of careers in ecology and research. To Mike Moulton, my first and best cheerleader. To S. And to myself. 
+preface: |
+  >"sdlksjdfjk qyote about models made for ecologists"
 bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib"]
 csl: [reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
 lot: true
