@@ -15,7 +15,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: "16:9"
-      seal: false
+      # seal: false
 ---
 ```{r setup, message=FALSE, warning=FALSE, cache=TRUE, echo=FALSE}
 xaringan::summon_remark(version = "latest", to = "libs/")
@@ -35,22 +35,8 @@ loadPkgs(pkgs)
 theme_set(theme_bw())
 ```
 
-class: title-slide   
-
-#  <!--open quote-->
-
-# Header 1
-
-## Header 2  
-
-### Header 3 
-
-
-
----
-
 # Example slide 
-> Ecological models are made for ecologists and by ecologists. 
+> Ecological models are made for ecologists and by ecologists, cooked up for consumption by ecologists 
 
 .inverse[
 
@@ -63,17 +49,45 @@ Ecosystems are complex
 
 ]
 
+.pull-right[
+<font size="11">
+    1. sldkfjds  <br>
+    2. 
+</font>
+]
+???
+This is the presnetation notes
+
+
+--- 
+
+# Ecological Systems
+
+.center[
+![]()
+]
+
 ???
 Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. 
 
 ---
 
+# Ecological Regime Shifts
+
+.pull-left[![Joe Hoyt/NOAA](https://www.noaa.gov/sites/default/files/styles/scale_crop_800x450/public/thumbnails/image/PHOTO-Top-of-Cordell-Bank-CBNMS-Hoyt-NOAA-041316-3008x2000-original.jpg?itok=1BWNHq3s)]
+
+--
+ 
+.pull-right[![Joe Hoyt/NOAA](https://www.noaa.gov/sites/default/files/styles/scale_crop_800x450/public/thumbnails/image/PHOTO-Top-of-Cordell-Bank-CBNMS-Hoyt-NOAA-041316-3008x2000-original.jpg?itok=1BWNHq3s)]
+
+
+???
+
+- The rapid changes in large-scale abiotic processes, like rises in sea temperature, increased atmospheric C02 and global warming are linked with the recent decades of human activity. 
+- For example, corals require algae, 
+
 ---
 # Dissertation Aims 
-<font size="11">
-1. sldkfjds  <br>
-2. 
-</font>
 ---
 # Dissertation Overview <!-- intro -->
 <!-- -------    -->
