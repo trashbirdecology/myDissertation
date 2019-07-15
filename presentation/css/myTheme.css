@@ -1,21 +1,22 @@
 /*
 CSS for xaringan slides in RU flavor
 Author: Joseph V. Casillas 
-Updated by Jessica Burnett to UNL logo, colors, etc. 04/01/2019
+Updated by Jessica Burnett to UNL logo, colors, styling
 */
 
 /* Package defaults that we slightly tweak */
 
 a, a > code {
-  color: #cc0033; /* rgb(249, 38, 114) */
+  color: #D00000; /* rgb(208, 0, 0 ) = 'scarlet' red official for UNL */
   text-decoration: none;
 }
+
 
 /* slightly lower and bigger than default */
 .footnote {
   position: absolute;
   bottom: 1em;
-  padding-right: 4em;
+  padding-right: 7em;
   font-size: 95%;
   background-image: 
 }
@@ -28,34 +29,55 @@ a, a > code {
 /* color tweak */
 .inverse {
   background-color: #272822;
-  color: #777872;
+  color: #6d6d69;
   text-shadow: 0 0 20px #333;
 }
 
 /* slightly spacing change */
 .inverse h1, .inverse h2, .inverse h3 {
-  color: #f3f3f3;
+  color: #fefdfa; /* unl cream white */
   line-height: 1.0em;
 }
 
 /* Two-column layout (slightly wider for aspect ration) */
 .left-column {
-  color: #777;
+  color: #6d6d69;
   width: 35%;
 /*  height: 92%; */
   float: left;
 }
 
 .left-column h2:last-of-type, .left-column h3:last-child {
-  color: #000;
+  color: #000; 
 }
 
 /* slightly thiner to suppor aspect ration */
 .right-column {
-  width: 60%;
+  width: 65%;
   float: right;
-  padding-top: 1em; 
+/*  padding-top: 1em; */ 
 }
+
+
+/* x-column 1/2 */
+
+/* Two-column layout (slightly wider for aspect ration) */
+.left-column-half {
+  color: #6d6d69;
+  width: 50%;
+  float: left;
+}
+
+.left-column-half h2:last-of-type, .left-column h3:last-child {
+  color: #000;
+}
+
+.right-column-half {
+  width: 50%;
+  float: right;
+}
+
+/* pull-left pull-right design, half/half approx*/
 
 .pull-left {
   float: left;
@@ -76,7 +98,7 @@ img, video, iframe {
 }
 
 blockquote {
-  border-left: solid 5px lightgray;
+  border-left: solid 5px #6d6d69; /* unl grey = #6d6d69;  dark grey = #424240*/
   padding-left: 1em;
 }
 
@@ -117,14 +139,15 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 .title-slide {
   background-image: url(https://ucomm.unl.edu/images/brand-book/Our-marks/nebraska-n.jpg);
   background-position: 9% 15%;
-  background-size: 122px;
-  background-color: #fff;
+  background-size: 220px;
+/*  box-shadow: inset 0 0 5px 2px #282a2d; /* mark the inset ; add a shadow around the title slide */ 
+  background-color: #fefdfa; /*fefdfa - cream unl */
   padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
 
 /* H1 fonts */
 .title-slide h1 {
-  color: #515151;
+  color: #242423; /*242423 = darkest unl grey*/
   padding-top: 250px;
   font-weight: normal;
   font-size: 45px;
@@ -137,7 +160,7 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 /* H2 fonts */
 .title-slide h2 {
-  color: #cc0033;
+  color: #424240; /*6d6d69 = unl dark gray ; 424240 = unl darker gray*/
   font-size: 35px;
   text-align: left;
   text-shadow: none;
@@ -168,28 +191,28 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 /* section divider red */
 .title-slide-section-red {
-  background-color: #cc0033;
+  background-color: #ff0000;
   padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
 
 /* section divider red H1 fonts */
 .title-slide-section-red h1, .title-slide-section-red h2, .title-slide-section-red h3, .title-slide-section-red p {
-  color: #fff;
+  color: #fefdfa;
 }
 
 /* section divider grey */
 .title-slide-section-grey {
-  background-color: #515151;
+  background-color: #242423; /* darkest UNL gray color */
   padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
 
 /* section divider grey H1 fonts */
 .title-slide-section-grey h1, .title-slide-section-grey h2, .title-slide-section-grey h3 {
-  color: #fff;
+  color: #fefdfa;
 }
 
 .title-slide-section-grey p {
-  color: #fff;
+  color: #fefdfa;
 }
 
 /*~~~~~~~~~~~~~~~~~~*/
@@ -198,14 +221,14 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 .title-slide-final {
   background-color: #272822;
-  color: #fff;
+  color: #fefdfa;
   padding-left: 100px;
   text-shadow: 0 0 20px #333;
   text-align: center;
 }
 
 .title-slide-final h1 {
-  color: #cc0033;
+  color: #ff0000;
 }
 
 /*~~~~~~~~~~~~~~~~~~~~*/
@@ -219,13 +242,13 @@ thead, tfoot, tr:nth-child(even) { background: none; }
 
 /* Color adjustments for text */
 
-/* Make bold syntax compile to RU-red */
+/* Make bold syntax compile to UNL-red */
 strong {
-  color: #cc0033;
+  color: #ff0000;
 }
 
 .RUred {
-  color: #cc0033;
+  color: #ff0000;
 }
 
 /* Add blue tag */
@@ -236,7 +259,7 @@ strong {
 
 /* Add grey tag */
 .grey {
-  color: #515151;
+  color: #242423;
 }
 
 .lightgrey {
@@ -249,18 +272,24 @@ strong {
   font-weight: bold;
 }
 
-/* Add white tag */
+/* Add (UNLcream) tag */
+.cream {
+  color: #FEFDFA;
+}
+
+
+/* Add (white) tag */
 .white {
   color: white;
 }
 
 /* Color adjustments to headers */
 h1 {
-  color: #cc0033;
+  color: #ff0000;
 }
 
 h3 {
-  color: #515151;
+  color: #242423;
 }
 
 /* Font size tags */
@@ -275,11 +304,23 @@ ru-blockquote {
   margin-bottom: 1em;
   margin-left: 40px;
   margin-right: 40px;
-  border-left: solid 10px #cc0033;
+  border-left: solid 10px #ff0000;
   background-color: #818181;
   padding: 1em;
-  color: #fff;
+  color: #fefdfa;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
 
+
+
+
+/* custom footer JLB */
+.footer {
+    color: black;
+    position: fixed;
+    top: 95%;
+    left: 0;
+    text-align: center;
+    width: 100%;
+}

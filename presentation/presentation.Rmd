@@ -1,9 +1,9 @@
 ---
 title: "Regime Detection Methods for the Practical Ecologist"
-subtitle: "**Jessica L. Burnett**"
+subtitle: "**Jessica L. Burnett**<hr />"
 author: "<br><font color='black'><b>Co-advisors</b></font>: C.R. Allen & D. Twidwell <br> <font color='black'><b>Committee</b></font>: D.G. Angeler, J.P. DeLong, & A.J. Tyre <br>"
-institute: "<br>Nebraska Cooperative Fish & Wildlife Research Unit<br> School of Natural Resources <br> University of Nebraska-Lincoln"
-date: "`r Sys.Date()`"
+institute: "<br>Nebraska Cooperative Fish & Wildlife Research Unit<br> School of Natural Resources, University of Nebraska-Lincoln"
+date: "`r format(Sys.Date(), '%B %e, %Y')`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -14,7 +14,8 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      ratio: "16:7"
+      ratio: "16:9"
+      seal: false
 ---
 ```{r setup, message=FALSE, warning=FALSE, cache=TRUE, echo=FALSE}
 xaringan::summon_remark(version = "latest", to = "libs/")
@@ -34,20 +35,33 @@ loadPkgs(pkgs)
 theme_set(theme_bw())
 ```
 
-# Ecosystems are Complex  <!-- turtle reef pic-->
+class: title-slide   
 
-```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("https://coolkeywest-1165.kxcdn.com/wp-content/uploads/2014/05/reef.jpg")
-```
-Image credit: [coolkeywest.com](https://coolkeywest-1165.kxcdn.com/wp-content/uploads/2014/05/reef.jpg)
+#  <!--open quote-->
+
+# Header 1
+
+## Header 2  
+
+### Header 3 
 
 
-# Ecosystems are Complex <!-- intro -->  
-  high dimensional    
-  many ($\infty$) interactions  
-  non-linear  
-  non-ergodic (open)   
-  dynamic  
+
+---
+
+# Example slide 
+> Ecological models are made for ecologists and by ecologists. 
+
+.inverse[
+
+Ecosystems are complex
+- high dimensional    
+- many ($\infty$) interactions  
+- non-linear  
+- non-ergodic (open)   
+- dynamic  
+
+]
 
 ???
 Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. 
@@ -109,7 +123,6 @@ Bibliographic analysis
 `sdkfjsdfkljs`
 ]
 
-
 ---
 # Chapter 2: Results
 
@@ -119,5 +132,84 @@ Bibliographic analysis
 ### few handle irregular sampling
 
 ---
+
+# Acknowledgements <!-- pull-right build-->
+.pull-left[
+#### Research Advisement  
+__Committee__: Craig Allen, Dirac Twidwell, John DeLong, David Angeler & Drew Tyre   
+__IIASA supervisors__: Brian Fath & Elena Rovenskaya  
+#### Research & Travel Support  
+__U.S. Department of Defense__: SERDP (RC-2501)  
+__National Academy of Sciences__: support for IIASA            
+__Nebraska Foundation, UNL__: Fling &  Othmer Fellowships     
+__Institude of Ag and Natural Resources, UNL__: Nelson Fellowships  
+] 
+
+--
+
+.pull-right[
+#### Travel Support
+| __American Ornithologists' Union__ | |
+|:----------|:----------------------|  
+| Association for Women in Mathematics | |
+| __Kellogg Biological Station__| |
+| National Academy of Sciences | |
+| __National Science Foundation__ | |
+| National Institute for Mathematical and Biological Synthesis | |
+| __ School of Natural Resources, UNL__| | 
+| UNL Graduate Travel Fund| |
+| __UNL Foundation__ | | 
+| U.S. Dept. of Defense || 
+]
+
+---
+
+# Acknowledgements <!--Ack 2-->
+.pull-left[
+#### Professional Development 
+__UNL School of Graduate Studies__  |  __Mike Moulton__
+:-----------------|:----------------
+__Christie Bahlai__  | __Kevin Pope__<sup>1</sup> 
+__Hannah Birg&eacute;__ |  __Scott Robinson__ 
+__Mary Bomberger Brown__  | __Trisha Spanbauer__
+__John Carroll__    | __Erica Stuber__ 
+__Tarsha Eason__   | __Brigitte Tenhumberg__ 
+__Ahjond Garmestani__ |  __Zac Warren__ 
+__Trevor Hefley__   | __Lyndsie Wszola__
+__Chris Lepczyk__   | __Hao Ye__
+###### .footnote[ [1] thanks also for your free racquetball coaching services]
+] 
+
+--
+
+.pull-right[
+
+#### Special Thanks to   
+- NECRU administrative superstars: __Wilma Gerena & Caryl Cashmere__  
+- SNR & NRBC staff who have patiently helped me: Tri, Gregg, Hannah, Christine, Maria, Shawna, Mark 
+- Terry Thomas, without whom I am not sure where I would be today 
+- and finally, Dr. Dr. Nat Price and Dr. Schultz<sup>2</sup> 
+###### .footnote[[2] non-accredited doctoral degree in squirrel chasing and auxiliary nursing]
+
+] 
+
+---
+
+# Acknowledgements: Data & Software
+
+#### Data  
+
+- To the participatory scientists who have contributed to the N. American Breeding Bird Survey
+- Spanbauer et al. (2014) <sup>1</sup>
+- Stevens and Fritz (2006) Quaternary Research 65.02
+
+###### .footnote[ [1] PLoS One 9.10 (2014): e108936.]
+
+#### Software 
+
+- Program R (R Core Team)
+- RMarkdown, Xaringan, Bookdown (Yihui Xie)
+- The authors and maintainers of and the contributors to numerous R packages used to conduct this research (see dissertation)
+
 
 
