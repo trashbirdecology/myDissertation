@@ -158,28 +158,26 @@ theme_set(theme_bw())
     - Water temps
     - Acidification
     - Algae presence 
-    
+
 </font>
+
 - Shifts 'predictable' 
 ] </font>
-
-
 ???
-
 - Identifying and predicting regime shifts is a feasible feat when the system is well-understood
 - For most ecological systems, however, this is not the case...next
 
 ---
-.center[
-<font size="16"><b>  Can we detect & predict undesirable change in systems which are not well-understood? </b></font>
-<img src="https://ensia.com/wp-content/uploads/2015/01/voices_novel_ecosystems_main-760x378.jpg" alt="novelecosys" width="800"/><figcaption><font size="8" Illustration by Glen Lowry<a href="Illustration by Glen Lowry Glen Lowry, ensia.com"></a></font></figcaption>
- 
-]
+# Can we detect & predict ecological regime shifts in under-described systems?
 
+<!-- .center[ -->
+<!-- <font size="16"><b> </b></font> -->
+<!-- <img src="https://ensia.com/wp-content/uploads/2015/01/voices_novel_ecosystems_main-760x378.jpg" alt="novelecosys" width="600"/><figcaption><font size="8" Illustration by Glen Lowry<a href="Illustration by Glen Lowry Glen Lowry, ensia.com"></a></font></figcaption> ] -->
 ???
 
 - Detecting and predicting change of less well-understood ecological systems is, arguably, the holy grail of ecology 
 - As we will discuss later, there numerous quantitative methods proposed for doing just that 
+- Yes, we can for some systems. 
 
 ---
 # Dissertation Aims  <!--dissertation aim - practical ecol -->
@@ -187,112 +185,117 @@ theme_set(theme_bw())
 ???
 
 ---
-# The Practical Ecologist Has Not Time to: <!--dissertation aim - practical ecologist -->
+# The Practical Ecologist Has Not the Time To: <!--dissertation overview-list all-->
 
-.medium[**Synthesize the literature**]
-- .small[Chapter 2: Review of Regime Detection Methods]
+.medium[**Sift through available methods**]
+- .sm all[Chapter 2: Review of Regime Detection Methods]
 
 .medium[**Identify utility and efficacy of methods**]
-- .small[Chapter 4: Review of Regime Detection Methods]
-- .small[Chapter 5: Review of Regime Detection Methods]
-- .small[Chapter 6: Review of Regime Detection Methods]
+  - .small[Chapter 3: Fisher Information]
+  - .small[Chapter 4: Empirical application of Fisher Information]
+  - .small[Chapter 5: Velocity of system trajectory]
+  - .small[Chapter 6: Impacts of data quality & quantity on methods]
+  - .small[Chapter 7: Body mass distributions as regime shift indicators]
+???
+My dissertation comprises a few key components:
+  1. Creating a resource for ecologists to visit to view all the available methods
+  1. Improving select methods
+  1. Testing the boundaries of existing and new methods 
+---
+# The Practical Ecologist Has Not the Time To: <!--dissertation overview-what we will review-->
 
-.medium[**Synthesize the literature**]
-- .small[Chapter 2: Review of Regime Detection Methods]
+.medium[**Synthesize regime shift methods available**]
+- .small[<font color="black"><b>Chapter 2: Review of Regime Detection Methods</b></font>]
 
-.medium[**Synthesize the literature**]
-- .small[Chapter 2: Review of Regime Detection Methods]
+.medium[**Identify utility and efficacy of methods**]
+  - .small[<font color="black"><b>Chapter 3: Fisher Information</b></font>]
+  - .small[<font color="lightgrey">Chapter 4: Empirical application of Fisher Information</font>]
+  - .small[<font color="black"><b>Chapter 5: Velocity of system trajectory</b></font>]
+  - .small[<font color="black"><b>Chapter 6: Impacts of data quality & quantity on methods</b></font>]
+  - .small[<font color="lightgrey">Chapter 7: Body mass distributions as regime shift indicators</font>]
+???
+Today I will synthesize the findings of a few of my dissertation chapters, next...
+---
+# Improving Method Accessibility by Creating Open-source Software <!--dissertation aim-software-->
+<!-- .medium[**Software**] -->
+  - .medium[Appendix A: `bbsAssistant`]
+  - .medium[Appendix B: `regimeDetectionMeasures`]
+  - .medium[Appendix C: `bbsRDM`]
+???
+Finally I will give a brief overview and very shamelessly promote the open sources softwares associated with this research program and which were used throughout  this research program
+---
+# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 background of RS theory -->
+</br>
 
-.medium[**Synthesize the literature**]
-- .small[Chapter 2: Review of Regime Detection Methods]
+.center[<iframe height="300" src="https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9c/Lorenz.ogv/Lorenz.ogv.480p.vp9.webm"></iframe>]
 
-.medium[**Synthesize the literature**]
-- .small[Chapter 2: Review of Regime Detection Methods]
+<!-- .center[<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif", width="350">] -->
 
-.medium[**Synthesize the literature**]
-- .small[Chapter 2: Review of Regime Detection Methods]
-
-.medium[**Synthesize the literature**]
-- .small[Chapter 2: Review of Regime Detection Methods]
-
-
---
-  
--  <font size="14"> Unification across fields of study </font>
-
--  <font size="14"> Rigorously testing methods  </font>
-
-  -  <font size="14"> idealized conditions </font>
-    
-  -  <font size="14">empirical data </font>
-      
+.footnote[ [1] Wikipedia ]
 
 ???
-- The overarching aims of my dissertation are to improve the methods for detecting
+- Ecological regime shift theory was born out of dynamical systems theory, a branch of mathematics
+- Of particular note are the existence of chaotic systems, or, systems which are unpredictible in most situations
+- EX: the lorenz attractor
 
-The aims of this dissertation include:
-  - identifying the methods proposed for detecting regime shifts
-  - 
-  - 
+- The study of chaotic systems in mathematics is relatively new (1980s)
+
+
+--
+
+- That is, a system which exhibits time-dependence
+- The Lorenz, or butterfly attractor, is a commonly used visualization of such a system  
+- For example, somepredator-prey systems cna exhibit chaotic behavior reflecting the Lorenz attractor [^1]
+
+and has very much diverged from the field
+- When entering a new field of research or usign a new method, the practical ecologist might conduct a lit review
+- Research surrounding ecological regime shifts and the methods used to identify them, however, are spread across disciplines, and subdisciplines.
+- The same goes for when we are trying to identify best methods and best practices using methods on empirical data
+- This, however is a difficult feat in the regime shift literature
 
 ---
-# Dissertation Overview <!-- intro -->
-<!-- -------    -->
-### __Chapter 2__: Review of regime shift detection measures  
---
-
-### __Chapter 3__: Deconstructing the Fisher Information method
-
---
-### __Chapter 4__: Spatial application of the Fisher Information
-
---
-### __Chapter 5__: Proposed method: rate of change of phase space trajectory  
-
---
-### __Chapter 6__: Effects of data loss on regime detection measures  
-
---
-### __Chapter 7__: Discontinuity analysis of avian body mass distributions  
-
----
-
-
-# Chapter 2: Aims & Approach  <!-- -->
-### Comprehensive review of regime shift detection methods
-### Identify themes among regime shift relevant research artciels
+# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 aims and approach -->
 
 .pull-left[
-### __Aim__  
-+ Census the ecological literature for quantitative methods
+.big[<b>Aims</b>].medium[  
+- Comprehensive census the ecological literature for quantitative methods
+- Identify research themes and gaps
+]]
+???
+- 
 
-]
+--
 
-.pull-left[
-### __Approach__  
-Systematic literature review
-Bibliographic analysis
+.pull-right[
+.big[<b>Approach</b>].medium[  
+- Systematic literature review
+- Bibliographic analysis
+]]
+---
+# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 results -- too many journals/subfields --> 
+.left-column[.medium[Research Themes]
+  - .small[]
 ]
+.right-column[<img src="figures/thematicMaps_keywords.png" width="440">]
+
 
 ---
 
-# Chapter 2: Literature Review Methods  <!-- -->
-.left-column[
-### Bibliographic Analysis
-]
-.right-column[
-`sdkfjsdfkljs`
-]
+# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 results -- too many journals/subfields --> 
+.medium[Methods spread across fields]
+.center[<img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="550">]
+  - .small[difficult to identify methods available]
 
----
-# Chapter 2: Results  <!-- --> 
+--- 
 
-### $> 70$ methods proposed in literature
-### $\sim 10$ suitable for multivariable data
-### few explicitly handle noisy data
-### few handle irregular sampling
+<!-- ### $> 70$ methods proposed in literature -->
+<!-- ### $\sim 10$ suitable for multivariable data -->
+<!-- ### few explicitly handle noisy data -->
+<!-- ### few handle irregular sampling -->
 
----
+<!-- --- -->
+
+
 
 # Acknowledgements <!-- pull-right build-->
 .pull-left[

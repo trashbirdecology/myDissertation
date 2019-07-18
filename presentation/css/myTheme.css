@@ -42,7 +42,7 @@ a, a > code {
 /* Two-column layout (slightly wider for aspect ration) */
 .left-column {
   color: #6d6d69;
-  width: 35%;
+  width: 25%;
 /*  height: 92%; */
   float: left;
 }
@@ -53,7 +53,7 @@ a, a > code {
 
 /* slightly thiner to suppor aspect ration */
 .right-column {
-  width: 65%;
+  width: 55%;
   float: right;
 /*  padding-top: 1em; */ 
 }
