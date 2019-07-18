@@ -35,59 +35,121 @@ loadPkgs(pkgs)
 theme_set(theme_bw())
 ```
 
-# Example slide 
-> Ecological models are made for ecologists and by ecologists, cooked up for consumption by ecologists 
 
-.inverse[
+# Anthropogenic Activity is Changing the World <!-- anthropo activity == unwanted chgs-->
 
-Ecosystems are complex
-- high dimensional    
-- many ($\infty$) interactions  
-- non-linear  
-- non-ergodic (open)   
-- dynamic  
-
-]
-
-.pull-right[
-<font size="11">
-    1. sldkfjds  <br>
-    2. 
-</font>
-]
-???
-This is the presnetation notes
-
-
---- 
-
-# Ecological Systems
-
-.center[
-![]()
-]
 
 ???
-Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usually non-linear. 
+
+- Modern anthropogenic activity is leading to unprecedented change across the globe
+
+--
+
+.pull-left[![icemelt](https://media.giphy.com/media/eEG5KXWnt7CzS/giphy.gif)]
+
+
+???
+
+- And some of these changes, like the unprecendented levels of glacial melt ... next 
+
+--
+
+.pull-right[![globefire](https://media.giphy.com/media/vy9M1K3RBg77kESDzg/giphy.gif)]
+
+???
+
+- Or extreme temperatures and weather events, ... next
+
 
 ---
 
-# Ecological Regime Shifts
 
-.pull-left[![Joe Hoyt/NOAA](https://www.noaa.gov/sites/default/files/styles/scale_crop_800x450/public/thumbnails/image/PHOTO-Top-of-Cordell-Bank-CBNMS-Hoyt-NOAA-041316-3008x2000-original.jpg?itok=1BWNHq3s)]
+# Impacting Wildlife & Humans <!-- undesirable changes -->
 
---
- 
-.pull-right[![Joe Hoyt/NOAA](https://www.noaa.gov/sites/default/files/styles/scale_crop_800x450/public/thumbnails/image/PHOTO-Top-of-Cordell-Bank-CBNMS-Hoyt-NOAA-041316-3008x2000-original.jpg?itok=1BWNHq3s)]
 
+.pull-left[![wildlifeimpact](https://media.giphy.com/media/jInJJOmuBRwL5FpLKo/giphy.gif)]
 
 ???
+- We are increasingly understanding the impacts our acitivties are having on our natural systems... __next__
+
+--
+
+.pull-right[![humanimpact](https://media.giphy.com/media/iwNUXyyuYPhZe/giphy.gif)]
+
+???
+
+- .. and ourselves. 
+
+---
+
+# Ecological 'Regime Shifts'  <!-- definition -->
+
+???
+
+- Society and the scientific community are increasingly valuing the ability to identify and understand the impacts we are having  
+- One line of research trying to advance this area, is that of what some call, 'regime shifts'
+- There are numerous definitions, but today we define regime shifts as 
+
+--
+
+</br>
+</br>
+</br>
+</br>
+</br>
+.center[<font size="16"><b>Changes in the structure and/or functioning of a system</b></font>]
+
+---
+
+# Regime Shift Example: Coral Reef Bleaching <!-- caryfort before -->
+
+???
+
+- Changes in the structure, or functioning of an ecological system...
+- Most useful when related to some ecosystem service or function of interest to humans
+
+--
+
+.pull-left[
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
+]
+.pull-right[
+<font size="14">
+- Ecotourism
+- Fisheries
+- Storm protection
+]
+</font>
+
+???
+
+- For example, the Florida reef supplies billions of dollars worth of ecotourism and fishers revenue, and provides storm protection
+
+---
+
+# Regime Shift Example: Coral Reef Bleaching <!-- caryfort after -->
+
+.pull-left[
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="350"/>
+]
+
+.pull-right[
+<font size="14">
+- <strike>Ecotourism</strike>
+- <strike>Fisheries</strike>
+- <strike>Storm Protection</strike>
+]
+</font>
+
+???
+
 
 - The rapid changes in large-scale abiotic processes, like rises in sea temperature, increased atmospheric C02 and global warming are linked with the recent decades of human activity. 
 - For example, corals require algae, 
 
 ---
-# Dissertation Aims 
+# Dissertation Aims  <!-- -->
 ---
 # Dissertation Overview <!-- intro -->
 <!-- -------    -->
@@ -111,7 +173,7 @@ Ecosystems are complex; that is, they are non-ergodic,  high-dimensional and usu
 ---
 
 
-# Chapter 2: Aims & Approach
+# Chapter 2: Aims & Approach  <!-- -->
 ### Comprehensive review of regime shift detection methods
 ### Identify themes among regime shift relevant research artciels
 
@@ -129,7 +191,7 @@ Bibliographic analysis
 
 ---
 
-# Chapter 2: Literature Review Methods
+# Chapter 2: Literature Review Methods  <!-- -->
 .left-column[
 ### Bibliographic Analysis
 ]
@@ -138,7 +200,7 @@ Bibliographic analysis
 ]
 
 ---
-# Chapter 2: Results
+# Chapter 2: Results  <!-- --> 
 
 ### $> 70$ methods proposed in literature
 ### $\sim 10$ suitable for multivariable data
@@ -209,7 +271,7 @@ __Chris Lepczyk__   | __Hao Ye__
 
 ---
 
-# Acknowledgements: Data & Software
+# Acknowledgements: Data & Software  <!-- --> 
 
 #### Data  
 
@@ -224,6 +286,8 @@ __Chris Lepczyk__   | __Hao Ye__
 - Program R (R Core Team)
 - RMarkdown, Xaringan, Bookdown (Yihui Xie)
 - The authors and maintainers of and the contributors to numerous R packages used to conduct this research (see dissertation)
+
+
 
 
 
