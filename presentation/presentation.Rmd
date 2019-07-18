@@ -82,22 +82,19 @@ theme_set(theme_bw())
 
 ---
 
-# Ecological 'Regime Shifts'  <!-- definition -->
+# Ecological 'Regime Shifts'  <!-- definition of regime shift -->
+</br>
+</br>
+</br>
+</br>
+</br>
+.center[<font size="18"><b>Changes in the structure  or functioning of a system</b></font>]
 
 ???
 
 - Society and the scientific community are increasingly valuing the ability to identify and understand the impacts we are having  
 - One line of research trying to advance this area, is that of what some call, 'regime shifts'
 - There are numerous definitions, but today we define regime shifts as 
-
---
-
-</br>
-</br>
-</br>
-</br>
-</br>
-.center[<font size="16"><b>Changes in the structure and/or functioning of a system</b></font>]
 
 ---
 
@@ -139,17 +136,105 @@ theme_set(theme_bw())
 - <strike>Ecotourism</strike>
 - <strike>Fisheries</strike>
 - <strike>Storm Protection</strike>
+</br>
+- = bleaching
+- = degradation 
+- = loss of ES
+
 ]
 </font>
 
 ???
 
+---
 
-- The rapid changes in large-scale abiotic processes, like rises in sea temperature, increased atmospheric C02 and global warming are linked with the recent decades of human activity. 
-- For example, corals require algae, 
+# Some Systems Are Well-Understood <!--some RS are predictable-->
+.pull-left[
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="350"/>
+] <font size="12">.pull-right[
+- When thresholds known  
+<font color="grey">
+    - Water temps
+    - Acidification
+    - Algae presence 
+    
+</font>
+- Shifts 'predictable' 
+] </font>
+
+
+???
+
+- Identifying and predicting regime shifts is a feasible feat when the system is well-understood
+- For most ecological systems, however, this is not the case...next
 
 ---
-# Dissertation Aims  <!-- -->
+.center[
+<font size="16"><b>  Can we detect & predict undesirable change in systems which are not well-understood? </b></font>
+<img src="https://ensia.com/wp-content/uploads/2015/01/voices_novel_ecosystems_main-760x378.jpg" alt="novelecosys" width="800"/><figcaption><font size="8" Illustration by Glen Lowry<a href="Illustration by Glen Lowry Glen Lowry, ensia.com"></a></font></figcaption>
+ 
+]
+
+???
+
+- Detecting and predicting change of less well-understood ecological systems is, arguably, the holy grail of ecology 
+- As we will discuss later, there numerous quantitative methods proposed for doing just that 
+
+---
+# Dissertation Aims  <!--dissertation aim - practical ecol -->
+<br><br><br><br><font size="15" color="black"><b>.center[Improve the utility and accesibility of regime shift detection methods for the **practical** ecologist]</b></font>
+???
+
+---
+# The Practical Ecologist Has Not Time to: <!--dissertation aim - practical ecologist -->
+
+.medium[**Synthesize the literature**]
+- .small[Chapter 2: Review of Regime Detection Methods]
+
+.medium[**Identify utility and efficacy of methods**]
+- .small[Chapter 4: Review of Regime Detection Methods]
+- .small[Chapter 5: Review of Regime Detection Methods]
+- .small[Chapter 6: Review of Regime Detection Methods]
+
+.medium[**Synthesize the literature**]
+- .small[Chapter 2: Review of Regime Detection Methods]
+
+.medium[**Synthesize the literature**]
+- .small[Chapter 2: Review of Regime Detection Methods]
+
+.medium[**Synthesize the literature**]
+- .small[Chapter 2: Review of Regime Detection Methods]
+
+.medium[**Synthesize the literature**]
+- .small[Chapter 2: Review of Regime Detection Methods]
+
+.medium[**Synthesize the literature**]
+- .small[Chapter 2: Review of Regime Detection Methods]
+
+.medium[**Synthesize the literature**]
+- .small[Chapter 2: Review of Regime Detection Methods]
+
+
+--
+  
+-  <font size="14"> Unification across fields of study </font>
+
+-  <font size="14"> Rigorously testing methods  </font>
+
+  -  <font size="14"> idealized conditions </font>
+    
+  -  <font size="14">empirical data </font>
+      
+
+???
+- The overarching aims of my dissertation are to improve the methods for detecting
+
+The aims of this dissertation include:
+  - identifying the methods proposed for detecting regime shifts
+  - 
+  - 
+
 ---
 # Dissertation Overview <!-- intro -->
 <!-- -------    -->

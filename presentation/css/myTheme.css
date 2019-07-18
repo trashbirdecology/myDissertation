@@ -294,7 +294,15 @@ h3 {
 
 /* Font size tags */
 .big {
-  font-size: 1.5em;
+  font-size: 2.5em;
+}
+
+.medium {
+  font-size: 1.9em;
+}
+
+.small {
+  font-size: 1.6em;
 }
 
 /* ru blockquote */
