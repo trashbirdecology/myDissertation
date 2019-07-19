@@ -187,10 +187,13 @@ theme_set(theme_bw())
 ---
 # The Practical Ecologist Has Not the Time To: <!--dissertation overview-list all-->
 
-.medium[**Sift through available methods**]
-- .sm all[Chapter 2: Review of Regime Detection Methods]
+--
+.medium[<font color="black">**Synthesize regime shift methods available**</font>]
+- .small[Chapter 2: Review of Regime Detection Methods]
 
-.medium[**Identify utility and efficacy of methods**]
+--
+
+.medium[<font color="black">**Identify utility and efficacy of methods**</font>]
   - .small[Chapter 3: Fisher Information]
   - .small[Chapter 4: Empirical application of Fisher Information]
   - .small[Chapter 5: Velocity of system trajectory]
@@ -286,7 +289,7 @@ and has very much diverged from the field
 .center[<img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="550">]
   - .small[difficult to identify methods available]
 
---- 
+---
 
 <!-- ### $> 70$ methods proposed in literature -->
 <!-- ### $\sim 10$ suitable for multivariable data -->
