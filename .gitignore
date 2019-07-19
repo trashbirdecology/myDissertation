@@ -29,8 +29,7 @@ chapterFiles/appendix_paleoExample/plots/*.png
 # remove log files
 *.log
 
-# ignore generated html files,
-*.html
+
 
 # remove rdata
 *.RData
