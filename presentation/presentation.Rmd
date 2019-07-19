@@ -35,75 +35,78 @@ loadPkgs(pkgs)
 theme_set(theme_bw())
 ```
 
-
 # Anthropogenic Activity is Changing the World <!-- anthropo activity == unwanted chgs-->
 
-
 ???
+- Modern anthropogenic activity is leading to unprecedented change across the globe  
 
-- Modern anthropogenic activity is leading to unprecedented change across the globe
+- For example, our activiies have altered atmospheric conditions __click__
 
 --
 
-.pull-left[![icemelt](https://media.giphy.com/media/eEG5KXWnt7CzS/giphy.gif)]
-
+.pull-left[![billnye](https://media.giphy.com/media/cObIzBCAkFxW60ORYj/giphy.gif)]
+<!-- .pull-left[![globefire](https://media.giphy.com/media/vy9M1K3RBg77kESDzg/giphy.gif)] -->
 
 ???
-
-- And some of these changes, like the unprecendented levels of glacial melt ... next 
+- such that we have induced a disturbing rate of global warming ....
+- which has already had detrimental consequences...__click__ 
 
 --
-
-.pull-right[![globefire](https://media.giphy.com/media/vy9M1K3RBg77kESDzg/giphy.gif)]
+<br><br>
+.pull-right[![icemelt](https://media.giphy.com/media/eEG5KXWnt7CzS/giphy.gif)]
 
 ???
-
-- Or extreme temperatures and weather events, ... next
-
+- like widespread glacial melt....
+- Fortunately, we, society and the scientific community, are increasingling recognizing the impacts that our actions are  having __click__
 
 ---
-
-
-# Impacting Wildlife & Humans <!-- undesirable changes -->
-
-
+# Humans Influence Regime Shifts, Impacting Ecological & Social Systems <!--humans induce regime shifts-->
 .pull-left[![wildlifeimpact](https://media.giphy.com/media/jInJJOmuBRwL5FpLKo/giphy.gif)]
-
 ???
-- We are increasingly understanding the impacts our acitivties are having on our natural systems... __next__
+- on ecosystems and wildlife ... __click__ 
 
 --
-
 .pull-right[![humanimpact](https://media.giphy.com/media/iwNUXyyuYPhZe/giphy.gif)]
+???
+- and on ourselves ... 
+- But some of these consequences are avoidable
+- For example, if this person knew the consequences of stomping on an unsupported snowpack, might they have taken actions to avoid this? 
+--
+<br>.small[Can we foresee & perhaps avoid ecological change?]
 
 ???
-
-- .. and ourselves. 
+- So the question becomes -- can we foresee and perhaps avoid undesirable change in ecological systems?
 
 ---
-
-# Ecological 'Regime Shifts'  <!-- definition of regime shift -->
-</br>
-</br>
-</br>
-</br>
-</br>
-.center[<font size="18"><b>Changes in the structure  or functioning of a system</b></font>]
-
+# Ecological Regime Shifts  <!-- what how goal -->
 ???
+- One way the scientific community is attempting to foresee and avoid undesirable conseuqences (like bashing your face into an ice wall)
+- is to develop and apply the concept of __ecological regime shifts__ ... next
+--
 
-- Society and the scientific community are increasingly valuing the ability to identify and understand the impacts we are having  
-- One line of research trying to advance this area, is that of what some call, 'regime shifts'
-- There are numerous definitions, but today we define regime shifts as 
+## **what?**  a persistent change in the structure or functioning of a system 
+</br>  
+???
+- A **persistent change in the sturcture or functioning of a system**
+--
+
+## **how?** loss of negative feedback(s) maintaining the system
+<br>
+???
+- Regime shifts occur, via a number of pathways, when a system **loses the negative feedback(s) maintaining** the system in its current state
+
+- Again, *goal* is to predict in time to prevent something bad from happening. Pipe dream? Probably...
+--
+
+## **goal?** predict in time to prevent  
+???
+- goal is to predict regime shifts in time to either prevent or create a plan of action for timely mitigation
 
 ---
 
 # Regime Shift Example: Coral Reef Bleaching <!-- caryfort before -->
-
 ???
-
-- Changes in the structure, or functioning of an ecological system...
-- Most useful when related to some ecosystem service or function of interest to humans
+- Regime shifts are especially important when the changes impact human societies and livelihoods. 
 
 --
 
@@ -111,7 +114,7 @@ theme_set(theme_bw())
 <img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
 ]
 .pull-right[
-<font size="14">
+<font size="14"><br><br>
 - Ecotourism
 - Fisheries
 - Storm protection
@@ -119,8 +122,7 @@ theme_set(theme_bw())
 </font>
 
 ???
-
-- For example, the Florida reef supplies billions of dollars worth of ecotourism and fishers revenue, and provides storm protection
+- For example, coral reef systems provide economic opportunity via ecotourism and fisheries revenue, and also provide storm protection to local human communities. 
 
 ---
 
@@ -133,99 +135,112 @@ theme_set(theme_bw())
 
 .pull-right[
 <font size="14">
+<br><br>
 - <strike>Ecotourism</strike>
 - <strike>Fisheries</strike>
 - <strike>Storm Protection</strike>
-</br>
-- = bleaching
-- = degradation 
-- = loss of ES
-
 ]
 </font>
 
 ???
 
+- However, these ecosystem services are lost when the coral reef undergoes a reigme shift to a bleached state, or upon death of the reef
+
 ---
 
-# Some Systems Are Well-Understood <!--some RS are predictable-->
+# Regime Shifts Predictable When System is Well-understood <!--some RS are predictable-->
 .pull-left[
-<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
-<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="350"/>
-] <font size="12">.pull-right[
-- When thresholds known  
-<font color="grey">
-    - Water temps
-    - Acidification
-    - Algae presence 
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="355"/>
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="355"/>
+] 
+.medium[__Shifts easier to predict, avoid when thresholds, drivers are known __]
+.pull-right[
+.medium[
 
-</font>
+- Water temps
+- Acidification
+- Algae loss
 
-- Shifts 'predictable' 
-] </font>
+]]
 ???
 - Identifying and predicting regime shifts is a feasible feat when the system is well-understood
 - For most ecological systems, however, this is not the case...next
 
 ---
-# Can we detect & predict ecological regime shifts in under-described systems?
-
-<!-- .center[ -->
-<!-- <font size="16"><b> </b></font> -->
-<!-- <img src="https://ensia.com/wp-content/uploads/2015/01/voices_novel_ecosystems_main-760x378.jpg" alt="novelecosys" width="600"/><figcaption><font size="8" Illustration by Glen Lowry<a href="Illustration by Glen Lowry Glen Lowry, ensia.com"></a></font></figcaption> ] -->
+# <!--holy grail - predict shifts-->
+<font size="15" color="red">Research Question</font>
+<br>
+<font size="15" color="black"><b>.center[Can we detect & predict ecological regime shifts in <u>under-described</u> systems?]</b></font>  
 ???
+- The research question around which my dissertation revolves is the following 
+  - can we detect and predict ecological regim eshifts in under-described systems?
+- And this is, arguably, the holy grail of ecology. So, spoiler alert, I don't the answer. 
 
-- Detecting and predicting change of less well-understood ecological systems is, arguably, the holy grail of ecology 
-- As we will discuss later, there numerous quantitative methods proposed for doing just that 
-- Yes, we can for some systems. 
+--
 
----
-# Dissertation Aims  <!--dissertation aim - practical ecol -->
-<br><br><br><br><font size="15" color="black"><b>.center[Improve the utility and accesibility of regime shift detection methods for the **practical** ecologist]</b></font>
+<br>
+<font size="15" color="red">Dissertation Aims</font>
+<br><font size="15" color="black"><b>.center[Improve the utility and accesibility of regime shift detection methods for the <u>practical</u> ecologist]</b></font>
+
 ???
+- Specifically, my dissertation aims to improve the methods which ecologists are using to identify regime shifts and rapid shifts 
+
+- Who is the practical ecologist?
+- They are the ecologist who has not 4 years to explore the literature, to identify best practices for methods, and to write software for calculing these measures
+- Instead, they are those who, based on key sources and available software or interfaces, use an approach which seems suitable for their data and question at hand. 
 
 ---
 # The Practical Ecologist Has Not the Time To: <!--dissertation overview-list all-->
+.small[<font color="black"><b>Synthesize regime shift methods available</b></font>]
+- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Literature
 
---
-.medium[<font color="black">**Synthesize regime shift methods available**</font>]
-- .small[Chapter 2: Review of Regime Detection Methods]
-
---
-
-.medium[<font color="black">**Identify utility and efficacy of methods**</font>]
-  - .small[Chapter 3: Fisher Information]
-  - .small[Chapter 4: Empirical application of Fisher Information]
-  - .small[Chapter 5: Velocity of system trajectory]
-  - .small[Chapter 6: Impacts of data quality & quantity on methods]
-  - .small[Chapter 7: Body mass distributions as regime shift indicators]
 ???
 My dissertation comprises a few key components:
   1. Creating a resource for ecologists to visit to view all the available methods
   1. Improving select methods
   1. Testing the boundaries of existing and new methods 
+  
+--
+
+.small[<font color="black"><b>Identify utility and efficacy of methods</b></font>]
+  - __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
+  - __Chapter 4__: An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States
+  - __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
+  - __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
+  - __Chapter 7__: Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions 
+
+--
+
+.small[<font color="black"><b>Improve method accessibility</b></font>]
+  - .s[__Appendix A__: `bbsAssistant`]. Download and manipulate the N. American Breeding Bird Survey data 
+  - .s[__Appendix B__: `regimeDetectionMeasures`]. Calculate various regime detection measures
+  - .s[__Appendix C__: `bbsRDM`]. Apply regime detection measures to spatiotemporal bird community data
+  
+???
+Finally I will give a brief overview and very shamelessly promote the open sources softwares associated with this research program and which were used throughout  this research program
+
+
 ---
 # The Practical Ecologist Has Not the Time To: <!--dissertation overview-what we will review-->
 
-.medium[**Synthesize regime shift methods available**]
-- .small[<font color="black"><b>Chapter 2: Review of Regime Detection Methods</b></font>]
+.small[<font color="black"><b>Synthesize regime shift methods available</b></font>]
+- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Literature  
 
-.medium[**Identify utility and efficacy of methods**]
-  - .small[<font color="black"><b>Chapter 3: Fisher Information</b></font>]
-  - .small[<font color="lightgrey">Chapter 4: Empirical application of Fisher Information</font>]
-  - .small[<font color="black"><b>Chapter 5: Velocity of system trajectory</b></font>]
-  - .small[<font color="black"><b>Chapter 6: Impacts of data quality & quantity on methods</b></font>]
-  - .small[<font color="lightgrey">Chapter 7: Body mass distributions as regime shift indicators</font>]
+.small[<font color="black"><b>Identify utility and efficacy of methods</b></font>]
+  - __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
+  - <font color="lightgrey"><b>Chapter 4:</b> An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States</font>
+  - __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
+  - __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
+  - <font color="lightgrey"><b>Chapter 7:</b> Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions</font>
+
+.small[<font color="black"><b>Improve method accessibility</b></font>]
+  - .s[__Appendix A__: `bbsAssistant`]. Download and manipulate the N. American Breeding Bird Survey data 
+  - __Appendix B__: `regimeDetectionMeasures`. Calculate various regime detection measures
+  - <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Apply regime detection measures to spatiotemporal bird community data</font>
+  
 ???
-Today I will synthesize the findings of a few of my dissertation chapters, next...
----
-# Improving Method Accessibility by Creating Open-source Software <!--dissertation aim-software-->
-<!-- .medium[**Software**] -->
-  - .medium[Appendix A: `bbsAssistant`]
-  - .medium[Appendix B: `regimeDetectionMeasures`]
-  - .medium[Appendix C: `bbsRDM`]
-???
-Finally I will give a brief overview and very shamelessly promote the open sources softwares associated with this research program and which were used throughout  this research program
+Today I will synthesize the significance of our findings for Chapters 2, 3, 5 and 6 and briefly review two of the R packages associated with this research program.
+
 ---
 # Chapter 2: Methods for Detecting Regime Shifts <!--ch2 background of RS theory -->
 </br>

@@ -1,0 +1,30 @@
+# Ecological 'Regime Shifts'  <!-- definition of regime shift -->
+</br>
+</br>
+</br>
+</br>
+</br>
+.center[<font size="18"><b>Changes in the structure  or functioning of a system</b></font>]
+
+???
+
+- Society and the scientific community are increasingly valuing the ability to identify and understand the impacts we are having  
+- One line of research trying to advance this area, is that of what some call, 'regime shifts'
+- There are numerous definitions, but today we define regime shifts as 
+
+---
+
+
+
+# Ecological Regime Shifts <!-- coral pre-post picture large -->
+
+```{r, echo=FALSE, out.width="80%", fig.align="center"}
+# knitr::include_graphics("https://static1.squarespace.com/static/5a5906400abd0406785519dd/t/5b7b180a6d2a7356c60f4ec4/1534793794260/IYORBank_BeforeAndAfter_TheOceanAgency_07.jpg")
+```
+.center[![](http://2ap93t1x1l6e2f6gfo3ag4vw.wpengine.netdna-cdn.com/wp-content/uploads/2016/07/bleaching_comparison.jpg)]
+
+.footnote[Image credit: [The Ocean Agency](https://static1.squarespace.com/static/5a5906400abd0406785519dd/t/5b7b180a6d2a7356c60f4ec4/1534793794260/IYORBank_BeforeAndAfter_TheOceanAgency_07.jpg)]
+???
+
+---
+

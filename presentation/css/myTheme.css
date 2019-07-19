@@ -332,3 +332,9 @@ ru-blockquote {
     text-align: center;
     width: 100%;
 }
+
+
+/* hanging indent JLB */
+.hang{ margin-left: -2em; 
+ text-indent: 2em 
+ }
