@@ -34,7 +34,6 @@ loadPkgs(pkgs)
 # SET PLOT THEME
 theme_set(theme_bw())
 ```
-
 # Anthropogenic Activity is Changing the World <!-- anthropo activity == unwanted chgs-->
 
 ???
@@ -117,7 +116,7 @@ theme_set(theme_bw())
 <font size="14"><br><br>
 - Ecotourism
 - Fisheries
-- Storm protection
+- Storm Protection
 ]
 </font>
 
@@ -167,97 +166,135 @@ theme_set(theme_bw())
 - For most ecological systems, however, this is not the case...next
 
 ---
-# <!--holy grail - predict shifts-->
-<font size="15" color="red">Research Question</font>
+# Prediction is ~The~ Holy Grail of Ecology <!--holy grail is prediction-->
+.center[<img src="https://venturebeat.com/wp-content/uploads/2018/06/Holy_Grail.shutterstock_268713941.jpg?fit=400%2C283&strip=all" width="700">]
+???
+- Ecologists are taking baby steps towards being able to make predition in ecology
+- Easier done when system dynamics are UNDERSTOOD 
+- When systems are well-described
+- When conditions are predictable
+- I think we have a long way until we are able to forecast most undesirable shifts in the environment, whcih some may refer to as regime shifts. 
+---
+
+# Problem: Ecosystems are Complex <!--prediction is difficult in ecology...-->
+.medium[Complicating our ability to identify regime shifts]
+--
+.medium[
+- high dimensional    
+- many ( $\infty$ ) interactions  
+- dynamic (time dependence)
+- non-linear  
+- non-ergodic (open)    
+]
+???
+Ecosystems are 
+- high dimensional, especially as we increase scale system extent
+- which leads to a higher number of interactions
+- increasingly realizing these are non-linear interactions
+- non-ergodic
+- because they are open, they are obviously dynamic.
+--
+<font color="blue">.medium[Especially difficult when drivers are unknown in a high dimensional system]</font>
+???
+- These characteristics, paired with our inability to perfectly observe the systems means that 
+- Especially as we move beyonbd just a handful of state  variables.
+---
+
+# <!--Research Question + Diss Aims-->
+<font size="15" color="red">Research Question Motivating this Research</font>
 <br>
+???
+- But before we can even talk about predicting regime shifts, we need to to be able to accurately and precisely DETECT historic changes under varying conditions, and especially in complex and messy ecological data. 
+- The research question motivating my researhc program is just that.... __click__
+--
 <font size="15" color="black"><b>.center[Can we detect & predict ecological regime shifts in <u>under-described</u> systems?]</b></font>  
 ???
-- The research question around which my dissertation revolves is the following 
-  - can we detect and predict ecological regim eshifts in under-described systems?
-- And this is, arguably, the holy grail of ecology. So, spoiler alert, I don't the answer. 
-
+- Can we detect and predict ecological regim eshifts in under-described systems?
 --
-
 <br>
 <font size="15" color="red">Dissertation Aims</font>
 <br><font size="15" color="black"><b>.center[Improve the utility and accesibility of regime shift detection methods for the <u>practical</u> ecologist]</b></font>
-
 ???
-- Specifically, my dissertation aims to improve the methods which ecologists are using to identify regime shifts and rapid shifts 
-
-- Who is the practical ecologist?
-- They are the ecologist who has not 4 years to explore the literature, to identify best practices for methods, and to write software for calculing these measures
-- Instead, they are those who, based on key sources and available software or interfaces, use an approach which seems suitable for their data and question at hand. 
+>pause 
+- So, with the practical ecologist in mind, or basically anyone not able to spend a solid 4 years studying this literature and testing these methods but wishing to apply these methods, my dissertation focuses on the quantitative methods proposed for identifying ecological regime shfits
+- Particularly I focus on the methods that are used for ecological community and systems, rather than single-species or single-state variable analyses.
 
 ---
-# The Practical Ecologist Has Not the Time To: <!--dissertation overview-list all-->
+# The Practical Ecologist Has Not the Time To: <!--list all chaps-->
 .small[<font color="black"><b>Synthesize regime shift methods available</b></font>]
-- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Literature
+???
+My dissertation comprises 8 chapters, with two goals
+--
+
+- __Chapter 1 & 8__: Introduction to and Synthesis of the State of Regime Detection Measures
+- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Methods
 
 ???
 My dissertation comprises a few key components:
   1. Creating a resource for ecologists to visit to view all the available methods
   1. Improving select methods
   1. Testing the boundaries of existing and new methods 
-  
+
 --
 
-.small[<font color="black"><b>Identify utility and efficacy of methods</b></font>]
-  - __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
-  - __Chapter 4__: An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States
-  - __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
-  - __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
-  - __Chapter 7__: Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions 
+.small[<font color="black"><b>Test the utility and efficacy of regime detection methods</b></font>]
+
+--
+
+- __Chapter 4__: An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States
+- __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
+- __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
+- __Chapter 7__: Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions 
 
 --
 
 .small[<font color="black"><b>Improve method accessibility</b></font>]
-  - .s[__Appendix A__: `bbsAssistant`]. Download and manipulate the N. American Breeding Bird Survey data 
-  - .s[__Appendix B__: `regimeDetectionMeasures`]. Calculate various regime detection measures
-  - .s[__Appendix C__: `bbsRDM`]. Apply regime detection measures to spatiotemporal bird community data
+
+--
+
+- __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
+- __Appendix A__: `bbsAssistant`. Download and manipulate the N. American Breeding Bird Survey data 
+- __Appendix B__: `regimeDetectionMeasures`. Calculate various regime detection measures
+- __Appendix C__: `bbsRDM`. Apply regime detection measures to spatiotemporal bird community data
   
 ???
 Finally I will give a brief overview and very shamelessly promote the open sources softwares associated with this research program and which were used throughout  this research program
 
 
 ---
-# The Practical Ecologist Has Not the Time To: <!--dissertation overview-what we will review-->
+# The Practical Ecologist Has Not the Time To: <!--highlight chaps-->
 
 .small[<font color="black"><b>Synthesize regime shift methods available</b></font>]
-- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Literature  
+- __Chapter 1 & 8__: Introduction to and Synthesis of the State of Regime Detection Measures
+- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Methods
 
-.small[<font color="black"><b>Identify utility and efficacy of methods</b></font>]
-  - __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
-  - <font color="lightgrey"><b>Chapter 4:</b> An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States</font>
-  - __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
-  - __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
-  - <font color="lightgrey"><b>Chapter 7:</b> Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions</font>
+.small[<font color="black"><b>Test the utility and efficacy of regime detection methods</b></font>]
+- <font color="lightgrey"><b>Chapter 4:</b> An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States</font>
+- __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
+- __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
+- <font color="lightgrey"><b>Chapter 7:</b> Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions</font>
 
 .small[<font color="black"><b>Improve method accessibility</b></font>]
-  - .s[__Appendix A__: `bbsAssistant`]. Download and manipulate the N. American Breeding Bird Survey data 
-  - __Appendix B__: `regimeDetectionMeasures`. Calculate various regime detection measures
-  - <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Apply regime detection measures to spatiotemporal bird community data</font>
+- __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
+- __Appendix A__: `bbsAssistant`. Download and manipulate the N. American Breeding Bird Survey data 
+- __Appendix B__: `regimeDetectionMeasures`. Calculate various regime detection measures
+- <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Apply regime detection measures to spatiotemporal bird community data</font>
   
 ???
 Today I will synthesize the significance of our findings for Chapters 2, 3, 5 and 6 and briefly review two of the R packages associated with this research program.
 
 ---
+# <!-- CHAPTER 2 BEGIN -->
+.big[__Chapter 2__: A segue into chapter .......]
+???
+---
 # Chapter 2: Methods for Detecting Regime Shifts <!--ch2 background of RS theory -->
 </br>
-
-.center[<iframe height="300" src="https://upload.wikimedia.org/wikipedia/commons/transcoded/9/9c/Lorenz.ogv/Lorenz.ogv.480p.vp9.webm"></iframe>]
-
-<!-- .center[<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif", width="350">] -->
-
-.footnote[ [1] Wikipedia ]
 
 ???
 - Ecological regime shift theory was born out of dynamical systems theory, a branch of mathematics
 - Of particular note are the existence of chaotic systems, or, systems which are unpredictible in most situations
-- EX: the lorenz attractor
-
 - The study of chaotic systems in mathematics is relatively new (1980s)
-
 
 --
 
@@ -290,7 +327,7 @@ and has very much diverged from the field
 - Bibliographic analysis
 ]]
 ---
-# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 results -- too many journals/subfields --> 
+# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 results: thematic map --> 
 .left-column[.medium[Research Themes]
   - .small[]
 ]
@@ -299,7 +336,7 @@ and has very much diverged from the field
 
 ---
 
-# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 results -- too many journals/subfields --> 
+# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 results: many journals--> 
 .medium[Methods spread across fields]
 .center[<img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="550">]
   - .small[difficult to identify methods available]
@@ -315,7 +352,20 @@ and has very much diverged from the field
 
 
 
-# Acknowledgements <!-- pull-right build-->
+# <!-- CHAPTER 3 BEGIN -->
+.big[__Chapter 3__: A segue into chapter .......]
+???
+---
+# <!-- CHAPTER 5 BEGIN -->
+.big[__Chapter 5__: A segue into chapter .......]
+???
+---
+# <!-- CHAPTER 6 BEGIN -->
+.big[__Chapter 6__: A segue into chapter .......]
+???
+---
+
+# Acknowledgements <!-- rsrch & travel-->
 .pull-left[
 #### Research Advisement  
 __Committee__: Craig Allen, Dirac Twidwell, John DeLong, David Angeler & Drew Tyre   
@@ -346,7 +396,7 @@ __Institude of Ag and Natural Resources, UNL__: Nelson Fellowships
 
 ---
 
-# Acknowledgements <!--Ack 2-->
+# Acknowledgements <!--other-->
 .pull-left[
 #### Professional Development 
 __UNL School of Graduate Studies__  |  __Mike Moulton__
@@ -377,8 +427,7 @@ __Chris Lepczyk__   | __Hao Ye__
 
 ---
 
-# Acknowledgements: Data & Software  <!-- --> 
-
+# Acknowledgements <!--data software --> 
 #### Data  
 
 - To the participatory scientists who have contributed to the N. American Breeding Bird Survey

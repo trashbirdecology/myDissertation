@@ -77,6 +77,23 @@ a, a > code {
   float: right;
 }
 
+/* Two-column layout (left wider than right) */
+.left-column-2 {
+  color: #6d6d69;
+  width: 66%;
+  float: left;
+}
+
+.left-column-2 h2:last-of-type, .left-column-2 h3:last-child {
+  color: #000;
+}
+
+.right-column-2 {
+  width: 30%;
+  float: left;
+}
+
+
 /* pull-left pull-right design, half/half approx*/
 
 .pull-left {

@@ -12,10 +12,7 @@ output:
       countIncrementalSlides: false
       ratio: "16:7"
 ---
-
-
---
-
+# ecosyste,s
 #### - **difficult to model mathematically**     
 
 ???
