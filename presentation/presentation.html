@@ -260,7 +260,7 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 I will also emphasize some of the software created as a part of this research program 
 
 ---
-# Chapter 2:  Systematic Literature Reviews&lt;!--# RS pubs--&gt;
+# Chapter 2: Systematic Literature Reviews&lt;!--# RS pubs--&gt;
 .center[&lt;img src="figures/rsPubsYear.png" width="688"&gt;] &lt;br&gt;
 .center[__Topic__ = regime, abrupt, catastrophic shifts &lt;b&gt;|&lt;/b&gt;  __Field__= ecology,  biodiversity conservation ]
 ???
@@ -405,7 +405,7 @@ less to more developed
 - This 
 ---
 
-# Demystifying Fisher Inforamtion As a Regime Shift Detection Method&lt;sup&gt;1&lt;/sup&gt;
+# Chapter 3: Demystifying Fisher Information &lt;!-- CH3 summary--&gt;
 .medium[
 1) Clarify the calculation steps of Fisher Information
 ]
@@ -421,13 +421,74 @@ less to more developed
 .medium[
 3) Demonstrate the utility of velocity of the __Euclidean distance__ 
 ]
----
+--
+.medium[
+4) __Velocity of system trajectories as a "new" composite regime detection metric__ (Chapter 5)
+]
 
-# Velocity of Distance Travelled  &lt;!-- --&gt;
+---
+# Reconstructing Trajectories of Multivariable Systems in Phase Space &lt;!--begin CH5--&gt;
+
+.pull-left[
+&lt;img src="figures/lorenz3D_timeseries.png" width="400"&gt;&lt;br&gt;
+&lt;img src="figures/lorenz3D.png" width="450"&gt;
+]
+???
+- Visualizing low-dimensional data dynamics is simepl wjen we have 1, 2, or 3 state variables
+- For example, in a 3-variable Lorenz System, we can visualize the trajectory of the entire time series in three diensions
+
+--
+&lt;br&gt;&lt;br&gt;
+.pull-right[&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif" width="400"&gt;]
+
+???
+- In this same system, we can visualize the system as it travels along the path, further calculating the VELOCITY, or the rate of change at each observed instance. 
+
+---
+# Chapter 5: Using Velocity  of System Trajectory in Phase Space &lt;!--begin CH5--&gt;
+
+???
+- We are exploring the use of ecosystem velocity as an indicator of abrupt change. 
+- Although velocity, or rate of cahnge using dissimilarity/distance indices has been used in paleoecology, it has yet to be explored as a potential indicator of ecological regime shifts. 
+--
+
 
 ???
 
+- I use both theoretical and empirical data to  test velocity under varying conditions to understand its capacity to serve as a regime shfit detection metric. 
+- However, we a novel aspect using this simple metric to identify regime shfits and abrupt changes in multivarable systems is 
 
+---
+
+# Chapter 5: Next Steps &lt;!-- end CH 5--&gt;
+### Statistical identification of change point in velocity  
+### Compare Euclidean to other  distance-based metrics 
+### Compare to ordination techniques
+### Compare to other smoothing techniques (e.g. TVDiff, Generalized Additive Models)
+
+???
+- One of the primary motivations for this chapter was to explore the ecosystem velocity as a measure of abrupt change in multivariate data. 
+- Using both theoretical and empirical data, I found that this metric 
+
+---
+
+# Methods Evolution: Multiple Paths Taken &lt;!--resampling intro--&gt;
+
+???
+- AS mentioned eralier, there are far fewer rigorous tests of proposed regime detection methods
+- Rather, the evolution of many of the 70 plus methods I identified in Chapter 2 follow one ofhte following routes:next
+--
+
+.center[&lt;img src="figures/methodflow4.png" width="550"&gt;]
+
+---
+
+# Methods Evolution: Multiple Paths Taken &lt;!--resampling intro2--&gt;
+
+
+.center[&lt;img src="figures/methodflow3.png" width="80"&gt;]
+
+---
 
 # Prediction is ~The~ Holy Grail of Ecology &lt;!--holy grail is prediction--&gt;
 .center[&lt;img src="https://venturebeat.com/wp-content/uploads/2018/06/Holy_Grail.shutterstock_268713941.jpg?fit=400%2C283&amp;strip=all" width="700"&gt;]
@@ -437,6 +498,17 @@ less to more developed
 - When systems are well-described
 - When conditions are predictable
 - I think we have a long way until we are able to forecast most undesirable shifts in the environment, whcih some may refer to as regime shifts. 
+
+---
+
+# Applications Exceed Regime Shift Theory and Method Efficacy  &lt;!-- summarise diss findings--&gt;
+
+- Too many methods proposed
+- Few rigorously tested
+- Still no generalizable methods
+- Some methods sensitive to data quality/quantity
+  - but velocity appears robust
+- Divergence of regime shift theory from dynamical systems theory
 
 ---
 
@@ -460,17 +532,23 @@ less to more developed
 
 ---
 # Acknowledgements &lt;!-- rsrch &amp; travel--&gt;
-.pull-left[
-#### Research Advisement  
-__Committee__: Craig Allen, Dirac Twidwell, John DeLong, David Angeler &amp; Drew Tyre   
-__IIASA supervisors__: Brian Fath &amp; Elena Rovenskaya  
-#### Research &amp; Travel Support  
-__U.S. Department of Defense__: SERDP (RC-2501)  
-__National Academy of Sciences__: support for IIASA            
-__Nebraska Foundation, UNL__: Fling &amp;  Othmer Fellowships     
-__Institude of Ag and Natural Resources, UNL__: Nelson Fellowships  
-] 
 
+.pull-left[.medium[ 
+__Dissertation Committee__ 
+
+Craig Allen  
+Dirac Twidwell    
+David Angeler  
+John DeLong  
+Drew Tyre   
+]]
+
+.pull-right[.medium[
+__IIASA Supervisors__
+  
+Brian Fath  
+Elena Rovenskaya  
+]]
 ---
 
 # Financial Support

@@ -12,75 +12,6 @@ output:
       countIncrementalSlides: false
       ratio: "16:7"
 ---
-# ecosyste,s
-#### - **difficult to model mathematically**     
-
-???
-Anyone studying dynamical systems or studying ecological systems probably understands that building mathewmatical models to accurately and usefully describe empirical systems is difficult. 
-
-Especially as we move beyonbd just a handful of state  variables.
----
-
-# The Holy Grail of Ecology <!-- ...is prediction -->
-<br>  
-<br>
-# **forecasting change in time to prevent or mitigate undesirable consequences**
-<br>
-
-
-???
-
-- **Despite this complexity** of ecological systems, we as ecologists strive to **make predictions
-
-- One **increasingly active line of research** in ecology is "regime shifts"
-
-<!-- -- -->
-
-<!-- # regime shifts -->
-
-
----
-
-# Ecological Regime Shifts 
-
-## **what?**  a persistent change in the structure or functioning of a system 
-</br>  
-
-???
-- A **persistent change in the structure or functioning of a system**
---
-
-## **how?** loss of negative feedback(s) maintaining the system
-<br>
-???
-- Regime shifts occur, via a number of pathways, when a system **loses the negative feedback(s) maintaining** the system in its current state
-
-- Again, *goal* is to predict in time to prevent something bad from happening. Pipe dream? Probably...
---
-
-## **goal?** predict in time to prevent  
----
-
-# Regime Shifts Detection Methods
-  ###   Rising Variance/Critical Slowing Down
-  ###   Variance Index (max eigenvalue of covariance matrix)
-  ###   Principal Coordinates Analysis
-  
---
-  
-  ###   **Fisher Information** 
-  
---
-
-  ### **Velocity**, $v$
-
-???
-
-- A few of the methods capable of handling multivariable data variance, PCA and an obscure method called, Fisher Information. 
-
-- And its from FI where we derived a new method that I am described today, called **Velocity**
-
----
 
 # Toy System
 ```{r, echo=FALSE, out.width="55%", fig.align="center"}
@@ -267,15 +198,6 @@ knitr::include_graphics(paste0(here::here(),"/figures/distance_dsdt_observations
 
 ---
 
-
-# Next Steps
-### Numerical identification of change point in $v$  
-### Compare to distance-based metrics (feedback?)
-### Compare to ordination techniques
-### Predictive capacity
-
-???
-- One of the primary motivations for this project was to identify an objective, intuitive, and easy-to-calculate method for identifying ecological regime shifts
 
 
 ---

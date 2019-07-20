@@ -435,17 +435,72 @@ less to more developed
 ]
 --
 .medium[
-4) __Velocity of system trajectories as a "new" composite regime detection metric__ (Chapter 3)
+4) __Velocity of system trajectories as a "new" composite regime detection metric__ (Chapter 5)
 ]
 
 ---
-# Velocity of System Trajectory <!-- -->
+# Reconstructing Trajectories of Multivariable Systems in Phase Space <!--begin CH5-->
 
-
-
-# CHAPTER 6 RESAMPLIG  <!-- -->
-# Velocity of Distance Travelled  <!-- -->
+.pull-left[
+<img src="figures/lorenz3D_timeseries.png" width="400"><br>
+<img src="figures/lorenz3D.png" width="450">
+]
 ???
+- Visualizing low-dimensional data dynamics is simepl wjen we have 1, 2, or 3 state variables
+- For example, in a 3-variable Lorenz System, we can visualize the trajectory of the entire time series in three diensions
+
+--
+<br><br>
+.pull-right[<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif" width="400">]
+
+???
+- In this same system, we can visualize the system as it travels along the path, further calculating the VELOCITY, or the rate of change at each observed instance. 
+
+---
+# Chapter 5: Using Velocity  of System Trajectory in Phase Space <!--begin CH5-->
+
+???
+- We are exploring the use of ecosystem velocity as an indicator of abrupt change. 
+- Although velocity, or rate of cahnge using dissimilarity/distance indices has been used in paleoecology, it has yet to be explored as a potential indicator of ecological regime shifts. 
+--
+
+
+???
+
+- I use both theoretical and empirical data to  test velocity under varying conditions to understand its capacity to serve as a regime shfit detection metric. 
+- However, we a novel aspect using this simple metric to identify regime shfits and abrupt changes in multivarable systems is 
+
+---
+
+# Chapter 5: Next Steps <!-- end CH 5-->
+### Statistical identification of change point in velocity  
+### Compare Euclidean to other  distance-based metrics 
+### Compare to ordination techniques
+### Compare to other smoothing techniques (e.g. TVDiff, Generalized Additive Models)
+
+???
+- One of the primary motivations for this chapter was to explore the ecosystem velocity as a measure of abrupt change in multivariate data. 
+- Using both theoretical and empirical data, I found that this metric 
+
+---
+
+# Methods Evolution: Multiple Paths Taken <!--resampling intro-->
+
+???
+- AS mentioned eralier, there are far fewer rigorous tests of proposed regime detection methods
+- Rather, the evolution of many of the 70 plus methods I identified in Chapter 2 follow one ofhte following routes:next
+--
+
+.center[<img src="figures/methodflow4.png" width="550">]
+
+---
+
+# Methods Evolution: Multiple Paths Taken <!--resampling intro2-->
+
+
+.center[<img src="figures/methodflow3.png" width="80">]
+
+---
 
 # Prediction is ~The~ Holy Grail of Ecology <!--holy grail is prediction-->
 .center[<img src="https://venturebeat.com/wp-content/uploads/2018/06/Holy_Grail.shutterstock_268713941.jpg?fit=400%2C283&strip=all" width="700">]
@@ -455,6 +510,17 @@ less to more developed
 - When systems are well-described
 - When conditions are predictable
 - I think we have a long way until we are able to forecast most undesirable shifts in the environment, whcih some may refer to as regime shifts. 
+
+---
+
+# Applications Exceed Regime Shift Theory and Method Efficacy  <!-- summarise diss findings-->
+
+- Too many methods proposed
+- Few rigorously tested
+- Still no generalizable methods
+- Some methods sensitive to data quality/quantity
+  - but velocity appears robust
+- Divergence of regime shift theory from dynamical systems theory
 
 ---
 
@@ -478,17 +544,23 @@ less to more developed
 
 ---
 # Acknowledgements <!-- rsrch & travel-->
-.pull-left[
-#### Research Advisement  
-__Committee__: Craig Allen, Dirac Twidwell, John DeLong, David Angeler & Drew Tyre   
-__IIASA supervisors__: Brian Fath & Elena Rovenskaya  
-#### Research & Travel Support  
-__U.S. Department of Defense__: SERDP (RC-2501)  
-__National Academy of Sciences__: support for IIASA            
-__Nebraska Foundation, UNL__: Fling &  Othmer Fellowships     
-__Institude of Ag and Natural Resources, UNL__: Nelson Fellowships  
-] 
 
+.pull-left[.medium[ 
+__Dissertation Committee__ 
+
+Craig Allen  
+Dirac Twidwell    
+David Angeler  
+John DeLong  
+Drew Tyre   
+]]
+
+.pull-right[.medium[
+__IIASA Supervisors__
+  
+Brian Fath  
+Elena Rovenskaya  
+]]
 ---
 
 # Financial Support
