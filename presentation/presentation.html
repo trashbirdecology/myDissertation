@@ -260,67 +260,173 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 I will also emphasize some of the software created as a part of this research program 
 
 ---
-# Chapter 2: Review of Regime Shift Literature and Methods&lt;!--problem--&gt;
-.center[&lt;img src="figures/rsPubsYear.png" width="800"&gt;]
-
+# Chapter 2:  Systematic Literature Reviews&lt;!--# RS pubs--&gt;
+.center[&lt;img src="figures/rsPubsYear.png" width="688"&gt;] &lt;br&gt;
+.center[__Topic__ = regime, abrupt, catastrophic shifts &lt;b&gt;|&lt;/b&gt;  __Field__= ecology,  biodiversity conservation ]
 ???
-
-
+- The number of papers related to ecological regime shifts exploded in the 1980s, coinciding with 
+- A review of the ecological and conservation literature yielded __&gt; 1600 papers__ containing "regime shift" as topic
+- Rapid growth exceeding the rate of ecological papers published
 ---
-# Chapter 2: Review of Regime Shift Literature and Methods&lt;!--aims &amp; approach--&gt;
+# Chapter 2: Systematic Literature Reviews&lt;!--problem &amp; aims--&gt;
 .pull-left[
-.big[&lt;b&gt;Aims&lt;/b&gt;].medium[  
-- Comprehensive census the ecological literature for quantitative methods
+.big[Problem]
+.medium[
+- Applications outpacing theoretical advancement
+- No comprehensive reviews or sources of methods 
+- Methods applied before statistically scrutinized
+]]
+--
+.pull-right[
+.big[Aims]
+.medium[
 - Identify research themes and gaps
+- Comprehensive source for all methods
 ]]
 
+---
+# Chapter 2: Systematic Literature Reviews&lt;!--aims &amp; approach--&gt;
+.pull-left[
+.big[Aims]
+.medium[
+- Identify research themes and gaps
+- Comprehensive source for all methods
+]]
 
 --
 
 .pull-right[
-.big[&lt;b&gt;Approach&lt;/b&gt;].medium[  
-- Systematic literature reviews (2)
+.big[Approach].medium[  
 - Bibliographic analysis
-- 
+&lt;!-- keep this spacing --&gt;
+
+- Systematic literature reviews
 ]]
 ---
-# Chapter 2: Themes in Regime Shift Literature &lt;!--ch2 results: thematic map --&gt; 
-.left-column[.medium[
-]]
+# Bibliographic Analysis to Identify Themes in Ecological Regime Shift Development &lt;!--results: themes --&gt; 
+.left-column[.medium[&lt;font color="black"&gt;
+__X axis__: importance to field&lt;br&gt;&lt;br&gt;&lt;br&gt;
+__Y axis__: &lt;br&gt;
+less to more developed
+]] &lt;/font&gt;
 
 .right-column[&lt;img src="figures/thematicMaps_keywords.png" width="500"&gt;]
 
-
----
-
-# Chapter 2: Methods for Detecting Regime Shifts &lt;!--ch2 results: many journals--&gt; 
-.medium[Methods spread across fields]
-.center[&lt;img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="550"&gt;]
-  - .small[difficult to identify methods available]
-
----
-
-&lt;!-- ### `\(&gt; 70\)` methods proposed in literature --&gt;
-&lt;!-- ### `\(\sim 10\)` suitable for multivariable data --&gt;
-&lt;!-- ### few explicitly handle noisy data --&gt;
-&lt;!-- ### few handle irregular sampling --&gt;
-
-&lt;!-- --- --&gt;
-
-
-
-# &lt;!-- CHAPTER 3 BEGIN --&gt;
-.big[__Chapter 3__: A segue into chapter .......]
 ???
+- __Top panel__ (Author keys): 
+  - no clear themes identified
+  - "dynamic" suggested, but many papers don't refer to dynamical systems theory...
+- __Bottom panel__ (WOS keys):
+  - 
+
 ---
-# &lt;!-- CHAPTER 5 BEGIN --&gt;
-.big[__Chapter 5__: A segue into chapter .......]
+
+# Regime Detection Methods Difficult to Find Using Typical Literature Reviews &lt;!--results: journals--&gt; 
 ???
+- I conducted a second litearture review in an attempt to build a comprehensive list of the methods proposed and applied for detecting eoclogical regime shifts
+- Using a well-defined boolean search AND incorpoating my prior knowledge, &lt;u&gt;I identified over 70 methods &lt;/u&gt; proposed or used to ID ecological regime shifts 
+
+--
+
+&lt;img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="750"&gt;
+- A few things contributed to my inability to build this list using typical lit search methods:
+  1. Jargon is inconsistent
+  2. Methods are not often first proposed in either methods journals, nor proposed using theoretical data
+    - rather, they are applied using empirical data, and put into more 'applied journals'
+
 ---
-# &lt;!-- CHAPTER 6 BEGIN --&gt;
-.big[__Chapter 6__: A segue into chapter .......]
+
+# Regime Detection Methods for Individual State Variables are Well-Tested &lt;!--Ch3 Segue: Multivariate Methods --&gt;
+
 ???
+- In Chpater 2 I identifyied over 70 methods using systematic lit review and my prior knowledge
+- Many of these methods are designed to analyze indiviudal state variables
+- Only a few of these methods, however, have been heavily scrutinized
+
+--
+
+.pull-left[.medium[
+&lt;u&gt;Univariate Methods&lt;/u&gt;
+- Autoregressive coefficent (lag-1)
+- Standard deviation
+- Skewness 
+- Kurtosis
+- Coefficeint of Variation
+]]
+???
+- Among the heavily  scrutinized include five _traditional early warning indicators_, 
+--
+.pull-right[.medium[
+&lt;u&gt;Best Conditions&lt;/u&gt;
+- Critical slowing down
+- Few state variables (e.g. species)
+]]
+
+???
+- However, these methods are inreasingly being shown unreliable under various conditions
+- Further, the most commonly 
+
 ---
+
+# Regime Detection Methods for Individual State Variables are Well-Tested... __But Inconsistent__ &lt;!--EWIs fail--&gt;
+.center[&lt;img src="figures/fail.png" width="750"&gt;]
+???
+- However, even these methods which are most tested are inconsistent under various theoretical and empirical conditions
+
+---
+# Regime Detection Methods for Individual State Variables are Well-Tested... __Difficult to Use in High Dimensions__ &lt;!--CV spaghetti--&gt;
+.center[&lt;img src="figures/cv.png" width="750"&gt;]
+???
+- For example, an application of the Coefficient of variation to a 100 species community time series results in a spaghetti plot
+- Un-interpretable 
+
+---
+
+# Composite (Multivariate) Methods for Detecting Regime Shifts
+
+.medium[
+- Variance Index
+- Ordination
+- Clustering algorithms
+]
+???
+- A few methods are proposed as solutions for analyzing high dimensional ecological data including
+- Variance Index, Ordination e.g. PCA, clustering, and Fisher Information
+--
+
+.medium[
+- __Fisher Information__
+  - Noisy data 
+  - n-Dimensions
+  ]
+  
+???
+- One of which is the Fisher Infomration metric
+- This 
+---
+
+# Demystifying Fisher Inforamtion As a Regime Shift Detection Method&lt;sup&gt;1&lt;/sup&gt;
+.medium[
+1) Clarify the calculation steps of Fisher Information
+]
+.footnote[[1] Burnett, JL, NB Price, AJ Tyre, DG Angeler, T Eason, D Twidwell, and CR Allen. Deconstructing the steps for calculating Fisher Information as a measure of abrupt change in ecological systems. _in review at Ecological Modelling_]
+???
+- We recently submitted a paper which demystifies the calculation of Fisher Information and, importantly
+- point out that the Fisher Infomration is basically just 
+--
+.medium[
+2) Highlight its reliance on __Euclidean distance__ 
+]
+--
+.medium[
+3) Demonstrate the utility of velocity of the __Euclidean distance__ 
+]
+---
+
+# Velocity of Distance Travelled  &lt;!-- --&gt;
+
+???
+
 
 
 # Prediction is ~The~ Holy Grail of Ecology &lt;!--holy grail is prediction--&gt;
@@ -331,6 +437,27 @@ I will also emphasize some of the software created as a part of this research pr
 - When systems are well-described
 - When conditions are predictable
 - I think we have a long way until we are able to forecast most undesirable shifts in the environment, whcih some may refer to as regime shifts. 
+
+---
+
+# Remaining Questions &amp; Future Work for Advancing Ecological Regime Shift Methods
+.pull-left[
+.small-med[
+- Does the method assume __smooth potential__? (Hastings &amp; Wysham 2010)
+- Types of shifts detected
+- Sensitivity to:
+  - data quality &amp; quantity
+  - process lags
+]]
+.pull-left[
+.small-med[
+- 
+
+]]
+
+???
+- 
+
 ---
 # Acknowledgements &lt;!-- rsrch &amp; travel--&gt;
 .pull-left[
@@ -344,13 +471,38 @@ __Nebraska Foundation, UNL__: Fling &amp;  Othmer Fellowships
 __Institude of Ag and Natural Resources, UNL__: Nelson Fellowships  
 ] 
 
---
+---
 
-.pull-right[
-#### Travel Support
-| __American Ornithologists' Union__ | |
-|:----------|:----------------------|  
-| Association for Women in Mathematics | |
+# Financial Support
+
+.col3-left[
+&lt;img src="https://ucomm.unl.edu/images/brand-book/Our-marks/R-UNL-Hex.svg" width="200"&gt;&lt;br&gt;&lt;br&gt; 
+&lt;img src="http://www.iiasa.ac.at/css/images/iiasalogo.png" width="200"&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="https://news.unl.edu/sites/default/files/styles/large_aspect/public/media/coop%20unit%20logo.JPG?itok=MAepDuZj" width="200"&gt;
+]
+.col3-right[
+&lt;img src="https://sites.google.com/site/awmmath/_/rsrc/1466351869149/programs/falconer-lectures/awm-logo-short.gif?height=161&amp;width=200" width="200"&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="https://oup.silverchair-cdn.com/data/SiteBuilderAssets/Live/Images/aosjournals/aosjournals_h1-1743112456.svg" width="200"&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="http://www.nasonline.org/" width="200"&gt;
+
+]
+
+&lt;img src="" width="200"&gt;
+
+
+
+
+---
+
+&lt;img src="" width="200"&gt;
+&lt;img src="" width="200"&gt;
+&lt;img src="" width="200"&gt;
+&lt;img src="" width="200"&gt;
+&lt;img src="" width="200"&gt;
+&lt;img src="" width="200"&gt;
+&lt;img src="" width="200"&gt;
+
+
 | __Kellogg Biological Station__| |
 | National Academy of Sciences | |
 | __National Science Foundation__ | |
@@ -363,34 +515,69 @@ __Institude of Ag and Natural Resources, UNL__: Nelson Fellowships
 
 ---
 
-# Acknowledgements &lt;!--other--&gt;
+# Thanks to All Who My Research &amp; Prof. Dev. &lt;!--people--&gt;
+.left-column-2[
 .pull-left[
-#### Professional Development 
-__UNL School of Graduate Studies__  |  __Mike Moulton__
-:-----------------|:----------------
-__Christie Bahlai__  | __Kevin Pope__&lt;sup&gt;1&lt;/sup&gt; 
-__Hannah Birg&amp;eacute;__ |  __Scott Robinson__ 
-__Mary Bomberger Brown__  | __Trisha Spanbauer__
-__John Carroll__    | __Erica Stuber__ 
-__Tarsha Eason__   | __Brigitte Tenhumberg__ 
-__Ahjond Garmestani__ |  __Zac Warren__ 
-__Trevor Hefley__   | __Lyndsie Wszola__
-__Chris Lepczyk__   | __Hao Ye__
-###### .footnote[ [1] thanks also for your free racquetball coaching services]
-] 
+- Hannah Birg&amp;eacute;
+- Lyndsie Wszola
+- Mary Bomberger Brown
+- Carissa Wonkka
+- Tori Donovan
+- Caleb Roberts
+- Allie Schiltmeyer
+- Tarsha Eason
+- Erica Stuber
+- Ahjond Garmestani
+- Gabby Palomo-Munoz
+- Jenny Dauer
+- Scott Robinson
+- Chrisie Bahlai 
+- Katya Perez
+- Kevin Pope&lt;sup&gt;1&lt;/sup&gt; 
 
---
-
+.footnote[&lt;font color="grey"&gt;[1] thanks for the free racquetball coaching services!&lt;br&gt; [2] Unaccreditted Dogtoral Degree in personnel management and security services&lt;/font&gt;] 
+]
 .pull-right[
+- Mike Moulton
+- Andy Kratter
+- Trevor Hefley
+- Chris Lepczyk
+- Katie Sieving
+- Trisha Spanbauer
+- Brigette Tenhumberg
+- John Carroll
+- Zac Warren
+- George Sugihara
+- Rob Crystal-Ornelas
+- Tarsha Eason
+- Keith Hurley
+- Hao Ye 
+- Dennis Ferraro
+- Kelly Willemssens
+- Frank La Sorte
+]
+]
+.right-column-2[
+- Lego Grad Student
+- Wilma Gerena
+- Caryl Cashmere
+- Lisa Greif
+- Karen Gilbert
+- Maggie Tetreau
+- Larkin Powell
+- Chris Chizinski
+- Sabrina Russo
+- Shawna Ritcher-Reyerson
+- Tri Tran
+- Gregg Hutchinson
+- Dee Ebbekka
+- Mark Mesearch
+- Patty Swanson
+- Terry Thomas, A.P.R.N
+- Dr. Schultz&lt;sup&gt;2&lt;/sup&gt; 
+]
 
-#### Special Thanks to   
-- NECRU administrative superstars: __Wilma Gerena &amp; Caryl Cashmere__  
-- SNR &amp; NRBC staff who have patiently helped me: Tri, Gregg, Hannah, Christine, Maria, Shawna, Mark 
-- Terry Thomas, without whom I am not sure where I would be today 
-- and finally, Dr. Dr. Nat Price and Dr. Schultz&lt;sup&gt;2&lt;/sup&gt; 
-###### .footnote[[2] non-accredited doctoral degree in squirrel chasing and auxiliary nursing]
 
-] 
 
 ---
 

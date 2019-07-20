@@ -79,7 +79,7 @@ a, a > code {
 
 /* Two-column layout (left wider than right) */
 .left-column-2 {
-  color: #6d6d69;
+  color: #000000;
   width: 66%;
   float: left;
 }
@@ -361,3 +361,21 @@ ru-blockquote {
 .hang{ margin-left: -2em; 
  text-indent: 2em 
  }
+ 
+ 
+ 
+.col3-left {
+  width: 30%;
+  float: middle;
+}
+
+ 
+.col3-middle {
+  width: 30%;
+  float: middle;
+}
+ 
+.col3-right {
+  width: 30%;
+  float: middle;
+}
