@@ -272,7 +272,7 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 I will also emphasize some of the software created as a part of this research program 
 
 ---
-# Chapter 2:  Systematic Literature Reviews<!--# RS pubs-->
+# Chapter 2: Systematic Literature Reviews<!--# RS pubs-->
 .center[<img src="figures/rsPubsYear.png" width="688">] <br>
 .center[__Topic__ = regime, abrupt, catastrophic shifts <b>|</b>  __Field__= ecology,  biodiversity conservation ]
 ???
@@ -417,7 +417,7 @@ less to more developed
 - This 
 ---
 
-# Demystifying Fisher Inforamtion As a Regime Shift Detection Method<sup>1</sup>
+# Chapter 3: Demystifying Fisher Information <!-- CH3 summary-->
 .medium[
 1) Clarify the calculation steps of Fisher Information
 ]
@@ -433,13 +433,19 @@ less to more developed
 .medium[
 3) Demonstrate the utility of velocity of the __Euclidean distance__ 
 ]
+--
+.medium[
+4) __Velocity of system trajectories as a "new" composite regime detection metric__ (Chapter 3)
+]
+
 ---
+# Velocity of System Trajectory <!-- -->
 
+
+
+# CHAPTER 6 RESAMPLIG  <!-- -->
 # Velocity of Distance Travelled  <!-- -->
-
 ???
-
-
 
 # Prediction is ~The~ Holy Grail of Ecology <!--holy grail is prediction-->
 .center[<img src="https://venturebeat.com/wp-content/uploads/2018/06/Holy_Grail.shutterstock_268713941.jpg?fit=400%2C283&strip=all" width="700">]
@@ -593,9 +599,7 @@ Thanks to all the groups who have made this research possible.
 
 ---
 
-#
-
-.big[Software]
+# Acknowledgements: Data & Software
 
 ```{r, eval=TRUE,echo=FALSE, out.width="10%"}
 knitr::include_graphics("https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png")
@@ -606,24 +610,25 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac616
 knitr::include_graphics("https://github.com/tidyverse/ggplot2/raw/master/man/figures/logo.png")
 
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/1200px-R_logo.svg.png")
-knitr::include_graphics("")
+knitr::include_graphics("https://camo.githubusercontent.com/55f1444be1adecb1ede76ec23cd17838176a142b/687474703a2f2f7777772e6269626c696f6d65747269782e6f72672f6c6f676f2e706e67")
+knitr::include_graphics("https://camo.githubusercontent.com/3a6eb33909ba8de431b07a0f1fd7cb800f7ba2db/68747470733a2f2f626f6f6b646f776e2e6f72672f79696875692f626f6f6b646f776e2f696d616765732f6c6f676f2e706e67")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/LaTeX_cover.svg/400px-LaTeX_cover.svg.png")
 ```
-```{r, eval=TRUE,echo=FALSE, out.width="33%"}
+```{r, eval=TRUE,echo=FALSE, out.width="15%"}
 knitr::include_graphics("https://github.com/TrashBirdEcology/bbsAssistant/raw/master/man/figures/logo.png")
 ```
 
 
-## Data
-.small[
+.small-med[
 - Thanks to the participatory scientists of the North American Breeding Bird Survey
-- Spanbauer et al. 2014 Plos One - Paleodiatom time series
+- Paleodiatom data: Spanbauer et al. (2014) Plos One
 ]
 
- .footnote[
- **GitHub**:&nbsp;&nbsp;  TrashBirdEcology <br>
- **twitter**:&nbsp;&nbsp; @trashbirdecol <br>
- **e-mail**:&nbsp;&nbsp;&nbsp;&nbsp;  jburnett@huskers.unl.edu <br>
- ]
+.footnote[
+**GitHub**:&nbsp;&nbsp;  TrashBirdEcology <br>
+**twitter**:&nbsp;&nbsp; @trashbirdecol <br>
+**e-mail**:&nbsp;&nbsp;&nbsp;&nbsp;  jburnett@huskers.unl.edu <br>
+]
  
 
 
