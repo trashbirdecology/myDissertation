@@ -317,9 +317,15 @@ h3 {
 .medium {
   font-size: 1.9em;
 }
-
+.small-med {
+  font-size: 1.75em;
+}
 .small {
   font-size: 1.6em;
+}
+
+.smaller {
+  font-size: 1.15em;
 }
 
 /* ru blockquote */

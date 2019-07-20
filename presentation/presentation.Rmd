@@ -71,7 +71,7 @@ theme_set(theme_bw())
 - But some of these consequences are avoidable
 - For example, if this person knew the consequences of stomping on an unsupported snowpack, might they have taken actions to avoid this? 
 --
-<br>.small[Can we foresee & perhaps avoid ecological change?]
+<br>.small[Can we foresee & perhaps avoid undesirable change?]
 
 ???
 - So the question becomes -- can we foresee and perhaps avoid undesirable change in ecological systems?
@@ -147,12 +147,12 @@ theme_set(theme_bw())
 
 ---
 
-# Regime Shifts Predictable When System is Well-understood <!--some RS are predictable-->
+# Regime Shifts Example: Coral Reef Bleaching <!--some RS are predictable-->
 .pull-left[
 <img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="355"/>
 <img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="355"/>
-] 
-.medium[__Shifts easier to predict, avoid when thresholds, drivers are known __]
+] <br><br><br>
+.medium[__<font color="black">Shifts easier to predict, avoid when thresholds known</font> __]
 .pull-right[
 .medium[
 
@@ -166,19 +166,8 @@ theme_set(theme_bw())
 - For most ecological systems, however, this is not the case...next
 
 ---
-# Prediction is ~The~ Holy Grail of Ecology <!--holy grail is prediction-->
-.center[<img src="https://venturebeat.com/wp-content/uploads/2018/06/Holy_Grail.shutterstock_268713941.jpg?fit=400%2C283&strip=all" width="700">]
-???
-- Ecologists are taking baby steps towards being able to make predition in ecology
-- Easier done when system dynamics are UNDERSTOOD 
-- When systems are well-described
-- When conditions are predictable
-- I think we have a long way until we are able to forecast most undesirable shifts in the environment, whcih some may refer to as regime shifts. 
----
-
 # Problem: Ecosystems are Complex <!--prediction is difficult in ecology...-->
-.medium[Complicating our ability to identify regime shifts]
---
+
 .medium[
 - high dimensional    
 - many ( $\infty$ ) interactions  
@@ -196,7 +185,7 @@ Ecosystems are
 --
 <font color="blue">.medium[Especially difficult when drivers are unknown in a high dimensional system]</font>
 ???
-- These characteristics, paired with our inability to perfectly observe the systems means that 
+- These characteristics, paired with our inability to perfectly observe the systems means that we cannot predict many shifts now,  
 - Especially as we move beyonbd just a handful of state  variables.
 ---
 
@@ -215,123 +204,103 @@ Ecosystems are
 <font size="15" color="red">Dissertation Aims</font>
 <br><font size="15" color="black"><b>.center[Improve the utility and accesibility of regime shift detection methods for the <u>practical</u> ecologist]</b></font>
 ???
->pause 
+>pause...water 
 - So, with the practical ecologist in mind, or basically anyone not able to spend a solid 4 years studying this literature and testing these methods but wishing to apply these methods, my dissertation focuses on the quantitative methods proposed for identifying ecological regime shfits
 - Particularly I focus on the methods that are used for ecological community and systems, rather than single-species or single-state variable analyses.
 
 ---
-# The Practical Ecologist Has Not the Time To: <!--list all chaps-->
-.small[<font color="black"><b>Synthesize regime shift methods available</b></font>]
+#  Dissertation Themes & Outline<!--chapter themes-->
 ???
-My dissertation comprises 8 chapters, with two goals
+My dissertation comprises 8 chapters, with three themes
 --
 
+.small[<font color="black"><b><u>Theme 1</u>: Synthesize and review methods and literature</b></font>]
+.smaller[
 - __Chapter 1 & 8__: Introduction to and Synthesis of the State of Regime Detection Measures
 - __Chapter 2__: A Brief Overview of the Ecological Regime Detection Methods
+]
+???
+- In chapters 1,2 and 8 I review and synthesize both the state of the regime shift  literature, focusing on the quantiattive methods we are usign to identify regime shifts. 
+
+--
+
+.small[<font color="black"><b> <u>Theme 2</u>: Test the utility and efficacy of methods</b></font>]
+.smaller[
+- __Chapter 4__: Spatial application of Fisher Information
+- __Chapter 5__: Proposed method: velocity (*v*) of  system  trajectory 
+- __Chapter 6__: Relative performance of methods using resampling
+- __Chapter 7__: Body mass distributions application
+]
 
 ???
-My dissertation comprises a few key components:
-  1. Creating a resource for ecologists to visit to view all the available methods
-  1. Improving select methods
-  1. Testing the boundaries of existing and new methods 
+- Next, I use theoretical and empirical data to test the utility and efficacy of selected regime sfhit methods  
 
 --
 
-.small[<font color="black"><b>Test the utility and efficacy of regime detection methods</b></font>]
-
---
-
-- __Chapter 4__: An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States
-- __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
-- __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
-- __Chapter 7__: Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions 
-
---
-
-.small[<font color="black"><b>Improve method accessibility</b></font>]
-
---
-
-- __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
-- __Appendix A__: `bbsAssistant`. Download and manipulate the N. American Breeding Bird Survey data 
-- __Appendix B__: `regimeDetectionMeasures`. Calculate various regime detection measures
-- __Appendix C__: `bbsRDM`. Apply regime detection measures to spatiotemporal bird community data
+.small[<font color="black"><b> <u>Theme 3</u>: Improve method accessibility</b></font>]
+.smaller[
+- __Chapter 3__: Deconstructing Fisher Information calculation
+] 
   
 ???
 Finally I will give a brief overview and very shamelessly promote the open sources softwares associated with this research program and which were used throughout  this research program
 
-
 ---
-# The Practical Ecologist Has Not the Time To: <!--highlight chaps-->
-
-.small[<font color="black"><b>Synthesize regime shift methods available</b></font>]
-- __Chapter 1 & 8__: Introduction to and Synthesis of the State of Regime Detection Measures
+#  Dissertation Themes & Outline<!--chapter themes-->
+.small[<font color="black"><b><u>Theme 1</u>: Synthesize and review methods and literature</b></font>]
+.smaller[
+- <font color="lightgrey"><b>Chapter 1 & 8</b>: Introduction to and Synthesis of the State of Regime Detection Measures</font>
 - __Chapter 2__: A Brief Overview of the Ecological Regime Detection Methods
+]
 
-.small[<font color="black"><b>Test the utility and efficacy of regime detection methods</b></font>]
-- <font color="lightgrey"><b>Chapter 4:</b> An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States</font>
-- __Chapter 5__: Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes
-- __Chapter 6__: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures Under Varying Conditions of Data Quality and Quantity
-- <font color="lightgrey"><b>Chapter 7:</b> Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions</font>
+.small[<font color="black"><b> <u>Theme 2</u>: Test the utility and efficacy of methods</b></font>]
+.smaller[
+- <font color="lightgrey"><b>Chapter 4</b>: Spatial application of Fisher Information</font>
+- __Chapter 5__: Proposed method: velocity (*v*) of  system  trajectory 
+- __Chapter 6__: Relative performance of methods using resampling
+- <font color="lightgrey"><b>Chapter 7</b>: Body mass distributions application</font>
+]
 
-.small[<font color="black"><b>Improve method accessibility</b></font>]
-- __Chapter 3__: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change
-- __Appendix A__: `bbsAssistant`. Download and manipulate the N. American Breeding Bird Survey data 
-- __Appendix B__: `regimeDetectionMeasures`. Calculate various regime detection measures
-- <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Apply regime detection measures to spatiotemporal bird community data</font>
-  
-???
-Today I will synthesize the significance of our findings for Chapters 2, 3, 5 and 6 and briefly review two of the R packages associated with this research program.
-
----
-# <!-- CHAPTER 2 BEGIN -->
-.big[__Chapter 2__: A segue into chapter .......]
-???
----
-# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 background of RS theory -->
-</br>
-
-???
-- Ecological regime shift theory was born out of dynamical systems theory, a branch of mathematics
-- Of particular note are the existence of chaotic systems, or, systems which are unpredictible in most situations
-- The study of chaotic systems in mathematics is relatively new (1980s)
-
+.small[<font color="black"><b> <u>Theme 3</u>: Improve method accessibility</b></font>]
+.smaller[- __Chapter 3__: Deconstructing Fisher Information calculation] 
 --
-
-- That is, a system which exhibits time-dependence
-- The Lorenz, or butterfly attractor, is a commonly used visualization of such a system  
-- For example, somepredator-prey systems cna exhibit chaotic behavior reflecting the Lorenz attractor [^1]
-
-and has very much diverged from the field
-- When entering a new field of research or usign a new method, the practical ecologist might conduct a lit review
-- Research surrounding ecological regime shifts and the methods used to identify them, however, are spread across disciplines, and subdisciplines.
-- The same goes for when we are trying to identify best methods and best practices using methods on empirical data
-- This, however is a difficult feat in the regime shift literature
+.smaller[- __Appendix A__: `bbsAssistant`. Download and manipulate Breeding Bird Survey data 
+- __Appendix B__: `regimeDetectionMeasures`. Calculate multiple regime detection measures
+- __Appendix C__: `bbsRDM`. Spatial application of `regimeDetectionMeasures` 
+]
+???
+I will also emphasize some of the software created as a part of this research program 
 
 ---
-# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 aims and approach -->
+# Chapter 2: Review of Regime Shift Literature and Methods<!--problem-->
+.center[<img src="figures/rsPubsYear.png" width="800">]
 
+???
+
+
+---
+# Chapter 2: Review of Regime Shift Literature and Methods<!--aims & approach-->
 .pull-left[
 .big[<b>Aims</b>].medium[  
 - Comprehensive census the ecological literature for quantitative methods
 - Identify research themes and gaps
 ]]
-???
-- 
+
 
 --
 
 .pull-right[
 .big[<b>Approach</b>].medium[  
-- Systematic literature review
+- Systematic literature reviews (2)
 - Bibliographic analysis
+- 
 ]]
 ---
-# Chapter 2: Methods for Detecting Regime Shifts <!--ch2 results: thematic map --> 
-.left-column[.medium[Research Themes]
-  - .small[]
-]
-.right-column[<img src="figures/thematicMaps_keywords.png" width="440">]
+# Chapter 2: Themes in Regime Shift Literature <!--ch2 results: thematic map --> 
+.left-column[.medium[
+]]
+
+.right-column[<img src="figures/thematicMaps_keywords.png" width="500">]
 
 
 ---
@@ -365,6 +334,16 @@ and has very much diverged from the field
 ???
 ---
 
+
+# Prediction is ~The~ Holy Grail of Ecology <!--holy grail is prediction-->
+.center[<img src="https://venturebeat.com/wp-content/uploads/2018/06/Holy_Grail.shutterstock_268713941.jpg?fit=400%2C283&strip=all" width="700">]
+???
+- Ecologists are taking baby steps towards being able to make predition in ecology
+- Easier done when system dynamics are UNDERSTOOD 
+- When systems are well-described
+- When conditions are predictable
+- I think we have a long way until we are able to forecast most undesirable shifts in the environment, whcih some may refer to as regime shifts. 
+---
 # Acknowledgements <!-- rsrch & travel-->
 .pull-left[
 #### Research Advisement  
