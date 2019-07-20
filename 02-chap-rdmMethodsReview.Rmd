@@ -28,7 +28,6 @@ The primary goal of this Chapter is to provide a single and comprehensive source
 ## Methods 
 First, I conducted a systematic literature review to identify candidate articles, or those which relate to ecological regime shift theory, using these results in an attempt to identify papers introducing a new or novel method to regime shift detection. These methods were supplemental with prior and expert knowledge*^[This includes methods in previous reviews, including @scheffer2015generic; @rodionov_brief_2005; @roberts2018early; @mantua_methods_2004; @litzow_early_2016; @kefi2014early; @andersen_ecological_2009; @boettiger_early_2013; @dakos2015resilience; @clements2018indicators; @filatova2016regime; @deyoung_regime_2008]. I then conducted an independent but similar literature review to identify trends in the development and persistence of the ecological regime shift literature. These steps are described in detail below. 
 
-### Identifying candidate articles and regime detection measures {#revMeth1}
 ### Quantitative methods for identifying ecological regime shifts {#revMeth1}
 I attempted to compose a comprehensive list of the published quantitative regime detection measures by conducting a systematic literature review. Despite multiple attempts at defining booleans to yield  identify the greatest number of methods in the literature, no single boolean yielded the majority of methods of which I was previously aware. In light of this, I also relied on my prior knowledge of available regime detection measures to build the database. 
 

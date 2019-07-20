@@ -366,16 +366,15 @@ ru-blockquote {
  
 .col3-left {
   width: 30%;
-  float: middle;
+  float: left;
 }
 
- 
-.col3-middle {
+.col3-center {
   width: 30%;
-  float: middle;
+  float: center;
 }
  
 .col3-right {
   width: 30%;
-  float: middle;
+  float: right;
 }
