@@ -22,6 +22,9 @@ class: center, middle, inverse, title-slide
 ---
 
 
+
+
+
 # Anthropogenic Activity is Changing the World &lt;!-- anthropo activity == unwanted chgs--&gt;
 
 ???
@@ -163,6 +166,9 @@ class: center, middle, inverse, title-slide
 - non-linear  
 - non-ergodic (open)    
 ]
+&lt;br&gt;&lt;br&gt;
+&lt;font color="blue"&gt;.medium[Especially difficult when drivers are unknown in a high dimensional system]&lt;/font&gt;
+
 ???
 Ecosystems are 
 - high dimensional, especially as we increase scale system extent
@@ -170,9 +176,6 @@ Ecosystems are
 - increasingly realizing these are non-linear interactions
 - non-ergodic
 - because they are open, they are obviously dynamic.
---
-&lt;font color="blue"&gt;.medium[Especially difficult when drivers are unknown in a high dimensional system]&lt;/font&gt;
-???
 - These characteristics, paired with our inability to perfectly observe the systems means that we cannot predict many shifts now,  
 - Especially as we move beyonbd just a handful of state  variables.
 ---
@@ -445,48 +448,128 @@ less to more developed
 - In this same system, we can visualize the system as it travels along the path, further calculating the VELOCITY, or the rate of change at each observed instance. 
 
 ---
-# Chapter 5: Using Velocity  of System Trajectory in Phase Space &lt;!--begin CH5--&gt;
+# Chapter 5: Using Velocity of System Trajectory in Phase Space &lt;!--begin CH5--&gt;
 
 ???
 - We are exploring the use of ecosystem velocity as an indicator of abrupt change. 
 - Although velocity, or rate of cahnge using dissimilarity/distance indices has been used in paleoecology, it has yet to be explored as a potential indicator of ecological regime shifts. 
+
 --
 
+.center[&lt;img src="figures/fipaleo.png" width="850"&gt;]
 
 ???
 
-- I use both theoretical and empirical data to  test velocity under varying conditions to understand its capacity to serve as a regime shfit detection metric. 
-- However, we a novel aspect using this simple metric to identify regime shfits and abrupt changes in multivarable systems is 
+- For example, a previous study used Fisher IFnormation to identify ecological regime shfits in a 106 species paleo diatom community. 
+- The top panel is the normalized species abundances over the approxiamtely 8K year time period
+- Obvious turnover at a few points in time
+---
+
+# Chapter 5: Using Velocity of System Trajectory in Phase Space &lt;!--velocity paleo results--&gt;
+
+.center[&lt;img src="figures/paleoVelocity.png" width="500"&gt;]
+???
+- We applied our velocity metric to these data, findng that not only does it indicate the shifts in the system clearly...
 
 ---
 
-# Chapter 5: Next Steps &lt;!-- end CH 5--&gt;
-### Statistical identification of change point in velocity  
-### Compare Euclidean to other  distance-based metrics 
-### Compare to ordination techniques
-### Compare to other smoothing techniques (e.g. TVDiff, Generalized Additive Models)
+# Smoothing May Improve Velocity &lt;!-- end CH 5--&gt;
+.pull-left[
+&lt;img src="figures/paleoV.png" &gt;]
+
+--
+.pull-right[
+.medium[
+Next Steps: ]
+
+- Statistical identification of change point in velocity  
+- Compare Euclidean to other  distance-based metrics 
+- Compare to ordination techniques
+- Compare to other smoothing techniques (e.g. TVDiff&lt;sup&gt;1&lt;/sup&gt;, Generalized Additive Models)
+]
+
+.footnote[[1] Price, NB, JL Burnett. `tvdiff`. An R package for numerical differentiation of noisy, nonsmooth data.  github.com/natbprice/tvdiff]
 
 ???
+- TV diff 
 - One of the primary motivations for this chapter was to explore the ecosystem velocity as a measure of abrupt change in multivariate data. 
-- Using both theoretical and empirical data, I found that this metric 
+- Next steps include exploring smoothing impacts on this and other regime detection measures
+- Comparing our velocity method to other multivariate methods
 
 ---
 
 # Methods Evolution: Multiple Paths Taken &lt;!--resampling intro--&gt;
 
-???
-- AS mentioned eralier, there are far fewer rigorous tests of proposed regime detection methods
-- Rather, the evolution of many of the 70 plus methods I identified in Chapter 2 follow one ofhte following routes:next
---
+.center[&lt;img src="figures/methodflow4.png" width="450"&gt;]
 
-.center[&lt;img src="figures/methodflow4.png" width="550"&gt;]
+???
+- Althoguh not demonstrated inthe talk todya, the evolution of the Velocity metric has taken this route
+- First, it is explored under various situations to gather expectations, and to test the metric on different TYPES of shifts
+- Then, it is applied to empirical systems data, as shown on the paleo example
 
 ---
 
 # Methods Evolution: Multiple Paths Taken &lt;!--resampling intro2--&gt;
 
+.center[&lt;img src="figures/methodflow3.png" width="900"&gt;]
+???
+- The last step here is arguably most important for identify the utility of methods 
 
-.center[&lt;img src="figures/methodflow3.png" width="80"&gt;]
+
+---
+
+# Rigorous Testing of the Methods Required to Ensure Efficacious Methods &lt;!-- need to test methods!!!!--&gt;
+
+.center[&lt;img src="figures/methodflow2.png" width="850"&gt;]
+
+???
+- Many of the 70 plus methods identified in the review (Chater 2), have NOT undergone this yellow path. 
+- This, I would argue, is the most important step towards generateing and improving regime detection methods that can actually be used by the practical ecologist
+
+---
+
+# Chapter 6: Identify Impact of Data Quality &amp; Quantity on Methods &lt;!--Ch6 overview--&gt;
+
+???
+- I used resampling methods on the paleodiatom community time series shown earlier to dtermine the impact of common data quality, ad sampling issues common to ecology
+- I will highlight the results here
+
+--
+
+.pull-left[.medium[
+Data quality issues
+- Common/dominant species
+- Infrequent sampling
+- Irregular sampling
+- Undetected species
+]]
+
+---
+
+# Fisher Information &amp; Variance Index Sensitivity to Randomly Removing Species &lt;!--Ch6 results--&gt;
+.center[&lt;img src="figures/fiviresults.png" width="950"&gt;]
+ 
+---
+
+# Velocity is Robust to Random Removal of Observations &lt;!--Ch6 results--&gt;
+
+.center[&lt;img src="figures/distanceresults.png" width="950"&gt;]
+
+---
+
+# Chapters 5 &amp; 6 &lt;!-- end CH 6 --&gt;
+.medium[Summary].small-medium[
+- Simple calculation, relative to other regime detection methods
+- Handles noisy  and sparse data
+- Less sensitive to data quality issues common in ecology
+- Velocity is best when mean &gt; variance
+]
+.medium[Next Steps].small-medium[
+- Numerical identification of exact change points  
+- Compare to distance-based metrics 
+- Compare to ordination techniques 
+- Identify out-of-sample predictive capacity
+]
 
 ---
 
@@ -502,6 +585,7 @@ less to more developed
 ---
 
 # Applications Exceed Regime Shift Theory and Method Efficacy  &lt;!-- summarise diss findings--&gt;
+.medium[
 
 - Too many methods proposed
 - Few rigorously tested
@@ -509,28 +593,58 @@ less to more developed
 - Some methods sensitive to data quality/quantity
   - but velocity appears robust
 - Divergence of regime shift theory from dynamical systems theory
+]
 
 ---
 
 # Remaining Questions &amp; Future Work for Advancing Ecological Regime Shift Methods
 .pull-left[
 .small-med[
-- Does the method assume __smooth potential__? (Hastings &amp; Wysham 2010)
+- Does the method assume __smooth potential__? &lt;sup&gt;1&lt;/sup&gt;
 - Types of shifts detected
 - Sensitivity to:
   - data quality &amp; quantity
   - process lags
 ]]
-.pull-left[
-.small-med[
-- 
+.footnote[[1] Hastings and Wysham (2010) Regime shifts in ecological systems can occur with no warning. Ecology Letters]
 
-]]
+.pull-right[
+
+&lt;img src="figures/methodflow2.png" width="560"&gt;
+
+]
+
 
 ???
-- 
+- Theory way behind our applications
+- No practiioners are using these metrics
+- Perhaps because the theory is lagging WAY far behind applications and claims
+- Rigorous statistical testing
 
 ---
+
+# Software Associated with this Research Program &lt;!-- my softwares--&gt;
+.medium[
+
+.pull-left[
+- __distanceTravelled__
+- __regimeDetectionMeasures__
+- __bbsRDM__
+- __bbsAssistant__
+]
+
+.pull-right[
+calculate velocity  
+calculate various metrics
+spatial application
+BBS data program
+]
+
+
+]
+
+---
+
 # Acknowledgements &lt;!-- rsrch &amp; travel--&gt;
 
 .pull-left[.medium[ 
@@ -576,7 +690,7 @@ Thanks to all the groups who have made this research possible.
 
 ---
 
-# Thanks to All Who My Research &amp; Prof. Dev. &lt;!--people--&gt;
+# Thanks to All Who Supported My Research Program and Professional Development &lt;!--people--&gt;
 .left-column-2[
 .pull-left[
 - Hannah Birg&amp;eacute;
@@ -641,33 +755,18 @@ Thanks to all the groups who have made this research possible.
 
 ---
 
-# Acknowledgements &lt;!--data software --&gt; 
-#### Data  
-
-- To the participatory scientists who have contributed to the N. American Breeding Bird Survey
-- Spanbauer et al. (2014) &lt;sup&gt;1&lt;/sup&gt;
-- Stevens and Fritz (2006) Quaternary Research 65.02
-
-###### .footnote[ [1] PLoS One 9.10 (2014): e108936.]
-
-
-#### Software 
-
-- Program R (R Core Team)
-- RMarkdown, Xaringan, Bookdown (Yihui Xie)
-- The authors and maintainers of and the contributors to numerous R packages used to conduct this research (see dissertation)
-
----
 
 # Acknowledgements: Data &amp; Software
 
-&lt;img src="https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png" width="10%" /&gt;&lt;img src="https://user-images.githubusercontent.com/163582/45438104-ea200600-b67b-11e8-80fa-d9f2a99a03b0.png" width="10%" /&gt;&lt;img src="https://bookdown.org/yihui/rmarkdown/images/hex-rmarkdown.png" width="10%" /&gt;&lt;img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" width="10%" /&gt;&lt;img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" width="10%" /&gt;&lt;img src="https://github.com/tidyverse/ggplot2/raw/master/man/figures/logo.png" width="10%" /&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/1200px-R_logo.svg.png" width="10%" /&gt;&lt;img src="https://camo.githubusercontent.com/55f1444be1adecb1ede76ec23cd17838176a142b/687474703a2f2f7777772e6269626c696f6d65747269782e6f72672f6c6f676f2e706e67" width="10%" /&gt;&lt;img src="https://camo.githubusercontent.com/3a6eb33909ba8de431b07a0f1fd7cb800f7ba2db/68747470733a2f2f626f6f6b646f776e2e6f72672f79696875692f626f6f6b646f776e2f696d616765732f6c6f676f2e706e67" width="10%" /&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/LaTeX_cover.svg/400px-LaTeX_cover.svg.png" width="10%" /&gt;
-&lt;img src="https://github.com/TrashBirdEcology/bbsAssistant/raw/master/man/figures/logo.png" width="15%" /&gt;
+&lt;img src="https://github.com/tidyverse/magrittr/raw/master/man/figures/logo.png" width="8.5%" /&gt;&lt;img src="https://user-images.githubusercontent.com/163582/45438104-ea200600-b67b-11e8-80fa-d9f2a99a03b0.png" width="8.5%" /&gt;&lt;img src="https://bookdown.org/yihui/rmarkdown/images/hex-rmarkdown.png" width="8.5%" /&gt;&lt;img src="https://d33wubrfki0l68.cloudfront.net/071952491ec4a6a532a3f70ecfa2507af4d341f9/c167c/images/hex-dplyr.png" width="8.5%" /&gt;&lt;img src="https://d33wubrfki0l68.cloudfront.net/5f8c22ec53a1ac61684f3e8d59c623d09227d6b9/b15de/images/hex-tidyr.png" width="8.5%" /&gt;&lt;img src="https://github.com/tidyverse/ggplot2/raw/master/man/figures/logo.png" width="8.5%" /&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/1200px-R_logo.svg.png" width="8.5%" /&gt;&lt;img src="https://camo.githubusercontent.com/55f1444be1adecb1ede76ec23cd17838176a142b/687474703a2f2f7777772e6269626c696f6d65747269782e6f72672f6c6f676f2e706e67" width="8.5%" /&gt;&lt;img src="https://camo.githubusercontent.com/3a6eb33909ba8de431b07a0f1fd7cb800f7ba2db/68747470733a2f2f626f6f6b646f776e2e6f72672f79696875692f626f6f6b646f776e2f696d616765732f6c6f676f2e706e67" width="8.5%" /&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/LaTeX_cover.svg/400px-LaTeX_cover.svg.png" width="8.5%" /&gt;
+&lt;img src="https://github.com/TrashBirdEcology/bbsAssistant/raw/master/man/figures/logo.png" width="10%" /&gt;
 
 
-.small-med[
+.small[
 - Thanks to the participatory scientists of the North American Breeding Bird Survey
-- Paleodiatom data: Spanbauer et al. (2014) Plos One
+- Paleodiatom data
+  - Spanbauer et al. (2014) Plos One
+  - Stevens and Fritz (2006) Quaternary Research
 ]
 
 .footnote[
