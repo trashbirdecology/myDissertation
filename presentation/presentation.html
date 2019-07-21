@@ -451,7 +451,181 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 - This 
 ---
 
-# Chapter 3: Demystifying Fisher Information as a Regime Shift Detection Method&lt;!-- CH3 summary--&gt;
+# Fisher Information Proposed as a Multivariate Regime Shift Detection Method&lt;!-- FI method1 --&gt;
+.pull-left[
+
+&lt;img src="figures/cabezas2002.png" width="500"&gt;
+]
+.footnote[Figure: Cabezas and Fath (2002) *Fluid Phase Equilibria*] 
+
+???
+- FI proposed as a MV indicaror of regime shfits
+
+- Where a higher amt of information indicated higher 'orderliness'
+
+
+--
+
+.pull-right[
+.medium[&lt;b&gt;&lt;/b&gt;].small-med[
+- Noisy data
+
+- Irregularly sampled data
+
+- Infinite # of variables
+
+]]
+
+
+???
+- Handles noiy data, irregualr smpling, and infinite variables
+
+---
+
+# Fisher Information Proposed as a Multivariate Regime Shift Detection Method&lt;!-- FI method2 --&gt;
+.pull-left[
+
+&lt;img src="figures/cabezas2002.png" width="500"&gt;
+]
+.footnote[Figure: Cabezas and Fath (2002) *Fluid Phase Equilibria*] 
+
+.pull-right[
+.medium[&lt;b&gt;&lt;/b&gt;].small-med[
+- Noisy data
+
+- Irregularly sampled data
+
+- __Infinite # of variables__
+
+]]
+
+
+???
+- And it is this characteristic on which Chapter 3 focuses:
+- In Chapter 3 I demonstrate that calcualting Fisher INformation comprises two steps
+
+---
+
+# Two Primay Steps in Calculating Fisher Information: Dimension Reduction &amp; Fisher Information &lt;!-- 2-step calculation--&gt;
+
+.left-column-2[&lt;img src="figures/fipaleotop.png" width="600"&gt;]
+.right-column-2[.medium[1) Dimension &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Reduction]]
+
+???
+- In Chapter 3 I demonstrate that calcualting Fisher INformation comprises two steps
+
+- First, it entails a dimension reduction step, takign N-vars to a signle variable
+
+--
+
+.left-column-2[&lt;img src="figures/fipaleobottom.png" width="600"&gt;]
+.right-column-2[.medium[2) Fisher &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Information]]
+
+???
+- Then, there is the actual step of calculting the Fisher Infomration. 
+
+
+---
+
+# Chapter 3: Two-species Predator Prey Model System &lt;!-- CH3--&gt;
+
+.left-column-half[.small-med[
+- Outline the calculation steps 
+
+- Highlight the  __dimension reduction__ step as alternative to Fisher Information
+
+- Demonstrate on 2-species predator-prey model
+
+- Shift in carrying capacity, `\(K\)` 
+]]
+
+--
+
+.right-column-half[.center[
+&lt;img src="figures/predpreyphasespace.png" width="360"&gt;
+&lt;img src="figures/predpreykshift.png" width="360"&gt;
+]]
+
+???
+- I demonstrate the calculation of each step by inducing a regime shift into a 2-species predator prey model
+
+- The top panel is a phase plot of the prey and predator abundances over the entire time period, where red indicates the loation of the rapid shift in K in prey 
+
+---
+
+# Step 1: Dimension Reduction Using Euclidean Distance &lt;!-- CH3 Step 1 PP--&gt;
+
+.left-column-2[&lt;img src="figures/exData_t1t2.png" width="566"&gt;]
+
+.right-column-2[
+.medium[
+- Euclidean distance
+  - all variables
+  - between time points
+
+`$$\sum \sqrt(\Delta x_i)^2$$` 
+]]
+
+---
+
+# Step 1: Distance Travelled &lt;!-- CH3 Step 1b--&gt;
+
+.left-column-2[&lt;img src="figures/predpreys.png" width="666"&gt;]
+
+.right-column-2[.medium[
+- One value at each time point
+]]
+
+???
+- This Step, the dimension reduction step, results in a measure which we are calling the "distance travelled"
+
+- It is from this measure that the Fisher INfomration is calcualted, adn therefore, can be considered separaate from the Fisher calcualtion. 
+
+
+---
+
+# Step 2a: Calculate Velocity &amp; Acceleration of Distance Travelled 
+
+
+.left-column-2[
+.small[&lt;b&gt;Velocity&lt;/b&gt; (below)]&lt;br&gt;
+&lt;img src="figures/predpreydsdt.png" width="550"&gt;
+]
+???
+- Further, we can calculate the velocity of the distance travelled, 
+--
+.right-column-2[.medium[
+&lt;br&gt;&lt;br&gt;
+
+$$ I = \frac{1}{T}\int_0^T [\frac{s''^2}{s'^4}]^2dt  $$ 
+
+]]
+
+???
+- Finally, to calculate the Fisher INfomraiton, we use this velocity and the derivative of velocity to calculate 
+
+---
+
+# Step 2b: Calculate Fisher Information Based on the Velocity &amp; Acceleration of Distance Travelled 
+
+.left-column-2[&lt;img src="figures/fiwinsize.png" width="660"&gt;]
+.right-column-2[.small-med[
+- Requires user-defined parameters
+
+- Sensitive to window size parameter
+
+- Velocity vs. FI .tiny[(Ch. 6) ]
+
+]]
+
+
+???
+- We argue that 
+
+---
+
+
+# Chapter 3: Fisher Information  Fisher Information as a Regime Shift Detection Method&lt;!-- CH3 summary--&gt;
 .medium[
 1) Clarify steps for calculating
 ]

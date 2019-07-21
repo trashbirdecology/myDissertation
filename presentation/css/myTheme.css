@@ -63,7 +63,7 @@ a, a > code {
 
 /* Two-column layout (slightly wider for aspect ration) */
 .left-column-half {
-  color: #6d6d69;
+  color: #000;
   width: 50%;
   float: left;
 }
