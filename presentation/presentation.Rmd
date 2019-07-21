@@ -1,6 +1,6 @@
 ---
 title: "Regime Detection Methods for the Practical Ecologist"
-subtitle: "**Jessica L. Burnett**<hr />"
+subtitle: "**Jessica L. Burnett**<br>Othmer Fellow<br>Fling Fellow<hr />"
 author: "<br><font color='black'><b>Co-advisors</b></font>: C.R. Allen & D. Twidwell <br> <font color='black'><b>Committee</b></font>: D.G. Angeler, J.P. DeLong, & A.J. Tyre <br>"
 institute: "<br>Nebraska Cooperative Fish & Wildlife Research Unit<br> School of Natural Resources, University of Nebraska-Lincoln"
 date: "`r format(Sys.Date(), '%B %e, %Y')`"
@@ -67,7 +67,7 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 - Fortunately, we, society and the scientific community, are increasingling recognizing the impacts that our actions are  having __click__
 
 ---
-# We are Impacting Both Ecological and Social-Ecological Systems <!--humans induce regime shifts-->
+# We are Inducing Ecological and Social-Ecological Changes
 .pull-left[![wildlifeimpact](https://media.giphy.com/media/jInJJOmuBRwL5FpLKo/giphy.gif)]
 ???
 - on ecosystems and wildlife ... __click__ 
@@ -76,10 +76,11 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 .pull-right[![humanimpact](https://media.giphy.com/media/iwNUXyyuYPhZe/giphy.gif)]
 ???
 - and on ourselves ... 
-- But some of these consequences are avoidable
-- For example, if this person knew the consequences of stomping on an unsupported snowpack, might they have taken actions to avoid this? 
+
+- Luckily, just like the actions in both of these video,  some of these shifts and consequecnes may be avoidable
+
 --
-<br>.small[Can we foresee & perhaps avoid undesirable change?]
+<br>.center[.big[__Can we foresee undesirable changes?__]]
 
 ???
 - So the question becomes -- can we foresee and perhaps avoid undesirable change in ecological systems?
@@ -117,7 +118,7 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 --
 
 .pull-left[
-<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="400"/>
 ]
 .pull-right[.big[
 
@@ -134,10 +135,8 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 # Regime Shift Example: Coral Reef Bleaching <!-- caryfort after -->
 
 .pull-left[
-<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
-<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="350"/>
+<img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="400"/><img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="400"/>
 ]
-
 .pull-right[.big[
 
 - <strike>Ecotourism</strike>
@@ -288,31 +287,6 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 - I will also briefly mention the softwares at the end of the presentation 
 ---
 
-#  Dissertation Themes & Outline<!--OUTLINE: HIGHLIGHT CH 2-->
-.small[<font color="black"><b><u>Theme 1</u>: Synthesize and review methods and literature</b></font>]
-.smaller[
-- <font color="lightgrey"><b>Chapter 1 & 8</b>: Introduction to and Synthesis of the State of Regime Detection Measures</font>
-- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Methods
-]
-
-.small[<font color="black"><b> <u>Theme 2</u>: Test the utility and efficacy of methods</b></font>]
-
-.smaller[
-- <font color="lightgrey"><b>Chapter 4</b>: Spatial application of Fisher Information</font>
-- <font color="lightgrey"><b>Chapter 5</b>: Proposed method: velocity (*v*) of  system  trajectory </font>
-- <font color="lightgrey"><b>Chapter 6</b>: Relative performance of methods using resampling </font>
-- <font color="lightgrey"><b>Chapter 7</b>: Body mass distributions application</font>
-]
-
-.small[<font color="lightgrey"><b> <u>Theme 3</u>: Improve method accessibility</b></font>]
-.smaller[
-- <font color="lightgrey"><b>Chapter 3</b>: Deconstructing Fisher Information calculation </font>
-- <font color="lightgrey"><b>Appendix A</b>: bbsAssistant. Download and manipulate Breeding Bird Survey data </font>
-- <font color="lightgrey"><b>Appendix B</b>: regimeDetectionMeasures. Calculate multiple regime detection measures</font>
-- <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Spatial application of regimeDetectionMeasures </font>
-]
-
----
 # Chapter 2: Systematic Reviews of the Ecological Regime Shift Literature and Methods <!--problem & aims-->
 .pull-left[
 .medium[<b>Motivation</b>]
@@ -371,33 +345,31 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 .small-med[
 - Method review papers exist
   - None are comprehensive
-  - High overlap
-  - Most comprehensive reviews out of date
+    - Most comprehensive are out of date
+  - High overlap in methods covered
 ]
 ???
 - Using both prior knowledge AND lit review, I identified over 70 methods used in the ecol lit for detecting regime shifts
 - However, less than half were identfied using standard boolean techniques 
-
+ 
 - that is, without sufficient prior knowledge, the methods arent accessible to the practical ecologist
 
 
 ---
-# New Methods Published as Case Studies without Rigorous Testing<!--flowchart publication pathway--> 
-.center[<img src="figures/methodflow2.PNG" width="1000">]
+# Methods Emphasize Results and Not Method Efficacy <!--flowchart--> 
+.center[<img src="figures/methodflow2.png" width="600">]
 ???
 - Next, many 'new methods ' are first published as case studies rather than methods studies
 
 - In other words, many do not emphasize and test the method statistically
 
-
 - Rigorous testing required to improve both the methods and theory 
 ---
 
-# Methods Published in Wide Range of Publicaitons, Applied Journals<!--methods: journals--> 
-<img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="750">
+# Methods Not Concentrated in Methodological Journals 
+<img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="875">
 ???
 - ANd because many of the first instsances of these methods are published as presnetations of new and exciting results, rahter tahn as the boring and dull robustness and sensitivity tests
-
 
 - Methodological jouranls are receiving fewer submissions than subdisciplinary adn applied or concepts jouranls
 
@@ -413,7 +385,7 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 
 .pull-left[.medium[
 <u>Univariate Methods</u>
-- Autoregressive coefficent (lag-1)
+- Autoregressive coefficient (lag-1)
 - Standard deviation
 - Skewness 
 - Kurtosis
@@ -473,7 +445,7 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 
 <img src="figures/cabezas2002.png" width="500">
 ]
-.footnote[Figure: Cabezas and Fath (2002) *Fluid Phase Equilibria*] 
+<font color="grey">.footnote[Figure: Cabezas and Fath (2002) *Fluid Phase Equilibria*]</font> 
 
 ???
 - FI proposed as a MV indicaror of regime shfits
@@ -525,6 +497,7 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 
 #  Chapter 3: Deconstructing the Steps for  Calculating Fisher Information
 
+<font color="grey">.footnote[[1] Figure :Spanbauer et al. (2014) _Plos One_]</font>
 .left-column-2[<img src="figures/fipaleotop.png" width="600">]
 .right-column-2[.medium[1) Dimension &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reduction]]
 
@@ -532,14 +505,13 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 - In Chapter 3 I demonstrate that calcualting Fisher Information comprises two steps
 
 - First, it entails a dimension reduction step, takign N-vars to a signle variable
-
 --
 
 .right-column-2[.medium[<br>2) Rate of &nbsp;&nbsp;&nbsp;&nbsp;change]]
 
 --
 
-.left-column-2[<img src="figures/fipaleobottom.png" width="600">]
+.left-column-2[<img src="figures/fipaleobottom.png" width="588">]
 .right-column-2[.medium[<br> 3) Fisher &nbsp;&nbsp;&nbsp;&nbsp;Information]]
 
 ???
@@ -549,13 +521,12 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 ---
 
 # Chapter 3: Aims and Approach <!-- CH3-->
-
 .left-column-half[.small-med[
-- Outline the calculation steps 
+- Conceptually and numerically outline the calculation
 
-- Highlight the  <b>dimension reduction</b> step
+- Highlight <b>dimension reduction</b> as a distinct step 
 
-- 2-species predator-prey model
+- Using a 2-species predator-prey model
   - Shift in carrying capacity, $K$ 
 
 ]]
@@ -574,7 +545,7 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 
 ---
 
-# Step 1: Dimension Reduction Using Euclidean Distance <!-- CH3 Step 1 PP-->
+# Step 1a: Dimension Reduction Using Euclidean Distance <!-- CH3 Step 1 PP-->
 
 .left-column-2[<img src="figures/exData_t1t2.png" width="566">]
 
@@ -583,13 +554,11 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 - Euclidean distance
   - all variables
   - between time points
-
-$$\sum \sqrt(\Delta x_i)^2$$ 
 ]]
 
 ---
 
-# Step 1: Calculate Distance Travelled Along Trajectory <!-- CH3 Step 1b-->
+# Step 1b: Calculate Distance Travelled Along Trajectory <!-- CH3 Step 1b-->
 
 .left-column-2[<img src="figures/predpreys.png" width="666">]
 
@@ -607,12 +576,8 @@ $$\sum \sqrt(\Delta x_i)^2$$
 
 # Step 2: Calculate Velocity & Acceleration of Distance Travelled 
 
-.pull-left[
-.small[<b>Single cycle of system</b>]<br>
-<img src="figures/resultspp_onecycle.png" width="400">
-]
-.pull-right[
-.small[<b>Velocity over entire time series</b>]<br>
+.center[
+.medium[<b>Velocity over entire time series</b>]<br>
 <img src="figures/predpreydsdt.png" width="600">
 ]
 ???
@@ -624,30 +589,35 @@ $$\sum \sqrt(\Delta x_i)^2$$
 
 ---
 
-# Step 3: Fisher Information
-.left-column[.medium[
-<br><br>
+# Step 3: Calculate Fisher Information Using Moving Windows
+.pull-left[
+<img src="figures/resultspp_onecycle.png" width="400">
+]
+--
 
-$$ I = \frac{1}{T}\int_0^T [\frac{s''^2}{s'^4}]^2dt  $$ 
-
+.pull-right[<br><br><br>.medium[
+$$ I = \frac{1}{T}\int_0^T [\frac{s''^2}{s'^4}]^2dt  $$
 ]]
-
-
 ???
-- Finally, to calculate the Fisher INfomraiton, we use this velocity and the derivative of velocity to calculate 
+- Finally, once we've calculated the  velocity and acceleration we can calcualte the Fisher Information
+- Basically, it's a ratio of hte vel. and accel. over some chosen window
+
 
 ---
 
 # Step 3: Calculate Fisher Information as a Function of Velocity & Acceleration of Distance Travelled 
 
-???
-- Finally, the velocity and acceleration of this distance measure are used to calcualte a single measure, Fisher Information
---
 .left-column-2[<img src="figures/fiwinsize.png" width="660">]
+???
+- But note that this calualtion requires integration over some period of time, and 
+
+- As a consequence, Fisher Informaiton is sensitive to the choice of the window width. 
+
+- By varying the true cycle time based on the pre and post carry capacities, Fisher Information gives varying results. 
+
+--
+
 .right-column-2[.small-med[
-
-- However, because this method integrates, 
-
 - Sensitive to window size 
 
 - But better if periodic
@@ -656,97 +626,105 @@ $$ I = \frac{1}{T}\int_0^T [\frac{s''^2}{s'^4}]^2dt  $$
 
 ]]
 
-
 ???
-- We found that, if given the correct window size, the FisherINfomraiton may be a valueable tool for identifying regime shifts __but__..
+- If the correct window size is identified, FI may be a useful regime dtection method, however, 
 
-- Better if the system is periodic
+- WOudl be best if the system is periodic
 
-- And in the next two chapters I demonstrate the relative utility of using only the velocity measurement, rather tahn 
+- And in the next two chapters I demonstrate the relative utility of using only the velocity measurement, rather than calculating the Fisher Information metric.  
 
 ---
 
 
-# Chapter 3: Fisher Information  Fisher Information as a Regime Shift Detection Method<!-- CH3 summary-->
+# Chapter 3 Summary: Demystifying Fisher Information for Ecologists
+
 .medium[
-1) Clarify steps for calculating
+1) Fisher Information is separate from dimension reduction
 ]
-.footnote[[1] Burnett, JL, NB Price, AJ Tyre, DG Angeler, T Eason, D Twidwell, and CR Allen. Deconstructing the steps for calculating Fisher Information as a measure of abrupt change in ecological systems. _in review at Ecological Modelling_]
+<font color="grey">.footnote[.smaller[[1] Burnett *et al.*. Deconstructing the steps for calculating Fisher Information as a measure of abrupt change in ecological systems. _in review at Ecological Modelling_]]</font>
 ???
 - Ch 3 is all about demystifying FI  
 --
 .medium[
-2) Highlight its reliance on __Euclidean distance__ 
+2) Is sensitive to user-define paramter, window size
 ]
 --
 .medium[
-3) Demonstrate its sensitivity to parameter selection
-]
---
-.medium[
-4) Compare its performance to __Velocity of system trajectory__
+3) <b>Velocity may be a useful alternative to Fisher Information</b>
 ]
 
 ---
-# Reconstructing Trajectories of Multivariable Systems in Phase Space <!--begin CH5-->
 
-.pull-left[
-<img src="figures/lorenz3D_timeseries.png" width="350"><br>
-<img src="figures/lorenz3D.png" width="388">
-]
-???
-- Visualizing low-dimensional data dynamics is simepl wjen we have 1, 2, or 3 state variables
-- For example, in a 3-variable Lorenz System, we can visualize the trajectory of the entire time series in three diensions
+# Chapters 5 & 6 Study System: Paleodiatom Community
 
---
-<br><br>
-.pull-right[<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif" width="400">]
+.center[<img src="figures/fipaleotop.png" width="1500">]
+<font color="grey">.footnote[[1] Data and figure: Spanbauer *et al* (2014) Plos One]</font>
 
 ???
-- In this same system, we can visualize the system as it travels along the path, further calculating the VELOCITY, or the rate of change at each observed instance. 
+- For the next two chapters I am goign to refer to thisstudy system
+- $$\sim7,000$$years, diatom relative abundances
+
+- Some things to note about these data:
+  - Especially long for this type of data 
+  - Irregularly sampled
+  - High rates of turnober
 
 ---
-# Chapter 5: Using Velocity of System Trajectory in Phase Space <!--begin CH5-->
+# Chapters 5 & 6 Study System: Paleodiatom Community
+
+.left-column-3[<img src="figures/fipaleo.png" width="900">]
+<font color="grey">.footnote[[1] Figure (left): Spanbauer *et al* (2014) Plos One]</font>
 
 ???
+
 - We are exploring the use of ecosystem velocity as an indicator of abrupt change. 
-- Although velocity, or rate of cahnge using dissimilarity/distance indices has been used in paleoecology, it has yet to be explored as a potential indicator of ecological regime shifts. 
-
+- Although velocity, or rate of cahnge using dissimilarity/distance indices has been used in paleoecology, it has yet to be explored as a potential indicator of ecological regime shifts
 --
 
-.center[<img src="figures/fipaleo.png" width="850">]
-
+.right-column-3[<img src="figures/paleoVelocity.png" width="900">]
 ???
-
-- For example, a previous study used Fisher IFnormation to identify ecological regime shfits in a 106 species paleo diatom community. 
-- The top panel is the normalized species abundances over the approxiamtely 8K year time period
-- Obvious turnover at a few points in time
----
-
-# Chapter 5: Using Velocity of System Trajectory in Phase Space <!--velocity paleo results-->
-
-.center[<img src="figures/paleoVelocity.png" width="500">]
-???
-- We applied our velocity metric to these data, findng that not only does it indicate the shifts in the system clearly...
+- We stop at the velocity calculation (remeber, that's the rate of change of the distnace travelled)  findng that it more clearly indicates the shifts suggested in Spanbauer et al
 
 ---
 
-# Smoothing May Improve Velocity <!-- end CH 5-->
+# Velocity of Distance Travelled Signals Regime Shifts
 .pull-left[
-<img src="figures/paleoV.png" >]
+.small[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finite Differencing]
+<img src="figures/paleoVelocity.png" width="700">]
+
+???
+
+- This method calcuagtes velocity using finite differening
+- __problem__: amplifies noise
+- Solution: __next__
 
 --
 .pull-right[
-.medium[
-Next Steps: ]
+.small[&nbsp;Regularized Differentiation<sup>1,2</sup>]
+<img src="figures/paleoV.png" width="700">]
 
+<font color="grey">.footnote[[1] Price & Burnett. R package `tvdiff`.  [2] Chartrand (2011) _ISRN Applied Mathematics_]</font>
+
+???
+- Trying to get a smoother estimate of the rate of change
+- Exploring this TVDIUFF
+
+- Exploring numerical integration to 
+
+
+---
+
+# Velocity: Next Steps
+.medium[
 - Statistical identification of change point in velocity  
+
 - Compare Euclidean to other  distance-based metrics 
+
 - Compare to ordination techniques
-- Compare to other smoothing techniques (e.g. TVDiff<sup>1</sup>, Generalized Additive Models)
+- Compare to other smoothing techniques (e.g.  Generalized Additive Models)
 ]
 
-.footnote[[1] Price, NB, JL Burnett. `tvdiff`. An R package for numerical differentiation of noisy, nonsmooth data.  github.com/natbprice/tvdiff]
+
 
 ???
 - TV diff 
@@ -756,42 +734,51 @@ Next Steps: ]
 
 ---
 
-# Methods Evolution: Multiple Paths Taken <!--resampling intro-->
-
-.center[<img src="figures/methodflow4.png" width="450">]
-
+# Pathways for Methods Evolution<!--resampling intro-->
+.center[<img src="figures/methodflow4.png" width="600">]
 ???
 - Althoguh not demonstrated inthe talk todya, the evolution of the Velocity metric has taken this route
 - First, it is explored under various situations to gather expectations, and to test the metric on different TYPES of shifts
 - Then, it is applied to empirical systems data, as shown on the paleo example
-
 ---
 
 # Methods Evolution: Multiple Paths Taken <!--resampling intro2-->
-
-.center[<img src="figures/methodflow3.png" width="900">]
+.center[<img src="figures/methodflow3.png" width="500">]
 ???
 - The last step here is arguably most important for identify the utility of methods 
-
-
 ---
 
 # Rigorous Testing of the Methods Required to Ensure Efficacious Methods <!-- need to test methods!!!!-->
-
-.center[<img src="figures/methodflow2.png" width="850">]
-
+.center[<img src="figures/methodflow2.png" width="515">]
 ???
 - Many of the 70 plus methods identified in the review (Chater 2), have NOT undergone this yellow path. 
 - This, I would argue, is the most important step towards generateing and improving regime detection methods that can actually be used by the practical ecologist
-
 ---
 
-# Chapter 6: Identify Impact of Data Quality & Quantity on Methods <!--Ch6 overview-->
-
+# Chapter 6: Relative Performance of Composite Regime Detection Methods <!--Ch6 aims approach-->
+.pull-left[
+.medium[<b>Aims</b>]
+.small-med[
+- Impact of 
+  - data quality
+  - data quantity
+- Composite methods
+  - Velocity
+  - Fisher Information
+  - Variance Index
+]]
+--
+.pull-right[
+.medium[<b>Approach</b>]
+.small-med[
+- Resampling %
+  - species
+  - time 
+- Retain dominant species
+]]
 ???
 - I used resampling methods on the paleodiatom community time series shown earlier to dtermine the impact of common data quality, ad sampling issues common to ecology
 - I will highlight the results here
-
 --
 
 .pull-left[.medium[
@@ -801,37 +788,37 @@ Data quality issues
 - Irregular sampling
 - Undetected species
 ]]
+---
+
+# Randomly Removing Species: Fisher Information & Variance Index  <!--Ch6 results: FI VI-->
+.center[<img src="figures/fiviresults.png" width="780">]
+???
+- Randomly removing species 
+---
+
+# Randomly Removing Time Points: Distance Traveled  <!--Ch6 results: Distance-->
+
+.center[<img src="figures/distanceresults.png" width="780">]
 
 ---
 
-# Fisher Information & Variance Index Sensitivity to Randomly Removing Species <!--Ch6 results-->
-.center[<img src="figures/fiviresults.png" width="950">]
- 
----
-
-# Velocity is Robust to Random Removal of Observations <!--Ch6 results-->
-
-.center[<img src="figures/distanceresults.png" width="950">]
-
----
-
-# Chapters 5 & 6 <!-- end CH 6 -->
-.medium[Summary].small-medium[
-- Simple calculation, relative to other regime detection methods
-- Handles noisy  and sparse data
-- Less sensitive to data quality issues common in ecology
-- Velocity is best when mean > variance
-]
-.medium[Next Steps].small-medium[
+# Summary of Findings: Velocity of Distance Travelled
+.pull-left[.medium[
+- Simple calculation
+- Smoothing improves signals
+- Robust to data quality & quantity
+- Fails when variance >>> mean
+]]
+.pull-right[.medium[
 - Numerical identification of exact change points  
 - Compare to distance-based metrics 
 - Compare to ordination techniques 
 - Identify out-of-sample predictive capacity
-]
-
+- Smoothing
+]]
 ---
 
-# Prediction is ~The~ Holy Grail of Ecology <!--holy grail is prediction-->
+# Prediction is __The__ Holy Grail of Ecology <!--holy grail is prediction-->
 .center[<img src="https://venturebeat.com/wp-content/uploads/2018/06/Holy_Grail.shutterstock_268713941.jpg?fit=400%2C283&strip=all" width="700">]
 ???
 - Ecologists are taking baby steps towards being able to make predition in ecology
@@ -839,95 +826,79 @@ Data quality issues
 - When systems are well-described
 - When conditions are predictable
 - I think we have a long way until we are able to forecast most undesirable shifts in the environment, whcih some may refer to as regime shifts. 
-
 ---
 
-# Applications Exceed Regime Shift Theory and Method Efficacy  <!-- summarise diss findings-->
+# Dissertation Summary: Regime Detection Methods Need Work Before Application<!-- summarise diss findings-->
 .medium[
+- Many methods (> 70!); <font color="grey">(Ch. 2, 8</font>)
 
-- Too many methods proposed
-- Few rigorously tested
-- Still no generalizable methods
-- Some methods sensitive to data quality/quantity
-  - but velocity appears robust
-- Divergence of regime shift theory from dynamical systems theory
+- Rigorous testing of methods <font color="grey">(Chs. 3, 4, 5, 6)</font>
+
+- Sensitivity to data quality & quantity <font color="grey">(Ch. 3, 5, 6)</font>
+
+- Divergence of regime shift theory from dynamical systems theory <font color="grey">(Ch. 1, 8)</font>
 ]
 
 ---
 
-# Remaining Questions & Future Work for Advancing Ecological Regime Shift Methods
+# Regime Shift Methods and Theory Lagging Behind the Applications: Has Implications for the Practical Ecologist
 .pull-left[
-.small-med[
-- Does the method assume __smooth potential__? <sup>1</sup>
-- Types of shifts detected
+.medium[
+- Types of regime shifts
+- Non-smooth potential<sup>*</sup>
 - Sensitivity to:
   - data quality & quantity
   - process lags
+- Caution
 ]]
-.footnote[[1] Hastings and Wysham (2010) Regime shifts in ecological systems can occur with no warning. Ecology Letters]
-
-.pull-right[
-
-<img src="figures/methodflow2.png" width="560">
-
-]
-
+.footnote[*Hastings & Wysham (2010) Ecology Letters]
+.pull-right[<img src="figures/methodflow.png" width="1000">]
 
 ???
 - Theory way behind our applications
 - No practiioners are using these metrics
 - Perhaps because the theory is lagging WAY far behind applications and claims
 - Rigorous statistical testing
-
 ---
 
 # Software Associated with this Research Program <!-- my softwares-->
+<br>
 .medium[
-
-.pull-left[
-- __distanceTravelled__
-- __regimeDetectionMeasures__
-- __bbsRDM__
-- __bbsAssistant__
+- __distanceTravelled__<sup>1</sup>: calculate velocity, distance
+- __regimeDetectionMeasures__<sup>1</sup>: calculate FI, VI, CV, etc.
+- __bbsRDM__<sup>1</sup>: spatial application of methods
+- __bbsAssistant__<sup>1</sup>: retrieve & handle BBS data
+- __tvdiff__<sup>2</sup>: regularized numerical differentiation
 ]
 
-.pull-right[
-calculate velocity  
-calculate various metrics
-spatial application
-BBS data program
-]
-
-
-]
-
+.footnote[[1] github.com/trashbirdecology <br>[2] github.com/natbprice]]
 ---
 
-# Acknowledgements <!-- rsrch & travel-->
+# Acknowledgements
 
 .pull-left[.medium[ 
 __Dissertation Committee__ 
 
-Craig Allen  
-Dirac Twidwell    
+<font color="blue"><b>Craig Allen  
+Dirac Twidwell</font></b>    
 David Angeler  
 John DeLong  
 Drew Tyre   
 ]]
-
+--
 .pull-right[.medium[
 __IIASA Supervisors__
   
 Brian Fath  
 Elena Rovenskaya  
 ]]
+???
+Also had the really great opportunity to do some of my research at the International Institute for Applied Systems Analysis in Austria, so I owe thanks to my supervisors who aided the resampling chapter, Fath and Rovenskaya
 ---
 
 # Financial Support
-
 .pull-left[
-
-<img src="https://ncics.org/wp-content/uploads/2016/05/SERDP-inline-1350x355.jpg" width="350"><br><br>
+<img src="https://ncics.org/wp-content/uploads/2016/05/SERDP-inline-1350x355.jpg" width="300"><br><br>
 <img src="http://www.iiasa.ac.at/css/images/iiasalogo.png" width="350"><br><br>
 <img src="https://ucomm.unl.edu/images/brand-book/Our-marks/R-UNL-Hex.svg" width="200">
 <img src="https://news.unl.edu/sites/default/files/styles/large_aspect/public/media/coop%20unit%20logo.JPG?itok=MAepDuZj" width="200"><br><br>
@@ -968,7 +939,7 @@ Thanks to all the groups who have made this research possible.
 - Katya Perez
 - Kevin Pope<sup>1</sup> 
 
-.footnote[<font color="grey">[1] thanks for the free racquetball coaching services!<br> [2] Unaccreditted Dogtoral Degree in personnel management and security services</font>] 
+.footnote[<font color="grey">[1] thanks for the free racquetball coaching<br> [2] Unaccreditted Dogtoral Degree, personnel management and security services</font>] 
 ]
 .pull-right[
 - Mike Moulton

@@ -15,7 +15,7 @@ and has very much diverged from the field
 - The same goes for when we are trying to identify best methods and best practices using methods on empirical data
 - This, however is a difficult feat in the regime shift literature
 
----
+
 ---
 # Bibliographic Analysis to Identify Themes in Ecological Regime Shift Development <!--results: themes --> 
 .left-column[.medium[<font color="black">
@@ -32,5 +32,50 @@ less to more developed
   - "dynamic" suggested, but many papers don't refer to dynamical systems theory...
 - __Bottom panel__ (WOS keys):
   - 
+---
+#  Dissertation Themes & Outline<!--OUTLINE: HIGHLIGHT CH 2-->
+.small[<font color="black"><b><u>Theme 1</u>: Synthesize and review methods and literature</b></font>]
+.smaller[
+- <font color="lightgrey"><b>Chapter 1 & 8</b>: Introduction to and Synthesis of the State of Regime Detection Measures</font>
+- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Methods
+]
+
+.small[<font color="black"><b> <u>Theme 2</u>: Test the utility and efficacy of methods</b></font>]
+
+.smaller[
+- <font color="lightgrey"><b>Chapter 4</b>: Spatial application of Fisher Information</font>
+- <font color="lightgrey"><b>Chapter 5</b>: Proposed method: velocity (*v*) of  system  trajectory </font>
+- <font color="lightgrey"><b>Chapter 6</b>: Relative performance of methods using resampling </font>
+- <font color="lightgrey"><b>Chapter 7</b>: Body mass distributions application</font>
+]
+
+.small[<font color="lightgrey"><b> <u>Theme 3</u>: Improve method accessibility</b></font>]
+.smaller[
+- <font color="lightgrey"><b>Chapter 3</b>: Deconstructing Fisher Information calculation </font>
+- <font color="lightgrey"><b>Appendix A</b>: bbsAssistant. Download and manipulate Breeding Bird Survey data </font>
+- <font color="lightgrey"><b>Appendix B</b>: regimeDetectionMeasures. Calculate multiple regime detection measures</font>
+- <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Spatial application of regimeDetectionMeasures </font>
+]
 
 ---
+
+---
+
+
+# Reconstructing Trajectories of Multivariable Systems in Phase Space <!--begin CH5-->
+
+.pull-left[
+<img src="figures/lorenz3D_timeseries.png" width="350"><br>
+<img src="figures/lorenz3D.png" width="388">
+]
+???
+- Visualizing low-dimensional data dynamics is simepl wjen we have 1, 2, or 3 state variables
+- For example, in a 3-variable Lorenz System, we can visualize the trajectory of the entire time series in three diensions
+
+--
+<br><br>
+.pull-right[<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif" width="400">]
+
+???
+- In this same system, we can visualize the system as it travels along the path, further calculating the VELOCITY, or the rate of change at each observed instance. 
+

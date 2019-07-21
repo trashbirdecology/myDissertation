@@ -15,7 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Defense Presentation Details   
 __Date/Time__: Jul 22, 2019 9:00 AM Central Time (US and Canada)  
-__Join Remotely__: [https://unl.zoom.us/j/546697980](https://unl.zoom.us/j/546697980)  
+__Join Remotely__: [
+https://unl.zoom.us/my/jessicaburnett](
+https://unl.zoom.us/my/jessicaburnett)  
 
 ## Summary   
 Anthropogenic activity in the last few decades will continue to influence the interactions within and among ecological systems worldwide. The complexity and drivers of changes in coupled human-natural systems is consequently altered, further limiting our ability to detect and predict change and impacts of change. Early warning systems are developed to detect, and in some cases predict, abrupt changes in disparate systems (e.g. cyber security, banking, and stock markets]. Although the ecological literature is inundated with quantitative methods and models for detecting and predicting ecological regime shifts, there is a paucity of rigorous tests and applications using empirical systems data. Jessica's research contributes to our understanding of the early warning systems and their utility for detecting ecological regime shifts. 

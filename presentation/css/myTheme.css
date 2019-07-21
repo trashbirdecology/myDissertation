@@ -15,6 +15,7 @@ a, a > code {
 /* slightly lower and bigger than default */
 .footnote {
   position: absolute;
+  color: #6d6d69;
   bottom: 1em;
   padding-right: 7em;
   font-size: 95%;
@@ -58,6 +59,22 @@ a, a > code {
 /*  padding-top: 1em; */ 
 }
 
+/* Two-column layout (slightly wider for aspect ration) */
+.left-column-3 {
+  color: #000;
+  width: 40%;
+  float: left;
+}
+
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #000; 
+}
+
+/* slightly thiner to suppor aspect ration */
+.right-column-3 {
+  width: 60%;
+  float: right;
+}
 
 /* x-column 1/2 */
 
