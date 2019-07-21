@@ -67,7 +67,7 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 - Fortunately, we, society and the scientific community, are increasingling recognizing the impacts that our actions are  having __click__
 
 ---
-# Humans Influence Regime Shifts, Impacting Ecological & Social Systems <!--humans induce regime shifts-->
+# We are Impacting Both Ecological and Social-Ecological Systems <!--humans induce regime shifts-->
 .pull-left[![wildlifeimpact](https://media.giphy.com/media/jInJJOmuBRwL5FpLKo/giphy.gif)]
 ???
 - on ecosystems and wildlife ... __click__ 
@@ -523,37 +523,41 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 
 ---
 
-# Two Primay Steps in Calculating Fisher Information: Dimension Reduction & Fisher Information <!-- 2-step calculation-->
+#  Chapter 3: Deconstructing the Steps for  Calculating Fisher Information
 
 .left-column-2[<img src="figures/fipaleotop.png" width="600">]
-.right-column-2[.medium[1) Dimension &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reduction]]
+.right-column-2[.medium[1) Dimension &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reduction]]
 
 ???
-- In Chapter 3 I demonstrate that calcualting Fisher INformation comprises two steps
+- In Chapter 3 I demonstrate that calcualting Fisher Information comprises two steps
 
 - First, it entails a dimension reduction step, takign N-vars to a signle variable
 
 --
 
+.right-column-2[.medium[<br>2) Rate of &nbsp;&nbsp;&nbsp;&nbsp;change]]
+
+--
+
 .left-column-2[<img src="figures/fipaleobottom.png" width="600">]
-.right-column-2[.medium[2) Fisher &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Information]]
+.right-column-2[.medium[<br> 3) Fisher &nbsp;&nbsp;&nbsp;&nbsp;Information]]
 
 ???
-- Then, there is the actual step of calculting the Fisher Infomration. 
+- Then, there is the actual step of calculting the Fisher Infomration
 
 
 ---
 
-# Chapter 3: Two-species Predator Prey Model System <!-- CH3-->
+# Chapter 3: Aims and Approach <!-- CH3-->
 
 .left-column-half[.small-med[
 - Outline the calculation steps 
 
-- Highlight the  __dimension reduction__ step as alternative to Fisher Information
+- Highlight the  <b>dimension reduction</b> step
 
-- Demonstrate on 2-species predator-prey model
+- 2-species predator-prey model
+  - Shift in carrying capacity, $K$ 
 
-- Shift in carrying capacity, $K$ 
 ]]
 
 --
@@ -585,7 +589,7 @@ $$\sum \sqrt(\Delta x_i)^2$$
 
 ---
 
-# Step 1: Distance Travelled <!-- CH3 Step 1b-->
+# Step 1: Calculate Distance Travelled Along Trajectory <!-- CH3 Step 1b-->
 
 .left-column-2[<img src="figures/predpreys.png" width="666">]
 
@@ -601,43 +605,64 @@ $$\sum \sqrt(\Delta x_i)^2$$
 
 ---
 
-# Step 2a: Calculate Velocity & Acceleration of Distance Travelled 
+# Step 2: Calculate Velocity & Acceleration of Distance Travelled 
 
-
-.left-column-2[
-.small[<b>Velocity</b> (below)]<br>
-<img src="figures/predpreydsdt.png" width="550">
+.pull-left[
+.small[<b>Single cycle of system</b>]<br>
+<img src="figures/resultspp_onecycle.png" width="400">
+]
+.pull-right[
+.small[<b>Velocity over entire time series</b>]<br>
+<img src="figures/predpreydsdt.png" width="600">
 ]
 ???
-- Further, we can calculate the velocity of the distance travelled, 
---
-.right-column-2[.medium[
+- Next, we  calculate the rate of change, or velocity  of the distance travelled, and the acceleration at each point in time. 
+
+- Left panel is a single cycle
+
+- Right is just the velocity over the entire time series
+
+---
+
+# Step 3: Fisher Information
+.left-column[.medium[
 <br><br>
 
 $$ I = \frac{1}{T}\int_0^T [\frac{s''^2}{s'^4}]^2dt  $$ 
 
 ]]
 
+
 ???
 - Finally, to calculate the Fisher INfomraiton, we use this velocity and the derivative of velocity to calculate 
 
 ---
 
-# Step 2b: Calculate Fisher Information Based on the Velocity & Acceleration of Distance Travelled 
+# Step 3: Calculate Fisher Information as a Function of Velocity & Acceleration of Distance Travelled 
 
+???
+- Finally, the velocity and acceleration of this distance measure are used to calcualte a single measure, Fisher Information
+--
 .left-column-2[<img src="figures/fiwinsize.png" width="660">]
 .right-column-2[.small-med[
-- Requires user-defined parameters
 
-- Sensitive to window size parameter
+- However, because this method integrates, 
 
-- Velocity vs. FI .tiny[(Ch. 6) ]
+- Sensitive to window size 
+
+- But better if periodic
+
+- Using velocity in lieu of Fisher Information <font size="5">(Chapters 5, 6)</font> 
 
 ]]
 
 
 ???
-- We argue that 
+- We found that, if given the correct window size, the FisherINfomraiton may be a valueable tool for identifying regime shifts __but__..
+
+- Better if the system is periodic
+
+- And in the next two chapters I demonstrate the relative utility of using only the velocity measurement, rather tahn 
 
 ---
 
