@@ -16,3 +16,21 @@ and has very much diverged from the field
 - This, however is a difficult feat in the regime shift literature
 
 ---
+---
+# Bibliographic Analysis to Identify Themes in Ecological Regime Shift Development <!--results: themes --> 
+.left-column[.medium[<font color="black">
+__X axis__: importance to field<br><br><br>
+__Y axis__: <br>
+less to more developed
+]] </font>
+
+.right-column[<img src="figures/thematicMaps_keywords.png" width="500">]
+
+???
+- __Top panel__ (Author keys): 
+  - no clear themes identified
+  - "dynamic" suggested, but many papers don't refer to dynamical systems theory...
+- __Bottom panel__ (WOS keys):
+  - 
+
+---

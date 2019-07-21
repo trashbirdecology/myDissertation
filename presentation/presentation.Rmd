@@ -91,21 +91,20 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 - is to develop and apply the concept of __ecological regime shifts__ ... next
 --
 
-## **what?**  a persistent change in the structure or functioning of a system 
-</br>  
+.big[ **what?**  a persistent change in the structure or functioning of a system] 
 ???
 - A **persistent change in the sturcture or functioning of a system**
 --
 
-## **how?** loss of negative feedback(s) maintaining the system
-<br>
+<br><br><br>
+.big[**how?** loss of negative feedback(s) maintaining the system]
 ???
 - Regime shifts occur, via a number of pathways, when a system **loses the negative feedback(s) maintaining** the system in its current state
 
-- Again, *goal* is to predict in time to prevent something bad from happening. Pipe dream? Probably...
+- Again, *goal* is to detect or  predict in time to prevent something bad from happening. Pipe dream? Probably...
 --
-
-## **goal?** predict in time to prevent  
+<br><br><br>
+.big[**goal?** detect or predict in time to prevent]
 ???
 - goal is to predict regime shifts in time to either prevent or create a plan of action for timely mitigation
 
@@ -120,13 +119,12 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 .pull-left[
 <img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="350"/>
 ]
-.pull-right[
-<font size="14"><br><br>
+.pull-right[.big[
+
 - Ecotourism
 - Fisheries
 - Storm Protection
-]
-</font>
+]]
 
 ???
 - For example, coral reef systems provide economic opportunity via ecotourism and fisheries revenue, and also provide storm protection to local human communities. 
@@ -140,14 +138,12 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 <img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="350"/>
 ]
 
-.pull-right[
-<font size="14">
-<br><br>
+.pull-right[.big[
+
 - <strike>Ecotourism</strike>
 - <strike>Fisheries</strike>
 - <strike>Storm Protection</strike>
-]
-</font>
+]]
 
 ???
 
@@ -155,36 +151,47 @@ webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 
 ---
 
-# Regime Shifts Example: Coral Reef Bleaching <!--some RS are predictable-->
+# When Threshold, Dynamics Known, Shifts 'Easier' To Predict<!--some RS are predictable-->
 .pull-left[
 <img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-before.jpg" alt="drawing" width="355"/>
 <img src="http://www.doublexposure.net/wp-content/uploads/2014/04/South-Carysfort-after.jpg" alt="drawing" width="355"/>
 ] <br><br><br>
-.medium[__<font color="black">Shifts easier to predict, avoid when thresholds known</font> __]
+.big[__<font color="black">Shifts easier to foresee when thresholds known</font> __]
+???
+- Identifying regiem shfits like these are easier to understand, however, when the system is well-understood
+  
+--
 .pull-right[
 .medium[
 
 - Water temps
 - Acidification
 - Algae loss
-
 ]]
+
 ???
-- Identifying and predicting regime shifts is a feasible feat when the system is well-understood
-- For most ecological systems, however, this is not the case...next
+- For example, reef systems are relatively well-understood now
+- So we know that if for example the  sea temps rise and sustaint high temps, 
+- Or local acification occurs, 
+- Then the algae will leave the corals, adn the corals will bleach and die
 
 ---
-# Problem: Ecosystems are Complex <!--prediction is difficult in ecology...-->
+# Most Ecosystems Not Well-Understood <!--prediction is difficult in ecology...-->
+
+--
 
 .medium[
-- high dimensional    
-- many ( $\infty$ ) interactions  
-- dynamic (time dependence)
-- non-linear  
-- non-ergodic (open)    
-]
+- Predicting shifts more difficult ]
 <br><br>
-<font color="blue">.medium[Especially difficult when drivers are unknown in a high dimensional system]</font>
+--
+.medium[
+- Ecosystems are complex
+  - high dimensional    
+  - many ( $\infty$ ) interactions  
+  - dynamic (time dependence)
+  - non-linear  
+  - non-ergodic (open)    
+]
 
 ???
 Ecosystems are 
@@ -204,13 +211,11 @@ Ecosystems are
 - But before we can even talk about predicting regime shifts, we need to to be able to accurately and precisely DETECT historic changes under varying conditions, and especially in complex and messy ecological data. 
 - The research question motivating my researhc program is just that.... __click__
 --
-<font size="15" color="black"><b>.center[Can we detect & predict ecological regime shifts in <u>under-described</u> systems?]</b></font>  
-???
-- Can we detect and predict ecological regim eshifts in under-described systems?
+<br><br><font size="15" color="black"><b>.left[Can we detect  ecological regime shifts in <u>under-described</u> systems?]</b></font>  
 --
-<br>
+<br><br>
 <font size="15" color="red">Dissertation Aims</font>
-<br><font size="15" color="black"><b>.center[Improve the utility and accesibility of regime shift detection methods for the <u>practical</u> ecologist]</b></font>
+<br><br><font size="15" color="black"><b>.left[Improve the utility and accesibility of regime shift detection methods for the <u>practical</u> ecologist]</b></font>
 ???
 >pause...water 
 - So, with the practical ecologist in mind, or basically anyone not able to spend a solid 4 years studying this literature and testing these methods but wishing to apply these methods, my dissertation focuses on the quantitative methods proposed for identifying ecological regime shfits
@@ -248,7 +253,10 @@ My dissertation comprises 8 chapters, with three themes
 .small[<font color="black"><b> <u>Theme 3</u>: Improve method accessibility</b></font>]
 .smaller[
 - __Chapter 3__: Deconstructing Fisher Information calculation
-] 
+- __Appendix A__: `bbsAssistant`. Download and manipulate Breeding Bird Survey data 
+- __Appendix B__: `regimeDetectionMeasures`. Calculate multiple regime detection measures
+- __Appendix C__: `bbsRDM`. Spatial application of `regimeDetectionMeasures` 
+]
   
 ???
 Finally I will give a brief overview and very shamelessly promote the open sources softwares associated with this research program and which were used throughout  this research program
@@ -270,98 +278,136 @@ Finally I will give a brief overview and very shamelessly promote the open sourc
 ]
 
 .small[<font color="black"><b> <u>Theme 3</u>: Improve method accessibility</b></font>]
-.smaller[- __Chapter 3__: Deconstructing Fisher Information calculation] 
---
-.smaller[- __Appendix A__: `bbsAssistant`. Download and manipulate Breeding Bird Survey data 
-- __Appendix B__: `regimeDetectionMeasures`. Calculate multiple regime detection measures
-- __Appendix C__: `bbsRDM`. Spatial application of `regimeDetectionMeasures` 
+.smaller[- __Chapter 3__: Deconstructing Fisher Information calculation 
+- <font color="lightgrey"><b>Appendix A</b>: bbsAssistant. Download and manipulate Breeding Bird Survey data </font>
+- <font color="lightgrey"><b>Appendix B</b>: regimeDetectionMeasures. Calculate multiple regime detection measures</font>
+- <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Spatial application of regimeDetectionMeasures </font>
 ]
 ???
-I will also emphasize some of the software created as a part of this research program 
+- Today I am going to review select Chapters from each of these themes
+- I will also briefly mention the softwares at the end of the presentation 
+---
+
+#  Dissertation Themes & Outline<!--OUTLINE: HIGHLIGHT CH 2-->
+.small[<font color="black"><b><u>Theme 1</u>: Synthesize and review methods and literature</b></font>]
+.smaller[
+- <font color="lightgrey"><b>Chapter 1 & 8</b>: Introduction to and Synthesis of the State of Regime Detection Measures</font>
+- __Chapter 2__: A Brief Overview of the Ecological Regime Detection Methods
+]
+
+.small[<font color="black"><b> <u>Theme 2</u>: Test the utility and efficacy of methods</b></font>]
+
+.smaller[
+- <font color="lightgrey"><b>Chapter 4</b>: Spatial application of Fisher Information</font>
+- <font color="lightgrey"><b>Chapter 5</b>: Proposed method: velocity (*v*) of  system  trajectory </font>
+- <font color="lightgrey"><b>Chapter 6</b>: Relative performance of methods using resampling </font>
+- <font color="lightgrey"><b>Chapter 7</b>: Body mass distributions application</font>
+]
+
+.small[<font color="lightgrey"><b> <u>Theme 3</u>: Improve method accessibility</b></font>]
+.smaller[
+- <font color="lightgrey"><b>Chapter 3</b>: Deconstructing Fisher Information calculation </font>
+- <font color="lightgrey"><b>Appendix A</b>: bbsAssistant. Download and manipulate Breeding Bird Survey data </font>
+- <font color="lightgrey"><b>Appendix B</b>: regimeDetectionMeasures. Calculate multiple regime detection measures</font>
+- <font color="lightgrey"><b>Appendix C</b>: bbsRDM. Spatial application of regimeDetectionMeasures </font>
+]
 
 ---
-# Chapter 2: Systematic Literature Reviews<!--# RS pubs-->
-.center[<img src="figures/rsPubsYear.png" width="688">] <br>
-.center[__Topic__ = regime, abrupt, catastrophic shifts <b>|</b>  __Field__= ecology,  biodiversity conservation ]
-???
-- The number of papers related to ecological regime shifts exploded in the 1980s, coinciding with 
-- A review of the ecological and conservation literature yielded __> 1600 papers__ containing "regime shift" as topic
-- Rapid growth exceeding the rate of ecological papers published
----
-# Chapter 2: Systematic Literature Reviews<!--problem & aims-->
+# Chapter 2: Systematic Reviews of the Ecological Regime Shift Literature and Methods <!--problem & aims-->
 .pull-left[
-.big[Problem]
-.medium[
-- Applications outpacing theoretical advancement
-- No comprehensive reviews or sources of methods 
-- Methods applied before statistically scrutinized
+.medium[<b>Motivation</b>]
+.small-med[
+- Lack of use of concepts by practitioners
+<br>
+<br>
+<br>
+- No comprehensive source for methodologies
 ]]
---
-.pull-right[
-.big[Aims]
-.medium[
-- Identify research themes and gaps
-- Comprehensive source for all methods
-]]
+???
+- There are few problems motivating the studies conducted in this chpater
+- First, RS concepts not applied by practitioners, rather its an academic pursuit
 
----
-# Chapter 2: Systematic Literature Reviews<!--aims & approach-->
-.pull-left[
-.big[Aims]
-.medium[
-- Identify research themes and gaps
-- Comprehensive source for all methods
-]]
+- One driver of this may be the lack of statistical testing of the methods used to "identify" regime shifts...
 
 --
 
 .pull-right[
-.big[Approach].medium[  
-- Bibliographic analysis
-<!-- keep this spacing -->
+.medium[<b>Approach</b>]
+.small-med[
+- Bibliographic analysis to identify themes in literature
 
-- Systematic literature reviews
+- Build a comprehensive resource of methods 
 ]]
----
-# Bibliographic Analysis to Identify Themes in Ecological Regime Shift Development <!--results: themes --> 
-.left-column[.medium[<font color="black">
-__X axis__: importance to field<br><br><br>
-__Y axis__: <br>
-less to more developed
-]] </font>
-
-.right-column[<img src="figures/thematicMaps_keywords.png" width="500">]
-
 ???
-- __Top panel__ (Author keys): 
-  - no clear themes identified
-  - "dynamic" suggested, but many papers don't refer to dynamical systems theory...
-- __Bottom panel__ (WOS keys):
-  - 
+- To understand
 
 ---
 
-# Regime Detection Methods Difficult to Find Using Typical Literature Reviews <!--results: journals--> 
+# Rapid Growth in Regime Shift Literature <!--growth num pubs-->
+.center[__Topic__ = regime, abrupt & catastrophic shifts <b>|</b>  __Field__= ecology,  biodiversity conservation ]
+.center[<img src="figures/rsPubsYear.png" width="688">]
+
 ???
-- I conducted a second litearture review in an attempt to build a comprehensive list of the methods proposed and applied for detecting eoclogical regime shifts
-- Using a well-defined boolean search AND incorpoating my prior knowledge, <u>I identified over 70 methods </u> proposed or used to ID ecological regime shifts 
+- The number of papers related to ecological regime shifts exploded in the mid 2000s, 
+  - coinciding with scheffer and carpenter 2003 - ASS theory + resilience...
+  
+- __But despite the growth of__ RS-related publications, these concepts are rarely applied in natural resoruce mangement and policy
+
+---
+
+# Many Methods, Not All Are Accesible Via Literature Review <!--methods not found in lit review--> 
+.small-med[
+- Systematic review __and__ prior knowledge
+  - 70+ methods
+  - $< \frac{1}{2}$ identified in systematic review
+]
+???
+- In a sys. review designe dto identify _as many methods as possible_, I found 
+
+- I propose a few reasons for the lack of method ID in a sys. rev
 
 --
 
+.small-med[
+- Method review papers exist
+  - None are comprehensive
+  - High overlap
+  - Most comprehensive reviews out of date
+]
+???
+- Using both prior knowledge AND lit review, I identified over 70 methods used in the ecol lit for detecting regime shifts
+- However, less than half were identfied using standard boolean techniques 
+
+- that is, without sufficient prior knowledge, the methods arent accessible to the practical ecologist
+
+
+---
+# New Methods Published as Case Studies without Rigorous Testing<!--flowchart publication pathway--> 
+.center[<img src="figures/methodflow2.PNG" width="1000">]
+???
+- Next, many 'new methods ' are first published as case studies rather than methods studies
+
+- In other words, many do not emphasize and test the method statistically
+
+
+- Rigorous testing required to improve both the methods and theory 
+---
+
+# Methods Published in Wide Range of Publicaitons, Applied Journals<!--methods: journals--> 
 <img src="figures/wosRegimePubsByJrnl_min4Pubs.png" width="750">
-- A few things contributed to my inability to build this list using typical lit search methods:
-  1. Jargon is inconsistent
-  2. Methods are not often first proposed in either methods journals, nor proposed using theoretical data
-    - rather, they are applied using empirical data, and put into more 'applied journals'
+???
+- ANd because many of the first instsances of these methods are published as presnetations of new and exciting results, rahter tahn as the boring and dull robustness and sensitivity tests
+
+
+- Methodological jouranls are receiving fewer submissions than subdisciplinary adn applied or concepts jouranls
 
 ---
-
 # Regime Detection Methods for Individual State Variables are Well-Tested <!--Ch3 Segue: Multivariate Methods -->
 
 ???
-- In Chpater 2 I identifyied over 70 methods using systematic lit review and my prior knowledge
-- Many of these methods are designed to analyze indiviudal state variables
-- Only a few of these methods, however, have been heavily scrutinized
+- In chapter 2 I compiled a list of over 70 reigme shift detection methods
+
+- manny of these methods, however, are capable of analyzing indivuadl state variables, for example, a single species, rather tahn handling multivariate data
 
 --
 
@@ -374,35 +420,34 @@ less to more developed
 - Coefficeint of Variation
 ]]
 ???
-- Among the heavily  scrutinized include five _traditional early warning indicators_, 
+- Numerous univariate indicators exist
+
+- These are among the more widely used and tested methods
+
 --
-.pull-right[.medium[
-<u>Best Conditions</u>
-- Critical slowing down
-- Few state variables (e.g. species)
-]]
+
+<br>
+<br>
+.pull-right[<img src="figures/cv.png" width="750">]
 
 ???
-- However, these methods are inreasingly being shown unreliable under various conditions
-- Further, the most commonly 
+- Although these metrics have been shown useful in some conditions  and systems
+
+- Their _utility in HIGH DIMENSIONAL SYSTEMS is LESS OBVIOUS_
+
+- For example, using the Coef. of Variation on a 100 species time series produces an __uninterpretable spaghetti plot__
 
 ---
 
-# Regime Detection Methods for Individual State Variables are Well-Tested... __But Inconsistent__ <!--EWIs fail-->
+# Performance of the Most Widely-Used Univariate Methods is Inconsistent <!--EWIs fail-->
 .center[<img src="figures/fail.png" width="750">]
 ???
-- However, even these methods which are most tested are inconsistent under various theoretical and empirical conditions
+- To further complicate things, even the most widely applied univariate methods are inconsistent
 
----
-# Regime Detection Methods for Individual State Variables are Well-Tested... __Difficult to Use in High Dimensions__ <!--CV spaghetti-->
-.center[<img src="figures/cv.png" width="750">]
-???
-- For example, an application of the Coefficient of variation to a 100 species community time series results in a spaghetti plot
-- Un-interpretable 
 
 ---
 
-# Composite (Multivariate) Methods for Detecting Regime Shifts
+# Composite  Methods Proposed for Handling High-Dimensional Data <!--composite methods-->
 
 .medium[
 - Variance Index
