@@ -1,8 +1,8 @@
 ---
-title: "Regime Detection Methods for the Practical Ecologist"
-subtitle: "**Jessica L. Burnett**<br>Othmer Fellow<br>Fling Fellow<hr />"
+title: "<font size='12'>Regime Detection Methods for the Practical Ecologist</font>"
+subtitle: "<font size='8'>**Jessica L. Burnett**</font><br>Fling, Othmer Fellow, IIASA Young Scholar<hr />"
 author: "<br><font color='black'><b>Co-advisors</b></font>: C.R. Allen & D. Twidwell <br> <font color='black'><b>Committee</b></font>: D.G. Angeler, J.P. DeLong, & A.J. Tyre <br>"
-institute: "<br>Nebraska Cooperative Fish & Wildlife Research Unit<br> School of Natural Resources, University of Nebraska-Lincoln"
+institute: "<br>Nebraska Cooperative Fish & Wildlife Research Unit, School of Natural Resources, University of Nebraska-Lincoln"
 date: "`r format(Sys.Date(), '%B %e, %Y')`"
 output:
   xaringan::moon_reader:
@@ -939,7 +939,7 @@ Thanks to all the groups who have made this research possible.
 - Katya Perez
 - Kevin Pope<sup>1</sup> 
 
-.footnote[<font color="grey">[1] thanks for the free racquetball coaching<br> [2] Unaccreditted Dogtoral Degree, personnel management and security services</font>] 
+.footnote[<font color="grey">[1] thanks for the free racquetball coaching<br> [2]  Dogtoral Degree in Personnel Management and Security Services</font>] 
 ]
 .pull-right[
 - Mike Moulton
@@ -979,6 +979,7 @@ Thanks to all the groups who have made this research possible.
 - Patty Swanson
 - Terry Thomas, A.P.R.N
 - Dr. Schultz<sup>2</sup> 
+- My friends & family
 ]
 
 
