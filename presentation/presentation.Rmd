@@ -38,7 +38,7 @@ theme_set(theme_bw())
 ```{r savetopdf, eval=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
 # install.packages("webshot")
 # install_phantomjs()
-library(webshot)
+# library(webshot)
 webshot::webshot("presentation.html", "burnettDissDefense.pdf")
 ```
 
@@ -849,7 +849,7 @@ Data quality issues
 ---
 
 # Regime Shift Methods and Theory Lagging Behind the Applications: Has Implications for the Practical Ecologist
-.center[<img src="figures/methodflow.png" width="1000">]
+.center[<img src="figures/methodflow.png" width="500">]
 
 ???
 - Theory way behind our applications
