@@ -82,8 +82,3 @@ results <-
 # Reults will return all results in a single data frame.
 head(results)
 ```
-
-<!-- ## Source Code Documentation -->
-<!-- ```{r, echo=FALSE} -->
-<!-- knitr::include_graphics(here::here("packageDocumentation/regimeDetectionMeasures.pdf")) -->
-<!-- ``` -->

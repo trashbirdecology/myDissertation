@@ -192,6 +192,8 @@ years.use  <-
 
 ################## END USER-DEFINED PARAMETERS ###########################
 dir.use = 11:13
+
+
 ########################### CONDUCT ANALYSIS OF RDMs ########################### 
 # CALCULATE THE METRICS  -------------------------------------------------------
 for (j in 1:length(dir.use)) {

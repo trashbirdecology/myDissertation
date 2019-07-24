@@ -1,4 +1,5 @@
 # Custom GGPLOT theme  ------------------------------------------------------
+library(ggplot2)
 theme.margin <- theme(plot.margin = grid::unit(c(0, 0, 0, 0), "mm"))
 
 

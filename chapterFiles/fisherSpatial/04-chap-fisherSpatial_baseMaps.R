@@ -125,6 +125,8 @@ milBasesRoutesMap <- routesMap +
              color = "red",
              size = 1) 
 
+
+
 # define approx. loc. of bases of interest.
 rileyApprox <-
   data.frame(long = -96.788448,
@@ -143,27 +145,25 @@ basesOfInterest <- rbind(
 )
 
 
-rm(rileyApprox)
-rm(eglinApprox)
-
-basesOfIntMap <- usBaseMap +
+basesOfIntMap <- milBasesMap +
   geom_point(
-    data = basesOfInterest,
+    data = rileyApprox,
     aes(x = long, y = lat),
-    color = "darkred",
+    color = "black",
     shape = 18 ,
     size = 4
   ) +
   geom_text(
-    data = basesOfInterest,
-    aes(x = long, y = lat, label = name),
+    data = rileyApprox,
+    aes(x = long, y = lat, label = "Fort Riley"),
     nudge_x = 0,
     nudge_y = 2,
-    color = "darkred",
+    color = "black",
     size = 5
   ) +
   theme.margin
 
+# basesOfIntMap
 
 # Ecoregions --------------------------------------------------------------
 if(!exists("eco_poly_join")) {
