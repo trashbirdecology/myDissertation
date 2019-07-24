@@ -1,7 +1,7 @@
 ---
 author: 'Jessica Leigh Burnett'
 title: 'Regime Detection Measures for the Practical Ecologist'
-date: 'July XX 2019'
+date: 'July 31 2019'
 institution: 'University of Nebraska-Lincoln'
 advisor: 'Craig R. Allen'
 altadvisor: 'Dirac Twidwell'
@@ -13,7 +13,7 @@ output:
  # word_document:
  thesisdown::thesis_pdf: default
 acknowledgements: |
-dedication: | 
+dedication: |
   To those not yet exposed to the great outdoors. To those unaware of the possibility of careers in ecology and research. To Mike Moulton, my first and best cheerleader. To S. And to myself. 
 preface: |
   >"sdlksjdfjk qyote about models made for ecologists"

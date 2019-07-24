@@ -74,8 +74,8 @@ p
 
 \begin{landscape} 
 
-```{r wosRegimePubsByJrnl, echo=FALSE, out.width="85%", eval=TRUE, message=FALSE, warning=FALSE,  fig.cap = "Number of articles containing phrases related to ecological 'regime shifts' published per publication outlet."}
-p<-ggplot(wos.regime.plotData %>%
+```{r wosRegimePubsByJrnl, echo=FALSE, out.width="75%", eval=TRUE, message=FALSE, warning=FALSE,  fig.cap = "Number of articles containing phrases related to ecological 'regime shifts' published per publication outlet."}
+ggplot(wos.regime.plotData %>%
               group_by(journal) %>% 
               summarise(nJrnl = n()) %>% 
                filter(nJrnl >= 10, 
@@ -87,7 +87,6 @@ p<-ggplot(wos.regime.plotData %>%
   theme_bw() + 
   theme(axis.text.y = element_text( hjust = 1, size = 4))+
   theme(axis.title.x = element_text(size = 8))
-p
 ```
 
 \end{landscape}

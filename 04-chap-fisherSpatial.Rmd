@@ -89,18 +89,19 @@ NABBS are not regularly spaced, and pairwise correlations of adjacent transects 
 #### Spatial correlation of  Fisher Information 
 If Fisher Information captures and reduces information regarding abrupt changes in community structure across the landscape, then it follows that the values of Fisher Information should be spatially auto correlated. That is, the correlation of FI values should increase as the distance between points, both within and among transects, decreases. Further, direct comparison of FI across routes is not possible since FI (Eq. \@ref(eq:fiDerivs)) is a relative value with no upper limit (i.e. can take on any value between $0$ and $\infty$). In other words, FI values calculated  are **not** relatively comparable outside of a single spatial transect (Figure \@ref(fig:ewRoutesUsedHere)). Fisher Information **is**, however, directly comparable within each spatial transect (e.g., \@ref(fig:ewRoutesUsedHere)). For these reasons, we can identify spatial regime shifts both within and among spatial transects by using pairwise correlations among two transects (e.g., \@ref(fig:ewRoutesUsedHere)) to determine whether values of FI are consistent across space. Here, I calculate the pairwise correlation (Pearson's) among each pair of adjacent spatial transects (e.g., Figure \@ref(fig:ewRoutesUsedHere)). I removed a pair of points if at least one point was missing an estimate for Fisher Information. This occurs when the original longitudinal range of one transect exceeded the range of the adjacent pair. 
 
+```{r ewRoutes_ecoRegions, out.width="85%", echo = FALSE, fig.cap="Three East-West running transects analyzed in this Chapter overlayed against the Omernick Ecoregion boundaries map."}
+# Routes used in this chapter analysis. 
+# for some reason, when i include a caption on this chunk it fucking fails, saying the caption is beyond float, despite the length of hte caption,...
+knitr::include_graphics(paste0(figDissDir,  "/allRoutesUsed_ecoregions.png"))
+```
 
 ## Results  
 ### Fisher Information across spatial transects
 ```{r fi1Tsect, echo = FALSE, message=FALSE, warning=FALSE,  out.width="85%", fig.cap="The change in the Fisher Information  values along a single,  East-West-running spatial transect (Transect number 12) over time."}
 knitr::include_graphics(paste0(figDissDir,  "/transect_12_East-West_metric_FI_Eqn7_12.png"))
 ```
+
 Interpreting the Fisher Information is currently a qualitative effort. As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of 'spatial regimes' (Figure \@ref(fig:fi1Tsect)). Of the three spatial transects analyzed in this chapter (see Figure \@ref(fig:ewRoutesUsedHere)), Figure \@ref(fig:fi1Tsect) is representative of the lack of pattern observed in the Fisher Information values across all analyzed transects. I did not identify clear patterns within nor among spatial transects with respect to Fisher Information. Further, the log-transformed FI suppresses some of the extreme values which can visually dampen other sharp changes, but did not exhibit clear regime shifts in these data. 
-```{r ewRoutes_ecoRegions, out.width="85%", echo = FALSE, fig.cap="Three East-West running transects analyzed in this Chapter overlayed against the Omernick Ecoregion boundaries map."}
-# Routes used in this chapter analysis. 
-# for some reason, when i include a caption on this chunk it fucking fails, saying the caption is beyond float, despite the length of hte caption,...
-knitr::include_graphics(paste0(figDissDir,  "/allRoutesUsed_ecoregions.png"))
-```
 
 ```{r fiSinglePair, echo = FALSE,  out.width="85%", fig.cap="Fisher Information of two spatially adjacent transect pairs (transects 12, 13) over time. Interdecadual trends in FI are very different within each transect and are not highly correlated among transects over time."}
 knitr::include_graphics(paste0(figDissDir,  "/interp_FI_singlePair_corPlot_East-West.png"))
