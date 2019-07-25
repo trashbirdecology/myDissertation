@@ -218,7 +218,7 @@ Next, enable the drop-down **Survey Results**, and choose **Trend Estimates (by 
 
 Finally, copy the URL address for the page including the results and credibility measures (e.g. Florida):
 
-![](./chapterFiles/appendices/regcred_select_treregcred_fl_ex.png){width=600px}
+![](./chapterFiles/appendices/regcred_fl_ex.png){width=600px}
 
 ## Package Manual  
 
