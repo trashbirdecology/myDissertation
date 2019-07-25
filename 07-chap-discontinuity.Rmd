@@ -13,10 +13,10 @@ knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message=FALSE,  out.width="85
 ```
 ## Introduction
 Animal body mass distributions have been used to identify scaling structures of ecological communities [@allen2006discontinuities; @allen2002cross; @holling1992cross]. Using statistical methods to identify gaps, or discontinuities, in body mass distributions, some patterns are observed within and across taxonomic groups and biomes. Given the ubiquity of discontinuities identified in body mass distributions of fauna and social systems [@allen2006discontinuities], the ecological significance of these patterns may prove useful in understanding ecosystem structure and functioning [@angeler2016management]. Various hypotheses are posited as  drivers of the observed discontinuities in animal body mass distributions, including those related to resource use (the Energetic and Textural Discontinuity hypotheses), community interactions, biogeography, and evolution/phylogenetics  [@allen2006discontinuities; @holling1992cross; @blackburn1994animal; @allen2006patterns].
-Body size influences the frequency and intensity of inter- and intraspecific competition for resources, territory, and mates, thereby dictating the spatial and temporal scales at which a species of a distinct body size operates [@peters1983effect;@silva1995allometric; @allen2006patterns]. The scaling structure of terrestrial communities are have been found to have 'lumpy' distributions; that is, they are not well-described using parametric statistical descriptions. If the scaling structure of a community manifests in the body mass distribution of the community, it is  considered reflective of the  discontinuous and heterogeneous nature of resource use. Specifically, @holling1992cross suggests that the body mass distribution of a community or group of species reflects the discontinuous nature of environmental structures and processes. Quantitative analyses of animal body sizes [@allen2006patterns;@nash2014habitat] and other similar distributions has revealed the ubiquity of the discontinuous nature of distributions of animal body masses [@skillen2008ecological; @havlicek2001pelagic], plant biomass [@spanbauer2016body], city population sizes [@garmestani2005time], and animal home range sizes [@restrepo2008discontinuities]. 
-A recent study of the Central United States, including and beyond the Great Plains ecoregions, used discontinuity analysis of body mass distributions to identify the locations of what they refer to as 'spatial regimes' over an approximately 50 year period [@roberts2019shifting]. The authors concluded that a spatial regime boundary exists in this region, and has been moving pole-ward as a consequence of large-scale drivers including woody plant encroachment, fire suppression, and climate change. Using the boundaries identified in this study I seek to determine whether this 'shifting spatial regime' manifests in the grasslands of the Central Great Plains. 
-Avian distribution and presence data are abundant, easily accessible and, more importantly, provide insights into resource availability and structure at the local and landscape scales. In this Chapter, I first use discontinuity analysis of avian body mass distributions to identify the scaling structures of local avian communities in the Prairie Potholes, Central Mixed Grass, and Eastern Tall Grass regions of the central Great Plains of North America. I then use these distributions to determine whether the shifting spatial regime proposed by @roberts2019shifting manifests in the grassland bird community which is most susceptible to native grassland habitat loss or degradation [@murray2008relationship]. Although I find no evidence to support the hypothesis of the spatial regime boundary suggested in @roberts2019shifting, the results from this study support previous hypotheses that vulnerable species operate at the 'edge' of body mass aggregations. 
 
+Body size influences the frequency and intensity of inter- and intraspecific competition for resources, territory, and mates, thereby dictating the spatial and temporal scales at which a species of a distinct body size operates [@peters1983effect;@silva1995allometric; @allen2006patterns]. The scaling structure of terrestrial communities are have been found to have 'lumpy' distributions; that is, they are not well-described using parametric statistical descriptions. If the scaling structure of a community manifests in the body mass distribution of the community, it is  considered reflective of the  discontinuous and heterogeneous nature of resource use. Specifically, @holling1992cross suggests that the body mass distribution of a community or group of species reflects the discontinuous nature of environmental structures and processes. Quantitative analyses of animal body sizes [@allen2006patterns;@nash2014habitat] and other similar distributions has revealed the ubiquity of the discontinuous nature of distributions of animal body masses [@skillen2008ecological; @havlicek2001pelagic], plant biomass [@spanbauer2016body], city population sizes [@garmestani2005time], and animal home range sizes [@restrepo2008discontinuities]. 
+
+Avian distribution and presence data are abundant, easily accessible and, more importantly, provide insights into resource availability and structure at the local and landscape scales. In this Chapter I used discontinuity analysis of avian body mass distributions to identify the scaling structures of local avian communities in the Prairie Potholes, Central Mixed Grass, and Eastern Tall Grass regions of the central Great Plains of North America. I then use linear mixed modelling to determine whether the body mass distributions of these avian communities exhibit change corresponding to the spatial boundaries recently proposed in [@roberts2019shifting]. Although I found evidence supporting the hypothesis that declining grassland birds operate near the 'edges' of body mass aggreagtions, which represent the spatiotemporal scaling of resource use and availability, I did not identify shifts in the body mass distributions corresponding with the previously proposed poleward, spatial shifts. 
 
 ## Methods
 ### Study area
@@ -66,7 +66,7 @@ I used the discontinuity detector described in @barichievy2018method, which uses
 Two criterion have been used to determining the exact location of discontinuities within a rank-ordered continuous variable: using a constant significance/threshold level [@barichievy2018method] and a power constant table for varying sample sizes [@roberts2019shifting]. It should be noted because the power-constant method identifies a larger proportion of "significant" discontinuities, or edges, identifying aggregations requires subjective measures regarding actual aggregation locations. Using the percentile method avoids this subjectivity, however, the aggregation number and locations are sensitive to choice of percentile or threshold value. Following the methods of @barichievy2018method I considered a value to be a discontinuity if the gap percentile (see Appendix \@ref(appDiscont) was $\geq 90%$. 
 I built route-level body mass distributions for each route-year combination by using presence absence data from the current, previous, and following year to account for observational and process errors impacting the detectability of a species within a single route. Using this method reduces the amount of species-specific, and consequently specific-body mas turnover within a route over time. This also assumes that an unobserved species is truly absent, an assumption which is difficult to avoid without a sophisticated occupancy modelling approach for each species in the community.
 
-```{r, echo=FALSE, eval=TRUE }
+```{r readInAnovaDat, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 d = readRDS(here::here("/chapterFiles/discontinuityAnalysis/results/datForAnova.RDS")) %>% 
   dplyr::select(year, loc, aou, isGap.percentile, isGap.powerConstant) %>% 
   gather("key", "value", -year, -loc, -aou) %>% 
@@ -150,13 +150,83 @@ kable(sppIntDat %>% filter(`Species Group` != "Others"),
 #       booktabs=TRUE) 
 ```
 
-I therefore modelled the distance to edge of each species within each NABBS route as a function of time, the regime location [South or North of the boundaries proposed in @roberts2019shifting; see Figure \@ref(fig:routesWithSpatRegimes)], and the species group (grassland obligate, declining, declining grassland obligate, other). Although distance to edge was not strongly correlated with body mass (Figure \@ref(fig:aggEdgeCorrPlot)), I scaled and centered the response variable (distance to edge; $Y_{i}$, where $i=$year), to avoid predictions beyond zero for the unscaled response. Fixed effects included an interaction among year ($\beta_{1i}$) and regime location ($\beta_{2i}$), and an interaction among regime ($\beta_{2i}$) and species group ($\beta_{3}$). Random intercepts were estimated for each species ($b_1$) within each NABBS route ($b_2$). That is, species was nested within route. An auto-regressive lag-1 correlation structure was assumed for the random intercept estimates. The model was fitted using restricted maximum likelihood. The model was fitted using `nlme::lme` and was coded as
+I modelled the 'distance to edge' for each species as a function of time, whether the NABBS route is in the 'Southern' or 'Northern' spatial regime [South or North of the boundaries proposed in @roberts2019shifting; see Figure \@ref(fig:routesWithSpatRegimes)], time, route identity, and a descriptive group (one of grassland obligate, declining, declining grassland obligate, other). The 'dostance to edge' response variable was not strongly correlated with body mass (Figure \@ref(fig:aggEdgeCorrPlot)), however, I scaled and centered the  response values to avoid obtaining predictions lower than zero for the unscaled response. 
+
+Fixed effects included an interaction among year ($\beta_{1i}$) and regime location ($\beta_{2i}$), and an interaction among regime ($\beta_{2i}$) and species group ($\beta_{3}$). Random intercepts were estimated for each species ($b_1$) within each NABBS route ($b_2$). That is, species was nested within route. An auto-regressive lag-1 correlation structure was assumed for the random intercept estimates. The model was fitted using restricted maximum likelihood. The model was fitted using `nlme::lme` and was coded as:
 >  nlme::lme( distEdge.scaled ~ year.center \* regime + regime \* sppGroup, 
      random = ~ 1 | loc/aou, correlation = corAR1(form = ~ 1 | loc / aou ), method = "REML")
 
 ## Results
 ### Summary statsitics of censuses (NABBS data)
+
 Given the location of the study area (Figure \@ref(fig:study area)) with respect to the location of the contiguous Central Great Plains, fewer NABBS routes falling into the Southern regime were analysed than those in the Northern (Table \@ref(tab:nRtesPerRegimePerYearTab), Figure \@ref(fig:nRtesPerRegimePerYearTab).  Likely due to the increase in the total number of routes surveyed over time across the entire North American Breeding Bird Survey region, species richness increased over time within our study area (Figure \@ref(fig:richnessByYear)). Annual turnover rates were relatively low but became more dispersed over time (Figure \@ref(fig:turnoverByYear); Table \@ref(tab:richTurnTab)).
+
+```{r nRtesPerRegimePerYearTab}
+temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
+  rename(
+         Year = year, Regime = regime) 
+
+# do not comibn ewith getTab -- does NOT work! 
+temp <- temp %>% spread(key="Regime",value="nLoc")
+kableExtra::kable(temp,
+                  caption = "The number of NABBS routes analysed in the Southern regime is smaller than those used in the Northern regime each year given the location of the regimes identified in a previous study with respect to the contiguous grasslands of Central North America.",
+                  "latex",
+booktabs=TRUE,  
+      longtable=TRUE, 
+escape=FALSE) %>% 
+  kableExtra::kable_styling(repeat_header_continued = TRUE)
+```
+
+```{r nRtesPerRegimePerYearFig, fig.cap= "Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation."}
+temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
+  rename(
+         Year = year, Regime = regime) 
+ggplot(temp, aes(Year, nLoc,linetype=Regime))+geom_line()+ylab("# NABBS routes analysed")
+```
+
+```{r richnessByYear, echo=FALSE, eval=TRUE, fig.cap="Species richness increases over time across the entire study area."}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/richnessByYear.png"))
+```
+
+```{r turnoverByYear, echo=FALSE, eval=TRUE, fig.cap="Variance in the total species turnover increases over time across the entire study area."}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/turnoverByYear.png"))
+```
+
+```{r richTurnTab}
+temp <- getTab(fn="richTurnStatsTab") %>% 
+  mutate(meanRich = round(meanRich, 1),
+         sdRich = round(sdRich, 2),
+         sdTurn = round(sdTurn, 2),
+         meanTurn = round(meanTurn, 1)) %>% 
+  rename(Year = year, 
+`$\\bar{x}$` = meanRich, 
+         `$\\sigma$` = sdRich, 
+         `N` = sampSizeRich,
+         `$\\bar{x}$` = meanTurn, 
+         `$\\sigma$` = sdTurn, 
+         `N` = sampSizeTurn)
+                  # `Mean richness` = meanRich, 
+         # `SD` = sdRich, 
+         # `N` = sampSizeRich,
+         # `Mean turnover` = meanTurn, 
+         # `SD` = sdTurn, 
+         # `N` = sampSizeTurn)
+
+kableExtra::kable(temp, escape = FALSE, digits = 2, 
+                  caption = "Summary statistics for annual species richness and annual turnover in all NABBS routes in study area.",
+                  # "latex",
+                  booktabs=TRUE, 
+      longtable=TRUE) %>% 
+    add_header_above(c(" ", "Annual Richness" = 3, "Annual Turnover" = 3))
+```
+
+```{r intrxnPlot_regime, eval=TRUE, echo=FALSE, fig.cap="Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes."}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png"))
+```
+
+```{r simpleCoefEst, eval=FALSE, echo=FALSE, fig.cap="Coefficient estimates of fixed predictors of the linear mixed effects model."}
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/simpleCoefEst.png"))
+```
 
 #### Species of interest
 A total of `r nrow(sppIntDat)` species were considered for analysis across the entire study area. `r nrow(sppIntDat[sppIntDat$'Species Group' =="Grassland Obligates",]) + nrow(sppIntDat[sppIntDat$'Species Group' =="Declining Grassland Obligates",])` were classified as grassland obligate species, or species deemed highly sensitive to changes in amount and quality of grassland habitat. Of the grassland obligates, `r nrow(sppIntDat[sppIntDat$'Species Group' =="Declining Grassland Obligates",])` were considered as declining species. An additional `r nrow(sppIntDat[sppIntDat$'Species Group' =="Declining",])` species were classified as non-grassland obligate and declining (Table \@ref(tab:sppIntTab)).
@@ -223,9 +293,7 @@ kableExtra::kable(est,
 ```
 
 #### Linear Mixed Effects Analysis of Distance to Edge
-Declining species and declining grassland obligate species were located closer to the edge than the 'other' species, while grassland obligate species were further from the edge than 'other' species (Table \@ref(tab:lmeTab)). Similar trends held for declining grassland obligates and grassland obligates in the Northern regime location. There was, however, no evidence to suggest additive effects of the regime  location or year, or their interactions  (Table \@ref(tab:lmeTab)). The lack of additive effects but the presence of multiplicative effects of the regime location  (Table \@ref(tab:lmeTab)) strengthens the support for the differences in grassland obligates and declining grassland obligates with respect to all other species, however, the confidence intervals around the estimates of  declining grassland obligates, grassland obligates suggests the evidence for such an effect is relatively weak (Figure \@ref(fig:intrxnPlot_regime1). 
-
-This is unsurprising given the distribution of grassland obligate body masses is highly skewed right relative to the remaining species (Figures \@ref(fig:bmDistPerSppGroup)), \@ref(fig:bmDistPerSppGroup-byRegime))). Many grassland obligate species have small body masses, reducing the probability that they will appear in different body mass aggregations, however, depending on the local bird community identities, local grassland obligates may all have similar body masses, removing this effect. The larger, non-declining grassland obligates occur in a relatively small portion of our study area, Shortgrass Prairie BCR (Figures \@ref(fig:studyarea),\@ref(fig:bmDistPerSppGroup-byBCR)). 
+Declining species and declining grassland obligate species were located closer to the edge than the 'other' species, while grassland obligate species were further from the edge than 'other' species (Table \@ref(tab:lmeTab)). Similar trends held for declining grassland obligates and grassland obligates in the Northern regime location. There was, however, no evidence to suggest additive effects of the regime  location or year, or their interactions  (Table \@ref(tab:lmeTab)). 
 
 ```{r bmDistPerSppGroup, echo=FALSE, eval=TRUE, fig.cap="Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group over the entire study area and all years.", out.width="85%"}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png"))
@@ -242,71 +310,10 @@ knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCall
 ```
 
 ## Discussion
-South-North shifts in the past 50+ years have been demonstrated in large scale processes, including bird populations and ranges [@sorte2007poleward] and plant hardening zones [@mckenney2014change]. The concept of spatial regimes was recently introduced as a way of describing or identifying large-scale shifts of this nature [@roberts2019shifting; @sundstrom2017detecting], despite the lack of rigorous testing on the methods used to identify these shifts. In this Chapter, I used discontinuity analysis of bird communities, under the assumption of the existence of a zone of shifting 'spatial regimes' [based on the analysis of @roberts2019shifting] to determine whether the underlying struture of the grassland breeding bird community was impacted. Although I found moderate support for the hypothesis that declining species operate at the edges of body mass aggregations, I did not find sufficient support for the impact of these proposed spatial regime shifts on local bird communities. Although the body mass distributions of terrestrial communities at small scales tends to differ from the distribution at larger spatial scales [@blackburn1994animal], numerous studies confirm the evidence for 'discontinuities' in these distributions at across scales for a variety of phenomenon [@wardwell2009variability; @allen1999body; @spanbauer2016body;@nash2014discontinuities]. The jury is still out, however, as numerous studies are finding a lack of evidence for discontinuities in their study systems [@siemann1999gaps;@bibi2019body; @manly1996there]. 
+South-North shifts in the past 50+ years have been demonstrated in large scale processes, including bird populations and ranges [@sorte2007poleward] and plant hardening zones [@mckenney2014change]. A recent application of discontinuities in  body mass distributions [@holling1992cross] corroborated these previous observations of large-scale changes as manifested in the avian community [@roberts2019shifting]. support for the hypothesis that declining species operate at the edges of body mass aggregations, but did not identify changes in the body mass distributions of avian communities near the proposed spatial regime boundary [@roberts2019] proposed in  impact of these proposed spatial regime shifts on local bird communities
 
-```{r intrxnPlot_regime, eval=FALSE, echo=FALSE, fig.cap=""}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png"))
-```
-```{r simpleCoefEst, eval=FALSE, echo=FALSE, fig.cap="Coefficient estimates of fixed predictors of the linear mixed effects model."}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/simpleCoefEst.png"))
-```
+The lack of additive effects in the presence of multiplicative effects of the regime location (Table \@ref(tab:lmeTab)) strengthens the support for the differences in grassland obligates and declining grassland obligates with respect to all other species, however, the confidence intervals around the estimates of declining grassland obligates, grassland obligates may suggest that the evidence for such an effect is relatively weak (Figures \@ref(fig:intrxnPlot_regime1) and \@ref(fig:intrxnPlot_regime)). This is unsurprising given the distribution of grassland obligate body masses is highly skewed right relative to the remaining species (Figures \@ref(fig:bmDistPerSppGroup)), \@ref(fig:bmDistPerSppGroup-byRegime))). Many grassland obligate species have small body masses, reducing the probability that they will appear in different body mass aggregations, however, depending on the local bird community identities, local grassland obligates may all have similar body masses, removing this effect. The larger, non-declining grassland obligates occur in a relatively small portion of our study area, Shortgrass Prairie BCR (Figures \@ref(fig:studyarea),\@ref(fig:bmDistPerSppGroup-byBCR)). 
 
-```{r nRtesPerRegimePerYearTab}
-temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
-  rename(
-         Year = year, Regime = regime) 
-# do not comibn ewith getTab -- does nto work 
-temp <- temp %>% spread(key="Regime",value="nLoc")
-kableExtra::kable(temp,
-                  caption = "The number of NABBS routes analysed in the Southern regime is smaller than those used in the Northern regime each year given the location of the regimes identified in a previous study with respect to the contiguous grasslands of Central North America.",
-                  "latex",
-booktabs=TRUE,  
-      longtable=TRUE, 
-escape=FALSE) %>% 
-  kableExtra::kable_styling(repeat_header_continued = TRUE)
-```
+Although the body mass distributions of terrestrial communities at small scales tends to differ from those at larger spatial scales [@blackburn1994animal], numerous studies confirm the evidence for 'discontinuities' in these distributions across multiple spatial scales for a variety of phenomenon [@wardwell2009variability; @allen1999body; @spanbauer2016body;@nash2014discontinuities; but see @siemann1999gaps;@bibi2019body; @manly1996there for applications yielding negative results]. This study found evidence supporting the hypothesis that scaling structures manifest in the body masses of fauna communities, adding to the growing number of case studies which suggest this phenomena is widespread across systems and scales.
 
-```{r nRtesPerRegimePerYearFig, fig.cap= "Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation."}
-temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
-  rename(
-         Year = year, Regime = regime) 
-ggplot(temp, aes(Year, nLoc,linetype=Regime))+geom_line()+ylab("# NABBS routes analysed")
-```
 
-```{r richnessByYear, echo=FALSE, eval=TRUE, fig.cap="Species richness increases over time across the entire study area."}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/richnessByYear.png"))
-```
-
-```{r turnoverByYear, echo=FALSE, eval=TRUE, fig.cap="Variance in species turnover increases over time across the entire study area."}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/turnoverByYear.png"))
-```
-
-```{r richTurnTab}
-temp <- getTab(fn="richTurnStatsTab") %>% 
-  mutate(meanRich = round(meanRich, 1),
-         sdRich = round(sdRich, 2),
-         sdTurn = round(sdTurn, 2),
-         meanTurn = round(meanTurn, 1)) %>% 
-  rename(Year = year, 
-`$\\bar{x}$` = meanRich, 
-         `$\\sigma$` = sdRich, 
-         `N` = sampSizeRich,
-         `$\\bar{x}$` = meanTurn, 
-         `$\\sigma$` = sdTurn, 
-         `N` = sampSizeTurn)
-                  # `Mean richness` = meanRich, 
-         # `SD` = sdRich, 
-         # `N` = sampSizeRich,
-         # `Mean turnover` = meanTurn, 
-         # `SD` = sdTurn, 
-         # `N` = sampSizeTurn)
-
-kableExtra::kable(temp, escape = FALSE, digits = 2, 
-                  caption = "Summary statistics for annual species richness and annual turnover in all NABBS routes in study area.",
-                  # "latex",
-                  booktabs=TRUE, 
-      longtable=TRUE) %>% 
-    add_header_above(c(" ", "Annual Richness" = 3, "Annual Turnover" = 3))
-```
-
- 
