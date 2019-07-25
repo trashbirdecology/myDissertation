@@ -214,14 +214,11 @@ First, visit the USGS Patuxent Wildlife Research Center's [website for BBS resul
 
 Next, enable the drop-down **Survey Results**, and choose **Trend Estimates (by region)** (left) and choose the desired region (e.g. Florida):
 
-![](https://github.com/TrashBirdEcology/bbsAssistant/raw/master/images/regcred_select_trendests_byregion.png){width=300px}![](https://github.com/TrashBirdEcology/bbsAssistant/raw/master/images/regcred_select_fl.png){width=300px}
+![](./chapterFiles/appendices/regcred_select_trendests_byregion.png){width=300px}![](./chapterFiles/appendices/regcred_select_fl.png){width=300px}
 
 Finally, copy the URL address for the page including the results and credibility measures (e.g. Florida):
 
-![](https://github.com/TrashBirdEcology/bbsAssistant/raw/master/images/regcred_fl_ex.png){width=600px}
-
-
-
+![](./chapterFiles/appendices/regcred_select_treregcred_fl_ex.png){width=600px}
 
 ## Package Manual  
 
@@ -231,7 +228,6 @@ For functions and descriptions please see the [manual](github.com/bbsAssistant//
 
 We thank the participatory scientists who collect data annually for the North American Breeding Bird Survey, and the Patuxent Wildlife Research Center for making these data publicly and easily accessible. Some functions in this package were adapted from the [rBBS](github.com/oharar/rbbs) package and are mentioned in function source code as appicable.
 
-
 # regimeDetectionMeasures: an R package for calculating various regime detection measures {-#regimeDetectionMeasures}  
 This appendix contains example analysis associated with the R Package, `regimeDetectionMeasures`. Development source code for this package is available on GitHub as a compressed file at [https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip](https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip) or at [https://github.com/TrashBirdEcology/regimeDetectionMeasures](https://github.com/TrashBirdEcology/regimeDetectionMeasures).
 
@@ -239,14 +235,12 @@ This appendix contains example analysis associated with the R Package, `regimeDe
 ### Measures/metrics calculated
 This package will calculate a various regime detection metrics that have been used to 'detect ecological regime shifts'. A 'new' metric, **distance travelled** is also calculated (Burnett and others, *in prep*).
 
-**Composite measures:**
-
+**Composite measures:**  
 1. Distance travelled -see also package [`distanceTravelled`](https://github.com/TrashBirdEcology/distanceTravelled).  
 1. Fisher Information 
 1. Variance Index  
 
-**Single-variable measures:**
-
+**Single-variable measures:**  
 1. Skewness (mean and mode versions)  
 1. Kurtosis  
 1. Variance  

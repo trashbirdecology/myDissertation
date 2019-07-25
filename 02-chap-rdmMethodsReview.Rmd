@@ -97,7 +97,7 @@ ggplot(wos.regime.plotData %>%
 ```{r methodsMetricsListTab1, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
 long_dt <- finalMetricsList %>%
   filter(!is.na(myLabel1)) %>% 
-  mutate(Source = paste0("@", myLabel1)) %>% 
+  mutate(Source = nocite) %>% 
   # mutate(Source = paste0('"' , "@", myLabel1, '"')) %>% 
   dplyr::select(method, type1, Source) %>% 
   rename(`Metric type`=type1,
