@@ -220,7 +220,7 @@ kableExtra::kable(temp, escape = FALSE, digits = 2,
     add_header_above(c(" ", "Annual Richness" = 3, "Annual Turnover" = 3))
 ```
 
-```{r intrxnPlot_regime, eval=TRUE, echo=FALSE, fig.cap="Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes."}
+```{r intrxnPlot-regime, eval=TRUE, echo=FALSE, fig.cap="Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png"))
 ```
 
@@ -305,7 +305,7 @@ knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCall
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png"))
 ```
 
-```{r intrxnPlot_regime1, echo=FALSE, eval=TRUE, fig.cap=""}
+```{r intrxnPlot-regime1, echo=FALSE, eval=TRUE, fig.cap=""}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png"))
 ```
 

@@ -233,7 +233,7 @@ ggplot(yearTemp ) +
 ```
 
 <!-- HAVING ISSUES WITH THEMATIC MAPS FIGURE -- saying its too big so captions outside of float.... giving up for now... -->
-```{r thematicMaps_keyword, echo=FALSE, eval=FALSE, fig.cap="A thematic map of the clusters (themes) identified among the (a) author-supplied and (b) ISI-supplied keywords for each article using a clustering algorithm.", out.width="85%"}
+```{r thematicMaps-keyword, echo=FALSE, eval=FALSE, fig.cap="A thematic map of the clusters (themes) identified among the (a) author-supplied and (b) ISI-supplied keywords for each article using a clustering algorithm.", out.width="85%"}
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps_keywords.png"))
 ```
 
@@ -243,12 +243,12 @@ A search of Web of Science for articles in Ecology and Biodiversity Conservation
 #### Thematic mapping using keywords
 Two types of keywords exist in the ISI Web of Science bibliography metadata: those provided to the publication by the authors (author-supplied), and those defined by the ISI Web of Science (ISI-supplied). A keyword thematic map suggests these keywords are used very differently within this literature (Figure \@ref(fig:thematicMaps_keyword))^[Axes represent (x, Callon's centrality) the degree of interaction, or the contribution of the theme to the research field and (y, Callon's density) the strength of the network arcs, or the importance of a theme to the field. Clusters appearing in the quadrants (from top-right moving counter-clockwise) represent the following themes: I) motor-themes (important to the field and well-developed); II) basic-themes (well-developed but marginally important to the field); III) emerging and disappearing themes (under-developed and marginal); and IV) specialized themes (important but under-developed). These themes were identified using a clustering algorithm discussed further in @cobo2011approach]. The clustering algorithm identified fewer clusters (themes) in the ISI-keywords (Figure \@ref(fig:thematicMaps_keyword)a) than were identified among the author-supplied keywords (Figure \@ref(fig:thematicMaps_keyword)b^; see footnote $^2$). This pattern is not surprising given the ISI-supplied keywords are restricted to a pre-set number of keywords, whereas authors can and do provide synonyms, or words not used at all by ISI. The themes identified in the ISI-supplied keyword analysis were relatively consistent as the number of keywords analysed increased (Figure \@ref(fig:thematicMaps_keyword_isi)), but the themes varied drastically among the author-supplied keywords (Figure \@ref(fig:thematicMaps_keyword_author)). For this reason I make inference on only the ISI-supplied keyword cluster analysis. 
 
-```{r thematicMaps_keyword_author, eval=FALSE,echo=FALSE, fig.cap="", out.width="80%"}
+```{r thematicMaps-keyword-author, eval=FALSE,echo=FALSE, fig.cap="", out.width="80%"}
 ## Currently these are not being run nor called from file.
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps_keywords_nVaries_author.png"))
 ```
 
-```{r thematicMaps_keyword_isi, eval=FALSE,echo=FALSE, fig.cap="T", out.width="80%"}
+```{r thematicMaps-keyword-isi, eval=FALSE,echo=FALSE, fig.cap="T", out.width="80%"}
 ## Currently these are not being run nor called from file.
 knitr::include_graphics(here::here("chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps_keywords_nVaries_isi.png"))
 ```

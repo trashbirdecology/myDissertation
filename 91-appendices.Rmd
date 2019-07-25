@@ -1,5 +1,9 @@
 # (APPENDIX) Appendix {-} 
 <!-- this first appendix line 1 starts the appendix secioning and should be called prior to the references -->
+```{r}
+knitr::opts_chunk$set(eval=FALSE)
+```
+
 # bbsAssistant: an R package for Download and Munging Data and Information from the North American Breeding Bird Survey {-#bbsAssistant}
 *[Under review at the Journal for Open Source Software](https://github.com/openjournals/joss-papers/tree/joss.01550/joss.01550). JLB is the creator and maintainer of the package. G. Palomo-Mu\~{n}oz and Lyndsie Wszola are co-authors. tentative doi: 10.21105.joss.01550*
 
@@ -42,14 +46,17 @@ regions <- get_regions()
 ```
 
 Let's restrict our data download to **Florida** data:
-```{r, echo=TRUE, eva=FALSE}
-regionFileName <- regions$zipFileName %>% na.omit()
-(regionFileName.use <- regionFileName[which(str_detect(regionFileName, "Flori")==TRUE)])
+```{r, echo=TRUE, eval=FALSE}
+regionFileName.use <- "Florida.zip"
+
+if(!exists("regionFileName.use")){
+  regionFileName <- regions$zipFileName %>% na.omit()
+  (regionFileName.use <- regionFileName[which(str_detect(regionFileName, "Flori")==TRUE)])
+}
 ```
 
 Once we have one or more region filenames, we can use function `get_bbsData` to download the .zip file to a temporary folder (unless otherwise specified), and *import* the temp file to R object. The R object, flBBS, contains the raw BBS count data.
 ```{r, echo=TRUE}
-regionFileName.use <- "Florida.zip"
 flBBS <- get_bbsData(file=regionFileName.use)
 ```
 
@@ -249,8 +256,8 @@ This package will calculate a various regime detection metrics that have been us
 1. Autocorrelation lag-1 (using `stats::acf`)  
 
 ### Example analysis
-```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
-knitr::opts_chunk$set(echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, out.width = "85%")
+```{r, echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo=FALSE, eval=FALSE, message=FALSE, warning=FALSE, out.width = "85%")
 
 library(regimeDetectionMeasures)
 
@@ -318,7 +325,7 @@ This vignette runs through the capabilites of the bbsRDM package, which relies o
 knitr::opts_chunk$set(
   collapse = TRUE,
   # comment = "#>",
-  eval=TRUE, echo=TRUE,
+  eval=FALSE, echo=TRUE,
   cache = T, warning=FALSE, message=FALSE
 )
 ```
@@ -369,7 +376,7 @@ dir.create(resultsDirDIST)
 
 ### Download the BBS data and save to file locally
 If necessary, download all the state data. This takes 10-15 minutes, so only run if you have not recently downloaded the BBS data or are missing data. 
-```{r bbsrdm_getBBSdata, echo=TRUE}
+```{r bbsrdm_getBBSdata, echo=TRUE, eval=FALSE}
 # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
 regions <- GetRegions()
 
@@ -429,7 +436,7 @@ rm(cs)
 
 See if the results are already saved to file. This will save us some computational time when knitting the document. Otherwise, will take about a minute to calculate, depending on the size of birdsData
 
-```{r bbsrdm_import.ind, echo=FALSE, eval=TRUE}
+```{r bbsrdm_import.ind, echo=FALSE, eval=FALSE}
 tempResultsDir <- here::here("/tempFiles_bbsRDM/")
 dir.create(tempResultsDir)
 fns <- list.files(tempResultsDir)
@@ -536,7 +543,7 @@ years.use  <- years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort(
 ### Conduct analysis
 This section will loop through `years.use` and `dir.use`, running each BBS route (temooral analysis) or spatial transect by year (spatial analysis) at a time. Results are saved in directories created in \@ref(#createDirs)
 
-```{r bbsrdm_calcMetrics, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
+```{r bbsrdm_calcMetrics, echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
 # **Please note: depending on the # of years and spatial transects, this could take a while!**
 if(import.ind==FALSE) for (j in 1:length(dir.use)) {
     # For east-west analysis
