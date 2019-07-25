@@ -22,6 +22,8 @@ library(dplyr)
 library(tidyverse)
 ```
 ### Downloading the BBS data from USGS FTP 
+This section reviews functionality for downloading and writing to file the BBS data from the FTP server.
+
 #### Define and/or create local directories
 This function will create, if it does not already exist, folder **./bbsData/** within which to locally store BBS data and results. 
 **NOTE**: If the directory exists, it will not overwrite files. If the bbs data already exists inside bbsDir, then we will create a logical to NOT download the data (see below). If you wish to download more, or overwrite existing data, please specify downloadBBSData=TRUE or remove .zip files from **/bbsData/**.
@@ -34,19 +36,20 @@ dir.create(bbsDir)
 #### Retrieve and import BBS data 
 
 If necessary, download all or some of the BBS state-level data. Note: Downloading all the data to file takes 10-15 minutes, so only run if you have not recently downloaded the BBS data.  First, let's retrieve the regions of data that are available. The function `get_regions` retrieves the .zip filenames of all U.S. states and Canadian provinces, including their reference numbers and region codes.
-```{r, echo=TRUE, waring=FALSE, message=FALSE}
+```{r, echo=TRUE, waring=FALSE, message=FALSE, eval=FALSE}
 # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
 regions <- get_regions()
 ```
 
 Let's restrict our data download to **Florida** data:
-```{r, echo=TRUE}
+```{r, echo=TRUE, eva=FALSE}
 regionFileName <- regions$zipFileName %>% na.omit()
 (regionFileName.use <- regionFileName[which(str_detect(regionFileName, "Flori")==TRUE)])
 ```
 
 Once we have one or more region filenames, we can use function `get_bbsData` to download the .zip file to a temporary folder (unless otherwise specified), and *import* the temp file to R object. The R object, flBBS, contains the raw BBS count data.
 ```{r, echo=TRUE}
+regionFileName.use <- "Florida.zip"
 flBBS <- get_bbsData(file=regionFileName.use)
 ```
 
@@ -217,11 +220,9 @@ Finally, copy the URL address for the page including the results and credibility
 
 For functions and descriptions please see the [manual](github.com/bbsAssistant//bbsAssistant_0.0.0.9000.pdf). 
 
-
 ## Acknowledgements
 
 We thank the participatory scientists who collect data annually for the North American Breeding Bird Survey, and the Patuxent Wildlife Research Center for making these data publicly and easily accessible. Some functions in this package were adapted from the [rBBS](github.com/oharar/rbbs) package and are mentioned in function source code as appicable.
-
 
 
 # regimeDetectionMeasures: an R package for calculating various regime detection measures {-#regimeDetectionMeasures}  
