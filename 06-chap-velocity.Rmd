@@ -584,9 +584,9 @@ To gather baseline information on the use of velocity in empirical systems data,
 # ggsave(p, filename=paste0(figDir,"paleoVelocity.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoVelocity.png"))
 ```
-\newpage
 
-```{r paleoRegime1and3, echo=FALSE, warning=FALSE, message=FALSE, cache = TRUE, out.width="85%", fig.cap ="Inter-regime (regimes A and B) trends inthe velocity signal ($V$) indicate the fluctuating decadal and centurial abiotic conditions discussed in @spanbauer_prolonged_2014."}
+```{r paleoRegime1and3, echo=FALSE, warning=FALSE, message=FALSE, cache = TRUE, out.width="85%", fig.cap ="Inter-regime (regimes A and B) trends in the velocity signal ($V$) identify  the fluctuating decadal and centurial abiotic conditions discussed in  Spanbauer et al. (2014)."}
+# TAG=TAG
 # p1=ggplot(plotData %>% filter(sortVar < -5000, key=="v"), aes(x = sortVar*-1, y = value))+
 #   geom_line()+
 #   ylab("")+
