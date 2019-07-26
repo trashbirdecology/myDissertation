@@ -28,7 +28,7 @@ lof: true
 space_between_paragraphs: true
 link-citations: yes
 nocite: | 
-  @vincent1998technique, @kleinen2003potential, @held2004detection, @carpenter2008leading, @ives2003estimating, @livina2007modified, @biggs2009turning, @andersen_ecological_2009, , @carpenter2006rising, @guttal2008changing, @biggs2009turning, @seekell2011conditional, @carpenterBrock2011early, @ives2012detecting, @carpenter2011early, @ives2012detecting, @carpenter2010early, @ducre2003comparison, @jo2016bayesian, @mauget2003multidecadal, @karl1987approach, @pettitt1979non, @goossens1987recognize, @yonetani1993detection, @alexandersson1986homogeneity, @solow1987testing, @oerlemans1978objective, @buishand1982some, @francis1994decadal, @buishand1982some, @moustakides2009numerical, @brock_variance_2006, @cazelles2008wavelet, @karl1987approach, @rodionov_sequential_2005, @ebbesmeyer19911976, @fath_regime_2003, @solow_test_2005,  @lanzante1996resistant, @gal2010novel,  @tong1990nonlinear, @see gal2010novel,  @he2008new, @pawlowski_identification_2008, @rodionov2004sequential, @parparov2017quantifying, @parparov2015quantifying, @lade2012early, @baker2010new, @qi2016resilience, @pawlowski_identification_2008, @mantua_methods_2004, @wang2011application, @yin2017methods, @easterling1995new, @groger2011analyses, @peterson1998ecological, @zurlini2014early
+  @vincent1998technique, @kleinen2003potential, @held2004detection, @carpenter2008leading, @ives2003estimating, @livina2007modified, @biggs2009turning, @andersen_ecological_2009, , @carpenter2006rising, @guttal2008changing, @biggs2009turning, @seekell2011conditional, @carpenterBrock2011early, @ives2012detecting, @carpenter2011early, @ives2012detecting, @carpenter2010early, @ducre2003comparison, @jo2016bayesian, @mauget2003multidecadal, @karl1987approach, @pettitt1979non, @goossens1987recognize, @yonetani1993detection, @alexandersson1986homogeneity, @solow1987testing, @oerlemans1978objective, @buishand1982some, @francis1994decadal, @buishand1982some, @moustakides2009numerical, @brock_variance_2006, @cazelles2008wavelet, @karl1987approach, @rodionov_sequential_2005, @ebbesmeyer19911976, @fath_regime_2003, @solow_test_2005,  @lanzante1996resistant, @gal2010novel,  @tong1990nonlinear, @see gal2010novel,  @he2008new, @pawlowski_identification_2008, @rodionov2004sequential, @parparov2017quantifying, @parparov2015quantifying, @lade2012early, @baker2010new, @qi2016resilience, @pawlowski_identification_2008, @mantua_methods_2004, @wang2011application, @yin2017methods, @easterling1995new, @groger2011analyses, @peterson1998ecological, @zurlini2014early, @tidyverse, @bbsRDM, @regimeDetectionMeasures, @tvdiff, @pander, @ggplot2, @ggthemes, @gapminder, @devtools, @here, @dplyr, @kableExtra, @sp, @raster, @sp2, @bookdown, @rmarkdown, @webshot, @revtools, @revtools2, @base, @maps, @kedd, @gridExtra, @caTools, @deSolve, @DiagrammeR
 ---
 ```{r installLoadPkgs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 ## IS THIS A QUICKRUN???? FALSE if knitting a final doc, true will not knit all simulations becaues time expensive # i think i disabled this, though?
@@ -109,7 +109,7 @@ knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/",
                       message = FALSE, warning=FALSE,
                       eval=TRUE, echo=FALSE, error=FALSE,
                       # include=FALSE, 
-                      fig.pos = 'h',
+                      fig.pos = 'bth',
                       fig.align='center', out.width = "85%")
 ```
 

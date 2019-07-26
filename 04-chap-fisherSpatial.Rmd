@@ -1,6 +1,6 @@
 # An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States {#fisherSpatial}
 ```{r cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
-knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align="center",out.width = "85%")
+# knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/", message = FALSE, warning=FALSE, eval=TRUE, echo=FALSE, error=FALSE, fig.align="center",out.width = "85%")
 ## Only run line six this if you need to calculate more metrics, or fix them.
 # you need to go into this (line 158) and specify parameters for calculating metrics.
 # source('/chapterFiles/fisherSpatial/04-chap-fisherSpatial_analysis.R')

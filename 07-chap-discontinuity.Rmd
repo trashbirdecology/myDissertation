@@ -1,5 +1,5 @@
 # Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions {#discontinuity}
-```{r ch7setup, echo=FALSE, message=FALSE, warning=FALSE, fig.align="c", fig.pos="h", out.width="85%"}
+```{r ch7setup, echo=FALSE, message=FALSE, warning=FALSE, }
 figDir <- here::here("chapterFiles/discontinuityAnalysis/figsCalledInDiss/")
 tabDir <- here::here("chapterFiles/discontinuityAnalysis/tabsCalledInDiss/")
 
@@ -9,7 +9,7 @@ getTab <- function(fn) readRDS(paste0(tabDir,"/" ,fn))#,".RDS"))
 library(tidyverse)
 library(kableExtra)
 
-knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message=FALSE,  out.width="85%")
+knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message=FALSE)
 ```
 ## Introduction
 Animal body mass distributions have been used to identify scaling structures of ecological communities [@allen2006discontinuities; @allen2002cross; @holling1992cross]. Using statistical methods to identify gaps, or discontinuities, in body mass distributions, some patterns are observed within and across taxonomic groups and biomes. Given the ubiquity of discontinuities identified in body mass distributions of fauna and social systems [@allen2006discontinuities], the ecological significance of these patterns may prove useful in understanding ecosystem structure and functioning [@angeler2016management]. Various hypotheses are posited as  drivers of the observed discontinuities in animal body mass distributions, including those related to resource use (the Energetic and Textural Discontinuity hypotheses), community interactions, biogeography, and evolution/phylogenetics  [@allen2006discontinuities; @holling1992cross; @blackburn1994animal; @allen2006patterns].
