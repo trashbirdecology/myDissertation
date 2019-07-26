@@ -212,9 +212,9 @@
 \def\department#1{\gdef \@department{#1}}
 \def\@department{\@latex@warning@no@line{No \noexpand\department given}}
 \def\thedivisionof#1{\gdef \@thedivisionof{#1}}
-\def\@thedivisionof{The Division of}
+\def\@thedivisionof{}
 \def\approvedforthe#1{\gdef \@approvedforthe{#1}}
-\def\@approvedforthe{Division}
+\def\@approvedforthe{}
 \def\advisor#1{\gdef \@advisor{#1}}
 \def\@advisor{\@latex@warning@no@line{No \noexpand\advisor given}}
 \def\altadvisor#1{\gdef \@altadvisor{#1} \@altadvisortrue}
@@ -313,9 +313,9 @@
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
-    A Thesis \\
+    A Dissertation \\
     Presented to \\
-    \@thedivisionof \ \@division \\
+    % \@thedivisionof \ \@division \\
     \@institution
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
@@ -345,7 +345,7 @@
   \null\vfil		% just below center of page
   \par\vskip 6cm	% below center, not center
   \centerline{\copy0}	% approved
-  \centerline{(\@department)} %major
+  \centerline{\@department} %major
   \vskip 1cm		%space to sign
   \centerline{\makebox[\wd0][c]{\hrulefill}
 	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\hrulefill} \fi}

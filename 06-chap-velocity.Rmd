@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes {#velocity}
 ```{r setupChVelocity, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # # Chunk defaults
@@ -39,13 +44,13 @@ ggplot()+
 <!--  "There is a statistical approach to infer whether or not alternative attractors are involved in a shift [42], based on the principle that all attractor shifts imply a phase in that the system is speeding up as it is diverging from a repeller (see Box 2). from @Schefferand carpetner 2003"  -->
 When, how and why ecological systems exhibit abrupt changes is a hallmark of modern ecological research, and changes that are unexpected and undesirable can have undesirable downstream consequences on, e.g., ecosystem services, biodiversity, and human well-being. Quantitatively detecting and forecasting these changes, however, has yet to be accomplished for most ecological systems [Chapter \@ref(rdmReview); @ratajczak2018abrupt]. Moving from abrupt change methods requiring highly descriptive models and *a priori* assumptions of the state variable responses to drivers to methods requiring few, if any, *a priori* assumptions or knowledge is increasingly necessary for forecasting and managing complex ecosystems under an era of intensifying anthropogenic pressures.
 
-```{r lorenz3D, eval=TRUE, echo=FALSE,  fig.cap="An example solution of the Lorenz ('butterfly') represented in 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized.", out.width="75%"}
+```{r lorenz3D, eval=TRUE, echo=FALSE,  fig.cap="An example solution of the Lorenz ('butterfly') represented in 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized.", out.width="85%"}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/lorenz3D.png"))
 ```
 
 A few broad classes of quantitative approaches exist for quantitatively identifying abrupt changes in complex ecosystems. First, one can use simple mathematical models to describe the system and statistically test for discontinuities in the observed variables [e.g., in coral reefs, @mumby2013evidence]. Although mathematical representations are ideal, very rarely are  ecological systems easily and well-described by them and often fail to meet the assumptions of the model. Second, we can track changes in the mean or variance of state variables to identify departures from the norm [e.g., early-warning indicators such as variance and variance index, @brock_variance_2006]. Much like the mathematical modelling approach, these early-warning indicators have shown to be useful in some simple driver-response systems [e.g., lake eutrophication @carpenter_leading_2008], but are unreliable in other empirical systems [e.g., @perretti2012regime;@dutta2018robustness;@dakos2012robustness]. The last type of approach is the model-free approach [@dakos2012methods; Chapter \@ref(rdmReview)]. This group of abrupt change indicators can incorporate multiple state variables, and ideally requires no *a priori* assumptions about the expected driver-response relationships, or even about the drivers at all. It is this class of abrupt change indicators to that this chapter contributes. 
 
-```{r lorenz3Dts, eval=TRUE, echo=FALSE,    out.width="75%", fig.cap="An example solution of the Lorenz ('butterfly') represented in individual system components."}
+```{r lorenz3Dts, eval=TRUE, echo=FALSE, out.width="85%", fig.cap="An example solution of the Lorenz ('butterfly') represented in individual system components."}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries.png"))
 ```
 
@@ -70,7 +75,7 @@ I first describe the steps for calculating velocity by constructing a simple, tw
 
 ## Steps for Calculating velocity, $V$
 In this section, I first demonstrate the calculations of velocity using a very simple, two-variable toy system. The first system exhibits a rapid shift at a single point in time, where mean and variance are constant before and after the shift point. I demonstrate the signals achieved with and the variability within the $V$ calculation by exploring a number of scenarios of this simple system. For the examples in this section, observations of $x_i$ are randomly drawn from distribution $x_i\sim Normal(\mu, \sigma)$, where $\mu$ is the mean and $\sigma$ is the standard deviation. 
-```{r sysEx, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,   out.width="75%", fig.cap="The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\\sigma = 5$."}
+```{r sysEx, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,   out.width="85%", fig.cap="The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\\sigma = 5$."}
 x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 t = 1:length(x_1)
@@ -111,7 +116,7 @@ p.sysEx
 ```
 
 Consider a system (Figure \@ref(fig:sysEx)) with $N$ state variables ($x_i$), with observations taken at time points, $t$. System velocity is calculated as the cumulative sum over time period $t_0$ to $t_j$,  as the total change in all state variables, {$x_1 ...x_N$}, between two adjacent time points, e.g., $t_j$ and $t_{j+1}$, denoted $t_{j,j+1}$. I use this simple, two-variable system to demonstrate how *velocity* is calculated. The system comprises variables $x_1$ and $x_2$, with observations occurring at each time point $t = {1,2,3,...100}$. First, we calculate the change in each state variable, $x_i$, between two adjacent points in time, $t_j$ and $t_{j+1}$, such that the difference, $x_{t_{j+1}} - x_{t_j}$ is assigned to the latter time point, $t_{j+1}$. For example, in our toy data, we use observations at time points $t = 1$ & $t=2$ (Figure \@ref(fig:sysEx2)). For all examples in this chapter, the state variables $x_1$ and $x_2$ were drawn from a normal distribution (using function *rnorm*), with parameters $\bar{x}_i$ (mean) and $\sigma_i$ (sd) for 100 time steps, $t$. Under each scenario I induce a regime shift at time  $t=50$, where  either or both a change in  $\bar{x}_i$ or $\sigma_i$ occurs. 
-```{r sysEx2,   cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="75%", fig.cap="Data used to calculate velocity at the first two time points, $t_1$ and $t_2$."}
+```{r sysEx2,   cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="85%", fig.cap="Data used to calculate velocity at the first two time points, $t_1$ and $t_2$."}
 p.sysEx +
   geom_point(size=4, show.legend = FALSE)+
   xlim(c(1,2))+ylim(c(20,50))+
@@ -141,7 +146,7 @@ s_T = \Sigma_{t=0}^{T}{\Delta s}
   (\#eq:s)
 \end{equation}
 
-```{r sysExs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="75%", fig.cap = "Distance traveled, $s$, for the 2-species toy system."}
+```{r sysExs, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="85%", fig.cap = "Distance traveled, $s$, for the 2-species toy system."}
 temp <- df %>%
   group_by(variable) %>% 
   arrange(t) %>% 
@@ -172,7 +177,7 @@ Finally, we calculate the **system velocity**, $V$ (or $\frac{\Delta s}{\Delta t
 (\#eq:velocity)
 \end{equation}
 
-```{r velocSysEx1,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="75%", fig.cap = "System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\\bar{x}_{pre}=25$, $\\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\\sigma =5$."}
+```{r velocSysEx1,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="85%", fig.cap = "System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\\bar{x}_{pre}=25$, $\\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\\sigma =5$."}
 # x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 # x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 # t = 1:length(x_1)
@@ -212,7 +217,7 @@ Simulations consisted of 10,000 random samples drawn from the normal distributio
 
 #### Varying post-shift mean
 I examined the influence of the magnitude of change in $x_1$ in the period before (pre; $t <50$) and after (post; $t \geq 50$) by varying the mean parameter, $\bar{x}_1$ in the set $W=\{25,30,35,...100 \}$ (Figures \@ref(fig:simVplot1) and \@ref(fig:simVplot2)). As expected, the magnitude of $V$ increases linearly as the total difference between $\bar{x}_{1_{pre}}$ and $\bar{x}_{1_{post}}$ increases (Figure \@ref(fig:simVplot2)). This is not surprising because  $s$ increases as the total change in abundance across the entire system increases [Equation \@ref(eq:s)]. Consequently the potential  of $V$ also increases with total state variable values (e.g. abundance, biomass). The linear relationship among $V$ and total state variable values indicates that while $V$ is capable of identifying large shifts in data structure, it may fail to identify subtle changes (i.e. lower effect sizes).
-```{r simVplot1, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "Velocity ($V$) generally increases as the total change in the mean value of $\\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\\sigma = 5$, $\\bar{x}_1 = 25$ when $t<50$,  $\\bar{x}_2=50$ when $t\\geq50$, $\\bar{x}_1 = 25$ when $t <50$.", out.width="75%"}
+```{r simVplot1, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "Velocity ($V$) generally increases as the total change in the mean value of $\\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\\sigma = 5$, $\\bar{x}_1 = 25$ when $t<50$,  $\\bar{x}_2=50$ when $t\\geq50$, $\\bar{x}_1 = 25$ when $t <50$.", out.width="85%"}
 # p<- ggplot(data = dist.sim %>% filter(sim.num==1, t==51), 
 #        aes(x = as.integer(mean.sim), y = dsdt))+
 #   geom_line()+
@@ -223,7 +228,7 @@ I examined the influence of the magnitude of change in $x_1$ in the period befor
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVplot1.png"))
 ```
 
-```{r simVplot2, cache = TRUE, echo=FALSE, warning=FALSE, out.width="75%", eval=TRUE, message=FALSE, fig.cap = "Change in velocity ($V$) as the total change in the mean value of $\\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\\sigma = 5$, $\\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\\bar{x}_2 = 50$ when $t \\geq 50$, $\\bar{x}_1 = 25$ when $t<50$."}
+```{r simVplot2, cache = TRUE, echo=FALSE, warning=FALSE, out.width="85%", eval=TRUE, message=FALSE, fig.cap = "Change in velocity ($V$) as the total change in the mean value of $\\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\\sigma = 5$, $\\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\\bar{x}_2 = 50$ when $t \\geq 50$, $\\bar{x}_1 = 25$ when $t<50$."}
 # dist.sim.reduced <- dist.sim %>% filter(t==51) %>% 
 #          group_by(mean.sim) %>% 
 #          mutate(dsdt.sim.mean  = mean(dsdt), 
@@ -277,7 +282,7 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVp
 
 #### Varying post-shift variance
 In the previous example, variance was constant before and after the abrupt shift at $t=50$. To determine whether the signal emitted by $V$ at the regime shift is lost or dampened when increasing variance I varied the variance parameter, $\sigma_1$ along the set $W = \{1,2,3,...25 \}$. The variance for both state variables ($x_1, x_2$) prior to the regime shift, $\sigma_{x_1}$ and $\sigma_{x_2}$, was $5$, with the change occurring in $\sigma_{x1post}$.
-```{r simVarPlot, echo=FALSE,  eval=TRUE,   out.width="75%", fig.cap = "High variance of velocity ($V$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\\sigma_1$ at $t=50$."}
+```{r simVarPlot, echo=FALSE,  eval=TRUE,   out.width="85%", fig.cap = "High variance of velocity ($V$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\\sigma_1$ at $t=50$."}
 # p<- ggplot(data = dist.sim2 %>% filter(sim.num==1, t==51), 
 #        aes(x = as.integer(var.sim), y = dsdt))+
 #   geom_line()+
@@ -290,7 +295,7 @@ In the previous example, variance was constant before and after the abrupt shift
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVarPlot.png"))
 ```
 
-```{r simVarPlot2,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,   out.width="75%", fig.cap = "The variance around the average ($\\pm2$ SD) velocity ($V$) increases as the variance of $\\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\\bar{x}_{1_{pre}} = 25$, $\\bar{x}_{1_{post}} = 100$, $\\bar{x}_{2_{pre}} = 25$, $\\bar{x}_{2_{post}} = 50$, $\\sigma_{1_{pre}} = 5$, $\\sigma_{2_{pre,post}} = 5$"}
+```{r simVarPlot2,  cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,   out.width="85%", fig.cap = "The variance around the average ($\\pm2$ SD) velocity ($V$) increases as the variance of $\\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\\bar{x}_{1_{pre}} = 25$, $\\bar{x}_{1_{post}} = 100$, $\\bar{x}_{2_{pre}} = 25$, $\\bar{x}_{2_{post}} = 50$, $\\sigma_{1_{pre}} = 5$, $\\sigma_{2_{pre,post}} = 5$"}
 # p<- ggplot(data = dist.sim.reduced2)+
 #  geom_ribbon(aes(x = var.sim, ymin = lower , ymax = upper), fill = "grey70") +
 #     geom_line(aes(x = var.sim,  y = dsdt.sim.mean))+
@@ -306,7 +311,7 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVa
 
 #### Smoothing the data prior to calculating *v*
 To determine whether process or observational noise influences the signal in $V$, I used linear approximation techniques to smooth the data prior to calculating the derivatives. I used the function `stats::approx` that linearly interpolates the original data, $x_1$ and $x_2$, to regularly-spaced time points along  the set $t=\{1:100\}$. I then calculated $V$ as described in (Eqs. \@ref(eq:diffX) through \@ref(eq:velocity)). Increasing the number of points ($t$) at that the original state variables were smoothed (i.e., $t$) did not influence the amount of noise surrounding the signal of the regime shift (at $t=50$) in system velocity, $V$ (Figure \@ref(fig:simVarPlot2)).
-```{r smoothV, eval=FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="75%", fig.cap = "The noise in system velocity ($V$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed."}
+```{r smoothV, eval=FALSE, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,  out.width="85%", fig.cap = "The noise in system velocity ($V$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed."}
 # smoothed <- approx_dist.sim(t.mult = 1)
 # p1<- dsdtPlot(df = smoothed[[1]],dist = smoothed[[2]], div = 1/1.4)+
 #   ggtitle("no smoothing")+theme(legend.position="none")
@@ -384,7 +389,7 @@ Data were generated from a normal distribution and an abrupt shift in the mean w
 \end{equation}
 
 where $\mu_{x_i}(t)$ is the mean value of $x_i$ at time $t$ and *pre* and *post* are the periods before and after the abrupt shift ($t_{shift}$), respectively. The parameter $\alpha$ in Equation \@ref(eq:true) controls for the rate of change at the point of the abrupt change, $t_{shift}$, where higher values of $\alpha$ correspond with a higher slope at $t_{shift}$. I simulated a single iteration (data set) for various conditions of changing $\mu_{xi}$ and  $\sigma_{xi}$ (see  Table \@ref(tab:sysParams)), for two state variables $x_1\ \&\ x_2$ at intervals of $t=1$ along the temporal interval $t=[1,100]$.
-```{r trueObsEx, echo=FALSE, warning=FALSE, message=FALSE, cache = TRUE,   out.width="75%", fig.cap="An example of the data generated by the true process model. In this example the mean values ($\\mu_{xi}$), but not the percent standard deviation ($\\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\\alpha$ (top: $\\alpha=0.25$, bottom:$\\alpha=1.00$)."}
+```{r trueObsEx, echo=FALSE, warning=FALSE, message=FALSE, cache = TRUE,   out.width="85%", fig.cap="An example of the data generated by the true process model. In this example the mean values ($\\mu_{xi}$), but not the percent standard deviation ($\\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\\alpha$ (top: $\\alpha=0.25$, bottom:$\\alpha=1.00$)."}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat.png"))
 ```
@@ -408,44 +413,38 @@ where $\sigma_{xi}$ is the observed error around $\mu_{xi}$, and $\sigma_{Xi}$ i
 I simulated a single data set (using `r set.seed=12345` in Program R) by randomly drawing a single realisation (observed data) of the hyperbolic tangent process model with additive noise process [Equation \@ref(eq:observed)]. I then calculated the distance traveled, $s$, and the velocity of the distance traveled, $V$ (also referred to as $\frac{ds}{dt}$) using Equation \@ref(eq:velocity)---this approach (Equation \@ref(eq:velocity)) is a simple alternative to numerical integration techniques, requiring only simple algebraic techniques. This method is ideal for discrete time data, or where computational power would not suffice for numerical integration. When using the first differences method, however, $V$ will demonstrate high variability, depending on the amount of time between samples (i.e. as the intervals of $t-t+1$ increase). 
 
 I also calculated $V$ using a numerical integration method for non-smooth, noisy data, called total variation regularized differentiation [@chartrand2011numerical]. I used the R package `tvdiff` [@price2019tvdiff] to perform  numerically integrate the distance traveled, $s$. The regularized differentiation method in this package [function `tbdiff::tvRegDiff`; described fully in @chartrand2011numerical] provides a numerical solution for calculating non-noisy derivatives of noisy, non-smooth data. Using this smooth-derivative estimation technique may be an ideal supplement to the velocity method in cases where process and observational error generate noisy observational data. Although not possible in most ecological systems data, here we can compare the fit of the smooth-derivative to the derivative of the true process, allowing us to determine the usefulness of calculating a smooth-derivative. There are two tuning parameters required to be chosen by the analyst when implementing the total-variation regularized differentiation, each of that influence the amount of noise smoothed out in the resulting derivative: $\alpha$ and the number of iterations. I implemented this numerical differentiation over 1,000 iterations, and selected $\alpha$ by comparing the anti-differentiated distance traveled, $s$, to the true process values of $s$ (e.g., see Figure \@ref(fig:antiDiffComp)). For most conditions and smoothness I found the tuning parameter for `tvdiff` $\alpha=0.50$ provided a good fit of $s$ (Figure \@ref(fig:antiDiffComp)), however, when the hyperbolic tangent smoothing parameter, $\alpha$ was low (i.e. $\alpha_{tanh}=0.25$) higher values of $\alpha_{tvdiff}$ yielded more abrupt changes in the derivative. 
-```{r antiDiffComp, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,   out.width="75%", fig.cap="Antidifferentiated values ('observed') of the distance traveled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\\alpha$. Under most conditions $\\alpha \\ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\\alpha_{tanh}=1$) for the `tvdiff` $\\alpha=0.50$. Not pictured: the antidifferentiated values of $s$ (observed) is increasingly smoothed as $\\alpha$ increases."}
+```{r antiDiffComp, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,   out.width="85%", fig.cap="Antidifferentiated values ('observed') of the distance traveled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\\alpha$. Under most conditions $\\alpha \\ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\\alpha_{tanh}=1$) for the `tvdiff` $\\alpha=0.50$. Not pictured: the antidifferentiated values of $s$ (observed) is increasingly smoothed as $\\alpha$ increases."}
 knitr::include_graphics(here::here("/chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter.png"))
 ```
-\pagebreak[4]
-```{r antiDiffComp2, echo=FALSE, eval=FALSE, message=FALSE, warning=FALSE, out.width="33%"}
-# knitr::include_graphics(here::here("/chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-1tvdiffAlpha-1000iter.png"))
-```
-```{r antiDiffComp3, eval=FALSE, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE, out.width="33%"}
-# knitr::include_graphics(here::here("/chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-10tvdiffAlpha-1000iter.png"))
-```
-```{r mu1varpt25, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is low (0.25). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+\newpage
+```{r mu1varpt25, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is low (0.25). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-\pagebreak[4]
-```{r mu1varpt5, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+\newpage
+```{r mu1varpt5, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-\pagebreak[4]
+\newpage
 ```{r mu1varpt75, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-\pagebreak[4]
+\newpage
 ```{r mu1var1, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-\pagebreak[4]
+\newpage
 ```{r muBoth75, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is regained under smoooth transition ($\\alpha_{tanh}=0.75$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-\pagebreak[4]
-```{r varBoth, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+\newpage
+```{r varBoth, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-\pagebreak[4]
-```{r var1, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+\newpage
+```{r var1, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-\pagebreak[4]
+\newpage
 ```{r muBoth25, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is regained under smoooth transition ($\\alpha_{tanh}=0.25$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
@@ -459,15 +458,15 @@ When the hyperbolic tangent smooth transition function is less steep (Figure \@r
 Abrupt changes sometimes manifest first as a change in the variability, rather than the mean value, of the state variables. This condition manifests in the velocity signal when both variables experience a shift in relative variance (Figure \@ref(fig:varBoth)), however, velocity does not signal change when only one variable exhibits a shift in variance (Figure \@ref(fig:var1)). Again, given the total magnitude of change influences the distance traveled, $s$, and the derivative of s, $V$, it is not surprising that the velocity signal is greater around the transition point when both, compared to a single, state variable exhibits increased variability about the mean. In these scenarios I shifted the variability in the state variables $x_i$ from only $\sim 5\%$ to $\sim10\%$ (see Table \@ref(tab:sysParams))---this percent variability is low relative to most empirical observational ecological data sets. As such, I expect the velocity signal to be more pronounced when empirical systems undergo shifts in variance in at least one state variable.
 
 #### Smooth changes in the mean and variance
-Given the signals identified in the velocity when one or both state variables exhibits a shift in mean and/or variance, it is unsurprising that even under smooth transitions (when $\alpha_{tanh} = 0.25$), velocity manifests as a signal of change (Figure \@ref(fig:muVarBoth25)). This signal is most pronounced when the shift is abrupt (Figure \@ref(fig:muVarBoth1)).
-```{r muVarBoth25, echo=FALSE, warning=F, message=F, cache = T,  out.width="75%", fig.cap="The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\\alpha_{tanh}=0.25$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D)."}
+Given the signals identified in the velocity when one or both state variables exhibits a shift in mean and/or variance, it is unsurprising that even under smooth transitions (when $\alpha_{tanh} = 0.25$), velocity manifests as a signal of change (Figure \@ref(fig:muVarBoth25)). This signal is most pronounced when the shift is abrupt (Figure \@ref(fig:muVarBoth1)).  
+```{r muVarBoth25, echo=FALSE, warning=F, message=F, cache = T,  out.width="85%", fig.cap="The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\\alpha_{tanh}=0.25$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D)."}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-
-```{r muVarBoth1, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\\alpha_{tanh}=1.00$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D)."}
+\newpage
+```{r muVarBoth1, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\\alpha_{tanh}=1.00$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D)."}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
-
+\newpage
 ```{r tvDiffPaleoCalculate, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 library(tvdiff)
 library(tidyverse)
@@ -529,7 +528,8 @@ paleoEx <-
   # Collect in long form
   gather(key, value, -t, -dt)
 ```
-```{r paleoTurnover, echo=FALSE, warning=F, message=F, cache = T, out.width="75%", fig.cap="Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations."}
+\newpage
+```{r paleoTurnover, echo=FALSE, warning=F, message=F, cache = T, out.width="85%", fig.cap="Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations."}
 # topSpecies <-
 #   paleo %>%
 #   group_by(variable) %>%
@@ -560,8 +560,9 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleo
 ```
 
 ## Velocity performance under empirical transitions: paleolithic freshwater diatom community
-To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \@ref(resampling). Briefly, the paleodiatom community comprises `r length(unique(paleo$variable))` time series over a period of approximately `r abs(max(paleo$sortVar)-min(paleo$sortVar)) %>% round(0)` years (Figure \@ref(fig:paleoTurnover)). As elaborated in @spanbauer_prolonged_2014, the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundances over time, as there are extreme levels of species turnover at multiple points in the data (Figure \@ref(fig:paleoTurnover)). Using Fisher Information and climatological records, @spanbauer_prolonged_2014 suggest that regime shifts in this system at approximately 1,300 years before present [where years before present is equal to year 1950; @spanbauer_prolonged_2014].
-```{r paleoVelocity,  echo=FALSE, warning=F, message=F, cache = T,    out.width="75%", fig.cap ="Velocity $V$ and distance traveled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $V$."}
+To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \@ref(resampling). Briefly, the paleodiatom community comprises `r length(unique(paleo$variable))` time series over a period of approximately `r abs(max(paleo$sortVar)-min(paleo$sortVar)) %>% round(0)` years (Figure \@ref(fig:paleoTurnover)). As elaborated in @spanbauer_prolonged_2014, the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundances over time, as there are extreme levels of species turnover at multiple points in the data (Figure \@ref(fig:paleoTurnover)). Using Fisher Information and climatological records, @spanbauer_prolonged_2014 suggest that regime shifts in this system at approximately 1,300 years before present [where years before present is equal to year 1950; @spanbauer_prolonged_2014].  
+
+```{r paleoVelocity,  echo=FALSE, warning=F, message=F, cache = T,    out.width="85%", fig.cap ="Velocity $V$ and distance traveled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $V$."}
 # plotData <- regimeDetectionMeasures::calculate_distanceTravelled(paleo) %>% na.omit(d2sdt2) %>% 
 #   rename(acceleration= d2sdt2, 
 #          v = dsdt) %>% 
@@ -583,8 +584,9 @@ To gather baseline information on the use of velocity in empirical systems data,
 # ggsave(p, filename=paste0(figDir,"paleoVelocity.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoVelocity.png"))
 ```
-\pagebreak[4]
-```{r paleoRegime1and3,  echo=FALSE, warning=F, message=F, cache = T,    out.width="75%", fig.cap ="Inter-regime (regimes A and B) trends inthe velocity signal ($V$) indicate the fluctuating decadal and centurial abiotic conditions discussed in @spanbauer_prolonged_2014."}
+\newpage
+
+```{r paleoRegime1and3, echo=FALSE, warning=FALSE, message=FALSE, cache = TRUE, out.width="85%", fig.cap ="Inter-regime (regimes A and B) trends inthe velocity signal ($V$) indicate the fluctuating decadal and centurial abiotic conditions discussed in @spanbauer_prolonged_2014."}
 # p1=ggplot(plotData %>% filter(sortVar < -5000, key=="v"), aes(x = sortVar*-1, y = value))+
 #   geom_line()+
 #   ylab("")+
@@ -611,14 +613,14 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleo
 # ggsave(p, filename=paste0(figDir,"paleoRegime1and3.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3.png"))
 ```
-\pagebreak[4]
+
 @spanbauer_prolonged_2014 used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at ~1,300 years before present. Using the methods outlined above, I calculated the distance traveled ($s$) and velocity ($V$; Figure \@ref(fig:paleoV)). The results of $V$ and $s$ (Figure \@ref(fig:paleoVelocity)) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \@ref(fig:paleoTurnover), and also with the regime shift identified by @spanbauer_prolonged_2014. However, two primary results can be made from the metrics  $V$ and $s$ that are not obvious nor identified numerically in the results of @spanbauer_prolonged_2014: 
 
 1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950       
 1. The periods before the first and after the second large shifts appear oscillatory (Figure \@ref(fig:paleoRegime1and3)).
 
-To determine the effect of dampening the noise in the data on the velocity signal, I interpolated the each time series using function `stats::approx` to 700 time points. Next, I calculated the distance traveled of the entire system, $s$. Finally, I obtained the derivative of $s$ by using a regularized differentiation (using function `tvdiff::TVRegDiffR`; parameters were $iter = 2000$, scale = small, $ep = 1 x 10^-6$, and $\alpha = 100$). This method of regularized differentiation is an ideal approach to smoothing $s$ because it assumes the data are non-smooth and incorporates finite differencing. The total variation regularized differentiation is described in @chartrand2011numerical, @price2019tvdiff, and in the previous first-level section.
-```{r paleoObsPred, eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE,   out.width="75%", fig.cap = "The regularized differentiation of $s$ was best fit using $\\alpha = 100$. Higher overlap of $s$ and pred indicates a good fit of the regularized differentiated metric to the non-smoothed metric, $s$."}
+To determine the effect of dampening the noise in the data on the velocity signal, I interpolated the each time series using function `stats::approx` to 700 time points. Next, I calculated the distance traveled of the entire system, $s$. Finally, I obtained the derivative of $s$ by using a regularized differentiation (using function `tvdiff::TVRegDiffR`; parameters were $iter = 2000$, scale = small, $ep = 1 x 10^-6$, and $\alpha = 100$). This method of regularized differentiation is an ideal approach to smoothing $s$ because it assumes the data are non-smooth and incorporates finite differencing. The total variation regularized differentiation is described in @chartrand2011numerical, @price2019tvdiff, and in the previous first-level section.  
+```{r paleoObsPred, eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE,  message=FALSE,   out.width="85%", fig.cap = "The regularized differentiation of $s$ was best fit using $\\alpha = 100$. Higher overlap of $s$ and pred indicates a good fit of the regularized differentiated metric to the non-smoothed metric, $s$."}
 # Plot observed vs predicted
 # p=ggplot(paleoEx %>% 
 #          filter(key %in% c("s", "pred")), 
@@ -630,8 +632,8 @@ To determine the effect of dampening the noise in the data on the velocity signa
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoObsPred.png"))
 ```
 
-The smoothed velocity (Figure \@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (Figure \@ref(fig:paleoV)) to the non-smoothed velocity (Figure \@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, however, it  more clearly demonstrates potential inter-regime dynamics (e.g., between 7,000 and 4,800 years before present), that were not identified in previous study of this system [@spanbauer_prolonged_2014].
-```{r paleoV,  eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, message=FALSE, out.width="75%", fig.cap="The velocity metric  ($V$) signals potential periodicities in the paleo diatom time series data when the distance traveled metric, $s$, is smoothed using regularized differentiation methods (see Price and Burnett 2019)."}
+The smoothed velocity (Figure \@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (Figure \@ref(fig:paleoV)) to the non-smoothed velocity (Figure \@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, however, it  more clearly demonstrates potential inter-regime dynamics (e.g., between 7,000 and 4,800 years before present), that were not identified in previous study of this system [@spanbauer_prolonged_2014].  
+```{r paleoV,  eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, message=FALSE, out.width="85%", fig.cap="The velocity metric  ($V$) signals potential periodicities in the paleo diatom time series data when the distance traveled metric, $s$, is smoothed using regularized differentiation methods (see Price and Burnett 2019)."}
 # Plot derivative
 # p=ggplot(paleoEx %>% 
 #          filter(key == "dsdt"), 
@@ -670,7 +672,7 @@ dsdtPlot(dist=dist, df=df, div = 1)+
   expression(paste("change in mean & variance of x"[1], "and  x"[2]))
 )
 ```
-
+\newpage
 ```{r velocSysEx3, message=FALSE, warning=FALSE, echo=FALSE,   out.width="85%", fig.cap = "System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\\bar{x}_1=25$, $\\bar{x}_2=50$) and sharp change in variance for one state variable $\\sigma_{1_{pre}} = 2$, $\\sigma_{1_{post}} = 12$, $\\sigma_{2_{pre,post}} = 5$"}
 x_1 = c(rnorm(mean = 25, sd = 2, n=50), rnorm(mean =25, sd = 12, n=50))
 x_2 = c(rnorm(mean = 50, sd = 5, n=50), rnorm(mean =50, sd = 5, n=50))
@@ -686,7 +688,7 @@ dsdtPlot(dist=dist, df=df, div = 1)+
   expression(paste("constant means, increased variance of x"[1]))
 )
 ```
-
+\newpage
 ```{r velocSysEx4, message=FALSE, warning=FALSE, echo=FALSE,   out.width="85%", fig.cap = "System change ($s$) and velocity ($V$) of the model system over the time period. Variance equal to mean ($/bar{x_i}=/sigma_i$), where means ($/bar{x}_{1_{pre}}=25$, $/bar{x}_{1_{post}}=50$, $/bar{x}_{2_{pre}}=15$, $/bar{x}_{2_{post}}=150$)."}
 x_1 = c(rnorm(mean = 25, sd = 25, n=50), rnorm(mean =50, sd = 50, n=50))
 x_2 = c(rnorm(mean = 15, sd = 15, n=50), rnorm(mean =150, sd = 150, n=50))

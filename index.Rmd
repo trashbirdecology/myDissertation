@@ -20,7 +20,7 @@ acknowledgements: |
 dedication: |
   To those not yet exposed to the great outdoors, first generation college students, Mike Moulton, S, and to myself. 
 preface: |
-  >"Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists---Unknown source"
+  >"Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists" &mdash;source unknown
 bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib"]
 csl: [reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
 lot: true
