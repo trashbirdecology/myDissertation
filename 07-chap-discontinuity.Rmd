@@ -159,10 +159,6 @@ Fixed effects included an interaction among year ($\beta_{1i}$) and regime locat
      random = ~ 1 | loc/aou, correlation = corAR1(form = ~ 1 | loc / aou ), method = "REML")
 
 ## Results
-### Summary statistics of censuses (NABBS data)
-
-Given the location of the study area (Figure \@ref(fig:studyarea)) with respect to the location of the contiguous Central Great Plains, fewer NABBS routes falling into the Southern regime were analysed than those in the Northern (Table \@ref(tab:nRtesPerRegimePerYearTab), Figure \@ref(fig:nRtesPerRegimePerYearTab).  Likely due to the increase in the total number of routes surveyed over time across the entire North American Breeding Bird Survey region, species richness increased over time within our study area (Figure \@ref(fig:richnessByYear)). Annual turnover rates were relatively low but became more dispersed over time (Figure \@ref(fig:turnoverByYear); Table \@ref(tab:richTurnTab)).
-
 ```{r nRtesPerRegimePerYearTab}
 temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
   rename(
@@ -178,6 +174,9 @@ booktabs=TRUE,
 escape=FALSE) %>% 
   kableExtra::kable_styling(repeat_header_continued = TRUE)
 ```
+
+### Summary statistics of censuses (NABBS data)  
+Given the location of the study area (Figure \@ref(fig:studyarea)) with respect to the location of the contiguous Central Great Plains, fewer NABBS routes falling into the Southern regime were analysed than those in the Northern (Table \@ref(tab:nRtesPerRegimePerYearTab)).  Likely due to the increase in the total number of routes surveyed over time across the entire North American Breeding Bird Survey region, species richness increased over time within our study area (Figure \@ref(fig:richnessByYear)). Annual turnover rates were relatively low but became more dispersed over time (Figure \@ref(fig:turnoverByYear); Table \@ref(tab:richTurnTab)).
 
 ```{r nRtesPerRegimePerYearFig, fig.cap= "Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation."}
 temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
@@ -222,8 +221,9 @@ kableExtra::kable(temp, escape = FALSE, digits = 2,
     add_header_above(c(" ", "Annual Richness" = 3, "Annual Turnover" = 3))
 ```
 
-```{r intrxnPlot-regime, eval=TRUE, echo=FALSE, fig.cap="Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes."}
+```{r intrxnPlot-regime, eval=TRUE, echo=FALSE, fig.cap="Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes. Interaction plots presented in two alternative views using the same results.", out.width="45%"}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png"))
+knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png"))
 ```
 
 ```{r simpleCoefEst, eval=FALSE, echo=FALSE, fig.cap="Coefficient estimates of fixed predictors of the linear mixed effects model."}
@@ -307,14 +307,10 @@ knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCall
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png"))
 ```
 
-```{r intrxnPlot-regime1, echo=FALSE, eval=TRUE, fig.cap=""}
-knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png"))
-```
-
 ## Discussion
 South-North shifts in the past 50+ years have been demonstrated in large scale processes, including bird populations and ranges [@sorte2007poleward] and plant hardening zones [@mckenney2014change]. A recent application of discontinuities in  body mass distributions [@holling1992cross] corroborated these previous observations of large-scale changes as manifested in the avian community [@roberts2019shifting]. support for the hypothesis that declining species operate at the edges of body mass aggregations, but did not identify changes in the body mass distributions of avian communities near the proposed spatial regime boundary [@roberts2019shifting] proposed in  impact of these proposed spatial regime shifts on local bird communities
 
-The lack of additive effects in the presence of multiplicative effects of the regime location (Table \@ref(tab:lmeTab)) strengthens the support for the differences in grassland obligates and declining grassland obligates with respect to all other species, however, the confidence intervals around the estimates of declining grassland obligates, grassland obligates may suggest that the evidence for such an effect is relatively weak (Figures \@ref(fig:intrxnPlot-regime1) and \@ref(fig:intrxnPlot-regime)). This is unsurprising given the distribution of grassland obligate body masses is highly skewed right relative to the remaining species (Figures \@ref(fig:bmDistPerSppGroup)), \@ref(fig:bmDistPerSppGroup-byRegime))). Many grassland obligate species have small body masses, reducing the probability that they will appear in different body mass aggregations, however, depending on the local bird community identities, local grassland obligates may all have similar body masses, removing this effect. The larger, non-declining grassland obligates occur in a relatively small portion of our study area, Shortgrass Prairie BCR (Figures \@ref(fig:studyarea),\@ref(fig:bmDistPerSppGroup-byBCR)). 
+The lack of additive effects in the presence of multiplicative effects of the regime location (Table \@ref(tab:lmeTab)) strengthens the support for the differences in grassland obligates and declining grassland obligates with respect to all other species, however, the confidence intervals around the estimates of declining grassland obligates, grassland obligates may suggest that the evidence for such an effect is relatively weak (Figure \@ref(fig:intrxnPlot-regime)). This is unsurprising given the distribution of grassland obligate body masses is highly skewed right relative to the remaining species (Figures \@ref(fig:bmDistPerSppGroup)), \@ref(fig:bmDistPerSppGroup-byRegime))). Many grassland obligate species have small body masses, reducing the probability that they will appear in different body mass aggregations, however, depending on the local bird community identities, local grassland obligates may all have similar body masses, removing this effect. The larger, non-declining grassland obligates occur in a relatively small portion of our study area, Shortgrass Prairie BCR (Figures \@ref(fig:studyarea),\@ref(fig:bmDistPerSppGroup-byBCR)). 
 
 Although the body mass distributions of terrestrial communities at small scales tends to differ from those at larger spatial scales [@blackburn1994animal], numerous studies confirm the evidence for 'discontinuities' in these distributions across multiple spatial scales for a variety of phenomenon [@wardwell2009variability; @allen1999body; @spanbauer2016body;@nash2014discontinuities; but see @siemann1999gaps;@bibi2019body; @manly1996there for applications yielding negative results]. This study found evidence supporting the hypothesis that scaling structures manifest in the body masses of fauna communities, adding to the growing number of case studies which suggest this phenomena is widespread across systems and scales.
 

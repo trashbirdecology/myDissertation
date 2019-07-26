@@ -622,7 +622,7 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleo
 ```
 
 The smoothed velocity (Figure \@ref(fig:paleoV)) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (Figure \@ref(fig:paleoV)) to the non-smoothed velocity (Figure \@ref(fig:paleoVelocity)) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, however, it  more clearly demonstrates potential inter-regime dynamics (e.g., between 7,000 and 4,800 years before present), that were not identified in previous study of this system [@spanbauer_prolonged_2014].
-```{r paleoV,  eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, message=FALSE, out.width="75%", fig.cap="The velocity metric  ($V$) signals potential periodicities in the paleo diatom time series data when the distance traveled metric, $s$, is smoothed using regularized differentiation methods [@price2019tvdiff]."}
+```{r paleoV,  eval=TRUE, cache = TRUE, echo=FALSE, warning=FALSE, message=FALSE, out.width="75%", fig.cap="The velocity metric  ($V$) signals potential periodicities in the paleo diatom time series data when the distance traveled metric, $s$, is smoothed using regularized differentiation methods (see Price and Burnett 2019)."}
 # Plot derivative
 # p=ggplot(paleoEx %>% 
 #          filter(key == "dsdt"), 

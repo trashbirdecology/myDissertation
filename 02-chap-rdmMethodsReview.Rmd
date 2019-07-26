@@ -91,7 +91,6 @@ ggplot(wos.regime.plotData %>%
   theme(axis.title.x = element_text(size = 8))
 ```
 
-\end{landscape}
 \pagebreak[4]
 
 ```{r methodstable, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
@@ -119,10 +118,12 @@ kableExtra::kable_styling("striped",
               latex_options = c("repeat_header")
               ) %>% 
   kableExtra::row_spec(0, bold=TRUE) %>% 
-  kableExtra::column_spec(1, width = "20em") %>% 
+  kableExtra::column_spec(1, width = "40em") %>% 
   kableExtra::column_spec(2, width = "10em") %>% 
   kableExtra::column_spec(3, width = "15em") 
 ```
+
+\end{landscape}
 
 ```{r rdmReviewFlow, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE,  fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. Note: only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods.", out.width="85%"}
 # webshot::install_phantomjs()

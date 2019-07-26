@@ -1,9 +1,7 @@
 `r if(knitr:::is_latex_output()) '\\appendix'`
-
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
 <!-- this first appendix line 1 starts the appendix secioning and should be called prior to the references -->
-
-# bbsAssistant: an R package for Download and Munging Data and Information from the North American Breeding Bird Survey {-#bbsAssistant}
+# Appendix A bbsAssistant: an R package for Download and Munging Data and Information from the North American Breeding Bird Survey {-#bbsAssistant}
 *[Under review at the Journal for Open Source Software](https://github.com/openjournals/joss-papers/tree/joss.01550/joss.01550). JLB is the creator and maintainer of the package. G. Palomo-Mu\~{n}oz and Lyndsie Wszola are co-authors. tentative doi: 10.21105.joss.01550*
 
 ## Package Summary
@@ -225,7 +223,9 @@ For functions and descriptions please see the [manual](github.com/bbsAssistant//
 
 We thank the participatory scientists who collect data annually for the North American Breeding Bird Survey, and the Patuxent Wildlife Research Center for making these data publicly and easily accessible. Some functions in this package were adapted from the [rBBS](github.com/oharar/rbbs) package and are mentioned in function source code as appicable.
 
-# regimeDetectionMeasures: an R package for calculating various regime detection measures {-#regimeDetectionMeasures}  
+`r if(knitr:::is_latex_output()) '\\appendix'`
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
+# Appendix B regimeDetectionMeasures: an R package for calculating various regime detection measures {-#regimeDetectionMeasures}  
 This appendix contains example analysis associated with the R Package, `regimeDetectionMeasures`. Development source code for this package is available on GitHub as a compressed file at [https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip](https://github.com/TrashBirdEcology/regimeDetectionMeasures/archive/master.zip) or at [https://github.com/TrashBirdEcology/regimeDetectionMeasures](https://github.com/TrashBirdEcology/regimeDetectionMeasures).
 
 ## Example Analysis
@@ -306,7 +306,9 @@ head(results)
 ```
 
 
-# bbsRDM: an R package for applying `regimeDetectionMeasures` functionality to spatial data {-#bbsRDM}
+`r if(knitr:::is_latex_output()) '\\appendix'`
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
+# Appendix C bbsRDM: an R package for applying `regimeDetectionMeasures` functionality to spatial data {-#bbsRDM}
 
 This appendix contains a vignette associated with the R Package, `bbsRDM`. Development source code for this package is available on GitHub as a compressed file, [https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ](https://github.com/TrashBirdEcology/bbsRDM/archive/master.zip ) or at [https://github.com/TrashBirdEcology/rRDM](https://github.com/TrashBirdEcology/rRDM).
 
@@ -427,7 +429,7 @@ import.ind = ifelse(length(fns)!=0 %in% fns, TRUE,FALSE)
 import.feathers <- ifelse("feathers.RDS" %in% list.files(tempResultsDir), FALSE, TRUE)
 ```
 
-Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution. If it's already saved in the tempResultsDir (see Section \@ref(import.ind)) then it will just upload from file.
+Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution. If it's already saved in the tempResultsDir, then it will merely upload the data from file.
 ```{r bbsrdm_importfeathers,echo=TRUE, eval=FALSE}
 if(import.feathers){
 feathers <- NULL
@@ -524,7 +526,7 @@ years.use  <- years.use[which(years.use %% T == 0 & years.use > 1975)] %>% sort(
 ```
 
 ### Conduct analysis
-This section will loop through `years.use` and `dir.use`, running each BBS route (temooral analysis) or spatial transect by year (spatial analysis) at a time. Results are saved in directories created in \@ref(#createDirs)
+This section will loop through `years.use` and `dir.use`, running each BBS route (temooral analysis) or spatial transect by year (spatial analysis) at a time. Results are saved in directories created earlier.
 
 ```{r bbsrdm_calcMetrics, echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
 # **Please note: depending on the # of years and spatial transects, this could take a while!**
@@ -584,8 +586,7 @@ if(import.ind==FALSE) for (j in 1:length(dir.use)) {
 ```
 
 ### Import and munge the results to prepare for visualization
-First, import and combine the results as created in \@ref(#calcMetrics)
-This chunk will import the EWS results and the distance results separately, combining each into their own data frames.
+First, import and combine the results as generated in the previous section. This following chunk imports the EWS results and the distance results separately, combining each into their own data frames.
 ```{r bbsrdm_importCalcMetrics, echo=TRUE, eval=FALSE}
 #  Import EWS results
 if(!"results_ews.RDS" %in% fns){results_ews <-
@@ -683,7 +684,9 @@ pl1
 <!-- ```{r, echo=TRUE, eval=FALSE} -->
 <!-- knitr::include_graphics(here::here("packageDocumentation/bbsRDM.pdf")) -->
 <!-- ``` -->
-# Functions used to calculate discontinuities in avian body mass distributions. {-#appDiscont}
+`r if(knitr:::is_latex_output()) '\\appendix'`
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
+# Appendix D Functions used to calculate discontinuities in avian body mass distributions. {-#appDiscont}
 ## About
 This code was first published in @barichievy2018method and has been slightly modified and annotated for the purposes of this dissertation. This code was used to produce body mass discontinuities in Chapter \#ref(discontinuity)
 
