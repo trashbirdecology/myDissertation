@@ -95,6 +95,7 @@ ggplot(wos.regime.plotData %>%
 \pagebreak[4]
 
 ```{r methodsMetricsListTab1, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+
 long_dt <- finalMetricsList %>%
   filter(!is.na(myLabel1)) %>% 
   mutate(Source = nocite) %>% 

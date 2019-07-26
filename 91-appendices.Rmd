@@ -317,14 +317,6 @@ This appendix contains a vignette associated with the R Package, `bbsRDM`. Devel
 
 This vignette runs through the capabilites of the bbsRDM package, which relies on the package `trashbirdecology::regimeDetectionMeasures`. Although this package can be used to calculate and visualize BBS data using time series, the  example at hand runs presents an application to spatial transects.
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  # comment = "#>",
-  eval=FALSE, echo=TRUE,
-  cache = T, warning=FALSE, message=FALSE
-)
-```
 
 ## Example Analysis
 ### Load packages & create local directories
