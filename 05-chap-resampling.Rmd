@@ -46,7 +46,7 @@ This Chapter provides baseline relative performance estimates of select, multiva
 knitr::include_graphics(loadFig("origDataRelAbundance"))
 ```
 
-```{r timeElapsed, echo=FALSE, fig.cap="The amount of time elapsed between observations.", out.width="75%"}
+```{r timeElapsed, echo=FALSE, out.width="85%", fig.cap="The amount of time elapsed between observations.", out.width="75%"}
 knitr::include_graphics(loadFig("timeElapsed"))
 ```
 
@@ -117,7 +117,7 @@ knitr::include_graphics(loadFig("dsdt_observations_ribboned_facetByProb_regime2"
 ## Results
 
 
-```{r sCV,echo=FALSE, fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Distance Metric (s) resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
+```{r sCV,echo=FALSE, out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Distance Metric (s) resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
 knitr::include_graphics(loadFig("s_cvDensity"))
 ```
 
@@ -131,7 +131,7 @@ knitr::include_graphics(loadFig("log(FI)_species_ribboned_facetByProb")) # speci
 ### Variance Index 
 The Variance Index (VI) performed best under the the observations resampling method, exhibiting low values for and low dispersion in the CV density (Figure \@ref(fig:viCV)) across iterations. However, the VI appears sensitive to high losses of species information, where the density of the CV still exhibits low dispersion but with higher overall mean values (Figure \@ref(fig:viCV)). Surprisingly, the Variance Index was insensitive to temporal observation loss (Figure \@ref(fig:viResamp)), exhibiting a similar amount of noise across various degrees of data loss ($\textbf{P}$). Although the signal was dampened under the species method, the signals for the shifts in community composition were not lost across levels of $\textbf{P}$ (Figure \@ref(fig:viResamp2)). This is likely due to the high probability that the dominant species were rarely always excluded from the re-sampled observations.
 
-```{r fiCV,echo=FALSE, fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
+```{r fiCV,echo=FALSE, out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
 knitr::include_graphics(loadFig("FI_cvDensity"))
 ```
  
@@ -141,7 +141,7 @@ The Fisher Information method did not yield conclusive results regarding the abr
 ## Detrending the Data Prior to Calculations 
 If and how to manipulate the original data prior to calculating various regime detection methods is an important consideration, and a line of research that has not yet been fully explored. Although most of the multivariate methods identified in the literature review do not require data that conforms to a specific distribution, how the results of these methods can vary as we change the quality and characteristics of the original data [@michener2012ecoinformatics]. In fact, since many of the methods for regime shift detection are specifically looking for changes in variance structure and autocorrelation, standardizing variances is not counter-intuitive. 
 
-```{r loessEx,  echo=FALSE, fig.cap="Local regression (loess) smoothing of a dominant species in the paleodiatom community, \textit{Anomoeoneis costata} varies with the span parameter, making it difficult to justify smoothing the data prior to calculating various regime detection metrics."}
+```{r loessEx,  echo=FALSE, out.width="85%", fig.cap="Local regression (loess) smoothing of a dominant species in the paleodiatom community, \textit{Anomoeoneis costata} varies with the span parameter, making it difficult to justify smoothing the data prior to calculating various regime detection metrics."}
 knitr::include_graphics(loadFig("FI_cvDensity"))
 ```
 
