@@ -12,216 +12,211 @@ This package contains functions for downloading and munging data from the North 
 
 The BBS team uses hierarhical modelling techniques to generate population trend estimates [@sauer2017results] at various spatial scales [see the BBS results webpage](https://www.mbr-pwrc.usgs.gov/). Given the variability in data availability, the BBS team also provides data credibility scores for species-regions combinations. This package contains two functions for retrieving the population trend estimates produced by @sauer2017results and the associated data credibility scores: a web-scraping function for obtaining current region and/or species-specific population trend estimates and data credibility scores via a supplied url, [`get_credibility_trends()`](https://github.com/TrashBirdEcology/bbsAssistant/blob/master/R/get_credibility_trends.R); and a function for the current and archived population trends estimates for *all* species and regions, [`get_analysis_results()`](https://github.com/TrashBirdEcology/bbsAssistant/blob/master/R/get_analysis_results.R). 
 
-<!-- ## Package Vignette -->
-<!-- ```{r} -->
-<!-- knitr::opts_chunk$set(eval=FALSE) -->
-<!-- ``` -->
+## Package Vignette
+```{r}
+knitr::opts_chunk$set(eval=FALSE)
+```
 
-<!-- ### Installing package and loading dependencies -->
-<!-- ```{r loadDeps, echo=TRUE, warning=FALSE, message=FALSE} -->
-<!-- # devtools::install_github("trashbirdecology/bbsAssistant", dependencies = TRUE, force=FALSE) -->
-<!-- library(bbsAssistant) -->
-<!-- library(rvest) -->
-<!-- library(gdata) -->
-<!-- library(feather) -->
-<!-- library(here) -->
-<!-- library(dplyr) -->
-<!-- library(tidyverse) -->
-<!-- ``` -->
-<!-- ### Downloading the BBS data from USGS FTP  -->
-<!-- This section reviews functionality for downloading and writing to file the BBS data from the FTP server. -->
+### Installing package and loading dependencies
+```{r loadDeps, echo=TRUE, warning=FALSE, message=FALSE}
+# devtools::install_github("trashbirdecology/bbsAssistant", dependencies = TRUE, force=FALSE)
+library(bbsAssistant)
+library(rvest)
+library(gdata)
+library(feather)
+library(here)
+library(dplyr)
+library(tidyverse)
+```
+### Downloading the BBS data from USGS FTP
+This section reviews functionality for downloading and writing to file the BBS data from the FTP server.
 
-<!-- #### Define and/or create local directories -->
-<!-- This function will create, if it does not already exist, folder **./bbsData/** within which to locally store BBS data and results.  -->
-<!-- **NOTE**: If the directory exists, it will not overwrite files. If the bbs data already exists inside bbsDir, then we will create a logical to NOT download the data (see below). If you wish to download more, or overwrite existing data, please specify downloadBBSData=TRUE or remove .zip files from **/bbsData/**. -->
-<!-- ```{r  bbsass.makedirs, echo=TRUE} -->
-<!-- # Create a directory to store and/or load the BBS data as feathers -->
-<!-- bbsDir <- here::here("bbsData/") -->
-<!-- dir.create(bbsDir) -->
-<!-- ``` -->
+#### Define and/or create local directories
+This function will create, if it does not already exist, folder **./bbsData/** within which to locally store BBS data and results.
+**NOTE**: If the directory exists, it will not overwrite files. If the bbs data already exists inside bbsDir, then we will create a logical to NOT download the data (see below). If you wish to download more, or overwrite existing data, please specify downloadBBSData=TRUE or remove .zip files from **/bbsData/**.
+```{r  bbsass.makedirs, echo=TRUE, eval=FALSE}
+# Create a directory to store and/or load the BBS data as feathers
+bbsDir <- here::here("bbsData/")
+dir.create(bbsDir)
+```
 
-<!-- #### Retrieve and import BBS data  -->
+#### Retrieve and import BBS data
 
-<!-- If necessary, download all or some of the BBS state-level data. Note: Downloading all the data to file takes 10-15 minutes, so only run if you have not recently downloaded the BBS data.  First, let's retrieve the regions of data that are available. The function `get_regions` retrieves the .zip filenames of all U.S. states and Canadian provinces, including their reference numbers and region codes. -->
-<!-- ```{r, echo=TRUE, waring=FALSE, message=FALSE, eval=FALSE} -->
-<!-- # a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step) -->
-<!-- regions <- get_regions() -->
-<!-- ``` -->
+If necessary, download all or some of the BBS state-level data. Note: Downloading all the data to file takes 10-15 minutes, so only run if you have not recently downloaded the BBS data.  First, let's retrieve the regions of data that are available. The function `get_regions` retrieves the .zip filenames of all U.S. states and Canadian provinces, including their reference numbers and region codes.
+```{r, echo=TRUE, waring=FALSE, message=FALSE, eval=FALSE}
+# a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)
+regions <- get_regions()
+```
 
-<!-- Let's restrict our data download to **Florida** data: -->
-<!-- ```{r, echo=TRUE, eval=FALSE} -->
-<!-- regionFileName.use <- "Florida.zip" -->
+Let's restrict our data download to **Florida** data:
+```{r, echo=TRUE, eval=FALSE}
+regionFileName.use <- "Florida.zip"
 
-<!-- if(!exists("regionFileName.use")){ -->
-<!--   regionFileName <- regions$zipFileName %>% na.omit() -->
-<!--   (regionFileName.use <- regionFileName[which(str_detect(regionFileName, "Flori")==TRUE)]) -->
-<!-- } -->
-<!-- ``` -->
+if(!exists("regionFileName.use")){
+  regionFileName <- regions$zipFileName %>% na.omit()
+  (regionFileName.use <- regionFileName[which(str_detect(regionFileName, "Flori")==TRUE)])
+}
+```
 
-<!-- Once we have one or more region filenames, we can use function `get_bbsData` to download the .zip file to a temporary folder (unless otherwise specified), and *import* the temp file to R object. The R object, flBBS, contains the raw BBS count data. -->
-<!-- ```{r, echo=TRUE} -->
-<!-- flBBS <- get_bbsData(file=regionFileName.use) -->
-<!-- ``` -->
+Once we have one or more region filenames, we can use function `get_bbsData` to download the .zip file to a temporary folder (unless otherwise specified), and *import* the temp file to R object. The R object, flBBS, contains the raw BBS count data.
+```{r, echo=TRUE, eval=FALSE}
+flBBS <- get_bbsData(file=regionFileName.use)
+```
 
-<!-- Next, we can download the BBS route-level geographic information and metadata, and append this to the original data. -->
-<!-- ```{r, echo=TRUE} -->
-<!-- routes <- get_routeInfo() # retrieve route-level data -->
-<!-- flBBS <- left_join(flBBS, routes) # merge route-level data to bird count data -->
-<!-- glimpse(flBBS %>% dplyr::select(aou, year, route, statenum, countrynum, stoptotal, latitude, longitude)) -->
-<!-- ``` -->
+Next, we can download the BBS route-level geographic information and metadata, and append this to the original data.
+```{r, echo=TRUE, eval=FALSE}
+routes <- get_routeInfo() # retrieve route-level data
+flBBS <- left_join(flBBS, routes) # merge route-level data to bird count data
+glimpse(flBBS %>% dplyr::select(aou, year, route, statenum, countrynum, stoptotal, latitude, longitude))
+```
 
-<!-- If we wish to save these data to file, we can do so by saving as **.feather*s, a compressed file formatted for use in R. -->
-<!-- ```{r, echo=TRUE} -->
-<!-- export_bbsFeathers(dataIn = flBBS, -->
-<!--                 newDir  = bbsDir, -->
-<!--                 filename = regionFileName.use) -->
-<!-- ``` -->
+If we wish to save these data to file, we can do so by saving as **.feather*s, a compressed file formatted for use in R.
+```{r, echo=TRUE, eval=FALSE}
+export_bbsFeathers(dataIn = flBBS,
+                newDir  = bbsDir,
+                filename = regionFileName.use)
+```
 
 
-<!-- ### Import BBS data from file into R   -->
+### Import BBS data from file into R
 
-<!-- If the BBS data was downloaded previously and saved as .feather, we can import it using `import_bbsFeathers`. The code below is particularly useful if you are importing multiple files (e.g., multiple states) -->
-<!-- ```{r import_bbsFeathers, echo=TRUE} -->
+If the BBS data was downloaded previously and saved as .feather, we can import it using `import_bbsFeathers`. The code below is particularly useful if you are importing multiple files (e.g., multiple states)
+```{r import_bbsFeathers, echo=TRUE, eval=FALSE}
 
-<!-- (featherNames <- list.files(bbsDir, pattern = ".feather")) -->
-<!-- featherNames <- str_c("/", featherNames) #add separator -->
+(featherNames <- list.files(bbsDir, pattern = ".feather"))
+featherNames <- str_c("/", featherNames) #add separator
 
-<!-- feather <- import_bbsFeathers(newDir  = bbsDir, -->
-<!--                               filename = featherNames) -->
-<!-- glimpse(feather) # Notice that the data imported from disk (feathers) differs from the original BBS data in that the # of columns is fewer (9 and 12 columns, respectively). -->
-<!-- ``` -->
+feather <- import_bbsFeathers(newDir  = bbsDir,
+                              filename = featherNames)
+glimpse(feather) # Notice that the data imported from disk (feathers) differs from the original BBS data in that the # of columns is fewer (9 and 12 columns, respectively).
+```
 
-<!-- #### Option for downloading ALL BBS data -->
-<!-- If you wish to download and/or import ALL the data, you might choose to do so in a loop. Note: this is expensive! The following are not run in this example. -->
-<!-- ```{r downloadAllBBS, eval = FALSE, echo=TRUE} -->
-<!-- # Throw a warning if files exist -->
-<!--     if(length(list.files(bbsDir, pattern = "*.feather")) > 0 ){ -->
-<!--         downloadBBSData = FALSE -->
-<!--     }else( -->
-<!--         {dir.create(bbsDir) -->
-<!--         downloadBBSData = TRUE} -->
-<!--         ) -->
-<!-- ## Download ALL the regions of BBS data -->
-<!-- if(downloadBBSData==TRUE){ -->
-<!-- for(i in 1:length(regionFileName)){ -->
-<!--         bbsData <-  import_bbsData( -->
-<!--             # arguments for get_bbsData() -->
-<!--             file = regionFileName[i], -->
-<!--             dir =  "ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/States/", -->
-<!--             year = NULL, # subset by year -->
-<!--             aou = NULL, # subset by AOU #s -->
-<!--             countrynum = NULL, # subset by country number -->
-<!--             states = NULL, # subset by state/povince number -->
-<!--             #  arguments for get_routeInfo(): -->
-<!--             routesFile = "routes.zip", -->
-<!--             routesDir =  "ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/", -->
-<!--             RouteTypeID = 1, -->
-<!--             # one or more of c(1,2,3) -->
-<!--             Stratum = NULL,  # subset by BBS stratum -->
-<!--             BCR = NULL # subset by BCR (bird conservation region) -->
-<!--         ) -->
-<!-- # d. Save the unzipped files to disk. -->
-<!-- export_bbsFeathers(dataIn  = bbsData, -->
-<!--                 newDir  = bbsDir, -->
-<!--                 filename = regionFileName[i]) -->
-<!-- # e. Clear object from memory -->
-<!-- rm(bbsData) -->
-<!-- } # end section I. loop -->
-<!-- }else(message(paste0("NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",bbsDir))) # end if-else to download the data -->
-<!-- ``` -->
+#### Option for downloading ALL BBS data
+If you wish to download and/or import ALL the data, you might choose to do so in a loop. Note: this is expensive! The following are not run in this example.
+```{r downloadAllBBS, eval = FALSE, echo=TRUE, eval=FALSE}
+# Throw a warning if files exist
+    if(length(list.files(bbsDir, pattern = "*.feather")) > 0 ){
+        downloadBBSData = FALSE
+    }else(
+        {dir.create(bbsDir)
+        downloadBBSData = TRUE}
+        )
+## Download ALL the regions of BBS data
+if(downloadBBSData==TRUE){
+for(i in 1:length(regionFileName)){
+        bbsData <-  import_bbsData(
+            # arguments for get_bbsData()
+            file = regionFileName[i],
+            dir =  "ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/States/",
+            year = NULL, # subset by year
+            aou = NULL, # subset by AOU #s
+            countrynum = NULL, # subset by country number
+            states = NULL, # subset by state/povince number
+            #  arguments for get_routeInfo():
+            routesFile = "routes.zip",
+            routesDir =  "ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/",
+            RouteTypeID = 1,
+            # one or more of c(1,2,3)
+            Stratum = NULL,  # subset by BBS stratum
+            BCR = NULL # subset by BCR (bird conservation region)
+        )
+# d. Save the unzipped files to disk.
+export_bbsFeathers(dataIn  = bbsData,
+                newDir  = bbsDir,
+                filename = regionFileName[i])
+# e. Clear object from memory
+rm(bbsData)
+} # end section I. loop
+}else(message(paste0("NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: ",bbsDir))) # end if-else to download the data
+```
 
-<!-- Use the same code as above to import *multiple* feathers from file: -->
-<!-- ```{r loadAllData, eval = FALSE, echo=TRUE} -->
-<!-- feathers <- NULL -->
-<!-- featherNames <- list.files(bbsDir, pattern = ".feather") -->
-<!-- featherNames <- str_c("/", featherNames) #add separator -->
-<!-- for (i in 1:length(featherNames)) { -->
-<!--   feather <- NULL -->
-<!--   feather <- import_bbsFeathers(newDir  = bbsDir, -->
-<!--                               filename = featherNames[i])  -->
-<!--   feathers <- rbind(feathers, feather) -->
-<!--   rm(feather) -->
+Use the same code as above to import *multiple* feathers from file:
+```{r loadAllData, eval = FALSE, echo=TRUE, eval=FALSE}
+feathers <- NULL
+featherNames <- list.files(bbsDir, pattern = ".feather")
+featherNames <- str_c("/", featherNames) #add separator
+for (i in 1:length(featherNames)) {
+  feather <- NULL
+  feather <- import_bbsFeathers(newDir  = bbsDir,
+                              filename = featherNames[i])
+  feathers <- rbind(feathers, feather)
+  rm(feather)
 
-<!-- } -->
-<!-- ``` -->
+}
+```
 
-<!-- ### Subsetting the BBS count data -->
-<!-- #### Subset BBS data by taxonomic groups -->
-<!-- First, retrieve the species list from the BBS FTP server. -->
-<!-- ```{r getSpList, echo=TRUE} -->
-<!-- spp <- get_speciesList() -->
-<!-- glimpse(spp)  -->
-<!-- ``` -->
+### Subsetting the BBS count data
+#### Subset BBS data by taxonomic groups
+First, retrieve the species list from the BBS FTP server.
+```{r getSpList, echo=TRUE, eval=FALSE}
+spp <- get_speciesList()
+glimpse(spp)
+```
 
-<!-- Subset by species AOU # (e.g. House Sparrow aou = 06882) -->
-<!-- ```{r subset_bySpeciesList, echo=TRUE} -->
-<!-- subset_speciesList(myData = flBBS, aou.ind = 06882) %>% glimpse() -->
-<!-- ``` -->
+Subset by species AOU # (e.g. House Sparrow aou = 06882)
+```{r subset_bySpeciesList, echo=TRUE, eval=FALSE}
+subset_speciesList(myData = flBBS, aou.ind = 06882) %>% glimpse()
+```
 
-<!-- We could merge the bbs count data with the species list to avoid having to refer to AOU, then just subset using species name (e.g. 'House Sparrow). -->
-<!-- ```{r getHospData, echo=TRUE} -->
-<!-- flBBS <- left_join(flBBS, spp) -->
-<!-- hospBBS <- flBBS %>% filter(commonName=="House Sparrow")  -->
-<!-- ``` -->
+We could merge the bbs count data with the species list to avoid having to refer to AOU, then just subset using species name (e.g. 'House Sparrow).
+```{r getHospData, echo=TRUE, eval=FALSE}
+flBBS <- left_join(flBBS, spp)
+hospBBS <- flBBS %>% filter(commonName=="House Sparrow")
+```
 
-<!-- We can also  use the `subset_SpeciesList` as a convenient way to **remove**  taxonomic groups from the BBS data. -->
-<!-- ```{r , echo=TRUE, eval=FALSE} -->
-<!-- flBBS.subset <- subset_speciesList(flBBS, fam.ind = "Passeridae")  -->
-<!-- flBBS.subset <- subset_speciesList(flBBS, fam.ind = c("Passeridae", "Parulidae")) # or remove multiple fams -->
-<!-- ``` -->
+We can also  use the `subset_SpeciesList` as a convenient way to **remove**  taxonomic groups from the BBS data.
+```{r , echo=TRUE, eval=FALSE}
+flBBS.subset <- subset_speciesList(flBBS, fam.ind = "Passeridae")
+flBBS.subset <- subset_speciesList(flBBS, fam.ind = c("Passeridae", "Parulidae")) # or remove multiple fams
+```
 
-<!-- ### Retrieve BBS analysis results and data credibility measures -->
-<!-- There are a few options for obtaining species trends estimates and credibility measures: 1) download the entire region-species csvs for various analyses or 2) provide a URl to species- or region-specific estimates for the 1966-2015 trend estimates. -->
+### Retrieve BBS analysis results and data credibility measures
+There are a few options for obtaining species trends estimates and credibility measures: 1) download the entire region-species csvs for various analyses or 2) provide a URl to species- or region-specific estimates for the 1966-2015 trend estimates.
 
-<!-- #### Option 1: Download CSV for all species-region combinations -->
-<!-- The function `get_analysis_results` allows you to specify an analysis type, and upload all species-regions combination estimates or annual indices to object.  -->
-<!-- Let's look at Florida House Sparrow trend estimates for Florida: -->
-<!-- ```{r get_analysis_results, echo=TRUE} -->
-<!-- results <- get_analysis_results(analysis = "trend.ests") # default here is to obtain the 1966-2015 species trend estimates -->
-<!-- results.flHOSP <- results %>% filter(Species.Name=="House Sparrow", Region.Code=="FLA") -->
-<!-- ``` -->
+#### Option 1: Download CSV for all species-region combinations
+The function `get_analysis_results` allows you to specify an analysis type, and upload all species-regions combination estimates or annual indices to object.
+Let's look at Florida House Sparrow trend estimates for Florida:
+```{r get_analysis_results, echo=TRUE, eval=FALSE}
+results <- get_analysis_results(analysis = "trend.ests") # default here is to obtain the 1966-2015 species trend estimates
+results.flHOSP <- results %>% filter(Species.Name=="House Sparrow", Region.Code=="FLA")
+```
 
-<!-- Get annual trend estimates for Florida 1966-2016 analysis: -->
-<!-- ```{r get_analysis_results2, echo=TRUE} -->
-<!-- results <- get_analysis_results(analysis = "annual.inds.2016") # default here is to obtain the 1966-2015 species trend estimates -->
-<!-- ``` -->
+Get annual trend estimates for Florida 1966-2016 analysis:
+```{r get_analysis_results2, echo=TRUE, eval=FALSE}
+results <- get_analysis_results(analysis = "annual.inds.2016") # default here is to obtain the 1966-2015 species trend estimates
+```
 
-<!-- ```{r , echo=FALSE, out.width="33%"} -->
-<!-- library(ggplot2) -->
-<!-- ggplot(data = results %>% filter(AOU.Number=='s06882', -->
-<!--                    Region.Code=="S05"), -->
-<!--        aes(Year, Annual.Index))+ -->
-<!--     geom_point() +  -->
-<!--     labs(y="HOSP annual population \ntrend index in region S05")+ -->
-<!--     theme_bw() -->
-<!-- ``` -->
+```{r , echo=TRUE, eval=FALSE, out.width="33%"}
+library(ggplot2)
+ggplot(data = results %>% filter(AOU.Number=='s06882',
+                   Region.Code=="S05"),
+       aes(Year, Annual.Index))+
+    geom_point() +
+    labs(y="HOSP annual population \ntrend index in region S05")+
+    theme_bw()
+```
 
-<!-- #### Options 2: Retrieve region-specific estimates using web-scraping  -->
-<!-- Another useful feature of this package is the ability to retrieve data credibility and species trend estimates from the BBS results using the function `get_credibility_trends`. This function allows the user to input a url to the region- or species-specific results page (see instructions below), as opposed to using function `get_analysis_results`. As an example, we  retrieve the credibility scores and species trend estimates for **House Sparrows in Florida**. -->
-<!-- ```{r getCredTrends, echo=TRUE} -->
-<!-- cred <- get_credibility_trends() # default here is Florida House Sparrows. -->
+#### Options 2: Retrieve region-specific estimates using web-scraping
+Another useful feature of this package is the ability to retrieve data credibility and species trend estimates from the BBS results using the function `get_credibility_trends`. This function allows the user to input a url to the region- or species-specific results page (see instructions below), as opposed to using function `get_analysis_results`. As an example, we  retrieve the credibility scores and species trend estimates for **House Sparrows in Florida**.
+```{r getCredTrends, echo=TRUE, eval=FALSE}
+cred <- get_credibility_trends() # default here is Florida House Sparrows.
 
-<!-- # credibility colors correspond with the color scheme used on the BBS results page -->
-<!-- cred %>% distinct(credibilityNumber, credibilityColor, credibilityClass) -->
-<!-- ``` -->
+# credibility colors correspond with the color scheme used on the BBS results page
+cred %>% distinct(credibilityNumber, credibilityColor, credibilityClass)
+```
 
-<!-- Trend estimates are also listed in `cred` for Florida House Sparrow data: -->
-<!-- ```{r , echo=FALSE} -->
-<!-- cred %>% -->
-<!--     filter(Species == "House Sparrow") %>%  -->
-<!--     glimpse() -->
-<!-- ``` -->
+Trend estimates are also listed in `cred` for Florida House Sparrow data:
+```{r , echo=TRUE, eval=FALSE}
+cred %>%
+    filter(Species == "House Sparrow") %>%
+    glimpse()
+```
 
-<!-- #### Steps for obtaining argument "url" in function `get_credibility_trends`:  -->
-<!-- First, visit the USGS Patuxent Wildlife Research Center's [website for BBS results](https://www.mbr-pwrc.usgs.gov/) Online <https://www.mbr-pwrc.usgs.gov/>.  -->
-
-<!-- Next, enable the drop-down **Survey Results**, and choose **Trend Estimates (by region)** (left) and choose the desired region (e.g. Florida): -->
-
-<!-- ![](./chapterFiles/appendices/regcred_select_trendests_byregion.png){width=300px}![](./chapterFiles/appendices/regcred_select_fl.png){width=300px} -->
-
-<!-- Finally, copy the URL address for the page including the results and credibility measures (e.g. Florida): -->
-
-<!-- ![](./chapterFiles/appendices/regcred_fl_ex.png){width=600px} -->
+#### Steps for obtaining argument "url" in function `get_credibility_trends`:
+First, visit the USGS Patuxent Wildlife Research Center's [website for BBS results](https://www.mbr-pwrc.usgs.gov/) Online <https://www.mbr-pwrc.usgs.gov/>. Next, enable the drop-down **Survey Results**, and choose **Trend Estimates (by region)** (left) and choose the desired region (e.g. Florida):
+![](./chapterFiles/appendices/regcred_select_trendests_byregion.png){width=300px}![](./chapterFiles/appendices/regcred_select_fl.png)
+Finally, copy the URL address for the page including the results and credibility measures (e.g. Florida):
+![](./chapterFiles/appendices/regcred_fl_ex.png)
 
 ## Package Manual  
 For functions and descriptions please see the [manual](github.com/bbsAssistant//bbsAssistant_0.0.0.9000.pdf). 
@@ -253,7 +248,7 @@ This package will calculate a various regime detection metrics that have been us
 
 ### Calculate Metrics analysis
 ```{r, echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
-knitr::opts_chunk$set(echo=FALSE, eval=FALSE, message=FALSE, warning=FALSE, out.width = "85%")
+knitr::opts_chunk$set(echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE, out.width = "85%")
 
 library(regimeDetectionMeasures)
 
@@ -263,7 +258,7 @@ origData = munge_orig_dat(example = T)
 
 ### Plots
 Plot the original time series as relative abundances. 
-```{r , echo=FALSE}
+```{r , echo=TRUE, eval=FALSE}
 # Plot the original time series abundances
 plot_orig_data(data = origData,
                example = F,
@@ -271,7 +266,7 @@ plot_orig_data(data = origData,
 ```
 
 Plot the time elapsed among observations.
-```{r , echo=FALSE}
+```{r , echo=TRUE, eval=FALSE}
 # Plot the distance between observations
 plot_timeDiff(data = origData,
               example = F,
@@ -279,7 +274,7 @@ plot_timeDiff(data = origData,
 ```
 
 Plot species richness over time.
-```{r richness, echo=FALSE}
+```{r richness, echo=TRUE, eval=FALSE}
 # Plot species richness over time
 plot_richness(data = origData,
               example = T,
@@ -288,7 +283,7 @@ plot_richness(data = origData,
 ```
 
 Plot the distance travelled (*s*) and velocity of distance travelled (*v*)
-```{r calcDist, echo=FALSE}
+```{r calcDist, echo=TRUE, eval=FALSE}
 # Calculate distance travelled and derviatves of this ---------------------
 distances <- calculate_distanceTravelled(origData, derivs = T)
 ```
@@ -334,7 +329,7 @@ library(bbsRDM)
 library(here)
 ```
 
-```{r  bbsrdm_createDirs, echo=FALSE}
+```{r  bbsrdm_createDirs, echo=TRUE, eval=FALSE}
 # Create directories to locally store BBS data and results.
 # a. Create a directory to store and/or load the BBS data as feathers
 bbsDir <- "./chapterFiles/appendix_bbsRDM/bbs_raw_data"
@@ -404,7 +399,7 @@ rm(bbsData)
 
 ### Create a sampling grid
 Next, build a sampling grid to force route information onto a regular gridded area. This allows us to compare the results across space-time.
-```{r bbsrdm_samplingGrid, echo=TRUE}
+```{r bbsrdm_samplingGrid, echo=TRUE, eval=FALSE}
 # III: Build sampling grid --------------------------------------------------------
 # Define the grid's cell size (lat, long; unit:degrees)
         ## 1 deg latitude ~= 69 miles
@@ -424,7 +419,7 @@ rm(cs)
 
 See if the results are already saved to file. This will save us some computational time when knitting the document. Otherwise, will take about a minute to calculate, depending on the size of birdsData
 
-```{r bbsrdm_import.ind, echo=FALSE, eval=FALSE}
+```{r bbsrdm_import.ind, echo=TRUE, eval=FALSE}
 tempResultsDir <- here::here("/tempFiles_bbsRDM/")
 dir.create(tempResultsDir)
 fns <- list.files(tempResultsDir)
@@ -433,7 +428,7 @@ import.feathers <- ifelse("feathers.RDS" %in% list.files(tempResultsDir), FALSE,
 ```
 
 Now we load in the BBS data from the feathers we created and align with the sampling grid. This requires a bit of memory, proceed with caution. If it's already saved in the tempResultsDir (see Section \@ref(import.ind)) then it will just upload from file.
-```{r bbsrdm_importfeathers,echo=TRUE}
+```{r bbsrdm_importfeathers,echo=TRUE, eval=FALSE}
 if(import.feathers){
 feathers <- NULL
 featherNames <- list.files(bbsDir, pattern = ".feather")
@@ -459,13 +454,13 @@ Although subsetting the speices is optional, I recommend removing waterfowl, wad
 
 ### Subset species according to AOU species codes (i.e. by family, genera, etc..)
 For this example we will remove shorebirds, wading birds, and waterfowl (i.e., AOU species' codes 0000:2880). *See `R/subsetByAOU.R` source code or documentation for options (see: `subset.by`)
-```{r bbsrdm_subsetAOU, echo=TRUE}
+```{r bbsrdm_subsetAOU, echo=TRUE, eval=FALSE}
 # Subset the species
 feathers <- subsetByAOU(myData = feathers, subset.by= 'remove.shoreWaderFowl')
 ```
 
 ### Subset species by trait, body mass, taxonomically, etc...(optional)
-```{r bbsrdm_subsetFxn, eval =FALSE, message = TRUE, warning = FALSE, echo=TRUE}
+```{r bbsrdm_subsetFxn, eval =FALSE, message = TRUE, warning = FALSE, echo=TRUE, eval=FALSE}
 # Load the functional trait and mass data, and munge/merge
 require(dplyr)
 funMass <-
@@ -482,7 +477,7 @@ rm(funMass)
 
 ### Calculate regime detection metrics across space or time
 First, define the parameters required to calcualte the metrics.
-```{r bbsrdm_defineParams, echo=TRUE}
+```{r bbsrdm_defineParams, echo=TRUE, eval=FALSE}
 # Which metrics do you want to calculate?
 metrics.to.calc <- c("distances", "ews")
 
@@ -519,7 +514,7 @@ if (direction == "East-West") {
 ```
 
 Define the years we want to analyze. For this (spatial) example, we will analyze only every fifth year in the available data. 
-```{r bbsrdm_yearSubset, echo=FALSE, message=FALSE}
+```{r bbsrdm_yearSubset, echo=TRUE, message=FALSE}
 # Get all possible years
 years.use = unique(feathers$year)
 
@@ -591,7 +586,7 @@ if(import.ind==FALSE) for (j in 1:length(dir.use)) {
 ### Import and munge the results to prepare for visualization
 First, import and combine the results as created in \@ref(#calcMetrics)
 This chunk will import the EWS results and the distance results separately, combining each into their own data frames.
-```{r bbsrdm_importCalcMetrics, echo=TRUE}
+```{r bbsrdm_importCalcMetrics, echo=TRUE, eval=FALSE}
 #  Import EWS results
 if(!"results_ews.RDS" %in% fns){results_ews <-
     importResults(resultsDir = resultsDir, myPattern = 'ews',
@@ -617,7 +612,7 @@ if(import.ind){
 ```
 
 Next, get the results to align with our sampling grid for visualizing results across space.
-```{r bbsrdm_importresults, echo=TRUE}
+```{r bbsrdm_importresults, echo=TRUE, eval=FALSE}
 #  Get the spatial sampling grid coordinates
 coords_grd <-
     cbind(routes_gridList$sp_grd@data,
@@ -651,7 +646,7 @@ sp::proj4string(distResults) <-
 
 ### Visualize results: one regime detection metric at a time
 First, specify plotting parameters. We can visualize either the distance results (`distResults`) or the early-warning signal results (`ewsResults`). Define the results we want to visualize:
-```{r bbsrdm_plotresults, echo=TRUE}
+```{r bbsrdm_plotresults, echo=TRUE, eval=FALSE}
 # Specify results to visualize
 plotResults <- distResults
 
@@ -669,7 +664,7 @@ sortVar.lab <-
 ```
 
 Plot the individual transects. **Note: please specify dirID.ind as desired spatial transect number, and dirInd as direction (E-W or N-S)**
-```{r bbsrdm.plotind.tsect, echo=TRUE}
+```{r bbsrdm.plotind.tsect, echo=TRUE, eval=FALSE}
 # Specify the transect # we want to see
 dirID.ind <- 13
 
@@ -685,7 +680,7 @@ pl1
 ```
 
 <!-- ## Source Code Documentation -->
-<!-- ```{r, echo=TRUE} -->
+<!-- ```{r, echo=TRUE, eval=FALSE} -->
 <!-- knitr::include_graphics(here::here("packageDocumentation/bbsRDM.pdf")) -->
 <!-- ``` -->
 # Functions used to calculate discontinuities in avian body mass distributions. {-#appDiscont}
