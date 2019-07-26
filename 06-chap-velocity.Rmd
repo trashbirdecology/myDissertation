@@ -583,6 +583,7 @@ To gather baseline information on the use of velocity in empirical systems data,
 # ggsave(p, filename=paste0(figDir,"paleoVelocity.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoVelocity.png"))
 ```
+\pagebreak[4]
 ```{r paleoRegime1and3,  echo=FALSE, warning=F, message=F, cache = T,    out.width="75%", fig.cap ="Inter-regime (regimes A and B) trends inthe velocity signal ($V$) indicate the fluctuating decadal and centurial abiotic conditions discussed in @spanbauer_prolonged_2014."}
 # p1=ggplot(plotData %>% filter(sortVar < -5000, key=="v"), aes(x = sortVar*-1, y = value))+
 #   geom_line()+
@@ -610,7 +611,7 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleo
 # ggsave(p, filename=paste0(figDir,"paleoRegime1and3.png"))
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3.png"))
 ```
-
+\pagebreak[4]
 @spanbauer_prolonged_2014 used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at ~1,300 years before present. Using the methods outlined above, I calculated the distance traveled ($s$) and velocity ($V$; Figure \@ref(fig:paleoV)). The results of $V$ and $s$ (Figure \@ref(fig:paleoVelocity)) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \@ref(fig:paleoTurnover), and also with the regime shift identified by @spanbauer_prolonged_2014. However, two primary results can be made from the metrics  $V$ and $s$ that are not obvious nor identified numerically in the results of @spanbauer_prolonged_2014: 
 
 1. Two additional large shifts occurred at approximately 2,500, 4,800 and years before 1950       
