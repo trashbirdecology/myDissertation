@@ -110,7 +110,7 @@ kableExtra::kable_styling("striped",
               latex_options = c("repeat_header")
               ) %>% 
   kableExtra::row_spec(0, bold=TRUE) %>% 
-  kableExtra::column_spec(1, width = "40em") %>% 
+  kableExtra::column_spec(1, width = "20em") %>% 
   kableExtra::column_spec(2, width = "10em") %>% 
   kableExtra::column_spec(3, width = "15em") 
 ```

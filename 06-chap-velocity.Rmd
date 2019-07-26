@@ -411,6 +411,7 @@ I also calculated $V$ using a numerical integration method for non-smooth, noisy
 ```{r antiDiffComp, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE,   out.width="75%", fig.cap="Antidifferentiated values ('observed') of the distance traveled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\\alpha$. Under most conditions $\\alpha \\ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\\alpha_{tanh}=1$) for the `tvdiff` $\\alpha=0.50$. Not pictured: the antidifferentiated values of $s$ (observed) is increasingly smoothed as $\\alpha$ increases."}
 knitr::include_graphics(here::here("/chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter.png"))
 ```
+\pagebreak[4]
 ```{r antiDiffComp2, echo=FALSE, eval=FALSE, message=FALSE, warning=FALSE, out.width="33%"}
 # knitr::include_graphics(here::here("/chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-1tvdiffAlpha-1000iter.png"))
 ```
@@ -420,36 +421,39 @@ knitr::include_graphics(here::here("/chapterFiles/velocity/figsCalledInDiss/comp
 ```{r mu1varpt25, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is low (0.25). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
+\pagebreak[4]
 ```{r mu1varpt5, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff.png"))
+```
+\pagebreak[4]
+```{r mu1varpt75, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png"))
+```
+\pagebreak[4]
+```{r mu1var1, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff.png"))
+```
+\pagebreak[4]
+```{r muBoth75, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is regained under smoooth transition ($\\alpha_{tanh}=0.75$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png"))
+```
+\pagebreak[4]
+```{r varBoth, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff.png"))
+```
+\pagebreak[4]
+```{r var1, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff.png"))
+```
+\pagebreak[4]
+```{r muBoth25, echo=FALSE, warning=F, message=F, cache = T,   out.width="85%", fig.cap="The velocity signal is regained under smoooth transition ($\\alpha_{tanh}=0.25$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
+knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
 
 #### Smooth changes in the mean
 As discussed earlier, the velocity of the distance traveled, $V$, is a measure of how quickly the sum of the squared system variables change between observations (i.e. time). Consequently, as the total change in state variables grows, so will the maximum potential of the velocity, $V$. Following this logic, we should expect to see a spike in the derivative of the distance traveled when the system changes quickly. I tested this hypothesis under two conditions of changing means, where either one or both variables underwent mean shifts (see Table \@ref(tab:sysParams)), and under varying degrees of transition smoothness (i.e. $\alpha_{tanh}={0.25, 0.50, 0.75, 1.00}$). 
 
-```{r mu1varpt75, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
-knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png"))
-```
-
-```{r mu1var1, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is muted when the  hyperbolic smoothing parameter, $\\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
-knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff.png"))
-```
-
-```{r muBoth25, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is regained under smoooth transition ($\\alpha_{tanh}=0.25$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
-knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.png"))
-```
-
-```{r muBoth75, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signal is regained under smoooth transition ($\\alpha_{tanh}=0.75$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
-knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png"))
-```
-
 When the hyperbolic tangent smooth transition function is less steep (Figure \@ref(fig:mu1varpt25)) the observed velocity signal is dampened. This signal, however, quickly recovers when the transition function becomes more abrupt (Figures \@ref(fig:mu1varpt5), \@ref(fig:mu1varpt75) ,\@ref(fig:mu1var1); $\alpha_{tanh}=0.5, 0.75, and 1.00$, respectively). The signal of velocity as an indicator of abrupt change appears more rapid when the mean of both state variables (Figure \@ref(fig:muBoth25)), rather than a single (Figure \@ref(fig:mu1varpt25)), are shifted (assuming  constant variance). Figure \@ref(fig:muBoth75) is representative of the increasing signal in velocity as $\alpha_{tanh}$ increases. 
-```{r varBoth, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
-knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff.png"))
-```
-```{r var1, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). "}
-knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff.png"))
-```
 
 #### Smooth changes in variance
 Abrupt changes sometimes manifest first as a change in the variability, rather than the mean value, of the state variables. This condition manifests in the velocity signal when both variables experience a shift in relative variance (Figure \@ref(fig:varBoth)), however, velocity does not signal change when only one variable exhibits a shift in variance (Figure \@ref(fig:var1)). Again, given the total magnitude of change influences the distance traveled, $s$, and the derivative of s, $V$, it is not surprising that the velocity signal is greater around the transition point when both, compared to a single, state variable exhibits increased variability about the mean. In these scenarios I shifted the variability in the state variables $x_i$ from only $\sim 5\%$ to $\sim10\%$ (see Table \@ref(tab:sysParams))---this percent variability is low relative to most empirical observational ecological data sets. As such, I expect the velocity signal to be more pronounced when empirical systems undergo shifts in variance in at least one state variable.
@@ -464,8 +468,7 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/chang
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff.png"))
 ```
 
-## Velocity performance under empirical transitions: paleolithic freshwater diatom community
-```{r tvDiffPaleoCalculate, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
+```{r tvDiffPaleoCalculate, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 library(tvdiff)
 library(tidyverse)
 library(dplyr)
@@ -488,9 +491,12 @@ paleoInterp <-
     t = purrr::map(data, ~ approx(.$t, .$y, xout = xout)$x, rule = 1),
     y = purrr::map(data, ~ approx(.$t, .$y, xout = xout)$y, rule = 1)
   ) %>%
-  dplyr::select(-data) %>%
-  unnest()
+  dplyr::select(-data) 
 
+paleoInterp <- paleoInterp %>%
+  unnest()
+```
+```{r tvDiffPaleoCalculate2, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, results="hide"}
 # Calculate distance
 paleoDistance <- 
   paleoInterp %>% 
@@ -502,7 +508,8 @@ paleoDistance <-
   mutate(s = cumsum(ds)) %>% 
   dplyr::select(-ds) %>% 
   na.omit()
-
+```
+```{r tvDiffPaleoCalculate3, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,results="hide"}
 # Build dataframe
 paleoEx <-
   paleoDistance %>% 
@@ -522,7 +529,7 @@ paleoEx <-
   # Collect in long form
   gather(key, value, -t, -dt)
 ```
-```{r paleoTurnover, echo=FALSE, warning=F, message=F, cache = T,   out.width="75%", fig.cap="Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations."}
+```{r paleoTurnover, echo=FALSE, warning=F, message=F, cache = T, out.width="75%", fig.cap="Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations."}
 # topSpecies <-
 #   paleo %>%
 #   group_by(variable) %>%
@@ -552,6 +559,7 @@ paleoEx <-
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoTurnover.png"))
 ```
 
+## Velocity performance under empirical transitions: paleolithic freshwater diatom community
 To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \@ref(resampling). Briefly, the paleodiatom community comprises `r length(unique(paleo$variable))` time series over a period of approximately `r abs(max(paleo$sortVar)-min(paleo$sortVar)) %>% round(0)` years (Figure \@ref(fig:paleoTurnover)). As elaborated in @spanbauer_prolonged_2014, the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundances over time, as there are extreme levels of species turnover at multiple points in the data (Figure \@ref(fig:paleoTurnover)). Using Fisher Information and climatological records, @spanbauer_prolonged_2014 suggest that regime shifts in this system at approximately 1,300 years before present [where years before present is equal to year 1950; @spanbauer_prolonged_2014].
 ```{r paleoVelocity,  echo=FALSE, warning=F, message=F, cache = T,    out.width="75%", fig.cap ="Velocity $V$ and distance traveled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $V$."}
 # plotData <- regimeDetectionMeasures::calculate_distanceTravelled(paleo) %>% na.omit(d2sdt2) %>% 
