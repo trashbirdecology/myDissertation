@@ -7,7 +7,6 @@
 .DS_Store
 
 # remove builds
-**/_myDissertation.tex
 **/_myDissertation.rmd
 _bookdown_files/
 _myDissertation_files/figure-html/*.png
@@ -92,22 +91,16 @@ myDissertation.out
 myDissertation.aux
 myDissertation.lof
 myDissertation.lot
-myDissertation.tex
 myDissertation.toc
 myDissertation.Rmd
-_book/_myDissertation.tex
 Backup of randomWriting_needToIncorporate.wbk
 chapterFiles/appendix_predPreyExample/pred_prey_example.html
-_book/_myDissertation.tex
-_book/_myDissertation.tex
 _myDissertation.Rmd
-_myDissertation.tex
 _myDissertation_cache/latex/__packages
 _cache/__packages
 _myDissertation.lof
 _myDissertation.lot
 _myDissertation.toc
-_book/_myDissertation.tex
 _myDissertation.aux
 03-chap-fiGuide_cache/docx/__packages
 03-chap-fiGuide_cache/latex/__packages
@@ -118,7 +111,6 @@ _myDissertation.aux
 chapterFiles/rdmReview/~$methodsOverview.xlsx
 02-chap-rdmMethodsReview.pdf
 chapterFiles/fiGuide/.DS_Store
-_book/_myDissertation.tex
 _book/_myDissertation.pdf
 chapterFiles/fiGuide/.DS_Store
 

@@ -38,12 +38,15 @@ In this Chapter I examine the influence of observation and process errors on the
 1. Explore the relative performance of velocity (described in Chapter \@ref(velocity)) to the above mentioned methods under multiple scenarios.
 
 This Chapter provides baseline relative performance estimates of select, multivariate regime detection measures under various scenarios of data quality and quantity. The results from this Chapter inform the practical ecologist of the potential limitations to consider when applying these regime detection measures to their data, and has potential to inform the data collection process. Additionally, the software accompanying this Chapter allows the end user to implement these methods on this or their own system data, or on theoretical data.
+
 \begin{landscape}
-```{r origDat, echo=FALSE, out.width="75%", fig.cap="Relative abundances of the diatom species in Foy Lake over the time period."}
-knitr::include_graphics(paste0(figDir,"origDataRelAbundance", ".png"))
+```{r origDat, echo=FALSE, out.width="85%", fig.cap="Relative abundances of the diatom species in Foy Lake over the time period."}
+knitr::include_graphics(paste0(figDir,"origDataRelAbundance.png"))
 ```
 \end{landscape}
+
 ```{r timeElapsed, echo=FALSE, out.width="85%", fig.cap="The amount of time elapsed between observations.", out.width="75%"}
+knitr::include_graphics(paste0(figDir,"timeElapsed.png"))
 ```
 
 ## Data and Methodology
@@ -54,7 +57,7 @@ I used paleodiatom time series from a freshwater system in North America (Foy La
 Fewer model-free regime detection metrics exist than do model-based metrics (Chapter \@ref(rdmReview)) and of these, only a few are suggested for multivariate data. Here, I compare the results for three regime detection metrics that are model-free and can handle multivariate data: velocity (Chapter \@ref(velocity)), the Variance Index [@brock_variance_2006] and Fisher Information [@fath_regime_2003]. I chose the Variance Index, as this is one of the more widely applied multivariate, model-free regime detection measures, and has been shown to, in some empirical data, identify regime shifts _post hoc_. I introduced the velocity in Chapter \@ref(velocity) as a new, potential regime detection metric. As this is the first time it has been used for such a purpose, including it in this approach allows us to further identify potential flaws with the method, but also to gain some baseline estimates of its relative performance. In Chapter \@ref(fiGuide), I presented the Fisher Information metric as it is used in detecting ecological regime shifts, and discuss the situations under which it may or may not be a good metric. 
 
 #### Velocity ($v$) calculation
-In Chapter \@ref(velocity), I describe a new method, __velocity__, $v$, as a potential dimension reduction and regime detection method. First introduced by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, velocity calculates the cumulative sum of the mean root square change in all state variables over a period of time [Eq. \@ref(eq:velocityEq)]. Steps for calculating this metric are described in detail in Chapters \@ref(fiGuide) and \@ref(velocity).  
+In Chapter \@ref(velocity), I describe a new method, __velocity__, $v$, as a potential dimension reduction and regime detection method. First introduced by @fath_regime_2003 as one of multiple steps in calculating their variant of Fisher Information, velocity calculates the cumulative sum of the mean root square change in all state variables over a period of time (Eq. \@ref(eq:velocityEq)). Steps for calculating this metric are described in detail in Chapters \@ref(fiGuide) and \@ref(velocity).  
 
 \begin{equation}
 \begin{array}{rcr}
@@ -79,13 +82,12 @@ Fisher Information ($I$) is essentially the area under the curve of the accelera
 
 I refer the reader to Chapter \@ref(fiGuide) for a complete description and to @cabezas_towards_2002 for a complete derivation of Fisher Information.
 
-\pagebreak[1]
-```{r viCV,  echo=FALSE, out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values >100% are not printed."}
-knitr::include_graphics(paste0(figDir,"VI_cvDensity", ".png"))
+```{r viCV, echo=FALSE, fig.pos="H", out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values >100% are not printed."}
+knitr::include_graphics(paste0(figDir,"VI_cvDensity.png"))
 ```
-\pagebreak[1]
+
 ```{r viResamp,  echo=FALSE, out.width="85%", fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the __observations__ resampling method. Red line indicates the value of VI when __M__ and __P__ are 100%."}
-knitr::include_graphics(paste0(figDir,"VI_observations_ribboned_facetByProb", ".png"))
+knitr::include_graphics(paste0(figDir,"VI_observations_ribboned_facetByProb.png"))
 ```
 
 #### Using moving window analysis to calculate Fisher Information and Variance Index
@@ -95,15 +97,15 @@ When using these metrics in the context of identifying abrupt changes in ecologi
 
 An additional parameter is required when conducting moving window analyses: the number of time points by which the window advances. In order to maximize the number of poitns at which results were obtained, I advanced the moving window at a rate of one time unit (rather than skipping observations). However, it is important to note that because these data are not sampled annually and the because the window always advances by a single time unit, the number of observations included in each calculation will not be the same. If fewer than 5 observations are in a window, I did not calculate metrics, advancing the window forward. I assigned the calculated values of Fisher Information and Variance Index within each moving window to the __end__ (the last time unit) of the moving window. In temporal analyses, assigning the value[which value] to any other point in time (e.g., the beginning or the middle) muddles the interpretation of the metric over $T^*$. Also note that this method has the potential to result in calculating a metric for all integers between $0.20 T^*$ and $T^*$.
 
-```{r viResamp2, echo=FALSE, fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the  __species__ resampling method. Red line indicates the value of VI when __M__ and __P__ = 100%."}
-knitr::include_graphics(paste0(figDir,"VI_species_ribboned_facetByProb", ".png"))
+```{r viResamp2, echo=FALSE, out.width="85%", fig.cap="Mean Variance Index (VI) and associated 95% confidence intervals over 10,000 iterations using the  __species__ resampling method. Red line indicates the value of VI when __M__ and __P__ = 100%."}
+knitr::include_graphics(paste0(figDir,"VI_species_ribboned_facetByProb.png"))
 ```
 
 ### Simulating data quality and quantity issues using resampling techniques 
 Using a resampling approach I calculated the regime detection measures over different scenarios simulating data quality and data quantity issues common to ecological data analysis. The scenarios are categorized as _observations_ and _species_. The observations scenario simulates a loss of temporal observations (decreasing the number of times the system was observed), and the species scenario simulates a loss of information about the system by removing some proportion of the species. The loss of temporal observations and the loss of species were examined at three proportions: $\textbf{P} = [0.25, 0.50, 0.75, 1.00]$, where $\textbf{P}$ is the proportion of species and time points __retained__ for analysis. For example, when $\textbf{P} = 0.25$, a random selection of $25\%$ of the species are retained for analysis in the species scenario. I re-sampled the data over $10,000$ iterations ($N_{samp}$) for each scenario and $\textbf{P}$ combination. Note that because when $\textbf{P} = 1.00$, all data are retained. Therefore, no resampling was conducted at this level because only a single metric (e.g. Velocity) value is possible.
 
 ```{r dsdtResamp, echo=FALSE, out.width="85%", fig.cap="Mean velocity and associated 95% confidence intervals over 10,000 iterations using the observations resampling method. Red line indicates the value of velocity when __M__ and __P__ are 100%."}
-knitr::include_graphics(paste0(figDir,"dsdt_observations_ribboned_facetByProb", ".png"))
+knitr::include_graphics(paste0(figDir,"dsdt_observations_ribboned_facetByProb.png"))
 ```
 
 ### Comparing regime detection measures 
@@ -111,12 +113,12 @@ Interpretation of the regime detection measures used in this analysis are curren
 I observed the distributions of the CV to identify potential flaws in the metrics should data quality or quantity ($\textbf{M}$, $\textbf{P}$) decrease. First, within a value of $\textbf{P}$ a low error to mean ratio (CV) indicates that the metric value is similar across the re-sampled samples ($N_{samp}=10,000$). The efficacy of the metric should be questioned as CV$\rightarrow 1$, and perhaps even abandoned as CV$\gg1$. Next, we can examine how the distribution of CV changes within $\textbf{M}$ and across $\textbf{P}$. As we increase $\textbf{P}$, we are increasing the volume of data we are feeding the metric. Intuitively, we can assume that as we add more data (volume), we are supplying the metric with more _information_, theoretically increasing the signal-to-noise ratio. Following this logic, we should expect the distribution of CV to generally decrease in mean CV value and also become less variable (less dispersion around the mean CV). A visual examination of the distribution of CV across $\textbf{P}$ and within $\textbf{M}$ was sufficient to achieve inference regarding the quality of these metrics upon loss of observations and species.   
 \newpage
 ```{r dsdtResampRegime2, echo=FALSE, out.width="75%", fig.cap="Mean velocity and associated 95% confidence intervals over 10,000 iterations using the observations resampling method for a subset of the time series (the second 'regime' identified). Red line indicates the value of velocity when __M__ and __P__ = 100%."}
-knitr::include_graphics(paste0(figDir,"dsdt_observations_ribboned_facetByProb_regime2", ".png"))
+knitr::include_graphics(paste0(figDir,"dsdt_observations_ribboned_facetByProb_regime2.png"))
 ```
 
 
 ```{r sCV,echo=FALSE, out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Distance Metric (s) resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
-knitr::include_graphics(paste0(figDir,"s_cvDensity", ".png"))
+knitr::include_graphics(paste0(figDir,"s_cvDensity.png"))
 ```
 
 ## Results
@@ -127,9 +129,10 @@ The velocity of the distance traveled, $\frac{ds}{dt}$ or $v$, exhibited dispers
 The Variance Index (VI) performed best under the the observations resampling method, exhibiting low values for and low dispersion in the CV density (Figure \@ref(fig:viCV)) across iterations. However, the VI appears sensitive to high losses of species information, where the density of the CV still exhibits low dispersion but with higher overall mean values (Figure \@ref(fig:viCV)). Surprisingly, the Variance Index was insensitive to temporal observation loss (Figure \@ref(fig:viResamp)), exhibiting a similar amount of noise across various degrees of data loss ($\textbf{P}$). Although the signal was dampened under the species method, the signals for the shifts in community composition were not lost across levels of $\textbf{P}$ (Figure \@ref(fig:viResamp2)). This is likely due to the high probability that the dominant species were rarely always excluded from the re-sampled observations.
 
 ```{r fiCV, echo=FALSE, out.width="85%", fig.cap="Density plot of the coefficient of variation (CV) as a percentage (%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values >100% are not printed."}
-knitr::include_graphics(paste0(figDir,"FI_cvDensity", ".png"))
+knitr::include_graphics(paste0(figDir,"FI_cvDensity.png"))
 ```
-```{r fiResamp, eval=TRUE, echo=FALSE, out.width="85", fig.cap="Mean Fisher Information (FI; note the scale) and associated 95% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when __M__ and __P__ are 100%. A very small value was added to the mean FI prior to log transformation."}
+\newpage
+```{r fiResamp, eval=F, echo=FALSE, out.width="85", fig.cap="Mean Fisher Information (FI; note the scale) and associated 95% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when __M__ and __P__ are 100%. A very small value was added to the mean FI prior to log transformation."}
 knitr::include_graphics(paste0(figDir,"logFI_species_ribboned_facetByProb.png"))
 ```
  
@@ -137,7 +140,7 @@ knitr::include_graphics(paste0(figDir,"logFI_species_ribboned_facetByProb.png"))
 The Fisher Information method did not yield conclusive results regarding the abrupt shifts in the paleodiatom community composition. Further, this method appears highly sensitive to varying quality and quantities of data (Figures \@ref(fig:fiResamp), \@ref(fig:fiCV)). Although the Fisher Information identifies the shift in community composition at $\sim1,300$ years before present, it fails to identify shifts outside this period. Further, it is difficult to visually analyze any value of the Fisher Information on the original scale as the values range from $\approx 0$ to $10^{15}$ (Figure \@ref(fig:fiResamp)). In addition to failing to identify the shifts in community composition, the standard deviation of Fisher Information far exceeded the mean value of Fisher Information under all $\textbf{M}$-$\textbf{P}$ scenarios (Figure \@ref(fig:fiCV)). When I re-sampled the data using 25% and 50% of the species the ratio of mean Fisher Information to standard deviation (CV) of Fisher Information is always $\gg 1$ (i.e, not pictured in Figure \@ref(fig:fiCV)). The high variation in FI values across re-sampled iterations coupled with the  high dispersion within each $\textbf{M}$-$\textbf{P}$ combination (Figure \@ref(fig:fiCV)) suggests Fisher Information will not produce similar trends when we lose or distort the data collected. This is also suggested by the high confidence intervals surrounding each  $\textbf{M}$-$\textbf{P}$ combination (Figure \@ref(fig:fiResamp)).  
 
 ```{r loessEx,  echo=FALSE, out.width="85%", fig.cap="Local regression (loess) smoothing of a dominant species in the paleodiatom community, \textit{Anomoeoneis costata} varies with the span parameter, making it difficult to justify smoothing the data prior to calculating various regime detection metrics."}
-knitr::include_graphics(paste0(figDir,"loess", ".png"))
+knitr::include_graphics(paste0(figDir,"loess.png"))
 ```
 
 ## Detrending the Data Prior to Calculations 
