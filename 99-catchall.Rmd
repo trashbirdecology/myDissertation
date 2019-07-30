@@ -1,15 +1,15 @@
 # Catch-all, unused, to be removed from pdf {-.unnumbered}
 ## Random
 
-## regime shifts
-- a regime shift is most often defined in ecology as a shift from one stable state to another. 
-- following this defintion, we can identify a regime shift if we can observe the transition from one ss to another ss...
-- there are methods for identifying abrupt change
-- 
+<!-- ## regime shifts -->
+<!-- - a regime shift is most often defined in ecology as a shift from one stable state to another.  -->
+<!-- - following this defintion, we can identify a regime shift if we can observe the transition from one ss to another ss... -->
+<!-- - there are methods for identifying abrupt change -->
+<!-- -  -->
 
-- although the definition related to stable states is tractable, resaerch on regime shifts in ecology still 
-- we shoudl care about 1) identifying threshold dynaimcs and 2) if climate change and other drivesr are influencing tehse threshold values and/or our proximity to them
-- many 
+<!-- - although the definition related to stable states is tractable, resaerch on regime shifts in ecology still  -->
+<!-- - we shoudl care about 1) identifying threshold dynaimcs and 2) if climate change and other drivesr are influencing tehse threshold values and/or our proximity to them -->
+<!-- - many  -->
 
 
 The number of methods is overwhelming, and although there are quite a few reviews and critiques of RDMs in ecological, they are primarily limited to methods which are (relatively) widely cited or are authored by those wiht high H-indices. As a consequence, case studies of regime shifts often use methods which have been cited multiple times (e.g., variance index). Further, some fo these methods are fairly elegant adn require some level of knowledge to use correctly-- however, are being blindly applied to data.  Blind application of fancy methods [@steel13applied]
@@ -107,7 +107,6 @@ Critical transitions are more concrete than a regime shift -- so it is no surpri
 
 Tipping points are points at which a system responds in a big way to a small chagne, adn much of the theoryand methods are well-developed in this space (e.g. coral reefs @hughes_living_2013,  forests @scheffer2005synergy, insect outbreaks @ludwig1978qualitative, and society @scheffer2003slow). While these RSDMs are  useful for manipulable systems, they are less so for systems of larger scale or extent (e.g. bird communities) and especially for regime shifts occuring due to some uncontrollable circumstance (e.g., climate).
 
-Changes in hte underlying structure or functioning of natural systems due to exogeneous forcings is of interest to climatologists, and terrestrial and aquatic ecologists alike. BEing able to identify and predict these shifts is particularly useful for systems which are actively managed, or are systems that are used by or are beneficial to humans. Being able to predict these shifts in time for management action, or response, is key.
 
 Papers that are critical of RSDMs and RSD include @perretti2012regime, @andersen_ecological_2009, @contamin2009indicators, @perretti2012regime and @contamin2009indicators concluded that some early-warning indicators (skewness, kurtosis, AR1, spectral ratio) perform poorly in the presence noise, but are unaffected by autocorrelation of the noise.  Although most tests of variance as an indicator have fared well (@carpenter_early_2011, @brock_variance_2006), the amount of noise significantly reduces its ability to detect regime shifts (@perretti2012regime).
 
@@ -151,7 +150,6 @@ cases where systems lose their periodicity
 
 ## Some text from the review chapter -
 Potential text:
-
 
 Identifying historic ecolgoical regime changes has been achieved using post-hoc analyitcal approaches Methods for reliably forecasting and predicting these changes are less common. Although numerous quantitative methods exist for detecting ecological regime shifts, new methods are proposed for achieving this aim ata  XXX rate (*insert figure of number of papers per year with new methods*). These methods have proven useful in detecting shifts in atmospheric and fisheries catch data, and in systems that are well-described by a few state variables, or can be modelled reliably with matheamtical equations. Because ecological comunities are more complex than, say, a simple Lotka-Volterra predator prey system, the set of reliable regime shift detection methods narrows.
 
@@ -200,3 +198,80 @@ What is the tradeoff between redundancy and dviersity in identifying these regim
 ```{r distEdgeDistribution, eval=FALSE, echo=FALSE, fig.cap=""}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_distribution.png"))
 ```
+
+
+# FROM CH 2 dsicarded lit reiew mthods
+
+
+<!-- > TS=(("regime shift" OR "regime shifts" OR "regime change" OR "regime changes" OR "catastrophic change" OR "catastrophic shift" OR "catastrophic changes" OR "catastrophic shifts" OR "sudden change" OR "sudden changes" OR "abrupt shift" OR "abrupt shifts" OR "abrupt change" OR "abrupt changes" OR bistab\* OR threshol\* OR hystere* OR "phase shift" OR "phase shifts" OR "phase change" OR "phase changes" OR "step change" OR "step changes" OR "stepped change" OR "stepped changes" OR "tipping point" OR "tipping points" OR "stable states" OR "stable state" OR "state change" OR "state changes" OR "stark shift" OR "stark change" OR "stark shifts" OR "stark changes" "structural change" OR "structural changes" OR "change-point" OR "change point" OR "change-points" OR "change point" OR "break point" OR "break points" OR "observational inhomogeneity" OR "observational inhomogeneities") AND ("new method" OR "new approach" OR "novel method" OR "novel approach"))   -->
+
+<!-- where '\*' indicates a wildcard. A pilot study revealed that by limiting the search to the Web of Science Categories *Ecology* and *Biodiversity Conservation* [i.e. by adding boolean term 'AND WC=(Ecology OR 'Biodiversity Conservation')] excluded many methods that are peripheral to this study. For example, numerous uni-variate measures are used solely in climatology, physics, and data science/computer science literature, where change-point analyses are abundant. Although additional methods could be identified by searching these fields, this dissertation focuses on using methods for analyzing *multivariate* data. Consequently, many methods for analyzing abrupt breaks in a single variable do not appear in the comprehensive list. Next, I identified articles which propose a 'new' method for identifying ecological regime shifts by searching within the results of the previous boolean. I restricted the search by appending the following boolean phrase required to appear in the title and/or abstract: -->
+
+<!-- > AND ('new method' OR 'novel method' OR 'new approach' OR 'new practical method' OR 'new simple method' OR 'new multivariate' OR 'new tool' OR 'novel tool' OR 'novel multivarte' OR 'novel approach' OR 'new numerical' OR 'novel numerical' OR 'new quantitative' OR 'novel quantitative' OR 'i introduce' OR 'we introduce') -->
+
+<!-- There was a disparaty between the number of methods of which I was previously aware and those identified in an initial Web of Science review. In an attempt to identify as many new methods as possible I conducted an informal search of the Google Scholar, a database broader in scope than other academic databases. The length of boolean for the Google Scholar database is limited by the number of characters. Unfortunately, this, coupled with the wide breadth of Google Scholar's search boundaries, limits the capacity to which Google Scholar can be used to refine the literature to a manageable number of articles. For these reasons I arbitrarily skimmed the titles of the first 25 pages of the Google Scholar results (25 pages = 250 articles). It should be noted that the order of terms appearing in the boolean are regarded as the order of desired relevancy. I used the following boolean to identify these articles in Google Scholar: -->
+<!-- > ('regime shift' OR 'regime change' OR 'tipping point') AND ('new method' OR 'new approach' OR 'novel method' OR 'novel approach') -->
+
+```{r rdmReviewFlow, eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE,  fig.cap="Flowchart of the litearture review process for identifying new regime detection methods. Note: only the first ten pages (250 articles) of Google Scholar results were examined. Node shapes: folder = unfiltered articles; box = articles actively filtered; diamond = number of articles with new methods.", out.width="85%"}
+# webshot::install_phantomjs()
+# tempGraph <- DiagrammeR::grViz(
+#   "digraph {
+#   graph [layout = dot, rankdir = TB]
+# 
+#   # define the global styles of the nodes. We can override these in box if we wish
+#   node [shape = rectangle, style = filled, fillcolor = White, fixedsize = TRUE, width=2, height=1]
+#   data0 [label = 'Web of Science \n initial search \n (n = 2,776)', shape = folder, fillcolor = Linen]
+#   data1 [label = 'Filtering \n by title & abstract \n (n = 202)', ]
+#   data2 [label = 'Filter by \n prior knowledge \n (n = 93)']
+#   data3 [label = 'Filtered by hand \n (n = 2)']
+#   
+#   gs1 [label = 'Informal Google \n Scholar search \n (n = 250)', shape = folder, fillcolor = Linen]
+#   gs2 [label = 'Filtering by hand \n (n = 3)', shape = circle]
+# 
+#   prior [label = 'Prior knowledge \n (n = 68)', shape = circle, fillcolor = Linen]
+#   data4 [label = 'Priors + \n Google Scholar \n (n = 71)', shape = circle]
+#   
+#   results [label = 'Final list of \n methods \n (n = 73)', shape = circle, fillcolor = Red]
+# 
+# # edge definitions with the node IDs
+# data0 -> data1 ->data2 ->data3 ->results
+# gs1 -> gs2 -> data4 -> results
+# prior -> data4
+# 
+# }"
+#   )
+
+# Had to save this as a png becausde it wasnt rednreing correctly. If you need to update, please save again.
+knitr::include_graphics("./chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png")
+```
+
+
+<!-- An restricted the ISI Web of Science to the Web of Science categories (WC) 'Ecology' and 'Conservation Biology' as the original search yielded $>20,000$ results. This filtered the results down to a manageable amount of papers to review. Of the $2,776$ articles filtered from the initial search, $654$ included the terms relating to 'regime shifts' [see Section \@ref(rsTerms2); Figure \@ref(fig:wosRegimePubsByYearwithNumEcolPubs)], many of which were published in a predominately methodological journal, *Ecological Modelling* (Figure \@ref(fig:wosRegimePubsByJrnl)). The rapid rate of change publication of articles containing terms related to 'regime shifts' does not correspond with the linear change in the total number of ecological articles published over time (Figure \@ref(fig:wosRegimePubsByYearwithNumEcolPubs)).   -->  
+
+<!-- A total of $202$ of the $2,776$ articles identified by Web of Science contained terms in the title, keywords, or abstract related to a 'new method' (see Section \@ref(revMeth1)). Based on my prior knowledge of the literature and based on reviews of prior regime detection and regime shift review papers, I was previously aware of $68$ articles containing 'new' methods (Figure \@ref(fig:rdmReviewFlow)). Approximately half were successfully identified in the Web of Science and Google Scholar systematic review. After removing the papers containing the methods of which I was already aware prior knowledge, only $93$ articles remained to be reviewed 'by hand'. A review of these $93$ articles resulted in the identification of $5$ new methods [$2$ from Web of Science and $3$ from Google Scholar; Figure \@ref(fig:rdmReviewFlow)].  -->
+
+
+```{r jrnlDistFig, eval=FALSE, echo=FALSE,out.width="100%", fig.cap="Number of articles containing new methods per journal."}
+# Visualize results
+jrnlTemp <- finalMetricsList.bib %>% 
+  mutate(journal = ifelse(label =="rodionov_sequential_2005", "Other", journal),
+  #        journal = ifelse(label =="tong1990nonlinear", "Other", journal), 
+         journal = ifelse(journal =="International Journal of Climatology: A Journal of the Royal Meteorological Society", "International Journal of Climatology", journal),
+         journal = ifelse(journal %in% c(NA, "NA"), "Other", journal)
+  ) %>%
+  mutate(journal = toupper(journal)) %>% 
+  group_by(journal) %>% 
+  summarise(n = n())
+
+ggplot2::ggplot(jrnlTemp %>% 
+  mutate(journal = fct_reorder(journal, desc(n)))) +
+  geom_bar(aes(x = journal, y =n), stat = 'identity') +
+  ylab('number of articles') + xlab("") +
+  coord_flip()+
+  theme_bw() + 
+  theme(axis.text.y = element_text( hjust = 1, size = 8))
+```
+
+
+
+<!-- In the search review of regime shift detection methods I restricted articles to those implying they introduced a 'new method'. Avoiding this potential barrier would have required I review the titles, abstracts, and bodies of over 22,000 articles (Figure \@ref(fig:rdmReviewFlow)). Alternatively, this may also be ameliorated by searching the relevant literature for *applications* of regime detection measures to ecological data, however, I suspect this would similarly yield a large number of articles to review. -->
