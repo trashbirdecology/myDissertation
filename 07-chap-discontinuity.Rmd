@@ -19,7 +19,7 @@ Body size influences the frequency and intensity of inter- and intraspecific com
 Avian distribution and presence data are abundant, easily accessible and, more importantly, provide insights into resource availability and structure at the local and landscape scales. In this Chapter I used discontinuity analysis of avian body mass distributions to identify the scaling structures of local avian communities in the Prairie Potholes, Central Mixed Grass, and Eastern Tall Grass regions of the central Great Plains of North America. I then use linear mixed modelling to determine whether the body mass distributions of these avian communities exhibit change corresponding to the spatial boundaries recently proposed in [@roberts2019shifting]. Although I found evidence supporting the hypothesis that declining grassland birds operate near the 'edges' of body mass aggregations, which represent the spatiotemporal scaling of resource use and availability, I did not identify shifts in the body mass distributions corresponding with the previously proposed pole ward, spatial shifts. 
 
 ## Methods
-```{r studyarea, echo=FALSE, eval=TRUE, fig.cap="My study area (red box) overlaying the terrestrial Breeding Conservation Regions (BCR) in North America."}
+```{r studyarea, echo=FALSE, eval=TRUE, out.width="85%", fig.cap="My study area (red box) overlaying the terrestrial Breeding Conservation Regions (BCR) in North America."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg"))
 ```
 
@@ -46,7 +46,7 @@ Although the NABBS survey reports species-specific abundances, some birds are on
 
 I made decisions regarding species-specific classification based on the North American breeding range maps provided by the Cornell Lab of Ornithology. Many unidentified species were easily categorized given the lack of overlap in species' ranges in our study area. For example, *Baeolophus bicolor* is nearly indistinguishable from *Baeolophus atricristatus*, however *B. atricristatus* is not known to occur in our study area (Figure \@ref(fig:studyarea))--therefore all accounts classified as either *B. bicolor* or *B. atricristatus* were classified as the former. Informed decisions of this nature were made regarding the following unidentified species, where the second name in the binomial was assigned as the species preceding the "/": *Passerina cyanea / amoena*, *Corvus brachyrhynchos / ossifragus*, *Petrochelidon pyrrhonota / fulva*, *Corvus brachyrhynchos*, *Quiscalus major / mexicanus*, *Pipilo maculatus / erythrophthalmus*, *Sturnella magna / neglect*, *Plegadis chihi / falcinellus*, *Coccyzus erythropthalmus / americanus*, *Empidonax traillii / alnorum*, *Icterus galbula / bullockii*, *Nyctanassa nycticorax / violacea*, and *Poecile atricapillus / carolinensis* were all classified according to their known distributions. I classified unidentified hummingbirds (*Trochilid* sp.) as *Selasphorus rufus*, and unidentified Terns (Tern sp.) as *Childonias niger*. All unidentified Accipiters (Accipiter sp.), Buteos (Buteo sp.), and Gulls (Gull sp.) were removed from analysis entirely as there are no clear differences in the probability of occurrence in our study area.  
 
-```{r routesWithSpatRegimes, echo=FALSE, eval=TRUE, fig.cap="North American Breeding Bird Survey routes (points), latitudinal locations (horizontal bars) of the spatial regimes identified by \\@roberts2019shifting.", out.width="85%"}
+```{r routesWithSpatRegimes, echo=FALSE, out.width="85%", eval=TRUE, fig.cap="North American Breeding Bird Survey routes (points), latitudinal locations (horizontal bars) of the spatial regimes identified by \\@roberts2019shifting."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/routes_spatRegimeLines2.png"))
 ```
 
@@ -177,18 +177,18 @@ escape=FALSE) %>%
 ### Summary statistics of censuses (NABBS data)  
 Given the location of the study area (Figure \@ref(fig:studyarea)) with respect to the location of the contiguous Central Great Plains, fewer NABBS routes falling into the Southern regime were analysed than those in the Northern (Table \@ref(tab:nRtesPerRegimePerYearTab)).  Likely due to the increase in the total number of routes surveyed over time across the entire North American Breeding Bird Survey region, species richness increased over time within our study area (Figure \@ref(fig:richnessByYear)). Annual turnover rates were relatively low but became more dispersed over time (Figure \@ref(fig:turnoverByYear); Table \@ref(tab:richTurnTab)).
 
-```{r nRtesPerRegimePerYearFig, fig.cap= "Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation."}
+```{r nRtesPerRegimePerYearFig, out.width="85%", fig.cap= "Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation."}
 temp <- getTab(fn="nRtesPerRegimePerYear") %>% 
   rename(
          Year = year, Regime = regime) 
 ggplot(temp, aes(Year, nLoc,linetype=Regime))+geom_line()+ylab("# NABBS routes analysed")
 ```
 
-```{r richnessByYear, echo=FALSE, eval=TRUE, fig.cap="Species richness increases over time across the entire study area."}
+```{r richnessByYear, echo=FALSE, out.width="85%", eval=TRUE, fig.cap="Species richness increases over time across the entire study area."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/richnessByYear.png"))
 ```
 
-```{r turnoverByYear, echo=FALSE, eval=TRUE, fig.cap="Variance in the total species turnover increases over time across the entire study area."}
+```{r turnoverByYear, echo=FALSE, out.width="85%", eval=TRUE, fig.cap="Variance in the total species turnover increases over time across the entire study area."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/turnoverByYear.png"))
 ```
 
@@ -220,12 +220,12 @@ kableExtra::kable(temp, escape = FALSE, digits = 2,
     add_header_above(c(" ", "Annual Richness" = 3, "Annual Turnover" = 3))
 ```
 
-```{r intrxnPlot-regime, eval=TRUE, echo=FALSE, fig.cap="Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes. Interaction plots presented in two alternative views using the same results.", out.width="45%"}
+```{r intrxnPlot-regime, eval=TRUE, echo=FALSE, fig.cap="Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes.", out.width="80%"}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png"))
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png"))
 ```
 
-```{r simpleCoefEst, eval=FALSE, echo=FALSE, fig.cap="Coefficient estimates of fixed predictors of the linear mixed effects model."}
+```{r simpleCoefEst, eval=FALSE, out.width="85%", echo=FALSE, fig.cap="Coefficient estimates of fixed predictors of the linear mixed effects model."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/simpleCoefEst.png"))
 ```
 
@@ -234,19 +234,19 @@ A total of `r nrow(sppIntDat)` species were considered for analysis across the e
 
 The total (Figure \@ref(fig:stopTotalSum)) and mean (Figure \@ref(fig:stopTotalMean)) number of birds counted within each species group was relatively constant across time in the Prairie Potholes and Eastern Tallgrass Prairie bird conservation regions, but fluctuation in stop totals appeared greater in the Badlands and Prairies BCR (Figures \@ref(fig:stopTotalMean), \@ref(fig:stopTotalSum))). The latter BCR comprises a much smaller portion of the study area (Figure \@ref(fig:studyarea)) and accordingly the coefficient of variation (CV; ratio of deviation to the mean) around the stop totals (Figure \@ref(fig:stopTotalCV)) was highest in this region. It is worth noting the high CV (CV is considered low when $<\ \sim40%$) in all regions.
 
-```{r stopTotalSum, echo=FALSE, eval=TRUE, fig.cap="Total number of birds across the entire study area per species group per year. "}
+```{r stopTotalSum, out.width="85%", echo=FALSE, eval=TRUE, fig.cap="Total number of birds across the entire study area per species group per year. "}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum.png"))
 ```
 
-```{r stopTotalMean, echo=FALSE, eval=TRUE, fig.cap="Average coefficient of variation in the number of birds across the entire study area per species group per year."}
+```{r stopTotalMean, out.width="85%", echo=FALSE, eval=TRUE, fig.cap="Average coefficient of variation in the number of birds across the entire study area per species group per year."}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean.png"))
 ```
 
-```{r stopTotalCV, echo=FALSE, eval=TRUE, fig.cap="Average number of birds across the entire study area per species group per year. "}
+```{r stopTotalCV, out.width="85%", echo=FALSE, eval=TRUE, fig.cap="Average number of birds across the entire study area per species group per year. "}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV.png"))
 ```
 
-```{r nAggsPerYear, echo=FALSE, eval=TRUE, fig.cap="Number of body mass aggregations identified in each route unchanged across the time period (**a**) and is approximately normally distributed ($\\bar{x} =  4.7, \\sigma = 1.6$)"}
+```{r nAggsPerYear, out.width="85%", echo=FALSE, eval=TRUE, fig.cap="Number of body mass aggregations identified in each route unchanged across the time period (**a**) and is approximately normally distributed ($\\bar{x} =  4.7, \\sigma = 1.6$)"}
 dat = readRDS(here::here("/chapterFiles/discontinuityAnalysis/results/datForAnova.RDS")) %>% distinct(year, loc, nAggs, regime)
 # mean(dat$nAggs)
 # sd(dat$nAggs)
