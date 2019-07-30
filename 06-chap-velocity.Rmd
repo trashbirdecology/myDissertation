@@ -1,4 +1,4 @@
-# Velocity (*v*): using rate-of-change of  system  trajectory to identify abrupt changes {#velocity}
+# Velocity (*v*): Rate of Change of System Trajectory Identifies Abrupt Changes in Ecological Systems {#velocity}
 ```{r setupChVelocity, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 # # Chunk defaults
 set.seed(123)
@@ -209,7 +209,7 @@ kable(df.wide[1:5,],digits=3, "latex", align="c", booktabs=TRUE, escape = FALSE,
 
 The numerical results for each step in the calculation of velocity [Equation \@ref(eq:velocity)] is demonstrated using the first five time points of our toy system (Figure \@ref(fig:sysEx)) in Table \@ref(tab:distTab). 
 
-## Velocity *v* performance under a discontinuous transition 
+## Velocity *v* Performance Under a Discontinuous Transition 
 I used simulation techniques to determine the baseline expectations of the performance of velocity $V$ under varying degrees of rapid shifts in the mean and variance of the toy system. The toy system in this section undergoes a discontinuous shift at $t = 50$ (see \@ref(fig:sysEx)). If the system undergoes a rapid and discontinuous change in one or more state variables, the velocity, because it is a rate of change, has the potential to approach $\infty$ as $\Delta t \rightarrow 0$. Therefore, it is important to understand the degree to that velocity can detect very sudden changes in mean values, despite effect sizes. Here, I varied  each of the following system parameters at the regime shift location ($t=50$): $\bar{x}_1$, increase in the mean value of $x_1$ and $\sigma_1$, the change in variance of $x_1$.
 
 Simulations consisted of 10,000 random samples drawn from the normal distribution for each parameter, I randomly drew the toy system samples 10,000 times under increasing values of $\bar{x}_1$ and $\sigma_1$. To identify patterns in the influence of parameter values on velocity, I present the mean values of $V$ across all simulations, with confidence intervals of $\pm 2$ standard deviations. As mentioned above, the state variables $x_1$ and $x_2$ were drawn from a normal distribution (using function *rnorm*), with parameters $\bar{x}_i$ (mean) and $\sigma_i$ (sd) for 50 time steps, $t$. 
@@ -279,7 +279,7 @@ knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/simVp
 #   mutate(var.sim = as.integer(var.sim))
 ```
 
-#### Varying post-shift variance
+#### Varying Post-shift Variance
 In the previous example, variance was constant before and after the abrupt shift at $t=50$. To determine whether the signal emitted by $V$ at the regime shift is lost or dampened when increasing variance I varied the variance parameter, $\sigma_1$ along the set $W = \{1,2,3,...25 \}$. The variance for both state variables ($x_1, x_2$) prior to the regime shift, $\sigma_{x_1}$ and $\sigma_{x_2}$, was $5$, with the change occurring in $\sigma_{x1post}$.
 ```{r simVarPlot, echo=FALSE,  eval=TRUE,   out.width="85%", fig.cap = "High variance of velocity ($V$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\\sigma_1$ at $t=50$."}
 # p<- ggplot(data = dist.sim2 %>% filter(sim.num==1, t==51), 
@@ -331,7 +331,7 @@ To determine whether process or observational noise influences the signal in $V$
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/smoothV.png"))
 ```
 
-## Velocity performance under a smooth transition
+## Velocity Performance Under a Smooth Transition
 In the previous section I presented expectations for velocity signals under a discontinuous transition in a discrete-time system. Given velocity is a measure of the rate of a change in a system and the range of transition speeds ecological systems exhibit (e.g., slow driver-response or threshold dynamics), it is important to understand if and when the velocity signal is dampened under varying degrees of transition speeds. In this section I use a similar toy system, to demonstrate the expectations of velocity under a smooth shift and under varying degrees of rapidity.
 
 Although the data constructed in this section are similar to that used in the previous section in that we are manipulating the mean and variance of two state variables before and/or after an abrupt shift, this section introduces a component of process noise into the shift itself. This is important because the derivative of a nearly discontinuous function is infinite. Although we are interested in identifying rapid shifts in systems, velocity will approach infinity as the rate of change in the shift increases and the sampling intervals decrease. In other words, if the system exhibits turnover in e.g. $25\%$ of the state variables, we expect the value of velocity to be similar to that of a turnover in e.g. $75\%$ of the variables. Removing the possibility of infinite values provides more relative measures within the community time series. 
@@ -408,7 +408,7 @@ I generated observations by imputing noise into the true process model [Equation
 
 where $\sigma_{xi}$ is the observed error around $\mu_{xi}$, and $\sigma_{Xi}$ is $X\%$ of $\mu_{xi}$ under various sampling conditions (as described in Table \@ref(tab:sysParams)). I generated the error as a percent of the mean as this scaling relationship is commonly observed in ecological data [@taylor1961aggregation].
 
-### Evaluating velocity performance under conditions of changing means and/or variance
+### Evaluating Velocity Performance Under Conditions of Changing Means and Variance
 I simulated a single data set (using `r set.seed=12345` in Program R) by randomly drawing a single realisation (observed data) of the hyperbolic tangent process model with additive noise process [Equation \@ref(eq:observed)]. I then calculated the distance traveled, $s$, and the velocity of the distance traveled, $V$ (also referred to as $\frac{ds}{dt}$) using Equation \@ref(eq:velocity)---this approach (Equation \@ref(eq:velocity)) is a simple alternative to numerical integration techniques, requiring only simple algebraic techniques. This method is ideal for discrete time data, or where computational power would not suffice for numerical integration. When using the first differences method, however, $V$ will demonstrate high variability, depending on the amount of time between samples (i.e. as the intervals of $t-t+1$ increase). 
 
 I also calculated $V$ using a numerical integration method for non-smooth, noisy data, called total variation regularized differentiation [@chartrand2011numerical]. I used the R package `tvdiff` [@price2019tvdiff] to perform  numerically integrate the distance traveled, $s$. The regularized differentiation method in this package [function `tbdiff::tvRegDiff`; described fully in @chartrand2011numerical] provides a numerical solution for calculating non-noisy derivatives of noisy, non-smooth data. Using this smooth-derivative estimation technique may be an ideal supplement to the velocity method in cases where process and observational error generate noisy observational data. Although not possible in most ecological systems data, here we can compare the fit of the smooth-derivative to the derivative of the true process, allowing us to determine the usefulness of calculating a smooth-derivative. There are two tuning parameters required to be chosen by the analyst when implementing the total-variation regularized differentiation, each of that influence the amount of noise smoothed out in the resulting derivative: $\alpha$ and the number of iterations. I implemented this numerical differentiation over 1,000 iterations, and selected $\alpha$ by comparing the anti-differentiated distance traveled, $s$, to the true process values of $s$ (e.g., see Figure \@ref(fig:antiDiffComp)). For most conditions and smoothness I found the tuning parameter for `tvdiff` $\alpha=0.50$ provided a good fit of $s$ (Figure \@ref(fig:antiDiffComp)), however, when the hyperbolic tangent smoothing parameter, $\alpha$ was low (i.e. $\alpha_{tanh}=0.25$) higher values of $\alpha_{tvdiff}$ yielded more abrupt changes in the derivative. 
@@ -558,7 +558,7 @@ paleoEx <-
 knitr::include_graphics(here::here("chapterFiles/velocity/figsCalledInDiss/paleoTurnover.png"))
 ```
 
-## Velocity performance under empirical transitions: paleolithic freshwater diatom community
+## Velocity Performance Under Empirical Transitions: paleolithic freshwater diatom communities
 To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \@ref(resampling). Briefly, the paleodiatom community comprises `r length(unique(paleo$variable))` time series over a period of approximately `r abs(max(paleo$sortVar)-min(paleo$sortVar)) %>% round(0)` years (Figure \@ref(fig:paleoTurnover)). As elaborated in @spanbauer_prolonged_2014, the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundances over time, as there are extreme levels of species turnover at multiple points in the data (Figure \@ref(fig:paleoTurnover)). Using Fisher Information and climatological records, @spanbauer_prolonged_2014 suggest that regime shifts in this system at approximately 1,300 years before present [where years before present is equal to year 1950; @spanbauer_prolonged_2014].
 
 ```{r paleoVelocity,  echo=FALSE, warning=F, message=F, cache = T,    out.width="85%", fig.cap ="Velocity $V$ and distance traveled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $V$."}

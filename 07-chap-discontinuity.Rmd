@@ -270,7 +270,7 @@ knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCall
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/routeGapEx.png"))
 ```
 
-### Statistical Analysis
+### Statistical analysis
 #### Identifying scaling structure in body mass distributions
 Discontinuity analysis was conducted to identify the aggregations in the body mass distributions of `r n_distinct(dat$loc)` routes over a `r max(dat$year) - min(dat$year)` period across the Central Great Plains (Figure \@ref(fig:studyarea))). Discontinuity analysis suggested discontinuities existed in all routes analysed, and were relatively similar within NABBS routes over time. The number of body mass aggregations identified within each NABBS route using the discontinuity detector [@barichievy2018method] was similar was similar across time (Figure \@ref(fig:nAggsPerYear)a) and was approximately normally distributed across all survey-year combinations ($\bar{x} =  4.7, \sigma = 1.6$; Figure \@ref(fig:nAggsPerYear)a). Species richness at the route level was strongly positively correlated with the number of aggregations  (Figure \@ref(fig:aggEdgeCorrPlot)). The distance to edge variable was statistically, but not strongly, correlated with body mass $r=-0.02, p = <0.01$, and this relationship was similar across species groups except grassland obligates. 
 <!-- (Table \@ref(tab:corTabBySppGroup)).  -->
@@ -293,7 +293,7 @@ kableExtra::kable(est,
     row_spec(c(4,5,6, 9,10), bold=T)
 ```
 
-#### Linear Mixed Effects Analysis of Distance to Edge
+#### Linear mixed effects analyssis of distance to edge
 Declining species and declining grassland obligate species were located closer to the edge than the 'other' species, while grassland obligate species were further from the edge than 'other' species (Table \@ref(tab:lmeTab)). Similar trends held for declining grassland obligates and grassland obligates in the Northern regime location. There was, however, no evidence to suggest additive effects of the regime  location or year, or their interactions  (Table \@ref(tab:lmeTab)). 
 
 ```{r bmDistPerSppGroup, echo=FALSE, eval=TRUE, fig.cap="Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group over the entire study area and all years.", out.width="85%"}

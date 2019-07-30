@@ -23,7 +23,7 @@ Forecasting undesirable change is, arguably, the holy grail of ecology. Paired w
 
 Research focusing on the above areas as they relate to regime detection measures may improve the quality of these early warning systems, further shedding light on the potential of these methods for application to place-based  observations.
 
-## Dissertation aims
+## Dissertation Aims
 This dissertation  contributes to our understanding of the utility and limitations of early warning systems for ecological regime shift detection, referred to here as 'regime detection measures'. Regime detection measures exist for handling both univariate and multi-variable data, however, it is the latter of these methods within which this dissertation focuses. Although the univariate regime detection measures are currently more widely applied and conceptually tractable than many multivariate regime detection measures, the utility of the univariate measures may be limited when change(s) in the system dynamics manifest in entire community dynamics, rather than in select indicator species, for example. Multivariable regime detection measures may also be more advantageous than analysing individual variables when the drivers of the observed systemic change are unknown. Further, ecological systems are noisy, and ecological systems data are messy, conditions which complicate the use of univariate regime detection measures. 
 
 

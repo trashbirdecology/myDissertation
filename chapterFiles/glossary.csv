@@ -44,7 +44,7 @@ F,Sliding window,"when a sample. $X_t$ is used instead of $x_t$, as an interval 
 T,Moving (sliding) window analysis,"When a subsample of the data $$X_t$$ is used in lieu of a single observation, $$x_t$$.",
 T,Online,"Real-time updating of model parameters, predictions, etc. (c.f. offline).",
 T,Change-point,"See also 'Regime Shift'. A term often used in computer science, climatology, data science; represents the point at which a state changes its configuration.",
-T,Unsupervised main learning,When no prior training of the data is required (i.e. no classifications necessary a priori) to classify it.,
+T,Unsupervised machine learning,When no prior training is required (i.e. no classifications necessary a priori) to classify it.,
 T,supervised machine learning,When classifiers are used to train the data a priori.,
 T,Change-point detection,A change point method which does not require supervision; identifies potential change points without a priori potential change points.,
 T,Change-point Estimation,"A change point method which DOES require supervision; identifies potential change points when given a set of potential change points; well-developed in computer science, statistics, data mining, etc.; although well-developed, still lacks with giving statistical significance of change-points.",

@@ -204,7 +204,7 @@ First, visit the USGS Patuxent Wildlife Research Center's [website for BBS resul
 
 Next, enable the drop-down **Survey Results**, and choose **Trend Estimates (by region)** (left) and choose the desired region (e.g. Florida):
 
-![](https://github.com/TrashBirdEcology/bbsAssistant/raw/master/images/regcred_select_trendests_byregion.png){width=300px}![](https://github.com/TrashBirdEcology/bbsAssistant/raw/master/images/regcred_select_fl.png){width=300px}
+<!-- ![](https://github.com/TrashBirdEcology/bbsAssistant/raw/master/images/regcred_select_trendests_byregion.png){width=300px}![](https://github.com/TrashBirdEcology/bbsAssistant/raw/master/images/regcred_select_fl.png){width=300px} -->
 
 Finally, copy the URL address for the page including the results and credibility measures (e.g. Florida):
 

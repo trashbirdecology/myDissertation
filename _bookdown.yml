@@ -5,4 +5,4 @@ download: [["thesis.pdf", "PDF"]]#, ["thesis.epub", "EPUB"], ["thesis.docx", "Wo
 delete_merged_file: yes
 clean: ["myDissertation.rmd", "myDissertation.log"]
 new_session: no
-rmd_files: ["index.Rmd", "00-abstract.Rmd","00-acknowledgements.Rmd", "001-definitions.Rmd","01-chap-intro.Rmd", "02-chap-rdmMethodsReview.Rmd","03-chap-fiGuide.Rmd","04-chap-fisherSpatial.Rmd","06-chap-velocity.Rmd", "05-chap-resampling.Rmd", "07-chap-discontinuity.Rmd","08-chap-conclusions.Rmd","91-appendices.Rmd","999-references.Rmd"]
+rmd_files: ["index.Rmd", "001-definitions.Rmd","01-chap-intro.Rmd", "02-chap-rdmMethodsReview.Rmd","03-chap-fiGuide.Rmd","04-chap-fisherSpatial.Rmd","06-chap-velocity.Rmd", "05-chap-resampling.Rmd", "07-chap-discontinuity.Rmd","08-chap-conclusions.Rmd","91-appendices.Rmd","999-references.Rmd"]

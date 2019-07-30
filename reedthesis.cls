@@ -210,13 +210,13 @@
 \def\division#1{\gdef \@division{#1}}
 \def\@division{\@latex@warning@no@line{No \noexpand\division given}}
 \def\department#1{\gdef \@department{#1}}
-\def\@department{\@latex@warning@no@line{No \noexpand\department given}}
+% \def\@department{\@latex@warning@no@line{No \noexpand\department given}}
 \def\thedivisionof#1{\gdef \@thedivisionof{#1}}
 \def\@thedivisionof{}
 \def\approvedforthe#1{\gdef \@approvedforthe{#1}}
 \def\@approvedforthe{}
 \def\advisor#1{\gdef \@advisor{#1}}
-\def\@advisor{\@latex@warning@no@line{No \noexpand\advisor given}}
+% \def\@advisor{\@latex@warning@no@line{No \noexpand\advisor given}}
 \def\altadvisor#1{\gdef \@altadvisor{#1} \@altadvisortrue}
 \global\let\@altadvisor\@empty
 \newif\if@altadvisor
