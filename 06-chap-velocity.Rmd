@@ -68,8 +68,10 @@ I first describe the steps for calculating this new metric ($V$), as both a dime
 ### Analytical approach 
 I first describe the steps for calculating velocity by constructing a simple, two-variable system that exhibits only a rapid, discontinuous change in the means of the state variables. I next vary the mean and variance of the state variables of this system to demonstrate baseline expectations for the behavior of velocity under a simple rapid shift scenario. Next, I construct a second model system similar to the first, but one that exhibits a continuous rapid change in the state variables. The purpose of this section is three-fold. First, I demonstrate how velocity behaves when the system undergoes varying degrees of change (e.g., slow change versus nearly discontinuous, rapid). Second, I concurrently identify baseline expectations of velocity under varying conditions of mean and variability of the state variables before and after a shift. Third, by introducing a smoothing function to the rapid shift, we gain an understanding of how process variability (noise) impacts the shift detectability by the velocity metric. Finally, I calculate the velocity of an empirical, paleolithic freshwater diatom community time series to demonstrate the utility of the velocity metric in highly noisy, high dimensional, and irregularly-sampled data. 
 
-## Steps for Calculating velocity, $V$
+## Steps for Calculating Velocity, $V$
+ S
 In this section, I first demonstrate the calculations of velocity using a very simple, two-variable toy system. The first system exhibits a rapid shift at a single point in time, where mean and variance are constant before and after the shift point. I demonstrate the signals achieved with and the variability within the $V$ calculation by exploring a number of scenarios of this simple system. For the examples in this section, observations of $x_i$ are randomly drawn from distribution $x_i\sim Normal(\mu, \sigma)$, where $\mu$ is the mean and $\sigma$ is the standard deviation. 
+
 ```{r sysEx, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE,   out.width="85%", fig.cap="The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\\sigma = 5$."}
 x_1 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
 x_2 = c(rnorm(mean =25, sd = 5, n=50), rnorm(mean =100, sd = 5, n=50))
@@ -120,8 +122,8 @@ p.sysEx +
   theme_bw()
 ```
 
-### Steps for calculating $V$
-#### Step 1: Calculate $\Delta x_i$
+### Step 1: Calculate $\Delta x_i$
+
 The first step is to calculate the change in values for each state variables, $x_i$, between two consecutive time points [e.g., from time $t$ to $t+1$ for the discrete-time system; Figure \@ref(fig:sysEx2); Equation \@ref(eq:diffX)]:
 \begin{equation}
 \Delta x_i = x_{i(t+1)} - x_{it} 
@@ -129,7 +131,8 @@ The first step is to calculate the change in values for each state variables, $x
 \end{equation}
 Note that $\Delta x_i$ can take any value between $-\infty$ and $\infty$. 
 
-#### Step 2: Calculate distance traveled, $s$
+### Step 2: Calculate distance traveled, $s$
+
 Next, we calculate the total change in the multivariate system as a function of the change in all  state variables $x_i$. First, we calculate $\Delta s$ as the square root of the sum of squares of the changes in all state variables per Pythagoras's theorem [Equation \@ref(eq:ds)]: 
 \begin{equation}
 \Delta s = \sqrt{\sum{\Delta x_i^2}}
@@ -165,7 +168,8 @@ ggplot(temp, aes(x=t, y=s))+
 
 We now have a single measure, $s_T$ [hereafter referred to as $s$; Equation \@ref(eq:s)] at each discrete point in time in our $N$-dimensional system (Figure \@ref(fig:sysExs)). It should be noted that $s$(Figure \@ref(fig:sysExs)) is monotonically increasing since the value of $\Delta s$ [Equation \@ref(eq:ds)] is a sum of squares. Although discussed in a later section, it is important to note that $s$ is not unitless---that is, $s$ has units of the state variables, $x_i$. For example, if our 2-variable toy system represents biomass, then the units of $s$ represents the cumulative absolute change in biomass of the entire system. 
 
-#### Step 3: Calculate velocity, $V$ (or $\frac{\Delta s}{\Delta t}$) 
+### Step 3: Calculate velocity, $V$ (or $\frac{\Delta s}{\Delta t}$) 
+
 Finally, we calculate the **system velocity**, $V$ (or $\frac{\Delta s}{\Delta t}$), by first calculating the change in $s$ [Equation \@ref(eq:s)], and then divide  by the total time elapsed between consecutive sampling points:
 \begin{equation}
  v = \frac {\Delta s}{\Delta t} 
@@ -210,7 +214,7 @@ I used simulation techniques to determine the baseline expectations of the perfo
 
 Simulations consisted of 10,000 random samples drawn from the normal distribution for each parameter, I randomly drew the toy system samples 10,000 times under increasing values of $\bar{x}_1$ and $\sigma_1$. To identify patterns in the influence of parameter values on velocity, I present the mean values of $V$ across all simulations, with confidence intervals of $\pm 2$ standard deviations. As mentioned above, the state variables $x_1$ and $x_2$ were drawn from a normal distribution (using function *rnorm*), with parameters $\bar{x}_i$ (mean) and $\sigma_i$ (sd) for 50 time steps, $t$. 
 
-#### Varying post-shift mean
+#### Varying post-shift mean  
 I examined the influence of the magnitude of change in $x_1$ in the period before (pre; $t <50$) and after (post; $t \geq 50$) by varying the mean parameter, $\bar{x}_1$ in the set $W=\{25,30,35,...100 \}$ (Figures \@ref(fig:simVplot1) and \@ref(fig:simVplot2)). As expected, the magnitude of $V$ increases linearly as the total difference between $\bar{x}_{1_{pre}}$ and $\bar{x}_{1_{post}}$ increases (Figure \@ref(fig:simVplot2)). This is not surprising because  $s$ increases as the total change in abundance across the entire system increases [Equation \@ref(eq:s)]. Consequently the potential  of $V$ also increases with total state variable values (e.g. abundance, biomass). The linear relationship among $V$ and total state variable values indicates that while $V$ is capable of identifying large shifts in data structure, it may fail to identify subtle changes (i.e. lower effect sizes).
 ```{r simVplot1, cache = TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE, fig.cap = "Velocity ($V$) generally increases as the total change in the mean value of $\\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\\sigma = 5$, $\\bar{x}_1 = 25$ when $t<50$,  $\\bar{x}_2=50$ when $t\\geq50$, $\\bar{x}_1 = 25$ when $t <50$.", out.width="85%"}
 # p<- ggplot(data = dist.sim %>% filter(sim.num==1, t==51), 

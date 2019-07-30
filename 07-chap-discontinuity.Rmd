@@ -299,9 +299,11 @@ Declining species and declining grassland obligate species were located closer t
 ```{r bmDistPerSppGroup, echo=FALSE, eval=TRUE, fig.cap="Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group over the entire study area and all years.", out.width="85%"}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png"))
 ```
+
 ```{r bmDistPerSppGroup-byRegime, echo=FALSE, eval=TRUE, fig.cap="The body mass distribution of declining species differ only slightly between the Southern and Northern regimes.", out.width="85%"}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime.png"))
 ```
+
 ```{r bmDistPerSppGroup-byBCR, echo=FALSE, eval=TRUE, fig.cap="Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group and Bird Conservation Region over all years.", out.width="85%"}
 knitr::include_graphics(here::here("/chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png"))
 ```

@@ -441,12 +441,22 @@ The still-vague definition of ecological regime shifts has led to a breadth of a
 \begin{quote}
 TS=(``regime shift'' OR ``regime shifts'' OR ``regime change'' OR ``regime changes'' OR ``catastrophic change'' OR ``catastrophic shift'' OR ``catastrophic changes'' OR ``catastrophic shifts'' OR ``sudden change'' OR ``sudden changes'' OR ``abrupt shift'' OR ``abrupt shifts'' OR ``abrupt change'' OR ``abrupt changes'') AND WC=(``Ecology'' OR ``Biodiversity Conservation'')
 \end{quote}
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{_myDissertation_files/figure-latex/wosRegimePubsByJrnl-1} \caption{Number of articles containing phrases related to ecological 'regime shifts' published per publication outlet.}\label{fig:wosRegimePubsByJrnl}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.75\linewidth]{_myDissertation_files/figure-latex/wosRegimePubsByJrnl-1} 
+
+}
+
+\caption{Number of articles containing phrases related to ecological 'regime shifts' published per publication outlet.}\label{fig:wosRegimePubsByJrnl}
 \end{figure}
 I identified patterns and trends in the articles resulting from the above mentioned search using a bibliographic analysis (using R Package \texttt{bibliometrix}; Aria \& Cuccurullo, \protect\hyperlink{ref-bibliometrix}{2017}). This package contains function wrappers for conducting and visualizing network analyses based on keyword, authorship, and citation data. In an attempt to understand the evolution of regime shift theory and relate this evolution to the quantitative methods in the ecological literature, I focus analyses on using keyword and concept themes rather than citation counts and author dominance.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/wosRegimePubsByYearwithNumEcolPubs-1} \caption{Number of publications by year in fields 'Ecology' and 'Biodiversity Conservation' which included terms related to 'regime shift' (total = 654).}\label{fig:wosRegimePubsByYearwithNumEcolPubs}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/wosRegimePubsByYearwithNumEcolPubs-1} 
+
+}
+
+\caption{Number of publications by year in fields 'Ecology' and 'Biodiversity Conservation' which included terms related to 'regime shift' (total = 654).}\label{fig:wosRegimePubsByYearwithNumEcolPubs}
 \end{figure}
 \begin{landscape}
 \begin{longtabu} to \linewidth {>{\raggedright\arraybackslash}p{20em}>{\raggedright\arraybackslash}p{10em}>{\raggedright\arraybackslash}p{15em}}
@@ -538,8 +548,13 @@ Wavelet analysis (decomposition) & other & Cazellas et al. (2008)\\*
 \subsection{Quantitative methods for identifying ecological regime shifts}\label{quantitative-methods-for-identifying-ecological-regime-shifts}}
 
 I identified 63 unique methods proposed for identifying ecological regime shifts (Table \ref{tab:methodstable}) based on expert knowledge and previously published review articles.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords} \caption{A thematic map of the clusters (themes) identified among the (a) author-supplied and (b) ISI-supplied keywords for each article using a clustering algorithm.}\label{fig:thematicMaps-keyword}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords} 
+
+}
+
+\caption{A thematic map of the clusters (themes) identified among the (a) author-supplied and (b) ISI-supplied keywords for each article using a clustering algorithm.}\label{fig:thematicMaps-keyword}
 \end{figure}
 \hypertarget{bibliographic-analysis-of-ecological-regime-shift-literature}{%
 \subsection{Bibliographic analysis of ecological regime shift literature}\label{bibliographic-analysis-of-ecological-regime-shift-literature}}
@@ -550,20 +565,45 @@ A search of Web of Science for articles in Ecology and Biodiversity Conservation
 \subsubsection{Thematic mapping using keywords}\label{thematic-mapping-using-keywords}}
 
 Two types of keywords exist in the ISI Web of Science bibliography metadata: those provided to the publication by the authors (author-supplied), and those defined by the ISI Web of Science (ISI-supplied). A keyword thematic map suggests these keywords are used very differently within this literature (Figure \ref{fig:thematicMaps-keyword})\footnote{Axes represent (x, Callon's centrality) the degree of interaction, or the contribution of the theme to the research field and (y, Callon's density) the strength of the network arcs, or the importance of a theme to the field. Clusters appearing in the quadrants (from top-right moving counter-clockwise) represent the following themes: I) motor-themes (important to the field and well-developed); II) basic-themes (well-developed but marginally important to the field); III) emerging and disappearing themes (under-developed and marginal); and IV) specialized themes (important but under-developed). These themes were identified using a clustering algorithm discussed further in Cobo \emph{et al.} (\protect\hyperlink{ref-cobo2011approach}{2011})}. The clustering algorithm identified fewer clusters (themes) in the ISI-keywords (Figure \ref{fig:thematicMaps-keyword}a) than were identified among the author-supplied keywords (Figure \ref{fig:thematicMaps-keyword}b\^{}; see footnote \(^2\)). This pattern is not surprising given the ISI-supplied keywords are restricted to a pre-set number of keywords, whereas authors can and do provide synonyms, or words not used at all by ISI. The themes identified in the ISI-supplied keyword analysis were relatively consistent as the number of keywords analysed increased, but the themes varied drastically among the author-supplied keywords. For this reason I make inference on only the ISI-supplied keyword cluster analysis.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-author} \caption{The themes identified in the literatue based on author-supplied keywords vary as the number of words included in the analysis increased.}\label{fig:thematicMaps-keyword-author}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-author} 
+
+}
+
+\caption{The themes identified in the literatue based on author-supplied keywords vary as the number of words included in the analysis increased.}\label{fig:thematicMaps-keyword-author}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-isi} \caption{The themes identified in the literatue based on the ISI-supplied keywords vary as the number of words included in the analysis increased.}\label{fig:thematicMaps-keyword-isi}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-isi} 
+
+}
+
+\caption{The themes identified in the literatue based on the ISI-supplied keywords vary as the number of words included in the analysis increased.}\label{fig:thematicMaps-keyword-isi}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph-75quantile} \caption{Chronological direct citation newtwork suggests the intellectual structure can be mapped to a few papers. This historiograph identifies important works explicitly in chronological, as opposed to absolute, order.}\label{fig:historiograph}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph-75quantile} 
+
+}
+
+\caption{Chronological direct citation newtwork suggests the intellectual structure can be mapped to a few papers. This historiograph identifies important works explicitly in chronological, as opposed to absolute, order.}\label{fig:historiograph}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear} \caption{Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s.}\label{fig:totArtCitesPerYear}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear} 
+
+}
+
+\caption{Total number of articles published and corresponding number of citations (for papers published that year). The most highly cited papers to-date are those published in the late 2000s.}\label{fig:totArtCitesPerYear}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/revArtNums} \caption{Total number of articles published per year by category as categorized by ISI. Book chapters, proceedings, editorials, and letters are excluded.}\label{fig:revArtNums}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/revArtNums} 
+
+}
+
+\caption{Total number of articles published per year by category as categorized by ISI. Book chapters, proceedings, editorials, and letters are excluded.}\label{fig:revArtNums}
 \end{figure}
 Four major themes were identified in the ISI keyword analysis and, interestingly, fell mostly within the quadrants representing the most extreme values: the first and the third quadrants (Figure \ref{fig:thematicMaps-keyword-isi}). The themes identified by the ISI-supplied keywords were much larger in scope (e.g, dynamics, ecosystems, climate; Figure \ref{fig:thematicMaps-keyword}a) than those identified in the analysis of author-supplied keywords (e.g., eutrophication, trophic cascade; Figure \ref{fig:thematicMaps-keyword}b). That is, the themes of `regime shifts' and `ecosystem dynamics' are highly central to and dense within the regime shift literature (Figure \ref{fig:thematicMaps-keyword}b-d). This suggests these two themes are important to the development of the field and are still strongly influencing the evolution of this field. Although the theme `dynamics' appears a central theme in the development and persistence in ecological regime shift theory based on the bibliographic analysis, it is not necessarily reflected in the many case studies of regime shifts in application (Litzow \& Hunsicker, \protect\hyperlink{ref-litzow_early_2016}{2016}). In fact, Litzow \& Hunsicker (\protect\hyperlink{ref-litzow_early_2016}{2016}) found that \(\sim50%
 \) of case studies actually tested or accounted for non-linear dynamics when applying early warning indicators and other regime shift measures to ecological time series.
@@ -738,34 +778,64 @@ What is preserved in the calculation of distance traveled is the rate of change 
 Importantly, the probability of observing the system at a particular value of s increases if the system is changing slowly at that point in time. That is \(p(s)\) is inversely proportional to the system rate of change, \(s'\). Mathematically, the distance traveled in phase space, \(s\), is a monotonically increasing function of time and we assume it is differentiable. Therefore, the probability density function of the distance traveled is \(p(s)=\frac{1}{T}\frac{1}{s'}\), where \(s'=\frac{ds}{dt}\) is the speed (or velocity) of \(s\), and \(T\) is the time interval over which the system was observed (\(t_{start}\)-\(t_{end}\)). We note that \(p(s)\) is simply a constant multiplied by the inverse of the speed of the system.
 
 The original motivation for the FI calculation as applied to ecological systems was the hypothesis that ``since Fisher Information is a measure of the variation'' it is also ``an indicator of system order, and thus system sustainability'' (Cabezas \& Fath, \protect\hyperlink{ref-cabezas_towards_2002}{2002}). Equation \eqref{eq:fiAdapted} is a general form of FI and Equation \eqref{eq:fiDerivs} is the form used in the derivative-based method for FI (see Equation 7.3b and 7.12 in Mayer \emph{et al.}, \protect\hyperlink{ref-mayer_applications_2007}{2007}). To better understand the FI calculation, note that Equation\eqref{eq:fiDerivs} is, in part, a measure of the gradient content of the probability density function. As the probability density function becomes flatter, the FI value will decrease. In this way, the FI calculation is closely related to the variance. In fact, the FI value for a normal distribution calculated according to Equation \eqref{eq:fiDerivs} is simply one over the variance. It is also important to note that FI is zero for a uniform distribution, as the probability density function is flat. Note also that FI goes approaches \(\infty\) if the system is not changing over some period of time (Equation \eqref{eq:fiDerivs}).
-\begin{figure}
-\includegraphics[width=0.95\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/distSppedAccel} \caption{From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.}\label{fig:distSpeedAccel}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.95\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/distSppedAccel} 
+
+}
+
+\caption{From top to bottom, distance traveled in phase space, speed tangential to system trajectory, acceleration tangential to system trajectory.}\label{fig:distSpeedAccel}
 \end{figure}
 \#\#Results
 Distance traveled (\(s\)), speed (\(\frac{ds}{dt}\)), and acceleration (\(\frac{d^2 s}{dt^2}\)) capture the dynamics of the model system {[}Equation \eqref{eq:predprey}; Figure \ref{fig:distSpeedAccel}{]}. I simulated a regime shift in the carrying capacity of this model system, at approximately \(t=200\) (Figure \ref{fig:kByTime}). The location of this regime shift with respect to the system trajectory in phase space over the entire simulated time period is shown in (Figure \ref{fig:kTrajectories}). Although a slight change is captured by \(s\) (Figure 4) at the location of this regime shift, it is not pronounced. Although the distance traveled, \(s\) (Figure \ref{fig:sOverTime}) changes fairly smoothly around the location of the regime shift, the system exhibits a steep decline in speed ds/dt soon after the induced regime shift (Figure \ref{fig:dsdtOverTime}).
 
 I calculated FI for the distribution of \(s\) over a series of non-overlapping time windows. According to Mayer \emph{et al.} (\protect\hyperlink{ref-mayer_applications_2007}{2007}) the length of the time window should be equal to one system period such that FI is constant for a periodic system, however, the system periods are not identical before, during, and after the regime shift. Therefore, I performed two separate calculations of FI using window sizes corresponding to the initial (when \(t<200\)) and the final (\(t>200\)) periods of the system (\(winsize = 13.061\) and \(11.135\) time units, respectively). Using these window sizes the drop in FI at the regime shift initiation is bigger than the magnitude of the fluctuations preceding it (Figure \ref{fig:fiOverTime}).
-\begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/kByTime} \caption{Carrying capacity over time with a regime shift occuring around time 200.}\label{fig:kByTime}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/kByTime} 
+
+}
+
+\caption{Carrying capacity over time with a regime shift occuring around time 200.}\label{fig:kByTime}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.95\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/kTrajectories} \caption{Phase space plot of system trajectories for different values of k. Colored point indicates the coordinates coorresponding to the shift induced in carrying capacity. }\label{fig:kTrajectories}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.95\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/figures/kTrajectories} 
+
+}
+
+\caption{Phase space plot of system trajectories for different values of k. Colored point indicates the coordinates coorresponding to the shift induced in carrying capacity. }\label{fig:kTrajectories}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/sOverTime} \caption{Distance travelled in phase space over time. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:sOverTime}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/sOverTime} 
+
+}
+
+\caption{Distance travelled in phase space over time. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:sOverTime}
 \end{figure}
 \hypertarget{discussion-1}{%
 \section{Discussion}\label{discussion-1}}
 
 Part of the appeal of the FI method of regime shift detection is that it provides a 1-dimensional visual summary of system ``orderliness''. However, I have demonstrated that, because only a single measure is required to calculate the Fisher Information, the dimensionality reduction step need not necessarily use the `distance traveled'. Rather, for example, one can calculate the Fisher Information of anohter reduced dimension like the components of an ordination (e.g.~using Principal Components Analysis). The rate of change of the system (velocity, \(\frac{ds}{dt}\)\}), on which FI method is based, is also a 1-dimensional quantity. In the simple predator-prey example, calculating and plotting FI did not provide a clear benefit over simply plotting the system rate of change directly. I suggest that future research uncouple the dimensionality reduction step and the FI calculation step in order to better illustrate the benefits of the FI method relative to dimensionality reduction alone.
-\begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/dsdtOverTime} \caption{Speed of the system (rate of change, velocity) in phase space. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:dsdtOverTime}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/dsdtOverTime} 
+
+}
+
+\caption{Speed of the system (rate of change, velocity) in phase space. Dashed vertical line at time 200 indicates location of regime shift.}\label{fig:dsdtOverTime}
 \end{figure}
 In the predator-prey example, I assumed the data was free from observation error. Despite these ideal conditions, the estimated FI had high variation and the results depended on the size of the time window used in the calculation. This issue arises because the period of the cyclic system is changing during the regime shift such that it is difficult to find a single window size that works well for the entire time series. Mayer \emph{et al.} (\protect\hyperlink{ref-mayer_applications_2007}{2007}) describe this as a ``confounding issue'' related to ``sorting out the FI signal of regime change from that originating from natural cycles'' and suggest using a time window that is large enough to include several periods. However, in the absence of a quantitative decision rule defining what changes in FI indicate regime shifts, it is difficult to separate the signal in the FI metric from the noise due to fluctuations in the natural cycles. Further research is needed to define quantitative decision rules for what changes in FI constitute a regime shift.
 
 The example used in this study is unrealistic in that I assume no measurement error and therefore focus on the ``derivatives-based'' method of calculating FI. However, our analysis also has implications for the ``binning'' method of calculating FI that was later developed for high-dimension noisy data (Karunanithi \emph{et al.} (\protect\hyperlink{ref-karunanithi_detection_2008}{2008})). Rather than attempting to estimate the rate of change of each system component (e.g., hundreds of species) and combining these estimates to get the total system rate of change, I suggest an approach where the dimensionality of the data is first reduced by calculating distance traveled in phase-space and then only a single rate of change is estimated. The advantage of this approach is that for an n-dimensional system it only requires the estimation of one derivative rather than n-derivatives . The drawback to this approach is that noisy observations will likely introduce some bias into the estimate of the system rate of change. Nonetheless, I believe this approach is worth exploring due to its simplicity relative to the ``binning'' method.
-\begin{figure}
-\includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/fiOverTime} \caption{Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.}\label{fig:fiOverTime}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.95\linewidth]{./chapterFiles/fiGuide/figures/fiOverTime} 
+
+}
+
+\caption{Fisher Information calculated for non-overlapping time windows. Two different window sizes were used as indicated by color. Dashed vertical line at time 200 indicates approximate location of regime shift.}\label{fig:fiOverTime}
 \end{figure}
 The Fisher Information of an \(n\)-dimensional system is a vector of unit-less values which can only be compared within a data set (e.g., within a single community time series) and interpreting FI is still largely a qualitative effort (Fath \emph{et al.}, \protect\hyperlink{ref-fath_regime_2003}{2003}; Mantua, \protect\hyperlink{ref-mantua_methods_2004}{2004}), not unlike most regime detection methods {[}Ch. \ref{rdmReview}{]}. When the FI of a system is increasing, the system is said to be moving toward a more orderly state, and most studies of FI propose that sharp changes in FI, regardless of the direction of the change, may indicate a regime shift (Cabezas \& Fath, \protect\hyperlink{ref-cabezas_towards_2002}{2002}; Karunanithi \emph{et al.}, \protect\hyperlink{ref-karunanithi_detection_2008}{2008}; Spanbauer \emph{et al.}, \protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}). Although the aforementioned and numerous other works interpret FI in this context (e.g., Eason \emph{et al.}, \protect\hyperlink{ref-eason2014managing}{2014}; Eason \& Cabezas, \protect\hyperlink{ref-eason_evaluating_2012}{2012}), I suggest future work which clearly identifies the ecological significance of the Fisher Information metric and its significance within the ecological regime shift paradigm.
 
@@ -780,11 +850,16 @@ I thank H. Cabezas and B. Roy Frieden for early discussions regarding the develo
 \hypertarget{introduction-2}{%
 \section{Introduction}\label{introduction-2}}
 
-Ecosystems are open, dynamical systems that are most often not easily described using fully parameterized models. Some patterns have emerged in certain statistical mechanics of ecological observations. despite the complexity of most ecological systems. An uptick in recent years of studies of \textbf{regime shifts} (Table \ref{tab:glossary}) in ecology has spurred an increase in the number of new methods for detecting ecological regime shifts (Chapter @ref(regime detection measureReview)), some of which have been applied to spatial information (Brock \& Carpenter, \protect\hyperlink{ref-brock_variance_2006}{2006}; Guttal \& Jayaprakash, \protect\hyperlink{ref-guttal2009spatial}{2009}; Kefi \emph{et al.}, \protect\hyperlink{ref-kefi2014early}{2014}; Butitta \emph{et al.}, \protect\hyperlink{ref-butitta_spatial_2017}{2017}; Sundstrom \emph{et al.}, \protect\hyperlink{ref-sundstrom2017detecting}{2017}). As defined in Table \ref{tab:glossary}, a regime shift is largely considered an abrupt and persistent change in a system's structure or functioning. Following this definition and without considering the pressures (Table \ref{tab:glossary}) associated with the observed regime shift, it is not yet clear whether identifying a `spatial regime' using a snapshot of a system (i.e.~using a single or short period of time relative to the time scale of the system dynamics and/or pressures) is pragmatic. A concise and global definition of the spatial regime detection measure is important since observations of non-random spatial processes (e.g., land cover) can manifest as either a rapid shift (e.g.~an ecotone) or as a gradual change (e.g., slow mixing along a gradient). Consequently, and because most regime detection measures signal abrupt change, only the former may be identified as ``regime shifts'' using spatial regime detection measures.
+Ecosystems are open, dynamical systems that are most often not easily described using fully parameterized models. Some patterns have emerged in certain statistical mechanics of ecological observations. despite the complexity of most ecological systems. An uptick in recent years of studies of \textbf{regime shifts} (Table \ref{tab:glossary}) in ecology has spurred an increase in the number of new methods for detecting ecological regime shifts (Chapter \ref{rdmReview}), some of which have been applied to spatial information (Brock \& Carpenter, \protect\hyperlink{ref-brock_variance_2006}{2006}; Guttal \& Jayaprakash, \protect\hyperlink{ref-guttal2009spatial}{2009}; Kefi \emph{et al.}, \protect\hyperlink{ref-kefi2014early}{2014}; Butitta \emph{et al.}, \protect\hyperlink{ref-butitta_spatial_2017}{2017}; Sundstrom \emph{et al.}, \protect\hyperlink{ref-sundstrom2017detecting}{2017}). As defined in Table \ref{tab:glossary}, a regime shift is largely considered an abrupt and persistent change in a system's structure or functioning. Following this definition and without considering the pressures (Table \ref{tab:glossary}) associated with the observed regime shift, it is not yet clear whether identifying a `spatial regime' using a snapshot of a system (i.e.~using a single or short period of time relative to the time scale of the system dynamics and/or pressures) is pragmatic. A concise and global definition of the spatial regime detection measure is important since observations of non-random spatial processes (e.g., land cover) can manifest as either a rapid shift (e.g.~an ecotone) or as a gradual change (e.g., slow mixing along a gradient). Consequently, and because most regime detection measures signal abrupt change, only the former may be identified as ``regime shifts'' using spatial regime detection measures.
 
 Although it is suggested that statistical and pragmatic methods are advanced more rapidly by bottom-up approaches, i.e.~using case studies (see DeAngelis \& Yurek, \protect\hyperlink{ref-deangelis2017spatially}{2017}), there is much work to be done in the way of testing the statistical rigor of spatial regime detection measures. The objective of this chapter is to determine whether the Fisher Information as a regime detection method {[}Eq. \eqref{eq:fiDerivs}{]} identifies spatial regime boundaries in the bird communities of the continental United States. This chapter is also supported by original software developed for implementation in Program R, which is publicly available (see Appendix \ref{regimeDetectionMeasures}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed} \caption{Locations of Breeding Bird Survey routes sampled between 1966 and 2017.}\label{fig:bbsPoints}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed} 
+
+}
+
+\caption{Locations of Breeding Bird Survey routes sampled between 1966 and 2017.}\label{fig:bbsPoints}
 \end{figure}
 \hypertarget{data-and-methods}{%
 \section{Data and methods}\label{data-and-methods}}
@@ -798,11 +873,21 @@ I used community abundance data (Sauer \emph{et al.}, \protect\hyperlink{ref-sau
 \subsection{Study area}\label{study-area}}
 
 Although the NABBS conducts surveys throughout much of North America (most of the United States, Canada, and Mexico), coverage of the boreal forests of Canada are sparse in space, and many routes in Mexico have fewer than 25 years of observations. For these reasons I limited analyses largely to the continental United States and parts of Southern Canada (see Figure \ref{fig:bbsPoints}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/basesOfInterestMap} \caption{Locations of focal U.S. military bases, Eglin Air Force Base (AFB) and Fort Riley Military Base.}\label{fig:basesOfInterestMap}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/basesOfInterestMap} 
+
+}
+
+\caption{Locations of focal U.S. military bases, Eglin Air Force Base (AFB) and Fort Riley Military Base.}\label{fig:basesOfInterestMap}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecoregions} \caption{Three East-West running transects analyzed in this Chapter overlayed against the Omernick Ecoregion boundaries map.}\label{fig:ewRoutesUsedHere}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecoregions} 
+
+}
+
+\caption{Three East-West running transects analyzed in this Chapter overlayed against the Omernick Ecoregion boundaries map.}\label{fig:ewRoutesUsedHere}
 \end{figure}
 \hypertarget{focal-military-base}{%
 \subsubsection{Focal military base}\label{focal-military-base}}
@@ -872,26 +957,56 @@ If Fisher Information captures and reduces information regarding abrupt changes 
 
 \hypertarget{fisher-information-across-spatial-transects}{%
 \subsection{Fisher Information across spatial transects}\label{fisher-information-across-spatial-transects}}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-West_metric_FI_Eqn7_12} \caption{The change in the Fisher Information  values along a single,  East-West-running spatial transect (Transect number 12) over time.}\label{fig:fi1Tsect}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-West_metric_FI_Eqn7_12} 
+
+}
+
+\caption{The change in the Fisher Information  values along a single,  East-West-running spatial transect (Transect number 12) over time.}\label{fig:fi1Tsect}
 \end{figure}
 As suggested earlier, rapid increases or decreases in FI are posited indicate a change in system orderliness, potentially suggesting the location of a regime shift. Using this method yields inconclusive results regarding the location of `spatial regimes' (Figure \ref{fig:fi1Tsect}). Of the three spatial transects analyzed in this chapter (see Figure \ref{fig:ewRoutesUsedHere}), Figure \ref{fig:fi1Tsect} is representative of the lack of pattern observed in the Fisher Information values across all analyzed transects. I did not identify patterns of spatially contagious abrupt changes in the Fisher Information values within or among spatial transects.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePair_corPlot_East-West} \caption{Fisher Information of two spatially adjacent transect pairs (transects 12, 13) over time. Interdecadual trends in FI are very different within each transect and are not highly correlated among transects over time.}\label{fig:fiSinglePair}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePair_corPlot_East-West} 
+
+}
+
+\caption{Fisher Information of two spatially adjacent transect pairs (transects 12, 13) over time. Interdecadual trends in FI are very different within each transect and are not highly correlated among transects over time.}\label{fig:fiSinglePair}
 \end{figure}
 \begin{landscape}
-\begin{figure}
-\includegraphics[width=0.65\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-West_metric_logScaleFI} \caption{Fisher Information of select East-West spatial transects over time. These transects are representative of the results obtained from the remaining transects.}\label{fig:usaFI}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.65\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-West_metric_logScaleFI} 
+
+}
+
+\caption{Fisher Information of select East-West spatial transects over time. These transects are representative of the results obtained from the remaining transects.}\label{fig:usaFI}
 \end{figure}
 \end{landscape}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2010_zoom_East-West} \caption{Contrary to expectations there appear no clear patterns of abrupt change in the Fisher Information results along three selected East-West running transects  (Year 2010). The results are visualized here at regularly-spaced intervals such that the locations are not precise relative to the location of corresponding Breeding Bird Survey routes.}\label{fig:fiEcoregion}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2010_zoom_East-West} 
+
+}
+
+\caption{Contrary to expectations there appear no clear patterns of abrupt change in the Fisher Information results along three selected East-West running transects  (Year 2010). The results are visualized here at regularly-spaced intervals such that the locations are not precise relative to the location of corresponding Breeding Bird Survey routes.}\label{fig:fiEcoregion}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotSelectTransects_East-West} \caption{Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time do not exhibit expected patterns of high postive correlation. Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.}\label{fig:corPlotTsectsInterp}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotSelectTransects_East-West} 
+
+}
+
+\caption{Pairwise relationships of Fisher Information (interpolated values) of spatially adjacent transects over time do not exhibit expected patterns of high postive correlation. Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.}\label{fig:corPlotTsectsInterp}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotSelectTransects_East-West_log} \caption{Pairwise relationships of Fisher Information (interpolated values on the log-scale) of spatially adjacent transects over time. Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.}\label{fig:corPlotTsectsInterpLog}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotSelectTransects_East-West_log} 
+
+}
+
+\caption{Pairwise relationships of Fisher Information (interpolated values on the log-scale) of spatially adjacent transects over time. Pairs were compared (column) at select sampling years (rows), and pair-wise correlations among paired transects are presented. Large, positive correlations indicate Fisher Information signals similarly at adjacent spatial transects.}\label{fig:corPlotTsectsInterpLog}
 \end{figure}
 \hypertarget{spatial-correlation-of-fisher-information-1}{%
 \subsection{Spatial correlation of Fisher Information}\label{spatial-correlation-of-fisher-information-1}}
@@ -899,8 +1014,13 @@ As suggested earlier, rapid increases or decreases in FI are posited indicate a 
 This study did not identify spatial correlation of the Fisher Information results among most of the spatially adjacent transects (Figures \ref{fig:corPlotTsectsInterp} and \ref{fig:corPlotTsectsInterpLog})). For spatially-adjacent transects (e.g, transects 11 and 12, or 12 and 13 in Figures \ref{fig:corPlotTsectsInterp} and \ref{fig:corPlotTsectsInterpLog}), we should expect high and positive correlation values, and these values should stay consistent across time \emph{unless} the spatial transects were separated by an East-West running physical or functional boundary. This is not, however, what I expect in our East-West running transects (Figure \ref{fig:ewRoutesUsedHere}), as the spatial soft-boundaries limiting the distribution and functional potential of avian communities are largely North-South (Figure \ref{fig:ewRoutesUsedHere}). Note spatial transects in Figure \ref{fig:ewRoutesUsedHere} overlap multiple, large spatial ecoregion boundaries, such that we should expect our data to identify these points (boundaries).
 
 Upon initial investigation, there are no consistent signs of broad-scale patterns in FI across space (Figure \ref{fig:fiEcoregion})\footnote{Here, shape size indicates the relative value of the scaled and centered Fisher Information results. Red box (top panel) indicates the extent of the results presented in the bottom panel.}. If Fisher Information is an indicator of spatial regime boundaries, we should expect to see large changes in its value (in either direction) near the edges of functional spatial boundaries (e.g., at the boundaries of ecoregions). No clear regime changes appeared in areas where we might expect rapid changes (e.g., along the 105th meridian West, where a sharp change in altitude occurs).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2000_East-West} \caption{Fisher Information results (scaled and centered; larger circles (points) represent higher values of Fisher Information) plotted against ecoregion boundaries (EPA Level 2 boundaries) for the year 2000.}\label{fig:fiEcoregion00}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_year2000_East-West} 
+
+}
+
+\caption{Fisher Information results (scaled and centered; larger circles (points) represent higher values of Fisher Information) plotted against ecoregion boundaries (EPA Level 2 boundaries) for the year 2000.}\label{fig:fiEcoregion00}
 \end{figure}
 Numerical investigation of the spatial correlation among adjacent transects also yielded no clear patterns. I did not identify any obvious correlation with changes in FI values and functional potential (using Omernick Ecoregion Level 2; see Figure \ref{fig:fiEcoregion}). However, in years 2000 and 2010 the transects 11 and 12, and 12 and 13 were highly positively correlated (Figure \ref{fig:corPlotTsectsInterpLog}). Rather than abrupt changes in Fisher Information I found gradual changes (e.g., see results for years 2000 and 2010 in Figs. \ref{fig:fiEcoregion} and \ref{fig:fiEcoregion00}.
 
@@ -939,12 +1059,22 @@ A rapid change in either direction (increase or decrease) of the Fisher Informat
 \section{Introduction}\label{introduction-3}}
 
 When, how and why ecological systems exhibit abrupt changes is a hallmark of modern ecological research, and changes that are unexpected and undesirable can have undesirable downstream consequences on, e.g., ecosystem services, biodiversity, and human well-being. Quantitatively detecting and forecasting these changes, however, has yet to be accomplished for most ecological systems (Chapter \ref{rdmReview}; Ratajczak \emph{et al.}, \protect\hyperlink{ref-ratajczak2018abrupt}{2018}). Moving from abrupt change methods requiring highly descriptive models and \emph{a priori} assumptions of the state variable responses to drivers to methods requiring few, if any, \emph{a priori} assumptions or knowledge is increasingly necessary for forecasting and managing complex ecosystems under an era of intensifying anthropogenic pressures.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D} \caption{An example solution of the Lorenz ('butterfly') represented in 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized.}\label{fig:lorenz3D}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D} 
+
+}
+
+\caption{An example solution of the Lorenz ('butterfly') represented in 3-dimensional phase-space. Phase plots are typically used to visualize stable areas within a system's trajectory but reconstruction requires the difference models to be known and parameterized.}\label{fig:lorenz3D}
 \end{figure}
 A few broad classes of quantitative approaches exist for quantitatively identifying abrupt changes in complex ecosystems. First, one can use simple mathematical models to describe the system and statistically test for discontinuities in the observed variables (e.g., in coral reefs, Mumby \emph{et al.}, \protect\hyperlink{ref-mumby2013evidence}{2013}). Although mathematical representations are ideal, very rarely are ecological systems easily and well-described by them and often fail to meet the assumptions of the model. Second, we can track changes in the mean or variance of state variables to identify departures from the norm (e.g., early-warning indicators such as variance and variance index, Brock \& Carpenter, \protect\hyperlink{ref-brock_variance_2006}{2006}). Much like the mathematical modelling approach, these early-warning indicators have shown to be useful in some simple driver-response systems (e.g., lake eutrophication Carpenter \emph{et al.}, \protect\hyperlink{ref-carpenter_leading_2008}{2008}\protect\hyperlink{ref-carpenter_leading_2008}{b}), but are unreliable in other empirical systems (e.g., Perretti \& Munch, \protect\hyperlink{ref-perretti2012regime}{2012}; Dakos \emph{et al.}, \protect\hyperlink{ref-dakos2012robustness}{2012}\protect\hyperlink{ref-dakos2012robustness}{b}; Dutta \emph{et al.}, \protect\hyperlink{ref-dutta2018robustness}{2018}). The last type of approach is the model-free approach {[}Dakos \emph{et al.} (\protect\hyperlink{ref-dakos2012methods}{2012}\protect\hyperlink{ref-dakos2012methods}{a}); Chapter \ref{rdmReview}{]}. This group of abrupt change indicators can incorporate multiple state variables, and ideally requires no \emph{a priori} assumptions about the expected driver-response relationships, or even about the drivers at all. It is this class of abrupt change indicators to that this chapter contributes.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries} \caption{An example solution of the Lorenz ('butterfly') represented in individual system components.}\label{fig:lorenz3Dts}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries} 
+
+}
+
+\caption{An example solution of the Lorenz ('butterfly') represented in individual system components.}\label{fig:lorenz3Dts}
 \end{figure}
 \hypertarget{tracking-ecosystem-trajectory-through-time-to-explore-system-dynamics}{%
 \subsection{Tracking ecosystem trajectory through time to explore system dynamics}\label{tracking-ecosystem-trajectory-through-time-to-explore-system-dynamics}}
@@ -974,21 +1104,29 @@ I first describe the steps for calculating this new metric (\(V\)), as both a di
 I first describe the steps for calculating velocity by constructing a simple, two-variable system that exhibits only a rapid, discontinuous change in the means of the state variables. I next vary the mean and variance of the state variables of this system to demonstrate baseline expectations for the behavior of velocity under a simple rapid shift scenario. Next, I construct a second model system similar to the first, but one that exhibits a continuous rapid change in the state variables. The purpose of this section is three-fold. First, I demonstrate how velocity behaves when the system undergoes varying degrees of change (e.g., slow change versus nearly discontinuous, rapid). Second, I concurrently identify baseline expectations of velocity under varying conditions of mean and variability of the state variables before and after a shift. Third, by introducing a smoothing function to the rapid shift, we gain an understanding of how process variability (noise) impacts the shift detectability by the velocity metric. Finally, I calculate the velocity of an empirical, paleolithic freshwater diatom community time series to demonstrate the utility of the velocity metric in highly noisy, high dimensional, and irregularly-sampled data.
 
 \hypertarget{steps-for-calculating-velocity-v}{%
-\section{\texorpdfstring{Steps for Calculating velocity, \(V\)}{Steps for Calculating velocity, V}}\label{steps-for-calculating-velocity-v}}
+\section{\texorpdfstring{Steps for Calculating Velocity, \(V\)}{Steps for Calculating Velocity, V}}\label{steps-for-calculating-velocity-v}}
 
+S
 In this section, I first demonstrate the calculations of velocity using a very simple, two-variable toy system. The first system exhibits a rapid shift at a single point in time, where mean and variance are constant before and after the shift point. I demonstrate the signals achieved with and the variability within the \(V\) calculation by exploring a number of scenarios of this simple system. For the examples in this section, observations of \(x_i\) are randomly drawn from distribution \(x_i\sim Normal(\mu, \sigma)\), where \(\mu\) is the mean and \(\sigma\) is the standard deviation.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx-1} \caption{The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\sigma = 5$.}\label{fig:sysEx}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx-1} 
+
+}
+
+\caption{The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\sigma = 5$.}\label{fig:sysEx}
 \end{figure}
 Consider a system (Figure \ref{fig:sysEx}) with \(N\) state variables (\(x_i\)), with observations taken at time points, \(t\). System velocity is calculated as the cumulative sum over time period \(t_0\) to \(t_j\), as the total change in all state variables, \{\(x_1 ...x_N\)\}, between two adjacent time points, e.g., \(t_j\) and \(t_{j+1}\), denoted \(t_{j,j+1}\). I use this simple, two-variable system to demonstrate how \emph{velocity} is calculated. The system comprises variables \(x_1\) and \(x_2\), with observations occurring at each time point \(t = {1,2,3,...100}\). First, we calculate the change in each state variable, \(x_i\), between two adjacent points in time, \(t_j\) and \(t_{j+1}\), such that the difference, \(x_{t_{j+1}} - x_{t_j}\) is assigned to the latter time point, \(t_{j+1}\). For example, in our toy data, we use observations at time points \(t = 1\) \& \(t=2\) (Figure \ref{fig:sysEx2}). For all examples in this chapter, the state variables \(x_1\) and \(x_2\) were drawn from a normal distribution (using function \emph{rnorm}), with parameters \(\bar{x}_i\) (mean) and \(\sigma_i\) (sd) for 100 time steps, \(t\). Under each scenario I induce a regime shift at time \(t=50\), where either or both a change in \(\bar{x}_i\) or \(\sigma_i\) occurs.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx2-1} \caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
-\end{figure}
-\hypertarget{steps-for-calculating-v}{%
-\subsection{\texorpdfstring{Steps for calculating \(V\)}{Steps for calculating V}}\label{steps-for-calculating-v}}
+\begin{figure}[bth]
 
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx2-1} 
+
+}
+
+\caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
+\end{figure}
 \hypertarget{step-1-calculate-delta-x_i}{%
-\subsubsection{\texorpdfstring{Step 1: Calculate \(\Delta x_i\)}{Step 1: Calculate \textbackslash Delta x\_i}}\label{step-1-calculate-delta-x_i}}
+\subsection{\texorpdfstring{Step 1: Calculate \(\Delta x_i\)}{Step 1: Calculate \textbackslash Delta x\_i}}\label{step-1-calculate-delta-x_i}}
 
 The first step is to calculate the change in values for each state variables, \(x_i\), between two consecutive time points {[}e.g., from time \(t\) to \(t+1\) for the discrete-time system; Figure \ref{fig:sysEx2}; Equation \eqref{eq:diffX}{]}:
 \begin{equation}
@@ -998,7 +1136,7 @@ The first step is to calculate the change in values for each state variables, \(
 Note that \(\Delta x_i\) can take any value between \(-\infty\) and \(\infty\).
 
 \hypertarget{step-2-calculate-distance-traveled-s}{%
-\subsubsection{\texorpdfstring{Step 2: Calculate distance traveled, \(s\)}{Step 2: Calculate distance traveled, s}}\label{step-2-calculate-distance-traveled-s}}
+\subsection{\texorpdfstring{Step 2: Calculate distance traveled, \(s\)}{Step 2: Calculate distance traveled, s}}\label{step-2-calculate-distance-traveled-s}}
 
 Next, we calculate the total change in the multivariate system as a function of the change in all state variables \(x_i\). First, we calculate \(\Delta s\) as the square root of the sum of squares of the changes in all state variables per Pythagoras's theorem {[}Equation \eqref{eq:ds}{]}:
 \begin{equation}
@@ -1010,21 +1148,31 @@ Although \(\Delta s\) represents the absolute change in the system between conse
 s_T = \Sigma_{t=0}^{T}{\Delta s}
   \label{eq:s}
 \end{equation}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysExs-1} \caption{Distance traveled, $s$, for the 2-species toy system.}\label{fig:sysExs}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysExs-1} 
+
+}
+
+\caption{Distance traveled, $s$, for the 2-species toy system.}\label{fig:sysExs}
 \end{figure}
 We now have a single measure, \(s_T\) {[}hereafter referred to as \(s\); Equation \eqref{eq:s}{]} at each discrete point in time in our \(N\)-dimensional system (Figure \ref{fig:sysExs}). It should be noted that \(s\)(Figure \ref{fig:sysExs}) is monotonically increasing since the value of \(\Delta s\) {[}Equation \eqref{eq:ds}{]} is a sum of squares. Although discussed in a later section, it is important to note that \(s\) is not unitless---that is, \(s\) has units of the state variables, \(x_i\). For example, if our 2-variable toy system represents biomass, then the units of \(s\) represents the cumulative absolute change in biomass of the entire system.
 
 \hypertarget{step-3-calculate-velocity-v-or-fracdelta-sdelta-t}{%
-\subsubsection{\texorpdfstring{Step 3: Calculate velocity, \(V\) (or \(\frac{\Delta s}{\Delta t}\))}{Step 3: Calculate velocity, V (or \textbackslash frac\{\textbackslash Delta s\}\{\textbackslash Delta t\})}}\label{step-3-calculate-velocity-v-or-fracdelta-sdelta-t}}
+\subsection{\texorpdfstring{Step 3: Calculate velocity, \(V\) (or \(\frac{\Delta s}{\Delta t}\))}{Step 3: Calculate velocity, V (or \textbackslash frac\{\textbackslash Delta s\}\{\textbackslash Delta t\})}}\label{step-3-calculate-velocity-v-or-fracdelta-sdelta-t}}
 
 Finally, we calculate the \textbf{system velocity}, \(V\) (or \(\frac{\Delta s}{\Delta t}\)), by first calculating the change in \(s\) {[}Equation \eqref{eq:s}{]}, and then divide by the total time elapsed between consecutive sampling points:
 \begin{equation}
  v = \frac {\Delta s}{\Delta t} 
 \label{eq:velocity}
 \end{equation}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/velocitySysEx1} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\bar{x}_{pre}=25$, $\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\sigma =5$.}\label{fig:velocSysEx1}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/velocitySysEx1} 
+
+}
+
+\caption{System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\bar{x}_{pre}=25$, $\bar{x}_{post}=10$) and sharp change in variance for both state variables, $\sigma =5$.}\label{fig:velocSysEx1}
 \end{figure}
 \begin{table}[t]
 
@@ -1055,28 +1203,53 @@ Simulations consisted of 10,000 random samples drawn from the normal distributio
 \subsubsection{Varying post-shift mean}\label{varying-post-shift-mean}}
 
 I examined the influence of the magnitude of change in \(x_1\) in the period before (pre; \(t <50\)) and after (post; \(t \geq 50\)) by varying the mean parameter, \(\bar{x}_1\) in the set \(W=\{25,30,35,...100 \}\) (Figures \ref{fig:simVplot1} and \ref{fig:simVplot2}). As expected, the magnitude of \(V\) increases linearly as the total difference between \(\bar{x}_{1_{pre}}\) and \(\bar{x}_{1_{post}}\) increases (Figure \ref{fig:simVplot2}). This is not surprising because \(s\) increases as the total change in abundance across the entire system increases {[}Equation \eqref{eq:s}{]}. Consequently the potential of \(V\) also increases with total state variable values (e.g.~abundance, biomass). The linear relationship among \(V\) and total state variable values indicates that while \(V\) is capable of identifying large shifts in data structure, it may fail to identify subtle changes (i.e.~lower effect sizes).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot1} \caption{Velocity ($V$) generally increases as the total change in the mean value of $\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\sigma = 5$, $\bar{x}_1 = 25$ when $t<50$,  $\bar{x}_2=50$ when $t\geq50$, $\bar{x}_1 = 25$ when $t <50$.}\label{fig:simVplot1}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot1} 
+
+}
+
+\caption{Velocity ($V$) generally increases as the total change in the mean value of $\bar{x}_{1_{t=50}}$ increases in a single iteration of our toy system ($N_{iter}=1$, seed = 123). This 2-variable system exhibits a regime shift at $t=50$, where variance is constant $\sigma = 5$, $\bar{x}_1 = 25$ when $t<50$,  $\bar{x}_2=50$ when $t\geq50$, $\bar{x}_1 = 25$ when $t <50$.}\label{fig:simVplot1}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot2} \caption{Change in velocity ($V$) as the total change in the mean value of $\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\sigma = 5$, $\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\bar{x}_2 = 50$ when $t \geq 50$, $\bar{x}_1 = 25$ when $t<50$.}\label{fig:simVplot2}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVplot2} 
+
+}
+
+\caption{Change in velocity ($V$) as the total change in the mean value of $\bar{x}_{2_{t=50}}$ over 10,000 simulations. A regime shift was induced at $t=50$ with constant varoance $\sigma = 5$, $\bar{x}_2 = 25$ when $t<50$,  and changes in variable mean values, $\bar{x}_2 = 50$ when $t \geq 50$, $\bar{x}_1 = 25$ when $t<50$.}\label{fig:simVplot2}
 \end{figure}
 \hypertarget{varying-post-shift-variance}{%
 \subsubsection{Varying post-shift variance}\label{varying-post-shift-variance}}
 
 In the previous example, variance was constant before and after the abrupt shift at \(t=50\). To determine whether the signal emitted by \(V\) at the regime shift is lost or dampened when increasing variance I varied the variance parameter, \(\sigma_1\) along the set \(W = \{1,2,3,...25 \}\). The variance for both state variables (\(x_1, x_2\)) prior to the regime shift, \(\sigma_{x_1}\) and \(\sigma_{x_2}\), was \(5\), with the change occurring in \(\sigma_{x1post}\).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot} \caption{High variance of velocity ($V$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\sigma_1$ at $t=50$.}\label{fig:simVarPlot}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot} 
+
+}
+
+\caption{High variance of velocity ($V$) in a single iteration ($N_{iter}=1$, seed = 123) of simulations as we increase $\sigma_1$ at $t=50$.}\label{fig:simVarPlot}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot2} \caption{The variance around the average ($\pm2$ SD) velocity ($V$) increases as the variance of $\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\bar{x}_{1_{pre}} = 25$, $\bar{x}_{1_{post}} = 100$, $\bar{x}_{2_{pre}} = 25$, $\bar{x}_{2_{post}} = 50$, $\sigma_{1_{pre}} = 5$, $\sigma_{2_{pre,post}} = 5$}\label{fig:simVarPlot2}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/simVarPlot2} 
+
+}
+
+\caption{The variance around the average ($\pm2$ SD) velocity ($V$) increases as the variance of $\bar{x}_{2_{t=50 (post)}}$ (post shift) increases. $\bar{x}_{1_{pre}} = 25$, $\bar{x}_{1_{post}} = 100$, $\bar{x}_{2_{pre}} = 25$, $\bar{x}_{2_{post}} = 50$, $\sigma_{1_{pre}} = 5$, $\sigma_{2_{pre,post}} = 5$}\label{fig:simVarPlot2}
 \end{figure}
 \hypertarget{smoothing-the-data-prior-to-calculating-v}{%
 \subsubsection{\texorpdfstring{Smoothing the data prior to calculating \emph{v}}{Smoothing the data prior to calculating v}}\label{smoothing-the-data-prior-to-calculating-v}}
 
 To determine whether process or observational noise influences the signal in \(V\), I used linear approximation techniques to smooth the data prior to calculating the derivatives. I used the function \texttt{stats::approx} that linearly interpolates the original data, \(x_1\) and \(x_2\), to regularly-spaced time points along the set \(t=\{1:100\}\). I then calculated \(V\) as described in (Eqs. \eqref{eq:diffX} through \eqref{eq:velocity}). Increasing the number of points (\(t\)) at that the original state variables were smoothed (i.e., \(t\)) did not influence the amount of noise surrounding the signal of the regime shift (at \(t=50\)) in system velocity, \(V\) (Figure \ref{fig:simVarPlot2}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/smoothV} \caption{The noise in system velocity ($V$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed.}\label{fig:smoothV}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/smoothV} 
+
+}
+
+\caption{The noise in system velocity ($V$) is not obviously reduced in this system as the original data ($x_1$, $x_2$) is increasingly smoothed.}\label{fig:smoothV}
 \end{figure}
 \hypertarget{velocity-performance-under-a-smooth-transition}{%
 \section{Velocity performance under a smooth transition}\label{velocity-performance-under-a-smooth-transition}}
@@ -1120,11 +1293,21 @@ Data were generated from a normal distribution and an abrupt shift in the mean w
 \label{eq:true}
 \end{equation}
 where \(\mu_{x_i}(t)\) is the mean value of \(x_i\) at time \(t\) and \emph{pre} and \emph{post} are the periods before and after the abrupt shift (\(t_{shift}\)), respectively. The parameter \(\alpha\) in Equation \eqref{eq:true} controls for the rate of change at the point of the abrupt change, \(t_{shift}\), where higher values of \(\alpha\) correspond with a higher slope at \(t_{shift}\). I simulated a single iteration (data set) for various conditions of changing \(\mu_{xi}\) and \(\sigma_{xi}\) (see Table \ref{tab:sysParams}), for two state variables \(x_1\ \&\ x_2\) at intervals of \(t=1\) along the temporal interval \(t=[1,100]\).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat} \caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat} 
+
+}
+
+\caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat} \caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat} 
+
+}
+
+\caption{An example of the data generated by the true process model. In this example the mean values ($\mu_{xi}$), but not the percent standard deviation ($\sigma_{xi}$), are varied before and after the transition point. The observed data are plotted against the true-process model for each state variable, $x_i$. Panels represent different degrees of the smoothing parameter, $\alpha$ (top: $\alpha=0.25$, bottom:$\alpha=1.00$).}\label{fig:trueObsEx}
 \end{figure}
 \hypertarget{observed-process-data}{%
 \subsubsection{Observed process data}\label{observed-process-data}}
@@ -1148,40 +1331,85 @@ where \(\sigma_{xi}\) is the observed error around \(\mu_{xi}\), and \(\sigma_{X
 I simulated a single data set (using in Program R) by randomly drawing a single realisation (observed data) of the hyperbolic tangent process model with additive noise process {[}Equation \eqref{eq:observed}{]}. I then calculated the distance traveled, \(s\), and the velocity of the distance traveled, \(V\) (also referred to as \(\frac{ds}{dt}\)) using Equation \eqref{eq:velocity}---this approach (Equation \eqref{eq:velocity}) is a simple alternative to numerical integration techniques, requiring only simple algebraic techniques. This method is ideal for discrete time data, or where computational power would not suffice for numerical integration. When using the first differences method, however, \(V\) will demonstrate high variability, depending on the amount of time between samples (i.e.~as the intervals of \(t-t+1\) increase).
 
 I also calculated \(V\) using a numerical integration method for non-smooth, noisy data, called total variation regularized differentiation (Chartrand, \protect\hyperlink{ref-chartrand2011numerical}{2011}). I used the R package \texttt{tvdiff} (Price \& Burnett, \protect\hyperlink{ref-price2019tvdiff}{2019}\protect\hyperlink{ref-price2019tvdiff}{a}) to perform numerically integrate the distance traveled, \(s\). The regularized differentiation method in this package (function \texttt{tbdiff::tvRegDiff}; described fully in Chartrand, \protect\hyperlink{ref-chartrand2011numerical}{2011}) provides a numerical solution for calculating non-noisy derivatives of noisy, non-smooth data. Using this smooth-derivative estimation technique may be an ideal supplement to the velocity method in cases where process and observational error generate noisy observational data. Although not possible in most ecological systems data, here we can compare the fit of the smooth-derivative to the derivative of the true process, allowing us to determine the usefulness of calculating a smooth-derivative. There are two tuning parameters required to be chosen by the analyst when implementing the total-variation regularized differentiation, each of that influence the amount of noise smoothed out in the resulting derivative: \(\alpha\) and the number of iterations. I implemented this numerical differentiation over 1,000 iterations, and selected \(\alpha\) by comparing the anti-differentiated distance traveled, \(s\), to the true process values of \(s\) (e.g., see Figure \ref{fig:antiDiffComp}). For most conditions and smoothness I found the tuning parameter for \texttt{tvdiff} \(\alpha=0.50\) provided a good fit of \(s\) (Figure \ref{fig:antiDiffComp}), however, when the hyperbolic tangent smoothing parameter, \(\alpha\) was low (i.e.~\(\alpha_{tanh}=0.25\)) higher values of \(\alpha_{tvdiff}\) yielded more abrupt changes in the derivative.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter} \caption{Antidifferentiated values ('observed') of the distance traveled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\alpha$. Under most conditions $\alpha \ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\alpha_{tanh}=1$) for the `tvdiff` $\alpha=0.50$. Not pictured: the antidifferentiated values of $s$ (observed) is increasingly smoothed as $\alpha$ increases.}\label{fig:antiDiffComp}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter} 
+
+}
+
+\caption{Antidifferentiated values ('observed') of the distance traveled, $s$, to the true process values of $s$ ('true) provides a method for identifying the best values of the smooothing parameter, $\alpha$. Under most conditions $\alpha \ll$ sufficed. Here, we compare the true and antidifferentiated values of $s$ under the condition of changing $\mu_{x1}$ when the hyperbolic tangent function is most rapid ($\alpha_{tanh}=1$) for the `tvdiff` $\alpha=0.50$. Not pictured: the antidifferentiated values of $s$ (observed) is increasingly smoothed as $\alpha$ increases.}\label{fig:antiDiffComp}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is low (0.25). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1varpt25}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is low (0.25). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1varpt25}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1varpt5}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1varpt5}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1varpt75}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1varpt75}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1var1}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signal is muted when the  hyperbolic smoothing parameter, $\alpha$, is moderate (0.50). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:mu1var1}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.75$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:muBoth75}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.75$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:muBoth75}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:varBoth}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signals a rapid shift in the variance of both state variables under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:varBoth}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:var1}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity does not signal shifts in the variance of a single variable ($x_1$) under a moderately abrupt transition ($\alpha_{tanh}=0.75$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:var1}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.25$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:muBoth25}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signal is regained under smoooth transition ($\alpha_{tanh}=0.25$) when both state variables undergo a shift in the mean. True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D). }\label{fig:muBoth25}
 \end{figure}
 \hypertarget{smooth-changes-in-the-mean}{%
 \subsubsection{Smooth changes in the mean}\label{smooth-changes-in-the-mean}}
@@ -1199,28 +1427,53 @@ Abrupt changes sometimes manifest first as a change in the variability, rather t
 \subsubsection{Smooth changes in the mean and variance}\label{smooth-changes-in-the-mean-and-variance}}
 
 Given the signals identified in the velocity when one or both state variables exhibits a shift in mean and/or variance, it is unsurprising that even under smooth transitions (when \(\alpha_{tanh} = 0.25\)), velocity manifests as a signal of change (Figure \ref{fig:muVarBoth25}). This signal is most pronounced when the shift is abrupt (Figure \ref{fig:muVarBoth1}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=0.25$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D).}\label{fig:muVarBoth25}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=0.25$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D).}\label{fig:muVarBoth25}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=1.00$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D).}\label{fig:muVarBoth1}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff} 
+
+}
+
+\caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=1.00$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D).}\label{fig:muVarBoth1}
 \end{figure}
 \newpage
 
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoTurnover} \caption{Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations.}\label{fig:paleoTurnover}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoTurnover} 
+
+}
+
+\caption{Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations.}\label{fig:paleoTurnover}
 \end{figure}
 \hypertarget{velocity-performance-under-empirical-transitions-paleolithic-freshwater-diatom-community}{%
 \section{Velocity performance under empirical transitions: paleolithic freshwater diatom community}\label{velocity-performance-under-empirical-transitions-paleolithic-freshwater-diatom-community}}
 
 To gather baseline information on the use of velocity in empirical systems data, I calculated velocity for the paleodiatom system described in Chapter \ref{resampling}. Briefly, the paleodiatom community comprises 109 time series over a period of approximately 6936 years (Figure \ref{fig:paleoTurnover}). As elaborated in Spanbauer \emph{et al.} (\protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}), the paleodiatom community is suggested to have undergone regime shifts at multiple points. These abrupt changes are apparent when exploring the relative abundances over time, as there are extreme levels of species turnover at multiple points in the data (Figure \ref{fig:paleoTurnover}). Using Fisher Information and climatological records, Spanbauer \emph{et al.} (\protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}) suggest that regime shifts in this system at approximately 1,300 years before present (where years before present is equal to year 1950; Spanbauer \emph{et al.}, \protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoVelocity} \caption{Velocity $V$ and distance traveled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $V$.}\label{fig:paleoVelocity}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoVelocity} 
+
+}
+
+\caption{Velocity $V$ and distance traveled $s$ of the paleodiatom time series. Dashed line at 1,300 years before 1950 indicates the regime shift identifed in Spanbauer et al. (2014). Dotted lines indicate regime shifts as visually identified on metrics $s$ and $V$.}\label{fig:paleoVelocity}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3} \caption{Inter-regime (regimes A and B) trends in the velocity signal ($V$) identify  the fluctuating decadal and centurial abiotic conditions discussed in  Spanbauer et al. (2014).}\label{fig:paleoRegime1and3}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3} 
+
+}
+
+\caption{Inter-regime (regimes A and B) trends in the velocity signal ($V$) identify  the fluctuating decadal and centurial abiotic conditions discussed in  Spanbauer et al. (2014).}\label{fig:paleoRegime1and3}
 \end{figure}
 Spanbauer \emph{et al.} (\protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}) used different regime detection metrics coupled with regional climatological events to identify regime shifts in the system, suggest that a regime shift occurred at \textasciitilde1,300 years before present. Using the methods outlined above, I calculated the distance traveled (\(s\)) and velocity (\(V\); Figure \ref{fig:paleoV}). The results of \(V\) and \(s\) (Figure \ref{fig:paleoVelocity}) on the relative abundance data correspond with both the large shifts in species dynamics (see Fig \ref{fig:paleoTurnover}, and also with the regime shift identified by Spanbauer \emph{et al.} (\protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}). However, two primary results can be made from the metrics \(V\) and \(s\) that are not obvious nor identified numerically in the results of Spanbauer \emph{et al.} (\protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}):
 \begin{enumerate}
@@ -1232,12 +1485,22 @@ Spanbauer \emph{et al.} (\protect\hyperlink{ref-spanbauer_prolonged_2014}{2014})
   The periods before the first and after the second large shifts appear oscillatory (Figure \ref{fig:paleoRegime1and3}).
 \end{enumerate}
 To determine the effect of dampening the noise in the data on the velocity signal, I interpolated the each time series using function \texttt{stats::approx} to 700 time points. Next, I calculated the distance traveled of the entire system, \(s\). Finally, I obtained the derivative of \(s\) by using a regularized differentiation (using function \texttt{tvdiff::TVRegDiffR}; parameters were \(iter = 2000\), scale = small, \(ep = 1 x 10^-6\), and \(\alpha = 100\)). This method of regularized differentiation is an ideal approach to smoothing \(s\) because it assumes the data are non-smooth and incorporates finite differencing. The total variation regularized differentiation is described in Chartrand (\protect\hyperlink{ref-chartrand2011numerical}{2011}), Price \& Burnett (\protect\hyperlink{ref-price2019tvdiff}{2019}\protect\hyperlink{ref-price2019tvdiff}{a}), and in the previous first-level section.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoObsPred} \caption{The regularized differentiation of $s$ was best fit using $\alpha = 100$. Higher overlap of $s$ and pred indicates a good fit of the regularized differentiated metric to the non-smoothed metric, $s$.}\label{fig:paleoObsPred}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoObsPred} 
+
+}
+
+\caption{The regularized differentiation of $s$ was best fit using $\alpha = 100$. Higher overlap of $s$ and pred indicates a good fit of the regularized differentiated metric to the non-smoothed metric, $s$.}\label{fig:paleoObsPred}
 \end{figure}
 The smoothed velocity (Figure \ref{fig:paleoV}) provides a similar but smoother picture of the velocity of the system trajectory. Comparing the smoothed (Figure \ref{fig:paleoV}) to the non-smoothed velocity (Figure \ref{fig:paleoVelocity}) yields similar inference regarding the location of the regime shifts at 2,200 and 1,300 years before present, however, it more clearly demonstrates potential inter-regime dynamics (e.g., between 7,000 and 4,800 years before present), that were not identified in previous study of this system (Spanbauer \emph{et al.}, \protect\hyperlink{ref-spanbauer_prolonged_2014}{2014}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoV} \caption{The velocity metric  ($V$) signals potential periodicities in the paleo diatom time series data when the distance traveled metric, $s$, is smoothed using regularized differentiation methods (see Price and Burnett 2019).}\label{fig:paleoV}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoV} 
+
+}
+
+\caption{The velocity metric  ($V$) signals potential periodicities in the paleo diatom time series data when the distance traveled metric, $s$, is smoothed using regularized differentiation methods (see Price and Burnett 2019).}\label{fig:paleoV}
 \end{figure}
 \hypertarget{discussion-3}{%
 \section{Discussion}\label{discussion-3}}
@@ -1252,16 +1515,31 @@ Further work is required to determine the utility of system velocity as a regime
 \section{Supplementary Figures}\label{supplementary-figures}}
 
 Figures \ref{fig:velocSysEx2}, \ref{fig:velocSysEx3}, and \ref{fig:velocSysEx4} provide additional examples of the behavior of velocity, \(V\) when varying the mean and/or variance prior to and/or after the induced abrupt shift in the toy system with a discontinuous transition at \(t=50\).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx2-1} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx2-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($V$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx3-1} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx3-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
 \end{figure}
 \newpage
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx4-1} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Variance equal to mean ($/bar{x_i}=/sigma_i$), where means ($/bar{x}_{1_{pre}}=25$, $/bar{x}_{1_{post}}=50$, $/bar{x}_{2_{pre}}=15$, $/bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx4-1} 
+
+}
+
+\caption{System change ($s$) and velocity ($V$) of the model system over the time period. Variance equal to mean ($/bar{x_i}=/sigma_i$), where means ($/bar{x}_{1_{pre}}=25$, $/bar{x}_{1_{post}}=50$, $/bar{x}_{2_{pre}}=15$, $/bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
 \end{figure}
 \hypertarget{resampling}{%
 \chapter{Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures}\label{resampling}}
@@ -1291,11 +1569,21 @@ In this Chapter I examine the influence of observation and process errors on the
   Explore the relative performance of velocity (described in Chapter \ref{velocity}) to the above mentioned methods under multiple scenarios.
 \end{enumerate}
 This Chapter provides baseline relative performance estimates of select, multivariate regime detection measures under various scenarios of data quality and quantity. The results from this Chapter inform the practical ecologist of the potential limitations to consider when applying these regime detection measures to their data, and has potential to inform the data collection process. Additionally, the software accompanying this Chapter allows the end user to implement these methods on this or their own system data, or on theoretical data.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/origDataRelAbundance} \caption{Relative abundances of the diatom species in Foy Lake over the time period.}\label{fig:origDat}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/origDataRelAbundance} 
+
+}
+
+\caption{Relative abundances of the diatom species in Foy Lake over the time period.}\label{fig:origDat}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/timeElapsed} \caption{The amount of time elapsed between observations.}\label{fig:timeElapsed}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.75\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/timeElapsed} 
+
+}
+
+\caption{The amount of time elapsed between observations for the Foy Lake paleodiatom data.}\label{fig:timeElapsed}
 \end{figure}
 \hypertarget{data-and-methodology}{%
 \section{Data and Methodology}\label{data-and-methodology}}
@@ -1338,13 +1626,22 @@ Fisher Information (\(I\)) is essentially the area under the curve of the accele
 \end{equation}
 I refer the reader to Chapter \ref{fiGuide} for a complete description and to Cabezas \& Fath (\protect\hyperlink{ref-cabezas_towards_2002}{2002}) for a complete derivation of Fisher Information.
 
+\begin{figure}[bth]
 
-\begin{figure}[H]
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_cvDensity} \caption{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values greater than 100\% are not printed.}\label{fig:viCV}
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_cvDensity} 
+
+}
+
+\caption{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Variance Index resampled values over 10,000 iterations. Densities are drawn based on all values of CV but values greater than 100\% are not printed.}\label{fig:viCV}
 \end{figure}
 
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_observations_ribboned_facetByProb} \caption{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the \textbf{observations} resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} are 100\%.}\label{fig:viResamp}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_observations_ribboned_facetByProb} 
+
+}
+
+\caption{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the \textbf{observations} resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} are 100\%.}\label{fig:viResamp}
 \end{figure}
 \hypertarget{using-moving-window-analysis-to-calculate-fisher-information-and-variance-index}{%
 \subsubsection{Using moving window analysis to calculate Fisher Information and Variance Index}\label{using-moving-window-analysis-to-calculate-fisher-information-and-variance-index}}
@@ -1355,16 +1652,26 @@ When using these metrics in the context of identifying abrupt changes in ecologi
 
 An additional parameter is required when conducting moving window analyses: the number of time points by which the window advances. In order to maximize the number of poitns at which results were obtained, I advanced the moving window at a rate of one time unit (rather than skipping observations). However, it is important to note that because these data are not sampled annually and the because the window always advances by a single time unit, the number of observations included in each calculation will not be the same. If fewer than 5 observations are in a window, I did not calculate metrics, advancing the window forward. I assigned the calculated values of Fisher Information and Variance Index within each moving window to the \textbf{end} (the last time unit) of the moving window. In temporal analyses, assigning the value{[}which value{]} to any other point in time (e.g., the beginning or the middle) muddles the interpretation of the metric over \(T^*\). Also note that this method has the potential to result in calculating a metric for all integers between \(0.20 T^*\) and \(T^*\).
 
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_species_ribboned_facetByProb} \caption{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the \textbf{species} resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.}\label{fig:viResamp2}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/VI_species_ribboned_facetByProb} 
+
+}
+
+\caption{Mean Variance Index (VI) and associated 95\% confidence intervals over 10,000 iterations using the \textbf{species} resampling method. Red line indicates the value of VI when \textbf{M} and \textbf{P} = 100\%.}\label{fig:viResamp2}
 \end{figure}
 \hypertarget{simulating-data-quality-and-quantity-issues-using-resampling-techniques}{%
 \subsection{Simulating data quality and quantity issues using resampling techniques}\label{simulating-data-quality-and-quantity-issues-using-resampling-techniques}}
 
 Using a resampling approach I calculated the regime detection measures over different scenarios simulating data quality and data quantity issues common to ecological data analysis. The scenarios are categorized as \emph{observations} and \emph{species}. The observations scenario simulates a loss of temporal observations (decreasing the number of times the system was observed), and the species scenario simulates a loss of information about the system by removing some proportion of the species. The loss of temporal observations and the loss of species were examined at three proportions: \(\textbf{P} = [0.25, 0.50, 0.75, 1.00]\), where \(\textbf{P}\) is the proportion of species and time points \textbf{retained} for analysis. For example, when \(\textbf{P} = 0.25\), a random selection of \(25\%\) of the species are retained for analysis in the species scenario. I re-sampled the data over \(10,000\) iterations (\(N_{samp}\)) for each scenario and \(\textbf{P}\) combination. Note that because when \(\textbf{P} = 1.00\), all data are retained. Therefore, no resampling was conducted at this level because only a single metric (e.g.~Velocity) value is possible.
 
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb} \caption{Mean velocity and associated 95\% confidence intervals over 10,000 iterations using the observations resampling method. Red line indicates the value of velocity when \textbf{M} and \textbf{P} are 100\%.}\label{fig:dsdtResamp}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb} 
+
+}
+
+\caption{Mean velocity and associated 95\% confidence intervals over 10,000 iterations using the observations resampling method. Red line indicates the value of velocity when \textbf{M} and \textbf{P} are 100\%.}\label{fig:dsdtResamp}
 \end{figure}
 \hypertarget{comparing-regime-detection-measures}{%
 \subsection{Comparing regime detection measures}\label{comparing-regime-detection-measures}}
@@ -1372,12 +1679,22 @@ Using a resampling approach I calculated the regime detection measures over diff
 Interpretation of the regime detection measures used in this analysis are currently limited to visual inspection. Therefore, I limit inference in this study largely to the impact of data loss on the variability with a regime detection measure (i.e.~how robust is the measure to data loss). It is important to not only identify the influence of data quality and quantity on the performance of individual regime detection metrics, but also to somehow relate these qualities. I visually inspect the relative performance of these metrics by comparing the coefficient of variation of the re-sampled samples for the results of resampling method (\(\textbf{M}\); species, observations) and sampling percentage (\(\textbf{P}\); 25\%, 50\%, 75\%) combination for each metric (FI, VI, \(v\)). The coefficient of variation measures provides a relative measure of the variability in the estimated metric across re-sampled samples as \(100\frac{\sigma}{\mu}\), where \(\sigma\) is the standard deviation and \(\mu\) is the mean value.
 I observed the distributions of the CV to identify potential flaws in the metrics should data quality or quantity (\(\textbf{M}\), \(\textbf{P}\)) decrease. First, within a value of \(\textbf{P}\) a low error to mean ratio (CV) indicates that the metric value is similar across the re-sampled samples (\(N_{samp}=10,000\)). The efficacy of the metric should be questioned as CV\(\rightarrow 1\), and perhaps even abandoned as CV\(\gg1\). Next, we can examine how the distribution of CV changes within \(\textbf{M}\) and across \(\textbf{P}\). As we increase \(\textbf{P}\), we are increasing the volume of data we are feeding the metric. Intuitively, we can assume that as we add more data (volume), we are supplying the metric with more \emph{information}, theoretically increasing the signal-to-noise ratio. Following this logic, we should expect the distribution of CV to generally decrease in mean CV value and also become less variable (less dispersion around the mean CV). A visual examination of the distribution of CV across \(\textbf{P}\) and within \(\textbf{M}\) was sufficient to achieve inference regarding the quality of these metrics upon loss of observations and species.\\
 
-\begin{figure}
-\includegraphics[width=0.75\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2} \caption{Mean velocity and associated 95\% confidence intervals over 10,000 iterations using the observations resampling method for a subset of the time series (the second `regime' identified). Red line indicates the value of velocity when \textbf{M} and \textbf{P} = 100\%.}\label{fig:dsdtResampRegime2}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.75\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2} 
+
+}
+
+\caption{Mean velocity and associated 95\% confidence intervals over 10,000 iterations using the observations resampling method for a subset of the time series (the second `regime' identified). Red line indicates the value of velocity when \textbf{M} and \textbf{P} = 100\%.}\label{fig:dsdtResampRegime2}
 \end{figure}
 
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/s_cvDensity} \caption{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Distance Metric (s) resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values \textgreater100\% are not printed.}\label{fig:sCV}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/s_cvDensity} 
+
+}
+
+\caption{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Distance Metric (s) resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values \textgreater100\% are not printed.}\label{fig:sCV}
 \end{figure}
 \hypertarget{results-2}{%
 \section{Results}\label{results-2}}
@@ -1392,22 +1709,37 @@ The velocity of the distance traveled, \(\frac{ds}{dt}\) or \(v\), exhibited dis
 
 The Variance Index (VI) performed best under the the observations resampling method, exhibiting low values for and low dispersion in the CV density (Figure \ref{fig:viCV}) across iterations. However, the VI appears sensitive to high losses of species information, where the density of the CV still exhibits low dispersion but with higher overall mean values (Figure \ref{fig:viCV}). Surprisingly, the Variance Index was insensitive to temporal observation loss (Figure \ref{fig:viResamp}), exhibiting a similar amount of noise across various degrees of data loss (\(\textbf{P}\)). Although the signal was dampened under the species method, the signals for the shifts in community composition were not lost across levels of \(\textbf{P}\) (Figure \ref{fig:viResamp2}). This is likely due to the high probability that the dominant species were rarely always excluded from the re-sampled observations.
 
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity} \caption{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values \textgreater100\% are not printed.}\label{fig:fiCV}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/FI_cvDensity} 
+
+}
+
+\caption{Density plot of the coefficient of variation (CV) as a percentage (\%) of the Fisher Information resampled samples (10,000 iterations). Densities are drawn based on all values of CV, but values \textgreater100\% are not printed.}\label{fig:fiCV}
 \end{figure}
 
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/logFI_species_ribboned_facetByProb} \caption{Mean Fisher Information (FI; note the scale) and associated 95\% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when \textbf{M} and \textbf{P} are 100\%. A very small value was added to the mean FI prior to log transformation.}\label{fig:fiResamp}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/logFI_species_ribboned_facetByProb} 
+
+}
+
+\caption{Mean Fisher Information (FI; note the scale) and associated 95\% confidence intervals over 10,000 iterations using the species resampling method. Red line indicates the value of FI when \textbf{M} and \textbf{P} are 100\%. A very small value was added to the mean FI prior to log transformation.}\label{fig:fiResamp}
 \end{figure}
 \hypertarget{fisher-information-is-highly-sensitive-to-information-loss}{%
 \subsection{Fisher Information is highly sensitive to information loss}\label{fisher-information-is-highly-sensitive-to-information-loss}}
 
 The Fisher Information method did not yield conclusive results regarding the abrupt shifts in the paleodiatom community composition. Further, this method appears highly sensitive to varying quality and quantities of data (Figures \ref{fig:fiResamp}, \ref{fig:fiCV}). Although the Fisher Information identifies the shift in community composition at \(\sim1,300\) years before present, it fails to identify shifts outside this period. Further, it is difficult to visually analyze any value of the Fisher Information on the original scale as the values range from \(\approx 0\) to \(10^{15}\) (Figure \ref{fig:fiResamp}). In addition to failing to identify the shifts in community composition, the standard deviation of Fisher Information far exceeded the mean value of Fisher Information under all \(\textbf{M}\)-\(\textbf{P}\) scenarios (Figure \ref{fig:fiCV}). When I re-sampled the data using 25\% and 50\% of the species the ratio of mean Fisher Information to standard deviation (CV) of Fisher Information is always \(\gg 1\) (i.e, not pictured in Figure \ref{fig:fiCV}). The high variation in FI values across re-sampled iterations coupled with the high dispersion within each \(\textbf{M}\)-\(\textbf{P}\) combination (Figure \ref{fig:fiCV}) suggests Fisher Information will not produce similar trends when we lose or distort the data collected. This is also suggested by the high confidence intervals surrounding each \(\textbf{M}\)-\(\textbf{P}\) combination (Figure \ref{fig:fiResamp}).
 
-\textbackslash begin\{figure\}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/loess} \textbackslash caption\{Local regression (loess) smoothing of a dominant species in the paleodiatom community, \emph{Anomoeoneis costata} varies with the span parameter, making it difficult to justify smoothing the data prior to calculating various regime detection metrics.\}\label{fig:loessEx}
-\textbackslash end\{figure\}
 
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/figsCalledInDiss/loess} 
+
+}
+
+\caption{Local regression (loess) smoothing of a dominant species in the paleodiatom community, \emph{Anomoeoneis costata} varies with the span parameter, making it difficult to justify smoothing the data prior to calculating various regime detection metrics.}\label{fig:loessEx}
+\end{figure}
 \hypertarget{detrending-the-data-prior-to-calculations}{%
 \section{Detrending the Data Prior to Calculations}\label{detrending-the-data-prior-to-calculations}}
 
@@ -1439,8 +1771,13 @@ Avian distribution and presence data are abundant, easily accessible and, more i
 
 \hypertarget{methods-2}{%
 \section{Methods}\label{methods-2}}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap} \caption{My study area (red box) overlaying the terrestrial Breeding Conservation Regions (BCR) in North America.}\label{fig:studyarea}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap} 
+
+}
+
+\caption{My study area (red box) overlaying the terrestrial Breeding Conservation Regions (BCR) in North America.}\label{fig:studyarea}
 \end{figure}
 \hypertarget{study-area-1}{%
 \subsection{Study area}\label{study-area-1}}
@@ -1478,8 +1815,13 @@ Due to strict reliance on volunteers, some routes are not covered every year. Al
 Although the NABBS survey reports species-specific abundances, some birds are only classified to genera or order. Common examples of these species are those which are nearly indistinguishable from each other (e.g., Glossy Ibis and White-faced Ibis), birds which are difficult to see under certain conditions (e.g., hummingbirds, fast-moving hawks or accipiters), or species whose songs are similar. Numerous species were presented as identified to family or genus (e.g., Accipiter sp., Buteo sp., and Trochilids sp.) and others are categorized as hybrid.
 
 I made decisions regarding species-specific classification based on the North American breeding range maps provided by the Cornell Lab of Ornithology. Many unidentified species were easily categorized given the lack of overlap in species' ranges in our study area. For example, \emph{Baeolophus bicolor} is nearly indistinguishable from \emph{Baeolophus atricristatus}, however \emph{B. atricristatus} is not known to occur in our study area (Figure \ref{fig:studyarea})--therefore all accounts classified as either \emph{B. bicolor} or \emph{B. atricristatus} were classified as the former. Informed decisions of this nature were made regarding the following unidentified species, where the second name in the binomial was assigned as the species preceding the ``/'': \emph{Passerina cyanea / amoena}, \emph{Corvus brachyrhynchos / ossifragus}, \emph{Petrochelidon pyrrhonota / fulva}, \emph{Corvus brachyrhynchos}, \emph{Quiscalus major / mexicanus}, \emph{Pipilo maculatus / erythrophthalmus}, \emph{Sturnella magna / neglect}, \emph{Plegadis chihi / falcinellus}, \emph{Coccyzus erythropthalmus / americanus}, \emph{Empidonax traillii / alnorum}, \emph{Icterus galbula / bullockii}, \emph{Nyctanassa nycticorax / violacea}, and \emph{Poecile atricapillus / carolinensis} were all classified according to their known distributions. I classified unidentified hummingbirds (\emph{Trochilid} sp.) as \emph{Selasphorus rufus}, and unidentified Terns (Tern sp.) as \emph{Childonias niger}. All unidentified Accipiters (Accipiter sp.), Buteos (Buteo sp.), and Gulls (Gull sp.) were removed from analysis entirely as there are no clear differences in the probability of occurrence in our study area.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/routes_spatRegimeLines2} \caption{North American Breeding Bird Survey routes (points), latitudinal locations (horizontal bars) of the spatial regimes identified by \@roberts2019shifting.}\label{fig:routesWithSpatRegimes}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/routes_spatRegimeLines2} 
+
+}
+
+\caption{North American Breeding Bird Survey routes (points), latitudinal locations (horizontal bars) of the spatial regimes identified by \@roberts2019shifting.}\label{fig:routesWithSpatRegimes}
 \end{figure}
 \hypertarget{identifying-species-of-interest}{%
 \subsubsection{Identifying species of interest}\label{identifying-species-of-interest}}
@@ -1682,14 +2024,29 @@ Year & North & South\\
 \subsection{Summary statistics of censuses (NABBS data)}\label{summary-statistics-of-censuses-nabbs-data}}
 
 Given the location of the study area (Figure \ref{fig:studyarea}) with respect to the location of the contiguous Central Great Plains, fewer NABBS routes falling into the Southern regime were analysed than those in the Northern (Table \ref{tab:nRtesPerRegimePerYearTab}). Likely due to the increase in the total number of routes surveyed over time across the entire North American Breeding Bird Survey region, species richness increased over time within our study area (Figure \ref{fig:richnessByYear}). Annual turnover rates were relatively low but became more dispersed over time (Figure \ref{fig:turnoverByYear}; Table \ref{tab:richTurnTab}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/nRtesPerRegimePerYearFig-1} \caption{Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation.}\label{fig:nRtesPerRegimePerYearFig}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/nRtesPerRegimePerYearFig-1} 
+
+}
+
+\caption{Number of NABBS routes analysed per year. Some routes are not sampled annually due to volunteer availability, environmental conditions, or route discontinuation.}\label{fig:nRtesPerRegimePerYearFig}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/richnessByYear} \caption{Species richness increases over time across the entire study area.}\label{fig:richnessByYear}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/richnessByYear} 
+
+}
+
+\caption{Species richness increases over time across the entire study area.}\label{fig:richnessByYear}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/turnoverByYear} \caption{Variance in the total species turnover increases over time across the entire study area.}\label{fig:turnoverByYear}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/turnoverByYear} 
+
+}
+
+\caption{Variance in the total species turnover increases over time across the entire study area.}\label{fig:turnoverByYear}
 \end{figure}
 \begin{longtable}{rrrrrrr}
 \caption{\label{tab:richTurnTab}Summary statistics for annual species richness and annual turnover in all NABBS routes in study area.}\\
@@ -1761,11 +2118,21 @@ Year & $\bar{x}$ & $\sigma$ & N & $\bar{x}$ & $\sigma$ & N\\
 2017 & 47.6 & 9.84 & 45 & 0.2 & 11.84 & 45\\
 \bottomrule
 \end{longtable}
-\begin{figure}
-\includegraphics[width=0.45\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime} \caption{Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes. Interaction plots presented in two alternative views using the same results.}\label{fig:intrxnPlot-regime}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.8\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime} 
+
+}
+
+\caption{Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes.}\label{fig:intrxnPlot-regime}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.45\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1} \caption{Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes. Interaction plots presented in two alternative views using the same results.}\label{fig:intrxnPlot-regime}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.8\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1} 
+
+}
+
+\caption{Declining species were closer to the edge of body mass aggregations in the 'northern' than were in the 'southern' regimes.}\label{fig:intrxnPlot-regime}
 \end{figure}
 \hypertarget{species-of-interest}{%
 \subsubsection{Species of interest}\label{species-of-interest}}
@@ -1774,23 +2141,53 @@ A total of 163 species were considered for analysis across the entire study area
 
 The total (Figure \ref{fig:stopTotalSum}) and mean (Figure \ref{fig:stopTotalMean}) number of birds counted within each species group was relatively constant across time in the Prairie Potholes and Eastern Tallgrass Prairie bird conservation regions, but fluctuation in stop totals appeared greater in the Badlands and Prairies BCR (Figures \ref{fig:stopTotalMean}, \ref{fig:stopTotalSum})). The latter BCR comprises a much smaller portion of the study area (Figure \ref{fig:studyarea}) and accordingly the coefficient of variation (CV; ratio of deviation to the mean) around the stop totals (Figure \ref{fig:stopTotalCV}) was highest in this region. It is worth noting the high CV (CV is considered low when \(<\ \sim40%
 \)) in all regions.
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum} \caption{Total number of birds across the entire study area per species group per year. }\label{fig:stopTotalSum}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum} 
+
+}
+
+\caption{Total number of birds across the entire study area per species group per year. }\label{fig:stopTotalSum}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean} \caption{Average coefficient of variation in the number of birds across the entire study area per species group per year.}\label{fig:stopTotalMean}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean} 
+
+}
+
+\caption{Average coefficient of variation in the number of birds across the entire study area per species group per year.}\label{fig:stopTotalMean}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV} \caption{Average number of birds across the entire study area per species group per year. }\label{fig:stopTotalCV}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV} 
+
+}
+
+\caption{Average number of birds across the entire study area per species group per year. }\label{fig:stopTotalCV}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/nAggsPerYear-1} \caption{Number of body mass aggregations identified in each route unchanged across the time period (**a**) and is approximately normally distributed ($\bar{x} =  4.7, \sigma = 1.6$)}\label{fig:nAggsPerYear}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/nAggsPerYear-1} 
+
+}
+
+\caption{Number of body mass aggregations identified in each route unchanged across the time period (**a**) and is approximately normally distributed ($\bar{x} =  4.7, \sigma = 1.6$)}\label{fig:nAggsPerYear}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_corrplot} \caption{Relationship between species richness per route and (a) the number of aggregations identified in body mass distributions and (b) distance to the edge (units log body mass) of aggregations.}\label{fig:aggEdgeCorrPlot}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_corrplot} 
+
+}
+
+\caption{Relationship between species richness per route and (a) the number of aggregations identified in body mass distributions and (b) distance to the edge (units log body mass) of aggregations.}\label{fig:aggEdgeCorrPlot}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/routeGapEx} \caption{Aggregation locations of body mass distributions of the avian community at a single NABBS route (state 7 route 24) appear relatively similar across time. Panels include data for years 1=1970, 2=1985, 3=2000, 4=2015. Red triangles indicate grassland obligate species.}\label{fig:routeGapEx}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/routeGapEx} 
+
+}
+
+\caption{Aggregation locations of body mass distributions of the avian community at a single NABBS route (state 7 route 24) appear relatively similar across time. Panels include data for years 1=1970, 2=1985, 3=2000, 4=2015. Red triangles indicate grassland obligate species.}\label{fig:routeGapEx}
 \end{figure}
 \hypertarget{statistical-analysis-1}{%
 \subsection{Statistical Analysis}\label{statistical-analysis-1}}
@@ -1827,14 +2224,29 @@ North x Declining & 0.02 & (-0.01, 0.04)\\
 \subsubsection{Linear Mixed Effects Analysis of Distance to Edge}\label{linear-mixed-effects-analysis-of-distance-to-edge}}
 
 Declining species and declining grassland obligate species were located closer to the edge than the `other' species, while grassland obligate species were further from the edge than `other' species (Table \ref{tab:lmeTab}). Similar trends held for declining grassland obligates and grassland obligates in the Northern regime location. There was, however, no evidence to suggest additive effects of the regime location or year, or their interactions (Table \ref{tab:lmeTab}).
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup} \caption{Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group over the entire study area and all years.}\label{fig:bmDistPerSppGroup}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup} 
+
+}
+
+\caption{Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group over the entire study area and all years.}\label{fig:bmDistPerSppGroup}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime} \caption{The body mass distribution of declining species differ only slightly between the Southern and Northern regimes.}\label{fig:bmDistPerSppGroup-byRegime}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime} 
+
+}
+
+\caption{The body mass distribution of declining species differ only slightly between the Southern and Northern regimes.}\label{fig:bmDistPerSppGroup-byRegime}
 \end{figure}
-\begin{figure}
-\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR} \caption{Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group and Bird Conservation Region over all years.}\label{fig:bmDistPerSppGroup-byBCR}
+\begin{figure}[bth]
+
+{\centering \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR} 
+
+}
+
+\caption{Body mass distribution for species in the study area over the entire time period varies by species group. Distributions represent the species pool for each group and Bird Conservation Region over all years.}\label{fig:bmDistPerSppGroup-byBCR}
 \end{figure}
 \hypertarget{discussion-4}{%
 \section{Discussion}\label{discussion-4}}
