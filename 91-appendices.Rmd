@@ -289,7 +289,7 @@ distances <- calculate_distanceTravelled(origData, derivs = T)
 ```
 
 Plot the moving-window metrics (FI, VI, and the univariate EWSs)
-```{r calcMovingWIndowShit}
+```{r calcMovingWIndowShit, eval=FALSE}
 # Calculate FI, VI, and early warning signals --------------------------------------------------------
 # Uses a moving window analysis to calculate FI and Vi within each window
 results <-
@@ -304,7 +304,6 @@ results <-
 # Reults will return all results in a single data frame.
 head(results)
 ```
-
 
 `r if(knitr:::is_latex_output()) '\\appendix'`
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'` 
