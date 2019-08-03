@@ -106,7 +106,6 @@
 \AtBeginDocument{%
   \fancyhf{} % sets both header and footer to nothing
   \renewcommand{\headrulewidth}{0pt}
-
   }
 %   \fancyhf{}
 %   \fancyhead[LE,RO]{\thepage}
@@ -253,7 +252,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Acknowledgements}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
 \newenvironment{preface}{%
@@ -263,7 +262,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Preface}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 % End of CII add
 
@@ -274,7 +273,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Abstract}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
 \newenvironment{dedication}{%
@@ -284,7 +283,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Dedication}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
 
@@ -301,7 +300,7 @@
 
 \renewcommand{\maketitle}{%
   {\pagestyle{empty}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
   \begin{titlepage}
   \newpage
   \let\footnotesize\small
@@ -314,7 +313,7 @@
   \begin{center}
     \setcounter{page}{1}
     \null\vfil
-    {\fontsize{12}{14}\selectfont \@title}
+    {\fontsize{10}{12}\selectfont \@title}
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
@@ -333,18 +332,18 @@
     \bigskip
     \centerline{}
     \bigskip
-    {\fontsize{12}{14}\selectfont \lineskip .75em
+    {\fontsize{10}{12}\selectfont \lineskip .75em
     \begin{tabular}[t]{c}%
       \@author
     \end{tabular}\par}
     \vskip 1.5em
-    {\fontsize{12}{14}\selectfont \@date \par}
+    {\fontsize{10}{12}\selectfont \@date \par}
   \end{center}\par
   \end{titlepage}
 
 % %% Approved for the division page
 %   \cleardoublepage
-%   {\fontsize{12}{14}
+%   {\fontsize{10}{12}
 %   \setbox0=\hbox{Approved by \@approvedforthe}
 %   \thispagestyle{empty}
 %   \null\vfil		% just below center of page
