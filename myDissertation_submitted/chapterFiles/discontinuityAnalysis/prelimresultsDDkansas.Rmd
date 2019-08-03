@@ -1,0 +1,68 @@
+---
+title: "dd results pre-post shift kansas area"
+author: "Jessica L. Burnett"
+date: "6/1/2019"
+output: pdf_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(tidy = TRUE, echo=FALSE, out.width="0.8\\textwidth",
+                      fig.pos="h", fig.align='center')
+library(knitr)
+library(here)
+figDirTemp <- here::here("chapterFiles/discontinuityAnalysis/tempFigs/")
+figDir <- here::here("chapterFiles/discontinuityAnalysis/figsCalledInDiss/")
+pngs<-list.files(figDir, full.names = TRUE)
+```
+# Methods
+- Chose years 1970, 1985, 2000, and 2015 based on the spatial regimes identified by Roberts et al.
+- BBS routes with sampling conducted in at least two of the abovementioned years 
+- Method to ID edge species: Barichievy et al discontinuity detector using a **90th percentile** threshold value. 
+
+# Results
+## BBS routes explored
+- Figure \@ref(fig:routes) shows routes in NE and KS with data collected in all four years, and includes the parallels presented in Roberts dissertation as 'spatial regime shift' locations.
+- Note here routes **25,28 and 29** are above and then below the suggested shift. These routes ^ and route **31** are used in figures below.
+
+```{r routes, echo=FALSE}
+include_graphics(pngs[1])
+```
+
+Fig \@ref(fig:turnover) indicates high variability in between sampling year turnover (consecutive years only) in each BBS route in Kansas and Nebraska. 
+```{r turnover, echo=FALSE, fig.cap="mean annual turnover within each KS an NE bbs route for consecutive year of sampling."}
+include_graphics(list.files(figDirTemp, pattern="Turnover", full.names = TRUE))
+```
+
+## Body mass aggregations using the DD method 
+Figures \@ref(fig:ks25),\@ref(fig:ks28),\@ref(fig:ks29) & \@ref(fig:ks31) in this section contain body masses for each route. Red dots indicate 'edge species' based on the 90th percentile threshold. Consider two consecutive red triangles to belong to different aggregations.
+
+```{r ks25, echo=FALSE, fig.cap= "Kansas route 25."}
+include_graphics(list.files(figDirTemp,pattern="state38_rte25",full.names = TRUE))
+```
+
+```{r ks28, echo=FALSE, fig.cap= "Kansas route 28."}
+include_graphics(list.files(figDirTemp,pattern="state38_rte28",full.names = TRUE))
+```
+
+```{r ks29, echo=FALSE, fig.cap= "Kansas route 29."}
+include_graphics(list.files(figDirTemp,pattern="state38_rte29",full.names = TRUE))
+```
+
+```{r ks31, echo=FALSE, fig.cap= "Kansas route 31."}
+include_graphics(list.files(figDirTemp,pattern="state38_rte31",full.names = TRUE))
+```
+
+## Distance to edge per route year for all species
+Fig \@ref(fig:distedgeDensity) summarises the distribution of distance to edge (measured in log g) for all species per route per year.
+
+```{r distedgeDensity, echo=FALSE,fig.cap= "Kansas route 25."}
+include_graphics(list.files(figDirTemp,pattern="distEdgePerRouteYear.png",full.names = TRUE))
+```
+
+Fig \@ref(fig:distedgeDensity2) is the same data as Fig \@ref(fig:distedgeDensity) presented slightly differently. 
+```{r distedgeDensity2, echo=FALSE,fig.cap= "Kansas route 25."}
+include_graphics(list.files(figDirTemp,pattern="distEdgePerRouteYear2.png",full.names = TRUE))
+```
+
+
+
