@@ -222,6 +222,8 @@ Using both theoretical and empirical data, I evaluate the efficacy of multivaria
 \doublespacing{} % Trying to set spacing between lines in body
 % \linespread{1.6} % Trying to set spacing between lines in body
 
+`
+
 \hypertarget{definitions}{%
 \chapter*{Table of Definitions}\label{definitions}}
 \addcontentsline{toc}{chapter}{Table of Definitions}
@@ -1888,7 +1890,9 @@ The BBS team uses hierarhical modelling techniques to generate population trend 
 \subsection{Installing package and loading dependencies}\label{installing-package-and-loading-dependencies}}
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# devtools::install_github("trashbirdecology/bbsAssistant", dependencies = TRUE, force=FALSE)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{eval=}\OtherTok{FALSE}\NormalTok{)}
+\CommentTok{# devtools::install_github("trashbirdecology/bbsAssistant",}
+\CommentTok{#   dependencies = TRUE, force=FALSE)}
 \KeywordTok{library}\NormalTok{(bbsAssistant)}
 \KeywordTok{library}\NormalTok{(rvest)}
 \KeywordTok{library}\NormalTok{(gdata)}
@@ -1921,7 +1925,9 @@ This function will create, if it does not already exist, folder \textbf{./bbsDat
 If necessary, download all or some of the BBS state-level data. Note: Downloading all the data to file takes 10-15 minutes, so only run if you have not recently downloaded the BBS data. First, let's retrieve the regions of data that are available. The function \texttt{get\_regions} retrieves the .zip filenames of all U.S. states and Canadian provinces, including their reference numbers and region codes.
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# a. Load the regional .txt file from Patuxent's FTP server (you must be connected to the internet to perform this step)}
+\CommentTok{# a. Load the regional .txt file from }
+\CommentTok{# Patuxent's FTP server (you must be connected to the }
+\CommentTok{# internet to perform this step)}
 \NormalTok{regions <-}\StringTok{ }\KeywordTok{get_regions}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -1930,9 +1936,11 @@ Let's restrict our data download to \textbf{Florida} data:
 \begin{Highlighting}[]
 \NormalTok{regionFileName.use <-}\StringTok{ "Florida.zip"}
 
-\ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{exists}\NormalTok{(}\StringTok{"regionFileName.use"}\NormalTok{))\{}
-\NormalTok{  regionFileName <-}\StringTok{ }\NormalTok{regions}\OperatorTok{$}\NormalTok{zipFileName }\OperatorTok{%>%}\StringTok{ }\KeywordTok{na.omit}\NormalTok{()}
-\NormalTok{  (regionFileName.use <-}\StringTok{ }\NormalTok{regionFileName[}\KeywordTok{which}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(regionFileName, }\StringTok{"Flori"}\NormalTok{)}\OperatorTok{==}\OtherTok{TRUE}\NormalTok{)])}
+\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{exists}\NormalTok{(}\StringTok{"regionFileName.use"}\NormalTok{)) \{}
+\NormalTok{  regionFileName <-}\StringTok{ }\NormalTok{regions}\OperatorTok{$}\NormalTok{zipFileName }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{na.omit}\NormalTok{()}
+\NormalTok{  (regionFileName.use <-}
+\StringTok{      }\NormalTok{regionFileName[}\KeywordTok{which}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(regionFileName, }\StringTok{"Flori"}\NormalTok{) }\OperatorTok{==}\StringTok{ }\OtherTok{TRUE}\NormalTok{)])}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -1945,8 +1953,10 @@ Once we have one or more region filenames, we can use function \texttt{get\_bbsD
 Next, we can download the BBS route-level geographic information and metadata, and append this to the original data.
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{routes <-}\StringTok{ }\KeywordTok{get_routeInfo}\NormalTok{() }\CommentTok{# retrieve route-level data}
-\NormalTok{flBBS <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(flBBS, routes) }\CommentTok{# merge route-level data to bird count data}
+\CommentTok{# retrieve route-level data}
+\NormalTok{routes <-}\StringTok{ }\KeywordTok{get_routeInfo}\NormalTok{() }
+\CommentTok{# merge route-level data to bird count data}
+\NormalTok{flBBS <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(flBBS, routes) }
 \KeywordTok{glimpse}\NormalTok{(flBBS }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(aou, year, route, statenum, countrynum, stoptotal, latitude, longitude))}
 \end{Highlighting}
 \end{Shaded}
@@ -1969,7 +1979,10 @@ If the BBS data was downloaded previously and saved as .feather, we can import i
 
 \NormalTok{feather <-}\StringTok{ }\KeywordTok{import_bbsFeathers}\NormalTok{(}\DataTypeTok{newDir  =}\NormalTok{ bbsDir,}
                               \DataTypeTok{filename =}\NormalTok{ featherNames)}
-\KeywordTok{glimpse}\NormalTok{(feather) }\CommentTok{# Notice that the data imported from disk (feathers) differs from the original BBS data in that the # of columns is fewer (9 and 12 columns, respectively).}
+\KeywordTok{glimpse}\NormalTok{(feather) }
+\CommentTok{# Notice that the data imported from disk (feathers) }
+\NormalTok{differs from the original BBS data }\ControlFlowTok{in}\NormalTok{ that the }
+\CommentTok{# of columns is fewer (9 and 12 columns, respectively).}
 \end{Highlighting}
 \end{Shaded}
 \hypertarget{option-for-downloading-all-bbs-data}{%
@@ -1991,18 +2004,10 @@ If you wish to download and/or import ALL the data, you might choose to do so in
 \NormalTok{        bbsData <-}\StringTok{  }\KeywordTok{import_bbsData}\NormalTok{(}
             \CommentTok{# arguments for get_bbsData()}
             \DataTypeTok{file =}\NormalTok{ regionFileName[i],}
-            \DataTypeTok{dir =}  \StringTok{"ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/States/"}\NormalTok{,}
-            \DataTypeTok{year =} \OtherTok{NULL}\NormalTok{, }\CommentTok{# subset by year}
-            \DataTypeTok{aou =} \OtherTok{NULL}\NormalTok{, }\CommentTok{# subset by AOU #s}
-            \DataTypeTok{countrynum =} \OtherTok{NULL}\NormalTok{, }\CommentTok{# subset by country number}
-            \DataTypeTok{states =} \OtherTok{NULL}\NormalTok{, }\CommentTok{# subset by state/povince number}
             \CommentTok{#  arguments for get_routeInfo():}
             \DataTypeTok{routesFile =} \StringTok{"routes.zip"}\NormalTok{,}
             \DataTypeTok{routesDir =}  \StringTok{"ftp://ftpext.usgs.gov/pub/er/md/laurel/BBS/DataFiles/"}\NormalTok{,}
-            \DataTypeTok{RouteTypeID =} \DecValTok{1}\NormalTok{,}
-            \CommentTok{# one or more of c(1,2,3)}
-            \DataTypeTok{Stratum =} \OtherTok{NULL}\NormalTok{,  }\CommentTok{# subset by BBS stratum}
-            \DataTypeTok{BCR =} \OtherTok{NULL} \CommentTok{# subset by BCR (bird conservation region)}
+            \DataTypeTok{RouteTypeID =} \DecValTok{1}
 \NormalTok{        )}
 \CommentTok{# d. Save the unzipped files to disk.}
 \KeywordTok{export_bbsFeathers}\NormalTok{(}\DataTypeTok{dataIn  =}\NormalTok{ bbsData,}
@@ -2011,7 +2016,8 @@ If you wish to download and/or import ALL the data, you might choose to do so in
 \CommentTok{# e. Clear object from memory}
 \KeywordTok{rm}\NormalTok{(bbsData)}
 \NormalTok{\} }\CommentTok{# end section I. loop}
-\NormalTok{\}}\ControlFlowTok{else}\NormalTok{(}\KeywordTok{message}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"NOT DOWNLOADING BBS DATA. If you wish to download the BBS data, please remove files from directory: "}\NormalTok{,bbsDir))) }\CommentTok{# end if-else to download the data}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{(}\KeywordTok{message}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"NOT DOWNLOADING BBS DATA"}\NormalTok{))) }
+      \CommentTok{# end if-else to download the data}
 \end{Highlighting}
 \end{Shaded}
 Use the same code as above to import \emph{multiple} feathers from file:

@@ -23,8 +23,8 @@ dedication: |
   To those not yet exposed to the great outdoors, first generation college students, Mike Moulton, S, and to myself. 
 preface: |
   >"Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists" &mdash;  unknown
-bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib", "thesis.bib"] # yea I have two thesis.bibs....
-csl: [reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
+bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib", "bib/thesis2.bib"]
+csl: [reedthesis.cls, csl/globalecol.csl]
 lot: true
 lof: true
 space_between_paragraphs: false
@@ -120,3 +120,5 @@ knitr::opts_chunk$set(cache = TRUE, cache.path = "_cache/",
 ```{r pander-options, cache=TRUE, echo=FALSE, warning=FALSE, eval=TRUE, message=FALSE}
 panderOptions('knitr.auto.asis', TRUE)
 ```
+
+`

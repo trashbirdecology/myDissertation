@@ -4,30 +4,19 @@
 .Ruserdata
 # Ignore Mac DS_Store files
 **/.DS_Store
+*/.DS_Store
 .DS_Store
 
 # remove builds
 **/_myDissertation.rmd
 _bookdown_files/
-_myDissertation_files/figure-html/*.png
-_myDissertation_files/figure-html/*.pdf
-_myDissertation_files/figure-latex/*.png
-_myDissertation_files/figure-latex/*.pdf
+
 
 _myDissertation_cache/
 
 !myDissertation/chapterFiles/fiGuide/figures/*.png
 !myDissertation/chapterFiles/rdmReview/figures/figsCalledInDiss/myDiagraph.png/
-chapterFiles/appendix_predPreyExample/plots/.png
-chapterFiles/appendix_paleoExample/plots/*.png
-chapterFiles/appendix_paleoExample/plots/*.png
 *.md
-
-# Ignore all pngs except those called in dissertation (hopefully)
-!/figsCalledInDiss/*.png 
-# remove log files
-*.log
-
 
 
 # remove rdata
@@ -71,13 +60,6 @@ chapterFiles/fisherSpatial/myResults
 !**/figsCalledInDiss
 !/figsCalledInDiss
 
-# But remove pngs created that aren't called in diss
-!chapterFiles/fiGuide/figures/*.png
-/chapterFiles/**/figures/*.png
-/chapterFiles/velocity/tempFigures/
-/chapterFiles/resampling/results/diatoms/tempFigures/
-/chapterFiles/***/figures/*.png
-/figures/*.png
 
 /chapterFiles/discontinuityAnalysis/bbs_raw_data/
 /chapterFiles/discontinuityAnalysis/tempFigs/
@@ -110,9 +92,7 @@ _myDissertation.aux
 
 chapterFiles/rdmReview/~$methodsOverview.xlsx
 02-chap-rdmMethodsReview.pdf
-chapterFiles/fiGuide/.DS_Store
-_book/_myDissertation.pdf
-chapterFiles/fiGuide/.DS_Store
+
 
 # IGNORE CHAPTER CACHES
 07-chap-discontinuityAnalysis_cache/
@@ -122,20 +102,9 @@ chapterFiles/fiGuide/.DS_Store
 03-chap-fiGuide_cache/
 02-chap-rdmMethodsReview_cache/
 01-chap-intro_cache/
-_myDissertation_files/figure-docx/jrnlYearFig-1.png
-_myDissertation_files/figure-docx/sysEx-1.png
-_myDissertation_files/figure-docx/sysEx2-1.png
-_myDissertation_files/figure-docx/sysExs-1.png
-_myDissertation_files/figure-docx/velocSysEx2-1.png
-_myDissertation_files/figure-docx/velocSysEx3-1.png
-_myDissertation_files/figure-docx/velocSysEx4-1.png
-_myDissertation_files/figure-docx/wosRegimePubsByJrnlmin10Pubs-1.png
-_myDissertation_files/figure-docx/wosRegimePubsByYear-1.png
-_myDissertation_files/figure-docx/wosRegimePubsByYearwithNumEcolPubs-1.png
-_myDissertation_files/figure-docx/jrnlDistFig-1.png
+
 93-app-paleo_cache/html/__packages
-chapterFiles/discontinuityAnalysis/07-chap-discont_getBBScredibilityTrends.R
 04-chap-fisherSpatial.docx
 announcement.pdf
 presentation/figures/~$methodflow.pptx
-chapterFiles/fiGuide/.DS_Store
+
