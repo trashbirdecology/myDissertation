@@ -1,0 +1,157 @@
+%%
+%% This is file `skeleton.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% nuthesis.dtx  (with options: `skeleton')
+%% 
+%
+%% For common degrees, you can use the class options:
+%% phd, edd, ms, ma
+%% phd is the default
+\documentclass[print]{nuthesis}
+\usepackage{pdflscape}
+\usepackage{setspace}
+\usepackage{graphicx,latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage{setspace}
+\usepackage{array}
+
+% ADD LINE NUMBERS
+% \usepackage{lineno} % line numbers
+% \linenumbers
+
+\usepackage{lmodern}
+\usepackage{bm}
+
+% FIGURE FLOAT
+\usepackage{float}
+\floatplacement{figure}{hbt}
+% \floatplacement{table}{H}
+
+\usepackage{rotating}
+\usepackage{natbib}
+
+% Use ref for internal links
+\renewcommand{\hyperref}[2][???]{\autoref{#1}}
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+
+% CAPTIONS
+\usepackage{caption}
+\captionsetup{width=.75\textwidth,format=hang,indention=-.5cm,labelfont=bf,textfont=it}
+%
+\begin{document}
+%% Start formatting the first few special pages
+%% frontmatter is needed to set the page numbering correctly
+\frontmatter
+
+
+\title{$title$}
+\author{$author$}
+\adviser{$advisor$}
+\adviserAbstract{$advisorAbstract$}
+\major{$major$}
+\degreemonth{$month$}
+\degreeyear{$year$}
+%%
+%% For most people the defaults will be correct, so they are commented
+%% out. To manually set these, just uncomment and make the needed
+%% changes.
+%% \college{Your college}
+%% \city{Your City}
+%%
+%% For most people the following can be changed with a class
+%% option. To manually set these, just uncomment the following and
+%% make the needed changes.
+%% \doctype{Thesis or Dissertation}
+%% \degree{Your degree}
+%% \degreeabbreviation{Your degree abbr.}
+%%
+%% Now that we know everything we need, we can generate the title page
+%% itself.
+%%
+\maketitle
+%%
+%% You have a maximum of 350 words for your abstract, which includes
+%% your title, name, etc.
+%%
+%% Required
+\begin{abstract}
+	Forecasting undesirable change is, arguably, the holy grail of ecology. Paired with an understanding of system interactions, a forecast is ideal if it provides reliable predictions in sufficient time to prevent or mitigate unwanted systemic change. Early warning systems (or early warning signals, early warning indicators) have been developed and tested for some ecological systems data, but have been mostly applied to marine fisheries time series and nutrient loadings in shallow lakes. Despite the numerous quantitative methods proposed for identifying or forecasting regime shifts in ecological data, few are used in practice. This dissertation contributes to our understanding of the utility and limitations of early warning systems for ecological regime shift detection, referred to here as 'regime detection measures'. 
+	Using both theoretical and empirical data, I evaluate the efficacy of multivariate regime detection measures in identifying abrupt shifts in ecological communities over time and across space. I also introduce a method which I refer to as 'velocity' (of a system's trajectory in phase space) as a potential regime detection measure. Using resampling techniques, I find the velocity method is more robust to data loss and data quality than are the Fisher Information and Variance Index methods which have been previously applied to empirical systems data. This dissertation demonstrates that, while potentially useful, regime detection metrics are inconsistent, not generalizable, and are currently not validated using probabilities or other statistical measurements of certainty. 
+\end{abstract}
+
+%% Optional
+%% \begin{copyrightpage}
+%% \end{copyrightpage}
+
+% Optional
+ \begin{dedication}
+To those not yet exposed to the great outdoors, first generation college students, Mike Moulton, S, and myself.
+ \end{dedication}
+
+% Optional
+ \begin{acknowledgments}
+Graduate school itself isn't hard, but the journey is. I have a lot of people and institutions to thank for their emotional, intellectual, financial, and other support. I wish to first highlight how **great it was to be a graduate student at this university and in the School of Natural Resources**. UNL has provided tremendous support at all levels of the university. Although I am not a fan of Nebraska's climate, I highly recommend this school to prospective students. 
+I thank my supervisors, Craig Allen and Dirac Twidwell, for providing me with this amazing opportunity and for supporting my growth as an independent researcher. I thank my also committee members, Craig Allen, David Angeler, John De Long, Dirac Twidwell, and Drew Tyre for their support and advisement, but especially for their comprehensive examination--I found this process transformative (albeit very stress-inducing). I  parrticularly thank Dirac for his examination questions---I never knew how much I didn't know until I studied your recommendations. I also thank Craig and Dirac for supporting my efforts to study and conduct research in Austria. 
+Studying at the International Institute for Applied Systems Analysis was an amazing opportunity! I thank Brian Fath and Elena Rovenskaya for their advisement, members of the Applied Systems Analysis research group for their feedback on my research, and to the postdocs and YSSPers. I owe thanks to Craig Allen and Kevin Pope for entertaining my many hours of discussion (interrogation?) regarding federal employment. 
+I would like to especially thank some of the amazing and brilliant **female scientists** in my life for their encouragement: Jane Anderson, Karen Bailey, Hannah Birge, Mary Bomberger Brown, Tori Donovan, Brittany Dueker, Allie Schiltmeyer, Katie Sieving, Erica Stuber,  Becky Wilcox, Carissa Wonkka, and Lyndsie Wszola. I thank these women and others for their contributions to my professional development: David Angeler, Christie Bahlai, Mary Bomberger Brown, John Carroll, Jenny Dauer, John DeLong, Tarsha Eason, Brian Fath, Ahjond Garmestani, Chris Lepczyk, Frank La Sorte, Chai Molina, Zac Warren, Hao Ye. I also thank fellow graduate students with whom I forged long-lived personal and professional relationships: Hannah Birge, Tori Donovan, Caleb Roberts, Allie Schiltmeyer, and Lyndsie Wszola. 
+It is also worth noting that I among those afflicted with mental health "disorders". I am first grafteful to one friend (H) who unknowingly destigmatized mental health in my mind and without whom I may have never sought treatment. I also applaud fellow students and faculty in SNR and UNL who have been active in promoting positive mental health. I am forever  indebtted to my general practitioner and mental health advocate, Terry Thomas M.A., M.S.N., A.P.R.N.
+This research was funded by the U.S. Department of Defense’s Strategic Environmental Research and Development Program (SERDP project ID: RC-2510). The University of Nebraska-Lincoln (UNL) has been highy supportive in my doctoral studies and reserach. I am grateful for the generous of donors to the University of Nebraska Foundation, which provided me with two prestigious supplemental fellowships: Fling and Othmer. I also thank the Nelson Family (Nelson Memorial Fellowship, UNL) for supporting my domestic and international travel to conferences and workshops, and the Institute of Agriculture and Natural Resources, who funded large portions of my academic and research-related travel. I thank the School of Natural Resources for their financial support in my conference travel. The U.S. National Academy of Sciences generously funded part of my travel to the International Institute for Applied Systems Analysis (IIASA). This financial support provided me not only with invaluabe opportunities to attend and present at national and international conferences and workshops, conduct research abroad, and network--this funding alleviated some financial pressures associated with graduate school which allowed a more refined focus on my dissertation research. The opportunities and experiences provided to me by each funding source were amazing, thank you. 
+Finally, to my partner of eight years--Schultzie--thank you for everything. Just kidding, thank you, Nat Price, you are amazing.
+ \end{acknowledgments}
+
+
+%% The ToC is required
+
+$if(toc)$
+\tableofcontents
+$endif$
+
+$if(lot)$
+  \listoftables
+$endif$
+
+$if(lof)$
+  \listoffigures
+$endif$
+
+%% ``Real'' beginning of the document.
+%% mainmatter is needed to set the page numbering correctly
+%%   mainmatter is needed after the ToC, (LoF, and LoT) to set the
+%%   page numbering correctly for the main body
+\mainmatter
+
+$body$
+
+%% Thesis goes here
+
+% \chapter{My Thesis}
+
+%% backmatter is needed at the end of the main body of your thesis to
+%% set up page numbering correctly for the remainder of the thesis
+\backmatter
+
+%% Start the correct formatting for the appendices
+\appendix
+
+%% Appendices go here (if you have them)
+
+%% Bibliography goes here (You better have one)
+%% BibTeX is your friend
+
+%% Index go here (if you have one)
+\end{document}
+
+\endinput
+%%
+%% End of file `skeleton.tex'.

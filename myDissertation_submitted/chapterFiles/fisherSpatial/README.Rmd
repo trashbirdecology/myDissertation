@@ -1,0 +1,9 @@
+## Instructions for scripts in this folder:
+
+1. 04-chap-fisherSpatial_analysis:
+    - Analyzes the BBS data using regimeDetectionMeasures and distanceTRavelled
+    - Run this script only if you need to update the results (saved as R objects in folder rObjs). This will take some time, depending on the # of t-sects you are running...
+    
+1. 04-chap-fisherSpatial_visualize...
+    - Run this to produce some plots that will be saved to file, and will be called in the dissertation (see folder figures)
+    

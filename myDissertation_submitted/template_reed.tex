@@ -1,0 +1,193 @@
+% This is the Reed College LaTeX thesis template. Most of the work
+% for the document class was done by Sam Noble (SN), as well as this
+% template. Later comments etc. by Ben Salzberg (BTS).
+%
+%% Preamble
+%%
+\documentclass[12pt,twoside,openany]{reedthesis}
+\usepackage{pdflscape}
+\usepackage{setspace}
+\usepackage{graphicx,latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabu}
+\usepackage{setspace}
+\usepackage{array}
+
+% ADD LINE NUMBERS
+% \usepackage{lineno} % line numbers
+% \linenumbers
+
+\usepackage{lmodern}
+\usepackage{bm}
+
+% FIGURE FLOAT
+\usepackage{float}
+\floatplacement{figure}{hbt}
+% \floatplacement{table}{H}
+
+\usepackage{rotating}
+\usepackage{natbib}
+
+% Use ref for internal links
+\renewcommand{\hyperref}[2][???]{\autoref{#1}}
+\def\chapterautorefname{Chapter}
+\def\sectionautorefname{Section}
+\def\subsectionautorefname{Subsection}
+
+% CAPTIONS
+\usepackage{caption}
+\captionsetup{width=.75\textwidth,format=hang,indention=-.5cm,labelfont=bf,textfont=it}
+
+% \usepackage{times} % other fonts are available like times, bookman, charter, palatino
+
+% Syntax highlighting #22
+$if(highlighting-macros)$
+  $highlighting-macros$
+$endif$
+
+% To pass between YAML and LaTeX the dollar signs are added by CII
+
+%% TITLE PAGE
+\renewcommand{\maketitle}{%
+\begin{center}%
+\MakeUppercase{$title$}\\[1\baselineskip]
+\singlespacing
+by\\[2\baselineskip]
+$author$\\[4\baselineskip]
+\MakeUppercase{A Dissertation}\\[4\baselineskip]
+Presented to the Faculty of\\[\baselineskip]
+The Graduate  College at the University of Nebraska\\[\baselineskip]
+In Partial Fulfilment of Requirements\\[\baselineskip]
+For the Degree of $degree$\\[3\baselineskip]
+Major: $major$ \\[3\baselineskip]
+Under the Supervision of $advisor$\\[3\baselineskip]
+$city$, $state$\\[1\baselineskip]
+$month$, $year$
+\end{center}
+\thispagestyle{empty}
+\cleardoublepage
+}
+
+
+
+\Abstract{
+$abstract$
+}
+
+
+% Added by CII
+%%% Copied from knitr
+%% maxwidth is the original width if it's less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\renewcommand{\contentsname}{Table of Contents}
+% End of CII addition
+
+\setlength{\parskip}{0pt}
+
+% Added by CII
+$if(space_between_paragraphs)$
+  %\setlength{\parskip}{\baselineskip}
+  \usepackage[parfill]{parskip}
+$endif$
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\Dedication{
+$dedication$
+}
+
+
+\Dedication{
+$dedication$
+}
+
+\Acknowledgements{
+$acknowledgements$
+}
+
+\Preface{
+$preface$
+}
+
+$for(header-includes)$
+  $header-includes$
+$endfor$
+% End of CII addition
+%%
+%% End Preamble
+%%
+%
+
+\begin{document}
+
+% Everything below added by CII
+$if(title)$
+  \maketitle
+$endif$
+
+\frontmatter % this stuff will be roman-numbered
+\pagestyle{empty} % this removes page numbers from the frontmatter
+
+$if(preface)$
+  \begin{preface}
+    $preface$
+  \end{preface}
+$endif$
+
+$if(dedication)$
+ \begin{dedication}
+   $dedication$
+ \end{dedication}
+$endif$
+
+$if(acknowledgements)$
+ \begin{acknowledgements}
+   $acknowledgements$
+ \end{acknowledgements}
+$endif$
+
+$if(toc)$
+  \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
+  \setcounter{tocdepth}{$toc-depth$}
+  \tableofcontents
+$endif$
+
+$if(lot)$
+  \listoftables
+$endif$
+
+$if(lof)$
+  \listoffigures
+$endif$
+
+$if(abstract)$
+  \begin{abstract}
+    $abstract$
+  \end{abstract}
+$endif$
+
+\mainmatter % here the regular arabic numbering starts
+\pagestyle{fancyplain} % turns page numbering back on
+\doublespacing{} % Trying to set spacing between lines in body
+% \linespread{1.6} % Trying to set spacing between lines in body
+
+$body$
+
+
+\end{document}
