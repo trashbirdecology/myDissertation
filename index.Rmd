@@ -20,9 +20,9 @@ abstract: |
 acknowledgements: |
   `r if(knitr:::is_latex_output()) paste(readLines("00-acknowledgements.Rmd"), collapse = '\n  ')`
 dedication: |
-  To those not yet exposed to the great outdoors, first generation college students, Mike Moulton, S, and to myself. 
+  To those not yet exposed to the great outdoors, first generation college students, Mike Moulton, S, and myself. 
 preface: |
-  >"Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists" &mdash;  unknown
+  >"Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists" &mdash; unknown
 bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib", "bib/thesis2.bib"]
 csl: [reedthesis.cls, csl/globalecol.csl]
 lot: true
