@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  2 AUG 2019 23:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  2 AUG 2019 23:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -626,9 +626,7 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
-)
-Package color Info: Redefining color shadecolor on input line 56.
-(./_myDissertation.aux
+) (./_myDissertation.aux
 
 LaTeX Warning: Label `tab:glossary' multiply defined.
 
@@ -674,32 +672,32 @@ LaTeX Warning: Label `fig:intrxnPlot-regime' multiply defined.
 )
 \openout1 = `_myDissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 179.
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 179.
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 179.
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 179.
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 179.
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 179.
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 179.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 179.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 139.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 139.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 179.
-LaTeX Font Info:    ... okay on input line 179.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 179.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 139.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \microtypecontext on input line 179.
+LaTeX Info: Redefining \microtypecontext on input line 139.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -741,7 +739,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring OFF on input line 179.
+Package hyperref Info: Link coloring OFF on input line 139.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -749,9 +747,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count142
 )
-LaTeX Info: Redefining \ref on input line 179.
-LaTeX Info: Redefining \pageref on input line 179.
-LaTeX Info: Redefining \nameref on input line 179.
+LaTeX Info: Redefining \ref on input line 139.
+LaTeX Info: Redefining \pageref on input line 139.
+LaTeX Info: Redefining \nameref on input line 139.
 (./_myDissertation.out) (./_myDissertation.out)
 \@outlinefile=\write4
 \openout4 = `_myDissertation.out'.
@@ -773,7 +771,7 @@ Non-PDF special ignored!
 
 
 ]
-Overfull \hbox (0.31096pt too wide) in paragraph at lines 197--198
+Overfull \hbox (0.31096pt too wide) in paragraph at lines 157--158
 \T1/lmr/m/n/10 (-20) transformative (albeit very stress-inducing). I parrticula
 rly thank Dirac for his examination questions---
  []
@@ -830,21 +828,21 @@ LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
 [5
 
 
-] [6] [7]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 142.
+] [6]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 128.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 142.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 128.
 
-Overfull \hbox (15.50826pt too wide) in paragraph at lines 142--142
+Overfull \hbox (15.50826pt too wide) in paragraph at lines 128--128
  [] []\T1/lmr/bx/n/12 Ap-pendix C bb-sRDM: an R pack-age for ap-ply-ing \T1/lmt
 t/b/n/12 regimeDetectionMeasures 
  []
 
-)
+[7])
 \tf@toc=\write5
 \openout5 = `_myDissertation.toc'.
 
@@ -896,13 +894,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.228 ...Table of Definitions}\label{definitions}}
+l.188 ...Table of Definitions}\label{definitions}}
                                                    [1]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.2}) has been already used, duplic
 ate ignored
 <to be read again> 
                    \relax 
-l.233 \newpage
+l.193 \newpage
                [2
 
 ] [3
@@ -932,22 +930,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [18] [19]
-<_myDissertation_files/figure-latex/wosRegimePubsByJrnl-1.pdf, id=1310, 446.668
+<_myDissertation_files/figure-latex/wosRegimePubsByJrnl-1.pdf, id=1226, 446.668
 75pt x 316.18124pt>
 File: _myDissertation_files/figure-latex/wosRegimePubsByJrnl-1.pdf Graphic file
  (type pdf)
 <use _myDissertation_files/figure-latex/wosRegimePubsByJrnl-1.pdf>
 Package pdftex.def Info: _myDissertation_files/figure-latex/wosRegimePubsByJrnl
--1.pdf  used on input line 430.
+-1.pdf  used on input line 390.
 (pdftex.def)             Requested size: 325.215pt x 230.21214pt.
 <_myDissertation_files/figure-latex/wosRegimePubsByYearwithNumEcolPubs-1.pdf, i
-d=1312, 461.725pt x 315.1775pt>
+d=1228, 461.725pt x 315.1775pt>
 File: _myDissertation_files/figure-latex/wosRegimePubsByYearwithNumEcolPubs-1.p
 df Graphic file (type pdf)
 <use _myDissertation_files/figure-latex/wosRegimePubsByYearwithNumEcolPubs-1.pd
 f>
 Package pdftex.def Info: _myDissertation_files/figure-latex/wosRegimePubsByYear
-withNumEcolPubs-1.pdf  used on input line 434.
+withNumEcolPubs-1.pdf  used on input line 394.
 (pdftex.def)             Requested size: 368.57964pt x 251.59409pt.
 [20] [21 <./_myDissertation_files/figure-latex/wosRegimePubsByJrnl-1.pdf>] [22 
 <./_myDissertation_files/figure-latex/wosRegimePubsByYearwithNumEcolPubs-1.pdf>
@@ -955,14 +953,14 @@ withNumEcolPubs-1.pdf  used on input line 434.
 
 ] [24] [25] [26] [27]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/f
-igures/figsCalledInDiss/thematicMaps-keywords.png, id=1372, 722.7pt x 722.7pt>
+igures/figsCalledInDiss/thematicMaps-keywords.png, id=1287, 722.7pt x 722.7pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRev
 iew/figures/figsCalledInDiss/thematicMaps-keywords.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRevi
 ew/figures/figsCalledInDiss/thematicMaps-keywords.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords.png  used
- on input line 527.
+ on input line 487.
 (pdftex.def)             Requested size: 368.57964pt x 368.58315pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -972,17 +970,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/
 figures/figsCalledInDiss/thematicMaps-keywords.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 537.
+(Font)              <10> on input line 497.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 537.
+(Font)              <7> on input line 497.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 537.
+(Font)              <5> on input line 497.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 537.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 497.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 537.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 497.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/f
-igures/figsCalledInDiss/thematicMaps-keywords-nVaries-author.png, id=1388, 1806
+igures/figsCalledInDiss/thematicMaps-keywords-nVaries-author.png, id=1303, 1806
 .75pt x 1806.75pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRev
 iew/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-author.png Graphic f
@@ -991,10 +989,10 @@ ile (type png)
 ew/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-author.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-a
-uthor.png  used on input line 539.
+uthor.png  used on input line 499.
 (pdftex.def)             Requested size: 368.57964pt x 368.5666pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/f
-igures/figsCalledInDiss/thematicMaps-keywords-nVaries-isi.png, id=1389, 770.88p
+igures/figsCalledInDiss/thematicMaps-keywords-nVaries-isi.png, id=1304, 770.88p
 t x 770.88pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRev
 iew/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-isi.png Graphic file
@@ -1003,10 +1001,10 @@ iew/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-isi.png Graphic file
 ew/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-isi.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/rdmReview/figures/figsCalledInDiss/thematicMaps-keywords-nVaries-i
-si.png  used on input line 542.
+si.png  used on input line 502.
 (pdftex.def)             Requested size: 368.57964pt x 368.5714pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/f
-igures/figsCalledInDiss/historiograph-75quantile.png, id=1390, 766.865pt x 602.
+igures/figsCalledInDiss/historiograph-75quantile.png, id=1305, 766.865pt x 602.
 25pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRev
 iew/figures/figsCalledInDiss/historiograph-75quantile.png Graphic file (type pn
@@ -1015,27 +1013,27 @@ g)
 ew/figures/figsCalledInDiss/historiograph-75quantile.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/rdmReview/figures/figsCalledInDiss/historiograph-75quantile.png  u
-sed on input line 545.
+sed on input line 505.
 (pdftex.def)             Requested size: 368.57964pt x 289.46268pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/f
-igures/figsCalledInDiss/totArtCitesPerYear.png, id=1391, 433.62pt x 433.62pt>
+igures/figsCalledInDiss/totArtCitesPerYear.png, id=1306, 433.62pt x 433.62pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRev
 iew/figures/figsCalledInDiss/totArtCitesPerYear.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRevi
 ew/figures/figsCalledInDiss/totArtCitesPerYear.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/rdmReview/figures/figsCalledInDiss/totArtCitesPerYear.png  used on
- input line 548.
+ input line 508.
 (pdftex.def)             Requested size: 368.57964pt x 368.59859pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmReview/f
-igures/figsCalledInDiss/revArtNums.png, id=1392, 433.62pt x 433.62pt>
+igures/figsCalledInDiss/revArtNums.png, id=1307, 433.62pt x 433.62pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRev
 iew/figures/figsCalledInDiss/revArtNums.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/rdmRevi
 ew/figures/figsCalledInDiss/revArtNums.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/rdmReview/figures/figsCalledInDiss/revArtNums.png  used on input l
-ine 551.
+ine 511.
 (pdftex.def)             Requested size: 368.57964pt x 368.59859pt.
 [29]
 Underfull \vbox (badness 1048) has occurred while \output is active []
@@ -1068,12 +1066,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [40]
-Overfull \hbox (33.67845pt too wide) in alignment at lines 596--622
+Overfull \hbox (33.67845pt too wide) in alignment at lines 556--582
  [] [] 
  []
 
 
-Overfull \hbox (33.67845pt too wide) in alignment at lines 622--633
+Overfull \hbox (33.67845pt too wide) in alignment at lines 582--593
  [] [] 
  []
 
@@ -1098,61 +1096,61 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [51]
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/fi
-gures/distSppedAccel.png, id=1793, 422.5386pt x 486.618pt>
+gures/distSppedAccel.png, id=1709, 422.5386pt x 486.618pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGui
 de/figures/distSppedAccel.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuid
 e/figures/distSppedAccel.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-/chapterFiles/fiGuide/figures/distSppedAccel.png  used on input line 727.
+/chapterFiles/fiGuide/figures/distSppedAccel.png  used on input line 687.
 (pdftex.def)             Requested size: 411.93767pt x 474.40979pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [52]
-<./chapterFiles/fiGuide/figures/kByTime.png, id=1809, 469.755pt x 325.215pt>
+<./chapterFiles/fiGuide/figures/kByTime.png, id=1725, 469.755pt x 325.215pt>
 File: ./chapterFiles/fiGuide/figures/kByTime.png Graphic file (type png)
 <use ./chapterFiles/fiGuide/figures/kByTime.png>
 Package pdftex.def Info: ./chapterFiles/fiGuide/figures/kByTime.png  used on in
-put line 734.
+put line 694.
 (pdftex.def)             Requested size: 411.93767pt x 285.18768pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuide/fi
-gures/kTrajectories.png, id=1810, 469.2732pt x 325.215pt>
+gures/kTrajectories.png, id=1726, 469.2732pt x 325.215pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGui
 de/figures/kTrajectories.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/fiGuid
 e/figures/kTrajectories.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-/chapterFiles/fiGuide/figures/kTrajectories.png  used on input line 737.
+/chapterFiles/fiGuide/figures/kTrajectories.png  used on input line 697.
 (pdftex.def)             Requested size: 411.93767pt x 285.49039pt.
-<./chapterFiles/fiGuide/figures/sOverTime.png, id=1811, 469.2732pt x 325.215pt>
+<./chapterFiles/fiGuide/figures/sOverTime.png, id=1727, 469.2732pt x 325.215pt>
 
 File: ./chapterFiles/fiGuide/figures/sOverTime.png Graphic file (type png)
 <use ./chapterFiles/fiGuide/figures/sOverTime.png>
 Package pdftex.def Info: ./chapterFiles/fiGuide/figures/sOverTime.png  used on 
-input line 740.
+input line 700.
 (pdftex.def)             Requested size: 411.93767pt x 285.49039pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [53]
-<./chapterFiles/fiGuide/figures/dsdtOverTime.png, id=1818, 469.755pt x 325.215p
+<./chapterFiles/fiGuide/figures/dsdtOverTime.png, id=1734, 469.755pt x 325.215p
 t>
 File: ./chapterFiles/fiGuide/figures/dsdtOverTime.png Graphic file (type png)
 <use ./chapterFiles/fiGuide/figures/dsdtOverTime.png>
 Package pdftex.def Info: ./chapterFiles/fiGuide/figures/dsdtOverTime.png  used 
-on input line 747.
+on input line 707.
 (pdftex.def)             Requested size: 411.93767pt x 285.18768pt.
 
 Underfull \vbox (badness 3407) has occurred while \output is active []
 
 [54]
-<./chapterFiles/fiGuide/figures/fiOverTime.png, id=1827, 469.755pt x 325.215pt>
+<./chapterFiles/fiGuide/figures/fiOverTime.png, id=1742, 469.755pt x 325.215pt>
 
 File: ./chapterFiles/fiGuide/figures/fiOverTime.png Graphic file (type png)
 <use ./chapterFiles/fiGuide/figures/fiOverTime.png>
 Package pdftex.def Info: ./chapterFiles/fiGuide/figures/fiOverTime.png  used on
- input line 753.
+ input line 713.
 (pdftex.def)             Requested size: 411.93767pt x 285.18768pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1185,34 +1183,34 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed.png, id=18
-96, 505.89pt x 505.89pt>
+12, 505.89pt x 505.89pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed.png G
 raphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-bbsRoutesUsed.png  used on input line 772.
+bbsRoutesUsed.png  used on input line 732.
 (pdftex.def)             Requested size: 368.57964pt x 368.58644pt.
 [64]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [65 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/bbsRoutesUsed.png>]
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/basesOfInterestMap.png, 
-id=1915, 466.6233pt x 406.3983pt>
+id=1831, 466.6233pt x 406.3983pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/basesOfInterestMap.
 png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/basesOfInterestMap.p
 ng>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-basesOfInterestMap.png  used on input line 787.
+basesOfInterestMap.png  used on input line 747.
 (pdftex.def)             Requested size: 368.57964pt x 321.02634pt.
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecoregions
-.png, id=1916, 385.44pt x 274.626pt>
+.png, id=1832, 385.44pt x 274.626pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecore
 gions.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/allRoutesUsed_ecoreg
 ions.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-allRoutesUsed_ecoregions.png  used on input line 790.
+allRoutesUsed_ecoregions.png  used on input line 750.
 (pdftex.def)             Requested size: 368.57964pt x 262.6113pt.
 [66]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1236,63 +1234,63 @@ Underfull \vbox (badness 1701) has occurred while \output is active []
 
 [72] [73]
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-West_me
-tric_FI_Eqn7_12.png, id=2019, 387.6081pt x 375.5631pt>
+tric_FI_Eqn7_12.png, id=1935, 387.6081pt x 375.5631pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-We
 st_metric_FI_Eqn7_12.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_East-Wes
 t_metric_FI_Eqn7_12.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-transect_12_East-West_metric_FI_Eqn7_12.png  used on input line 861.
+transect_12_East-West_metric_FI_Eqn7_12.png  used on input line 821.
 (pdftex.def)             Requested size: 368.57964pt x 357.13821pt.
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePair_cor
-Plot_East-West.png, id=2023, 387.6081pt x 368.8179pt>
+Plot_East-West.png, id=1939, 387.6081pt x 368.8179pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePai
 r_corPlot_East-West.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interp_FI_singlePair
 _corPlot_East-West.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-interp_FI_singlePair_corPlot_East-West.png  used on input line 865.
+interp_FI_singlePair_corPlot_East-West.png  used on input line 825.
 (pdftex.def)             Requested size: 368.57964pt x 350.72392pt.
 [74] [75 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/transect_12_Eas
 t-West_metric_FI_Eqn7_12.png>] [76 <./chapterFiles/fisherSpatial/figures/figsCa
 lledInDiss/interp_FI_singlePair_corPlot_East-West.png>]
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-West_m
-etric_logScaleFI.png, id=2040, 1592.95125pt x 1367.1075pt>
+etric_logScaleFI.png, id=1956, 1592.95125pt x 1367.1075pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-W
 est_metric_logScaleFI.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-We
 st_metric_logScaleFI.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-usaAllTsects_East-West_metric_logScaleFI.png  used on input line 869.
+usaAllTsects_East-West_metric_logScaleFI.png  used on input line 829.
 (pdftex.def)             Requested size: 422.77551pt x 362.82413pt.
 [77 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/usaAllTsects_East-We
 st_metric_logScaleFI.png>]
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_yea
-r2010_zoom_East-West.png, id=2047, 505.6491pt x 505.6491pt>
+r2010_zoom_East-West.png, id=1963, 505.6491pt x 505.6491pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolate
 d_year2010_zoom_East-West.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated
 _year2010_zoom_East-West.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-scaledFiInterpolated_year2010_zoom_East-West.png  used on input line 873.
+scaledFiInterpolated_year2010_zoom_East-West.png  used on input line 833.
 (pdftex.def)             Requested size: 368.57964pt x 368.5961pt.
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotS
-electTransects_East-West.png, id=2048, 387.6081pt x 368.8179pt>
+electTransects_East-West.png, id=1964, 387.6081pt x 368.8179pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_cor
 plotSelectTransects_East-West.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corp
 lotSelectTransects_East-West.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-interpolated_FI_corplotSelectTransects_East-West.png  used on input line 876.
+interpolated_FI_corplotSelectTransects_East-West.png  used on input line 836.
 (pdftex.def)             Requested size: 368.57964pt x 350.72392pt.
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corplotS
-electTransects_East-West_log.png, id=2049, 387.6081pt x 368.8179pt>
+electTransects_East-West_log.png, id=1965, 387.6081pt x 368.8179pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_cor
 plotSelectTransects_East-West_log.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/interpolated_FI_corp
 lotSelectTransects_East-West_log.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-interpolated_FI_corplotSelectTransects_East-West_log.png  used on input line 87
+interpolated_FI_corplotSelectTransects_East-West_log.png  used on input line 83
 9.
 (pdftex.def)             Requested size: 368.57964pt x 350.72392pt.
 [78
@@ -1301,13 +1299,13 @@ interpolated_FI_corplotSelectTransects_East-West_log.png  used on input line 87
  <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_ye
 ar2010_zoom_East-West.png>]
 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated_yea
-r2000_East-West.png, id=2066, 505.89pt x 505.89pt>
+r2000_East-West.png, id=1981, 505.89pt x 505.89pt>
 File: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolate
 d_year2000_East-West.png Graphic file (type png)
 <use ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiInterpolated
 _year2000_East-West.png>
 Package pdftex.def Info: ./chapterFiles/fisherSpatial/figures/figsCalledInDiss/
-scaledFiInterpolated_year2000_East-West.png  used on input line 888.
+scaledFiInterpolated_year2000_East-West.png  used on input line 848.
 (pdftex.def)             Requested size: 368.57964pt x 368.58644pt.
 [79]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1322,23 +1320,23 @@ log.png>] [86 <./chapterFiles/fisherSpatial/figures/figsCalledInDiss/scaledFiIn
 terpolated_year2000_East-West.png>]
 Chapter 5.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/lorenz3D.png, id=2135, 362.10281pt x 222.07968pt>
+gsCalledInDiss/lorenz3D.png, id=2051, 362.10281pt x 222.07968pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/lorenz3D.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/lorenz3D.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/lorenz3D.png  used on input line 928.
+chapterFiles/velocity/figsCalledInDiss/lorenz3D.png  used on input line 888.
 (pdftex.def)             Requested size: 368.57964pt x 226.05402pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/lorenz3D_timeseries.png, id=2147, 2409.0pt x 1505.625pt>
+gsCalledInDiss/lorenz3D_timeseries.png, id=2063, 2409.0pt x 1505.625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/lorenz3D_timeseries.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/lorenz3D_timeseries.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries.png  used on input l
-ine 932.
+ine 892.
 (pdftex.def)             Requested size: 368.57964pt x 230.35988pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1353,70 +1351,70 @@ y/figsCalledInDiss/lorenz3D.png>] [89 </Users/jessicaburnett/Documents/GitHub/m
 yDissertation/chapterFiles/velocity/figsCalledInDiss/lorenz3D_timeseries.png>] 
 [90] [91]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 962.
+(Font)              <17.28> on input line 922.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/sysEx.png, id=2195, 1806.75pt x 1355.0625pt>
+gsCalledInDiss/sysEx.png, id=2110, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/sysEx.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/sysEx.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/sysEx.png  used on input line 967.
+chapterFiles/velocity/figsCalledInDiss/sysEx.png  used on input line 927.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/sysEx2.png, id=2198, 1806.75pt x 1355.0625pt>
+gsCalledInDiss/sysEx2.png, id=2113, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/sysEx2.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/sysEx2.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/sysEx2.png  used on input line 971.
+chapterFiles/velocity/figsCalledInDiss/sysEx2.png  used on input line 931.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 [92] [93 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/ve
 locity/figsCalledInDiss/sysEx.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 974.
+(Font)              <14.4> on input line 934.
 [94 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/sysEx2.png>]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/sysExs.png, id=2223, 1806.75pt x 1355.0625pt>
+gsCalledInDiss/sysExs.png, id=2138, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/sysExs.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/sysExs.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/sysExs.png  used on input line 997.
+chapterFiles/velocity/figsCalledInDiss/sysExs.png  used on input line 957.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 [95]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/velocitySysEx1.png, id=2239, 526.8483pt x 325.215pt>
+gsCalledInDiss/velocitySysEx1.png, id=2155, 526.8483pt x 325.215pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/velocitySysEx1.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/velocitySysEx1.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/velocitySysEx1.png  used on input line 1
-010.
+chapterFiles/velocity/figsCalledInDiss/velocitySysEx1.png  used on input line 9
+70.
 (pdftex.def)             Requested size: 368.57964pt x 227.51495pt.
 [96 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/sysExs.png>]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/simVplot1.png, id=2255, 2107.875pt x 2107.875pt>
+gsCalledInDiss/simVplot1.png, id=2171, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/simVplot1.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/simVplot1.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/simVplot1.png  used on input line 1042.
+chapterFiles/velocity/figsCalledInDiss/simVplot1.png  used on input line 1002.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/simVplot2.png, id=2256, 2107.875pt x 2107.875pt>
+gsCalledInDiss/simVplot2.png, id=2172, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/simVplot2.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/simVplot2.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/simVplot2.png  used on input line 1045.
+chapterFiles/velocity/figsCalledInDiss/simVplot2.png  used on input line 1005.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1424,33 +1422,33 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [97 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/velocitySysEx1.png>]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/simVarPlot.png, id=2263, 2107.875pt x 2107.875pt>
+gsCalledInDiss/simVarPlot.png, id=2179, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/simVarPlot.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/simVarPlot.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/simVarPlot.png  used on input line 1052.
+chapterFiles/velocity/figsCalledInDiss/simVarPlot.png  used on input line 1012.
 
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/simVarPlot2.png, id=2264, 2107.875pt x 2107.875pt>
+gsCalledInDiss/simVarPlot2.png, id=2180, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/simVarPlot2.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/simVarPlot2.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/simVarPlot2.png  used on input line 1055
+chapterFiles/velocity/figsCalledInDiss/simVarPlot2.png  used on input line 1015
 .
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/smoothV.png, id=2268, 2107.875pt x 2107.875pt>
+gsCalledInDiss/smoothV.png, id=2184, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/smoothV.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/smoothV.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/smoothV.png  used on input line 1062.
+chapterFiles/velocity/figsCalledInDiss/smoothV.png  used on input line 1022.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1461,7 +1459,7 @@ Underfull \vbox (badness 6047) has occurred while \output is active []
 [100]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat.png, id
-=2296, 1806.75pt x 1355.0625pt>
+=2211, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat.pn
 g Graphic file (type png)
@@ -1470,11 +1468,11 @@ y/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_origDat.png
 >
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-
-1000iter_origDat.png  used on input line 1107.
+1000iter_origDat.png  used on input line 1067.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat.png, id=
-2297, 1806.75pt x 1355.0625pt>
+2212, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat.png
  Graphic file (type png)
@@ -1483,7 +1481,7 @@ y/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1000iter_origDat.png>
 
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha1-100tvdiffAlpha-1
-000iter_origDat.png  used on input line 1110.
+000iter_origDat.png  used on input line 1070.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 
 Underfull \vbox (badness 7796) has occurred while \output is active []
@@ -1491,7 +1489,7 @@ Underfull \vbox (badness 7796) has occurred while \output is active []
 [101]
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/velocity/f
 igsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter.pn
-g, id=2323, 1806.75pt x 1355.0625pt>
+g, id=2238, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/veloc
 ity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000it
 er.png Graphic file (type png)
@@ -1500,12 +1498,12 @@ ty/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-05tvdiffAlpha-1000ite
 r.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/velocity/figsCalledInDiss/compareTvdiff_s_changeMuX1_tanhAlpha1-0
-5tvdiffAlpha-1000iter.png  used on input line 1135.
+5tvdiffAlpha-1000iter.png  used on input line 1095.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 [102] [103]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.png, 
-id=2334, 1806.75pt x 1355.0625pt>
+id=2249, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.
 png Graphic file (type png)
@@ -1514,11 +1512,11 @@ y/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.p
 ng>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha025-05tvdiffAlpha-10
-00iter_stackTvdiff.png  used on input line 1139.
+00iter_stackTvdiff.png  used on input line 1099.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff.png, i
-d=2335, 1806.75pt x 1355.0625pt>
+d=2250, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff.p
 ng Graphic file (type png)
@@ -1527,11 +1525,11 @@ y/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-1000iter_stackTvdiff.pn
 g>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha05-05tvdiffAlpha-100
-0iter_stackTvdiff.png  used on input line 1143.
+0iter_stackTvdiff.png  used on input line 1103.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png, 
-id=2336, 1806.75pt x 1355.0625pt>
+id=2251, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.
 png Graphic file (type png)
@@ -1540,11 +1538,11 @@ y/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.p
 ng>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha075-05tvdiffAlpha-10
-00iter_stackTvdiff.png  used on input line 1147.
+00iter_stackTvdiff.png  used on input line 1107.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff.png, id
-=2337, 1806.75pt x 1355.0625pt>
+=2252, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff.pn
 g Graphic file (type png)
@@ -1553,11 +1551,11 @@ y/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000iter_stackTvdiff.png
 >
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuX1_tanhAlpha1-05tvdiffAlpha-1000
-iter_stackTvdiff.png  used on input line 1151.
+iter_stackTvdiff.png  used on input line 1111.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff.png
-, id=2338, 1806.75pt x 1355.0625pt>
+, id=2253, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdif
 f.png Graphic file (type png)
@@ -1566,11 +1564,11 @@ y/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-1000iter_stackTvdiff
 .png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha075-05tvdiffAlpha-
-1000iter_stackTvdiff.png  used on input line 1155.
+1000iter_stackTvdiff.png  used on input line 1115.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff.png
-, id=2339, 1806.75pt x 1355.0625pt>
+, id=2254, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdif
 f.png Graphic file (type png)
@@ -1579,11 +1577,11 @@ y/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-1000iter_stackTvdiff
 .png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeVarBoth_tanhAlpha075-5tvdiffAlpha-
-1000iter_stackTvdiff.png  used on input line 1159.
+1000iter_stackTvdiff.png  used on input line 1119.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff.png,
- id=2340, 1806.75pt x 1355.0625pt>
+ id=2255, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff
 .png Graphic file (type png)
@@ -1592,11 +1590,11 @@ y/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1000iter_stackTvdiff.
 png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeVarX1_tanhAlpha075-10tvdiffAlpha-1
-000iter_stackTvdiff.png  used on input line 1163.
+000iter_stackTvdiff.png  used on input line 1123.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff.png
-, id=2341, 1806.75pt x 1355.0625pt>
+, id=2256, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdif
 f.png Graphic file (type png)
@@ -1605,12 +1603,12 @@ y/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-1000iter_stackTvdiff
 .png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuBoth_tanhAlpha025-05tvdiffAlpha-
-1000iter_stackTvdiff.png  used on input line 1167.
+1000iter_stackTvdiff.png  used on input line 1127.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 [104]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvdiff.p
-ng, id=2363, 1806.75pt x 1355.0625pt>
+ng, id=2278, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvd
 iff.png Graphic file (type png)
@@ -1619,12 +1617,12 @@ y/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlpha-1000iter_stackTvdi
 ff.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha025-5tvdiffAlph
-a-1000iter_stackTvdiff.png  used on input line 1186.
+a-1000iter_stackTvdiff.png  used on input line 1146.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 [105]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
 gsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff.pn
-g, id=2370, 1806.75pt x 1355.0625pt>
+g, id=2286, 1806.75pt x 1355.0625pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdi
 ff.png Graphic file (type png)
@@ -1633,40 +1631,40 @@ y/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdif
 f.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha
--1000iter_stackTvdiff.png  used on input line 1190.
+-1000iter_stackTvdiff.png  used on input line 1150.
 (pdftex.def)             Requested size: 368.57964pt x 276.42496pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/paleoTurnover.png, id=2371, 2107.875pt x 2107.875pt>
+gsCalledInDiss/paleoTurnover.png, id=2287, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/paleoTurnover.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/paleoTurnover.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/paleoTurnover.png  used on input line 11
-93.
+53.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/paleoVelocity.png, id=2378, 2107.875pt x 2107.875pt>
+gsCalledInDiss/paleoVelocity.png, id=2294, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/paleoVelocity.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/paleoVelocity.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/paleoVelocity.png  used on input line 12
-00.
+chapterFiles/velocity/figsCalledInDiss/paleoVelocity.png  used on input line 11
+60.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/paleoRegime1and3.png, id=2379, 2107.875pt x 2107.875pt>
+gsCalledInDiss/paleoRegime1and3.png, id=2295, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/paleoRegime1and3.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/paleoRegime1and3.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/velocity/figsCalledInDiss/paleoRegime1and3.png  used on input line
- 1203.
+ 1163.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1210--1212
+Underfull \hbox (badness 10000) in paragraph at lines 1170--1172
 
  []
 
@@ -1675,57 +1673,57 @@ Underfull \vbox (badness 3078) has occurred while \output is active []
 
 [106]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/paleoObsPred.png, id=2397, 2107.875pt x 2107.875pt>
+gsCalledInDiss/paleoObsPred.png, id=2313, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/paleoObsPred.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/paleoObsPred.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/paleoObsPred.png  used on input line 121
+chapterFiles/velocity/figsCalledInDiss/paleoObsPred.png  used on input line 117
 6.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/paleoV.png, id=2402, 2107.875pt x 2107.875pt>
+gsCalledInDiss/paleoV.png, id=2318, 2107.875pt x 2107.875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/paleoV.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/paleoV.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/paleoV.png  used on input line 1220.
+chapterFiles/velocity/figsCalledInDiss/paleoV.png  used on input line 1180.
 (pdftex.def)             Requested size: 368.57964pt x 368.56201pt.
 [107]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [108]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/velocSysEx2.png, id=2427, 454.3374pt x 305.943pt>
+gsCalledInDiss/velocSysEx2.png, id=2342, 454.3374pt x 305.943pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/velocSysEx2.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/velocSysEx2.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/velocSysEx2.png  used on input line 1236
+chapterFiles/velocity/figsCalledInDiss/velocSysEx2.png  used on input line 1196
 .
 (pdftex.def)             Requested size: 368.57964pt x 248.20459pt.
 [109]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/velocSysEx3.png, id=2433, 454.3374pt x 305.943pt>
+gsCalledInDiss/velocSysEx3.png, id=2348, 454.3374pt x 305.943pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/velocSysEx3.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/velocSysEx3.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/velocSysEx3.png  used on input line 1240
+chapterFiles/velocity/figsCalledInDiss/velocSysEx3.png  used on input line 1200
 .
 (pdftex.def)             Requested size: 368.57964pt x 248.20459pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/fi
-gsCalledInDiss/velocSysEx4.png, id=2434, 454.3374pt x 305.943pt>
+gsCalledInDiss/velocSysEx4.png, id=2349, 454.3374pt x 305.943pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
 ty/figsCalledInDiss/velocSysEx4.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocit
 y/figsCalledInDiss/velocSysEx4.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/velocity/figsCalledInDiss/velocSysEx4.png  used on input line 1244
+chapterFiles/velocity/figsCalledInDiss/velocSysEx4.png  used on input line 1204
 .
 (pdftex.def)             Requested size: 368.57964pt x 248.20459pt.
 [110 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/veloci
@@ -1786,38 +1784,38 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [136]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/origDataRelAbundance.png, id=2606, 278.4804pt x 376.2858pt>
+figsCalledInDiss/origDataRelAbundance.png, id=2521, 278.4804pt x 376.2858pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/origDataRelAbundance.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampl
 ing/figsCalledInDiss/origDataRelAbundance.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/origDataRelAbundance.png  used on inpu
-t line 1275.
+t line 1235.
 (pdftex.def)             Requested size: 368.57964pt x 498.04807pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/timeElapsed.png, id=2607, 312.2064pt x 297.9933pt>
+figsCalledInDiss/timeElapsed.png, id=2522, 312.2064pt x 297.9933pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/timeElapsed.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampl
 ing/figsCalledInDiss/timeElapsed.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/timeElapsed.png  used on input line 12
-78.
+38.
 (pdftex.def)             Requested size: 325.215pt x 310.42407pt.
 [137] [138] [139]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/VI_cvDensity.png, id=2663, 433.62pt x 289.08pt>
+figsCalledInDiss/VI_cvDensity.png, id=2579, 433.62pt x 289.08pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/VI_cvDensity.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampl
 ing/figsCalledInDiss/VI_cvDensity.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/VI_cvDensity.png  used on input line 1
-322.
+282.
 (pdftex.def)             Requested size: 368.57964pt x 245.73238pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/VI_observations_ribboned_facetByProb.png, id=2664, 500.5902pt 
+figsCalledInDiss/VI_observations_ribboned_facetByProb.png, id=2580, 500.5902pt 
 x 306.1839pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/VI_observations_ribboned_facetByProb.png Graphic file (ty
@@ -1826,14 +1824,14 @@ pe png)
 ing/figsCalledInDiss/VI_observations_ribboned_facetByProb.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/VI_observations_ribboned_facetByProb.p
-ng  used on input line 1326.
+ng  used on input line 1286.
 (pdftex.def)             Requested size: 368.57964pt x 225.45125pt.
 
 Underfull \vbox (badness 1939) has occurred while \output is active []
 
 [140]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/VI_species_ribboned_facetByProb.png, id=2674, 500.5902pt x 306
+figsCalledInDiss/VI_species_ribboned_facetByProb.png, id=2589, 500.5902pt x 306
 .1839pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/VI_species_ribboned_facetByProb.png Graphic file (type pn
@@ -1842,10 +1840,10 @@ g)
 ing/figsCalledInDiss/VI_species_ribboned_facetByProb.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/VI_species_ribboned_facetByProb.png  u
-sed on input line 1338.
+sed on input line 1298.
 (pdftex.def)             Requested size: 368.57964pt x 225.45125pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/dsdt_observations_ribboned_facetByProb.png, id=2675, 500.5902p
+figsCalledInDiss/dsdt_observations_ribboned_facetByProb.png, id=2590, 500.5902p
 t x 306.1839pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb.png Graphic file (
@@ -1854,15 +1852,15 @@ type png)
 ing/figsCalledInDiss/dsdt_observations_ribboned_facetByProb.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb
-.png  used on input line 1346.
+.png  used on input line 1306.
 (pdftex.def)             Requested size: 368.57964pt x 225.45125pt.
 [141]
-Underfull \hbox (badness 10000) in paragraph at lines 1351--1353
+Underfull \hbox (badness 10000) in paragraph at lines 1311--1313
 
  []
 
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2.png, id=2681, 5
+figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2.png, id=2596, 5
 00.5902pt x 306.1839pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2.png Graphi
@@ -1871,32 +1869,32 @@ c file (type png)
 ing/figsCalledInDiss/dsdt_observations_ribboned_facetByProb_regime2.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/dsdt_observations_ribboned_facetByProb
-_regime2.png  used on input line 1355.
+_regime2.png  used on input line 1315.
 (pdftex.def)             Requested size: 325.215pt x 198.92372pt.
 [142]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/s_cvDensity.png, id=2687, 433.62pt x 289.08pt>
+figsCalledInDiss/s_cvDensity.png, id=2602, 433.62pt x 289.08pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/s_cvDensity.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampl
 ing/figsCalledInDiss/s_cvDensity.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/s_cvDensity.png  used on input line 13
-59.
+19.
 (pdftex.def)             Requested size: 368.57964pt x 245.73238pt.
 [143]
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/FI_cvDensity.png, id=2705, 433.62pt x 289.08pt>
+figsCalledInDiss/FI_cvDensity.png, id=2620, 433.62pt x 289.08pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/FI_cvDensity.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampl
 ing/figsCalledInDiss/FI_cvDensity.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/FI_cvDensity.png  used on input line 1
-375.
+335.
 (pdftex.def)             Requested size: 368.57964pt x 245.73238pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/logFI_species_ribboned_facetByProb.png, id=2706, 414.5889pt x 
+figsCalledInDiss/logFI_species_ribboned_facetByProb.png, id=2621, 414.5889pt x 
 489.2679pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/logFI_species_ribboned_facetByProb.png Graphic file (type
@@ -1905,16 +1903,16 @@ ling/figsCalledInDiss/logFI_species_ribboned_facetByProb.png Graphic file (type
 ing/figsCalledInDiss/logFI_species_ribboned_facetByProb.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 chapterFiles/resampling/figsCalledInDiss/logFI_species_ribboned_facetByProb.png
-  used on input line 1379.
+  used on input line 1339.
 (pdftex.def)             Requested size: 368.57964pt x 434.99165pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampling/
-figsCalledInDiss/loess.png, id=2714, 622.325pt x 451.6875pt>
+figsCalledInDiss/loess.png, id=2629, 622.325pt x 451.6875pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resamp
 ling/figsCalledInDiss/loess.png Graphic file (type png)
 <use /Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/resampl
 ing/figsCalledInDiss/loess.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
-chapterFiles/resampling/figsCalledInDiss/loess.png  used on input line 1388.
+chapterFiles/resampling/figsCalledInDiss/loess.png  used on input line 1348.
 (pdftex.def)             Requested size: 368.57964pt x 267.52025pt.
 [144]
 Underfull \vbox (badness 3407) has occurred while \output is active []
@@ -1949,7 +1947,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [156]
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg, id=2835, 676.5275pt x 703.628
+ityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg, id=2750, 676.5275pt x 703.628
 75pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg Graphic file (type jpg)
@@ -1957,12 +1955,12 @@ ntinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg Graphic file (type jpg)
 tinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg  used 
-on input line 1422.
+on input line 1382.
 (pdftex.def)             Requested size: 368.57964pt x 383.35733pt.
 [157 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/mybbox_onBCRmap.jpg>] [158] [159]
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/routes_spatRegimeLines2.png, id=2876, 469.755pt x 
+ityAnalysis/figsCalledInDiss/routes_spatRegimeLines2.png, id=2792, 469.755pt x 
 361.35pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/routes_spatRegimeLines2.png Graphic file (typ
@@ -1971,10 +1969,10 @@ e png)
 tinuityAnalysis/figsCalledInDiss/routes_spatRegimeLines2.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/routes_spatRegimeLines2.pn
-g  used on input line 1461.
+g  used on input line 1421.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 
-Underfull \hbox (badness 1178) in paragraph at lines 1461--1461
+Underfull \hbox (badness 1178) in paragraph at lines 1421--1421
 [] []|\T1/lmr/m/it/12 (+20) North Amer-i-can Breed-ing Bird Sur-vey routes
  []
 
@@ -1992,16 +1990,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [168] [169] [170]
-<_myDissertation_files/figure-latex/nRtesPerRegimePerYearFig-1.pdf, id=2989, 45
+<_myDissertation_files/figure-latex/nRtesPerRegimePerYearFig-1.pdf, id=2905, 45
 7.71pt x 313.17pt>
 File: _myDissertation_files/figure-latex/nRtesPerRegimePerYearFig-1.pdf Graphic
  file (type pdf)
 <use _myDissertation_files/figure-latex/nRtesPerRegimePerYearFig-1.pdf>
 Package pdftex.def Info: _myDissertation_files/figure-latex/nRtesPerRegimePerYe
-arFig-1.pdf  used on input line 1665.
+arFig-1.pdf  used on input line 1625.
 (pdftex.def)             Requested size: 368.57964pt x 252.19449pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/richnessByYear.png, id=2990, 469.755pt x 361.35pt>
+ityAnalysis/figsCalledInDiss/richnessByYear.png, id=2906, 469.755pt x 361.35pt>
 
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/richnessByYear.png Graphic file (type png)
@@ -2009,10 +2007,10 @@ ntinuityAnalysis/figsCalledInDiss/richnessByYear.png Graphic file (type png)
 tinuityAnalysis/figsCalledInDiss/richnessByYear.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/richnessByYear.png  used o
-n input line 1668.
+n input line 1628.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/turnoverByYear.png, id=2991, 469.755pt x 361.35pt>
+ityAnalysis/figsCalledInDiss/turnoverByYear.png, id=2907, 469.755pt x 361.35pt>
 
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/turnoverByYear.png Graphic file (type png)
@@ -2020,11 +2018,11 @@ ntinuityAnalysis/figsCalledInDiss/turnoverByYear.png Graphic file (type png)
 tinuityAnalysis/figsCalledInDiss/turnoverByYear.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/turnoverByYear.png  used o
-n input line 1671.
+n input line 1631.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 [171] [172]
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/intrxnPlot_regime.png, id=3001, 469.755pt x 361.35
+ityAnalysis/figsCalledInDiss/intrxnPlot_regime.png, id=2917, 469.755pt x 361.35
 pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png Graphic file (type png)
@@ -2033,10 +2031,10 @@ ntinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png Graphic file (type png)
 tinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime.png  use
-d on input line 1744.
+d on input line 1704.
 (pdftex.def)             Requested size: 346.89731pt x 266.84344pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png, id=3002, 469.755pt x 361.3
+ityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png, id=2918, 469.755pt x 361.3
 5pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png Graphic file (type png
@@ -2045,10 +2043,10 @@ ntinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png Graphic file (type png
 tinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/intrxnPlot_regime1.png  us
-ed on input line 1747.
+ed on input line 1707.
 (pdftex.def)             Requested size: 346.89731pt x 266.84344pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum.png, id=3010, 469.755pt x 3
+ityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum.png, id=2926, 469.755pt x 3
 61.35pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum.png Graphic file (type
@@ -2057,10 +2055,10 @@ ntinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum.png Graphic file (type
 tinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-logSum.png
-  used on input line 1757.
+  used on input line 1717.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean.png, id=3011, 469.755pt x 361
+ityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean.png, id=2927, 469.755pt x 361
 .35pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean.png Graphic file (type p
@@ -2069,10 +2067,10 @@ ng)
 tinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-mean.png  
-used on input line 1760.
+used on input line 1720.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV.png, id=3012, 469.755pt x 361.3
+ityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV.png, id=2928, 469.755pt x 361.3
 5pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV.png Graphic file (type png
@@ -2081,18 +2079,18 @@ ntinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV.png Graphic file (type png
 tinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/stopTotal-byBCR-CV.png  us
-ed on input line 1763.
+ed on input line 1723.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
-<_myDissertation_files/figure-latex/nAggsPerYear-1.pdf, id=3013, 463.7325pt x 3
+<_myDissertation_files/figure-latex/nAggsPerYear-1.pdf, id=2929, 463.7325pt x 3
 16.18124pt>
 File: _myDissertation_files/figure-latex/nAggsPerYear-1.pdf Graphic file (type 
 pdf)
 <use _myDissertation_files/figure-latex/nAggsPerYear-1.pdf>
 Package pdftex.def Info: _myDissertation_files/figure-latex/nAggsPerYear-1.pdf 
- used on input line 1766.
+ used on input line 1726.
 (pdftex.def)             Requested size: 368.57964pt x 251.30981pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/distEdge_corrplot.png, id=3014, 1204.5pt x 1355.06
+ityAnalysis/figsCalledInDiss/distEdge_corrplot.png, id=2930, 1204.5pt x 1355.06
 25pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/distEdge_corrplot.png Graphic file (type png)
@@ -2101,10 +2099,10 @@ ntinuityAnalysis/figsCalledInDiss/distEdge_corrplot.png Graphic file (type png)
 tinuityAnalysis/figsCalledInDiss/distEdge_corrplot.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/distEdge_corrplot.png  use
-d on input line 1769.
+d on input line 1729.
 (pdftex.def)             Requested size: 368.57964pt x 414.64778pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/routeGapEx.png, id=3015, 1957.3125pt x 1505.625pt>
+ityAnalysis/figsCalledInDiss/routeGapEx.png, id=2931, 1957.3125pt x 1505.625pt>
 
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/routeGapEx.png Graphic file (type png)
@@ -2112,7 +2110,7 @@ ntinuityAnalysis/figsCalledInDiss/routeGapEx.png Graphic file (type png)
 tinuityAnalysis/figsCalledInDiss/routeGapEx.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/routeGapEx.png  used on in
-put line 1772.
+put line 1732.
 (pdftex.def)             Requested size: 368.57964pt x 283.5216pt.
 [173]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2123,7 +2121,7 @@ Underfull \vbox (badness 6592) has occurred while \output is active []
 [175 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/richnessByYear.png>]
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png, id=3054, 469.755pt x 361.35
+ityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png, id=2969, 469.755pt x 361.35
 pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png Graphic file (type png)
@@ -2132,10 +2130,10 @@ ntinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png Graphic file (type png)
 tinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup.png  use
-d on input line 1810.
+d on input line 1770.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime.png, id=3055, 469.755pt
+ityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime.png, id=2970, 469.755pt
  x 361.35pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime.png Graphic file (
@@ -2144,10 +2142,10 @@ type png)
 tinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byRegime
-.png  used on input line 1813.
+.png  used on input line 1773.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/discontinu
-ityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png, id=3056, 469.755pt x 
+ityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png, id=2971, 469.755pt x 
 361.35pt>
 File: /Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png Graphic file (typ
@@ -2156,7 +2154,7 @@ e png)
 tinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.png>
 Package pdftex.def Info: /Users/jessicaburnett/Documents/GitHub/myDissertation/
 /chapterFiles/discontinuityAnalysis/figsCalledInDiss/bmDistPerSppGroup-byBCR.pn
-g  used on input line 1816.
+g  used on input line 1776.
 (pdftex.def)             Requested size: 368.57964pt x 283.52254pt.
 [176 </Users/jessicaburnett/Documents/GitHub/myDissertation//chapterFiles/disco
 ntinuityAnalysis/figsCalledInDiss/turnoverByYear.png>] [177 </Users/jessicaburn
@@ -2194,7 +2192,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 2050) has occurred while \output is active []
 
 [190]
-Underfull \hbox (badness 1043) in paragraph at lines 1856--1856
+Underfull \hbox (badness 1043) in paragraph at lines 1816--1816
 []\T1/lmr/bx/n/17.28 Common Lim-i-ta-tions of Regime De-tec-tion
  []
 
@@ -2203,270 +2201,210 @@ Underfull \vbox (badness 2368) has occurred while \output is active []
 
 [192
 
-] [193]
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 192
-9.
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [194] [195] [196]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[197] [198] [199]
-<./chapterFiles/appendices/regcred_select_trendests_byregion.png, id=3269, 492.
-84125pt x 484.81125pt>
-File: ./chapterFiles/appendices/regcred_select_trendests_byregion.png Graphic f
-ile (type png)
-<use ./chapterFiles/appendices/regcred_select_trendests_byregion.png>
-Package pdftex.def Info: ./chapterFiles/appendices/regcred_select_trendests_byr
-egion.png  used on input line 2129.
-(pdftex.def)             Requested size: 225.8449pt x 650.50922pt.
-<./chapterFiles/appendices/regcred_select_fl.png, id=3270, 353.32pt x 795.97375
-pt>
-File: ./chapterFiles/appendices/regcred_select_fl.png Graphic file (type png)
-<use ./chapterFiles/appendices/regcred_select_fl.png>
-Package pdftex.def Info: ./chapterFiles/appendices/regcred_select_fl.png  used 
-on input line 2129.
-(pdftex.def)             Requested size: 353.31914pt x 795.97182pt.
-<./chapterFiles/appendices/regcred_fl_ex.png, id=3271, 924.45375pt x 551.05875p
-t>
-File: ./chapterFiles/appendices/regcred_fl_ex.png Graphic file (type png)
-<use ./chapterFiles/appendices/regcred_fl_ex.png>
-Package pdftex.def Info: ./chapterFiles/appendices/regcred_fl_ex.png  used on i
-nput line 2131.
-(pdftex.def)             Requested size: 924.45149pt x 551.05739pt.
-
-Overfull \hbox (217.07927pt too wide) in paragraph at lines 2128--2132
-\T1/lmr/m/n/12 (-20) (e.g. Florida): [][]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1849--1850
+\T1/lmr/m/n/12 (+20) Package vi-gnette is avail-able at []$\T1/lmtt/m/n/12 http
+s : / / github . com / TrashBirdEcology /
  []
 
 
-Overfull \hbox (591.4294pt too wide) in paragraph at lines 2128--2132
-\T1/lmr/m/n/12 (-20) sures (e.g. Florida): [] 
+Overfull \hbox (56.95192pt too wide) in paragraph at lines 1854--1855
+\T1/lmr/m/n/12 (-20) For func-tions and de-scrip-tions please see the []man-ual
+ at github.com/bbsAssistant/tree/master/man[]. 
  []
 
-
-Underfull \vbox (badness 1838) has occurred while \output is active []
-
-[200]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[201]
-Overfull \vbox (145.54182pt too high) has occurred while \output is active []
-
-[202 <./chapterFiles/appendices/regcred_select_trendests_byregion.png> <./chapt
-erFiles/appendices/regcred_select_fl.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[203 <./chapterFiles/appendices/regcred_fl_ex.png>] [204]
-Underfull \hbox (badness 2941) in paragraph at lines 2149--2150
-\T1/lmr/m/n/12 (+20) This ap-pendix con-tains ex-am-ple anal-y-sis as-so-ci-ate
-d with the R Pack-age,
- []
-
-
-Underfull \hbox (badness 6708) in paragraph at lines 2149--2150
-\T1/lmtt/m/n/12 regimeDetectionMeasures / archive / master . zip$[] \T1/lmr/m/n
-/12 (+20) or at []$\T1/lmtt/m/n/12 https : / / github . com /
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{section.Alph0
-.1}) has been already used, duplicate ignored
+[193] [194]pdfTeX warning (ext4): destination with the same identifier (name{se
+ction.Alph0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2152 ...ample Analysis}\label{example-analysis}}
-                                                   [205
-
-] [206] [207]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2227.
-pdfTeX warning (ext4): destination with the same identifier (name{section.Alph0
-.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2235 ...ple Analysis}\label{example-analysis-1}}
-                                                  pdfTeX warning (ext4): destin
-ation with the same identifier (name{subsection.Alph0.1.1}) has been already us
-ed, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2238 ...load-packages-create-local-directories}}
-                                                   [208
-
-]pdfTeX warning (ext4): destination with the same identifier (name{subsection.A
-lph0.1.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2271 ...-the-bbs-data-and-save-to-file-locally}}
+l.1868 ...ckage Summary}\label{package-summary-1}}
                                                   
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[209]
-Underfull \vbox (badness 1496) detected at line 2312
+[195
+
+]
+Overfull \hbox (21.67856pt too wide) in paragraph at lines 1886--1887
+\T1/lmtt/m/n/12 master . zip$[] \T1/lmr/m/n/12 (-20) or at []$\T1/lmtt/m/n/12 h
+ttps : / / github . com / TrashBirdEcology / regimeDetectionMeasures$[]\T1/lmr/
+m/n/12 (-20) . 
  []
 
-[210]pdfTeX warning (ext4): destination with the same identifier (name{subsecti
-on.Alph0.1.3}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{section.Alph0
+.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2314 ...ing grid}\label{create-a-sampling-grid}}
-                                                   [211] [212]
+l.1889 ...Package Manual}\label{package-manual-1}}
+                                                  
+Overfull \hbox (56.95192pt too wide) in paragraph at lines 1891--1892
+\T1/lmr/m/n/12 (-20) For func-tions and de-scrip-tions please see the []man-ual
+ at github.com/bbsAssistant/tree/master/man[]. 
+ []
+
+[196]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <24.88> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1894.
+pdfTeX warning (ext4): destination with the same identifier (name{section.Alph0
+.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1900 ...age Vignette}\label{package-vignette-1}}
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{section.Alph0.4}) has been already used, d
+uplicate ignored
+<to be read again> 
+                   \relax 
+l.1905 ...Package Manual}\label{package-manual-2}}
+                                                  
+Overfull \hbox (38.53125pt too wide) in paragraph at lines 1907--1908
+\T1/lmr/m/n/12 (-20) For func-tions and de-scrip-tions please see the []man-ual
+ at github.com/bbsRDM/tree/master/man[]. 
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[213] [214] [215] [216]
-Underfull \vbox (badness 10000) detected at line 2507
- []
+[197
 
-
-Underfull \vbox (badness 10000) detected at line 2507
- []
-
-[217] [218] [219] [220] [221]pdfTeX warning (ext4): destination with the same i
-dentifier (name{section.Alph0.1}) has been already used, duplicate ignored
+] [198]pdfTeX warning (ext4): destination with the same identifier (name{sectio
+n.Alph0.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2616 \section{About}\label{about}}
-                                    pdfTeX warning (ext4): destination with the
- same identifier (name{section.Alph0.2}) has been already used, duplicate ignor
-ed
-<to be read again> 
-                   \relax 
-l.2621 ... function}\label{neutral.null-function}}
-                                                   [222
+l.1918 ... function}\label{neutral.null-function}}
+                                                   [199
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{section.Alph
-0.3}) has been already used, duplicate ignored
+0.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2657 ...Function}\label{bootstrapping-function}}
+l.1954 ...Function}\label{bootstrapping-function}}
                                                   
-Underfull \hbox (badness 1708) in paragraph at lines 2675--2685
+Underfull \hbox (badness 1708) in paragraph at lines 1972--1982
 []\T1/lmr/m/n/12 (+20) # gen-er-ate gaps gaps.log10.data <- diff(log10.data) ga
 ps.null.samples <-
  []
 
-[223]
+[200]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[224
+[201
 
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[225]
+[202]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[226]
+[203]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[227]
+[204]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[228]
+[205]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[229]
+[206]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[230]
+[207]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[231]
+[208]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[232]
+[209]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[233]
+[210]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[234]
+[211]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[235]
+[212]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[236]
+[213]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[237]
+[214]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[238]
+[215]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[239]
+[216]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[240]
+[217]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[241]
+[218]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[242]
+[219]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[243]
+[220]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[244]
+[221]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[245]
+[222]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[246]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3389.
-[247]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3389.
+[223]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2686.
+[224]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2686.
 (./_myDissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3389.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3389.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2686.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2686.
 
 Package rerunfilecheck Info: File `_myDissertation.out' has not changed.
-(rerunfilecheck)             Checksum: BD9F1D2308774CC695E13802F1582477;10509.
+(rerunfilecheck)             Checksum: 1C5C680C13ED5E2B75192433C5742F4D;8658.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3389.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2686.
  ) 
 Here is how much of TeX's memory you used:
- 13997 strings out of 492649
- 253700 string characters out of 6129622
- 421859 words of memory out of 5000000
- 16269 multiletter control sequences out of 15000+600000
- 149996 words of font info for 267 fonts, out of 8000000 for 9000
+ 13794 strings out of 492649
+ 248730 string characters out of 6129622
+ 418883 words of memory out of 5000000
+ 16145 multiletter control sequences out of 15000+600000
+ 149064 words of font info for 264 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,15n,52p,3556b,644s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local
-/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2018/
-texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018/texmf-dist/fon
-ts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvi
-ps/lm/lm-mathsy.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-m
-athex.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx10.pfb>
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/loca
-l/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/local/texlive
-/2018/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2018/texm
-f-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2018/texmf-dist/fon
-ts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/p
-ublic/lm/lmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lm
-mi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr10.pfb></u
-sr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/te
-xlive/2018/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2018/t
-exmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf-dist/fo
-nts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
-blic/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lm
-ri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><
-/usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/
-texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/201
-8/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2018/texmf-di
-st/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2018/texmf-dist/fonts/t
-ype1/public/lm/lmtti10.pfb>
-Output written on _myDissertation.pdf (267 pages, 9583578 bytes).
+{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
+texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
+18/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2018/texmf-d
+ist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2018/texmf-dist/fonts/
+enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/public/l
+m/lmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbx12.p
+fb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></usr/
+local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texl
+ive/2018/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2018/t
+exmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2018/texmf-dist/
+fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
+/public/lm/lmmi8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/
+lmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb><
+/usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/t
+exlive/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/
+texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf-dist/f
+onts/type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1
+/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm
+/lmsy10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy6.pfb
+></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/loca
+l/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/
+2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on _myDissertation.pdf (244 pages, 9097536 bytes).
 PDF statistics:
- 3874 PDF objects out of 4296 (max. 8388607)
- 3375 compressed objects within 34 object streams
- 952 named destinations out of 1000 (max. 500000)
- 17767 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 3636 PDF objects out of 4296 (max. 8388607)
+ 3169 compressed objects within 32 object streams
+ 883 named destinations out of 1000 (max. 500000)
+ 17616 words of extra memory for PDF output out of 20736 (max. 10000000)
 
