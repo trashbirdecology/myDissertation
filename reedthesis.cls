@@ -101,12 +101,16 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 % End of CII add
 
+
 % % This gives us rules below the headers
-% \AtBeginDocument{%
+\AtBeginDocument{%
+  \fancyhf{} % sets both header and footer to nothing
+  \renewcommand{\headrulewidth}{0pt}
+  }
 %   \fancyhf{}
 %   \fancyhead[LE,RO]{\thepage}
-% %  \fancyhead[RE]{\slshape \leftmark}
-% %  \fancyhead[LO]{\slshape \rightmark}
+%  \fancyhead[RE]{\slshape \leftmark}
+%  \fancyhead[LO]{\slshape \rightmark}
 % %	The above makes your headers in all caps. If you would like different headers, choose one of the following options (be sure to remove the % symbol from both the right and left headers):
 % 	 \fancyhead[RE]{\slshape \nouppercase \leftmark} % This makes the headers on the RIGHT side pages be italic and use lowercase With Capitals When Specified.
 % 	\fancyhead[LO]{\slshape \nouppercase \rightmark} % This does the same thing to the LEFT side pages
@@ -130,7 +134,7 @@
 %     \oldtheindex
 %     \addcontentsline{toc}{chapter}{\indexname}
 %   }{\endoldtheindex}
-% }
+
 
 % Stolen from book.cls and modified
 \let\RToldchapter\chapter
@@ -248,7 +252,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Acknowledgements}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
 \newenvironment{preface}{%
@@ -258,7 +262,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Preface}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 % End of CII add
 
@@ -269,7 +273,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Abstract}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
 \newenvironment{dedication}{%
@@ -279,7 +283,7 @@
     \@restonecolfalse
   \fi
   \chapter*{Dedication}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
 
@@ -296,7 +300,7 @@
 
 \renewcommand{\maketitle}{%
   {\pagestyle{empty}
-  \fontsize{12}{14}\selectfont
+  \fontsize{10}{12}\selectfont
   \begin{titlepage}
   \newpage
   \let\footnotesize\small
@@ -309,7 +313,7 @@
   \begin{center}
     \setcounter{page}{1}
     \null\vfil
-    {\fontsize{12}{14}\selectfont \@title}
+    {\fontsize{10}{12}\selectfont \@title}
     \vfil
     \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
     \vfil
@@ -328,33 +332,33 @@
     \bigskip
     \centerline{}
     \bigskip
-    {\fontsize{12}{14}\selectfont \lineskip .75em
+    {\fontsize{10}{12}\selectfont \lineskip .75em
     \begin{tabular}[t]{c}%
       \@author
     \end{tabular}\par}
     \vskip 1.5em
-    {\fontsize{12}{14}\selectfont \@date \par}
+    {\fontsize{10}{12}\selectfont \@date \par}
   \end{center}\par
   \end{titlepage}
 
-%% Approved for the division page
-  \cleardoublepage
-  {\fontsize{12}{14}
-  \setbox0=\hbox{Approved by \@approvedforthe}
-  \thispagestyle{empty}
-  \null\vfil		% just below center of page
-  \par\vskip 6cm	% below center, not center
-  \centerline{\copy0}	% approved
-  % \centerline{\@department} %major
-  \vskip 1cm		%space to sign
-  \centerline{\makebox[\wd0][c]{\hrulefill}
-	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\hrulefill} \fi}
-  \centerline{\makebox[\wd0][c]{\@advisor}
-	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\@altadvisor} \fi}
-  \par\vfil\null}
-  \cleardoublepage
-  }
-}
+% %% Approved for the division page
+%   \cleardoublepage
+%   {\fontsize{10}{12}
+%   \setbox0=\hbox{Approved by \@approvedforthe}
+%   \thispagestyle{empty}
+%   \null\vfil		% just below center of page
+%   \par\vskip 6cm	% below center, not center
+%   \centerline{\copy0}	% approved
+%   % \centerline{\@department} %major
+%   \vskip 1cm		%space to sign
+%   \centerline{\makebox[\wd0][c]{\hrulefill}
+% 	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\hrulefill} \fi}
+%   \centerline{\makebox[\wd0][c]{\@advisor}
+% 	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\@altadvisor} \fi}
+%   \par\vfil\null}
+%   \cleardoublepage
+%   }
+% }
 
 % From JSS
 % Added by CII
