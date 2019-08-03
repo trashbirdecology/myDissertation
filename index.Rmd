@@ -8,6 +8,10 @@ altadvisor: 'Dirac Twidwell'
 department: 'School of Natural Resources'
 degree: 'Doctor of Philosophy'
 major: 'Natural Resource Sciences'
+city: 'Lincoln'
+state: 'Nebraska'
+month: 'August'
+year: '2019'
 knit: "bookdown::render_book"
 output: 
  # word_document:
@@ -20,9 +24,9 @@ acknowledgements: |
 dedication: |
   To those not yet exposed to the great outdoors, first generation college students, Mike Moulton, S, and to myself. 
 preface: |
-  >"Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists" &mdash;source unknown
-bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib"]
-csl: [reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
+  >"Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists" &mdash;  unknown
+bibliography: ["bib/thesis.bib", "bib/rdmReview_WOS_20190304.bib", "bib/rdmMethodsReview.bib","bib/packages.bib", "thesis.bib"] # yea I have two thesis.bibs....
+csl: [templates/reedthesis.cls, csl/globalecol.csl] #csl opts in file: ecology; mee; apa (or list.files("./csl"))
 lot: true
 lof: true
 space_between_paragraphs: true
