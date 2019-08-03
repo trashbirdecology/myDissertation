@@ -8,7 +8,6 @@
 .DS_Store
 
 # remove builds
-**/_myDissertation.rmd
 _bookdown_files/
 
 
@@ -74,10 +73,9 @@ myDissertation.aux
 myDissertation.lof
 myDissertation.lot
 myDissertation.toc
-myDissertation.Rmd
 Backup of randomWriting_needToIncorporate.wbk
 chapterFiles/appendix_predPreyExample/pred_prey_example.html
-_myDissertation.Rmd
+
 _myDissertation_cache/latex/__packages
 _cache/__packages
 _myDissertation.lof

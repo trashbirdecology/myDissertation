@@ -1,0 +1,134 @@
+\contentsline {chapter}{Table of Definitions}{2}{chapter*.8}
+\contentsline {chapter}{Chapter 1: Introduction}{11}{chapter.1}
+\contentsline {section}{\numberline {1.1}Dissertation Aims}{13}{section.1.1}
+\contentsline {section}{\numberline {1.2}Dissertation Structure and Contents}{13}{section.1.2}
+\contentsline {section}{\numberline {1.3}Appendices and Software}{16}{section.1.3}
+\contentsline {chapter}{Chapter 2: Methods for Detecting Ecological Regime Shifts}{17}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{17}{section.2.1}
+\contentsline {section}{\numberline {2.2}Methods}{19}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Quantitative methods for identifying ecological regime shifts}{19}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Bibliographic analysis of the ecological regime shift literature}{20}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Results}{28}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Quantitative methods for identifying ecological regime shifts}{28}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Bibliographic analysis of ecological regime shift literature}{29}{subsection.2.3.2}
+\contentsline {subsubsection}{Thematic mapping using keywords}{29}{section*.12}
+\contentsline {subsubsection}{Historiograph, citation, and reviews}{31}{section*.18}
+\contentsline {section}{\numberline {2.4}A synthesis of the methods available for the practical ecologist}{35}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Model-dependent}{36}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Model-free}{37}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Discussion}{37}{section.2.5}
+\contentsline {chapter}{Chapter 3: Deconstructing the steps for calculating Fisher Information as a measure of abrupt change in ecological systems}{43}{chapter.3}
+\contentsline {section}{\numberline {3.1}Abstract}{43}{section.3.1}
+\contentsline {section}{\numberline {3.2}Introduction}{44}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Fisher Information as a Regime Detection Method}{45}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}The Sustainable Regimes ypothesis}{46}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Fisher Information requires dimension reduction prior to calculation}{47}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Aims}{48}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}Methods}{49}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Predator-prey model system}{49}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Inducing a Regime Shift}{49}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Decoupling the Steps for Calculating Fisher Information}{50}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Discussion}{54}{section.3.4}
+\contentsline {section}{\numberline {3.5}Acknowledgements}{56}{section.3.5}
+\contentsline {chapter}{Chapter 4: An application of Fisher Information to bird community data does not reveal distinct regimes in the continental United States}{63}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{63}{section.4.1}
+\contentsline {section}{\numberline {4.2}Data and Methods}{64}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Data: North American breeding bird communities}{64}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Study area}{66}{subsection.4.2.2}
+\contentsline {subsubsection}{Focal military base}{66}{section*.28}
+\contentsline {subsubsection}{Spatial sampling grid}{69}{section*.29}
+\contentsline {subsection}{\numberline {4.2.3}Calculating Fisher Information (FI)}{69}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Interpreting and comparing Fisher Information across spatial transects}{72}{subsection.4.2.4}
+\contentsline {subsubsection}{Interpreting Fisher Information values}{72}{section*.30}
+\contentsline {subsubsection}{Interpolating results across spatial transects}{73}{section*.31}
+\contentsline {subsubsection}{Spatial correlation of Fisher Information}{73}{section*.32}
+\contentsline {section}{\numberline {4.3}Results}{74}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Fisher Information across spatial transects}{74}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Spatial correlation of Fisher Information}{78}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Discussion}{79}{section.4.4}
+\contentsline {chapter}{Chapter 5: Velocity (\emph {v}): Rate of Change of System Trajectory Identifies Abrupt Changes in Ecological Systems}{87}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{87}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Tracking ecosystem trajectory through time to explore system dynamics}{89}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Rate of change as an indicator of abrupt change in the system trajectory}{90}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Aims}{91}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Analytical approach}{92}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}Steps for Calculating Velocity, \(V\)}{92}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Step 1: Calculate \(\Delta x_i\)}{94}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Step 2: Calculate distance traveled, \(s\)}{95}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Step 3: Calculate velocity, \(V\) (or \(\frac {\Delta s}{\Delta t}\))}{95}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Velocity \emph {v} Performance Under a Discontinuous Transition}{96}{section.5.3}
+\contentsline {subsubsection}{Varying post-shift mean}{98}{section*.47}
+\contentsline {subsubsection}{Varying Post-shift Variance}{98}{section*.50}
+\contentsline {subsubsection}{Smoothing the data prior to calculating \emph {v}}{99}{section*.53}
+\contentsline {section}{\numberline {5.4}Velocity Performance Under a Smooth Transition}{99}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Generating the data}{100}{subsection.5.4.1}
+\contentsline {subsubsection}{True process model}{100}{section*.56}
+\contentsline {subsubsection}{Observed process data}{101}{section*.59}
+\contentsline {subsection}{\numberline {5.4.2}Evaluating Velocity Performance Under Conditions of Changing Means and Variance}{102}{subsection.5.4.2}
+\contentsline {subsubsection}{Smooth changes in the mean}{104}{section*.69}
+\contentsline {subsubsection}{Smooth changes in variance}{104}{section*.70}
+\contentsline {subsubsection}{Smooth changes in the mean and variance}{105}{section*.71}
+\contentsline {section}{\numberline {5.5}Velocity Performance Under Empirical Transitions: paleolithic freshwater diatom communities}{106}{section.5.5}
+\contentsline {section}{\numberline {5.6}Discussion}{107}{section.5.6}
+\contentsline {section}{\numberline {5.7}Supplementary Figures}{109}{section.5.7}
+\contentsline {chapter}{Chapter 6: Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures}{135}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introduction}{135}{section.6.1}
+\contentsline {section}{\numberline {6.2}Data and Methodology}{138}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Study system and data}{138}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Regime detection measures}{138}{subsection.6.2.2}
+\contentsline {subsubsection}{Velocity (\(v\)) calculation}{139}{section*.84}
+\contentsline {subsubsection}{Variance Index (VI) calculation}{139}{section*.85}
+\contentsline {subsubsection}{Fisher Information (FI) calculation}{140}{section*.86}
+\contentsline {subsubsection}{Using moving window analysis to calculate Fisher Information and Variance Index}{140}{section*.89}
+\contentsline {subsection}{\numberline {6.2.3}Simulating data quality and quantity issues using resampling techniques}{141}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Comparing regime detection measures}{142}{subsection.6.2.4}
+\contentsline {section}{\numberline {6.3}Results}{143}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Velocity of the distance travelled (\(v\))}{143}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Variance Index}{143}{subsection.6.3.2}
+\contentsline {subsection}{\numberline {6.3.3}Fisher Information is highly sensitive to information loss}{144}{subsection.6.3.3}
+\contentsline {section}{\numberline {6.4}Detrending the Data Prior to Calculations}{144}{section.6.4}
+\contentsline {section}{\numberline {6.5}Conclusion}{145}{section.6.5}
+\contentsline {section}{\numberline {6.6}Ackowledgements}{146}{section.6.6}
+\contentsline {chapter}{Chapter 7: Grassland Obligates and Declining Birds Operate Near Edges of Body Mass Distributions}{155}{chapter.7}
+\contentsline {section}{\numberline {7.1}Introduction}{155}{section.7.1}
+\contentsline {section}{\numberline {7.2}Methods}{157}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Study area}{157}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Data}{158}{subsection.7.2.2}
+\contentsline {subsubsection}{Avian census data - North American Breeding Bird Survey}{158}{section*.98}
+\contentsline {paragraph}{Identifying avian census locations}{159}{section*.99}
+\contentsline {paragraph}{Avian body mass data}{159}{section*.100}
+\contentsline {paragraph}{Removing species from analysis}{160}{section*.101}
+\contentsline {paragraph}{Taxonomic munging of the census data}{160}{section*.102}
+\contentsline {subsubsection}{Identifying species of interest}{161}{section*.104}
+\contentsline {paragraph}{Grassland obligate species}{161}{section*.105}
+\contentsline {paragraph}{Declining species}{163}{section*.106}
+\contentsline {subsection}{\numberline {7.2.3}Statistical analysis}{163}{subsection.7.2.3}
+\contentsline {subsubsection}{Identifying scaling structure of avian communities using body mass distributions}{163}{section*.107}
+\contentsline {subsubsection}{Determining Effects of a Spatial Regime Boundary on Grassland Birds}{165}{section*.108}
+\contentsline {section}{\numberline {7.3}Results}{169}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Summary statistics of censuses (NABBS data)}{171}{subsection.7.3.1}
+\contentsline {subsubsection}{Species of interest}{173}{section*.114}
+\contentsline {subsection}{\numberline {7.3.2}Statistical analysis}{175}{subsection.7.3.2}
+\contentsline {subsubsection}{Identifying scaling structure in body mass distributions}{175}{section*.121}
+\contentsline {subsubsection}{Linear mixed effects analyssis of distance to edge}{176}{section*.123}
+\contentsline {section}{\numberline {7.4}Discussion}{177}{section.7.4}
+\contentsline {chapter}{Chapter 8: Conclusions}{188}{chapter.8}
+\contentsline {section}{\numberline {8.1}Method Mining}{189}{section.8.1}
+\contentsline {section}{\numberline {8.2}Ecological Data are Noisy}{190}{section.8.2}
+\contentsline {section}{\numberline {8.3}Data Collection and Munging Biases Limit Inference}{190}{section.8.3}
+\contentsline {section}{\numberline {8.4}Common Limitations of Regime Detection Measures}{191}{section.8.4}
+\contentsline {chapter}{Appendix A bbsAssistant: an R package for Download and Munging Data and Information from the North American Breeding Bird Survey}{192}{appendix*.127}
+\contentsline {section}{\numberline {.1}Package Summary}{192}{section.Alph0.1}
+\contentsline {section}{\numberline {.2}Package Vignette}{193}{section.Alph0.2}
+\contentsline {section}{\numberline {.3}Package Manual}{193}{section.Alph0.3}
+\contentsline {section}{\numberline {.4}Acknowledgements}{193}{section.Alph0.4}
+\contentsline {chapter}{Appendix B regimeDetectionMeasures: an R package for calculating various regime detection measures}{195}{appendix*.128}
+\contentsline {section}{\numberline {.1}Package Summary}{195}{section.Alph0.1}
+\contentsline {section}{\numberline {.2}Package Manual}{196}{section.Alph0.2}
+\contentsline {chapter}{Appendix C bbsRDM: an R package for applying \texttt {regimeDetectionMeasures} functionality to spatial data}{197}{appendix*.129}
+\contentsline {section}{\numberline {.3}Package Vignette}{197}{section.Alph0.3}
+\contentsline {section}{\numberline {.4}Package Manual}{198}{section.Alph0.4}
+\contentsline {chapter}{Appendix D Functions used to calculate discontinuities in avian body mass distributions.}{199}{appendix*.130}
+\contentsline {section}{\numberline {.1}Neutral.Null function}{199}{section.Alph0.1}
+\contentsline {section}{\numberline {.2}Bootstrapping Function}{200}{section.Alph0.2}
+\contentsline {chapter}{References}{201}{appendix*.131}
