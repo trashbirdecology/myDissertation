@@ -340,6 +340,9 @@
     {\fontsize{10}{12}\selectfont \@date \par}
   \end{center}\par
   \end{titlepage}
+  }
+}
+
 
 % %% Approved for the division page
 %   \cleardoublepage
