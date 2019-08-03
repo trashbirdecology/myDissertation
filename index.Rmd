@@ -92,7 +92,7 @@ myPackages <- c( "tidyverse",
 ```
 
 
-```{r detach-packages, include=FALSE }
+```{r detach-packages, include=FALSE, eval=FALSE}
 # Detach all other packages just in case...
 if(!is.null(sessionInfo()$otherPkgs)) suppressWarnings(suppressMessages(lapply(paste('package:', names(sessionInfo()$otherPkgs),sep=""), detach,character.only=TRUE,unload=TRUE)))
 
