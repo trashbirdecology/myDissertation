@@ -1,7 +1,9 @@
 ######### FUNCTIONS FOR 2-species and paleo examples #######
 # Save figures to file ----------------------------------------------------
-saveFig <- function(p=NULL, fn=NULL, dir=here::here("chapterFiles/velocity/tempFigures/"), dev=".png",
+saveFig <- function(p=NULL, fn=NULL, dir=here::here("chapterFiles/velocity/figsCalledInDiss/"), dev=".png",
                     width=6, height=4.5){
+  
+  if(purrr::is_empty(dir)) dir.create(dir) # create temp fig dir if it doenst exist
   if(is.null(p))warning("no p specified. not printing plot.")
   ggsave(plot = p, filename=paste0(dir,fn, dev), width=width, height=height)
 }

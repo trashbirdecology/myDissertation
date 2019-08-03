@@ -131,8 +131,6 @@ August, 2019
 \setlength{\parskip}{0pt}
 
 % Added by CII
-  %\setlength{\parskip}{\baselineskip}
-  \usepackage[parfill]{parskip}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -164,7 +162,7 @@ Finally, to my partner of eight years--Schultzie--thank you for everything. Just
 
 \Preface{
 \begin{quote}
-``Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists'' ---source unknown
+``Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists'' --- unknown
 \end{quote}
 }
 
@@ -187,7 +185,7 @@ Using both theoretical and empirical data, I evaluate the efficacy of multivaria
 \pagestyle{empty} % this removes page numbers from the frontmatter
   \begin{preface}
     \begin{quote}
-    ``Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists'' ---source unknown
+    ``Ecological models are made for ecologists, by ecologists, cooked up for consumption by ecologists'' --- unknown
     \end{quote}
   \end{preface}
  \begin{dedication}
@@ -964,11 +962,11 @@ I first describe the steps for calculating velocity by constructing a simple, tw
 S
 In this section, I first demonstrate the calculations of velocity using a very simple, two-variable toy system. The first system exhibits a rapid shift at a single point in time, where mean and variance are constant before and after the shift point. I demonstrate the signals achieved with and the variability within the \(V\) calculation by exploring a number of scenarios of this simple system. For the examples in this section, observations of \(x_i\) are randomly drawn from distribution \(x_i\sim Normal(\mu, \sigma)\), where \(\mu\) is the mean and \(\sigma\) is the standard deviation.
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx-1} \caption{The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\sigma = 5$.}\label{fig:sysEx}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/sysEx} \caption{The 2-variable discrete time toy system used to demonstrate steps for calculating system velocity. Each variable, $x$, is drawn from a normal distribution with means that change at $t = 50$. State variables have constant standard deviation, $\sigma = 5$.}\label{fig:sysEx}
 \end{figure}
 Consider a system (Figure \ref{fig:sysEx}) with \(N\) state variables (\(x_i\)), with observations taken at time points, \(t\). System velocity is calculated as the cumulative sum over time period \(t_0\) to \(t_j\), as the total change in all state variables, \{\(x_1 ...x_N\)\}, between two adjacent time points, e.g., \(t_j\) and \(t_{j+1}\), denoted \(t_{j,j+1}\). I use this simple, two-variable system to demonstrate how \emph{velocity} is calculated. The system comprises variables \(x_1\) and \(x_2\), with observations occurring at each time point \(t = {1,2,3,...100}\). First, we calculate the change in each state variable, \(x_i\), between two adjacent points in time, \(t_j\) and \(t_{j+1}\), such that the difference, \(x_{t_{j+1}} - x_{t_j}\) is assigned to the latter time point, \(t_{j+1}\). For example, in our toy data, we use observations at time points \(t = 1\) \& \(t=2\) (Figure \ref{fig:sysEx2}). For all examples in this chapter, the state variables \(x_1\) and \(x_2\) were drawn from a normal distribution (using function \emph{rnorm}), with parameters \(\bar{x}_i\) (mean) and \(\sigma_i\) (sd) for 100 time steps, \(t\). Under each scenario I induce a regime shift at time \(t=50\), where either or both a change in \(\bar{x}_i\) or \(\sigma_i\) occurs.
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysEx2-1} \caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/sysEx2} \caption{Data used to calculate velocity at the first two time points, $t_1$ and $t_2$.}\label{fig:sysEx2}
 \end{figure}
 \hypertarget{step-1-calculate-delta-x_i}{%
 \subsection{\texorpdfstring{Step 1: Calculate \(\Delta x_i\)}{Step 1: Calculate \textbackslash Delta x\_i}}\label{step-1-calculate-delta-x_i}}
@@ -994,7 +992,7 @@ s_T = \Sigma_{t=0}^{T}{\Delta s}
   \label{eq:s}
 \end{equation}
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/sysExs-1} \caption{Distance traveled, $s$, for the 2-species toy system.}\label{fig:sysExs}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/sysExs} \caption{Distance traveled, $s$, for the 2-species toy system.}\label{fig:sysExs}
 \end{figure}
 We now have a single measure, \(s_T\) {[}hereafter referred to as \(s\); Equation \eqref{eq:s}{]} at each discrete point in time in our \(N\)-dimensional system (Figure \ref{fig:sysExs}). It should be noted that \(s\)(Figure \ref{fig:sysExs}) is monotonically increasing since the value of \(\Delta s\) {[}Equation \eqref{eq:ds}{]} is a sum of squares. Although discussed in a later section, it is important to note that \(s\) is not unitless---that is, \(s\) has units of the state variables, \(x_i\). For example, if our 2-variable toy system represents biomass, then the units of \(s\) represents the cumulative absolute change in biomass of the entire system.
 
@@ -1189,9 +1187,6 @@ Given the signals identified in the velocity when one or both state variables ex
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/changeMuVarBoth_tanhAlpha1-10tvdiffAlpha-1000iter_stackTvdiff} \caption{The velocity signals a shift when both variables undergo shifts in the mean and variance under a slightly abrupt transition ($\alpha_{tanh}=1.00$). True and observed values of $x_i$ (panel A), observed distance traveled ($s$, panel B), observed velocity (C), and the smoothed velocity (D).}\label{fig:muVarBoth1}
 \end{figure}
-\newpage
-
-\newpage
 \begin{figure}
 \includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/paleoTurnover} \caption{Relative abundances of the most common diatom species in the time series. Few species dominate the data over the entire time series, and turnover is apparent at multiple observations.}\label{fig:paleoTurnover}
 \end{figure}
@@ -1236,15 +1231,15 @@ Further work is required to determine the utility of system velocity as a regime
 
 Figures \ref{fig:velocSysEx2}, \ref{fig:velocSysEx3}, and \ref{fig:velocSysEx4} provide additional examples of the behavior of velocity, \(V\) when varying the mean and/or variance prior to and/or after the induced abrupt shift in the toy system with a discontinuous transition at \(t=50\).
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx2-1} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/velocSysEx2} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Change in means ($\bar{x}_{1_{pre}}=25$, $\bar{x}_{1_{post}}=100$, $\bar{x}_{2_{pre}}=50$, $\bar{x}_{2_{post}}=10$) and an increase in variance ($\sigma_{1_{pre}}=2$, $\sigma_{1_{post}}=10$, $\sigma_{2_{pre}}=5$,  $\sigma_{2_{post}}=10$).}\label{fig:velocSysEx2}
 \end{figure}
 \newpage
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx3-1} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/velocSysEx3} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Constant means ($\bar{x}_1=25$, $\bar{x}_2=50$) and sharp change in variance for one state variable $\sigma_{1_{pre}} = 2$, $\sigma_{1_{post}} = 12$, $\sigma_{2_{pre,post}} = 5$}\label{fig:velocSysEx3}
 \end{figure}
 \newpage
 \begin{figure}
-\includegraphics[width=0.85\linewidth]{_myDissertation_files/figure-latex/velocSysEx4-1} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Variance equal to mean ($/bar{x_i}=/sigma_i$), where means ($/bar{x}_{1_{pre}}=25$, $/bar{x}_{1_{post}}=50$, $/bar{x}_{2_{pre}}=15$, $/bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
+\includegraphics[width=0.85\linewidth]{/Users/jessicaburnett/Documents/GitHub/myDissertation/chapterFiles/velocity/figsCalledInDiss/velocSysEx4} \caption{System change ($s$) and velocity ($V$) of the model system over the time period. Variance equal to mean ($/bar{x_i}=/sigma_i$), where means ($/bar{x}_{1_{pre}}=25$, $/bar{x}_{1_{post}}=50$, $/bar{x}_{2_{pre}}=15$, $/bar{x}_{2_{post}}=150$).}\label{fig:velocSysEx4}
 \end{figure}
 \hypertarget{resampling}{%
 \chapter{Using Resampling Methods to Evaluate the Relative Performance of Regime Detection Measures}\label{resampling}}
